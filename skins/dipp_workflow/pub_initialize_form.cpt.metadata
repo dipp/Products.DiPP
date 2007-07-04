@@ -1,0 +1,10 @@
+[default]
+title = Initialisierung
+
+[validators]
+validators..Save = validate_initialize
+
+[actions]
+action.success..Save       = traverse_to:string:pub_modify_instance
+action.success..Cancel     = traverse_to:string:pub_inactivate
+action.success..NewAuthor  = traverse_to:string:./acl_users/Users/acl_users/manage_userrecords

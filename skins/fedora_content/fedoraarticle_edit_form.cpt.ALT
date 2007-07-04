@@ -1,0 +1,142 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en-US"
+      lang="en-US"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="fedora">
+
+  <metal:block fill-slot="javascript_head_slot">
+    <tal:block define="macro here/archetypes_custom_js/macros/javascript_head | nothing"
+	       condition="macro">
+      <metal:block use-macro="macro" />
+    </tal:block>
+  </metal:block>
+
+  <body>
+
+    <div metal:fill-slot="main">
+      <div metal:define-macro="main"
+	   tal:define="errors options/state/getErrors|nothing;
+	   Iterator python:modules['Products.Archetypes'].IndexIterator;
+	   tabindex python:Iterator();
+	   schematas here/Schemata;
+	   default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or schematas.keys()[0];
+	   fieldset request/fieldset|options/fieldset|default_fieldset;
+	   fieldsets python:[key for key in schematas.keys() if key != 'metadata'];
+	   portal_type python:here.getPortalTypeName().lower();
+	   edit_template python:'%s_edit' % portal_type;
+	   edit_macros python:path('here/%s/macros|here/edit_macros/macros' % edit_template);"
+	   tal:omit-tag="">
+
+	<h1 tal:content="here/title_or_id"
+	    metal:use-macro="edit_macros/header|default"/>
+
+    <form name="fedoradocument_edit_form"
+          method="post"
+          enctype="multipart/form-data"
+	      tal:attributes="action python:here.absolute_url()+'/'+template.id" >
+
+        <fieldset>
+
+	    <legend i18n:translate=""
+                tal:content="python:(len(fieldsets) > 1 and fieldset != 'default') and fieldset or here.archetype_name" />
+
+
+	    <input type="hidden" name="form.submitted" value="1" />
+
+             <div class="field"
+                tal:define="error errors/id|nothing;
+                            id request/id|here/id"
+                tal:attributes="class python:test(error, 'field error', 'field')"
+                i18n:domain="plone">
+                <label for="id" i18n:translate="label_short_name">id</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_shortname">
+                    Short Name is part of the item's web address. 
+                    Should not contain spaces, upper case, underscores or other special characters.
+                </div>
+                <input type="text"
+                       id="id"
+                       name="id"
+                       value=""
+                       size="40"
+                       tal:attributes="value id"/>
+            </div>
+            <input type="hidden"
+                   name="id"
+                   tal:condition="python:not member.getProperty('visible_ids', '')"
+                   tal:attributes="value python:request.get('id', here.getId())"/>
+                                                                                                 
+            <div class="field"
+                tal:define="error errors/title|nothing;
+                            title request/title|here/title"
+                tal:attributes="class python:test(error, 'field error', 'field')"
+                i18n:domain="plone">
+                <label for="title" i18n:translate="label_title" >title</label>
+                                                                
+                <div tal:content="error">Validation error output</div>
+                <input type="text"
+                       name="title"
+                       value=""
+                       tal:attributes="value title"/>
+            </div>
+ 
+       
+            <div class="field"
+                tal:define="error errors/PID|nothing;
+                            PID request/PID|here/PID"
+                tal:attributes="class python:test(error, 'field error', 'field')">
+                <label for="PID" >PID</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="">
+                    Persistent identifier
+                </div>
+                <input type="text"
+                       name="PID"
+                       value=""
+                       tal:attributes="value PID"/>
+            </div>
+            
+            
+
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Save"
+                   value="Save"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.NewVersion"
+                   value="New version"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+
+
+            <input class="standalone"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;" />
+
+
+        </fieldset>
+    </form>
+
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,190 @@
+# Gettext Message File for Qualified Dublin Core (DiPP).
+# Peter Reimer <reimer@hbz-nrw.de>, 2004-2005
+msgid ""
+msgstr ""
+"Project-Id-Version: qdc-de\n"
+"POT-Creation-Date: 2005-10-04 11:30+0000\n"
+"PO-Revision-Date: 2005-11-24 08:58+0100\n"
+"Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
+"Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: qdc\n"
+"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
+"X-Poedit-Language: German\n"
+
+msgid "label_abbrev"
+msgstr "Kurztitel"
+
+msgid "help_abbrev"
+msgstr "Kurze Version des Titels, verwendet in der Kopfzeile des pdf."
+
+msgid "label_language"
+msgstr "Sprache"
+
+msgid "label_ddc"
+msgstr "DDC"
+
+msgid "label_language_ddc"
+msgstr "Sprache und DDC des Dokuments"
+
+msgid "label_title"
+msgstr "Titel"
+
+msgid "label_alternative"
+msgstr "Alternativer Titel"
+
+msgid "label_abstract"
+msgstr "Zusammenfassung"
+
+msgid "label_creatorPerson"
+msgstr "Autor"
+
+msgid "label_publisher"
+msgstr "Herausgeber"
+
+msgid "label_subject"
+msgstr "Freie Schlagworte"
+
+msgid "label_keywords_subjects"
+msgstr "Frei und Normierte Schlagworte"
+
+msgid "help_subject"
+msgstr "Geben Sie pro Zeile ein Schlagwort ein."
+
+msgid "label_subjectClassified"
+msgstr "Normierte Schlagworte"
+
+msgid "help_subjectClassified"
+msgstr "Geben sie normierte Schlagworte gemäß folgenden Schemata ein."
+
+msgid "label_rights"
+msgstr "Rechte"
+
+msgid "help_rights"
+msgstr "Sollten Sie nicht der Autor sein, stellen Sie sicher, dass sie das Einverständnis des Autors zur Wahl der Lizenz vorliegen haben."
+
+msgid "label_bibliographicCitation"
+msgstr "Bibliographisches Zitat"
+
+msgid "help_bibliographicCitation"
+msgstr "Ergänzen Sie die bibliographischen Details"
+
+msgid "label_journalTitle"
+msgstr "Titel"
+
+msgid "label_journalVolume"
+msgstr "Ausgabe"
+
+msgid "label_journalIssueNumber"
+msgstr "Nummer"
+
+msgid "label_journalIssueDate"
+msgstr "Datum"
+
+msgid "label_docType"
+msgstr "Dokumententyp"
+
+msgid "help_docType"
+msgstr "Geben sie den Dokumenttyp des Artikels an."
+
+msgid "label_pubType"
+msgstr "Publikationstyp"
+
+msgid "label_pubType_docType"
+msgstr "Publikations- und Dokumenttyp"
+
+msgid "help_pubType"
+msgstr "Geben sie die Art der Publikation an."
+
+msgid "label_dates"
+msgstr "Daten"
+
+msgid "help_dates"
+msgstr "Verwenden sie das Datumsformat JJJJ-MM-TT."
+
+msgid "created"
+msgstr "erstellt"
+
+msgid "modified"
+msgstr "verändert"
+
+msgid "valid"
+msgstr "gültig"
+
+msgid "label_articleType"
+msgstr "Artikeltyp"
+
+msgid "help_articleType"
+msgstr "Wählen Sie den Typ des Artikels aus, damit die richtige Konvertierung durchgeführt werden kann."
+
+msgid "label_targetFormat"
+msgstr "Zielformat(e)"
+
+msgid "help_targetFormat"
+msgstr "Wählen Sie die zu erstellenden Zielformate."
+
+msgid "value_addTitle"
+msgstr "Titel hinzufügen"
+
+msgid "value_addAbstract"
+msgstr "Zusammenfassung hinzufügen"
+
+msgid "value_addAlternative"
+msgstr "Altern. Titel hinzufügen"
+
+msgid "value_addDDC"
+msgstr "DDC hinzufügen"
+
+msgid "academicTitle"
+msgstr "akad. Titel"
+
+msgid "firstName"
+msgstr "Vorname"
+
+msgid "lastName"
+msgstr "Nachname"
+
+msgid "postalAddress"
+msgstr "Anschrift"
+
+msgid "value_addAuthor"
+msgstr "Autor hinzufügen"
+
+msgid "label_creatorCorporate"
+msgstr "korporative Autoren"
+
+msgid "value_add"
+msgstr "hinzufügen"
+
+msgid "label_contributor"
+msgstr "Mitwirkende"
+
+msgid "keyword"
+msgstr "Schlagwort"
+
+msgid "identNo"
+msgstr "Ident-Nr."
+
+msgid "source"
+msgstr "Klassifikationsschema"
+
+msgid "role"
+msgstr "Rolle"
+
+msgid "select_licence"
+msgstr "--- wählen Sie eine Lizenz ---"
+
+msgid "dppl"
+msgstr "Digital Peer Publishing Lizenz"
+
+msgid "mdppl"
+msgstr "modulare Digital Peer Publishing Lizenz"
+
+msgid "fdppl"
+msgstr "freie Digital Peer Publishing Lizenz"

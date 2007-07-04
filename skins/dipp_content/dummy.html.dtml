@@ -1,0 +1,3 @@
+#
+# dummy.html for <dtml-var "REQUEST.SERVER_URL">
+#

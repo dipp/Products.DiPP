@@ -1,0 +1,74 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/dipp_workflow_template/macros/master">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+    <body i18n:domain="dipp">
+    
+        <div metal:fill-slot="header">
+        </div>
+        
+        <div metal:fill-slot="main">
+        
+        <tal:block define="oftool container/portal_openflow;
+                            i python:oftool[request.instance_id];
+                            w python:i[request.workitem_id];
+                            PID python:i.PID;
+                            actor python:user.getUserName();
+                            wf_init python: container.pub_instance_init(i.id, w.id) ">
+            <h1 i18n:translate="imprimatur">Imprimatur</h1>
+
+            <div metal:use-macro="here/pub_macros/macros/edit">
+                öffnen eines neuen Fensters zum Bearbeiten
+            </div>
+
+            <form action="pub_modify_instance">
+
+                <div metal:use-macro="here/pub_macros/macros/deadline">
+                    Fristen
+                </div>
+
+                <div metal:use-macro="here/pub_macros/macros/comments">
+                    Kommentarfelder
+                </div>
+
+                <h2 i18n:translate="licence">Lizenz</h2>
+                <tal:block tal:define="rights python:here.fedora.getQualifiedDCMetadata(PID)['rights'][0];">
+                    <input type="checkbox" name="rights" />
+                    <label for="rights"  i18n:translate="licence_agreement">
+                        Ich bin damit einverstanden, dass der Artikel under die 
+                        <span tal:replace="rights" i18n:name="licence">DPPL</span> gestellt wird.
+                    </label>
+                    
+                </tal:block>                
+
+                <h2 i18n:translate="article_approval_question">Ist der Artikel inhaltlich/formal OK?</h2>
+
+                <label>
+                    <input class="noborder" name="autorOK" type="radio" value="True" checked="checked"/>
+                    <span i18n:translate="check_publish">ja, der Artikel kann so veröffentlicht werden.</span><br />
+                </label>
+                <label>
+                    <input class="noborder" name="autorOK" type="radio" value="False"/>
+                    <span i18n:translate="check_consider_notes">nein, bitte obige Anmerkungen berücksichtigen.</span>
+                </label>
+                <input type="hidden" name="instance_id" value="instance_id" tal:attributes="value request/instance_id">
+                <input type="hidden" name="workitem_id" value="workitem_id" tal:attributes="value request/workitem_id">
+                <input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
+                <input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
+                <input type="hidden" name="actor" value="actor" tal:attributes="value user">
+                <h2/><input class="standalone" 
+                       type="submit" 
+                       name="Submit" 
+                       value="back_to_publisher" 
+                       i18n:attributes="value" />
+            </form>
+        </tal:block>
+        </div>
+    </body>
+</html>
+

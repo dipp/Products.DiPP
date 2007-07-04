@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+        <h1  class="documentFirstHeading">
+          Qualified Dublin Core
+        </h1>
+        
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <form name="fedoradocument_edit_form"
+              method="post"
+              enctype="multipart/form-data"
+              tal:define="errors options/state/getErrors;
+                          qdc python:here.fedora.getQualifiedDCMetadata(here.PID)"
+              tal:attributes="action python:here.absolute_url()+'/'+template.id" >
+
+            <input type="hidden" name="form.submitted" value="1" />
+            <input type="hidden" name="PID" tal:attributes="value here/PID" />
+                
+            <!-- TITLE -->
+            <div class="field"
+                 tal:define="error errors/title|nothing;
+                             titles python:qdc['title'];
+                             titleNumber python:len(titles);
+                             newTitleNumber request/newTitleNumber|titleNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                 i18n:domain="qdc">
+
+                <input type="hidden" name="newTitleNumber" value="" tal:attributes="value newTitleNumber"/>
+                <input type="hidden" name="titleNumber" value="" tal:attributes="value titleNumber"/>
+
+                <label for="title" i18n:translate="label_title">title</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <table class="listing">
+                    <tr>
+                        <th>#</th>
+                        <th>Titel</th>
+                        <th>Sprache</th>
+                    </tr>
+                    <tr tal:repeat="title titles">
+                        <td tal:content="repeat/title/number">#</td>
+                        <td>
+                            <input type="text"
+                                   name="title_value:list"
+                                   tal:define="i repeat/title/index;
+                                               value python:title['value']"
+                                   tal:attributes="value python: here.test('title_value',value,i)" />
+                        </td>
+                        <td tal:define="i repeat/title/index;
+                                        lang python:title['lang']" 
+                            tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',lang,i))">
+                            Sprachauswahlliste
+                            <input type="text"
+                                   name="title_lang:list"
+                                   tal:define="i repeat/title/index;
+                                               value python:title['lang']"
+                                   tal:attributes="value python: here.test('title_lang',value,i)" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="python: newTitleNumber > titleNumber"
+                        tal:repeat="title python:range(int(titleNumber),int(newTitleNumber))">
+                        <tal:block tal:define="number repeat/title/number;
+                                               index  repeat/title/index;
+                                               no     python:number + titleNumber;
+                                               i      python:index + titleNumber">
+                            <td tal:content="no">#</td>
+                            <td>
+                                <input type="text"
+                                       name="title_value:list"
+                                       tal:attributes="value python: here.test('title_value',None,i)" />
+                            </td>
+                            <td tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',None,i))">
+                                Sprachauswahlliste
+                                <input type="text"
+                                       name="title_lang:list"
+                                       tal:attributes="value python: here.test('title_lang',None,i)" />
+                            </td>
+                        </tal:block>    
+                    </tr>
+                </table>
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.addTitle"
+                       value="add Title"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
+
+
+            </div>
+
+            <div metal:use-macro="here/qdc_macros/macros/fields">
+                Qualified DublinCore Eingabefelder
+            </div>
+
+            <input type="hidden" id="storageType"  name="storageType" value="permanent" />
+            
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Save"
+                   value="Save"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+        </form>
+            		
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

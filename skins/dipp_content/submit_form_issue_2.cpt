@@ -1,0 +1,103 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/main_template/macros/master">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+    <body>
+
+
+         <div metal:fill-slot="main"
+         tal:define="auth nocall:here/cookie_authentication|nothing;
+                     came_from request/came_from|request/HTTP_REFERER|nothing;
+                     global ztutils modules/ZTUtils;">
+     
+       <h1 class="documentFirstheading" i18n:translate="article_submit" i18n:domain="dipp">Artikel einreichen</h1>
+
+            <p i18n:translate="submit_help" i18n:domain="dipp" >
+                Um einen Artikel einzureichen, benötigen sie einen Zugang zum Publikationssystem.
+            </p>
+            <div id="submit_form">
+                <div class="notreg"
+                       tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join']"
+                       tal:condition="python: join and checkPermission('Add portal member', here)">
+                    <h2 i18n:translate="not_registered" i18n:domain="dipp">Noch nicht registriert</h2>
+
+                    <p i18n:translate="description_no_account" i18n:domain="plone">
+
+                    If you do not have an account here, head over to the
+
+                    <span i18n:name="registration_form">
+                        <a href=""
+                           tal:define="join python:join.pop();
+                                       join python:join+test(join.find('?')==-1, '?', '&')+ztutils.make_query(came_from=came_from);"
+                           tal:attributes="href join"
+                           i18n:translate="description_no_account_registration_linktext">
+                            registration form
+                        </a>
+                    </span>
+
+                    to become a member.
+                    </p>
+
+                   
+                </div>
+                <div class="reg">
+                    <h2 i18n:translate="already_registered" i18n:domain="dipp">Bereits registriert</h2>
+                    <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+                          tal:define="errors options/state/getErrors;
+                             container_id here/portal_properties/dipp_properties/container_issue2_id;
+                             ldap_ou here/portal_properties/dipp_properties/ldap_ou;
+                             auth_domain python:'LDAP:DIPP_NRW_' + ldap_ou.upper();
+                             loginname python: test(isAnon, '', user);
+                             username request/username|loginname"
+                          method="get">
+                          <input type="hidden" name="form.submitted" value="1" />
+                          <input type="hidden" name="container_id" value="" tal:attributes="value container_id" />
+<!--
+                        <form action="http://www.gapdev.de/index.php"
+                            method="get"
+                            tal:define="container_id here/portal_properties/dipp_properties/container_id;
+                                        ldap_ou here/portal_properties/dipp_properties/ldap_ou;
+                                        auth_domain python:'LDAP:DIPP_NRW_' + ldap_ou.upper();
+                                        username python: test(isAnon, '', user)">
+
+                        <input type="hidden" name="action" value="login" />
+                        <input type="hidden" name="show" value="new_document" />
+                        <tal:block tal:replace="errors" />
+                        -->
+                        <table>
+                            <tr tal:define="error errors/username|nothing">
+                                <td i18n:translate="label_user_name" i18n:domain="dipp">Benutzer</td>
+                                <td>
+                                    <input type="text" name="username" value="" tal:attributes="value username"/>
+                                    <span class="auth" tal:content="error"></span> 
+                                </td>
+                            </tr>
+                            <tr tal:define="error errors/password|nothing">
+                                <td i18n:translate="label_password" i18n:domain="dipp">Password</td>
+                                <td>
+                                    <input type="password" name="password" value="" />
+                                    <span class="auth" tal:content="error"></span> 
+                                </td>
+                            </tr>
+                        </table>
+                        <!--
+                        <input type="hidden" name="auth_domain" value="" tal:attributes="value auth_domain" /><br />
+                        <input type="hidden" name="container_id" value="" tal:attributes="value container_id" /><br />
+                        -->
+                        <input class="searchButton" i18n:attributes="value" i18n:domain="dipp" type="submit" value="gap_submit" />
+                    </form>
+
+                </div>
+        
+            </div>
+        
+        <!--<tal:block tal:replace="structure request"/>-->
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="dipp">
+      
+      <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    
+        <h1 i18n:translate="contact" class="documentFirstHeading">
+           Contact
+        </h1>
+        
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+    
+        <div class="documentDescription">
+            
+        </div>
+        
+        <p i18n:translate="contact_description">
+            
+        </p>
+    
+        
+    <form method="POST" tal:define="errors options/state/getErrors"
+        enctype="multipart/form-data"
+        tal:attributes="action string:${here/absolute_url}/${template/id};">
+        <input type="hidden" name="form.submitted" value="1" />
+    
+       
+        <div class="field"
+        tal:define="error errors/name|nothing;
+                    name request/name|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label i188n:translate="label_name" for="name">Name</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_name">
+                        Your full name.
+                </div>
+
+                <input type="text" size="50" name="name" value="" tal:attributes="value name"/>
+        </div>
+        
+        <div class="field"
+        tal:define="error errors/email|nothing;
+                    email request/email|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+        
+                <label for="name" i18n:translate="label_email">Email</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_email">
+                        Your email address.
+                </div>
+
+            <input type="text" size="50" name="email" value="" tal:attributes="value email"/>
+        </div>
+        
+        
+        <div class="field"
+        tal:define="error errors/comment|nothing;
+                    comment request/comment|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label for="comment" i18n:translate="label_comment">Comment</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_comment">
+                        Do you have further comments and remarks?
+                </div>
+
+                <textarea name="comment" rows="5" tal:content="comment"></textarea>
+        </div>
+        
+        
+        <input type="submit" name="submit" value="submit" />
+        
+
+    </form>
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+[default]
+title=Upload RTF-Datei
+
+[validators]
+validators..metadata = validate_uploadRTF
+validators..testconvert = validate_uploadRTF
+[security]
+View=0:Redakteur,Herausgeber,Manager
+
+[actions]
+action.success..metadata    = traverse_to:string:upload_fi
+action.success..testconvert = traverse_to:string:upload_fi
+action.success..Cancel      = redirect_to:string:upload_file_form

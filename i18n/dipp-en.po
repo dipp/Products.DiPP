@@ -1,0 +1,487 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dipp-en\n"
+"POT-Creation-Date: 2004-09-06 11:54+0100\n"
+"PO-Revision-Date: 2006-04-04 21:18+0100\n"
+"Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
+"Language-Team: English <reimer@hbz-nrw.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: dipp\n"
+"X-Generator: KBabel 1.3.1\n"
+"X-Is-Fallback-For: en-en en-us\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+
+msgid "heading_dipp_control_panel"
+msgstr "dipp control panel"
+
+msgid "deadlines"
+msgstr "Deadlines"
+
+msgid "deadline_this_step"
+msgstr "for this step"
+
+msgid "deadline_entire_article"
+msgstr "for the entire article"
+
+msgid "deadline_next_step"
+msgstr "for the next step"
+
+msgid "label_up_to_dipp_control_panel"
+msgstr "Up to the dipp control panel"
+
+msgid "description_deadlines"
+msgstr "Here you can set the deadlines..."
+
+msgid "mailtemplates"
+msgstr "Mail Templates"
+
+msgid "defaultLanguage"
+msgstr "Default Language for emails"
+
+msgid "description_mailtemplates"
+msgstr "Here you can modify the content of the mails."
+
+msgid "rights"
+msgstr "Rights"
+
+msgid "description_rights"
+msgstr "Setting the rights for the workflow participants."
+
+msgid "Suspend"
+msgstr "Suspend"
+
+msgid "Resume"
+msgstr "Resume"
+
+msgid "End Fallin"
+msgstr "Remove from list"
+
+msgid "Fallin"
+msgstr "Insert into workflow"
+
+msgid "Fallout"
+msgstr "Take out from workflow"
+
+msgid "Activate"
+msgstr "Activate"
+
+msgid "Inactive"
+msgstr "Inactive"
+
+msgid "Assign"
+msgstr "Assign"
+
+msgid "Unassign"
+msgstr "Unassign"
+
+msgid "Self Assign"
+msgstr "Self Assign"
+
+msgid "Call Application"
+msgstr "Perform next step"
+
+msgid "Complete"
+msgstr "Complete"
+
+msgid "title_myworklist"
+msgstr "My article worklist"
+
+msgid "help_myworklist"
+msgstr "A list of articles already assigned to me and of those, which i can chose myself."
+
+msgid "title_reloadworklist"
+msgstr "Update article worklist"
+
+msgid "title_temporaryarticles"
+msgstr "Temporary articles"
+
+msgid "help_temporaryarticles_1"
+msgstr "Articles listed here were converted only for test purposes and do not pass through the Workflow."
+
+msgid "help_temporaryarticles_2"
+msgstr "Articles are deleted once daily, which are older than 24h."
+
+msgid "help_reloadworklist"
+msgstr "Recently uploaded articles may not appear in the worklist instantaneously"
+
+msgid "title_allworklists"
+msgstr "All articles worklist"
+
+msgid "help_allworklists"
+msgstr "List of all articles in process."
+
+msgid "help_internal_workflow"
+msgstr "upload article in the editorial toolbox"
+
+msgid "help_external_workflow"
+msgstr "upload article via the external GAP Peer-Review system"
+
+msgid "title_openurl"
+msgstr "create openURL"
+
+msgid "help_openurl"
+msgstr "Production URL from bibliographic meta data, with which digital library services can be called"
+
+msgid "deadline"
+msgstr "Deadline"
+
+msgid "actor"
+msgstr "Agent"
+
+msgid "author"
+msgstr "Author"
+
+msgid "title"
+msgstr "Title"
+
+msgid "issue"
+msgstr "Issue"
+
+msgid "next_step"
+msgstr "Next step"
+
+msgid "status"
+msgstr "Status"
+
+msgid "actions"
+msgstr "Actions"
+
+msgid "bearbeiten"
+msgstr "edit"
+
+msgid "begutachten"
+msgstr "examine"
+
+msgid "freischalten"
+msgstr "publish"
+
+msgid "imprimatur"
+msgstr "author's consent"
+
+msgid "anschreiben"
+msgstr "request imprimatur"
+
+msgid "absegnen"
+msgstr "approval"
+
+msgid "check_for_new_articles"
+msgstr "Reload Worklist"
+
+msgid "free_workitems"
+msgstr "Articles not yet assigned"
+
+msgid "assigned_workitems"
+msgstr "Articles assigned to me"
+
+msgid "starting_point_title"
+msgstr "Starting Point"
+
+msgid "starting_point_content"
+msgstr "Information management of top quality for research has many facettes: Fast information delivery, intelligent choices of information, complex information resources are only but a few examples.  Above all, top quality management of scholarly information requires a forward planned, quality assured system for scholarly publication. It is basis and promotor for open access to scholarly information available worldwide and for efficient exchange in global knowledge networks."
+
+msgid "licence"
+msgstr "Licence"
+
+msgid "licence_text"
+msgstr "Any party may pass on this Work by electronic means and make it available for download under the terms and conditions of the ${rights}. The text of the licence may be accessed and retrieved via Internet at ${url}"
+
+msgid "licence_agreement"
+msgstr "I agree with the fact that the article is placed under the license ${licence}."
+
+msgid "article_submit"
+msgstr "Article Submission"
+
+msgid "submit_help"
+msgstr "In order to submit an article you must be a registered user!"
+
+msgid "not_registered"
+msgstr "I am not registered"
+
+msgid "already_registered"
+msgstr "I am already registered"
+
+msgid "gap_submit"
+msgstr "Continue to the paper submission form"
+
+msgid "label_preferredlanguage"
+msgstr "Preferred language"
+
+msgid "help_preferredlanguage"
+msgstr "Please select your preferred language. Emails automatically generated by the system are written in this language. "
+
+msgid "contents"
+msgstr "Contents"
+
+msgid "title_support"
+msgstr "Support"
+
+msgid "description_support"
+msgstr "(Password protected area on ${url}.)"
+
+msgid "contact"
+msgstr "Contact"
+
+msgid "contact_description"
+msgstr ""
+
+msgid "label_name"
+msgstr "Name"
+
+msgid "help_name"
+msgstr "Your full name."
+
+msgid "label_email"
+msgstr "Email"
+
+msgid "help_email"
+msgstr "Your email address."
+
+msgid "help_institutional_address"
+msgstr "The address of your institute."
+
+msgid "label_institutional_address"
+msgstr "Institutional Address"
+
+msgid "label_category"
+msgstr "Category"
+
+msgid "help_category"
+msgstr "Choose the category in which your submission should appear."
+
+msgid "label_comment"
+msgstr "Comment"
+
+msgid "help_comment"
+msgstr "Your message for us."
+
+msgid "help_author"
+msgstr "In order to be able to contact the author, please select from the list or ${new_account}. Newly created accounts will only be available for selection after ${refresh} this site."
+
+msgid "info_article_submit"
+msgstr "Please use this form to submit your article to ${journal_title}. The required fields are marked with a red dot."
+
+msgid "link_account"
+msgstr "create a new account"
+
+msgid "refresh"
+msgstr "refreshing"
+
+msgid "not_necessary"
+msgstr "not necessary"
+
+msgid "author"
+msgstr "Author"
+
+msgid "guest_publisher"
+msgstr "Guest Publisher"
+
+msgid "help_guest_publisher"
+msgstr ""
+
+msgid "article_initialize"
+msgstr "Initialize Article"
+
+msgid "article_edit"
+msgstr "Edit Article"
+
+msgid "article_examine"
+msgstr "Examine Article"
+
+msgid "article_approval"
+msgstr "Guest Publisher's opinion"
+
+msgid "article_release"
+msgstr "Release Article"
+
+msgid "article_user_assignment"
+msgstr "Assign Article to an Agent"
+
+msgid "article_examine_question"
+msgstr "Article formally OK?"
+
+msgid "article_approval_question"
+msgstr "Is the Article OK in form and content?"
+
+msgid "description_choose"
+msgstr "Select an agent to assign this article to."
+
+msgid "check_publish"
+msgstr "yes, the article can be published in such a way."
+
+msgid "back_to_publisher"
+msgstr "Back to publisher"
+
+msgid "check_consider_notes"
+msgstr "no, please consider the notes above."
+                     
+msgid "forward_to_author"
+msgstr "yes, forward to the release or to the author"
+
+msgid "back_to_office"
+msgstr "no, back to the editorial office"
+
+msgid "edit_article"
+msgstr "View or edit the article in a new window"
+
+msgid "label_short_name"
+msgstr "Short Name (will be part of the web address)"
+
+msgid "help_newId"
+msgstr "Set a short name for the article. It will be part of the web address."
+
+msgid "help_newId_hint"
+msgstr "Should not contain spaces, upper case, underscores or other special characters."
+
+msgid "assignment"
+msgstr "Hierarchical Assignment"
+
+msgid "help_assignment_1"
+msgstr "At present the article is only temporarily buffered. In order to assign it e.g. to an issue, please mark an entry from the list."
+
+msgid "help_assignment_2"
+msgstr "If no suitable entry exists, you can make the assignment also still on a later time."
+
+msgid "written_comments"
+msgstr "Written Comments"
+
+msgid "your_comment"
+msgstr "Your Comment"
+
+msgid "brackets_your_comment"
+msgstr "[Your comment]"
+
+msgid "new_articles"
+msgstr "Enter new article"
+
+msgid "articles_in_process"
+msgstr "Articles in process"
+
+msgid "internal_workflow"
+msgstr "upload Document"
+
+msgid "external_workflow"
+msgstr "Peer-Review workflow"
+
+msgid "first_name"
+msgstr "Firstname"
+
+msgid "sur_name"
+msgstr "Surname"
+
+msgid "heading_file_submit"
+msgstr "Document - select File(s)"
+
+msgid "heading_metadata_submit"
+msgstr "Document - Metadata and Submit Form"
+
+msgid "label_file"
+msgstr "Selection of file(s)"
+
+msgid "help_file"
+msgstr "Select article in RTF, PDF or DocBook-XML format."
+
+msgid "help_rtf"
+msgstr "The fileformat of your article should be ${rtf}"
+
+msgid "help_licence_author"
+msgstr "The article will be published under the ${licence}."
+
+msgid "radio_fullUpload"
+msgstr "Upload with all metadata"
+
+msgid "help_fullUpload"
+msgstr " The document is converted and stored permanently in the repository. The input of the metadata is necessary."
+
+msgid "radio_testUpload"
+msgstr "Test conversion only"
+
+msgid "help_testUpload"
+msgstr " The document is converted and stored temporarly. An input of the metadata is not necessary."
+
+msgid "you_are_logged_in_as"
+msgstr "You are logged in as"
+
+msgid "description_website_manager"
+msgstr "for managing documents and folders"
+
+msgid "description_editorial_toolbox"
+msgstr "for advanced publication features"
+
+msgid "description_plone_setup"
+msgstr "for advanced Site Management"
+
+msgid "description_logged_in_explain"
+msgstr "Notice that the top right bar has changed and an additional navigation menu appeared on the left. They will remain as long as you are logged in."
+
+msgid "description_newbie_pointers"
+msgstr "Depending on your role and permissions the menu on the left contains additional functions for your editorial work:"
+
+msgid "explanation_editorial_toolbox"
+msgstr "On the left you find the Editorial Toolbox which allows you to manage and edit your peer reviewed publications."
+
+msgid "explanation_no_gap_account"
+msgstr "The corresponding account for the Reviewsystem of GAPworks does not exist. Please contact ${email} if you like to get an account at GAPworks."
+
+msgid "userguide"
+msgstr "Userguide"
+
+msgid "exampleRTF"
+msgstr "Example in RTF"
+
+msgid "tools"
+msgstr "Tools"
+
+msgid "journal"
+msgstr "Journal"
+
+msgid "metadata"
+msgstr "Metadata"
+
+msgid "user_administration"
+msgstr "User administration"
+
+msgid "webstats"
+msgstr "web statistics"
+
+msgid "articlestats"
+msgstr "article statistics"
+
+msgid "existing_comments"
+msgstr "Existing Annotations"
+
+msgid "your_comment"
+msgstr "Your Annotation"
+
+msgid "agent_assignment"
+msgstr "Assignment to an agent"
+
+msgid "help_pushworkitem"
+msgstr "In order to assign this article to another agent, select one from the list or ${new_account}. Newly created accounts will only be available for selection after ${refresh} this site."
+
+msgid "request_imprimatur"
+msgstr "Request the Authors imprimatur"
+
+msgid "message_author"
+msgstr "Message to the author"
+
+msgid "i_agree"
+msgstr "I agree"
+
+msgid "label_cancel"
+msgstr "Cancel"
+
+msgid "label_proceed_with_metadata"
+msgstr "Proceed with metadata"
+
+msgid "label_test_online_transformation"
+msgstr "Test online transformation"
+
+msgid "label_qdc"
+msgstr "Qualified Dublin Core Metadata"

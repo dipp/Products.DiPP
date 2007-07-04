@@ -1,0 +1,116 @@
+<metal:page define-macro="master"><metal:doctype define-slot="doctype"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"></metal:doctype>
+<metal:block define-slot="top_slot" />
+<metal:block use-macro="here/global_defines/macros/defines" />
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      tal:attributes="lang default_language|default;
+                      xml:lang default_language|default;">
+
+
+<head metal:use-macro="here/header/macros/html_header">
+
+    <metal:fillbase fill-slot="base">
+        <metal:baseslot define-slot="base">
+            <base href="" tal:attributes="href here/renderBase" />
+        </metal:baseslot>
+    </metal:fillbase>
+
+    <metal:headslot fill-slot="head_slot"
+               tal:define="language here/Language;
+                           lang language | default_language;
+                           charset site_properties/default_charset|string:utf-8">
+
+    <!-- min-width support for IE via Javascript, required for tableless -->
+    <tal:comment replace="structure string:&lt;!--[if IE]&gt;" />
+    <script type="text/javascript"
+            tal:attributes="src string:$portal_url/plone_minwidth.js"></script>
+    <tal:comment replace="structure string:&lt;![endif]--&gt;" />
+
+    <metal:cache use-macro="here/global_cache_settings/macros/cacheheaders">
+      Get the global cache headers located in global_cache_settings.
+    </metal:cache>
+
+    <metal:headslot define-slot="head_slot" />
+      <!-- A slot where you can insert elements in the header from a template -->
+    </metal:headslot>
+
+    <metal:cssslot fill-slot="css_slot">
+      <!-- A slot where you can insert CSS in the header from a template -->
+        <metal:cssslot define-slot="css_slot" />
+    </metal:cssslot>
+
+    <metal:javascriptslot fill-slot="javascript_head_slot">
+      <!-- A slot where you can insert javascript in the header from a template -->
+        <metal:javascriptslot define-slot="javascript_head_slot" />
+    </metal:javascriptslot>
+</head>
+
+<body>
+
+
+
+        <!-- start of main content block -->
+        <div tal:define="tabindex python:Iterator(pos=0)">
+
+            <div id="content" tal:attributes="class python:test(is_editable,'documentEditable','')">
+
+
+                <metal:ifborder tal:condition="is_editable" >
+                    <div metal:use-macro="here/global_contentviews/macros/content_views">
+                        The content views (View, Edit, Properties, Workflow)
+                    </div>
+
+                    <div metal:use-macro="here/global_contentviews/macros/content_actions">
+                        The content bar
+                    </div>
+                </metal:ifborder>
+
+                <div class="documentContent" id="region-content">
+
+                    <a name="documentContent"></a>
+
+                    <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+                        Portal status message
+                    </div>
+
+                    <metal:header metal:define-slot="header" tal:content="nothing">
+                        Visual Header
+                    </metal:header>
+
+<!--            <a href="./."
+                   tal:condition="request/HTTP_REFERER"
+                   i18n:translate="">Zurück zum Artikel</a>
+-->
+                    <metal:bodytext metal:define-slot="main" tal:content="nothing">
+                        Page body text
+                    </metal:bodytext>
+
+                    <metal:sub metal:define-slot="sub">
+                        <metal:discussion use-macro="here/viewThreadsAtBottom/macros/discussionView" />
+                    </metal:sub>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of main content block -->
+
+
+
+    <div class="visualClear">&nbsp;</div>
+
+<!-- end column wrapper -->
+
+<hr class="netscape4" />
+<!--
+<div id="portal-footer" metal:use-macro="here/footer/macros/portal_footer">
+  Footer
+</div>
+-->
+</body>
+</html>
+</metal:page>
+
+

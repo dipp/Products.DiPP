@@ -1,0 +1,24 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	metal:use-macro="here/main_template/macros/master"
+	i18n:domain="Reflow" >
+	
+	<metal:block fill-slot="base">
+		<base href="" tal:attributes="href python: here.absolute_url() + '/'">
+	</metal:block>
+	
+	<metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+	
+	<body>
+	
+		<div metal:fill-slot="header">
+			<h1 i18n:translate="Confirmation">Bestätigung</h1>
+		</div>
+		
+		<div metal:fill-slot="main">
+		<p>
+			<a tal:attributes="href string:${here/portal_url}/worklist" href="" i18n:translate="go_to_worklist" >Zur worklist</a>
+		</p>
+		</div>
+	</body>
+</html>

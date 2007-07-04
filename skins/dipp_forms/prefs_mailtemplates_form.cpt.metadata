@@ -1,0 +1,10 @@
+[default]
+title=Mail Templates
+
+[validators]
+validators..Save   = validate_mailtemplates
+validators..Cancel = 
+
+[actions]
+action.success..Save   = traverse_to:string:prefs_mailtemplates_set
+action.success..Cancel = redirect_to:string:prefs_mailtemplates_form

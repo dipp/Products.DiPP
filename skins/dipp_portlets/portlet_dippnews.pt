@@ -1,0 +1,37 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+
+<div metal:define-macro="portlet">
+                 
+
+    <dl class="portlet" id="portlet-dippnews" tal:condition="not: isAnon">
+        
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span i18n:translate="dippnews">DiPP News</span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem" i18n:domain="dipp"
+            tal:define="entries python: here.getDippFeed(here)">
+            <ol>
+                <tal:block tal:repeat="entry entries">
+                <li>
+                <strong tal:content="entry/title"></strong><br />
+                <span tal:content="entry/updated"></span>
+                <span tal:content="entry/summary"></span>
+                <a tal:attributes="href entry/link">mehr...</a>
+                </li>
+                </tal:block>
+            </ol>
+        </dd>
+    </dl>
+
+</div>
+
+</body>
+
+</html>

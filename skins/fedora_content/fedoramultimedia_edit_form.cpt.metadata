@@ -1,0 +1,8 @@
+[default]
+
+[validators]
+validators..Save   = validate_mailtemplates
+validators..Cancel =
+
+[actions]
+action.success..Save   = traverse_to:string:fedoramultimedia_upload

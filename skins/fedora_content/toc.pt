@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+            Title or id
+        </h1>
+
+        <a href=""
+           class="link-parent"
+           tal:define="parent_url python:here.navigationParent(here, template.getId())"
+           tal:condition="parent_url"
+           tal:attributes="href parent_url"
+           i18n:translate="go_to_parent_url">
+        Up one level
+        </a>
+
+        <div class="documentDescription" tal:content="structure here/Description">
+            description
+        </div>
+
+        <metal:listingmacro define-macro="listing">
+        <tal:foldercontents define="folderContents python:here.getFolderListingFolderContents(suppressHiddenFiles=1)">
+
+        <tal:block tal:replace="python:here.make_toc(here)" />
+       
+        
+        <tal:listing condition="folderContents"
+                     define="global getObjSize nocall:here/getObjSize;
+                             global toPortalTime nocall:here/toPortalTime;">
+                             
+            <tal:block tal:repeat="obj folderContents">
+            
+                <div tal:condition="python: obj.portal_type == 'FedoraHierarchie'">
+                    <h2 tal:content="obj/title_or_id"></h2>
+                    <ul tal:define="articles python:here.make_toc(obj)" >
+                    <tal:block tal:repeat="article articles">
+                        <li>
+                            <tal:block tal:repeat="title article/titles" >
+                                <h3><a href="" tal:attributes="href article/url"><span tal:content="title/value">Der Titel des Artikels</span></a></h3> 
+                            </tal:block>
+ 
+                           <tal:block tal:repeat="author article/authors" >
+                                <span tal:condition="not: repeat/author/end"
+                                      tal:define="firstName author/firstName; lastName author/lastName"
+                                      tal:replace="string: $firstName $lastName,">
+                                </span>
+                                <span tal:condition="repeat/author/end"
+                                tal:define="firstName author/firstName; lastName author/lastName"
+                                tal:replace="string: $firstName $lastName">
+                                </span>
+                            </tal:block>
+ 
+                        </li>
+                    </tal:block>
+                    </ul>
+                </div>
+                
+                <div tal:condition="python: obj.portal_type == 'FedoraArticle'">
+                    <h2 tal:content="obj/title_or_id"></h2>
+                    <tal:block tal:replace="python:here.make_toc(obj)" />
+                </div>
+                
+            </tal:block>
+        </tal:listing>
+       
+        
+        <p class="discreet"
+           tal:condition="not: folderContents" i18n:translate="description_no_items_in_folder">
+         There are currently no items in this folder.
+        </p>
+
+        </tal:foldercontents>
+        </metal:listingmacro>
+    </div>
+
+</body>
+</html>

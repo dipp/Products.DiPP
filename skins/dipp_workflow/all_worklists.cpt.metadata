@@ -1,0 +1,10 @@
+[default]
+title=All Worklists
+
+[security]
+View=0:Herausgeber,Manager
+
+
+[actions]
+action.success  = traverse_to:string:checkForNewPIDs
+

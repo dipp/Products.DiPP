@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      i18n:domain="plone">
+
+<body>
+
+<div id="dipp-footer" class="visualColumnHideTwo" metal:define-macro="portal_footer" i18n:domain="plone">
+    <div id="footer-wrapper">
+        <div id="footer-column-content">
+            <div id="footerRight">
+                <div id="footer-content">
+                    <ul>
+                        <li>
+                            <a href="#top">top</a>
+                        </li>
+                        <tal:tabs tal:repeat="tab portal_tabs">
+                        <li>
+                            <a href="" 
+                               tal:content="tab/name"
+                               tal:attributes="href tab/url">
+                            Tab Name
+                            </a>
+                        </li>
+                        </tal:tabs>
+                        <li>
+                            <a href="" tal:attributes="href string:$portal_url/login_form">login</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div id="footer-column-one">
+            <div class="visualPadding">
+                <div id="footerLeft" 
+                    tal:define="issn here/portal_properties/dipp_properties/ISSN|nothing">
+                    <tal:block tal:condition="issn">
+                        <acronym title="International Standard Serial Number">ISSN</acronym>:
+                        <span tal:content="issn">0123456789</span>
+                    </tal:block>
+<!--
+                    <a href="http://www.hbz-nrw.de" title="Powered by Hochschulbibliothekszentrum NRW (HBZ)">
+                        <img src="hbz-logo-klein.gif" alt="HBZ-Logo" />
+                    </a>
+                    <a href="&#0109;ailto&#0058;dipp&#0064;hbz-nrw.de">dipp&#0064;hbz-nrw.de</a>
+-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

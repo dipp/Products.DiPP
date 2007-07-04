@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+        <h1  class="documentFirstHeading">
+          Administrative Metadaten
+        </h1>
+        <div class="documentDescription">
+            Einordung des Articles in der Zeitschriften-Hierarchie.
+        </div>
+
+        <form>
+            <select size="5">	
+                <tal:block tal:repeat="tree here/hierarchieTree">
+                    <option tal:attributes="value tree/PID" value="" tal:content="tree/URL"></option>
+                </tal:block>
+            </select>
+            <input type="submit" value="einordnen"/>
+        </form>
+
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <pre tal:content="python:here.fedora.access(here.PID,'DiPPAdm',Date=None)['stream']">
+            metadaten
+        </pre>
+        
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

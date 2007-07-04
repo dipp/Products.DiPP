@@ -1,0 +1,80 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	metal:use-macro="here/main_dipp_workflow_template/macros/master">
+	<metal:block fill-slot="base">
+		<base href="" tal:attributes="href python: here.absolute_url() + '/'">
+	</metal:block>
+
+	<metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+	<body>
+	
+		<div metal:fill-slot="header">
+			<h1>Urteil des Gastherausgebers</h1>
+		</div>
+		
+		<div metal:fill-slot="main">
+		
+		<tal:block define="oftool container/portal_openflow;
+							i python:oftool[request.instance_id];
+							w python:i[request.workitem_id];
+							actor python:user.getUserName();
+							wf_init python: container.pub_instance_init(i.id, w.id) ">
+            <div metal:use-macro="here/pub_macros/macros/edit">
+                öffnen eines neuen Fensters zum Bearbeiten
+            </div>
+
+			<form action="pub_modify_instance">
+				<table>
+					<tr>
+						<th>
+							Kommentar
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div metal:use-macro="here/pub_macros/macros/deadline">
+								Fristen
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div metal:use-macro="here/pub_macros/macros/comments">
+								Kommentarfelder
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							Ist der Artikel inhaltlich/formal OK?
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<label>
+								<input class="noborder" name="gastHrsgOK" type="radio" value="True" checked="checked"/>
+								ja, der Artikel kann so veröffentlicht werden.<br />
+							</label>
+							<label>
+								<input class="noborder" name="gastHrsgOK" type="radio" value="False"/>
+								nein, bitte obige Anmerkungen berücksichtigen.
+							</label>
+							<input type="hidden" name="instance_id" value="instance_id" tal:attributes="value request/instance_id">
+							<input type="hidden" name="workitem_id" value="workitem_id" tal:attributes="value request/workitem_id">
+							<input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
+							<input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
+							<input type="hidden" name="actor" value="actor" tal:attributes="value user">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="standalone" type="submit" name="Submit" value="Zurück an den Herausgeber" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</tal:block>
+		</div>
+	</body>
+</html>

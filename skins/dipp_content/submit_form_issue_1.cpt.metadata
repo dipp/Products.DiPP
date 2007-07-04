@@ -1,0 +1,9 @@
+[default]
+title=Submit article
+
+[validators]
+validators = validate_submit
+
+[actions]
+action.success = traverse_to:string:log_into_gap_container
+action.failure = traverse_to:string:submit_form

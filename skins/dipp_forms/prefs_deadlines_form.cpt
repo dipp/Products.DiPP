@@ -1,0 +1,154 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	metal:use-macro="here/prefs_main_template/macros/master"
+    i18n:domain="dipp">
+	<metal:block fill-slot="base">
+		<base href="" tal:attributes="href python: here.absolute_url() + '/'">
+	</metal:block>
+
+	<metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+	<body>
+
+
+	<div metal:fill-slot="prefs_configlet_main">
+
+          <ul class="contentViews">
+            <li>
+              <a href=""
+                 tal:attributes="href string:$portal_url/prefs_journalmetadata_form"
+                 i18n:translate="journal_metadata">Journal Metadaten</a>
+            </li>
+
+            <li class="selected">
+              <a href="" 
+                 tal:attributes="href string:$portal_url/prefs_deadlines_form"
+                 i18n:translate="deadlines">Deadlines </a>
+            </li>
+
+            <li>
+              <a href=""
+                 tal:attributes="href string:$portal_url/prefs_mailtemplates_form"
+                 i18n:translate="mailtemplates">Mailtemplates</a>
+            </li>
+
+            <li>
+              <a href=""
+                 tal:attributes="href string:$portal_url/prefs_workflowrights_form"
+                 i18n:translate="workflowrights">Workflow rights</a>
+            </li>
+          </ul>
+
+          <div class="contentActions">
+              &nbsp;
+          </div>
+
+		<h1 i18n:translate="deadlines" >deadlines</h1>
+
+        <a href=""
+           class="link-parent"
+           tal:attributes="href string: $portal_url/dipp_control_panel"
+           i18n:translate="label_up_to_dipp_control_panel">
+            Up to dipp Setup
+        </a>
+
+        <p i18n:translate="description_deadlines">
+            This page lists the exceptions that have occurred in this site
+            recently.  You can configure how many exceptions should be kept
+            and whether the exceptions should be copied to Zope's event log
+            file(s).
+        </p>
+
+		<fieldset>
+			<legend>Terminkontrolle</legend>
+            <form tal:define="errors options/state/getErrors"
+                  tal:attributes="action string:${here/absolute_url}/${template/id};"
+                  method="post">
+
+                    <input type="hidden" name="form.submitted" value="1" />
+           
+                    <div class="field"
+                         tal:define="error errors/deadline_max|nothing;
+                                     deadline_max request/deadline_max|portal_properties/dipp_properties/deadline_max"
+                         tal:attributes="class python:test(error, 'field error', 'field')">
+						<label for="deadline_max" >Maximale Deadline (Tage)</label>
+
+                        <div tal:content="error">Validation error output</div>
+                        <div class="formHelp" i18n:translate="">
+                            Längste einstellbare Frist.
+                        </div>
+                        <input type="text"
+                               name="deadline_max"
+                               value=""
+                               tal:attributes="value deadline_max"/>
+                    </div>
+
+                    <div class="field"
+                         tal:define="error errors/deadline_default|nothing;
+                                     deadline_default request/deadline_default|portal_properties/dipp_properties/deadline_default"
+                         tal:attributes="class python:test(error, 'field error', 'field')">
+						<label for="deadline_default" >Standard Deadline (Tage)</label>
+                        <div tal:content="error">Validation error output</div>
+                        <div class="formHelp" i18n:translate="">
+                            Standardfrist.
+                        </div>
+                        <input type="text"
+                               name="deadline_default"
+                               value=""
+                               tal:attributes="value deadline_default"/>
+                    </div>
+
+                    <div class="field"
+                         tal:define="error errors/deadline_yellow|nothing;
+                                     deadline_yellow request/deadline_yellow|portal_properties/dipp_properties/deadline_yellow"
+                         tal:attributes="class python:test(error, 'field error', 'field')">
+						<label for="deadline_yellow" >Yellow Deadline (Tage)</label>
+                        <div tal:content="error">Validation error output</div>
+                        <div class="formHelp" i18n:translate="">
+                            Frist, nach dem die erste Mahnung an den Bearbeiter geht.
+                        </div>
+                        <input type="text"
+                               name="deadline_yellow"
+                               value=""
+                               tal:attributes="value deadline_yellow"/>
+                    </div>
+  
+                    <div class="field"
+                         tal:define="error errors/deadline_red|nothing;
+                                     deadline_red request/deadline_red|portal_properties/dipp_properties/deadline_red"
+                         tal:attributes="class python:test(error, 'field error', 'field')">
+						<label for="deadline_red" >Red Deadline (Tage)</label>
+                        <div tal:content="error">Validation error output</div>
+                        <div class="formHelp" i18n:translate="">
+                            Frist, nach dem die letzte Mahnung an den Bearbeiter geht.
+                        </div>
+                        <input type="text"
+                               name="deadline_red"
+                               value=""
+                               tal:attributes="value deadline_red"/>
+                    </div>
+
+                    <input class="context"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Save"
+                           value="Save"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;
+                                           disabled python:test(isLocked, 'disabled', None);" />
+
+                    <input class="standalone"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Cancel"
+                           value="Cancel"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;" />
+         
+			</form>
+		</fieldset>
+	</div>
+
+
+</body>
+</html>

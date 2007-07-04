@@ -1,0 +1,54 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="Reflow">
+
+<body>
+
+<div metal:define-macro="portlet"
+     tal:omit-tag=""
+     tal:condition="python: request.form.has_key('instance_id')">
+    <!-- tal:condition="python: 'Herausgeber' in user.getRoles() or  'Manager' in user.getRoles()"> -->
+	<div class="portlet" id="portlet-status">
+	<div class="active">
+
+		<h5 i18n:translate="status" i18n:domain="plone">Status</h5>
+
+		<div class="portletBody">
+		
+            <tal:block tal:define="instance request/instance_id">
+                <div class="portletContent even">
+                    <tal:block tal:define="i python:here.get_status(instance);">
+                        <b>ID:</b> <tal:block tal:replace="i/id" /><br />
+                        <b>deadline</b>
+                            <span tal:condition="python: i.deadline != site_properties.deadline_no"
+                                  tal:content="python: i.deadline.strftime(site_properties.localLongTimeFormat)">2004-06-03</span>
+                            <span tal:condition="python: i.deadline == site_properties.deadline_no">no deadline</span>
+                            <span tal:condition="python: i.deadline != site_properties.deadline_no"
+                                  tal:define="delay python: here.ext.deadline_delay(i.deadline,here)"
+                                  tal:attributes="class delay/class"
+                                  tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h'">-1 Tage</span>
+
+                        <br />
+                        <b>Autor:</b> <tal:block tal:replace="i/autor" /><br />
+                        <b>Titel:</b> <tal:block tal:replace="i/titel" /><br />
+                        <b>formal:</b> <tal:block tal:replace="i/formalOK" /><br />
+                        <b>gasthrsg:</b> <tal:block tal:replace="i/gastHrsgOK" /><br />
+                        <b>autor:</b> <tal:block tal:replace="i/autorOK" />
+                    </tal:block>
+                </div>
+                <div class="portletContent even">
+                    <a href="" tal:attributes="href string:$portal_url/history?instance_id=$instance"> zur history</a>
+                </div>
+			</tal:block>
+			<div class="portletContent odd"  tal:condition="python:not request.form.has_key('instance_id')">
+			kein Artikel ausgewählt
+			</div>
+		</div>
+	</div>
+	</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/dipp_workflow_template/macros/master">
+      
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+    
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+    
+    <body i18n:domain="dipp">
+    
+        <div metal:fill-slot="header">
+        </div>
+        
+        <div metal:fill-slot="main">
+            <h1 i18n:translate="article_initialize">Artikel anlegen</h1>
+        
+        <tal:block define="oftool container/portal_openflow;
+                            i python:oftool[request.instance_id];
+                            w python:i[request.workitem_id];
+                            actor python:user.getUserName();
+                            wf_init python: container.pub_instance_init(i.id, w.id) ">
+                            
+            <div metal:use-macro="here/pub_macros/macros/edit">
+                öffnen eines neuen Fensters zum Bearbeiten
+            </div>
+
+        <form tal:define="errors options/state/getErrors"
+              tal:attributes="action string:${here/absolute_url}/${template/id};"
+              method="post">
+
+            <input type="hidden" name="form.submitted" value="1" />
+            <input type="hidden" name="type" value="" tal:attributes="value w/type">
+            <input type="hidden" name="instance_id" value="instance_id" tal:attributes="value request/instance_id">
+            <input type="hidden" name="workitem_id" value="workitem_id" tal:attributes="value request/workitem_id">
+            <input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
+            <input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
+            <input type="hidden" name="actor" value="actor" tal:attributes="value user">
+            <div metal:use-macro="here/pub_macros/macros/deadline">
+                Deadline
+            </div>
+            
+            <div class="field"
+               tal:define="error errors/autor|nothing;
+                           autor request/autor|w/autor"
+               tal:attributes="class python:test(error, 'field error', 'field')">
+               <label for="autor" i18n:translate="author">Autor</label>
+               <div tal:content="error">Validation error output</div>
+               <div class="formHelp" i18n:translate="help_author">
+                   Um den Autor kontaktieren zu können, wählen Sie ihn bitte aus der Liste oder
+                    <span i18n:name="new_account">
+                        <a target="_blank"
+                            href="" 
+                            tal:attributes="href string:${here/portal_url}/acl_users/Users/acl_users/manage_userrecords" 
+                            i18n:domain="dipp" 
+                            i18n:translate="link_account">legen ihn gegebenenfalls als neuen Benutzer an</a>.
+                    </span>
+                   Neu angelegte Benutzer stehen erst nach 
+                    <span i18n:name="refresh">
+                        <a  href="" 
+                            i18n:domain="dipp" 
+                            i18n:translate="refresh">neu laden</a>
+                            <!--tal:attributes="href string: pub_initialize_form?${request/environ/QUERY_STRING}"-->
+                    </span>
+                   
+                   der Seite zur Auswahl Verfügung.
+               </div>
+
+                <select name="autor">
+                    <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
+                    <tal:block tal:repeat="autor python:here.ext.membersOfGroup(here,group='Autoren')">
+                        <option tal:condition="autor"
+                                tal:content="string: ${autor/uid} (${autor/cn})"
+                                tal:attributes="value autor/uid">Autor</option>
+                    </tal:block>
+                </select>
+            </div>
+            
+            <div class="field" i18n:domain="dipp">
+            <label for="autor" i18n:translate="guest_publisher">Gastherausgeber</label>
+                <div class="formHelp" i18n:translate="help_guest_publisher">
+                </div>
+
+                <select name="gastHrsg">
+                <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
+                    <tal:block tal:repeat="autor python:here.ext.membersOfGroup(here,group='Gastherausgeber')">
+                        <option tal:condition="autor"
+                                tal:content="string: ${autor/uid} (${autor/cn})"
+                                tal:attributes="value autor/uid">Autor</option>
+                    </tal:block>
+                </select>
+            </div>
+            
+            <!--
+             OK des Autors: <br />
+             
+                 <input name="autorOK_required:boolean" type="radio" value="True"/> nötig<br />
+                 <input name="autorOK_required:boolean" type="radio" value="False"  checked="checked"/> nicht nötig<br />
+
+             OK des GastHrsg: <br />
+             
+                 <input name="gastHrsgOK_required:boolean" type="radio" value="True" /> nötig<br />
+                 <input name="gastHrsgOK_required:boolean" type="radio" value="False" checked="checked" /> nicht nötig<br />
+             -->
+ 
+            <div class="field"
+               tal:define="error errors/newId|nothing;
+                           newId request/newId|i/title"
+               tal:attributes="class python:test(error, 'field error', 'field')">
+               <label for="newId" i18n:translate="label_short_name">newId</label>
+               <span class="fieldRequired" title="Required" i18n:domain="plone"
+                      i18n:attributes="title"
+                      i18n:translate="label_required">(Required)</span>
+               <div tal:content="error">Validation error output</div>
+               <div class="formHelp" >
+                   <span i18n:translate="help_newId">Set a short name for the article. It will be part of the web address.</span><br>
+                   <span i18n:translate="help_newId_hint">Should not contain spaces, upper case, underscores or other special characters.</span>
+               </div>
+               <input type="text"
+                      id="newId"
+                      name="newId"
+                      value=""
+                      size="40"
+                      tal:attributes="value newId"/>
+            </div>
+
+
+            <div class="field"
+               tal:define="error errors/isChildOf|nothing;
+                           isChildOf request/isChildOf|python:w.isChildOf[0]"
+               tal:attributes="class python:test(error, 'field error', 'field')"
+               >
+               <label for="isChildOf" i18n:translate="assignment">Zuordnung</label>
+               <span class="fieldRequired" title="Required" i18n:domain="plone"
+                      i18n:attributes="title"
+                      i18n:translate="label_required">(Required)</span>
+               <div tal:content="error">Validation error output</div>
+<!--               <div class="formHelp" i18n:translate="help_isChildOf">
+                    <strong>isChildOf</strong>: <span class="formHelp" tal:content="isChildOf"></span>
+               </div>
+-->
+               <div class="formHelp">
+                 <span i18n:translate="help_assignment_1">
+                    Der Artikel bzw. das Hierarchieelement ist zu Zeit nur temporär
+                    zwischengespeichert. Wählen Sie eine bestehenden Hierarchieebene aus.
+                    Die Angabe aus Fedora bzw. GAP ist vorausgewählt.
+                 </span><br/>
+                 <span i18n:translate="help_assignment_2">
+                    Wenn nichts vorausgewählt ist, existiert die für diesen Artikel vorgesehene Hierarchieebene existiert noch nicht.
+                    Wählen sie eine andere ebene aus der Liste, oder brechen Sie diesen Schritt ab und 
+                    bearbeiten zunächst den entsprechenden Eintrag in der Worklist.
+                 </span>
+               </div>
+                <select size="5" name="isChildOf">
+                    <tal:block tal:repeat="tree here/hierarchieTree">
+                        <option tal:condition="python: tree['PID'] == isChildOf" tal:attributes="value tree/PID" value="" tal:content="tree/URL" selected="selected"></option>
+                        <option tal:condition="python: tree['PID'] != isChildOf" tal:attributes="value tree/PID" value="" tal:content="tree/URL"></option>
+                    </tal:block>
+                </select>
+            </div>
+            
+            <div metal:use-macro="here/pub_macros/macros/comments">
+                Kommentarfelder
+            </div>
+
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Save"
+                   value="Save"
+                   i18n:domain="plone"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+
+            <input class="standalone"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:domain="plone"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;" />                          
+
+
+            </form>
+        </tal:block>
+        </div>
+    </body>
+</html>
+
+

@@ -1,0 +1,43 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="dipp">
+
+<body>
+
+<div metal:define-macro="portlet"  
+    tal:omit-tag=""
+    tal:condition="python:here.get_toc()!='no toc'">
+
+	<dl class="portlet" id="portlet-toc">
+
+    <script>
+    function floatingTOC(newin) {
+      self.name = "main";
+      flyout=window.open(newin,"flyout","status=yes,resizable=yes,scrollbars=yes,width=215,height=375,top=100,left=10", false)
+      flyout.focus();
+    }
+    </script>
+
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span i18n:translate="contents" i18n:domain="dipp">Inhalt</span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem">
+            
+            <a tal:condition="here/portal_properties/dipp_properties/floatingtoc_enabled" href="javascript:floatingTOC('floating_toc')">show floating <acronym title="Table of Contents">TOC</acronym></a>
+            
+                
+                <div class="portletContent odd"
+                     tal:define="PID python:here.get_toc()['PID']; 
+                                 DsID python:here.get_toc()['DsID']">
+                    <tal:block tal:replace="structure python:here.fedora.access(PID,DsID,Date=None)['stream']" />		
+                </div>
+        </dd>
+	</dl>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+[default]
+title = Assign Article to an Agent
+
+[actions]
+action.success..Assign     = traverse_to:string:pub_modify_instance
+action.success..Cancel     = traverse_to:string:all_worklists

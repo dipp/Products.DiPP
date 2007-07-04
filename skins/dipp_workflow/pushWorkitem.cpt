@@ -1,0 +1,105 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/dipp_workflow_template/macros/master"
+    i18n:domain="Reflow">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+    <body i18n:domain="dipp">
+
+    
+        <div metal:fill-slot="header">
+        </div>
+    
+        <div metal:fill-slot="main" class="desktop">
+            <h1 i18n:translate="article_user_assignment">
+                Push Workitem
+            </h1>
+        
+            <tal:block define="oftool container/portal_openflow;
+                        i python:oftool[request.instance_id];
+                        w python:i[request.workitem_id];
+                        actor python:user.getUserName()">
+                    <h3 i18n:translate="agent_assignment" i18n:domain="dipp">Assignment</h3>
+                    <!--<p i18n:translate="description_choose">Choose an user to assign this workitem to</p>
+                <form action="pub_modify_instance">-->
+                <form tal:define="errors options/state/getErrors"
+                      tal:attributes="action string:${here/absolute_url}/${template/id};"
+                      method="post">
+                
+                    <input type="hidden" name="form.submitted" value="1" />
+                    <input type="hidden" name="activity_id" value="pushworkitem">
+                    <input type="hidden" name="instance_id" value="" tal:attributes="value request/instance_id">
+                    <input type="hidden" name="workitem_id" value="" tal:attributes="value request/workitem_id">
+                    <input type="hidden" name="process_id"  value="process_id" tal:attributes="value request/process_id">
+                    <input type="hidden" name="actor"       value="" tal:attributes="value actor">
+                    
+                   <div class="formHelp" i18n:translate="help_pushworkitem">
+                       Um den Autor kontaktieren zu können, wählen Sie ihn bitte aus der Liste oder
+                        <span i18n:name="new_account">
+                            <a target="_blank"
+                                href="" 
+                                tal:attributes="href string:${here/portal_url}/acl_users/Users/acl_users/manage_userrecords" 
+                                i18n:domain="dipp" 
+                                i18n:translate="link_account">legen ihn gegebenenfalls als neuen Benutzer an</a>.
+                        </span>
+                       Neu angelegte Benutzer stehen erst nach 
+                        <span i18n:name="refresh">
+                            <a  href="" 
+                                tal:attributes="href string: pushWorkitem?${request/environ/QUERY_STRING}"
+                                i18n:domain="dipp" 
+                                i18n:translate="refresh">neu laden</a>
+                        </span>
+                       
+                       der Seite zur Auswahl Verfügung.
+                   </div>
+
+<!--                    <select name="next_actor">
+                        <tal:block tal:repeat="userAssign python:container.portal_openflow.usersAssignableTo(process_id=request.process_id, activity_id=request.activity_id)">
+                            <option value="" tal:attributes="value userAssign" tal:content="userAssign">User</option>
+                        </tal:block>
+                    </select>
+-->
+                    <select name="next_actor" tal:define="process_id request/process_id; activity_id request/activity_id">
+                        <tal:block tal:repeat=" userAssign python:here.ext.usersAssignableTo(here, process_id, activity_id)" >
+                            <option tal:condition="userAssign"
+                                    value="" 
+                                    tal:attributes="value userAssign/uid" 
+                                    tal:content="string: ${userAssign/uid} (${userAssign/cn})">User</option>
+                        </tal:block>
+                    </select>
+    
+                        
+                    <div metal:use-macro="here/pub_macros/macros/comments">
+                        Kommentarfelder
+                    </div>
+
+                    <input class="context"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Assign"
+                           value="Assign"
+                           i18n:domain="dipp"
+                           i18n:attributes="value Assign"
+                           tal:attributes="tabindex tabindex/next;
+                                           disabled python:test(isLocked, 'disabled', None);" />
+
+                    <input class="standalone"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Cancel"
+                           value="Cancel"
+                           i18n:domain="plone"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;" />                          
+
+                </form>
+
+
+            </tal:block>
+        </div>
+    </body>
+</html>
+

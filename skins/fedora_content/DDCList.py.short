@@ -1,0 +1,43 @@
+##script (Python) "sdf"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=name,DDC
+##title=
+##
+request = container.REQUEST
+RESPONSE =  request.RESPONSE
+
+
+Sachgruppen = {
+    ''   :'--- wählen Sie eine DDC Sachgrupe ---',
+    '000':'Informatik, Informationswissenschaft, allgemeine Werke',
+    '100':'Philosophie und Psychologie',
+    '200':'Religion',
+    '300':'Sozialwissenschaften',
+    '400':'Sprache',
+    '500':'Naturwissenschaften und Mathematik',
+    '600':'Technik, Medizin, angewandte Wissenschaften',
+    '700':'Künste und Unterhaltung',
+    '800':'Literatur',
+    '900':'Geschichte und Geografie'
+}
+
+
+keys = Sachgruppen.keys()
+keys.sort()
+#print DDC
+print '<select name="' + name + '">'
+
+for Sachgruppe in keys:
+    if Sachgruppe == DDC:
+        selected = ' selected="selected"'
+    else:
+        selected = ''
+    print '  <option value="' + Sachgruppe + '"' + selected + '>' + Sachgruppe + ' ' + Sachgruppen[Sachgruppe] + '</option>\n'
+
+print '</select>'
+
+return printed

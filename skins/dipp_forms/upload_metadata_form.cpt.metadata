@@ -1,0 +1,13 @@
+[default]
+title=Upload RTF-Datei
+
+[validators]
+#validators..Save = validate_metadata
+
+[security]
+View=0:Herausgeber,Manager
+
+[actions]
+action.success..Continue = traverse_to:string:upload_fileselect_form
+action.success..Cancel = redirect_to:string:upload_form
+action.success..addCreatorPerson = traverse_to:string:upload_metadata_add

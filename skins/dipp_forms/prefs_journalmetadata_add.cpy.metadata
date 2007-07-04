@@ -1,0 +1,8 @@
+[default]
+title = Edit content
+
+[validators]
+#asdasda 
+
+[actions]
+action.success = redirect_to:string:journalmetadata_form

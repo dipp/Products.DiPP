@@ -1,0 +1,13 @@
+[default]
+title=Rights
+
+[security]
+View=0:Herausgeber,Manager
+
+[validators]
+validators..Save   = 
+validators..Cancel = 
+
+[actions]
+action.success..Save   = traverse_to:string:rights_edit
+action.success..Cancel = redirect_to:string:rights_edit_form

@@ -1,0 +1,12 @@
+[default]
+title=Submit article
+
+[security]
+View=0:Authenticated
+
+[validators]
+validators = validate_submit
+
+[actions]
+action.success = traverse_to:string:log_into_gap
+action.failure = traverse_to:string:submit_form

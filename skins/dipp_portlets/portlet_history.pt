@@ -1,0 +1,65 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="Reflow">
+
+<body tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
+                  tabindex python:Iterator()">
+
+<!-- The History box -->
+<div metal:define-macro="portlet" 
+     tal:omit-tag="" tal:condition="python: 'Herausgeber' in user.getRoles() or  'Manager' in user.getRoles()">
+
+	<div class="portlet" id="portlet-history">
+    <div class="passive">
+
+		<h5 i18n:translate="History" i18n:domain="plone">History</h5>
+
+		<div class="portletBody">
+		
+			<tal:block tal:define="i here/short_history">
+				<div class="portletContent odd">
+					<b i18n:translate="running">running</b><br />
+					<tal:block tal:repeat="instance i/running" >
+						<a tal:define="id instance/id; autor instance/autor; titel instance/titel"
+							href="" 
+							title = ""
+							tal:attributes="href string:$portal_url/history?instance_id=$id; title id">
+							<b tal:content="autor">autor</b>
+							<span tal:content="titel">titel</span>
+						</a><br />
+					</tal:block>
+				</div>
+				<div class="portletContent even">
+					<b i18n:translate="complete">complete</b><br />
+					<tal:block tal:repeat="instance i/complete" >
+						<a tal:define="id instance/id; autor instance/autor; titel instance/titel"
+							href="" 
+							title = ""
+							tal:attributes="href string:$portal_url/history?instance_id=$id; title id">
+							<b tal:content="autor">autor</b>
+							<span tal:content="titel">titel</span>
+						</a><br />
+					</tal:block>
+				</div>
+				<div class="portletContent odd">
+					<b i18n:translate="terminated">terminated</b><br />
+					<tal:block tal:repeat="instance i/terminated" >
+						<a tal:define="id instance/id; autor instance/autor; titel instance/titel"
+							href="" 
+							title = ""
+							tal:attributes="href string:$portal_url/history?instance_id=$id; title id">
+							<b tal:content="autor">autor</b>
+							<span tal:content="titel">titel</span>
+						</a><br />
+					</tal:block>
+				</div>
+			</tal:block>
+		</div>
+	</div>
+	</div>
+
+</div>
+
+</body>
+
+</html>

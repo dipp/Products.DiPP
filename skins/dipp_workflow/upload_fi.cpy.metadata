@@ -1,0 +1,9 @@
+[default]
+title = Edit content
+
+[validators]
+#asdasda 
+
+[actions]
+action.permanent = redirect_to:string:upload_metadata_form
+action.temporary = redirect_to:string:upload_repository

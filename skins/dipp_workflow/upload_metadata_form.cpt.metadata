@@ -1,0 +1,19 @@
+[default]
+title=Upload RTF-Datei
+
+[validators]
+validators..Save = validate_qdc
+
+[security]
+View=0:Redakteur,Herausgeber,Manager
+
+[actions]
+action.success..addAbstract        = traverse_to:string:upload_add
+action.success..addAlternative     = traverse_to:string:upload_add
+action.success..addAuthor          = traverse_to:string:upload_add
+action.success..addCorporateAuthor = traverse_to:string:upload_add
+action.success..addDDC             = traverse_to:string:upload_add
+action.success..addKeyword         = traverse_to:string:upload_add
+action.success..addTitle           = traverse_to:string:upload_add
+action.success..Save               = traverse_to:string:upload_repository
+action.success..Cancel             = traverse_to:string:upload_file_form

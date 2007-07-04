@@ -1,0 +1,489 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dipp-de\n"
+"POT-Creation-Date: 2004-09-06 11:54+0100\n"
+"PO-Revision-Date: 2006-04-04 21:18+0100\n"
+"Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
+"Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: dipp\n"
+"X-Generator: KBabel 1.3.1\n"
+"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+
+msgid "heading_dipp_control_panel"
+msgstr "dipp Konfiguration"
+
+msgid "deadlines"
+msgstr "Fristen"
+
+msgid "deadline_this_step"
+msgstr "für diesen Schritt"
+
+msgid "deadline_entire_article"
+msgstr "für den gesamten Artikel"
+
+msgid "deadline_next_step"
+msgstr "für den nächsten Schritt"
+
+msgid "label_up_to_dipp_control_panel"
+msgstr "Zurück zur dipp Konfiguration"
+
+msgid "description_deadlines"
+msgstr "Hier können die Zeiten für die Fristen und ..."
+
+msgid "mailtemplates"
+msgstr "Mail Vorlagen"
+
+msgid "defaultLanguage"
+msgstr "Standardsprache für Emails"
+
+msgid "description_mailtemplates"
+msgstr "Hier können die Texte für Email konfiguriert werden. Dem Text wird \"Sehr geehrte(r)\"  mit der korrekten Anrede vorangestellt. Am Ende wird eine Kurzinfo zum Arikel eingefügt."
+
+msgid "rights"
+msgstr "Rechte"
+
+msgid "description_rights"
+msgstr "Setzen der Berechtigungen für die am Workflow beteiligten"
+
+msgid "Suspend"
+msgstr "Aufschieben"
+
+msgid "Resume"
+msgstr "Fortsetzen"
+
+msgid "End Fallin"
+msgstr "aus Liste entfernen"
+
+msgid "Fallin"
+msgstr "in WF einsetzen"
+
+msgid "Fallout"
+msgstr "aus WF herausnehmen"
+
+msgid "Activate"
+msgstr "Aktivieren"
+
+msgid "Inactive"
+msgstr "Deaktivieren"
+
+msgid "Assign"
+msgstr "zuweisen"
+
+msgid "Unassign"
+msgstr "entziehen"
+
+msgid "Self Assign"
+msgstr "selbst zuweisen"
+
+msgid "Call Application"
+msgstr "ausführen"
+
+msgid "Complete"
+msgstr "überspringen"
+
+msgid "title_myworklist"
+msgstr "Meine Artikelliste"
+
+msgid "help_myworklist"
+msgstr "Eine Liste mit mir bereits zugewiesenen Artikeln und solchen, die ich mir zur Bearbeitung wählen kann."
+
+msgid "title_reloadworklist"
+msgstr "Artikelliste aktualisieren"
+
+msgid "title_temporaryarticles"
+msgstr "Temporäre Artikel"
+
+msgid "help_temporaryarticles_1"
+msgstr "Hier aufgelistete Artikel wurden nur zu Testzwecken konvertiert und durchlaufen nicht den Workflow."
+       
+msgid "help_temporaryarticles_2"
+msgstr "Einmal täglich werden Artikel, die älter als 24h sind, gelöscht."
+
+msgid "help_reloadworklist"
+msgstr "Kürzlich hochgeladene Artikel erscheinen möglicherweise nicht sofort in der Worklist."
+
+msgid "title_allworklists"
+msgstr "Alle Artikel"
+
+msgid "help_allworklists"
+msgstr "Liste aller in Bearbeitung befindlicher Artikel."
+
+msgid "help_internal_workflow"
+msgstr "Hochladen eines Artikels im Redaktionssystem"
+
+msgid "help_external_workflow"
+msgstr "Hochladen eines Artikels über das externe GAP-Begutachtungssystem"
+
+msgid "title_openurl"
+msgstr "openURL erzeugen"
+
+msgid "help_openurl"
+msgstr "Erzeugung einer URL aus bibliographischen Metadaten, mit der digitale Bibliotheksdienste aufgerufen werden können"
+
+msgid "deadline"
+msgstr "Frist"
+
+msgid "actor"
+msgstr "Bearbeiter"
+
+msgid "author"
+msgstr "Autor"
+
+msgid "title"
+msgstr "Titel"
+
+msgid "issue"
+msgstr "Ausgabe"
+
+msgid "next_step"
+msgstr "Nächster Schritt"
+
+msgid "status"
+msgstr "Status"
+
+msgid "actions"
+msgstr "Aktionen"
+
+msgid "initialize"
+msgstr "initialisieren"
+
+msgid "freischalten"
+msgstr "freischalten"
+
+msgid "begutachten"
+msgstr "formal überprüfen"
+
+msgid "bearbeiten"
+msgstr "bearbeiten"
+
+msgid "imprimatur"
+msgstr "Autoren Zustimmung"
+
+msgid "anschreiben"
+msgstr "Zustimmung einholen"
+
+msgid "check_for_new_articles"
+msgstr "Liste aktualisieren"
+
+msgid "free_workitems"
+msgstr "Nicht zugewiesene Artikel"
+
+msgid "assigned_workitems"
+msgstr "Mir zugewiesene Artikel"
+
+msgid "starting_point_title"
+msgstr "Der Ausgangspunkt"
+
+msgid "starting_point_content"
+msgstr "Qualitätsvolles wissenschaftliches Informationsmanagement hat viele Facetten: Schnelle Informationsbeschaffung, intelligente Informationsauswahl, differenzierte Informationsressourcen sind nur einige wenige Beispiele.  Vor allem jedoch setzt qualitätsvolles wissenschaftliches Informationsmanagement ein zukunftsorientiertes qualitätsgesichertes System wissenschaftlichen Publizierens voraus.  Es ist Startvoraussetzung und Promotor des offenen Zugangs zu weltweit verfügbaren Informationen und eines effizienten Austauschs in globalen Wissens-Netzwerken."
+
+msgid "licence"
+msgstr "Lizenz"
+
+msgid "licence_text"
+msgstr "Jedermann darf dieses Werk unter den Bedingungen der ${rights} elektronisch über­mitteln und zum Download bereit­stellen. Der Lizenztext ist im Internet abrufbar unter der Adresse ${url}"
+
+msgid "licence_agreement"
+msgstr "Ich bin damit einverstanden, dass der Artikel unter die Lizenz ${licence} gestellt wird."
+
+msgid "article_submit"
+msgstr "Artikel einreichen"
+
+msgid "submit_help"
+msgstr "Um einen Artikel einzureichen, benötigen sie einen Zugang zum Publikationssystem."
+
+msgid "not_registered"
+msgstr "Ich bin noch nicht registriert"
+
+msgid "already_registered"
+msgstr "Ich bin schon registriert"
+
+msgid "gap_submit"
+msgstr "weiter zum Einreichungsformular"
+
+msgid "label_preferredlanguage"
+msgstr "Bevorzugte Sprache"
+
+msgid "help_preferredlanguage"
+msgstr " Bitte wählen Sie die von Ihnen bevorzugte Sprache aus. Emails, die das System automatisch generiert, werden dieser Sprache verfasst."
+
+msgid "contents"
+msgstr "Inhalt"
+
+msgid "title_support"
+msgstr "Unterstützung"
+
+msgid "description_support"
+msgstr "(Password-geschützter Bereich auf ${url}.)"
+
+msgid "contact"
+msgstr "Kontakt"
+
+msgid "contact_description"
+msgstr ""
+
+msgid "label_name"
+msgstr "Name"
+
+msgid "help_name"
+msgstr "Ihr vollständiger Name."
+
+msgid "label_email"
+msgstr "E-Mail"
+
+msgid "help_email"
+msgstr "Ihre E-Mail-Adresse."
+
+msgid "help_institutional_address"
+msgstr "Anschrift Ihres Instituts"
+
+msgid "label_institutional_address"
+msgstr "Adresse des Instituts"
+
+msgid "label_category"
+msgstr "Rubrik"
+
+msgid "help_category"
+msgstr "Wählen Sie die Rubrik, in der Ihr Artikel erscheinen soll."
+
+msgid "label_comment"
+msgstr "Kommentar"
+
+msgid "help_comment"
+msgstr "Ihre Nachricht an uns."
+
+msgid "help_author"
+msgstr "Um den Autor kontaktieren zu können, wählen Sie ihn bitte aus der Liste oder ${new_account}. Neu angelegte Benutzer stehen erst nach ${refresh} der Seite zur Auswahl Verfügung."
+
+msgid "info_article_submit"
+msgstr "Bitte verwenden Sie dieses Formular, um Ihr Manuskript in der Zeitschrift ${journal_title} einzureichen. Die erforderlichen Felder sind mit einem roten Punkt gekennzeichnet."
+
+msgid "link_account"
+msgstr "legen ihn gegebenenfalls als neuen Benutzer an"
+
+msgid "refresh"
+msgstr "neu laden"
+
+
+msgid "not_necessary"
+msgstr "nicht erforderlich"
+
+msgid "author"
+msgstr "Autor"
+
+msgid "guest_publisher"
+msgstr "Gastherausgeber"
+
+msgid "help_guest_publisher"
+msgstr ""
+
+msgid "article_initialize"
+msgstr "Artikel initialisieren"
+
+msgid "article_edit"
+msgstr "Artikel bearbeiten"
+
+msgid "article_examine"
+msgstr "Artikel formal überprüfen"
+
+msgid "article_approval"
+msgstr "Urteil des Gastherausgebers"
+
+msgid "article_release"
+msgstr "Artikel freischalten"
+
+msgid "article_user_assignment"
+msgstr "Artikel einem Bearbeiter zuweisen"
+
+msgid "article_examine_question"
+msgstr "Artikel formal in Ordnung?"
+
+msgid "article_approval_question"
+msgstr "Ist der Artikel inhaltlich und formal in Ordnung?"
+
+msgid "description_choose"
+msgstr "Wählen Sie einen Bearbeiter, dem Sie diesen Artikel zuweisen möchten."
+
+msgid "check_publish"
+msgstr "ja, der Artikel kann so veröffentlicht werden."
+
+msgid "back_to_publisher"
+msgstr "Zurück an den Herausgeber"
+
+msgid "check_consider_notes"
+msgstr "nein, bitte obige Anmerkungen berücksichtigen."
+
+msgid "forward_to_author"
+msgstr "ja, weiter zur Freigabe bzw. zum Autor."
+
+msgid "back_to_office"
+msgstr "nein, weiter an die Redaktion zur Bearbeitung."
+
+msgid "edit_article"
+msgstr "Betrachten oder Bearbeiten Sie den Artikel in einem neuen Browserfenster"
+
+msgid "label_short_name"
+msgstr "Kurzname (wird Teil der Webadresse)"
+
+msgid "help_newId"
+msgstr "Geben Sie dem Artikel eine Kurzbezeichnung. Diese wird Teil der Webadresse."
+
+msgid "help_newId_hint"
+msgstr "Der Name sollte keine Leerzeichen, Großbuchstaben, Unterstriche oder andere Sonderzeichen beinhalten."
+
+msgid "assignment"
+msgstr "Hierarchische Zuordung"
+
+msgid "help_assignment_1"
+msgstr "Der Artikel ist zur Zeit nur temporär zwischengespeichert. Um ihn z.B. einer Ausgabe zuzuordnen, markieren Sie bitte einen Eintrag aus der Liste."
+
+msgid "help_assignment_2"
+msgstr "Falls kein passender Eintrag existiert, können Sie die Zuordnung auch noch an einem späteren Zeitpunkt vornehmen."
+
+msgid "written_comments"
+msgstr "Vorhandene Kommentare"
+
+msgid "your_comment"
+msgstr "Ihr Kommentar"
+
+msgid "brackets_your_comment"
+msgstr "[Ihr Kommentar]"
+
+msgid "new_articles"
+msgstr "Neue Artikel eingeben"
+
+msgid "articles_in_process"
+msgstr "Artikel in Bearbeitung"
+
+msgid "internal_workflow"
+msgstr "Dokument hochladen"
+
+msgid "external_workflow"
+msgstr "Begutachtungs-Workflow"
+
+msgid "first_name"
+msgstr "Vorname"
+
+msgid "sur_name"
+msgstr "Nachname"
+
+msgid "heading_file_submit"
+msgstr "Dokument - Dateiauswahl"
+
+msgid "heading_metadata_submit"
+msgstr "Dokument - Metadatenformular"
+
+msgid "label_file"
+msgstr "Dateiauswahl"
+
+msgid "help_file"
+msgstr "Wählen Sie  den Artikel im RTF, PDF oder DocBook-XML Format aus."
+
+msgid "help_rtf"
+msgstr "Ihr Manuskript sollte im ${rtf}-Format vorliegen"
+
+msgid "help_licence_author"
+msgstr "Der Artikel soll unter der ${licence} veröffentlicht werden."
+
+msgid "radio_fullUpload"
+msgstr "Hochladen mit allen Metadaten"
+
+msgid "help_fullUpload"
+msgstr "Das Dokument wird konvertiert und permanent im Repository gespeichert. Die Eingabe der Metadaten ist erforderlich"
+
+msgid "radio_testUpload"
+msgstr "Test Konvertierung"
+
+msgid "help_testUpload"
+msgstr "Das Dokument wird konvertiert und temporär gespeichert. Eine Eingabe der Metadaten ist nicht erforderlich."
+
+msgid "you_are_logged_in_as"
+msgstr "Sie sind eingelogt als"
+
+msgid "description_website_manager"
+msgstr "für das Ordner- und Dokumentenmanagement"
+
+msgid "description_editorial_toolbox"
+msgstr "für fortgeschrittene Publikationen"
+
+msgid "description_plone_setup"
+msgstr "für weitergehende Konfiguration der Website"
+
+msgid "description_logged_in_explain"
+msgstr "Sie werden feststellen, dass der obere rechte Balken sich verändert hat und links ein weiteres Menu erschienen ist. Diese bleiben solange sichtbar, wie Sie eingeloggt sind. "
+
+msgid "description_newbie_pointers"
+msgstr "Abhängig von Ihrer Rolle und Ihren Berechtigungen enthält das linke Menü weitere Funktionen zum Veröffentlichen und Editieren"
+
+msgid "explanation_editorial_toolbox"
+msgstr "Auf der linken Seite finden Sie die Editorial Toolbox, mit der sie ihre begutachteten Artikel bearbeiten und verwalten können."
+
+msgid "explanation_no_gap_account"
+msgstr "Ein entsprechender Zugang zum Begutachtungssystem GAP existiert nicht. Bitte kontaktieren Sie ${email} wenn Sie einen Zugang zu GAPworks möchten."
+
+msgid "userguide"
+msgstr "Kurzanleitung"
+
+msgid "exampleRTF"
+msgstr "Beispiel-RTF"
+
+msgid "tools"
+msgstr "Werkzeuge"
+
+msgid "journal"
+msgstr "Zeitschrift"
+
+msgid "metadata"
+msgstr "Metadaten"
+
+msgid "user_administration"
+msgstr "Benutzerverwaltung"
+
+msgid "webstats"
+msgstr "allg. Webstatistik"
+
+msgid "articlestats"
+msgstr "artikelbasierte Statistik"
+
+msgid "existing_comments"
+msgstr "Vorhandene Kommentare"
+
+msgid "your_comment"
+msgstr "Ihr Kommentar"
+
+msgid "agent_assignment"
+msgstr "Zuweisung an einen Bearbeiter"
+
+msgid "help_pushworkitem"
+msgstr "Um den Artikel einem anderen Bearbeiter zuzuweisen, wählen Sie ihn bitte aus der Liste oder ${new_account}. Neu angelegte Benutzer stehen erst nach ${refresh} der Seite zur Auswahl Verfügung."
+
+msgid "request_imprimatur"
+msgstr "Zustimmung des Autors einholen"
+
+msgid "message_author"
+msgstr "Nachricht an den Autor"
+
+msgid "i_agree"
+msgstr "Ich stimme zu"
+
+msgid "label_cancel"
+msgstr "Abbrechen"
+
+msgid "label_proceed_with_metadata"
+msgstr "weiter mit Metadaten"
+
+msgid "label_test_online_transformation"
+msgstr "Test Online-Transformation"
+
+msgid "label_qdc"
+msgstr "Qualified Dublin Core Metadaten"
+

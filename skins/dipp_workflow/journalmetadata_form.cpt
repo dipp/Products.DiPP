@@ -1,0 +1,605 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/dipp_workflow_template/macros/master">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+    <body i18n:domain="qdc">
+
+	<div metal:fill-slot="main">
+
+	  <h1 class="documentFirstheading" i18n:translate="journalmetadata" >Journal Metadata</h1>
+
+            <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+              tal:define="errors options/state/getErrors;
+                          journalPID python:here.getJournalPID(here);
+                          qdc python:here.fedora.getQualifiedDCMetadata(journalPID)"
+              method="post"
+              encType="multipart/form-data">
+
+
+            <input type="hidden" name="form.submitted" value="1" />
+            <input type="hidden" name="PID" value="" tal:attributes="value journalPID" />
+            <input type="hidden" name="pubType:list" value="journal" />
+            
+            <!-- ISSN -->
+            <div class="field"
+                 tal:define="error errors/identifierISSN|nothing;
+                             identifierISSN request/identifierISSN|python:qdc['identifierISSN']"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                 >
+
+                <label for="language" i18n:translate="label_ISSN">ISSN</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <input type="text" name="identifierISSN" tal:attributes="value identifierISSN" />
+            </div>
+
+            <!-- URL -->
+            <div class="field"
+                 tal:define="error errors/identifierURL|nothing;
+                             identifierURL request/identifierURL|python:qdc['identifierURL']"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+
+                <label for="language" i18n:translate="label_URL">URL</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <input type="text" name="identifierURL" tal:attributes="value identifierURL" />
+            </div>
+
+            <!-- language -->
+            <div class="field"
+                 tal:define="error errors/language|nothing;
+                             languages python:qdc['language']"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+
+                <label for="language" i18n:translate="label_language">language</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <tal:block tal:repeat="language languages">
+                    <tal:block tal:define="i repeat/language/index">
+                        <div tal:content="structure python:here.langList('language:list',here.test('language',language, i))">
+                        </div>
+                    </tal:block>
+                </tal:block>
+
+            </div>
+
+
+            <!-- docType -->
+            <div class="field"
+                 tal:define="error errors/docType|nothing;
+                             docTypes python:qdc['docType']"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+
+                <label for="docType" i18n:translate="label_docType">docType</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <tal:block tal:repeat="docType docTypes">
+                    <tal:block tal:define="i repeat/docType/index">
+                        <div tal:content="structure python:here.docTypeList('docType:list',here.test('docType',docType, i))">
+                        </div>
+                    </tal:block>
+                </tal:block>
+
+            </div>
+
+            <!-- DDC --> 
+            <div class="field"
+                 tal:define="error errors/DDC|nothing;
+                             DDCs python:qdc['DDC'];
+                             DDCNumber python:len(DDCs);
+                             newDDCNumber request/newDDCNumber|DDCNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+                <input type="hidden" name="newDDCNumber" value="" tal:attributes="value newDDCNumber"/>
+                <input type="hidden" name="DDCNumber" value="" tal:attributes="value DDCNumber"/>
+
+                <label for="DDC" i18n:translate="label_ddc">DDC</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <tal:block tal:repeat="DDC DDCs">
+                    <tal:block tal:define="i repeat/DDC/index">
+                        <div tal:content="structure python:here.DDCList('DDC:list',here.test('DDC',DDC, i))">
+                        </div>
+                    </tal:block>
+                </tal:block>
+                <tal:block tal:condition="python: newDDCNumber > DDCNumber"
+                    tal:repeat="DDC python:range(int(DDCNumber),int(newDDCNumber))">
+                    <tal:block tal:define="number repeat/DDC/number;
+                                           index  repeat/DDC/index;
+                                           no     python:number + DDCNumber;
+                                           i      python:index + DDCNumber">
+                    <div tal:content="structure python:here.DDCList('DDC:list',here.test('DDC',DDC, i))">
+                    </div>
+                    </tal:block>
+                </tal:block>
+
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.addDDC"
+                       value="value_add"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
+
+            </div>
+            
+            <!-- TITLE -->
+            <div class="field"
+                 tal:define="error errors/title|nothing;
+                             titles python:qdc['title'];
+                             titleNumber python:len(titles);
+                             newTitleNumber request/newTitleNumber|titleNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+
+                <input type="hidden" name="newTitleNumber" value="" tal:attributes="value newTitleNumber"/>
+                <input type="hidden" name="titleNumber" value="" tal:attributes="value titleNumber"/>
+
+                <label for="title" i18n:translate="label_title">title</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <table class="listing">
+                    <tr>
+                        <th>#</th>
+                        <th>Titel</th>
+                        <th>Sprache</th>
+                    </tr>
+                    <tr tal:repeat="title titles">
+                        <td tal:content="repeat/title/number">#</td>
+                        <td>
+                            <input type="text"
+                                   name="title_value:list"
+                                   size="80"
+                                   tal:define="i repeat/title/index;
+                                               value python:title['value']"
+                                   tal:attributes="value python: here.test('title_value',value,i)" />
+                        </td>
+                        <td tal:define="i repeat/title/index;
+                                        lang python:title['lang']" 
+                            tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',lang,i))">
+                            Sprachauswahlliste
+                            <input type="text"
+                                   name="title_lang:list"
+                                   tal:define="i repeat/title/index;
+                                               value python:title['lang']"
+                                   tal:attributes="value python: here.test('title_lang',value,i)" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="python: newTitleNumber > titleNumber"
+                        tal:repeat="title python:range(int(titleNumber),int(newTitleNumber))">
+                        <tal:block tal:define="number repeat/title/number;
+                                               index  repeat/title/index;
+                                               no     python:number + titleNumber;
+                                               i      python:index + titleNumber">
+                            <td tal:content="no">#</td>
+                            <td>
+                                <input type="text"
+                                       name="title_value:list"
+                                       size="80"
+                                       tal:attributes="value python: here.test('title_value',None,i)" />
+                            </td>
+                            <td tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',None,i))">
+                                Sprachauswahlliste
+                                <input type="text"
+                                       name="title_lang:list"
+                                       tal:attributes="value python: here.test('title_lang',None,i)" />
+                            </td>
+                        </tal:block>    
+                    </tr>
+                </table>
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.addTitle"
+                       value="value_addTitle"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
+
+
+            </div>
+
+            <!-- ALTERNATIVER TITEL -->
+            <div class="field"
+                 tal:define="error errors/alternative|nothing;
+                             alternatives python:qdc['alternative'];
+                             alternativeNumber python:len(alternatives);
+                             newAlternativeNumber request/newAlternativeNumber|alternativeNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+                
+                <input type="hidden" name="newAlternativeNumber" value="" tal:attributes="value newAlternativeNumber"/>
+                <input type="hidden" name="alternativeNumber" value="" tal:attributes="value alternativeNumber"/>
+                
+                <label for="title" i18n:translate="label_alternative">alternative</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <table class="listing">
+                    <tr>
+                        <th>#</th>
+                        <th>Titel</th>
+                        <th>Sprache</th>
+                    </tr>
+                    <tr tal:repeat="alternative alternatives">
+                        <td tal:content="repeat/alternative/number">#</td>
+                        <td>
+                            <input type="text"
+                                   name="alternative_value:list"
+                                   size="80"
+                                   tal:define="i repeat/alternative/index;
+                                               value python:alternative['value']"
+                                   tal:attributes="value python: here.test('alternative_value',value,i)" />
+                        </td>
+                        <td tal:define="i repeat/alternative/index;
+                                        lang python:alternative['lang']" 
+                            tal:content="structure python:here.langList('alternative_lang:list',here.test('alternative_lang',lang,i))">
+                            Sprachauswahlliste
+                            <input type="text"
+                                   name="alternative_lang:list"
+                                   tal:define="i repeat/alternative/index;
+                                               value python:alternative['lang']"
+                                   tal:attributes="value python: here.test('alternative_lang',value,i)" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="python: newAlternativeNumber > alternativeNumber"
+                        tal:repeat="alternative python:range(int(alternativeNumber),int(newAlternativeNumber))">
+                        <tal:block tal:define="number repeat/alternative/number;
+                                               index  repeat/alternative/index;
+                                               no     python:number + alternativeNumber;
+                                               i      python:index + alternativeNumber">
+                            <td tal:content="no">#</td>
+                            <td>
+                                <input type="text"
+                                       name="alternative_value:list"
+                                       size="80"
+                                       tal:attributes="value python: here.test('alternative_value',None,i)" />
+                            </td>
+                            <td tal:content="structure python:here.langList('alternative_lang:list',here.test('alternative_lang',None,i))">
+                                Sprachauswahlliste
+                                <input type="text"
+                                       name="alternative_lang:list"
+                                       tal:attributes="value python: here.test('alternative_lang',None,i)" />
+                            </td>
+                        </tal:block>    
+                    </tr>
+                </table>
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.addAlternative"
+                       value="value_addAlternative"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
+
+            </div>
+
+            <!-- publisher --> 
+            <div class="field"
+                 tal:define="error errors/publisher|nothing;
+                             publishers python:qdc['publisher']"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+
+                <label for="publisher" i18n:translate="label_publisher">publisher</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <tal:block tal:repeat="publisher publishers">
+                        <input type="text" name="publisher:list" value="" tal:attributes="value publisher " >
+                </tal:block>
+
+
+            </div>
+
+            <!-- AUTOREN -->
+            <div class="field"
+                 tal:define="error errors/creatorCorporated|nothing;
+                             authors python:qdc['contributor'];
+                             authorNumber python:len(authors);
+                             newAuthorNumber request/newAuthorNumber|authorNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+                <input type="hidden" name="newAuthorNumber" value="" tal:attributes="value newAuthorNumber"/>
+                <input type="hidden" name="authorNumber" value="" tal:attributes="value authorNumber"/>
+                <label for="creatorCorporated" i18n:translate="label_contributor">contributor</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+
+                <table class="listing">
+                    <tr tal:repeat="person authors">
+                      <td>
+                        <table tal:define="i repeat/person/index">
+                                <tr>
+                                    <td rowspan="6">
+                                        <input type="checkbox" name="author_delete:list" tal:attributes="value repeat/person/number">
+                                    </td>
+                                    <td rowspan="6" tal:content="repeat/person/number">
+                                    </td>
+                                    <td>
+                                        <span i18n:translate="academicTitle">akad. Titel</span>,
+                                        <span i18n:translate="lastName">Nachname</span>,
+                                        <span i18n:translate="firstName">Vorname</span>
+                                    </td>
+                                    <td>
+                                        <input class="academicTitle"  type='text' name="corp_academicTitle:list"  tal:attributes="value python: here.test('corp_academicTitle',person['academicTitle'],i)" />
+                                        <input class="lastName" type='text' name="corp_lastName:list"  tal:attributes="value python: here.test('corp_lastName',person['lastName'],i)" />,
+                                        <input class="firstName" type='text' name="corp_firstName:list" tal:attributes="value python: here.test('corp_firstName',person['firstName'],i)" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span i18n:translate="emailAddress">E-Mail</span>
+                                    </td>
+                                    <td>
+                                        <input class="emailAddress" type='text' name="corp_emailAddress:list"  tal:attributes="value python: here.test('corp_emailAddress',person['emailAddress'],i)" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span i18n:translate="PNDIdentNumber">PNDIdentNummer</span>
+                                    </td>
+                                    <td>
+                                        <input class="PNDIdentNumber" type='text' name="corp_PNDIdentNumber:list" tal:attributes="value python: here.test('corp_PNDIdentNumber',person['PNDIdentNumber'],i)" />
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span i18n:translate="role">Rolle</span>
+                                    </td>
+                                    <td>
+                                        <input class="role" type='text' name="corp_role:list"  tal:attributes="value python: here.test('corp_role',person['role'],i)" />
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span i18n:translate="organization">Organisation</span>
+                                    </td>
+                                    <td>
+                                        <input class="organization" type='text' name="corp_organization:list"  tal:attributes="value python: here.test('corp_organization',person['organization'],i)" />
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span i18n:translate="postalAddress">Anschrift</span>
+                                    </td>
+                                    <td>
+                                        <input class="postalAddress" type='text' name="corp_postalAddress:list"  tal:attributes="value python: here.test('corp_postalAddress',person['postalAddress'],i)" />
+                                    </td>   
+                                </tr>
+                            </table>
+                    </tr>
+                    <tr tal:condition="python: newAuthorNumber > authorNumber"
+                        tal:repeat="person python:range(int(authorNumber),int(newAuthorNumber))"
+                        tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd')">
+
+                        <tal:block tal:define="number repeat/person/number;
+                                               index  repeat/person/index;
+                                               no     python:number + authorNumber;
+                                               i      python:index + authorNumber">
+                        <td>
+                            <table class="listing1">
+                                <tr>
+                                    <td rowspan="5">
+                                        <input type="checkbox" name="author_delete:list" tal:attributes="value repeat/person/number">
+                                    </td>
+                                    <td rowspan="5" tal:content="no">
+                                    </td>
+                                    <td>
+                                        <span i18n:translate="academicTitle">akad. Titel</span>,
+                                        <span i18n:translate="lastName">Nachname</span>,
+                                        <span i18n:translate="firstName">Vorname</span>
+                                    </td>
+                                    <td><!--
+                                        <select>
+                                            <tal:block tal:repeat="academicTitle python: here.academicTitles()">
+                                                <option tal:content="academicTitle">Dr.</option>
+                                            </tal:block>
+                                        </select>-->
+                                        <input class="academicTitle"  type='text' name="corp_academicTitle:list"  tal:attributes="value python: here.test('corp_academicTitle',None,i)" />
+                                        <input class="lastName" type='text' name="corp_lastName:list"  tal:attributes="value python: here.test('corp_lastName',None,i)" />,
+                                        <input class="firstName" type='text' name="corp_firstName:list" tal:attributes="value python: here.test('corp_firstName',None,i)" />
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span i18n:translate="emailAddress">E-Mail</span>
+                                    </td>
+                                    <td>
+                                        <input class="emailAddress" type='text' name="corp_emailAddress:list"  tal:attributes="value python: here.test('corp_emailAddress',None,i)" />
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span i18n:translate="PNDIdentNumber">PNDIdentNummer</span>
+                                    </td>
+                                    <td>
+                                        <input class="PNDIdentNumber" type='text' name="corp_PNDIdentNumber:list" tal:attributes="value python: here.test('corp_PNDIdentNumber',None,i)" />
+                                    </td>   
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span i18n:translate="organization">Organisation</span>
+                                    </td>
+                                    <td>
+                                        <input class="organization" type='text' name="corp_organization:list"  tal:attributes="value python: here.test('corp_organization',None,i)" />
+                                    </td>   
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span i18n:translate="postalAddress">Anschrift</span>
+                                    </td>
+                                    <td>
+                                        <input class="postalAddress" type='text' name="corp_postalAddress:list"  tal:attributes="value python: here.test('corp_postalAddress',None,i)" />
+                                    </td>   
+                                 </tr>
+                            </table>
+                        </td>
+                        </tal:block>          
+                   </tr>
+                </table>
+
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addAuthor"
+                   value="value_add"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+            </div>
+
+            <!-- KEYWORDS -->
+            <!-- freie Schlagw??rter -->
+            <div class="field"
+                 tal:define="error errors/subject|nothing;
+                             subject python:qdc['subject'];"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+                <label for="subject" i18n:translate="label_subject">subject</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="">
+                    Freie Schlagw??rter, eins pro Zeile
+                </div>
+                <textarea name="subject:lines" rows="3" cols="5" tal:content="python: here.test('subject',subject,0)" >
+                    keyword1, keword2
+                </textarea>
+            </div>
+
+            <!-- normierte Schlagw??rter -->
+            <div class="field"
+                 tal:define="error errors/subjectClassified|nothing;
+                             subjectClassified python:qdc['subjectClassified'];
+                             subjectClassifiedNumber python:len(subjectClassified);
+                             newSubjectClassifiedNumber request/newSubjectClassifiedNumber|subjectClassifiedNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                >
+                <input type="hidden" name="newSubjectClassifiedNumber" value="" tal:attributes="value newSubjectClassifiedNumber"/>
+                <input type="hidden" name="subjectClassifiedNumber" value="" tal:attributes="value subjectClassifiedNumber"/>
+                <label for="subjectClassified" i18n:translate="label_subjectClassified">subjectClassified</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:domain="plone"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="">
+                    Normierte Schlagw??rter
+                </div>
+                <table class="listing">
+                    <tr>
+                        <th>#</th>
+                        <th>Schlagwort</th>
+                        <th>IdentNr.</th>
+                        <th>Quelle</th>
+                    </tr>
+                    <tr tal:repeat="keyword subjectClassified">
+                        <tal:block tal:define="i repeat/keyword/index; no repeat/keyword/number">
+                            <td tal:content="no">#</td>
+                            <td><input type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',keyword['subjectClassified'],i)" /></td>
+                            <td><input type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',keyword['classificationIdent'],i)" /></td>
+                            <td tal:define="value python: here.test('sc_classificationSystem',keyword['classificationSystem'],i)"
+                                tal:content="structure python:here.NormList('sc_classificationSystem:list',value)">
+                                    dropdown normlisten
+                            </td>
+                        </tal:block>
+                    </tr>
+                    <tr tal:condition="python: newSubjectClassifiedNumber > subjectClassifiedNumber"
+                        tal:repeat="keyword python:range(int(subjectClassifiedNumber),int(newSubjectClassifiedNumber))">
+                        <tal:block tal:define="number repeat/keyword/number;
+                                               index  repeat/keyword/index;
+                                               no     python:number + subjectClassifiedNumber;
+                                               i      python:index + subjectClassifiedNumber">
+                            <td tal:content="no">#</td>
+                            <td><input type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',None,i)" /></td>
+                            <td><input type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',None,i)" /></td>
+                            <td tal:define="value python: here.test('sc_classificationSystem',None,i)"
+                                tal:content="structure python:here.NormList('sc_classificationSystem:list',value)">
+                                    dropdown normlisten
+                            </td>
+                        </tal:block>
+                    </tr>
+                </table>
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addKeyword"
+                   value="value_add"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+                
+            </div>
+
+            <div class="field">
+                <label for="rights" i18n:translate="label_rights">rights</label>
+                <div class="formHelp" i18n:translate="">
+                    Unter welcher Lizenz steht der Artikel?
+                </div>
+                <input type="text" name="rights" value ="DPPL">
+            </div>
+ 
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Save"
+                   value="Save"
+                   i18n:domain="plone"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+
+            <input class="standalone"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:domain="plone"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;" />
+
+        </form>
+
+        </div>
+
+
+</body>
+</html>

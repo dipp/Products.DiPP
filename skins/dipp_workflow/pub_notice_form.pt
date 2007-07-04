@@ -1,0 +1,67 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	metal:use-macro="here/dipp_workflow_template/macros/master">
+	<metal:block fill-slot="base">
+		<base href="" tal:attributes="href python: here.absolute_url() + '/'">
+	</metal:block>
+	<metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+	<body>
+	
+		<div metal:fill-slot="header">
+		</div>
+		
+		<div metal:fill-slot="main">
+		<h1 i18n:translate="request_imprimatur" i18n:domain="dipp">Anschreiben an den Autor</h1>
+		
+		<tal:block define="oftool container/portal_openflow;
+							i python:oftool[request.instance_id];
+							w python:i[request.workitem_id];
+							actor python:user.getUserName();
+							wf_init python: container.pub_instance_init(i.id, w.id) ">
+				<!--
+				<form action="pub_notice_complete">
+				-->
+				<form action="pub_modify_instance">
+					<table width="100%">
+						<tr>
+							<td>
+								<div metal:use-macro="here/pub_macros/macros/deadline">
+									Deadline
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+							        <fieldset>
+									<legend i18n:translate="message_author" i18n:domain="dipp">Nachricht an den Autor</legend>
+									<textarea	name="message"
+												rows="10"
+												cols="80"
+												tal:content="python: here.notice_content(here,i.id, w.id)"
+												>Inhalt der Email</textarea>
+
+                                    </fieldset>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="hidden" name="instance_id" value="instance_id" tal:attributes="value request/instance_id">
+								<input type="hidden" name="workitem_id" value="workitem_id" tal:attributes="value request/workitem_id">
+								<input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
+								<input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
+								<input type="hidden" name="actor" value="actor" tal:attributes="value user">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="submit" class="standalone" name="Submit" value="Submit" />
+							</td>
+						</tr>
+					</table>
+				</form>
+		</tal:block>
+		</div>
+	</body>
+</html>

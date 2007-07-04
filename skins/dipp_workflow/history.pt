@@ -1,0 +1,99 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	metal:use-macro="here/main_template/macros/master">
+	<metal:block fill-slot="base">
+		<base href="" tal:attributes="href python: here.absolute_url() + '/'">
+	</metal:block>
+
+	<metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+	<body>
+	
+		<div metal:fill-slot="header">
+			<h1 i18n:translate="History" i18n:domain="plone">History</h1>
+		</div>
+		
+		<div metal:fill-slot="main">
+
+		<tal:block tal:define="ri request/instance_id">
+
+			<tal:block tal:define="history python: here.get_history(instance_id=ri)">
+			
+				<tal:block tal:define="i history/instance">
+					<table class="listing">
+						<tr>
+							<th>id</th>
+							<td tal:content="i/id">id</td>
+						<tr>
+						<tr>
+							<th>status</th>
+							<td tal:content="i/status">id</td>
+						<tr>
+						<tr>
+							<th>customer</th>
+							<td tal:content="i/customer">id</td>
+						<tr>
+						<tr>
+							<th>creation_time</th>
+							<td tal:content="i/creation_time">id</td>
+						<tr>
+						<tr>
+							<th>deadline</th>
+							<td tal:content="i/deadline">id</td>
+						<tr>
+					</table>
+				</tal:block>
+			
+				<table class="listing">
+				<tr>
+					<th>id</th>
+					<th>actor</th>
+					<th>status</th>
+					<th>activity_id</th>
+					<th>event_log</th>
+					<th>comments</th>
+				</tr>
+				<tal:block tal:repeat="loop history/workitems">
+					<tr class="" tal:attributes="class python:test(path('repeat/loop/even'), 'odd', 'even')">
+						<td tal:content="loop/id">id</td>
+						<td tal:content="loop/actor">actor</td>
+						<td tal:content="loop/status">status</td>
+						<td tal:content="loop/activity_id">activity_id</td>
+						<td class="eventlog">
+							<tal:block tal:repeat="event loop/event_log">
+									<b tal:content="string: ${event/event}">event</b><br />
+									<span tal:content="python: event['time'].strftime(site_properties.localLongTimeFormat)">time</span>
+									<br />
+							</tal:block>
+						</td>
+						<td>
+								<dl tal:repeat="c loop/comments">
+									<dt tal:content="python: c[0]">activity</dt>
+									<dd>
+										<pre tal:content="python: c[1]">comment</pre>
+									</dd>
+								</dl>
+						</td>
+					</tr>
+				</tal:block>
+				</table>
+			</tal:block>
+
+		</tal:block>
+
+		<!--<br><b>Rohdaten</b>
+		<tal:block tal:define="i request/instance_id">
+			<tal block tal:replace="structure python: here.get_history(instance_id=i)"/>
+		</tal:block>
+
+		<tal:block tal:define="count python: here.portal_openflow.countWorkitems(process_id='Publishing')">
+		<br><strong>Workitems</strong> <br />
+		todo: <b tal:content="python: count['to do']"></b><br />
+		to assign: <b tal:content="python: count['to assign']"></b><br />
+		completed: <b tal:content="python: count['completed']"></b><br />
+		</tal:block>           
+		-->
+
+		</div>
+	</body>
+</html>

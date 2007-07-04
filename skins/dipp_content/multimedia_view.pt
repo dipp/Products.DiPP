@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/full_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+        </h1>
+    
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+    
+        <div class="documentDescription"
+             tal:content="here/Description">
+            description
+        </div>
+    
+    
+        <div class="stx">
+
+            <object
+                id="MediaPlayer"
+                classid="CLSID:22D6f312-B0F6-11D0-94AB-0080C74C7E95"
+                type="application/x-mplayer2"
+                width='340' height='300'>
+
+                <param name="uiMode" value="none" />
+                <param name="filename" value="" tal:attributes="value here/absolute_url" />
+
+                <!-- this allows firefox to display video -->
+                <object class="iehide"
+                    id="MediaPlayer1"
+                    type="application/x-mplayer2"
+                    data=""
+                    width="340" height="300" 
+                    tal:attributes="data here/absolute_url">
+                    <param name="uiMode" value="none" />
+                    <param name="movie" value="" tal:attributes="value here/absolute_url" />
+
+                    <em>Can't see the movie? Download it <a href="" tal:attributes="href here/absolute_url">here</a></em>
+                    </object>
+
+            </object>
+
+
+        </div>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

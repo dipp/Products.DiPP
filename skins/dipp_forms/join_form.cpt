@@ -1,0 +1,575 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+
+<div metal:fill-slot="main"
+     tal:define="errors options/state/getErrors;">
+
+  <h1 i18n:translate="heading_registration_form">Registration Form</h1>
+
+  <div>
+    During the registration  process, you will ask to enter information in a number of fields, 
+    including your name, e-mail address, and other information. Any information that you enter 
+    into these fields will be sent to editor board  and stored in a database. The editor board 
+    does not share or sell your information with any third parties. 
+  </div>
+  <form action=""
+        method="post"
+        class="enableUnloadProtection"
+        tal:define="allowEnterPassword site_properties/validate_email|nothing;"
+        tal:attributes="action template_id" >
+
+    <fieldset>
+
+      <legend i18n:translate="legend_personal_details">Personal Details</legend>
+
+      <input type="hidden" name="came_from" value=""
+             tal:condition="request/came_from|nothing"
+             tal:attributes="value request/came_from" />
+      <input type="hidden" name="last_visit:date" value="ZopeTime"
+             tal:attributes="value here/ZopeTime" />
+      <input type="hidden" name="prev_visit:date" value="ZopeTime"
+             tal:attributes="value here/ZopeTime" />
+      <input type="hidden" name="came_from_prefs" value=""
+             tal:attributes="value request/came_from_prefs|nothing" />
+      <!--
+      <div class="field"
+           tal:define="error errors/fullname| nothing;
+                       fullname request/fullname | nothing;"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="fullname"
+               i18n:translate="label_full_name">Full Name</label>
+
+        <div class="formHelp" i18n:translate="help_full_name_creation">
+          Enter full name, eg. John Smith.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="fullname"
+               id="fullname"
+               size="30"
+               value="fullname"
+               tabindex=""
+               tal:attributes="value fullname;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      -->
+
+      <div class="field"
+           tal:define="error errors/academictitle| nothing;
+                       academictitle request/academictitle | nothing;
+                       visible here/portal_properties/member_properties/academictitle_visible|nothing;
+                       required here/portal_properties/member_properties/academictitle_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="academictitle"
+               i18n:translate="label_academictitle">Academic Title</label>
+
+
+        <div class="formHelp" i18n:translate="help_academictitle_creation">
+          Enter your academic title, e.g. Dr or Prof.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="academictitle"
+               id="academictitle"
+               size="30"
+               value="academictitle"
+               tabindex=""
+               tal:attributes="value academictitle;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/givenname| nothing;
+                       givenname request/givenname | nothing;
+                       visible here/portal_properties/member_properties/givenname_visible|nothing;
+                       required here/portal_properties/member_properties/givenname_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="givenname"
+               i18n:translate="label_givenname">Given Name</label>
+               
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_givenname_creation">
+          Enter your given name, e.g. John.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="givenname"
+               id="givenname"
+               size="30"
+               value="givenname"
+               tabindex=""
+               tal:attributes="value givenname;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/surname| nothing;
+                       surname request/surname | nothing;
+                       visible here/portal_properties/member_properties/surname_visible|nothing;
+                       required here/portal_properties/member_properties/surname_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="surname"
+               i18n:translate="label_surname">Surname</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_surname_creation">
+          Enter your surname, e.g. Smith.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="surname"
+               id="surname"
+               size="30"
+               value="surname"
+               tabindex=""
+               tal:attributes="value surname;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/email | nothing;
+                       email request/email | nothing;"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="email"
+               i18n:translate="label_email">E-mail</label>
+
+        <span class="fieldRequired" title="Required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+              <div class="formHelp" i18n:translate="help_email_creation">
+                Enter an email address. 
+              </div>
+
+              <div tal:content="error">Validation error output</div>
+
+              <input type="text"
+                     name="email"
+                     id="email"
+                     size="30"
+                     tabindex=""
+                     tal:attributes="value email;
+                                     tabindex tabindex/next;"
+                     />
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/phone | nothing;
+                       phone request/phone | nothing;
+                       visible here/portal_properties/member_properties/phone_visible|nothing;
+                       required here/portal_properties/member_properties/phone_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="phone"
+               i18n:translate="label_phone">Phone</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+              <div class="formHelp" i18n:translate="help_phone_creation">
+                    Enter your phone number.
+              </div>
+
+              <div tal:content="error">Validation error output</div>
+
+              <input type="text"
+                     name="phone"
+                     id="phone"
+                     size="30"
+                     tabindex=""
+                     tal:attributes="value phone;
+                                     tabindex tabindex/next;"
+                     />
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/organization| nothing;
+                       organization request/organization | nothing;
+                       visible here/portal_properties/member_properties/organization_visible|nothing;
+                       required here/portal_properties/member_properties/organization_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="organization"
+               i18n:translate="label_organization">Affiliation</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_organization_creation">
+          Enter the name of your affiliation.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="organization"
+               id="organization"
+               size="30"
+               value="organization"
+               tabindex=""
+               tal:attributes="value organization;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/postaladdress| nothing;
+                       postaladdress request/postaladdress | nothing;
+                       visible here/portal_properties/member_properties/postaladdress_visible|nothing;
+                       required here/portal_properties/member_properties/postaladdress_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="postaladdress"
+               i18n:translate="label_postaladdress">Mailing address</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_postaladdress_creation">
+          Enter your mailing address.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="postaladdress"
+               id="postaladdress"
+               size="30"
+               value="postaladdress"
+               tabindex=""
+               tal:attributes="value postaladdress;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/postalcode| nothing;
+                       postalcode request/postalcode | nothing;
+                       visible here/portal_properties/member_properties/postalcode_visible|nothing;
+                       required here/portal_properties/member_properties/postalcode_required|nothing"
+           tal:condition="visible"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="postalcode"
+               i18n:translate="label_postalcode">Zip code</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_postalcode_creation">
+          Enter your zip code.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="postalcode"
+               id="postalcode"
+               size="30"
+               value="postalcode"
+               tabindex=""
+               tal:attributes="value postalcode;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/location| nothing;
+                       location request/location | nothing;
+                       visible here/portal_properties/member_properties/location_visible|nothing;
+                       required here/portal_properties/member_properties/location_required|nothing"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="location"
+               i18n:translate="label_location">City</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_location_creation">
+          Enter your city.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="location"
+               id="location"
+               size="30"
+               value="location"
+               tabindex=""
+               tal:attributes="value location;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/country| nothing;
+                       country request/country | nothing;
+                       visible here/portal_properties/member_properties/country_visible|nothing;
+                       required here/portal_properties/member_properties/country_required|nothing"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="country"
+               i18n:translate="label_country">Country</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_country_creation">
+          Enter your country.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+        
+        <select
+               name="country"
+               id="country"
+               value="country"
+               tabindex=""
+               tal:attributes="tabindex tabindex/next;"
+               >
+          <tal:block tal:repeat="countryItem here/availableCountries">
+             <option value="None"
+                     tal:content="python:countryItem[1]"
+                     tal:attributes="value python:countryItem[0];
+                                    selected python:test(country==countryItem[0], 'selected', None);">
+             </option>
+          </tal:block>
+        </select>
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/homepage| nothing;
+                       homepage request/homepage | nothing;
+                       visible here/portal_properties/member_properties/homepage_visible|nothing;
+                       required here/portal_properties/member_properties/homepage_required|nothing"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="homepage"
+               i18n:translate="label_homepage">Homepage</label>
+
+        <span class="fieldRequired" title="Required"
+              tal:condition="required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+        <div class="formHelp" i18n:translate="help_homepage_creation">
+          Enter your homepage address.
+        </div>
+
+        <div tal:content="error">Validation error output</div>
+
+        <input type="text"
+               name="homepage"
+               id="homepage"
+               size="30"
+               value="homepage"
+               tabindex=""
+               tal:attributes="value homepage;
+                               tabindex tabindex/next;"
+               />
+
+      </div>
+      
+      <div class="field"
+           tal:define="error errors/username| nothing;
+                       username request/username | nothing;"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="username"
+               i18n:translate="label_user_name">User Name</label>
+
+        <span class="fieldRequired" title="Required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+              <div i18n:translate="help_user_name_creation_casesensitive"
+                   class="formHelp">
+                Enter a user name, usually something like
+                'jsmith'. No spaces or special characters.
+                Usernames and passwords are case sensitive,
+                make sure the caps lock key is not enabled.
+                This is the name used to log in.
+              </div>
+
+              <div tal:content="error">Validation error output</div>
+
+              <input type="text"
+                     name="username"
+                     id="username"
+                     size="30"
+                     value="username"
+                     tabindex=""
+                     tal:attributes="value username;
+                                     tabindex tabindex/next;"
+                     />
+      </div>
+
+
+
+      <div class="field"
+           tal:condition="not: allowEnterPassword"
+           tal:define="error errors/password | nothing;
+                       password request/password | nothing;"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+        <label for="password"
+               i18n:translate="label_password">Password</label>
+
+        <span class="fieldRequired" title="Required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+              <div class="formHelp" i18n:translate="help_password_creation">
+                Minimum 5 characters.
+              </div>
+
+              <div tal:content="error">Validation error output</div>
+
+              <input type="password"
+                     name="password"
+                     id="password"
+                     size="10"
+                     value=""
+                     tabindex=""
+                     tal:attributes="tabindex tabindex/next;"
+                     />
+      </div>
+
+      <div class="field"
+           tal:condition="not: allowEnterPassword"
+           tal:define="error errors/password_confirm | nothing;
+                       password_confirm request/password_confirm | nothing;"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+
+        <label for="password_confirm"
+               i18n:translate="label_confirm_password">Confirm password</label>
+
+        <span class="fieldRequired" title="Required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+
+              <div class="formHelp" i18n:translate="help_confirm_password">
+                Re-enter the password. Make sure the passwords are identical.
+              </div>
+
+              <div tal:content="error">Validation error output</div>
+
+              <input type="password"
+                     name="password_confirm"
+                     id="password_confirm"
+                     size="10"
+                     value=""
+                     tabindex=""
+                     tal:attributes="tabindex tabindex/next;"
+                     />
+      </div>
+
+      <div class="field"
+           tal:condition="not: allowEnterPassword"
+           tal:define="mail_me request/mail_me|nothing">
+
+        <input type="checkbox"
+               class="noborder"
+               name="mail_me"
+               size="30"
+               id="cb_mailme"
+               tabindex=""
+               tal:attributes="checked python:test(mail_me, 'checked', None);
+                               tabindex tabindex/next;"
+               />
+        <label for="cb_mailme" i18n:translate="label_mail_password">Send a mail with the password</label>
+      </div>
+
+      <div class="field"
+           tal:condition="allowEnterPassword">
+
+        <div class="formHelp" i18n:translate="label_password_will_be_mailed">
+          A password will be generated and
+          e-mailed to you to complete the registration process.
+        </div>
+      </div>
+
+      <div class="formControls">
+        <input class="context"
+               type="submit"
+               tabindex=""
+               name="form.button.Register"
+               value="Register"
+               i18n:attributes="value label_register;"
+               tal:attributes="tabindex tabindex/next;" />
+      </div>
+
+    </fieldset>
+
+    <input type="hidden" name="form.submitted" value="1" />
+
+  </form>
+</div>
+
+</body>
+</html>
+

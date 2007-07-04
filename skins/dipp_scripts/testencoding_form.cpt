@@ -1,0 +1,62 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/main_template/macros/master">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+
+    <body>
+
+
+        <div metal:fill-slot="main">
+            <h1 class="documentFirstheading">Dokument - Metadatenformular Test Encoding</h1>
+
+            
+                <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+                      method="post"
+                      name="metadata_form"
+                      id="metadata_form">
+
+
+                    <input type="hidden" name="form.submitted" value="1" />
+                    
+                    
+            <div tal:define="title request/title | nothing">
+                <strong>title</strong>: <span tal:content="title" >abc</span>
+                <input type="text"
+                       name="title"
+                       value=""
+                       tal:attributes="value title"/>
+            </div>
+
+			<div>
+	                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Save"
+                       value="Save"
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
+
+
+                    <input class="standalone"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Cancel"
+                           value="Cancel"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;" />
+
+
+            </div>
+            
+
+
+                </form>
+                <h2>REQUEST</h2>
+  <p tal:replace="structure request" />
+        </div>
+    </body>
+</html>
+

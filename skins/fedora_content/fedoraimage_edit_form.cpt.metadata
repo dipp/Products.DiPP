@@ -1,0 +1,8 @@
+[default]
+title = Edit
+
+[validators]
+validators = validate_fedoraimage
+
+[actions]
+action.success..Save = traverse_to:string:fedoraimage_edit

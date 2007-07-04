@@ -1,0 +1,271 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+      
+      <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+<body i18n:domain="dipp">
+    
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+        <h1  class="documentFirstHeading" i18n:translate="article_submit">
+          Information for authors
+        </h1>
+        <div tal:define="journalTitle portal_properties/title">
+           <div class="formHelp" i18n:translate="info_article_submit" style="padding-bottom:1em;padding-top:1em;">
+               Please use this form to submit your article to <span i18n:name="journal_title"><em tal:replace="journalTitle"></em></span>. The required fields are marked with a red dot
+               <span class="fieldRequired" title="Required"
+                          i18n:attributes="title"
+                          i18n:domain="plone"
+                          i18n:translate="label_required">(Required)</span>
+           </div>
+
+
+    <form method="POST"
+          enctype="multipart/form-data"
+          tal:define="errors options/state/getErrors;
+                      academictitle python:member.getProperty('academictitle','');
+                      givenname python:member.getProperty('givenname','');
+                      surname python:member.getProperty('surname','');
+                      fullname string:$givenname $surname;
+                      organization python:member.getProperty('organization','');
+                      postaladdress python:member.getProperty('postaladdress','');
+                      postalcode python:member.getProperty('postalcode','');
+                      location python:member.getProperty('location','');
+                      phone python:member.getProperty('phone','');
+                      email python:member.getProperty('email','');"
+          tal:attributes="action string:${here/absolute_url}/${template/id};">
+
+        <input type="hidden" name="form.submitted" value="1" />
+        <input type="hidden" name="surname" value="" tal:attributes="value surname" />
+        <input type="hidden" name="email" value="" tal:attributes="value email"/>
+        
+        <div class="field">
+        
+            <label i18n:translate="label_memberdata">Personal Data</label>
+            
+            <div class="formHelp" i18n:translate="help_memberdata">
+                We have saved saved your personal data as shown in the table below. Visit your
+                <a href="" tal:attributes="href string: $portal_url/personalize_form"><img alt="" src="user.gif"/>Personal Preferences</a>
+                to change them, if required.
+            </div>
+            
+            <table class="listing">
+                <tr>
+                    <th i18n:translate="label_academictitle">Academic Title</th>
+                    <td tal:content="academictitle"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_givenname">Given Name</th>
+                    <td tal:content="givenname"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_surname">Surname</th>
+                    <td tal:content="surname"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_email">E-mail</th>
+                    <td tal:content="email"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_phone">Telephonenumber</th>
+                    <td tal:content="phone"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_organization">Organization</th>
+                    <td tal:content="organization"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_postaladdress">Postal address</th>
+                    <td tal:content="postaladdress"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_postalcode">Postal code</th>
+                    <td tal:content="postalcode"></td>
+                </tr>
+                <tr>
+                    <th i18n:translate="label_location">Location</th>
+                    <td tal:content="location"></td>
+                </tr>
+            </table>
+        </div> 
+    <!--
+        <div class="field"
+        tal:define="error errors/section|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label for="category" i18n:translate="label_category">Section</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:domain="plone"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_category">
+                        Choose the section in which your submission should appear.
+                </div>
+                
+                <select name="section">
+                        <option value="articles" tal:attributes="selected python:path('request/section | nothing') == 'articles'">Articles</option>
+                </select>
+                
+       </div>
+       
+        <div class="field"
+        tal:define="error errors/name|nothing;
+                    name request/name|fullname|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label for="name">Name</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:domain="plone"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_name">
+                        Your full name.
+                </div>
+
+                <input type="text" size="50" name="name" value="" tal:attributes="value name"/>
+        </div>
+        
+        <div class="field"
+        tal:define="error errors/email|nothing;
+                    email request/email|email|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+        
+                <label for="name">Email</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:domain="plone"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_email">
+                        Your email address.
+                </div>
+
+            <input type="text" size="50" name="email" value="" tal:attributes="value email"/>
+        </div>
+
+        <div class="field"
+        tal:define="error errors/organization|nothing;
+                    organization request/organization|organization|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+        
+                <label for="address" i18n:translate="label_organization">Organization</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_organization">
+                        The name of your organisation.
+                </div>
+
+                <input type="text" size="50" name="organization" value="" tal:attributes="value organization"/>
+        </div>
+        
+        <div class="field"
+        tal:define="error errors/address|nothing;
+                    postalAddress request/postalAddress|postalAddress|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+        
+                <label for="address" i18n:translate="label_institutional_address">Institutional Address</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_institutional_address">
+                        The address of your institute.
+                </div>
+
+                <input type="text" size="50" name="postalAddress" value="" tal:attributes="value postalAddress"/>
+        </div>
+
+        
+        <div class="field"
+        tal:define="error errors/postalCode|nothing;
+                    postalCode request/postalCode|postalCode|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+        
+                <label for="address" i18n:translate="label_postalcode">Postal Code</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_postalcode">
+                        Your postal code.
+                </div>
+
+                <input type="text" size="50" name="postalCode" value="" tal:attributes="value postalCode"/>
+        </div>
+        
+        <div class="field"
+        tal:define="error errors/locality|nothing;
+                    locality request/locality|locality|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+        
+                <label for="address" i18n:translate="label_locality">City</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_locality">
+                        The name of  your City.
+                </div>
+
+                <input type="text" size="50" name="locality" value="" tal:attributes="value locality"/>
+        </div>
+-->        
+        
+        <div class="field"
+        tal:define="error errors/comment|nothing;
+                    comment request/comment|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label for="comment" i18n:translate="label_comment" >Comment</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_comment">
+                        Do you have further comments and remarks?
+                </div>
+
+                <textarea name="comment" rows="5" tal:content="comment"></textarea>
+        </div>
+        
+        <div class="field"
+        tal:define="error errors/file|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label for="file" i18n:domain="plone" i18n:translate="File">File</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:domain="plone"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_rtf">
+                        The fileformat of your article should be <abbr title="Rich Text Format" i18n:name="rtf">rtf</abbr>.
+                </div>
+            <input type="file" name="file" value="" />
+        </div>
+        <div class="field"
+        tal:define="error errors/licence|nothing;
+                    licence request/licence|nothing"
+        tal:attributes="class python:test(error, 'field error', 'field')">
+
+                <label for="licence" i18n:domain="dipp" i18n:translate="licence">Licence</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:domain="plone"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_licence_author">
+                    The article will be published under the
+                    <span i18n:name="licence"><a href="http://www.dipp.nrw.de/lizenzen/dppl/">Digital Peer Publishing Licence (DPPL)</a></span>.
+                </div>
+                <tal:block tal:replace="licence"/>
+            <input class="noborder" type="checkbox" id="licence" name="licence" i18n:translate="i_agree" tal:attributes="checked python:path('request/licence | nothing') == 'on'"/> 
+            .
+        </div>
+        
+        <input type="submit" 
+               name="submit" 
+               value="Submit" 
+               i18n:domain="plone"
+               i18n:attributes="value"/>
+        
+
+    </form>
+
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+  </body>
+</html>

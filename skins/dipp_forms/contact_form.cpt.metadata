@@ -1,0 +1,9 @@
+[default]
+title=Contact
+
+[validators]
+validators = validate_emailaddr, validate_contact
+
+
+[actions]
+action.success = traverse_to:string:contact_send

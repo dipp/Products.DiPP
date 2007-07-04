@@ -1,0 +1,54 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="dipp">
+
+<body>
+
+<!-- The dipp Prefs portlet -->
+
+<metal:portlet define-macro="portlet"
+   tal:define="controlPanel python:modules['Products.CMFCore.utils'].getToolByName(here, 'portal_controlpanel');
+               groups python:controlPanel.getGroups('site');
+               getIconFor nocall:putils/getIconFor">
+
+    <div class="portlet"
+         id="portlet-prefs">
+    <div class="active">
+        <h5 i18n:translate="heading_dipp_control_panel">dipp Setup</h5>
+        <div class="portletBody">
+
+            <div class="portletContent odd">
+
+                <ul class="configlets">
+        
+                    <li>
+                        <a href=""
+                           i18n:translate="deadlines"
+                           tal:attributes="href string:${portal_url}/deadlines_edit_form" >deadlines</a>
+                    </li>
+
+                    <li>
+                        <a href=""
+                           i18n:translate="mailtemplates"
+                           tal:attributes="href string:${portal_url}/mailtemplates_edit_form" >mailtemplates</a>
+                    </li>
+        
+                    <li>
+                        <a href=""
+                           i18n:translate="rights"
+                           tal:attributes="href string:${portal_url}/rights_edit_form" >rights</a>
+                    </li>
+        
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+</metal:portlet>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/floatingportlet_template/macros/master"
+      i18n:domain="plone">
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+
+	<div class="portlet" id="portlet-toc">
+        <div class="active">
+
+            <h5 i18n:translate="contents" i18n:domain="dipp">Inhalt</h5>
+            <div class="portletBody"
+                 tal:define="PID python:here.get_toc()['PID'];
+                             articlePID python:here.PID;
+                             DsID python:here.get_toc()['DsID'];
+                             qdc python:here.fedora.getQualifiedDCMetadata(articlePID);
+                             author python:qdc['creatorPerson'][0];
+                             title python:qdc['title'][0];
+                             bibliographicCitation python:qdc['bibliographicCitation'][0]">
+                <div class="portletContent odd">
+                    <span tal:content="string: ${author/firstName} ${author/lastName}">Der Autor</span>:
+                    <strong tal:content="title/value">Der Title</strong>
+                         <span tal:replace="bibliographicCitation/journalTitle"></span>,
+                         <span tal:replace="bibliographicCitation/journalVolume"></span><!--,
+                         <tal:block tal:condition="bibliographicCitation/journalIssueNumber">
+                             <span tal:replace="bibliographicCitation/journalIssueNumber"></span>
+                         </tal:block>
+                         (<span tal:replace="bibliographicCitation/journalIssueDate"></span>)-->
+                    
+                </div>
+                
+                <div class="portletContent odd">
+                    <tal:block tal:replace="structure python:here.fedora.access(PID,DsID,Date=None)['stream']" />		
+                </div>
+                <div class="portletContent odd">
+                    <a i18n:translate="close_window" i18n:domain="dipp" class="windowClose" href="javascript:window.close()">Fenster schließen [x]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

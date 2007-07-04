@@ -1,0 +1,9 @@
+[default]
+title=Create new Hierachie
+
+[validators]
+validators..Save = validate_newhierarchie
+
+[actions]
+action.success..Save = traverse_to:string:newhierarchie
+action.success..Cancel = redirect_to:string:newhierachie_form

@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+		<p>
+			<b>container:</b> <span tal:content="container/id">PID</span><br />
+			<b>PID:</b> <span tal:content="python: here.PID">PID</span><br />
+			<b>DsID:</b> <span tal:content="here/DsID">DsID</span>
+		</p>
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+        </h1>
+    		
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+		
+    
+    	<div tal:content="structure here/body">body</div>
+        
+        <!--
+        <hr />
+        <tal:block tal:replace="structure request" />
+        -->
+        
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

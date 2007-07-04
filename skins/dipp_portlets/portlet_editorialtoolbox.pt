@@ -1,0 +1,147 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+
+<div metal:define-macro="portlet">
+                 
+
+    <dl class="portlet" id="portlet-editorialmanager" tal:condition="not: isAnon">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span i18n:translate="editorialmanager">Editorial Toolbox</span>
+        <span class="portletTopRight"></span>
+    </dt>
+                            
+
+        <dd class="portletItem" i18n:domain="dipp">
+
+
+                
+                <strong i18n:translate="new_articles">Neue Artikel</strong>
+                <ul class="configlets">
+                    <li>
+                        <a href="" 
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/upload_file_form" 
+                           i18n:attributes="title help_internal_workflow"
+                        >
+                               <span class="navItemText" i18n:translate="internal_workflow">Einreichen ohne Peer Review</span></a>
+                   </li>
+                   <li>
+                        <a href="" 
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/submit_form" 
+                           i18n:attributes="title help_external_workflow"
+                        >
+                               <span class="navItemText" i18n:translate="external_workflow">Einreichen mit Peer Review</span></a>
+                   </li>
+               </ul>
+               
+                <strong i18n:translate="articles_in_process">Artikel in Bearbeitung</strong>
+                <ul class="configlets">
+                    <li>
+
+                        <a href=""
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/worklist"
+                           i18n:attributes="title help_myworklist">
+                            <span class="navItemText" i18n:translate="title_myworklist">myworklist</span></a>
+                   </li>
+                   <li>
+                        <a href=""
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/all_worklists"
+                           i18n:attributes="title help_allworklists">
+                            <span class="navItemText" i18n:translate="title_allworklists">allworklists</span></a>
+                   </li>
+               </ul>
+                            
+                <strong i18n:translate="journal">Zeitschrift</strong>
+                <ul class="configlets">
+                    <li>
+                        <a href=""
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/prefs_journalmetadata_form" 
+                        >
+                             <span class="navItemText" i18n:translate="metadata">Metadaten</span></a>
+                   </li>
+               </ul>
+                        
+                
+                <strong i18n:translate="tools">Tools</strong>
+                <ul class="configlets">
+                    <li>
+                        <a href=""
+                           class="navItem"
+                           tal:attributes="href string:${here/portal_url}/prefs_users_overview"
+                           target="_blank"
+                        >
+                           <span class="navItemText" i18n:translate="user_administration">Benutzerverwaltung</span></a>
+                   </li>
+                   <li>
+                        <a href="http://www.dipp.nrw.de/openurl.html"
+                           class="navItem"
+                           tal:attributes="target string:'openurl'"
+                           i18n:attributes="title help_openurl">
+                           <span class="navItemText" i18n:translate="title_openurl">openURL erzeugen</span></a>
+                   </li>
+                   <li>
+                        <!--<a href=""
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/awstats/awstats.pl" 
+                        ></a>-->
+                             <span  style="color:gray" i18n:translate="webstats">allg. Zugriffsstatistik</span>
+                   </li>
+                   <li>
+                      <!--  <a href=""
+                           class="navItem"
+                           tal:attributes="href string:$portal_url/" 
+                        ></a>-->
+                             <span  style="color:gray" i18n:translate="articlestats">artikelbasierte Statistik</span>
+                   </li>
+               </ul>
+                
+                
+                <strong i18n:translate="title_support">Support</strong><br />
+                <small i18n:translate="description_support">
+                    (Password-geschützter Bereich auf <a i18n:name="url" href="" tal:attributes="href string:http://www.dipp.nrw.de/">www.dipp.nrw.de</a>).
+                </small>
+                <ul class="configlets">
+                    <li>
+                        <a href="http://www.dipp.nrw.de/wiki">
+                               <span>Wiki</span>
+                        </a>
+                   </li>
+                   <li>
+                        <a href="http://www.dipp.nrw.de/Issuetracker">
+                               <span>Issuetracker</span>
+                        </a>
+                   </li>
+                   <li>
+                        <a href="http://www.dipp.nrw.de/download/userdoc.pdf">
+                               <span i18n:translate="userguide">Benutzeranleitung (pdf)</span>
+                        </a>
+                   </li>
+                   <li>
+                        <a href="http://www.dipp.nrw.de/download/Beispiel.rtf">
+                               <span i18n:translate="exampleRTF">Beispiel-RTF</span>
+                        </a>
+                   </li>
+                   <li>
+                        <a href="http://listen.hbz-nrw.de/mailman/listinfo/dipp-user">
+                               <span i18n:translate="dippuser">[DiPP-User] Mailingliste</span>
+                        </a>
+                   </li>
+               </ul>
+                
+    </dd>
+
+</dl>
+</div>
+</body>
+
+</html>

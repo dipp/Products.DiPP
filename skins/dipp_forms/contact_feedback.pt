@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+      
+      <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    
+        <h1  class="documentFirstHeading">
+          Thank you for sending a message
+        </h1>
+    
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+    
+        <div class="documentDescription">
+            We will contact you as soon as possible.
+        </div>
+        
+
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

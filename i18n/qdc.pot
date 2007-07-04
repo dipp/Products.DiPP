@@ -1,0 +1,119 @@
+# Gettext Message File for Qualified Dublin Core (DiPP).
+# Peter Reimer <reimer@hbz-nrw.de>, 2004-2005
+msgid ""
+msgstr ""
+"Project-Id-Version: qdc\n"
+"POT-Creation-Date: 2005-10-04 11:30+0000\n"
+"PO-Revision-Date: 2005-10-04 11:30+0000\n"
+"Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
+"Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-code: en\n"
+"Language-name: English\n"
+"Domain: plone\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-encodings: latin1 utf-8\n"
+
+msgid "label_abbrev"
+msgstr ""
+
+msgid "help_abbrev"
+msgstr ""
+
+msgid "label_language"
+msgstr ""
+
+msgid "label_ddc"
+msgstr ""
+
+msgid "label_title"
+msgstr ""
+
+msgid "label_alternative"
+msgstr ""
+
+msgid "label_abstract"
+msgstr ""
+
+msgid "label_creatorPerson"
+msgstr ""
+
+msgid "label_creatorCorporated"
+msgstr ""
+
+msgid "label_contributor"
+msgstr ""
+
+msgid "label_subject"
+msgstr ""
+
+msgid "help_subject"
+msgstr ""
+
+msgid "label_subjectClassified"
+msgstr ""
+
+msgid "help_subjectClassified"
+msgstr ""
+
+msgid "label_rights"
+msgstr ""
+
+msgid "help_rights"
+msgstr ""
+
+msgid "label_bibliographicCitation"
+msgstr ""
+
+msgid "help_bibliographicCitation"
+msgstr ""
+
+msgid "label_journalTitle"
+msgstr ""
+
+msgid "label_journalVolume"
+msgstr ""
+
+msgid "label_journalIssueNumber"
+msgstr ""
+
+msgid "label_journalIssueDate"
+msgstr ""
+
+msgid "label_docType"
+msgstr ""
+
+msgid "help_docType"
+msgstr ""
+
+msgid "label_pubType"
+msgstr ""
+
+msgid "help_pubType"
+msgstr ""
+
+msgid "label_dates"
+msgstr ""
+
+msgid "help_dates"
+msgstr ""
+
+msgid "created"
+msgstr ""
+
+msgid "modified"
+msgstr ""
+
+msgid "valid"
+msgstr ""
+
+msgid "dppl"
+msgstr ""
+
+msgid "mdppl"
+msgstr ""
+
+msgid "fdppl"
+msgstr ""

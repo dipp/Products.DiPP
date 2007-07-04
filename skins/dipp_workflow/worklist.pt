@@ -1,0 +1,148 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/dipp_workflow_template/macros/master"
+      i18n:domain="dipp" >
+
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+    
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+    
+<body>
+
+  <div metal:fill-slot="header">
+
+
+    <h1 i18n:translate="title_myworklist">My Worklist</h1>
+
+  </div>
+
+<div metal:fill-slot="main" class="desktop">
+    <tal:block define="global openflow python: container.portal_openflow" />
+    <tal:block define="global UserName python:user.getUserName()" />
+
+<!-- workitems assigned to user-->
+
+<h2>
+  <span i18n:translate="assigned_workitems">Workitems assigned to user</span>
+<!--  <i tal:content="UserName">User Name</i>-->
+</h2>
+
+<div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time', actor=UserName)">
+
+    <table id="sortable1" cellpadding="2" cellspacing="0" border="0"
+           width="100%" class="listing" tal:condition="workitems">
+        <thead>
+            <tr valign="top" align="left" bgcolor="#cccccc" class="headings">
+                <th class="" style="white-space: nowrap;" i18n:translate="deadline">Frist</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="author">Autor</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="title">Titel des Artikels</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="issue">Ausgabe</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="next_step">nächster Schritt</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="actions">Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tal:block tal:repeat="workitem workitems">
+                <tal:block define="wi workitem/getObject;
+                                   action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
+                           condition="action">
+        
+                    <tr tal:attributes="class python:test(path('repeat/workitem/even'), 'even', 'odd')">
+                        <td>
+                            <span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
+                                <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
+                                              tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
+                                              tal:attributes="class delay/class"
+                                              tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
+                        </td>
+                        <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
+                        <td tal:content="string: ${wi/titel}">Der Herr der Ringe</td>
+                        <td tal:content="string: ${wi/hierarchie}">2001/1</td>
+                        <td><abbr tal:content="wi/activity_id" tal:attributes="title python: wi.title or '%s-%s'%(wi.instance_id,wi.id)" i18n:translate=""></abbr></td>
+                        <td>
+                            <ul class="actions">
+                                <tal:block repeat="action_name python:action.keys()">
+                                    <li tal:condition="python: action_name in portal_properties.actions_to_list">
+                                        <a href="" tal:attributes="href python:action[action_name]"
+                                                   tal:content="action_name"
+                                                   i18n:translate="">action</a>
+                                    </li>
+                                </tal:block>
+                            </ul>
+                        </td>
+                    </tr>
+                </tal:block>
+            </tal:block>
+        </tbody>
+    </table>
+    
+    <p tal:condition="not:workitems" i18n:translate="no_workitems_yet">No workitems assigned yet</p>
+
+</div>
+
+<!-- workitems for user not yet assigned -->
+
+<h2 i18n:translate="free_workitems">Workitems not yet assigned</h2>
+<div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time')">
+
+    <table id="sortable2" cellpadding="2" cellspacing="0" border="0"
+           width="100%" class="listing" tal:condition="workitems">
+        <thead>
+            <tr valign="top" align="left" bgcolor="#cccccc" class="headings">
+                <th class="" style="white-space: nowrap;" i18n:translate="deadline">Frist</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="author">Autor</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="title">Titel des Artikels</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="issue">Ausgabe</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="next_step">nächster Schritt</th>
+                <th class="" style="white-space: nowrap;" i18n:translate="actions">Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tal:block tal:repeat="workitem workitems">
+                <tal:block define="wi workitem/getObject;
+                                   action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
+                           condition="python:action and not workitem.actor">
+        
+                    <tr tal:attributes="class python:test(path('repeat/workitem/even'), 'even', 'odd')">
+                        <td>
+                            <span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
+                                <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
+                                              tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
+                                              tal:attributes="class delay/class"
+                                              tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
+                        </td>
+                        <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
+                        <td tal:content="string: ${wi/titel}">Der Herr der Ringe</td>
+                        <td tal:content="string: ${wi/hierarchie}">2001/1</td>
+                        <td><abbr tal:content="wi/activity_id" tal:attributes="title python: wi.title or '%s-%s'%(wi.instance_id,wi.id)"></abbr></td>
+                        <td>
+                            <ul class="actions">
+                                <tal:block repeat="action_name python:action.keys()">
+                                    <li tal:condition="python: action_name in portal_properties.actions_to_list">
+                                        <a href="" tal:attributes="href python:action[action_name]"
+                                                   tal:content="action_name"
+                                                   i18n:translate="">action</a>
+                                    </li>
+                                </tal:block>
+                            </ul>
+                        </td>
+                    </tr>
+                </tal:block>
+            </tal:block>
+        </tbody>
+    </table>
+    
+    <p tal:condition="not:workitems"><b>No workitems assignable to user.</b></p>
+    
+</div>
+
+
+
+<!--<tal:block tal:replace="structure request"/>-->
+
+</div>
+</body>
+</html>
+

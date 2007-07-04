@@ -1,0 +1,11 @@
+[default]
+title=Test Encoding
+
+[validators]
+
+[security]
+View=0:Herausgeber,Manager
+
+[actions]
+action.success..Save = traverse_to:string:testencoding_add
+action.success..Cancel = redirect_to:string:testencoding_form

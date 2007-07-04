@@ -1,0 +1,45 @@
+.articleinfo {
+    text-align: center;
+}
+
+.articleinfo h2.title {
+    font-size: 160%;
+}
+.articleinfo h3.subtitle {
+    font-size: 120%;
+}
+.dippAuthor {
+    font-style: italic; 
+    font-size: 120%;
+}
+
+.Copyright {
+    font-size: 0.9em;
+}
+
+.biblioid {
+    font-size: 0.9em;
+}
+
+.section h2.title {
+    font-size: 130%;
+}
+
+.section h3.title {
+    font-size: 110%;
+}
+
+
+/* Abbildungen */
+
+.mediaobject {
+    text-align: center;
+}
+.mediaobject img {
+    border: 1px solid black;
+}
+
+.mediaobject .caption {
+    font-style: italic; 
+}
+

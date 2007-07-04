@@ -1,0 +1,8 @@
+[default]
+title = Edit content
+
+[validators]
+#asdasda 
+
+[actions]
+action.success = traverse_to:string:upload_metadata_form

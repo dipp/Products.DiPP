@@ -1,0 +1,38 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+<!-- External RSS-Feed -->
+
+<div metal:define-macro="portlet">
+                 
+
+    <div class="portlet" id="portlet-news">
+    <div class="active">
+
+        <h5 i18n:translate="external_rss">externe RSS-Feeds</h5>
+
+        <div class="portletBody">
+
+
+            <div class="portletContent odd">
+            <ul>
+                <li tal:repeat="entry python: here.externalRSS('http://www.dipp.nrw.de/news_folder/RSS')" >
+                    <span tal:define="detail entry"
+                            tal:replace="detail" >RSS-Eintrag</span>
+                </li>
+            </ul>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>

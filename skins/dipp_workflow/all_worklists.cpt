@@ -1,0 +1,204 @@
+<!--
+<tal:comment>
+$Author: dippadm $
+$Revision: 1.5 $
+$Date: 2006/05/30 11:44:03 $
+</tal:comment>
+-->
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/dipp_workflow_template/macros/master"
+      i18n:domain="dipp" >
+
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+    
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+    
+<body>
+
+  <div metal:fill-slot="header">
+
+
+  </div>
+
+<div metal:fill-slot="main" class="desktop">
+
+    <tal:block define="global openflow python: container.portal_openflow" />
+    <tal:block define="global UserName python:user.getUserName()" />
+
+    <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+    </div>
+    
+    <h1 class="documentFirstHeading" i18n:translate="title_reloadworklist">
+        Artikelliste aktualisieren
+    </h1>
+    
+    <div class="formHelp" i18n:translate="help_reloadworklist">
+       Kürzlich hochgeladene Artikel erscheinen möglicherweise nicht sofort in der Worklist.
+    </div>
+
+    <form tal:define="errors options/state/getErrors"
+        tal:attributes="action string:${here/absolute_url}/${template/id};"
+        method="post">
+
+        <input type="hidden" name="form.submitted" value="1" />
+        <input type="hidden" name="new_pid" value="1" />
+        
+        <tal:block tal:define="locked portal_properties/check_for_new_articles_lock|python:False">
+            <input tal:condition="not: locked"
+           class="standalone"
+           tabindex=""
+           type="submit"
+           name="check"
+           value="Nach neuen Artikeln suchen!"
+           i18n:attributes="value check_for_new_articles"
+           tal:attributes="tabindex tabindex/next;" />
+
+
+            <input tal:condition="locked"
+           class="standalone"
+           tabindex=""
+           type="submit"
+           name="check"
+           value="Already checking. Please be patient..."
+           disabled="disabled"
+           i18n:attributes="value already_checking"
+           tal:attributes="tabindex tabindex/next;" />
+        </tal:block>
+        
+    </form>
+
+
+
+    <h1 i18n:translate="title_allworklists">Alle in Bearbeitung befindlichen Artikel</h1>
+
+<!-- workitems assigned to user-->
+
+
+<div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time')">
+
+    <table id="sortable" cellpadding="2" cellspacing="0" border="0"
+           width="100%" class="listing" tal:condition="workitems">
+    <thead>
+        <tr valign="top" align="left" bgcolor="#cccccc" class="headings" >
+<!--            <th class="" style="white-space: nowrap;">Typ</th> -->
+            <th class="" style="white-space: nowrap;" i18n:translate="deadline">Frist</th>
+            <th class="" style="white-space: nowrap;" i18n:translate="actor">Bearbeiter</th>
+            <th class="" style="white-space: nowrap;" i18n:translate="author">Autor</th>
+            <th class="" style="white-space: nowrap;" i18n:translate="title">Titel des Artikels</th>
+            <th class="" style="white-space: nowrap;" i18n:translate="issue">Ausgabe</th>
+            <th class="" style="white-space: nowrap;" i18n:translate="next_step">nächster Schritt</th>
+<!--            <th class="" style="white-space: nowrap;" i18n:translate="status">Status</th> -->
+            <th class="" style="white-space: nowrap;" i18n:translate="actions">Actions</th>
+          </tr>
+    </thead>
+    <tbody>
+    <tal:block tal:repeat="workitem workitems">
+        <tal:block define="wi workitem/getObject;
+                           action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
+                           condition="action">
+
+        <tr tal:attributes="class python:test(path('repeat/workitem/even'), 'even', 'odd')">
+<!--            <td>
+                <img tal:condition="python: wi.type == 'DiPP:container'"
+                     tal:attributes="src string:fedorahierarchie_icon.gif"
+                     title="Hierarchie-Element" />
+                <img tal:condition="python: wi.type == 'DiPP:article'"
+                     tal:attributes="src string:fedoraarticle_icon.gif"
+                     title="Artikel"/>
+            </td>
+-->
+            <td>
+                <span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
+                    <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
+                                  tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
+                                  tal:attributes="class delay/class"
+                                  tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
+            </td>
+            <td tal:content="string: ${wi/actor}">Actor</td>
+            <!--<td tal:content="string: ${wi/autor}: ${wi/titel}">Autor:Titel</td>-->
+            <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
+            <td><a href='' tal:attributes="href string:$portal_url/history?instance_id=${wi/instance_id}" tal:content="string: ${wi/titel}">Der Herr der Ringe</a></td>
+            <td tal:content="string: ${wi/hierarchie}">2001/1</td>
+            <td><abbr tal:content="wi/activity_id" tal:attributes="title python: wi.title or '%s-%s'%(wi.instance_id,wi.id)" i18n:translate=""></abbr></td>
+<!--            <td tal:content="wi/status" i18n:translate="">Status</td> -->
+            <td>
+                <ul class="actions">
+                    <tal:block repeat="action_name python:action.keys()">
+                        <li tal:condition="python: action_name in portal_properties.dipp_properties.actions_to_list">
+                            <a href="" tal:attributes="href python:action[action_name]"
+                                       tal:content="action_name"
+                                       i18n:translate="">action</a>
+                        </li>
+                    </tal:block>
+                </ul>
+
+<!--                <ul class="actions">
+                    <tal:block repeat="action_name python:action.keys()" tal:condition="python: not user.has_role('Manager')">
+                        <li tal:condition="python: action_name in portal_properties.actions_to_list">
+                            <a href="" tal:attributes="href python:action[action_name]"
+                                       tal:content="action_name"
+                                       i18n:translate="">action</a>
+                        </li>
+                    </tal:block>
+                    <tal:block repeat="action_name python:action.keys()" tal:condition="python: user.has_role('Manager')">
+                        <li>
+                            <a href="" tal:attributes="href python:action[action_name]"
+                                       tal:content="action_name"
+                                       i18n:translate="">action</a>
+                        </li>
+                    </tal:block>
+                </ul>
+-->                            </td>
+        </tr>
+        </tal:block>
+
+      </tal:block>
+        </tbody>
+    </table>
+    
+    <p tal:condition="not:workitems">
+        <b>No workitems assigned yet.</b>
+    </p>
+    
+    <h1 i18n:translate="title_temporaryarticles">Temporäre Artikel</h1>
+    <div class="formHelp">
+      <span i18n:translate="help_temporaryarticles_1">Hier aufgelistete Artikel wurden nur zu Testzwecken konvertiert und durchlaufen nicht den workflow.
+      </span><br/>
+      <span i18n:translate="help_temporaryarticles_2">Einmal täglich werden Artikel, die älter als 24h sind, gelöscht.
+      </span>
+    </div>
+
+    <table class="listing">
+        <tr>
+                  <th>&nbsp;<tal:title i18n:translate="listingheader_title" i18n:domain="plone"
+                      >Title</tal:title>&nbsp;</th>
+                  <th >&nbsp;<tal:modified i18n:translate="listingheader_modified" i18n:domain="plone"
+                      >Modified</tal:modified>&nbsp;</th>
+                  <th>
+                      Feedback
+                  </th>
+
+        </tr>
+        <tr tal:repeat="x here/showTempFiles">
+            <td><a href="" tal:attributes="href python: x['url']" tal:content="python: x['title']">title</a></td>
+            <td tal:content="python:x['date']">2005-05-05</td>
+            <td><a tal:define="subject python:'Problem mit ' + x['url']" href="" 
+                   tal:attributes="href  python:'mailto:dipp-tech@hbz-nrw.de?subject=' + subject;
+                                   title string:Subject: $subject">
+                dipp-tech@hbz-nrw.de</a></td>
+        </tr>
+    </table>
+
+    
+</div>
+
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body >
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+        <h1>&nbsp;</h1>
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <div class="stx" tal:define="PID context/PID;
+                                     DsID here/DsID;
+                                     content python:here.fedora.access(PID,DsID,Date=None);
+                                     MIMEType python:content['MIMEType']">
+            <div tal:condition="python:content['MIMEType'] != 'text/xml' " 
+                 tal:replace="structure python:content['stream']">
+                Hier kommt der Inhalt hin
+            </div>
+            <pre tal:condition="python:content['MIMEType'] == 'text/xml' " 
+                 tal:content="python:content['stream']">
+                Hier kommt der Inhalt hin
+            </pre>
+
+        </div>
+
+        <div tal:define="PID python:here.getParentNode().PID;
+                         qdc python:here.fedora.getQualifiedDCMetadata(PID);
+                         rights python:qdc['rights'][0];
+                         lang request/other/LANGUAGE|en;
+                         dppl python:here.dppl(rights,lang)"
+            class="licence">
+            <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
+
+            <p i18n:translate="licence_text" i18n:domain="dipp">
+                Jedermann darf dieses Werk unter den Bedingungen der
+                <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
+                und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
+                unter der Adresse <a href="" tal:attributes="href python: dppl['url'][lang]" tal:content="python: dppl['url'][lang]" i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>.
+            </p>
+        </div>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>
+

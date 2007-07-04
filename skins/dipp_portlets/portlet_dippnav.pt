@@ -1,0 +1,53 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+
+<div metal:define-macro="portlet">
+                 
+
+    <dl class="portlet" id="portlet-dippnav" tal:condition="not: isAnon">
+        
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span i18n:translate="dippnav">DiPP</span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem" i18n:domain="dipp">
+
+
+            <div tal:condition="python: user.has_role('Manager')">
+               <ul>
+               <li>
+                     <a href=""
+                        tal:attributes="href string:$portal_url/folder_contents"
+                        i18n:attributes="title description_website_manager"
+                        i18n:translate="">
+                           Website Manager</a>
+                </li>
+                <li>
+                     <a href="" 
+                        tal:attributes="href string:$portal_url/editorial_toolbox" 
+                        i18n:attributes="title description_editorial_toolbox"
+                        i18n:translate="">
+                            Editorial Toolbox</a>
+                </li>
+                <li>
+                     <a href="" 
+                        tal:attributes="href string:$portal_url/plone_control_panel" 
+                        i18n:attributes="title description_plone_setup"
+                        i18n:translate="">
+                            Plone Setup</a>
+                 </li>
+                </ul>
+             </div>
+        </dd>
+    </dl>
+
+</div>
+
+</body>
+
+</html>

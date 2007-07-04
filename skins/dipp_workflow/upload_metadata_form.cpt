@@ -1,0 +1,155 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/dipp_workflow_template/macros/master">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+    <body i18n:domain="dipp">
+
+
+        <div metal:fill-slot="main">
+            <h1 class="documentFirstheading" i18n:translate="heading_metadata_submit">Dokument - Metadatenformular und Einreichung</h1>
+
+            
+                <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+                      tal:define="errors options/state/getErrors;
+                                  qdc python:here.fedora.getQualifiedDCMetadata(None);
+                                  storageType string:permanent;
+                                  Location request/Location|nothing;
+                                  targetFormats request/targetFormat;
+                                  storage request/form/storageType|storageType"
+                      method="post"
+                      name="metadata_form"
+                      id="metadata_form"
+                      encType="multipart/form-data">
+
+
+                    <input type="hidden" name="form.submitted"    value="1" />
+                    <input type="hidden" name="journalPID"        value="" tal:attributes="value python:here.getJournalPID(here)" />
+                    <input type="hidden" name="Location"          value="" tal:attributes="value python:Location" />
+                    <input type="hidden" name="storageType"       value="permanent" />
+                    <tal:block tal:repeat="targetFormat targetFormats">
+                        <input type="hidden" name="targetFormat:list"      
+                               value="" tal:attributes="value python:targetFormat" />
+                    </tal:block>
+            
+            
+            
+                    <fieldset id="metadata"
+                        tal:attributes="class python:test(storage == 'permanent','show','hide')">
+                        <legend i18n:translate="label_qdc">Qualified Dublin Core Metadaten</legend>
+
+                    <fieldset>
+                     <legend i18n:translate="title">title</legend>
+            <!-- TITLE -->
+            <div class="field"
+                 tal:define="error errors/title|nothing;
+                             titles python:qdc['title'];
+                             titleNumber python:len(titles);
+                             newTitleNumber request/newTitleNumber|titleNumber"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                 i18n:domain="qdc">
+
+                <input type="hidden" name="newTitleNumber" value="" tal:attributes="value newTitleNumber"/>
+                <input type="hidden" name="titleNumber" value="" tal:attributes="value titleNumber"/>
+
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <table class="listing">
+                    <tr>
+                        <th>#</th>
+                        <th i18n:translate="label_title">Titel</th>
+                        <th i18n:translate="label_language">Sprache</th>
+                    </tr>
+                    <tr tal:repeat="title titles">
+                        <td tal:content="repeat/title/number">#</td>
+                        <td>
+                            <input type="text"
+                                   name="title_value:list"
+                                   size="50"
+                                   tal:define="i repeat/title/index;
+                                               value python:title['value']"
+                                   tal:attributes="value python: here.test('title_value',value,i)" />
+                        </td>
+                        <td tal:define="i repeat/title/index;
+                                        lang python:title['lang']" 
+                            tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',lang,i))">
+                            Sprachauswahlliste
+                            <input type="text"
+                                   name="title_lang:list"
+                                   tal:define="i repeat/title/index;
+                                               value python:title['lang']"
+                                   tal:attributes="value python: here.test('title_lang',value,i)" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="python: newTitleNumber > titleNumber"
+                        tal:repeat="title python:range(int(titleNumber),int(newTitleNumber))">
+                        <tal:block tal:define="number repeat/title/number;
+                                               index  repeat/title/index;
+                                               no     python:number + titleNumber;
+                                               i      python:index + titleNumber">
+                            <td tal:content="no">#</td>
+                            <td>
+                                <input type="text"
+                                       name="title_value:list"
+                                       size="50"
+                                       tal:attributes="value python: here.test('title_value',None,i)" />
+                            </td>
+                            <td tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',None,i))">
+                                Sprachauswahlliste
+                                <input type="text"
+                                       name="title_lang:list"
+                                       tal:attributes="value python: here.test('title_lang',None,i)" />
+                            </td>
+                        </tal:block>    
+                    </tr>
+                </table>
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.addTitle"
+                       value="value_addTitle"
+                       i18n:domain=""
+                       i18n:attributes="value"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
+
+
+            </div>
+                    </fieldset>
+
+                        <div metal:use-macro="here/qdc_macros/macros/fields">
+                            Qualified DublinCore Eingabefelder
+                        </div>
+                    </fieldset>
+
+                    <input class="context"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Save"
+                           value="Save"
+                           i18n:domain="plone"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;
+                                           disabled python:test(isLocked, 'disabled', None);" />
+
+                    <input class="standalone"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.Cancel"
+                           value="Cancel"
+                           i18n:domain="plone"
+                           i18n:attributes="value label_cancel"
+                           tal:attributes="tabindex tabindex/next;" />
+
+                </form>
+        </div>
+    </body>
+</html>
+
+

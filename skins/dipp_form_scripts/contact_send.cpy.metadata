@@ -1,0 +1,5 @@
+[default]
+title=Contact
+
+[actions]
+action.success = traverse_to:string:contact_feedback
