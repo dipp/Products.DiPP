@@ -313,43 +313,7 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     site.manage_changeProperties({'left_slots':left_slots})
 
     portal_actions = getToolByName(site, 'portal_actions')
-    """
-    portal_actions.addAction(
-                id = 'worklist',
-                name = 'my worklist',
-                action = 'string: ${portal_url}/worklist',
-                condition = '',
-                permission = 'Use OpenFlow',
-                category = 'user',
-                visible = 1)
 
-    portal_actions.addAction(
-                id = 'all_worklists',
-                name = 'all worklist',
-                action = 'string: ${portal_url}/all_worklists',
-                condition = '',
-                permission = 'Manage OpenFlow',
-                category = 'user',
-                visible = 1)
-
-    portal_actions.addAction(
-                id = 'dipp_control_panel',
-                name = 'dipp control panel',
-                action = 'string: ${portal_url}/dipp_control_panel',
-                condition = '',
-                permission = 'Manage OpenFlow',
-                category = 'user',
-                visible  = 1)
-
-    portal_actions.addAction(
-                id = 'reminder',
-                name = 'Mahnmail',
-                action = 'string: ${portal_url}/ext/reminder',
-                condition = '',
-                permission = 'Manage OpenFlow',
-                category = 'portal_tabs',
-                visible = 0)
-    """            
     portal_actions.addAction(
                 id = 'Submit',
                 name = 'Submit',
@@ -509,6 +473,7 @@ def install_types(self, out, site_id=SITE_NAME):
         props._updateProperty('use_folder_contents', newcontents)
 
 def install_configlet(self,out):
+    """
     try:
         cp=self.portal_controlpanel
         cp.addAction(id='dipp_configuration',
@@ -521,7 +486,24 @@ def install_configlet(self,out):
                      description='Configure DiPP Publicationsystem')
     except:
         pass
-        
+    """
+
+    portal_conf=getToolByName(self,'portal_controlpanel')
+    portal_conf.registerConfiglet( 'dipp_configuration'
+           , 'DiPP Configuration'      
+           , 'string:${portal_url}/prefs_deadlines_form' 
+           , ''                 # a condition   
+           , 'Manage portal'    # access permission
+           , 'Products'         # section to which the configlet should be added: 
+                                #(Plone,Products,Members) 
+           , 1                  # visibility
+           , PROJECTNAME                                        
+           , 'dipp_icon.gif'    # icon in control_panel  
+           , 'Configuration of the DiPP Publicationsystem'
+           , None
+                                 )
+
+    
 def install_css(self,out):
     """register the stylesheets"""
     registerResources(self, out, 'portal_css', STYLESHEETS)
@@ -583,3 +565,65 @@ def install(self):
     print >> out, "Successfully installed %s." % PROJECTNAME
     return out.getvalue()
 
+def uninstall(self, site_id=SITE_NAME):
+    out = StringIO()
+    site = getSite(self, site_id)
+
+    props = (
+        'repository',
+        'deadline_max',
+        'deadline_default',
+        'deadline_red',
+        'deadline_yellow',
+        'deadline_no',
+        'deadline_change',
+        'deadline_next_change',
+        'deadline_red_email_de',
+        'deadline_red_email_en',
+        'deadline_yellow_email_de',
+        'deadline_yellow_email_en',
+        'defaultLanguage',
+        'author_notice_de',
+        'author_notice_en',
+        'roles_not_to_list',
+        'actions_to_list',
+        'workflow_actions',
+        'copy_of_reminder',
+        'gap_container', 
+        'PID' 
+    )
+    
+    for prop in props:
+        if site.hasProperty(prop):
+            site.manage_delProperties((prop,))
+        
+    
+    # remove memberproperties
+    md = site.portal_memberdata
+    
+    mprops = (
+        'academictitle',
+        'givenname',
+        'surname',
+        'organization',
+        'postaladdress',
+        'postalcode',
+        'phone'
+    )
+    
+    for mprop in mprops:
+        if md.hasProperty(mprop):
+            md.manage_delProperties((mprop,))
+
+    print >> out, "Removed properties"
+
+    # remove workflow process
+    reftool = getToolByName(site, 'portal_openflow')
+    reftool.deleteProcess('Publishing')
+   
+    #remove configlet 
+    portal_conf=getToolByName(self,'portal_controlpanel')
+    portal_conf.unregisterConfiglet('dipp_configuration')
+
+
+    return out.getvalue()
