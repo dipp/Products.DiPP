@@ -35,7 +35,7 @@ def install_properties(self, out, site_id=SITE_NAME):
 
     props = site.portal_properties.dipp_properties    
     site.portal_properties.navtree_properties.manage_changeProperties({'idsNotToList':('Members','tmp','ext','fedora_tmp')})
-    site.portal_memberdata.manage_changeProperties({'wysiwyg_editor':'Epoz'})
+    site.portal_memberdata.manage_changeProperties({'wysiwyg_editor':'FCKeditor'})
 
 
     dipp_properties = (
