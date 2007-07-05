@@ -473,25 +473,11 @@ def install_types(self, out, site_id=SITE_NAME):
         props._updateProperty('use_folder_contents', newcontents)
 
 def install_configlet(self,out):
-    """
-    try:
-        cp=self.portal_controlpanel
-        cp.addAction(id='dipp_configuration',
-                     name='DiPP configuration',
-                     action='string:${portal_url}/prefs_deadlines_form',
-                     permission='Manage portal',
-                     category='Products',
-                     appId='DiPP',
-                     imageUrl='dipp_icon.gif',
-                     description='Configure DiPP Publicationsystem')
-    except:
-        pass
-    """
-
+    """register the configlet"""
     portal_conf=getToolByName(self,'portal_controlpanel')
     portal_conf.registerConfiglet( 'dipp_configuration'
            , 'DiPP Configuration'      
-           , 'string:${portal_url}/prefs_deadlines_form' 
+           , 'string:${portal_url}/prefs_mailtemplates_form' 
            , ''                 # a condition   
            , 'Manage portal'    # access permission
            , 'Products'         # section to which the configlet should be added: 
