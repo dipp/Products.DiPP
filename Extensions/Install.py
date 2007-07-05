@@ -25,47 +25,6 @@ from StringIO import StringIO
 
 SITE_NAME = PROJECTNAME
 
-def install_plone(self, out, site_id=SITE_NAME):
-    """ add a Plone site to the Zope root and install a few Products """
-
-    print >> out, "  Adding Plone site."
-    self.manage_addProduct['CMFPlone'].manage_addSite(
-            site_id,
-            custom_policy = 'Default Plone')
-    site = getSite(self, site_id)
-    """
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'installReflow',
-        'Installation Reflow',
-        'CMFOpenflow.Install',
-        'install')
-    site.installReflow()
-    """
-    #I18NLayer und PLT per quickinstaller installieren!
-    """
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'installI18N',
-        'Installation I18N',
-        'I18NLayer.Install',
-        'install')
-    site.installI18N()
-
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'installPLT',
-        'Installation PLT',
-        'PloneLanguageTool.Install',
-        'install')
-    site.installPLT()
-    """
-
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'installCMFBoard',
-        'Installation CMFBoard',
-        'CMFBoard.Install',
-        'install')
-    site.installCMFBoard()
-    
-    site.invokeFactory('Folder','tmp')
 
 def install_properties(self, out, site_id=SITE_NAME):
     """ Installation eine Propertysheets für DiPP-spezifische Variablen """
@@ -515,81 +474,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         'DiPP.ldap',
         'auth')
                          
-                         
-def install_fedoraExtMethods(self, out, site_id=SITE_NAME):
-    """ Installation von externen Methoden für den Fedorazugriff, sollte durch ein Tool ersetzt werden"""
-
-    site = getSite(self, site_id)
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraAccess',
-        'Zugriff auf Fedora Texte',
-        'DiPP.fedoraOverSOAP',
-        'access')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraAccessImage',
-        'Zugriff auf Fedora Images',
-        'DiPP.fedoraOverSOAP',
-        'accessImage')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraAddDatastream',
-        'Neuen Datenstrom hinzufügen',
-        'DiPP.fedoraOverSOAP',
-        'addDatastream')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraContent',
-        'hollt den Content einer PID',
-        'DiPP.fedoraOverSOAP',
-        'getContentModel')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraCreateNewArticle',
-        'einen neuen Artikel anlegen',
-        'DiPP.fedoraOverSOAP',
-        'createNewArticle')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraCreateNewContainer',
-        'Neues Hierarchieelement anlegen',
-        'DiPP.fedoraOverSOAP',
-        'createNewContainer')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraGetQDC',
-        'holt die qualifizierten DC Daten',
-        'DiPP.fedoraOverSOAP',
-        'getQualifiedDCMetadata')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraGetdatastreams',
-        'alle Datenströme eines digitalen Objektes',
-        'DiPP.fedoraOverSOAP',
-        'getDatastreams')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraModifyDatastreamByReference',
-        'neue Version eines Datebstroms anlegen',
-        'DiPP.fedoraOverSOAP',
-        'modifyDatastreamByReference')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraModifyObject',
-        'Status eines digitalen Objektes ändern',
-        'DiPP.fedoraOverSOAP',
-        'modifyObject')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraSearch',
-        'Suchen in Fedora',
-        'DiPP.fedoraOverSOAP',
-        'search')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraSetQDC',
-        'modifiziert Qualified DC Metadaten einer PID',
-        'DiPP.fedoraOverSOAP',
-        'setQualifiedDCMetadata')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'fedoraSetURL',
-        'modifiziert URL einer PID',
-        'DiPP.fedoraOverSOAP',
-        'setURL')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'getTempID',
-        'generiert temporäre id zum zwischenspeichern',
-        'DiPP.fedoraOverSOAP',
-        'getTempID')
 
 def install_types(self, out, site_id=SITE_NAME):
     """Registrierungen der neuen Objekte """
@@ -686,12 +570,10 @@ def install(self):
     """ install a dipp instance"""
     out = StringIO()
 
-    #install_plone(self, out)
     install_properties(self, out)
     install_memberproperties(self, out)
     install_subskins(self, out)
     install_extMethods(self, out)
-    #install_fedoraExtMethods(self, out)
     install_types(self, out)
     install_css(self,out)
     install_configlet(self, out)
