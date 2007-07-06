@@ -17,6 +17,7 @@ from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
 from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS
 from Products.DiPP.defaults import *
+from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
 from Products.Archetypes.public import listTypes
 from Products.Archetypes.Extensions.utils import installTypes
@@ -35,7 +36,7 @@ def install_properties(self, out, site_id=SITE_NAME):
 
     props = site.portal_properties.dipp_properties    
     site.portal_properties.navtree_properties.manage_changeProperties({'idsNotToList':('Members','tmp','ext','fedora_tmp')})
-    site.portal_memberdata.manage_changeProperties({'wysiwyg_editor':'FCKeditor'})
+    site.portal_memberdata.manage_changeProperties({'wysiwyg_editor':WYSIWYG_EDITOR})
 
 
     dipp_properties = (
@@ -533,6 +534,12 @@ def install_memberproperties(self,out):
         if not hasattr(props, prop_id):
             #props._setProperty(prop_id, prop_value, prop_type)
             props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
+
+def install_content(self, out, site_id=SITE_NAME):
+    """install some default content"""
+    site = getSite(self, site_id)
+    site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
+    site.manage_addProperty(id = 'default_page', value = DEFAULT_PAGE, type = 'string') 
     
 def install(self):
     """ install a dipp instance"""
@@ -545,6 +552,7 @@ def install(self):
     install_types(self, out)
     install_css(self,out)
     install_configlet(self, out)
+    install_content(self, out)
     configure_workflow(self, out)
 
     
@@ -576,7 +584,8 @@ def uninstall(self, site_id=SITE_NAME):
         'workflow_actions',
         'copy_of_reminder',
         'gap_container', 
-        'PID' 
+        'PID',
+        'default_page'
     )
     
     for prop in props:
