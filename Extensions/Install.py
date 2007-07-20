@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
+ comments
  $Id$
-
 """
 
 from Products.CMFCore.utils import getToolByName
