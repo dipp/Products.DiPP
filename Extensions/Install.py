@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 """
- id: install
- title: Install DiPP workflow *optional*
- module name: DiPP.Install
- function name: install
-
- $Author: dippadm $
- $Revision: 1.7 $
- $Date: 2006/06/08 06:40:46 $
- $Id: Install.py,v 1.7 2006/06/08 06:40:46 dippadm Exp $
+ $Id$
 
 """
 
