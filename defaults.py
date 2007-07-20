@@ -1,3 +1,6 @@
+"""
+$Id$
+"""
 WYSIWYG_EDITOR = "FCKeditor"
 
 DEADLINE_MAX = 56
