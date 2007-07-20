@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
- comments
+ Install and Uninstall script for this product
  $Id$
 """
 
