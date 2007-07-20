@@ -1,7 +1,9 @@
+"""
+$Id$
+"""
 from Permissions import ADD_CONTENTS_PERMISSION
 from Permissions import EDIT_CONTENTS_PERMISSION
 from Permissions import VIEW_CONTENTS_PERMISSION
-
 from Products.Archetypes.public import DisplayList
 
 PROJECTNAME = 'DiPP'
