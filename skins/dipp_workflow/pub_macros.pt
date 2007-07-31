@@ -35,7 +35,7 @@
 <!-- BEARBEITEN-->
 		<div metal:define-macro="edit" id="pub_edit-field" >
             <p>
-                <a target="_blank" href="" tal:attributes="href string:${w/url}/folder_contents" i18n:domain="dipp" i18n:translate="edit_article">
+                <a target="_blank" href="" tal:attributes="href string:${w/url}/" i18n:domain="dipp" i18n:translate="edit_article">
                      Zum Bearbeiten den Artikel in einem neuen Browserfenster öffnen</a>
             </p>
 		</div>
