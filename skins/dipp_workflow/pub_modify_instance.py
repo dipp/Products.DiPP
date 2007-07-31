@@ -39,7 +39,7 @@ Subject: New article
 def finish():
     instance.manage_changeProperties({'alert':'green'})
     oftool.completeWorkitem(instance_id=instance_id, workitem_id=workitem_id)
-    RESPONSE.redirect('%s/all_worklists' % context.absolute_url() + '?portal_status_message=' + msg)
+    RESPONSE.redirect('%s/worklist' % context.absolute_url() + '?portal_status_message=' + msg)
 	
 request     = container.REQUEST
 RESPONSE    = request.RESPONSE
