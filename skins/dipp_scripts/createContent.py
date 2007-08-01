@@ -30,12 +30,19 @@ except:
 
 try:
     id = aLabel
-    title = aLabel
     PID = aPid
     DsID = aDsid
     objType = aObject_type
     #state = 'hide'
-
+    
+    if aLabel == 'index_html':
+        qdc = fedora.getQualifiedDCMetadata(document.PID)
+        title = qdc['title'][0]['value']
+    elif aLabel == 'toc_html':
+        title = 'Table of Contents' 
+    else:
+        title = aLabel
+    
     if objType == 'FedoraDocument':
         contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,body=fedora.access(PID=PID,DsID=DsID,Date=None)['stream'])
     else:
