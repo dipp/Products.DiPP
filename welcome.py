@@ -1,4 +1,5 @@
 """
+A new default start page for the DiPP Instance
 $Id
 """
 DEFAULT_PAGE = "welcome-to-dipp"
