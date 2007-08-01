@@ -8,10 +8,12 @@
 ##title=
 ##
 # actor, 
+from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 oftool   = container.portal_openflow
 #mtool    = context.portal_membership
+portal_url  = getToolByName(self, 'portal_url')
 
 instance, workitem = oftool.getInstanceAndWorkitem(instance_id, workitem_id)
 
@@ -26,22 +28,37 @@ member   = context.ext.getMember(autor)
 fullname = member['cn']
 email    = member['mail']
 lang     = member['preferredLanguage']
+
+dp = self.portal_properties.dipp_properties
 if lang.lower() == "de":
-    mail = self.portal_properties.author_notice_de
-    anrede = "Sehr geehrte(r) "
+    mail = dp.author_notice_de
 elif lang.lower() == "en":
-    mail= self.portal_properties.author_notice_en
-    anrede = "Dear "
+    mail= dp.author_notice_en
 else:
     mail = "no mail template found for Language\n   "
     mail+= lang
 
-baseUrl  = context.worklist.absolute_url()
-# email body
-body  = anrede + fullname + ' ,\n\n'
-body += mail
-body += "\n\n"
-body += context.article_info(instance_id,workitem_id)
 
+journal = self.portal_properties.title
+email_from_name = self.portal_properties.email_from_name
+next_workitem_id = str(int(workitem_id) + 1)
+next_step = portal_url()
+next_step += "/pub_imprimatur_form"
+next_step += "?instance_id=" + instance_id
+next_step += "&workitem_id=" + next_workitem_id
+next_step += "&process_id=Publishing&activity_id=imprimatur"
+
+
+
+body = mail % {
+    "fullname":fullname,
+    "login":workitem.autor,
+    "title":workitem.titel,
+    "deadline":str(workitem.deadline_next),
+    "url":context.worklist.absolute_url(),
+    "journal":journal,
+    "from":email_from_name,
+    "next_step":next_step
+    }
 
 return body
