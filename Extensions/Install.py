@@ -51,6 +51,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('rssFeeds','lines',''),
         ('floatingtoc_enabled','boolean',''),
         ('floatingtoc_onload','boolean',''),
+        ('author_notice_de','text',AUTHOR_NOTICE_DE),
+        ('author_notice_en','text',AUTHOR_NOTICE_EN),
         ('alertEmailAddresses','lines',ALERT_EMAIL_ADDRESSES),
         ('alertEmailText','text',ALERT_EMAIL_TEXT),
     )
@@ -286,8 +288,6 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     site.manage_addProperty(id = 'deadline_yellow_email_de', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
     site.manage_addProperty(id = 'deadline_yellow_email_en', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
     site.manage_addProperty(id = 'defaultLanguage',          value = "de", type = 'string')
-    site.manage_addProperty(id = 'author_notice_de',         value = "Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg", type = 'text')
-    site.manage_addProperty(id = 'author_notice_en',         value = "Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg", type = 'text')
     site.manage_addProperty(id = 'roles_not_to_list',        value = ('Manager', 'Owner', 'Reviewer', 'Member'), type = 'lines')
     site.manage_addProperty(id = 'actions_to_list',          value = ('Call Application', 'Self Assign', 'Assign', 'Unassign'), type = 'lines')
     site.manage_addProperty(id = 'workflow_actions',         value = ('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'), type = 'lines')
