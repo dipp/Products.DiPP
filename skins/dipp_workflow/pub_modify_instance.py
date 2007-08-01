@@ -30,7 +30,7 @@ anschreiben = """
 Content-Type: text/plain; charset="UTF-8"
 From: %s <%s>
 To: %s
-Subject: New article 
+Subject: Request Imprimatur
 
 %s
 
