@@ -222,15 +222,14 @@ elif activity_id == 'freischalten':
     addresses = self.portal_properties.dipp_properties.alertEmailAddresses
     text = self.portal_properties.dipp_properties.alertEmailText
     journal = self.portal_properties.title
-
+    body = text % {'url':url,'journal':journal}
     for to_address in addresses:
         text = alertMessage % (
             from_name,
             from_address,
             to_address,
             journal,
-            text,
-            url
+            body,
             )
 
         mhost.send(text)
