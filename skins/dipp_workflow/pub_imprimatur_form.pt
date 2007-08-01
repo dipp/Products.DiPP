@@ -56,12 +56,13 @@
                     <input class="noborder" name="autorOK" type="radio" value="False"/>
                     <span i18n:translate="check_consider_notes">nein, bitte obige Anmerkungen berücksichtigen.</span>
                 </label>
-                <input type="hidden" name="instance_id" value="instance_id" tal:attributes="value request/instance_id">
-                <input type="hidden" name="workitem_id" value="workitem_id" tal:attributes="value request/workitem_id">
-                <input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
-                <input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
-                <input type="hidden" name="actor" value="actor" tal:attributes="value user">
-                <h2/><input class="standalone" 
+                <input type="hidden" name="instance_id" value="instance_id" tal:attributes="value request/instance_id" />
+                <input type="hidden" name="workitem_id" value="workitem_id" tal:attributes="value request/workitem_id" />
+                <input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id" />
+                <input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id" />
+                <input type="hidden" name="actor" value="actor" tal:attributes="value user" />
+               <br />
+               <input class="standalone" 
                        type="submit" 
                        name="Submit" 
                        value="back_to_publisher" 
