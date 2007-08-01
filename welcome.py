@@ -1,6 +1,6 @@
 """
 A new default start page for the DiPP Instance
-$Id
+$Id$
 """
 DEFAULT_PAGE = "welcome-to-dipp"
 WELCOME_TITLE = "Willkommen zu Ihrem individuellen Testzugang zu DiPP"
