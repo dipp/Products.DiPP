@@ -569,8 +569,6 @@ def uninstall(self, site_id=SITE_NAME):
         'deadline_yellow_email_de',
         'deadline_yellow_email_en',
         'defaultLanguage',
-        'author_notice_de',
-        'author_notice_en',
         'roles_not_to_list',
         'actions_to_list',
         'workflow_actions',
