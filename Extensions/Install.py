@@ -51,8 +51,6 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('rssFeeds','lines',''),
         ('floatingtoc_enabled','boolean',''),
         ('floatingtoc_onload','boolean',''),
-        ('author_notice_de','text',AUTHOR_NOTICE_DE),
-        ('author_notice_en','text',AUTHOR_NOTICE_EN),
         ('alertEmailAddresses','lines',ALERT_EMAIL_ADDRESSES),
         ('alertEmailText','text',ALERT_EMAIL_TEXT),
     )
@@ -275,25 +273,27 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     reftool.manage_role('Autor', ('Manage properties',))
     reftool.manage_role('Gastherausgeber', ('Manage properties',))
 
-    site.manage_addProperty(id = 'repository',               value = '/opt/digijournals/repository', type = 'string') 
-    site.manage_addProperty(id = 'deadline_max',             value = 56, type = 'int') 
-    site.manage_addProperty(id = 'deadline_default',         value = 14, type = 'int') 
-    site.manage_addProperty(id = 'deadline_red',             value = 3, type = 'int') 
-    site.manage_addProperty(id = 'deadline_yellow',          value = 10, type = 'int') 
-    site.manage_addProperty(id = 'deadline_no',              value = '1970/01/01 12:00:00 GMT+1', type = 'date')
-    site.manage_addProperty(id = 'deadline_change',          value = ('Herausgeber',), type = 'lines')
-    site.manage_addProperty(id = 'deadline_next_change',     value = ('Herausgeber', 'Redakteur'), type = 'lines')
-    site.manage_addProperty(id = 'deadline_red_email_de',    value = "Bitte umgehend den Artikel bearbeiten\n\nmfg", type = 'text')
-    site.manage_addProperty(id = 'deadline_red_email_en',    value = "Bitte umgehend den Artikel bearbeiten\n\nmfg", type = 'text')
-    site.manage_addProperty(id = 'deadline_yellow_email_de', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
-    site.manage_addProperty(id = 'deadline_yellow_email_en', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
-    site.manage_addProperty(id = 'defaultLanguage',          value = "de", type = 'string')
-    site.manage_addProperty(id = 'roles_not_to_list',        value = ('Manager', 'Owner', 'Reviewer', 'Member'), type = 'lines')
-    site.manage_addProperty(id = 'actions_to_list',          value = ('Call Application', 'Self Assign', 'Assign', 'Unassign'), type = 'lines')
-    site.manage_addProperty(id = 'workflow_actions',         value = ('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'), type = 'lines')
-    site.manage_addProperty(id = 'copy_of_reminder',         value = ('',), type = 'lines')
-    site.manage_addProperty(id = 'gap_container',            value = 'TestJournal', type = 'string')
-    site.manage_addProperty(id = 'PID',                      value = '', type = 'string')
+    #site.manage_addProperty(id = 'repository',               value = '/opt/digijournals/repository', type = 'string') 
+    #site.manage_addProperty(id = 'deadline_max',             value = 56, type = 'int') 
+    #site.manage_addProperty(id = 'deadline_default',         value = 14, type = 'int') 
+    #site.manage_addProperty(id = 'deadline_red',             value = 3, type = 'int') 
+    #site.manage_addProperty(id = 'deadline_yellow',          value = 10, type = 'int') 
+    #site.manage_addProperty(id = 'deadline_no',              value = '1970/01/01 12:00:00 GMT+1', type = 'date')
+    #site.manage_addProperty(id = 'deadline_change',          value = ('Herausgeber',), type = 'lines')
+    #site.manage_addProperty(id = 'deadline_next_change',     value = ('Herausgeber', 'Redakteur'), type = 'lines')
+    #site.manage_addProperty(id = 'deadline_red_email_de',    value = "Bitte umgehend den Artikel bearbeiten\n\nmfg", type = 'text')
+    #site.manage_addProperty(id = 'deadline_red_email_en',    value = "Bitte umgehend den Artikel bearbeiten\n\nmfg", type = 'text')
+    #site.manage_addProperty(id = 'deadline_yellow_email_de', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
+    #site.manage_addProperty(id = 'deadline_yellow_email_en', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
+    #site.manage_addProperty(id = 'defaultLanguage',          value = "de", type = 'string')
+    #site.manage_addProperty(id = 'author_notice_de',         value = "Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg", type = 'text')
+    #site.manage_addProperty(id = 'author_notice_en',         value = "Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg", type = 'text')
+    #site.manage_addProperty(id = 'roles_not_to_list',        value = ('Manager', 'Owner', 'Reviewer', 'Member'), type = 'lines')
+    #site.manage_addProperty(id = 'actions_to_list',          value = ('Call Application', 'Self Assign', 'Assign', 'Unassign'), type = 'lines')
+    #site.manage_addProperty(id = 'workflow_actions',         value = ('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'), type = 'lines')
+    #site.manage_addProperty(id = 'copy_of_reminder',         value = ('',), type = 'lines')
+    #site.manage_addProperty(id = 'gap_container',            value = 'TestJournal', type = 'string')
+    #site.manage_addProperty(id = 'PID',                      value = '', type = 'string')
 
     site.manage_changeProperties({'right_slots':''})
     left_slots = (
@@ -360,8 +360,8 @@ def install_extMethods(self, out, site_id=SITE_NAME):
 
     site = getSite(self, site_id)
     site.manage_addFolder('ext','Externe Methoden')
-    site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
-    site.manage_addFolder('tmp','Temporäre Artikel')
+    #site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
+    #site.manage_addFolder('tmp','Temporäre Artikel')
     
     ext = getattr(site,'ext')
     ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
@@ -409,16 +409,16 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         '',
         'DiPP.ldap',
         'usersAssignableTo')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'get_comments',
-        '',
-        'DiPP.history',
-        'getComments')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'history_insert',
-        '',
-        'DiPP.history',
-        'insert')
+#    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
+#        'get_comments',
+#        '',
+#        'DiPP.history',
+#        'getComments')
+#    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
+#        'history_insert',
+#        '',
+#        'DiPP.history',
+#        'insert')
    
     site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
         'LDAPAddEntry',
@@ -531,7 +531,7 @@ def install_content(self, out, site_id=SITE_NAME):
     """install some default content"""
     site = getSite(self, site_id)
     site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
-    site.manage_addProperty(id = 'default_page', value = DEFAULT_PAGE, type = 'string') 
+    #site.manage_addProperty(id = 'default_page', value = DEFAULT_PAGE, type = 'string') 
     
 def install(self):
     """ install a dipp instance"""
@@ -545,7 +545,7 @@ def install(self):
     install_css(self,out)
     install_configlet(self, out)
     install_content(self, out)
-    configure_workflow(self, out)
+    #configure_workflow(self, out)
 
     
     print >> out, "Successfully installed %s." % PROJECTNAME
@@ -569,6 +569,8 @@ def uninstall(self, site_id=SITE_NAME):
         'deadline_yellow_email_de',
         'deadline_yellow_email_en',
         'defaultLanguage',
+        'author_notice_de',
+        'author_notice_en',
         'roles_not_to_list',
         'actions_to_list',
         'workflow_actions',
@@ -604,7 +606,7 @@ def uninstall(self, site_id=SITE_NAME):
 
     # remove workflow process
     reftool = getToolByName(site, 'portal_openflow')
-    reftool.deleteProcess('Publishing')
+    #reftool.deleteProcess('Publishing')
    
     #remove configlet 
     portal_conf=getToolByName(self,'portal_controlpanel')
