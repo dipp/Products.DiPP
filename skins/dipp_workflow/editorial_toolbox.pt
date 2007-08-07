@@ -11,6 +11,9 @@
 
 
         <div metal:fill-slot="main">
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
             <h1 class="documentFirstheading" i18n:translate="">Editorial Toolbox</h1>
             
             <div class="documentDescription" i18n:translate="description_editorial_toolbox">
