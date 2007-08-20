@@ -9,7 +9,7 @@
 ##
 REQUEST = context.REQUEST
 
-results = container.portal_catalog(portal_type='FedoraHierarchie');
+results = container.portal_catalog(portal_type='FedoraHierarchie',sort_on='Date', sort_order="reverse");
 
 existingPIDs = []
 
