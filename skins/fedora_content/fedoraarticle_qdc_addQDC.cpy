@@ -30,6 +30,13 @@ if REQUEST.form.has_key('form.button.addAlternative'):
 else:
     newAlternativeNumber =int(REQUEST.get('newAlternativeNumber',None))
 
+#add Abstract
+if REQUEST.form.has_key('form.button.addAbstract'):
+    newAbstractNumber =int(REQUEST.get('newAbstractNumber',None)) + 1
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues Abstract-Feld wurde hinzugefügt')
+else:
+    newAbstractNumber =int(REQUEST.get('newAbstractNumber',None))
+
 #add Author
 if REQUEST.form.has_key('form.button.addAuthor'):
     newAuthorNumber =int(REQUEST.get('newAuthorNumber',None)) + 1
@@ -57,6 +64,7 @@ return state.set(status='success',\
     newDDCNumber=newDDCNumber,
     newTitleNumber=newTitleNumber,
     newAlternativeNumber=newAlternativeNumber,
+    newAbstractNumber=newAbstractNumber,
     newAuthorNumber=newAuthorNumber,
     newSubjectClassifiedNumber=newSubjectClassifiedNumber,
     storageType                = REQUEST.get('storageType',None),

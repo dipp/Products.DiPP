@@ -11,6 +11,7 @@ validators..Save = validate_qdc
 action.success..Save       = traverse_to:string:fedoraarticle_qdc_edit
 action.success..addDDC     = traverse_to:string:fedoraarticle_qdc_addQDC
 action.success..addTitle   = traverse_to:string:fedoraarticle_qdc_addQDC
+action.success..addAbstract = traverse_to:string:fedoraarticle_qdc_addQDC
 action.success..addAlternative   = traverse_to:string:fedoraarticle_qdc_addQDC
 action.success..addAuthor  = traverse_to:string:fedoraarticle_qdc_addQDC
 action.success..addKeyword = traverse_to:string:fedoraarticle_qdc_addQDC
