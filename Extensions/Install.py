@@ -61,6 +61,44 @@ def install_properties(self, out, site_id=SITE_NAME):
     
     print >> out, "  DiPP-Properties installed"
 
+    site_properties = (
+        ('repository','/opt/digijournals/repository','string'), 
+        ('deadline_max',56,'int') ,
+        ('deadline_default',14,'int'), 
+        ('deadline_red',3,'int'),
+        ('deadline_yellow',10,'int'), 
+        ('deadline_no','1970/01/01 12:00:00 GMT+1','date'),
+        ('deadline_change',('Herausgeber',),'lines'),
+        ('deadline_next_change',('Herausgeber', 'Redakteur'),'lines'),
+        ('deadline_red_email_de',"Bitte umgehend den Artikel bearbeiten\n\nmfg",'text'),
+        ('deadline_red_email_en',"Bitte umgehend den Artikel bearbeiten\n\nmfg",'text'),
+        ('deadline_yellow_email_de',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
+        ('deadline_yellow_email_en',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
+        ('defaultLanguage',"de",'string'),
+        ('author_notice_de',"Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg",'text'),
+        ('author_notice_en',"Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg",'text'),
+        ('roles_not_to_list',('Manager', 'Owner', 'Reviewer', 'Member'),'lines'),
+        ('actions_to_list',('Call Application', 'Self Assign', 'Assign', 'Unassign'),'lines'),
+        ('workflow_actions',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'),'lines'),
+        ('copy_of_reminder',('',),'lines'),
+        ('gap_container','TestJournal','string'),
+        ('PID','','string'),
+        ('default_page',DEFAULT_PAGE,'string') 
+    )
+    
+    for prop_id, prop_value, prop_type in site_properties:
+        if not site.hasProperty(prop_id):
+            site.manage_addProperty(id = prop_id, value = prop_value, type = prop_type)
+
+    site.manage_changeProperties({'right_slots':''})
+    left_slots = (
+        'here/portlet_dippnav/macros/portlet',
+        'here/portlet_status/macros/portlet',
+        'here/portlet_toc/macros/portlet',
+        'here/portlet_navigation/macros/portlet'
+    )
+
+    site.manage_changeProperties({'left_slots':left_slots})
 
 def configure_workflow(self, out, site_id=SITE_NAME):
     """ Einrichten und Konfigurieren des Publikationsworkflows"""
@@ -272,38 +310,7 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     reftool.manage_role('Herausgeber', ('Manage properties',))
     reftool.manage_role('Autor', ('Manage properties',))
     reftool.manage_role('Gastherausgeber', ('Manage properties',))
-
-    #site.manage_addProperty(id = 'repository',               value = '/opt/digijournals/repository', type = 'string') 
-    #site.manage_addProperty(id = 'deadline_max',             value = 56, type = 'int') 
-    #site.manage_addProperty(id = 'deadline_default',         value = 14, type = 'int') 
-    #site.manage_addProperty(id = 'deadline_red',             value = 3, type = 'int') 
-    #site.manage_addProperty(id = 'deadline_yellow',          value = 10, type = 'int') 
-    #site.manage_addProperty(id = 'deadline_no',              value = '1970/01/01 12:00:00 GMT+1', type = 'date')
-    #site.manage_addProperty(id = 'deadline_change',          value = ('Herausgeber',), type = 'lines')
-    #site.manage_addProperty(id = 'deadline_next_change',     value = ('Herausgeber', 'Redakteur'), type = 'lines')
-    #site.manage_addProperty(id = 'deadline_red_email_de',    value = "Bitte umgehend den Artikel bearbeiten\n\nmfg", type = 'text')
-    #site.manage_addProperty(id = 'deadline_red_email_en',    value = "Bitte umgehend den Artikel bearbeiten\n\nmfg", type = 'text')
-    #site.manage_addProperty(id = 'deadline_yellow_email_de', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
-    #site.manage_addProperty(id = 'deadline_yellow_email_en', value = "Bitte an die Bearbeitung des Artikels denken!\n\nmfg", type = 'text')
-    #site.manage_addProperty(id = 'defaultLanguage',          value = "de", type = 'string')
-    #site.manage_addProperty(id = 'author_notice_de',         value = "Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg", type = 'text')
-    #site.manage_addProperty(id = 'author_notice_en',         value = "Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg", type = 'text')
-    #site.manage_addProperty(id = 'roles_not_to_list',        value = ('Manager', 'Owner', 'Reviewer', 'Member'), type = 'lines')
-    #site.manage_addProperty(id = 'actions_to_list',          value = ('Call Application', 'Self Assign', 'Assign', 'Unassign'), type = 'lines')
-    #site.manage_addProperty(id = 'workflow_actions',         value = ('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'), type = 'lines')
-    #site.manage_addProperty(id = 'copy_of_reminder',         value = ('',), type = 'lines')
-    #site.manage_addProperty(id = 'gap_container',            value = 'TestJournal', type = 'string')
-    #site.manage_addProperty(id = 'PID',                      value = '', type = 'string')
-
-    site.manage_changeProperties({'right_slots':''})
-    left_slots = (
-        'here/portlet_dippnav/macros/portlet',
-        'here/portlet_status/macros/portlet',
-        'here/portlet_toc/macros/portlet',
-        'here/portlet_navigation/macros/portlet'
-    )
-
-    site.manage_changeProperties({'left_slots':left_slots})
+    
 
     portal_actions = getToolByName(site, 'portal_actions')
 
@@ -343,7 +350,6 @@ def install_subskins(self, out, skin_names=SKIN_NAMES, globals=dippworkflow_glob
             path = ','.join(path)
             skinstool.addSkinSelection( skinName, path)
 
-    skinstool.manage_properties(default_skin='Plone Tableless')
     
     print >> out, "  Done installing subskin."
 
@@ -359,9 +365,16 @@ def install_extMethods(self, out, site_id=SITE_NAME):
     """ Installation von externen Methoden, sollte durch ein Tool ersetzt werden"""
 
     site = getSite(self, site_id)
-    site.manage_addFolder('ext','Externe Methoden')
-    #site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
-    #site.manage_addFolder('tmp','Temporäre Artikel')
+    folders = ()
+    try:
+        f = getattr(site,'ext')
+    except:
+        site.manage_addFolder('ext','Externe Methoden')
+        
+    if not hasattr(site, 'fedora_tmp'):
+        site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
+    if not hasattr(site, 'tmp'):
+        site.manage_addFolder('tmp','Temporäre Artikel')
     
     ext = getattr(site,'ext')
     ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
@@ -409,17 +422,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         '',
         'DiPP.ldap',
         'usersAssignableTo')
-#    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-#        'get_comments',
-#        '',
-#        'DiPP.history',
-#        'getComments')
-#    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-#        'history_insert',
-#        '',
-#        'DiPP.history',
-#        'insert')
-   
     site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
         'LDAPAddEntry',
         'Benutzer in LDAP ergänzen',
@@ -430,7 +432,7 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         'An LDAPServer authentifizieren',
         'DiPP.ldap',
         'auth')
-                         
+                        
 
 def install_types(self, out, site_id=SITE_NAME):
     """Registrierungen der neuen Objekte """
@@ -531,7 +533,6 @@ def install_content(self, out, site_id=SITE_NAME):
     """install some default content"""
     site = getSite(self, site_id)
     site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
-    #site.manage_addProperty(id = 'default_page', value = DEFAULT_PAGE, type = 'string') 
     
 def install(self):
     """ install a dipp instance"""
@@ -555,34 +556,34 @@ def uninstall(self, site_id=SITE_NAME):
     out = StringIO()
     site = getSite(self, site_id)
 
-    props = (
-        'repository',
-        'deadline_max',
-        'deadline_default',
-        'deadline_red',
-        'deadline_yellow',
-        'deadline_no',
-        'deadline_change',
-        'deadline_next_change',
-        'deadline_red_email_de',
-        'deadline_red_email_en',
-        'deadline_yellow_email_de',
-        'deadline_yellow_email_en',
-        'defaultLanguage',
-        'author_notice_de',
-        'author_notice_en',
-        'roles_not_to_list',
-        'actions_to_list',
-        'workflow_actions',
-        'copy_of_reminder',
-        'gap_container', 
-        'PID',
-        'default_page'
-    )
+    #props = (
+    #    'repository',
+    #    'deadline_max',
+    #    'deadline_default',
+    #    'deadline_red',
+    #    'deadline_yellow',
+    #    'deadline_no',
+    #    'deadline_change',
+    #    'deadline_next_change',
+    #    'deadline_red_email_de',
+    #    'deadline_red_email_en',
+    #    'deadline_yellow_email_de',
+    #    'deadline_yellow_email_en',
+    #    'defaultLanguage',
+    #    'author_notice_de',
+    #    'author_notice_en',
+    #    'roles_not_to_list',
+    #    'actions_to_list',
+    #    'workflow_actions',
+    #    'copy_of_reminder',
+    #    'gap_container', 
+    #    'PID',
+    #    'default_page'
+    #)
     
-    for prop in props:
-        if site.hasProperty(prop):
-            site.manage_delProperties((prop,))
+    #for prop in props:
+    #    if site.hasProperty(prop):
+    #        site.manage_delProperties((prop,))
         
     
     # remove memberproperties
