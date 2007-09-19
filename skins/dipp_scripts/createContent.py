@@ -43,7 +43,10 @@ try:
     else:
         title = aLabel
     
-    if objType == 'FedoraDocument':
+    if  id[-3:].lower() == 'xml':
+        objType = 'FedoraXML'
+    
+    if objType in ('FedoraDocument','FedoraXML'):
         contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,body=fedora.access(PID=PID,DsID=DsID,Date=None)['stream'])
     else:
         contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID)
