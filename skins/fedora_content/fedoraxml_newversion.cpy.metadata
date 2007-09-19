@@ -1,0 +1,10 @@
+[default]
+title = New Version in Fedora
+
+[validators]
+#validators = validate_base
+
+[actions]
+action.success = redirect_to_action:string:versions
+action.failure = traverse_to_action:string:edit
+action.next_schemata = redirect_to_action:string:edit
