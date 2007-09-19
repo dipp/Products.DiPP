@@ -16,7 +16,9 @@
 /* padding - thanks to the w3c box model :P */
 
 
-
+#edit_xml_body {
+    width: 100%;
+    }
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
