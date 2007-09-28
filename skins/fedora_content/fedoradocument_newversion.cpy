@@ -17,8 +17,8 @@ DsID = REQUEST.form['DsID']
 MIMEType = REQUEST.form['MIMEType']
 LogMessage = REQUEST.form['LogMessage']
 Label = REQUEST.form['Label']
-#Location =  context.absolute_url() + "/fedoradocument_body"
-Location =  context.absolute_url()
+Location =  context.absolute_url() + "/fedoradocument_body"
+#Location =  context.absolute_url()
 DsState = "A"
 tempID = ""
 
