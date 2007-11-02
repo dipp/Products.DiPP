@@ -83,11 +83,14 @@
                        size="40"
                        tal:attributes="value id"/>
             </div>
+
+            <!--
             <input type="hidden"
                    name="id"
                    tal:condition="python:not member.getProperty('visible_ids', '')"
                    tal:attributes="value python:request.get('id', here.getId())"/>
-                                                                                                 
+            -->
+            
             <div class="field"
                 tal:define="error errors/title|nothing;
                             title request/title|here/title"
