@@ -13,17 +13,15 @@ from Products.CMFCore.utils import getToolByName
 
 fedora = getToolByName(self, 'fedora')
 mhost = context.MailHost
-
+mtool    = context.portal_membership
 
 alertMessage = """
 Content-Type: text/plain; charset="UTF-8"
 From: %s <%s>
 To: %s
-Subject: A new article has been published by %s
+Subject: %s: New Article
 
 %s
-
-URL: %s
 """
 
 anschreiben = """
@@ -174,8 +172,11 @@ elif activity_id == 'begutachten':
 # ANSCHREIBEN
 elif activity_id == 'anschreiben':
     
-    member = context.ext.getMember(autor)
-    to_address  = member['mail']
+    member = mtool.getMemberById(autor)
+    fullname = member.getProperty('fullname','')
+    to_address = member.getProperty('email','')
+    #member = context.ext.getMember(autor)
+    #to_address  = member['mail']
     from_address = self.portal_properties.email_from_address
     from_name = self.portal_properties.email_from_name
     
