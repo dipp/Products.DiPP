@@ -14,6 +14,9 @@
         </div>
         
         <div metal:fill-slot="main">
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
             <h1 i18n:translate="article_initialize">Artikel anlegen</h1>
         
         <tal:block define="oftool container/portal_openflow;
@@ -67,14 +70,18 @@
                    der Seite zur Auswahl Verfügung.
                </div>
 
+               <div tal:define="group python:gtool.getGroupById('Autoren');
+                                groupMembers group/getGroupMembers|nothing ">
                 <select name="autor">
-                    <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
-                    <tal:block tal:repeat="autor python:here.ext.membersOfGroup(here,group='Autoren')">
-                        <option tal:condition="autor"
-                                tal:content="string: ${autor/uid} (${autor/cn})"
-                                tal:attributes="value autor/uid">Autor</option>
-                    </tal:block>
+                <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
+                <tal:block tal:repeat="member groupMembers">
+                    <option tal:condition="member"
+                            tal:content="string: ${member/fullname} ($member)"
+                            tal:attributes="value member">Autor</option>
+                </tal:block>
                 </select>
+               </div>
+           
             </div>
             
             <div class="field" i18n:domain="dipp">
@@ -82,27 +89,19 @@
                 <div class="formHelp" i18n:translate="help_guest_publisher">
                 </div>
 
+               <div tal:define="group python:gtool.getGroupById('Gastherausgeber');
+                                groupMembers group/getGroupMembers|nothing ">
                 <select name="gastHrsg">
                 <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
-                    <tal:block tal:repeat="autor python:here.ext.membersOfGroup(here,group='Gastherausgeber')">
-                        <option tal:condition="autor"
-                                tal:content="string: ${autor/uid} (${autor/cn})"
-                                tal:attributes="value autor/uid">Autor</option>
-                    </tal:block>
+                <tal:block tal:repeat="member groupMembers">
+                    <option tal:condition="member"
+                            tal:content="string: ${member/fullname} ($member)"
+                            tal:attributes="value member">Autor</option>
+                </tal:block>
                 </select>
+                </div>
             </div>
             
-            <!--
-             OK des Autors: <br />
-             
-                 <input name="autorOK_required:boolean" type="radio" value="True"/> nötig<br />
-                 <input name="autorOK_required:boolean" type="radio" value="False"  checked="checked"/> nicht nötig<br />
-
-             OK des GastHrsg: <br />
-             
-                 <input name="gastHrsgOK_required:boolean" type="radio" value="True" /> nötig<br />
-                 <input name="gastHrsgOK_required:boolean" type="radio" value="False" checked="checked" /> nicht nötig<br />
-             -->
  
             <div class="field"
                tal:define="error errors/newId|nothing;
@@ -136,10 +135,6 @@
                       i18n:attributes="title"
                       i18n:translate="label_required">(Required)</span>
                <div tal:content="error">Validation error output</div>
-<!--               <div class="formHelp" i18n:translate="help_isChildOf">
-                    <strong>isChildOf</strong>: <span class="formHelp" tal:content="isChildOf"></span>
-               </div>
--->
                <div class="formHelp">
                  <span i18n:translate="help_assignment_1">
                     Der Artikel bzw. das Hierarchieelement ist zu Zeit nur temporär
