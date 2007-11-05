@@ -12,24 +12,23 @@ from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 oftool   = container.portal_openflow
-#mtool    = context.portal_membership
+mtool    = context.portal_membership
 portal_url  = getToolByName(self, 'portal_url')
+dp = self.portal_properties.dipp_properties
 
 instance, workitem = oftool.getInstanceAndWorkitem(instance_id, workitem_id)
 
 autor     = workitem.autor
 titel     = instance.titel
-#member    = mtool.getMemberById(autor)
-#fullname  = member.fullname
-#email     = member.email
+member    = mtool.getMemberById(autor)
+fullname = member.getProperty('fullname', '')
+email = member.getProperty('email', '')
 
-member   = context.ext.getMember(autor)
+try:
+    lang = member.preferredLanguage
+except:
+    lang = "en"
 
-fullname = member['cn']
-email    = member['mail']
-lang     = member['preferredLanguage']
-
-dp = self.portal_properties.dipp_properties
 if lang.lower() == "de":
     mail = dp.author_notice_de
 elif lang.lower() == "en":
