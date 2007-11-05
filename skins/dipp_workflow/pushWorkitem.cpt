@@ -23,8 +23,6 @@
                         w python:i[request.workitem_id];
                         actor python:user.getUserName()">
                     <h3 i18n:translate="agent_assignment" i18n:domain="dipp">Assignment</h3>
-                    <!--<p i18n:translate="description_choose">Choose an user to assign this workitem to</p>
-                <form action="pub_modify_instance">-->
                 <form tal:define="errors options/state/getErrors"
                       tal:attributes="action string:${here/absolute_url}/${template/id};"
                       method="post">
@@ -56,21 +54,12 @@
                        der Seite zur Auswahl Verfügung.
                    </div>
 
-<!--                    <select name="next_actor">
+                    <select name="next_actor">
                         <tal:block tal:repeat="userAssign python:container.portal_openflow.usersAssignableTo(process_id=request.process_id, activity_id=request.activity_id)">
                             <option value="" tal:attributes="value userAssign" tal:content="userAssign">User</option>
                         </tal:block>
                     </select>
--->
-                    <select name="next_actor" tal:define="process_id request/process_id; activity_id request/activity_id">
-                        <tal:block tal:repeat=" userAssign python:here.ext.usersAssignableTo(here, process_id, activity_id)" >
-                            <option tal:condition="userAssign"
-                                    value="" 
-                                    tal:attributes="value userAssign/uid" 
-                                    tal:content="string: ${userAssign/uid} (${userAssign/cn})">User</option>
-                        </tal:block>
-                    </select>
-    
+
                         
                     <div metal:use-macro="here/pub_macros/macros/comments">
                         Kommentarfelder
