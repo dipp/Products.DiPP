@@ -6,5 +6,5 @@ View=0:Herausgeber,Manager
 
 
 [actions]
-action.success  = traverse_to:string:checkForNewPIDs
+action.success  = traverse_to:string:all_worklists
 
