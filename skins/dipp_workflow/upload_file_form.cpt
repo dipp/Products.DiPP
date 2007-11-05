@@ -63,7 +63,6 @@
                             <input type="text"
                                    name="title_value:list"
                                    class="title"
-                                   size="70"
                                    tal:define="i repeat/title/index;
                                                value python:title['value']"
                                    tal:attributes="value python: here.test('title_value',value,i)" />
