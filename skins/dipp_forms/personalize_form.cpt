@@ -69,7 +69,9 @@
                         <tal:comment tal:replace="nothing">
                             <div class="field"
                                  tal:define="error errors/fullname | nothing;
-                                             fullname python:request.get('fullname', member.getProperty('fullname', ''));"
+                                             givenname python:request.get('givenname', member.getProperty('givenname', ''));
+                                             surname python:request.get('surname', member.getProperty('surname', ''));
+                                             fullname python:request.get('fullname', givenname + ' ' + surname);"
                                  tal:attributes="class python:test(error, 'field error', 'field')">
 
                                 <label for="fullname" i18n:translate="label_full_name">Full Name</label>
