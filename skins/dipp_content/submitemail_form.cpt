@@ -90,6 +90,34 @@
                 </tr>
             </table>
         </div> 
+ 
+        <div class="field"
+            tal:define="error errors/section|nothing;
+                        sections here/sections"
+            tal:condition="python: len(sections) != 0"
+            tal:attributes="class python:test(error, 'field error', 'field')">
+            <label for="category" i18n:translate="label_category">Section</label>
+            <span class="fieldRequired" title="Required"
+                   i18n:attributes="title"
+                   i18n:domain="plone"
+                   i18n:translate="label_required">(Required)</span>
+            <div tal:content="error">Validation error output</div>
+            <div class="formHelp" i18n:translate="help_category">
+                    Choose the section in which your submission should appear.
+            </div>
+            <select name="section">
+                <option value="">--- Please select a category ---</option>
+                <tal:block tal:repeat="section sections">
+                    <option tal:define="name python: sections[section]['name'];
+                                        contact python: sections[section]['contact']"
+                            tal:attributes="value section"
+                            tal:content="name">
+                    Secioc name
+                    </option>
+                </tal:block>
+            </select>
+        </div> 
+        
     <!--
         <div class="field"
         tal:define="error errors/section|nothing"

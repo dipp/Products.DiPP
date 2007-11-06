@@ -16,7 +16,6 @@ RESPONSE = request.RESPONSE
 portal_url = getToolByName(self, 'portal_url')
 fedora = getToolByName(self, 'fedora')
 portal = portal_url.getPortalObject()
-
 mhost = context.MailHost
 
 try:
@@ -24,6 +23,13 @@ try:
 except:
     portal.invokeFactory('Folder','upload_folder')
     upload = getattr(portal,'upload_folder')
+
+if hasattr(self, "sections"):
+    sections = self.sections()
+else:
+    sections = {}
+
+section_name = sections[section]['name']
 
 title = file.filename.split("\\")[-1]
 extension = title.split('.')[-1]
@@ -35,35 +41,38 @@ url = obj.absolute_url()
 obj.manage_permission('View',('Manager',),acquire=0)
 
 
-recipient = self.portal_properties.email_from_address
+try:
+    recipient = sections[section]['mail']
+except:
+    recipient = self.portal_properties.email_from_address
 
 bcc = "reimer@hbz-nrw.de"
 
 message = """
-From: %s <%s>
-To: %s
-Bcc: %s
+From: %(surname)s <%(email)s>
+To: %(recipient)s
+Bcc: %(bcc)s
 Subject: New Submission
 Content-Type: text/plain; charset=UTF-8;
 
-name: %s
-email: %s
-licence: %s
-url: %s
-%s
+name: %(surname)s
+email: %(email)s
+licence: %(licence)s
+section: %(section)s
+url: %(url)s
+%(comment)s
 """
 
-msg = message % (
-    surname,
-    email,
-    recipient,
-    bcc,
-    surname,
-    email,
-    licence,
-    url,
-    comment
-    )
+msg = message % {
+    'surname':surname,
+    'email':email,
+    'section':section_name,
+    'recipient':recipient,
+    'bcc':bcc,
+    'licence':licence,
+    'url':url,
+    'comment':comment
+    }
 
 mhost.send(msg)
 

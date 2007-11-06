@@ -9,11 +9,18 @@
 ##title=Validates the submit
 ##
 
+section = context.REQUEST.get('section', 'no sections')
+
+
+if not section and section != 'no sections':
+    state.setError('section', 'Select a category.', 'input_required')
+
 if not file:
     state.setError('file', 'Select a file on your harddisk for upload.', 'input_required')
 
 if not licence:
     state.setError('licence', 'Please agree to the licence.', 'input_required')
+
 
 if state.getErrors():
     return state.set(status='failure', portal_status_message='Please correct the indicated errors.')
