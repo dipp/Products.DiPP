@@ -18,9 +18,9 @@
         <dd class="portletItem" i18n:domain="dipp">
 
 
-            <div tal:condition="python: user.has_role('Manager')">
+            <div >
                <ul>
-               <li>
+               <li tal:condition="python: user.has_role('Manager')">
                      <a href=""
                         tal:attributes="href string:$portal_url/folder_contents"
                         i18n:attributes="title description_website_manager"
@@ -34,7 +34,7 @@
                         i18n:translate="">
                             Editorial Toolbox</a>
                 </li>
-                <li>
+                <li tal:condition="python: user.has_role('Manager')">
                      <a href="" 
                         tal:attributes="href string:$portal_url/plone_control_panel" 
                         i18n:attributes="title description_plone_setup"
