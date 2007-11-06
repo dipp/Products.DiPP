@@ -169,7 +169,8 @@
                     <tal:block tal:define="i repeat/abstract/index;
                                            lang python:abstract['lang']">
                          <tal:block tal:content="structure python:here.langList('abstract_lang:list',here.test('abstract_lang',lang,i))" />
-                        <textarea name="abstract_value:list"  tal:content=" python: here.test('abstract_value',abstract['value'],i)" ></textarea>
+                         <br />
+                        <textarea class="abstract" name="abstract_value:list"  tal:content=" python: here.test('abstract_value',abstract['value'],i)" ></textarea>
                         <!--<textarea name="abstract_value:list"  tal:content="python:abstract['value']">
                         </textarea>-->
                     </tal:block>
@@ -184,6 +185,7 @@
                         <textarea name="abstract_value:list" tal:content=" python: here.test('abstract_value', None, i)"></textarea>
                     </tal:block>
                 </tal:block>
+                <br />
                 <input class="context"
                        tabindex=""
                        type="submit"
@@ -217,9 +219,9 @@
                         <td>
                             <table tal:define="i repeat/person/index" class="listing1">
                                 <tr>
-                                    <td rowspan="5">
+                                    <!--<td rowspan="5">
                                         <input type="checkbox" name="author_delete:list" tal:attributes="value repeat/person/number">
-                                    </td>
+                                    </td>-->
                                     <td rowspan="5" tal:content="repeat/person/number">
                                     </td>
                                     <td>
@@ -593,8 +595,12 @@
                     <tr tal:repeat="keyword subjectClassified">
                         <tal:block tal:define="i repeat/keyword/index; no repeat/keyword/number">
                             <td tal:content="no">#</td>
-                            <td><input type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',keyword['subjectClassified'],i)" /></td>
-                            <td><input type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',keyword['classificationIdent'],i)" /></td>
+                            <td>
+                                <input class="subject" type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',keyword['subjectClassified'],i)" />
+                            </td>
+                            <td>
+                                <input class="identNr" type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',keyword['classificationIdent'],i)" />
+                            </td>
                             <td tal:define="value python: here.test('sc_classificationSystem',keyword['classificationSystem'],i)"
                                 tal:content="structure python:here.NormList('sc_classificationSystem:list',value)">
                                     dropdown normlisten
@@ -608,8 +614,12 @@
                                                no     python:number + subjectClassifiedNumber;
                                                i      python:index + subjectClassifiedNumber">
                             <td tal:content="no">#</td>
-                            <td><input type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',None,i)" /></td>
-                            <td><input type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',None,i)" /></td>
+                            <td>
+                                <input class="subject" type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',None,i)" />
+                            </td>
+                            <td>
+                                <input class="identNr" type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',None,i)" />
+                            </td>
                             <td tal:define="value python: here.test('sc_classificationSystem',None,i)"
                                 tal:content="structure python:here.NormList('sc_classificationSystem:list',value)">
                                     dropdown normlisten
@@ -705,9 +715,9 @@
                         <th i18n:translate="valid">valid</th>
                     </tr>
                     <tr>
-                        <td><input type="text" name="created" value ="" tal:attributes="value request/created|created|nothing" /></td>
-                        <td><input type="text" name="modified" value ="" tal:attributes="value request/modified|modified|nothing" /></td>
-                        <td><input type="text" name="valid" value =""  tal:attributes="value request/valid|valid|nothing"/></td>
+                        <td><input class="date" maxlength="10" type="text" name="created" value ="" tal:attributes="value request/created|created|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="text" name="modified" value ="" tal:attributes="value request/modified|modified|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="text" name="valid" value =""  tal:attributes="value request/valid|valid|nothing"/></td>
                     </tr>
                 </table>
                 
@@ -736,10 +746,10 @@
                             <th i18n:translate="label_journalIssueDate">journalIssueDate</th>
                         </tr>
                         <tr>
-                            <td><input type="text" name="bc_journalTitle"   value ="" tal:attributes="value request/bc_journalTitle|bibliographicCitation/journalTitle|nothing" /></td>
-                            <td><input type="text" name="bc_journalVolume"   value ="" tal:attributes="value request/bc_journalVolume|bibliographicCitation/journalVolume|nothing" /></td>
-                            <td><input type="text" name="bc_journalIssueNumber"   value ="" tal:attributes="value request/bc_journalIssueNumber|bibliographicCitation/journalIssueNumber|nothing" /></td>
-                            <td><input type="text" name="bc_journalIssueDate"   value ="" tal:attributes="value request/bc_journalIssueDate|bibliographicCitation/journalIssueDate|nothing" /></td>
+                            <td><input class="journalTitle" type="text" name="bc_journalTitle"   value ="" tal:attributes="value request/bc_journalTitle|bibliographicCitation/journalTitle|nothing" /></td>
+                            <td><input class="journalVolume" type="text" name="bc_journalVolume"   value ="" tal:attributes="value request/bc_journalVolume|bibliographicCitation/journalVolume|nothing" /></td>
+                            <td><input class="journalIssueNumber" type="text" name="bc_journalIssueNumber"   value ="" tal:attributes="value request/bc_journalIssueNumber|bibliographicCitation/journalIssueNumber|nothing" /></td>
+                            <td><input class="journalIssueDate" type="text" maxlength="10" name="bc_journalIssueDate"   value ="" tal:attributes="value request/bc_journalIssueDate|bibliographicCitation/journalIssueDate|nothing" /></td>
                         </tr>
                     </table>
                     
