@@ -19,6 +19,29 @@
 #edit_xml_body {
     width: 100%;
     }
+
+/* Metadata Form */
+
+textarea.abstract { width: 100%; }
+input.academicTitle { width: 4em; }
+input.lastName { width: 15em; }
+input.firstName { width: 15em; }
+input.emailAddress { width: 20em; }
+input.PNDIdentNumber, input.GKDIdentNumber { width: 20em; }
+input.organization { width: 20em; }
+input.role { width: 20em; }
+input.postalAddress { width: 20em; }
+input.institutionelAuthor { width: 20em; }
+input.subject { width: 15em; }
+input.identNr { width: 15em; }
+input.date { width: 10em; }
+input.journalTitle { width: 20em; }
+input.journalVolume { width: 5em; }
+input.journalIssueNumber { width: 5em; }
+input.journalIssueDate { width: 10em; }
+.inline li{
+    display: inline;
+} 
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
