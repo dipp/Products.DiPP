@@ -19,6 +19,7 @@ def initialize(context):
     import FedoraHierarchie
     import FedoraArticle
     import FedoraDocument
+    import FedoraXML
     import FedoraMultimedia
     import MyThreadTest
 
