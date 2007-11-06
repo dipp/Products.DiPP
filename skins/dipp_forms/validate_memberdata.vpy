@@ -37,8 +37,12 @@ if not phone and properties.phone_required:
 if not location and properties.location_required:
     missing('location')
 
+fullname = givenname + " " + surname
 
 if state.getErrors():
-    return state.set(status='failure', portal_status_message='Please correct the indicated errors.')
+    return state.set(status='failure', 
+        portal_status_message='Please correct the indicated errors.',
+        fullname = fullname
+        )
 else:
-    return state.set(portal_status_message='You have been registered.')
+    return state.set(fullname=fullname,portal_status_message='You have been registered.')
