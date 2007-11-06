@@ -31,7 +31,7 @@ class FedoraArticle(OrderedBaseFolder):
         )
     ))
 
-    allowed_content_types = ('FedoraDocument','FedoraMultimedia')
+    allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
     filter_content_types= 1
     default_view = 'folder_listing'
     view_methods = ('folder_listing','metadata_view')
