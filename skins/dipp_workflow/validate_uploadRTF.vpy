@@ -1,3 +1,4 @@
+import string
 file          = context.REQUEST.get('file', None)
 title_value   = context.REQUEST.get('title_value', None)
 title_lang    = context.REQUEST.get('title_lang', None)
@@ -8,7 +9,7 @@ if not file:
     else:
         state.setError('file', 'Please select a file', new_status='failure')
 else:
-    extension = file.filename.split('.')[-1]
+    extension = file.filename.lower().split('.')[-1]
     if extension not in ['rtf', 'pdf', 'xml']:
         state.setError('file', 'This seems not to be a RTF, PDF or XML file', new_status='failure')
 
