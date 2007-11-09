@@ -387,26 +387,26 @@
 
                         </div>
 
-          <div class="field"
-               tal:define="description python:request.get('description', getattr(here,'description',''));
-                           cooked_text python:request.get('description',getattr(here,'cooked_text',''))">
+                      <div class="field"
+                           tal:define="description python:request.get('description', member.getProperty('description', ''));
+                                       cooked_text python:request.get('description',getattr(here,'cooked_text',''))">
 
-            <label for="description" i18n:translate="label_biography">Biography</label>
+                        <label for="description" i18n:translate="label_biography">Biography</label>
 
-            <tal:editor define="inputname  string:description;
-                                formname   string:edit_form;
-                                inputvalue description;
-                                cooked_inputvalue cooked_text;">
-              <div metal:use-macro="here/wysiwyg_support/macros/wysiwygEditorBox">
-                The WYSIWYG code
-              </div>
-            </tal:editor>
+                        <tal:editor define="inputname  string:description;
+                                            formname   string:edit_form;
+                                            inputvalue description;
+                                            cooked_inputvalue cooked_text;">
+                          <div metal:use-macro="here/wysiwyg_support/macros/wysiwygEditorBox">
+                            The WYSIWYG code
+                          </div>
+                        </tal:editor>
 
-            <div metal:use-macro="here/wysiwyg_support/macros/textFormatSelector">
-              Format box, if needed
-            </div>
+                        <div metal:use-macro="here/wysiwyg_support/macros/textFormatSelector">
+                          Format box, if needed
+                        </div>
 
-          </div>
+                      </div>
 
                         <div class="field"
                              tal:define="error errors/home_page | nothing;
