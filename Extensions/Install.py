@@ -311,6 +311,18 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     reftool.manage_role('Autor', ('Manage properties',))
     reftool.manage_role('Gastherausgeber', ('Manage properties',))
     
+    groups = ('Herausgeber', 'Redakteure', 'Gastherausgeber', 'Autoren','Manager')
+    
+    for group in groups:
+        site.portal_groups.addGroup(group,(),())
+        
+    groupstool=site.portal_groups
+    groupstool.editGroup('Herausgeber', roles=('Herausgeber',), groups=())
+    groupstool.editGroup('Redakteure', roles=('Redakteur',), groups=())
+    groupstool.editGroup('Gastherausgeber', roles=('Gastherausgeber',), groups=())
+    groupstool.editGroup('Manager', roles=('Manager',), groups=())
+    print >> out, "Set roles to groups"
+    
 
     portal_actions = getToolByName(site, 'portal_actions')
 
@@ -503,31 +515,34 @@ def install_memberproperties(self,out):
     if not hasattr(self.portal_properties, 'member_properties'):
         self.portal_properties.addPropertySheet('member_properties', 'Extended member properties')
 
-    member_props= (
-        ('academictitle_visible','boolean',True),
-        ('academictitle_required','boolean',False),
-        ('givenname_visible','boolean',True),
-        ('givenname_required','boolean',False),
-        ('surname_visible','boolean',True),
-        ('surname_required','boolean',False),
-        ('organization_visible','boolean',True),
-        ('organization_required','boolean',False),
-        ('postaladdress_visible','boolean',True),
-        ('postaladdress_required','boolean',False),
-        ('postalcode_visible','boolean',True),
-        ('postalcode_required','boolean',False),
-        ('phone_visible','boolean',True),
-        ('phone_required','boolean',False),
-        ('location_visible','boolean',True),
-        ('location_required','boolean',False),
-    )
+        member_props= (
+            ('academictitle_visible','boolean',True),
+            ('academictitle_required','boolean',False),
+            ('givenname_visible','boolean',True),
+            ('givenname_required','boolean',False),
+            ('surname_visible','boolean',True),
+            ('surname_required','boolean',False),
+            ('organization_visible','boolean',True),
+            ('organization_required','boolean',False),
+            ('postaladdress_visible','boolean',True),
+            ('postaladdress_required','boolean',False),
+            ('postalcode_visible','boolean',True),
+            ('postalcode_required','boolean',False),
+            ('phone_visible','boolean',True),
+            ('phone_required','boolean',False),
+            ('location_visible','boolean',True),
+            ('location_required','boolean',False),
+        )
 
-    props = self.portal_properties.member_properties
+        props = self.portal_properties.member_properties
 
-    for prop_id, prop_type, prop_value in member_props:
-        if not hasattr(props, prop_id):
-            #props._setProperty(prop_id, prop_value, prop_type)
-            props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
+        for prop_id, prop_type, prop_value in member_props:
+            if not hasattr(props, prop_id):
+                props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
+
+        print >> out, "added member_properties sheet with additional attributes"
+    else:
+        print >> out, "found member_properties, leaving it untouched"
 
 def install_content(self, out, site_id=SITE_NAME):
     """install some default content"""
@@ -546,69 +561,24 @@ def install(self):
     install_css(self,out)
     install_configlet(self, out)
     install_content(self, out)
-    #configure_workflow(self, out)
+    try:
+        configure_workflow(self, out)
+    except:
+        print >> out, "Keeping existingworkflow"
+        
 
     
     print >> out, "Successfully installed %s." % PROJECTNAME
     return out.getvalue()
 
 def uninstall(self, site_id=SITE_NAME):
+    """
+    * Root properties are not removed
+    * Member properties are not removed
+    """
     out = StringIO()
     site = getSite(self, site_id)
-
-    #props = (
-    #    'repository',
-    #    'deadline_max',
-    #    'deadline_default',
-    #    'deadline_red',
-    #    'deadline_yellow',
-    #    'deadline_no',
-    #    'deadline_change',
-    #    'deadline_next_change',
-    #    'deadline_red_email_de',
-    #    'deadline_red_email_en',
-    #    'deadline_yellow_email_de',
-    #    'deadline_yellow_email_en',
-    #    'defaultLanguage',
-    #    'author_notice_de',
-    #    'author_notice_en',
-    #    'roles_not_to_list',
-    #    'actions_to_list',
-    #    'workflow_actions',
-    #    'copy_of_reminder',
-    #    'gap_container', 
-    #    'PID',
-    #    'default_page'
-    #)
     
-    #for prop in props:
-    #    if site.hasProperty(prop):
-    #        site.manage_delProperties((prop,))
-        
-    
-    # remove memberproperties
-    md = site.portal_memberdata
-    
-    mprops = (
-        'academictitle',
-        'givenname',
-        'surname',
-        'organization',
-        'postaladdress',
-        'postalcode',
-        'phone'
-    )
-    
-    for mprop in mprops:
-        if md.hasProperty(mprop):
-            md.manage_delProperties((mprop,))
-
-    print >> out, "Removed properties"
-
-    # remove workflow process
-    reftool = getToolByName(site, 'portal_openflow')
-    #reftool.deleteProcess('Publishing')
-   
     #remove configlet 
     portal_conf=getToolByName(self,'portal_controlpanel')
     portal_conf.unregisterConfiglet('dipp_configuration')
