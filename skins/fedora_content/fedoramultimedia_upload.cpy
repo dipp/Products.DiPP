@@ -42,7 +42,11 @@ print 'pdf',PDF_PID
 print 'xml',XML_PID
 print 'mm',MULTIMEDIA_PID
 
-title= file.filename
+if file.filename.split("\\")  > 1:
+    title =  file.filename.split("\\")[-1]
+else:
+    title= file.filename
+
 
 EXTENSION = title.split('.')[-1]
 print EXTENSION
