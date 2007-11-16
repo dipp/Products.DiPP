@@ -13,7 +13,7 @@ from Products.CMFCore.utils import getToolByName
 
 fedora = getToolByName(self, 'fedora')
 mhost = context.MailHost
-mtool    = context.portal_membership
+
 
 alertMessage = """
 Content-Type: text/plain; charset="UTF-8"
