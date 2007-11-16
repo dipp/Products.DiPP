@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
 
 class FedoraMultimedia(BaseContent):
-    """temporäre Dateien für das Fedora Repository"""
+    """temporÃ¤re Dateien fÃ¼r das Fedora Repository"""
     schema = BaseSchema + Schema((
         ImageField('Image',
                 required=0,

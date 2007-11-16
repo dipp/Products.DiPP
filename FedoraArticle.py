@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from config import PROJECTNAME
 from zLOG import LOG, ERROR, INFO

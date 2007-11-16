@@ -5,7 +5,8 @@ from config import PROJECTNAME
 import Permissions
 
 class FedoraDocument(BaseContent):
-    """temporaere Dateien fuer das Fedora Repository"""
+    """store text files in the repository"""
+
     schema = BaseSchema + Schema((
         TextField('body',
                 searchable=1,
