@@ -487,3 +487,6 @@ msgstr "Test Online-Transformation"
 msgid "label_qdc"
 msgstr "Qualified Dublin Core Metadaten"
 
+msgid "close_window"
+msgstr "Fenster schließen"
+

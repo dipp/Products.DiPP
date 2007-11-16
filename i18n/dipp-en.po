@@ -485,3 +485,6 @@ msgstr "Test online transformation"
 
 msgid "label_qdc"
 msgstr "Qualified Dublin Core Metadata"
+
+msgid "close_window"
+msgstr "Close window"
