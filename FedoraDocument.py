@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from Products.Archetypes.Marshall import PrimaryFieldMarshaller
 from config import PROJECTNAME
 import Permissions
 
 class FedoraDocument(BaseContent):
-    """temporäre Dateien für das Fedora Repository"""
+    """temporaere Dateien fuer das Fedora Repository"""
     schema = BaseSchema + Schema((
         TextField('body',
                 searchable=1,
