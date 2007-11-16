@@ -59,14 +59,6 @@ class FedoraArticle(OrderedBaseFolder):
           'category':'folder',
           },
           
-        { 'id': 'fedora',
-          'name': 'Fedora',
-          'visible':0,
-          'action': 'fedoraarticle_fedora',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
-          'category':'folder',
-          },
-          
         { 'id': 'qdc',
           'name': 'Dublin Core',
           'action': 'fedoraarticle_qdc',
@@ -74,12 +66,13 @@ class FedoraArticle(OrderedBaseFolder):
           'category':'folder',
           },
           
-        { 'id': 'dippadm',
-          'name': 'Zuordnung',
-          'action': 'fedoraarticle_dippadm',
+        { 'id': 'new_file',
+          'name': 'new file',
+          'action': 'fedoramultimedia_edit_form',
           'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
           'category':'folder',
           },
+          
           
         { 'id': 'references',
           'name': 'References',
