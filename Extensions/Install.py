@@ -32,34 +32,34 @@ def install_properties(self, out, site_id=SITE_NAME):
 
 
     dipp_properties = (
-        ('mysql_host','string','localhost'),
-        ('mysql_user','string',''),
-        ('mysql_passwd','string',''),
-        ('mysql_table','string',''),
-        ('mysql_db','string','dipp'),
-        ('deadline_max','int',DEADLINE_MAX),
-        ('deadline_default','int',DEADLINE_DEFAULT),
-        ('deadline_red','int',DEADLINE_RED),
-        ('deadline_yellow','int',DEADLINE_YELLOW),
-        ('fedora_tmp','string','fedora'),
-        ('ISSN','string',''),
-        ('ldap_ou','string',''),
-        ('ldap_server','string',''),
-        ('container_id','string',''),
-        ('articleTypes','lines',''),
-        ('label','string',''),
-        ('rssFeeds','lines',''),
-        ('floatingtoc_enabled','boolean',''),
-        ('floatingtoc_onload','boolean',''),
-        ('alertEmailAddresses','lines',ALERT_EMAIL_ADDRESSES),
-        ('alertEmailText','text',ALERT_EMAIL_TEXT),
+        ('mysql_host', 'string', 'localhost'),
+        ('mysql_user', 'string', ''),
+        ('mysql_passwd', 'string', ''),
+        ('mysql_table', 'string', ''),
+        ('mysql_db', 'string', 'dipp'),
+        ('deadline_max', 'int', DEADLINE_MAX),
+        ('deadline_default', 'int', DEADLINE_DEFAULT),
+        ('deadline_red', 'int', DEADLINE_RED),
+        ('deadline_yellow', 'int', DEADLINE_YELLOW),
+        ('fedora_tmp', 'string', 'fedora'),
+        ('ISSN', 'string', ''),
+        ('ldap_ou', 'string', ''),
+        ('ldap_server', 'string', ''),
+        ('container_id', 'string', ''),
+        ('articleTypes', 'lines', ''),
+        ('label', 'string', ''),
+        ('rssFeeds', 'lines', ''),
+        ('floatingtoc_enabled', 'boolean', ''),
+        ('floatingtoc_onload', 'boolean', ''),
+        ('alertEmailAddresses', 'lines', ALERT_EMAIL_ADDRESSES),
+        ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
         if not hasattr(props, prop_id):
             props._setProperty(prop_id, prop_value, prop_type)
     
-    print >> out, "  DiPP-Properties installed"
+    print >> out, "DiPP-Properties installed"
 
     site_properties = (
         ('repository','/opt/digijournals/repository','string'), 
@@ -90,15 +90,15 @@ def install_properties(self, out, site_id=SITE_NAME):
         if not site.hasProperty(prop_id):
             site.manage_addProperty(id = prop_id, value = prop_value, type = prop_type)
 
-    site.manage_changeProperties({'right_slots':''})
-    left_slots = (
-        'here/portlet_dippnav/macros/portlet',
-        'here/portlet_status/macros/portlet',
-        'here/portlet_toc/macros/portlet',
-        'here/portlet_navigation/macros/portlet'
-    )
+    #site.manage_changeProperties({'right_slots':''})
+    #left_slots = (
+    #    'here/portlet_dippnav/macros/portlet',
+    #    'here/portlet_status/macros/portlet',
+    #    'here/portlet_toc/macros/portlet',
+    #    'here/portlet_navigation/macros/portlet'
+    #)
 
-    site.manage_changeProperties({'left_slots':left_slots})
+    #site.manage_changeProperties({'left_slots':left_slots})
 
 def configure_workflow(self, out, site_id=SITE_NAME):
     """ Einrichten und Konfigurieren des Publikationsworkflows"""
@@ -373,78 +373,36 @@ def getSite(self, site_id):
     return self
     
 def install_extMethods(self, out, site_id=SITE_NAME):
-
     """ Installation von externen Methoden, sollte durch ein Tool ersetzt werden"""
 
     site = getSite(self, site_id)
     folders = ()
     try:
-        f = getattr(site,'ext')
+        ext = getattr(site,'ext')
     except:
         site.manage_addFolder('ext','Externe Methoden')
-        
+        ext = getattr(site,'ext')
+
+    methods = (
+        ('listDir', 'list directory content', 'DiPP.listDir', 'listDir'),
+        ('deadline_date', '', 'DiPP.deadlines', 'deadline_date'),
+        ('deadline_delay', '', 'DiPP.deadlines', 'deadline_delay'),
+        ('deadline_time', '', 'DiPP.deadlines', 'deadline_time'),
+        ('addArticle', '', 'DiPP.add_article', 'add_article'),
+        ('reminder', '', 'DiPP.reminder', 'reminder'),
+        ('membersOfGroup', '', 'DiPP.ldap', 'membersOfGroup'),
+        ('getMember', '', 'DiPP.ldap', 'member'),
+        ('usersAssignableTo', '', 'DiPP.ldap', 'usersAssignableTo'),
+        ('LDAPAddEntry', 'Benutzer in LDAP ergänzen', 'DiPP.ldap', 'addEntry'),
+        ('LDAPAuth', 'An LDAPServer authentifizieren', 'DiPP.ldap', 'auth')
+    )
+    for id, title, module, function in methods: 
+        ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
+    
     if not hasattr(site, 'fedora_tmp'):
         site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
     if not hasattr(site, 'tmp'):
         site.manage_addFolder('tmp','Temporäre Artikel')
-    
-    ext = getattr(site,'ext')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'listDir',
-        'list directory content',
-        'DiPP.listDir',
-        'listDir')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'deadline_date',
-        '',
-        'DiPP.deadlines',
-        'deadline_date')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'deadline_delay',
-        '',
-        'DiPP.deadlines',
-        'deadline_delay')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'deadline_time',
-        '',
-        'DiPP.deadlines',
-        'deadline_time')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'addArticle',
-        '',
-        'DiPP.add_article',
-        'add_article')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'reminder',
-        '',
-        'DiPP.reminder',
-        'reminder')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'membersOfGroup',
-        '',
-        'DiPP.ldap',
-        'membersOfGroup')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'getMember',
-        '',
-        'DiPP.ldap',
-        'member')
-    ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'usersAssignableTo',
-        '',
-        'DiPP.ldap',
-        'usersAssignableTo')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'LDAPAddEntry',
-        'Benutzer in LDAP ergänzen',
-        'DiPP.ldap',
-        'addEntry')
-    site.manage_addProduct['ExternalMethod'].manage_addExternalMethod(
-        'LDAPAuth',
-        'An LDAPServer authentifizieren',
-        'DiPP.ldap',
-        'auth')
-                        
 
 def install_types(self, out, site_id=SITE_NAME):
     """Registrierungen der neuen Objekte """
@@ -503,15 +461,7 @@ def install_css(self,out):
 
 def install_memberproperties(self,out):
     """add some memberproperties"""
-    md = self.portal_memberdata
-    md.manage_addProperty(id = 'academictitle', value = '', type = 'string')
-    md.manage_addProperty(id = 'givenname', value = '', type = 'string')
-    md.manage_addProperty(id = 'surname', value = '', type = 'string')
-    md.manage_addProperty(id = 'organization', value = '', type = 'string')
-    md.manage_addProperty(id = 'postaladdress', value = '', type = 'string')
-    md.manage_addProperty(id = 'postalcode', value = '', type = 'string')
-    md.manage_addProperty(id = 'phone', value = '', type = 'string')
-
+    
     if not hasattr(self.portal_properties, 'member_properties'):
         self.portal_properties.addPropertySheet('member_properties', 'Extended member properties')
 
@@ -561,9 +511,12 @@ def install(self):
     install_css(self,out)
     install_configlet(self, out)
     install_content(self, out)
-    try:
+    
+    reftool = getToolByName(self, 'portal_openflow')
+    process_id = 'Publishing'
+    if not hasattr(reftool, process_id):
         configure_workflow(self, out)
-    except:
+    else:
         print >> out, "Keeping existingworkflow"
         
 
