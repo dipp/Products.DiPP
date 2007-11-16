@@ -189,3 +189,6 @@ msgstr ""
 
 msgid "help_comment"
 msgstr ""
+
+msgid "close_window"
+msgstr ""
