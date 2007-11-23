@@ -461,11 +461,28 @@ def install_css(self,out):
 
 def install_memberproperties(self,out):
     """add some memberproperties"""
+   
+
+    md = self.portal_memberdata
+    member_props= (
+        ('academictitle','string',''),
+        ('givenname','string',''),
+        ('surname','string',''),
+        ('organization','string',''),
+        ('postaladdress','string',''),
+        ('postalcode','string',''),
+        ('phone','string',''),
+    )
+    
+    for prop_id, prop_type, prop_value in member_props:
+        if not hasattr(md, prop_id):
+            md.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
+
     
     if not hasattr(self.portal_properties, 'member_properties'):
         self.portal_properties.addPropertySheet('member_properties', 'Extended member properties')
 
-        member_props= (
+        extended_member_props= (
             ('academictitle_visible','boolean',True),
             ('academictitle_required','boolean',False),
             ('givenname_visible','boolean',True),
@@ -486,7 +503,7 @@ def install_memberproperties(self,out):
 
         props = self.portal_properties.member_properties
 
-        for prop_id, prop_type, prop_value in member_props:
+        for prop_id, prop_type, prop_value in extended_member_props:
             if not hasattr(props, prop_id):
                 props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
 
@@ -497,7 +514,8 @@ def install_memberproperties(self,out):
 def install_content(self, out, site_id=SITE_NAME):
     """install some default content"""
     site = getSite(self, site_id)
-    site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
+    if not hasattr(site, DEFAULT_PAGE):
+        site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
     
 def install(self):
     """ install a dipp instance"""
