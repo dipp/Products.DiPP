@@ -23,7 +23,7 @@ WELCOME_TEXT = """
 <h2>Editieren von bereits bestehenden Dokumenten</h2>
 
 <ol>
-    <li><em>Anmelden:</em> In der Kopfzeile befindet sich ein Link zur <a href="/chemnitzdemo/login_form">Login-Seite</a>.</li>
+    <li><em>Anmelden:</em> In der Kopfzeile befindet sich ein Link zur <a href="login_form">Login-Seite</a>.</li>
     <li>    <em>Bearbeiten:</em> Wählen Sie den Reiter &quot;Bearbeiten&quot;. In den Textboxen    kann der Kurzname (Teil der URL), die Beschreibung (der fett-formatierte    Text unter der Überschrift, nicht obligatorisch) und der Haupttext    bearbeitet werden.<br />
     Es gibt drei Optionen, den Haupttext zu bearbeiten:<br />
     <dl>     <dt>Textboxen:</dt>      <dd>Der Text wird in Textboxen einen normalen Webformulars editiert. Das     ist der Standard und funktioniert mit allen Browsern</dd>      <dt>FCKEditor:</dt>      <dd>FCKEditor ist ein <abbr title="What you see is what you get">WYSYWIG</abbr>-Editor, der ähnliche     Funktionalitäten wie eine normale Textverabeitung zur Verfügung stellt. Um FCKEditor zu benutzen, wird ein aktueller Browser benötigt. FCKEditor ist bereits     voreingestellt.<br />
