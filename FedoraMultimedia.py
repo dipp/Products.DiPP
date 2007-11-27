@@ -4,54 +4,57 @@ from config import PROJECTNAME
 import Permissions
 
 class FedoraMultimedia(BaseContent):
-    """temporäre Dateien für das Fedora Repository"""
+    """Multimedia files (Images, PDF, Movies) for storing in Fedora"""
+    
     schema = BaseSchema + Schema((
-        ImageField('Image',
+        FileField('File',
                 required=0,
-                widget=ImageWidget(label='Image',description='Bild Datei')
+                primary=1,
+                widget=FileWidget(label='File',description='Multimedia file')
         ),
         StringField('PID',
-                required=1,
+                required=0,
                 widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
         ),
         StringField('DsID',
-                required=1,
+                required=0,
                 widget=StringWidget(label='DsID',description='Datastream Identifier',size='15')
         )
-    ))
-
-    content_icon = "fedoraimage_icon.gif"
-
+    ),
+    marshall=PrimaryFieldMarshaller(),
+    )
+    content_icon = "fedoramultimedia_icon.gif"
+    
     actions = (
-        { 'id': 'edit',
-          'name': 'Edit',
-          'action': 'fedoraimage_edit_form',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "edit",
+          "name": "Edit",
+          "action": "string:${object_url}/fedoramultimedia_edit_form",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'view',
-          'name': 'View',
-          'action': 'fedoramultimedia_view',
-          'permissions': (Permissions.VIEW_CONTENTS_PERMISSION,),
+        { "id": "view",
+          "name": "View",
+          "action": "string:${object_url}/fedoramultimedia_view",
+          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'preview',
-          'name': 'Preview',
-          'action': 'fedoraimage_preview',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "preview",
+          "name": "Preview",
+          "action": "string:${object_url}/fedoramultimedia_preview",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'references',
-          'name': 'References',
-          #'action': 'fedoradocument_view',
-          'visible': 0,
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "references",
+          "name": "References",
+          #"action": "string:${object_url}/fedoradocument_view",
+          "visible": 0,
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'versions',
-          'name': 'Versions',
-          'action': 'fedoraimage_versions',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "versions",
+          "name": "Versions",
+          "action": "string:${object_url}/fedoramultimedia_versions_form",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
     )
 registerType(FedoraMultimedia,PROJECTNAME)

@@ -6,6 +6,7 @@ import Permissions
 
 class FedoraXML(BaseContent):
     """stores the DocBOOK XML Files"""
+    
     schema = BaseSchema + Schema((
         TextField('body',
                 searchable=1,
@@ -35,34 +36,34 @@ class FedoraXML(BaseContent):
     content_icon = "fedoraxml_icon.gif"
 
     actions = (
-        { 'id': 'edit',
-          'name': 'Edit',
-          'action': 'fedoraxml_edit_form',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "edit",
+          "name": "Edit",
+          "action": "string:${object_url}/fedoraxml_edit_form",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'view',
-          'name': 'View',
-          'action': 'fedoraxml_view',
-          'permissions': (Permissions.VIEW_CONTENTS_PERMISSION,),
+        { "id": "view",
+          "name": "View",
+          "action": "string:${object_url}/fedoraxml_view",
+          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'preview',
-          'name': 'Preview',
-          'action': 'fedoraxml_preview',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "preview",
+          "name": "Preview",
+          "action": "string:${object_url}/fedoraxml_preview",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'references',
-          'name': 'References',
-          'visible': 0,
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "references",
+          "name": "References",
+          "visible": 0,
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
           
-        { 'id': 'versions',
-          'name': 'Versions',
-          'action': 'fedoraxml_versions',
-          'permissions': (Permissions.EDIT_CONTENTS_PERMISSION,),
+        { "id": "versions",
+          "name": "Versions",
+          "action": "string:${object_url}/fedoraxml_versions",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
  
     )
