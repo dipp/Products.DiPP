@@ -8,39 +8,61 @@
 ##parameters=self
 ##title=Edit content
 ##
-#RESPONSE    = request.RESPONSE
 from Products.CMFCore.utils import getToolByName
+from zLOG import LOG, INFO
+
 REQUEST = context.REQUEST
 RESPONSE =  REQUEST.RESPONSE
 portal_url = getToolByName(self, 'portal_url')
 fedora = getToolByName(self, 'fedora')
 portal = portal_url.getPortalObject()
 
+articlePID = self.getParentNode().PID
+args = state.getKwargs()
+filename = getattr(self.File, 'filename', None)
+MIMEType = self.File.get_content_type()
 
-PID      = REQUEST.form['PID']
-Label    = REQUEST.form['Label']
-MIMEType = REQUEST.form['MIMEType']
-Location = REQUEST.form['Location']
+EXTENSION = MIMEType.split("/")[-1].lower() 
 
-id = Label
-title=Label
+HTML_PID       = fedora.getContentModel(PID=articlePID,Type='HTML')
+MULTIMEDIA_PID = fedora.getContentModel(PID=articlePID,Type='Multimedia')
+NATIVE_PID     = fedora.getContentModel(PID=articlePID,Type='Native')
+OTHER_PID      = fedora.getContentModel(PID=articlePID,Type='Other')
+PDF_PID        = fedora.getContentModel(PID=articlePID,Type='PDF')
+XML_PID        = fedora.getContentModel(PID=articlePID,Type='XML')
+
+map = {
+    'jpg': MULTIMEDIA_PID,
+    'jpeg': MULTIMEDIA_PID,
+    'png': MULTIMEDIA_PID,
+    'gif': MULTIMEDIA_PID,
+    'pdf': PDF_PID,
+    'xml': XML_PID
+}
+
+
+try:
+    PID = map[EXTENSION]
+except:
+    PID = OTHER_PID
+
+Location = self.absolute_url() + "/File"
+Label = filename
 
 DsID = fedora.addDatastream(REQUEST,PID,Label,MIMEType,Location,"M","","","A")
-context.invokeFactory('FedoraMultimedia',id=id,title=title,PID=PID,DsID=DsID)
 
-backto= context.absolute_url() + "/folder_contents"
-#print PID
-#print DsID
-#print backto
-#return printed
+LOG('DiPP', INFO, "fedoramultimedia_add: %s/%s at %s" % (PID, DsID, Location))
+#LOG('DiPP', INFO, "fedoramultimedia_add: state %s" % state)
+LOG('DiPP', INFO, "fedoramultimedia_add: filename %s/%s" % (filename,MIMEType))
 
-RESPONSE.redirect(backto)
-"""
-new_context = context.portal_factory.doCreate(context, id)
-new_context.processForm()
-portal_status_message = REQUEST.get('portal_status_message', 'Änderungen an der Arbeitsversion wurden gespeichert!.')
-return state.set(status='success',\
-                 context=new_context,\
+self.setId(Label)
+self.setPID(PID)
+self.setDsID(DsID)
+portal_status_message = "Saved..."
+
+return state.set(Location='Location',\
+                 PID='PID',\
+                 DsID='DsId',\
+                 Label='Label',\
+                 status='success',\
                  portal_status_message=portal_status_message)
-"""
-

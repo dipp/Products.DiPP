@@ -43,8 +43,46 @@
 
         <input type="hidden" name="form.submitted" value="1" />
 
-            <input type="hidden" name="articlePID" value="" tal:attributes="value here/PID" />
+            <input type="hidden" name="PID" value="" tal:attributes="value here/PID" />
+            <input type="hidden" name="DsID" value="" tal:attributes="value here/DsID" />
 
+           <div class="field"
+                tal:condition="python:site_properties.getProperty('visible_ids', None)"
+                tal:define="error errors/id | nothing;
+                            id python:request.get('id', test(here.show_id(),here.getId(),''));"
+                tal:attributes="class python:test(error, 'field error', 'field')">
+
+             <label for="id" i18n:translate="label_short_name">Short Name</label>
+
+             <div class="formHelp" i18n:translate="help_shortname">
+                    Short Name is part of the item's web address.
+                    For accessibility reasons, do not use spaces, upper case,
+                    underscores, or special characters.
+             </div>
+
+             <div tal:content="error">Validation error output</div>
+
+             <input type="text"
+                    id="id"
+                    name="id"
+                    value=""
+                    tal:attributes="value id"
+                    />
+
+           </div>
+            <div class="field"
+                tal:define="error errors/title|nothing;
+                            title request/title|here/title"
+                tal:attributes="class python:test(error, 'field error', 'field')"
+                i18n:domain="plone">
+                <label for="title" i18n:translate="label_title" >title</label>
+                                                                
+                <div tal:content="error">Validation error output</div>
+                <input type="text"
+                       name="title"
+                       value=""
+                       tal:attributes="value title"/>
+            </div>
             
             
 
@@ -61,11 +99,12 @@
                     Short Name is part of the item's web address. 
                     Should not contain spaces, upper case, underscores or other special characters.
                 </div>
-                <input type="file"
+                <input id="File_file" type="file" name="File_file" size="30"/>
+                <!--<input type="file"
                        id="Image"
                        name="file"
                        size="30"
-                       value="">
+                       value="">-->
             </div>
 
             <input class="context"

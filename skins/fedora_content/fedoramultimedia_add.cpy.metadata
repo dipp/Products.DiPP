@@ -1,0 +1,11 @@
+[default]
+title = Add FedoraMultimedia Files
+
+[validators]
+validators =
+
+[actions]
+#action.success = redirect_to:string:add2fedora
+#action.success = traverse_to:string:validate_fedoramultimedia
+action.success = redirect_to_action:string:view
+action.failure = traverse_to:string:content_edit

@@ -80,7 +80,7 @@ url += '&Location=' + Location
 url += '&MIMEType=' + MIMEType
 
 
-RESPONSE.redirect(url)
-#print url
-#return printed
+#RESPONSE.redirect(url)
+print url
+return printed
 
