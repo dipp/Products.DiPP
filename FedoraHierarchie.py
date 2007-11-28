@@ -3,7 +3,6 @@ from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
 from Products.CMFPlone.interfaces.OrderedContainer import IOrderedContainer
-from UpDownMixin import UpDownMixin
 
 #class FedoraHierarchie(BaseFolder):
 class FedoraHierarchie(OrderedBaseFolder):
