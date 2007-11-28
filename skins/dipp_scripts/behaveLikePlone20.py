@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=
+##parameters=self
 ##title=
 ##
 """
@@ -12,6 +12,37 @@ set a few properties to make the new Plone-2.1 instance behabe like
 the old Plone-2.0
 """
 
+from Products.CMFCore.utils import getToolByName
+portal_url = getToolByName(self, 'portal_url')
+site = portal_url.getPortalObject()
+
+
+# add two folder to keep temporary files
+folders = (
+    ('tmp','Temporäre Artikel'),
+    ('fedora_tmp','Temporäre Fedoraobjekte')
+)
+
+for folder_id, folder_title in folders:
+    try:
+        site.invokeFactory('Folder',id = folder_id, title = folder_title)
+        print "added Folder '%s': %s" (folder_id, folder_title)
+    except:
+        print "could not add Folder '%s'" % folder_id
+
+
+# configure the portlets
+site.manage_changeProperties({'right_slots':''})
+left_slots = (
+    'here/portlet_dippnav/macros/portlet',
+    'here/portlet_status/macros/portlet',
+    'here/portlet_toc/macros/portlet',
+    'here/portlet_navigation/macros/portlet'
+)
+
+site.manage_changeProperties({'left_slots':left_slots})
+
+# set a few properties to behave a bit more like Plone 2.0
 np = context.portal_properties.navtree_properties
 sp = context.portal_properties.site_properties
 md = context.portal_memberdata
