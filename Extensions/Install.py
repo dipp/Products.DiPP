@@ -90,15 +90,6 @@ def install_properties(self, out, site_id=SITE_NAME):
         if not site.hasProperty(prop_id):
             site.manage_addProperty(id = prop_id, value = prop_value, type = prop_type)
 
-    #site.manage_changeProperties({'right_slots':''})
-    #left_slots = (
-    #    'here/portlet_dippnav/macros/portlet',
-    #    'here/portlet_status/macros/portlet',
-    #    'here/portlet_toc/macros/portlet',
-    #    'here/portlet_navigation/macros/portlet'
-    #)
-
-    #site.manage_changeProperties({'left_slots':left_slots})
 
 def configure_workflow(self, out, site_id=SITE_NAME):
     """ Einrichten und Konfigurieren des Publikationsworkflows"""
@@ -388,7 +379,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         ('deadline_date', '', 'DiPP.deadlines', 'deadline_date'),
         ('deadline_delay', '', 'DiPP.deadlines', 'deadline_delay'),
         ('deadline_time', '', 'DiPP.deadlines', 'deadline_time'),
-        ('addArticle', '', 'DiPP.add_article', 'add_article'),
         ('reminder', '', 'DiPP.reminder', 'reminder'),
         ('membersOfGroup', '', 'DiPP.ldap', 'membersOfGroup'),
         ('getMember', '', 'DiPP.ldap', 'member'),
@@ -396,13 +386,14 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         ('LDAPAddEntry', 'Benutzer in LDAP ergänzen', 'DiPP.ldap', 'addEntry'),
         ('LDAPAuth', 'An LDAPServer authentifizieren', 'DiPP.ldap', 'auth')
     )
-    for id, title, module, function in methods: 
-        ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
+    for id, title, module, function in methods:
+        if not hasattr(ext, id):
+            ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
     
-    if not hasattr(site, 'fedora_tmp'):
-        site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
-    if not hasattr(site, 'tmp'):
-        site.manage_addFolder('tmp','Temporäre Artikel')
+    #if not hasattr(site, 'fedora_tmp'):
+    #    site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
+    #if not hasattr(site, 'tmp'):
+    #    site.manage_addFolder('tmp','Temporäre Artikel')
 
 def install_types(self, out, site_id=SITE_NAME):
     """Registrierungen der neuen Objekte """
@@ -461,9 +452,9 @@ def install_css(self,out):
 
 def install_memberproperties(self,out):
     """add some memberproperties"""
-   
 
     md = self.portal_memberdata
+    
     member_props= (
         ('academictitle','string',''),
         ('givenname','string',''),
@@ -472,6 +463,7 @@ def install_memberproperties(self,out):
         ('postaladdress','string',''),
         ('postalcode','string',''),
         ('phone','string',''),
+        ('areas_of_expertise','lines',''),
     )
     
     for prop_id, prop_type, prop_value in member_props:
@@ -481,35 +473,36 @@ def install_memberproperties(self,out):
     
     if not hasattr(self.portal_properties, 'member_properties'):
         self.portal_properties.addPropertySheet('member_properties', 'Extended member properties')
+    #    print >> out, "added member_properties sheet with additional attributes"
+    #else:
+    #    print >> out, "found member_properties, leaving it untouched"
+        
+    props = self.portal_properties.member_properties
 
-        extended_member_props= (
-            ('academictitle_visible','boolean',True),
-            ('academictitle_required','boolean',False),
-            ('givenname_visible','boolean',True),
-            ('givenname_required','boolean',False),
-            ('surname_visible','boolean',True),
-            ('surname_required','boolean',False),
-            ('organization_visible','boolean',True),
-            ('organization_required','boolean',False),
-            ('postaladdress_visible','boolean',True),
-            ('postaladdress_required','boolean',False),
-            ('postalcode_visible','boolean',True),
-            ('postalcode_required','boolean',False),
-            ('phone_visible','boolean',True),
-            ('phone_required','boolean',False),
-            ('location_visible','boolean',True),
-            ('location_required','boolean',False),
-        )
+    extended_member_props= (
+        ('academictitle_visible','boolean',True),
+        ('academictitle_required','boolean',False),
+        ('givenname_visible','boolean',True),
+        ('givenname_required','boolean',False),
+        ('surname_visible','boolean',True),
+        ('surname_required','boolean',False),
+        ('organization_visible','boolean',True),
+        ('organization_required','boolean',False),
+        ('postaladdress_visible','boolean',True),
+        ('postaladdress_required','boolean',False),
+        ('postalcode_visible','boolean',True),
+        ('postalcode_required','boolean',False),
+        ('phone_visible','boolean',True),
+        ('phone_required','boolean',False),
+        ('location_visible','boolean',True),
+        ('location_required','boolean',False),
+    )
 
-        props = self.portal_properties.member_properties
 
-        for prop_id, prop_type, prop_value in extended_member_props:
-            if not hasattr(props, prop_id):
-                props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
+    for prop_id, prop_type, prop_value in extended_member_props:
+        if not hasattr(props, prop_id):
+            props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
 
-        print >> out, "added member_properties sheet with additional attributes"
-    else:
-        print >> out, "found member_properties, leaving it untouched"
 
 def install_content(self, out, site_id=SITE_NAME):
     """install some default content"""
