@@ -76,6 +76,9 @@
                 tal:attributes="class python:test(error, 'field error', 'field')"
                 i18n:domain="plone">
                 <label for="title" i18n:translate="label_title" >title</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
                                                                 
                 <div tal:content="error">Validation error output</div>
                 <input type="text"
@@ -95,9 +98,8 @@
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
                 <div tal:content="error">Validation error output</div>
-                <div class="formHelp" i18n:translate="help_shortname">
-                    Short Name is part of the item's web address. 
-                    Should not contain spaces, upper case, underscores or other special characters.
+                <div class="formHelp" i18n:translate="help_file">
+                  Select the file to be added by clicking the 'Browse' button.
                 </div>
                 <input id="File_file" type="file" name="File_file" size="30"/>
                 <!--<input type="file"
