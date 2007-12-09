@@ -41,6 +41,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('deadline_default', 'int', DEADLINE_DEFAULT),
         ('deadline_red', 'int', DEADLINE_RED),
         ('deadline_yellow', 'int', DEADLINE_YELLOW),
+        ('author_notice_de','text',AUTHOR_NOTICE_DE),
+        ('author_notice_en','text',AUTHOR_NOTICE_EN),
         ('fedora_tmp', 'string', 'fedora'),
         ('ISSN', 'string', ''),
         ('ldap_ou', 'string', ''),
@@ -75,8 +77,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('deadline_yellow_email_de',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
         ('deadline_yellow_email_en',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
         ('defaultLanguage',"de",'string'),
-        ('author_notice_de',"Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg",'text'),
-        ('author_notice_en',"Ein Artikel liegt für Sie zur Begutachtung vor!\n\nmfg",'text'),
+        ('author_notice_de',AUTHOR_NOTICE_DE,'text'),
+        ('author_notice_en',AUTHOR_NOTICE_EN,'text'),
         ('roles_not_to_list',('Manager', 'Owner', 'Reviewer', 'Member'),'lines'),
         ('actions_to_list',('Call Application', 'Self Assign', 'Assign', 'Unassign'),'lines'),
         ('workflow_actions',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'),'lines'),
@@ -310,6 +312,7 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     groupstool=site.portal_groups
     groupstool.editGroup('Herausgeber', roles=('Herausgeber',), groups=())
     groupstool.editGroup('Redakteure', roles=('Redakteur',), groups=())
+    groupstool.editGroup('Autoren', roles=('Autor',), groups=())
     groupstool.editGroup('Gastherausgeber', roles=('Gastherausgeber',), groups=())
     groupstool.editGroup('Manager', roles=('Manager',), groups=())
     print >> out, "Set roles to groups"

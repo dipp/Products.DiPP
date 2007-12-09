@@ -23,11 +23,14 @@ titel     = instance.titel
 member    = mtool.getMemberById(autor)
 fullname = member.getProperty('fullname', '')
 email = member.getProperty('email', '')
+lang = member.getProperty('language', 'en')
 
+"""
 try:
     lang = member.preferredLanguage
 except:
     lang = "en"
+"""
 
 if lang.lower() == "de":
     mail = dp.author_notice_de
