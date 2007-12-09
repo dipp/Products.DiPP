@@ -55,7 +55,7 @@
                     <span i18n:name="new_account">
                         <a target="_blank"
                             href="" 
-                            tal:attributes="href string:${here/portal_url}/acl_users/Users/acl_users/manage_userrecords" 
+                            tal:attributes="href string:${here/portal_url}/prefs_users_overview" 
                             i18n:domain="dipp" 
                             i18n:translate="link_account">legen ihn gegebenenfalls als neuen Benutzer an</a>.
                     </span>
