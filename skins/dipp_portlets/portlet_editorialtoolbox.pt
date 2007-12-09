@@ -61,7 +61,7 @@
                </ul>
                             
                 <strong i18n:translate="journal">Zeitschrift</strong>
-                <ul class="configlets">
+                <ul tal:condition="python: user.has_role('Manager')" class="configlets">
                     <li>
                         <a href=""
                            class="navItem"
@@ -73,7 +73,7 @@
                         
                 
                 <strong i18n:translate="tools">Tools</strong>
-                <ul class="configlets">
+                <ul tal:condition="python: user.has_role('Manager')" class="configlets">
                     <li>
                         <a href=""
                            class="navItem"
