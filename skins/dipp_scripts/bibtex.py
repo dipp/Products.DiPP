@@ -4,32 +4,37 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self,PID
+##parameters=qdc
 ##title=
 ##
 
 # -*- coding: utf-8 -*-
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
+from DateTime import DateTime
 
-from Products.CMFCore.utils import getToolByName
-fedora = getToolByName(self, 'fedora')
 
-id = "Reimer:2006"
-author = "Peter Reimer"
-title = "Kurzanleitung"
-journal = "Das Testjournal"
-year = "2006"
-number = "2"
+authors = []
+persons = qdc['creatorPerson']
+for person in persons:
+    authors.append(person["firstName"] + " " + person["lastName"])
+author = ", ".join(authors)
+    
+title = qdc["title"][0]["value"]
+journal = qdc['bibliographicCitation'][0]["journalTitle"]
+number = qdc['bibliographicCitation'][0]["journalIssueNumber"]
+year = qdc['bibliographicCitation'][0]["journalVolume"]
+date = DateTime(qdc['bibliographicCitation'][0]["journalIssueDate"])
+id = ":".join((qdc['creatorPerson'][0]["lastName"],year))
 
-template = """
-@Article{%s,
-  author  = "%s", 
-  title   = "%s",
-  journal = "%s",
-  number  = "%s",
-  year    = "%s"
+bibitem = """
+@Article{%(id)s,
+  author  = "%(author)s", 
+  title   = "%(title)s",
+  journal = "%(journal)s",
+  number  = "%(number)s",
+  year    = "%(year)s"
 }
 """
-bibitem = template % (id, author, title, journal, number, year)
-return bibitem
+
+return bibitem % {"id": id, "author":author, "title":title, "journal":journal, "number":number, "year":year}
