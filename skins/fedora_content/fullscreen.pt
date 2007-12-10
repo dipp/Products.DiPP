@@ -15,6 +15,36 @@
             Document actions (print, sendto etc)
         </div>
 
+      
+
+       <div tal:define="nav here/fullscreen_navigation" id="fullscreen-nav">
+                <a href="" 
+                   title="vorheriges Bild"
+                    tal:condition="nav/previous"
+                    tal:attributes="href string:${nav/previous/absolute_url}/fullscreen;">
+                    <img src="" tal:attributes="src string:$portal_url/previous.gif" alt="<" />
+                </a>
+                <img tal:condition="not: nav/previous"
+                     src="" tal:attributes="src string:$portal_url/no_previous.gif"
+                     alt="<"
+                     title="schon beim ersten Bild"/>
+                <a href="" 
+                    title="nächstes Bild"
+                    tal:condition="nav/next"
+                    tal:attributes="href string:${nav/next/absolute_url}/fullscreen">
+                    <img src="" tal:attributes="src string:$portal_url/next.gif" alt=">" />
+                </a>
+                <img tal:condition="not: nav/next"
+                     src="" tal:attributes="src string:$portal_url/no_next.gif"
+                     alt=">"
+                     title="schon beim letzten Bild"/>
+                <a href="javascript:window.close()" 
+                   title="Fenster schließen">
+                    <img src="" tal:attributes="src string:$portal_url/close.gif" alt="x" />
+                </a>
+        </div>
+
+        <div class="visualClear"></div>
         <div class="stx" tal:define="PID context/PID;
                                      DsID here/DsID;
                                      content python:here.fedora.access(PID,DsID,Date=None)">
@@ -36,4 +66,5 @@
 
 </body>
 </html>
+
 
