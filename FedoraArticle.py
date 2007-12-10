@@ -67,13 +67,6 @@ class FedoraArticle(OrderedBaseFolder):
           "category":"folder",
           },
           
-        { "id": "new_file",
-          "name": "new file",
-          "action": "string:${folder_url}/fedoramultimedia_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
           
         { "id": "references",
           "name": "References",
