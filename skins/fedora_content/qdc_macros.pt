@@ -715,9 +715,9 @@
                         <th i18n:translate="valid">valid</th>
                     </tr>
                     <tr>
-                        <td><input class="date" maxlength="10" type="text" name="created" value ="" tal:attributes="value request/created|created|nothing" /></td>
-                        <td><input class="date" maxlength="10" type="text" name="modified" value ="" tal:attributes="value request/modified|modified|nothing" /></td>
-                        <td><input class="date" maxlength="10" type="text" name="valid" value =""  tal:attributes="value request/valid|valid|nothing"/></td>
+                        <td><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value request/created|create|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="text" name="modified" value="" tal:attributes="value request/modified|modified|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="text" name="valid"    value="" tal:attributes="value request/valid|valid|nothing"/></td>
                     </tr>
                 </table>
                 
