@@ -20,7 +20,8 @@ Normdateien = {
     'udc' :'UDC (Universal Decimal Classification)',
     'rvk' :'RVK (Regensburger Verbundklassifikation)',
     'bk'  :'BK (Basis-Klassifikation)',
-    'pacs':'PACS (Physics and Astronomy Classification Scheme)'
+    'pacs':'PACS (Physics and Astronomy Classification Scheme)',
+    'msc' :'MSC (Mathematics Subject Classification)'
 }
 
 keys = Normdateien.keys()

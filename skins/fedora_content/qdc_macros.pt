@@ -581,8 +581,9 @@
                     <li><a href='http://www.loc.gov/catdir/cpso/lcco/lcco.html' title="Library of Congress Classification" target="_blank">LCC </a></li>
                     <li><a href='http://www.udcc.org/outline/outline.htm' title="Universal Decimal Classification" target="_blank">UDC</a></li>
                     <li><a href='http://www.bibliothek.uni-regensburg.de/rvko_neu/' title="Regensburger Verbundklassifikation" target="_blank">RVK</a></li>
-                    <li><a href='http://www.gbv.de/du/sacher/bk3_gbv.shtml' title="Basis-Klassifikation" target="_blank">BK</a></li>
+                    <li><a href='http://www.gbv.de/vgm/info/mitglieder/02Verbund/01Erschliessung/02Richtlinien/05Basisklassifikation/index' title="Basis-Klassifikation" target="_blank">BK</a></li>
                     <li><a href='http://publish.aps.org/PACS/' title="Physics and Astronomy Classification Scheme" target="_blank">PACS</a></li>
+                    <li><a href='http://www.ams.org/msc/' title="2000 Mathematics Subject Classification" target="_blank">MSC</a></li>
                 </ul>
                 </div>
                 <table class="listing">
