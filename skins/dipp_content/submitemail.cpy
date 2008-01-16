@@ -38,7 +38,7 @@ upload.invokeFactory(id=tempID, type_name='File', file=file, title=title)
 obj = getattr(upload,tempID)
 url = obj.absolute_url()
 
-obj.manage_permission('View',('Manager',),acquire=0)
+obj.manage_permission('View',('Owner','Manager',),acquire=0)
 
 
 try:
@@ -46,7 +46,7 @@ try:
 except:
     recipient = self.portal_properties.email_from_address
 
-bcc = "reimer@hbz-nrw.de"
+bcc = "dipp-tech@hbz-nrw.de"
 
 message = """
 From: %(surname)s <%(email)s>
