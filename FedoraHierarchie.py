@@ -2,15 +2,16 @@
 from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
-from Products.CMFPlone.interfaces.OrderedContainer import IOrderedContainer
+from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
-#class FedoraHierarchie(BaseFolder):
-class FedoraHierarchie(OrderedBaseFolder):
+class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     """
         Folder, that represents a digital Object of the Fedora Database.
         It can only contain FedoraDocument, FedoraImages,...
     """
-
+    
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    
     schema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
@@ -24,8 +25,11 @@ class FedoraHierarchie(OrderedBaseFolder):
     ))
 
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ('base_view', 'metadata_view')
 #    filter_content_types  = 1
-    content_icon = "fedorahierarchie_icon.gif"    
+    content_icon = 'fedorahierarchie_icon.gif'
     actions = (
         { "id": "edit",
           "name": "Edit",

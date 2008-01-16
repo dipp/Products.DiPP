@@ -1,41 +1,29 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from config import PROJECTNAME
-from zLOG import LOG, ERROR, INFO
 import Permissions
+from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
-class FedoraArticle(OrderedBaseFolder):
+class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """
         Folder, that represents a digital Object of the Fedora Database.
         It can only contain FedoraDocument, FedoraImages,...
     """
+    
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+
     schema = BaseSchema + Schema((
         StringField('PID',
                 required=1,
                 widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
-        ),
-        #LinesField('Authors',
-        #        required=1,
-        #        widget=LinesWidget(label='Authors',description='List of author ids')
-        #),
-        IntegerField('volume',
-                required=0,
-                widget=IntegerWidget(label='Volume',description='Journal volume')
-        ),
-        IntegerField('issueNumber',
-                required=0,
-                widget=IntegerWidget(label='Issue number',description='Number of the issue')
-        ),
-        IntegerField('order',
-                required=0,
-                widget=IntegerWidget(label='Order',description='Sorting of Articles')
         )
     ))
 
     allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ('base_view', 'metadata_view')
     filter_content_types= 1
-    default_view = 'folder_listing'
-    view_methods = ('folder_listing','metadata_view')
     content_icon = 'fedoraarticle_icon.gif'
     actions = (
         { "id": "edit",
@@ -77,7 +65,5 @@ class FedoraArticle(OrderedBaseFolder):
           },
           
     )
-    def _p_resolveConflict(self):
-        LOG('DiPP', INFO, 'fix a conflict')
     
 registerType(FedoraArticle,PROJECTNAME)
