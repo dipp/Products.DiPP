@@ -410,6 +410,12 @@ def install_types(self, out, site_id=SITE_NAME):
     props = site.portal_properties.site_properties
     tabs = getattr(props, 'use_folder_tabs')
     contents = getattr(props, 'use_folder_contents')
+    types = getattr(props, 'default_page_types')
+    
+    if 'FedoraDocument' not in types:
+        newtypes = list(types)
+        newtypes.append('FedoraDocument')
+        props._updateProperty('default_page_types', newtypes)
     
     if 'FedoraHierarchie' not in tabs:
         newtabs = list(tabs)
