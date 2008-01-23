@@ -5,15 +5,49 @@
 ##bind script=script
 ##bind state=state
 ##bind subpath=traverse_subpath
-##parameters=password='password', password_confirm='password_confirm', came_from_prefs=None
+##parameters=self, password='password', password_confirm='password_confirm', came_from_prefs=None
 ##title=Register a User
 ##
 from ZODB.POSException import ConflictError
+from Products.CMFCore.utils import getToolByName
 
 REQUEST = context.REQUEST
+GROUP_ID = "Autoren"
+BCC = "reimer@hbz-nrw.de"
+MESSAGE = """
+From: %(from_name)s <%(from_address)s>
+To: %(to_address)s
+Bcc: %(BCC)s
+Subject: A new author is registered at %(journal)s
 
+A new author is registered at %(journal)s <%(portal_url)s>.
+username: %(username)s
+
+Make sure he is member of the group 'Autoren'.
+"""
 portal_registration = context.portal_registration
 site_properties = context.portal_properties.site_properties
+
+def email_notification(self):
+    """send an email to the portal_administrator when someone registers"""
+    mhost = context.MailHost
+    portal_url  = getToolByName(self, 'portal_url').getPortalObject().absolute_url()
+    from_address = self.portal_properties.email_from_address
+    from_name = self.portal_properties.email_from_name
+    to_address = from_address
+    journal = self.portal_properties.title
+    text = MESSAGE % {
+        'from_name':from_name,
+        'from_address':from_address,
+        'to_address':to_address,
+        'BCC':BCC,
+        'journal':journal,
+        'portal_url':portal_url,
+        'username':username
+        }
+
+    mhost.send(text)
+
 
 username = REQUEST['username']
 
@@ -38,6 +72,8 @@ except AttributeError:
     state.setError('username', 'The login name you selected is already in use or is not valid. Please choose another.')
     return state.set(status='failure', portal_status_message='Please correct the indicated errors.')
 
+email_notification(self)
+
 if site_properties.validate_email or REQUEST.get('mail_me', 0):
     try:
         portal_registration.registeredNotify(username)
@@ -54,6 +90,10 @@ if site_properties.validate_email or REQUEST.get('mail_me', 0):
         state.set(came_from='logged_in')
         context.acl_users.userFolderDelUsers([username,])
         return state.set(status='failure', portal_status_message='Please enter a valid email address.')
+
+#group = self.portal_groups.getGroupById(GROUP_ID)
+#group.addMember(username)
+
 
 state.set(portal_status_message=REQUEST.get('portal_status_message', 'Registered.'))
 state.set(came_from=REQUEST.get('came_from','logged_in'))
