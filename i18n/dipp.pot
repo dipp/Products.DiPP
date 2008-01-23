@@ -192,3 +192,6 @@ msgstr ""
 
 msgid "close_window"
 msgstr ""
+
+msgid "Metadata View"
+msgstr ""

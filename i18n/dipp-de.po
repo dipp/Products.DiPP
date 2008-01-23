@@ -490,3 +490,6 @@ msgstr "Qualified Dublin Core Metadaten"
 msgid "close_window"
 msgstr "Fenster schließen"
 
+msgid "Metadata View"
+msgstr "Metadaten Ansicht"
+
