@@ -187,7 +187,7 @@ msgid "starting_point_content"
 msgstr "Information management of top quality for research has many facettes: Fast information delivery, intelligent choices of information, complex information resources are only but a few examples.  Above all, top quality management of scholarly information requires a forward planned, quality assured system for scholarly publication. It is basis and promotor for open access to scholarly information available worldwide and for efficient exchange in global knowledge networks."
 
 msgid "licence"
-msgstr "Licence"
+msgstr "License"
 
 msgid "licence_text"
 msgstr "Any party may pass on this Work by electronic means and make it available for download under the terms and conditions of the ${rights}. The text of the licence may be accessed and retrieved via Internet at ${url}"
