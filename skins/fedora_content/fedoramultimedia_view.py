@@ -39,6 +39,9 @@ else:
     if ext == 'png':
         RESPONSE.setHeader('Content-Type', 'image/png')
         return file
+    if ext in ['mp3','mpeg']:
+        RESPONSE.setHeader('Content-Type', 'audio/mpeg')
+        return file
     if ext == 'wmv':
         return file
     if ext == 'rtf':
