@@ -41,7 +41,16 @@ input.journalIssueNumber { width: 5em; }
 input.journalIssueDate { width: 10em; }
 .inline li{
     display: inline;
-} 
+}
+
+/* personalize form  */
+label.plain {
+    font-weight: normal;
+}
+ul.nobullets {
+    list-style: none;
+}
+
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
