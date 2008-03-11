@@ -3,5 +3,6 @@
 #
 User-agent: *
 Disallow: /fedora_tmp/
+Disallow: /upload_folder/
 Disallow: /tmp/
 Disallow: /ext/
