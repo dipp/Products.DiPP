@@ -12,7 +12,6 @@ from ZODB.POSException import ConflictError
 from Products.CMFCore.utils import getToolByName
 
 REQUEST = context.REQUEST
-GROUP_ID = "Autoren"
 BCC = "reimer@hbz-nrw.de"
 MESSAGE = """
 From: %(from_name)s <%(from_address)s>
@@ -90,9 +89,6 @@ if site_properties.validate_email or REQUEST.get('mail_me', 0):
         state.set(came_from='logged_in')
         context.acl_users.userFolderDelUsers([username,])
         return state.set(status='failure', portal_status_message='Please enter a valid email address.')
-
-#group = self.portal_groups.getGroupById(GROUP_ID)
-#group.addMember(username)
 
 
 state.set(portal_status_message=REQUEST.get('portal_status_message', 'Registered.'))
