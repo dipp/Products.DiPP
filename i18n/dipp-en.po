@@ -190,7 +190,7 @@ msgid "licence"
 msgstr "License"
 
 msgid "licence_text"
-msgstr "Any party may pass on this Work by electronic means and make it available for download under the terms and conditions of the ${rights}. The text of the licence may be accessed and retrieved via Internet at ${url}"
+msgstr "Any party may pass on this Work by electronic means and make it available for download under the terms and conditions of the ${rights}. The text of the license may be accessed and retrieved via Internet at ${url}"
 
 msgid "licence_agreement"
 msgstr "I agree with the fact that the article is placed under the license ${licence}."
