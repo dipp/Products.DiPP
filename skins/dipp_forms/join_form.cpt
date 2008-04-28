@@ -15,12 +15,19 @@
 
   <h1 i18n:translate="heading_registration_form">Registration Form</h1>
 
-  <div>
+  <p>
     During the registration  process, you will ask to enter information in a number of fields, 
     including your name, e-mail address, and other information. Any information that you enter 
     into these fields will be sent to editor board  and stored in a database. The editor board 
     does not share or sell your information with any third parties. 
-  </div>
+  </p>
+  <p>
+    Required fields are marked with a red dot.
+        <span class="fieldRequired" title="Required"
+              i18n:attributes="title title_required;"
+              i18n:translate="label_required">(required)</span>
+  </p>
+  
   <form action=""
         method="post"
         class="enableUnloadProtection"
