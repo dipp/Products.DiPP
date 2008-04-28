@@ -1,3 +1,29 @@
+/* styles for the splashpage */
+
+
+ul.authors {
+    list-style: none;
+    margin-left: 0;
+}
+.authors .author {
+    font-style: italic;
+    font-weight: bold;
+}
+.authors .affiliation {
+    font-style: italic; 
+}
+
+/* styles for the issue content page */
+
+.issue_content ul {
+    list-style: none;
+    margin-left: 0;
+} 
+.issue_content ul li {
+    display: inline;
+} 
+
+
 .articleinfo {
     text-align: center;
 }
