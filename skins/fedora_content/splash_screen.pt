@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+
+
+        <tal:block tal:define="qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
+                               titles python:qdc['title'];
+                               languages python:qdc['language'];
+                               urn python:qdc['identifierURN'];
+                               doi python:qdc['identifierDOI'];
+                               alternatives python:qdc['alternative'];
+                               authors python:qdc['creatorPerson'];
+                               corporateauthors python:qdc['creatorCorporated'];
+                               DCTermsAbstracts python:qdc['DCTermsAbstract'];
+                               subjects python:qdc['subject'];
+                               subjectClassified python:qdc['subjectClassified'];
+                               bibliographicCitation python:qdc['bibliographicCitation'][0];
+                               rights python:qdc['rights'][0];
+                               DDCs python:qdc['DDC']">
+                               
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1  tal:content="python: titles[0]['value']" class="documentFirstHeading">
+            Der Titel des Artikels
+        </h1>
+        <ul class="authors">
+           <li tal:repeat="author authors">
+            <tal:block tal:define="firstName author/firstName;
+                                   lastName author/lastName;
+                                   organization author/organization|nothing"> 
+                <span class="author" tal:content="string: $firstName $lastName">Max Muster</span><br />
+                <span class="affiliation" tal:content="organization">Max Muster</span>
+            </tal:block>
+           </li>
+        </ul>
+        
+        <h2>Abstract</h2>
+
+        <tal:block tal:repeat="abstract DCTermsAbstracts" >
+            <p tal:content="python: abstract['value']">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                magna aliquyam erat, sed diam voluptua.
+                At vero eos et accusam et justo duo dolores et ea rebum.
+            </p>
+        </tal:block>
+
+        <h2>Fulltext</h2>
+        <tal:block tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                       results python:here.portal_catalog(Type='Fedora Multimedia', review_state='published', path=path)">
+            <tal:block tal:repeat="result results">
+                <p  tal:condition="python: result.id.endswith('pdf')"
+                            tal:define="url python:result.getObject().absolute_url()">
+                        Get the <a href="" tal:attributes="href url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
+                 </p>
+            </tal:block>
+        </tal:block>
+
+        
+        <h2>Citation</h2>
+        
+        <p>
+         <span tal:replace="bibliographicCitation/journalTitle"></span>,
+         <span i18n:translate="label_journalVolume">Volume</span>
+         <span tal:replace="bibliographicCitation/journalVolume"></span>,
+         <tal:block tal:condition="bibliographicCitation/journalIssueNumber">
+             <span i18n:translate="label_journalIssueNumber">Number</span>
+             <span tal:replace="bibliographicCitation/journalIssueNumber"></span>
+         </tal:block>
+         (<span tal:replace="bibliographicCitation/journalIssueDate"></span>),
+         <span tal:replace="urn">urn:nbn:de:0009-1-1234</span>
+        </p>
+        </tal:block>
+        
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
