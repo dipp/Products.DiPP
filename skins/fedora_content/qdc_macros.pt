@@ -375,9 +375,6 @@
                         <td>
                             <table tal:define="i repeat/corporateperson/index">
                                 <tr>
-                                    <td rowspan="5">
-                                        <input type="checkbox" name="author_delete:list" tal:attributes="value repeat/corporateperson/number">
-                                    </td>
                                     <td rowspan="5" tal:content="repeat/corporateperson/number">
                                     </td>
                                     <td>Name</td>
@@ -433,9 +430,6 @@
                         <td>
                             <table tal:define="i repeat/contributorperson/index" class="listing1">
                                 <tr>
-                                    <td rowspan="6">
-                                        <input type="checkbox" name="contrib_delete:list" tal:attributes="value repeat/contributorperson/number">
-                                    </td>
                                     <td rowspan="6" tal:content="repeat/contributorperson/number">
                                     </td>
                                     <td>
@@ -700,8 +694,7 @@
                             created python:qdc['created']; 
                             modified python:qdc['modified'];
                             valid python:qdc['valid']"
-                tal:attributes="class python:test(error, 'field error', 'field')"
-            >
+                tal:attributes="class python:test(error, 'field error', 'field')" >
                 <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
@@ -716,7 +709,7 @@
                         <th i18n:translate="valid">valid</th>
                     </tr>
                     <tr>
-                        <td><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value request/created|create|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value request/created|created|nothing" /></td>
                         <td><input class="date" maxlength="10" type="text" name="modified" value="" tal:attributes="value request/modified|modified|nothing" /></td>
                         <td><input class="date" maxlength="10" type="text" name="valid"    value="" tal:attributes="value request/valid|valid|nothing"/></td>
                     </tr>
@@ -779,8 +772,7 @@
                 <div class="field"
                      tal:define="error errors/rights|nothing;
                          rights  python:qdc['rights'][0]"
-                     tal:attributes="class python:test(error, 'field error', 'field')"
-                >
+                     tal:attributes="class python:test(error, 'field error', 'field')" >
 
                     <span class="fieldRequired" title="Required"
                            i18n:attributes="title"
@@ -798,12 +790,9 @@
                         <span i18n:translate="mdppl">modulare Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
                         <input type="radio" name="rights:list" value="fDPPL" tal:attributes="checked python:'fDPPL' in path('request/rights | rights | python:[]')"/>
                         <span i18n:translate="fdppl">freie Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                    <!--
-                      <select name="rights:list">
-                        <option value='' i18n:translate="select_licence">--- wählen Sie eine Lizenz ---</option>
- <tal:block tal:content="structure python:here.rightsList('rights:list',here.test('rights',rights, 0))"/>
-                      </select>
-                      -->
+                        <input type="radio" name="rights:list" value="authorcontract" tal:attributes="checked python:'authorcontract' in path('request/rights | rights | python:[]')"/>
+                        <span i18n:translate="">No Licence is used. All rights are covered by an author contract</span><br />
+                    
                     </div>
 
                 </div>
