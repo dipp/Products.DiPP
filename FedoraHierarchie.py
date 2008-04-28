@@ -27,7 +27,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
     immediate_view = 'base_view'
     default_view = 'base_view'
-    suppl_views = ('base_view', 'metadata_view')
+    suppl_views = ('base_view', 'content_view')
 #    filter_content_types  = 1
     content_icon = 'fedorahierarchie_icon.gif'
     actions = (

@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+                               
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1  tal:content="here/title_or_id" class="documentFirstHeading">
+          Volume title
+        </h1>
+       <div class="issue_content">
+        <tal:block tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                       results python:here.portal_catalog(Type='Fedora Hierarchie', review_state='published', path=path, sort_on='id')">
+            <tal:block tal:repeat="result results">
+            
+                <h2 tal:content="result/Title"></h2>
+                <tal:block tal:define="path python:'/'.join(result.getObject().getPhysicalPath());
+                                       results python:here.portal_catalog(Type='Fedora Article', review_state='published', path=path, sort_on='id')">
+                    <tal:block tal:repeat="result results">
+                    
+                        <h3><a href="" tal:attributes="href result/getURL" tal:content="result/Title">Sectiontitle</a></h3>
+                        <ul>
+                            <tal:block tal:repeat="creator result/listCreators">
+                                <li tal:condition="creator"
+                                    tal:define="author python:mtool.getMemberInfo(creator)">
+                                  <a href="#"
+                                     tal:attributes="href string:${portal_url}/author/${creator}"
+                                     tal:content="python:author and author['fullname'] or creator"
+                                     tal:omit-tag="not:author">
+                                    Bob Dobalina
+                                  </a>
+                                </li>
+                             </tal:block>
+                        </ul>
+
+                    </tal:block>
+                </tal:block>
+                
+            </tal:block>
+        </tal:block>
+        </div>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
