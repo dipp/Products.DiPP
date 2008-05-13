@@ -55,7 +55,7 @@
 
         <h2>Fulltext</h2>
         <tal:block tal:define="path python:'/'.join(here.getPhysicalPath()); 
-                       results python:here.portal_catalog(Type='Fedora Multimedia', review_state='published', path=path)">
+                       results python:here.portal_catalog(Type='Fedora Multimedia', path=path)">
             <tal:block tal:repeat="result results">
                 <p  tal:condition="python: result.id.endswith('pdf') and not result.id.startswith('srcdoc')"
                             tal:define="url python:result.getObject().absolute_url()">
