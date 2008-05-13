@@ -20,6 +20,11 @@
     width: 100%;
     }
 
+.issue_content .paper {
+    margin-left: 2em;
+
+}
+
 /* Metadata Form */
 
 textarea.abstract { width: 100%; }
