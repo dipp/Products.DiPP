@@ -15,37 +15,37 @@
           Volume title
         </h1>
        <div class="issue_content">
-        <tal:block tal:define="issue_path python:'/'.join(context.getPhysicalPath()); 
-                       results python:here.portal_catalog(Type='Fedora Hierarchie', review_state='published', path=issue_path, sort_on='id')">
+        <tal:block tal:define="issue_path python:'/'.join(here.getPhysicalPath()); 
+                               issue_results python:here.portal_catalog(Type='Fedora Hierarchie', path = {'query':issue_path, 'level':0}, sort_on='id')">
 
-            ISSUE: <tal:block tal:replace="issue_path" />
-            <div class="section" tal:repeat="result results">
+            <div class="section" tal:repeat="result issue_results">
+                <tal:block tal:condition="python:'/'.join(result.getObject().getPhysicalPath()) != issue_path">
             
-                <h2 tal:content="result/Title">This is an issue</h2>
-                <tal:block tal:define="section_path python:'/'.join(result.getObject().getPhysicalPath());
-                                       results python:here.portal_catalog(Type='Fedora Article', review_state='published', path=section_path, sort_on='id')">
+                    <h2 tal:content="result/Title">This is an issue</h2>
+                    <tal:block tal:define="section_path python:'/'.join(result.getObject().getPhysicalPath());
+                                           section_results python:here.portal_catalog(Type='Fedora Article', path = {'query':section_path, 'level':0}, sort_on='id')">
 
-                    SECTION: <tal:block tal:replace="section_path" /> 
-                    <div class="paper" tal:repeat="result results">
-                        <h3><a href="" tal:attributes="href result/getURL" tal:content="result/Title">This is a section</a></h3>
-                        <ul>
-                            <tal:block tal:repeat="creator result/listCreators">
-                                <li tal:condition="creator"
-                                    tal:define="author python:mtool.getMemberInfo(creator)">
-                                  <a href="#"
-                                     tal:attributes="href string:${portal_url}/author/${creator}"
-                                     tal:content="python:author and author['fullname'] or creator"
-                                     tal:omit-tag="not:author">
-                                    Bob Dobalina
-                                  </a>
-                                </li>
-                             </tal:block>
-                        </ul>
-                        
-                    </div>
+                        <div class="paper" tal:repeat="result section_results">
+                            <h3><a href="" tal:attributes="href result/getURL" tal:content="result/Title">This is a section</a></h3>
+                            <ul>
+                                <tal:block tal:repeat="creator result/listCreators">
+                                    <li tal:condition="creator"
+                                        tal:define="author python:mtool.getMemberInfo(creator)">
+                                      <a href="#"
+                                         tal:attributes="href string:${portal_url}/author/${creator}"
+                                         tal:content="python:author and author['fullname'] or creator"
+                                         tal:omit-tag="not:author">
+                                        Bob Dobalina
+                                      </a>
+                                    </li>
+                                 </tal:block>
+                            </ul>
+                            
+                        </div>
 
+                    </tal:block>
                 </tal:block>
-        </div>
+            </div>
                 
             </tal:block>
         </div>
