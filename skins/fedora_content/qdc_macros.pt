@@ -544,7 +544,7 @@
                 <div class="formHelp" i18n:translate="help_subject">
                     Freie Schlagwörter, eins pro Zeile.
                 </div>
-                <textarea name="subject:lines" rows="3" cols="5"><tal:block tal:repeat="keyword subject"><tal:block tal:replace="keyword">Keyword</tal:block>
+                <textarea name="subject:lines" rows="5" cols="50"><tal:block tal:repeat="keyword subject"><tal:block tal:replace="keyword">Keyword</tal:block>
 </tal:block></textarea>
             </div>
 
