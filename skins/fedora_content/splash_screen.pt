@@ -72,11 +72,11 @@
          <span i18n:translate="label_journalVolume">Volume</span>
          <span tal:replace="bibliographicCitation/journalVolume"></span>,
          <tal:block tal:condition="bibliographicCitation/journalIssueNumber">
-             <span i18n:translate="label_journalIssueNumber">Number</span>
+             <span i18n:translate="label_journalIssueNumber">Issue</span>
              <span tal:replace="bibliographicCitation/journalIssueNumber"></span>
          </tal:block>
-         (<span tal:replace="bibliographicCitation/journalIssueDate"></span>),
-         <span tal:replace="urn">urn:nbn:de:0009-1-1234</span>
+         (<span tal:replace="bibliographicCitation/journalIssueDate"></span>)<br />
+         <abbr title="Uniform Resource Name">URN</abbr>: <span tal:replace="urn">urn:nbn:de:0009-1-1234</span>
         </p>
         </tal:block>
         
