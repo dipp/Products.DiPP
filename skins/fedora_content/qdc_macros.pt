@@ -687,8 +687,7 @@
            <fieldset i18n:domain="qdc">
            <legend i18n:translate="label_dates">Daten</legend>
 
-            <!-- Daten --> 
-           
+            <!-- Daten -->
             <div class="field"
                 tal:define="error errors/dates|nothing;
                             created python:qdc['created']; 

@@ -70,6 +70,7 @@ if storageType == "permanent":
             date = DateTime(valid)
     except:
         state.setError('dates', 'Falsches Format', new_status='failure')
+
         
     if str(bc_journalTitle) == '':
         state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
@@ -79,7 +80,12 @@ if storageType == "permanent":
         state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
     if str(bc_journalIssueDate) == '':
         state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-
+    else:
+        try:
+            date = DateTime(bc_journalIssueDate)
+        except:
+            state.setError('bibliographicCitation', 'Falsches Datumsformat.', new_status='failure')
+        
     #if rights[0] == '':
     if not rights:
         state.setError('rights', 'Bitte wählen Sie eine Lizenz.', new_status='failure')
