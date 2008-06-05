@@ -43,6 +43,9 @@ obj.manage_permission('View',('Owner','Manager',),acquire=0)
 
 try:
     recipient = sections[section]['mail']
+    if recipient == "":
+        recipient = self.portal_properties.email_from_address
+        
 except:
     recipient = self.portal_properties.email_from_address
 

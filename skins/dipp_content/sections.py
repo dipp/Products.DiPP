@@ -13,23 +13,13 @@ request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
 sections = {
-    'accounting': {'name':'Accounting',
-                   'contact':'Rainer Niemann (Graz)',
-                   'mail':'niemann@business-research.org'},
-    'finance':    {'name':'Finance',
-                   'contact':'Christian Schlag (Frankfurt am Main)',
-                   'mail':'schlag@business-research.org'},
-    'managemant': {'name':'Management',
-                   'contact':'Peter Walgenbach (Erfurt)',
-                   'mail':'walgenbach@business-research.org'},
-    'marketing':  {'name':'Marketing',
-                   'contact':'Adamantios Diamantopoulos (Vienna)',
-                   'mail':'diamantopoulos@business-research.org'},
-    'operations': {'name':'Operations and Information Systems',
-                   'contact':'Karl Inderfurth (Magdeburg)',
-                   'mail':'inderfurth@business-research.org'},
+    'sec1': {'name':'Section 1',
+             'contact':'Max Muster',
+             'mail':''},
+    'sec2': {'name':'Section 2',
+             'contact':'Erika Mustermann',
+             'mail':''}
 }
 
-sections = {}
 
 return sections
