@@ -505,6 +505,7 @@ def install_memberproperties(self,out):
         ('phone_required','boolean',False),
         ('location_visible','boolean',True),
         ('location_required','boolean',False),
+        ('areas_of_expertise','lines','')
     )
 
 
