@@ -16,7 +16,8 @@
         </h1>
 
 
-        <tal:block tal:define="qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
+        <tal:block tal:define="citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
+                               qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
                                titles python:qdc['title'];
                                languages python:qdc['language'];
                                urn python:qdc['identifierURN'];
@@ -142,13 +143,13 @@
                                tal:content="doi">urn:nbn:de:0009-1-1234</a></td>
                 </tr>
             </table>
-        <!--
-        <div tal:condition="here/portal_properties/dipp_properties/citation_format">
+       
+        <div tal:condition="citation_format">
             <h2>Recommended Citation</h2>
-            <span tal:content="structure python: here.make_citation(here, authors, titles)"></span>
+            <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
         </div>
         
-        -->
+        
         <h2>BibTeX</h2>
         <pre tal:content="python: here.bibtex(qdc)">
         @Artikel{

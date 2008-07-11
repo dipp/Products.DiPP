@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self,authors, titles
+##parameters=self, qdc, citation_format
 ##title=
 ##
 
@@ -13,13 +13,34 @@ from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
-ct = self.portal_properties.dipp_properties.citation_format
-
+authors = qdc['creatorPerson']
+titles = qdc['title']
+title = titles[0]['value']
+bibliographicCitation = qdc['bibliographicCitation'][0]
+journal = bibliographicCitation['journalTitle']
+volume = bibliographicCitation['journalVolume']
+issue = bibliographicCitation['journalIssueNumber']
+date = bibliographicCitation['journalIssueDate']
+year = date.strf
+urn = qdc['identifierURN'];
+id = self.PID.split(':')[-1]
 authors_list = ""
 for author in authors:
     authors_list += author['firstName'] + " " + author['lastName'] + ", "
 
-title = titles[0]['value']
 
-cite = ct % {'authors':authors_list, 'title':title}
+citation_format = """
+%(authors)s (%(year)s) . %(title)s, %(journal)s, Vol. %(volume)s, bmm%(id)s, (%(urn)s). 
+"""
+cite = citation_format % {
+    'authors':authors_list, 
+    'title':title,
+    'journal':journal,
+    'volume':volume,
+    'issue':issue,
+    'year':year,
+    'date':date,
+    'id':id,
+    'urn':urn
+    }
 return cite
