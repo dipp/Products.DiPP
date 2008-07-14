@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2006-04-04 21:18+0100\n"
+"PO-Revision-Date: 2008-07-14 16:12+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: en\n"
@@ -171,6 +171,9 @@ msgstr "request imprimatur"
 msgid "absegnen"
 msgstr "approval"
 
+msgid "initialize"
+msgstr "initialize"
+
 msgid "check_for_new_articles"
 msgstr "Reload Worklist"
 
@@ -228,9 +231,6 @@ msgstr "(Password protected area on ${url}.)"
 msgid "contact"
 msgstr "Contact"
 
-msgid "contact_description"
-msgstr ""
-
 msgid "label_name"
 msgstr "Name"
 
@@ -276,9 +276,6 @@ msgstr "refreshing"
 msgid "not_necessary"
 msgstr "not necessary"
 
-msgid "author"
-msgstr "Author"
-
 msgid "guest_publisher"
 msgstr "Guest Publisher"
 
@@ -320,7 +317,7 @@ msgstr "Back to publisher"
 
 msgid "check_consider_notes"
 msgstr "no, please consider the notes above."
-                     
+
 msgid "forward_to_author"
 msgstr "yes, forward to the release or to the author"
 
@@ -456,9 +453,6 @@ msgstr "article statistics"
 msgid "existing_comments"
 msgstr "Existing Annotations"
 
-msgid "your_comment"
-msgstr "Your Annotation"
-
 msgid "agent_assignment"
 msgstr "Assignment to an agent"
 
@@ -491,3 +485,10 @@ msgstr "Close window"
 
 msgid "Metadata View"
 msgstr "Metadata View"
+
+msgid "label_givenname"
+msgstr "First name"
+
+msgid "label_surname"
+msgstr "Last name"
+

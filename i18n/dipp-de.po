@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2006-04-04 21:18+0100\n"
+"PO-Revision-Date: 2008-07-14 15:54+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr "Temporäre Artikel"
 
 msgid "help_temporaryarticles_1"
 msgstr "Hier aufgelistete Artikel wurden nur zu Testzwecken konvertiert und durchlaufen nicht den Workflow."
-       
+
 msgid "help_temporaryarticles_2"
 msgstr "Einmal täglich werden Artikel, die älter als 24h sind, gelöscht."
 
@@ -153,23 +153,26 @@ msgstr "Status"
 msgid "actions"
 msgstr "Aktionen"
 
-msgid "initialize"
-msgstr "initialisieren"
-
-msgid "freischalten"
-msgstr "freischalten"
+msgid "bearbeiten"
+msgstr "bearbeiten"
 
 msgid "begutachten"
 msgstr "formal überprüfen"
 
-msgid "bearbeiten"
-msgstr "bearbeiten"
+msgid "freischalten"
+msgstr "freischalten"
 
 msgid "imprimatur"
 msgstr "Autoren Zustimmung"
 
 msgid "anschreiben"
 msgstr "Zustimmung einholen"
+
+msgid "absegnen"
+msgstr "aabsegnen"
+
+msgid "initialize"
+msgstr "initialisieren"
 
 msgid "check_for_new_articles"
 msgstr "Liste aktualisieren"
@@ -228,9 +231,6 @@ msgstr "(Password-geschützter Bereich auf ${url}.)"
 msgid "contact"
 msgstr "Kontakt"
 
-msgid "contact_description"
-msgstr ""
-
 msgid "label_name"
 msgstr "Name"
 
@@ -272,7 +272,6 @@ msgstr "legen ihn gegebenenfalls als neuen Benutzer an"
 
 msgid "refresh"
 msgstr "neu laden"
-
 
 msgid "not_necessary"
 msgstr "nicht erforderlich"
