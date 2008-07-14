@@ -10,6 +10,8 @@
 
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
+from Products.PythonScripts.PythonScript import DateTime
+
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
@@ -20,8 +22,8 @@ bibliographicCitation = qdc['bibliographicCitation'][0]
 journal = bibliographicCitation['journalTitle']
 volume = bibliographicCitation['journalVolume']
 issue = bibliographicCitation['journalIssueNumber']
-date = bibliographicCitation['journalIssueDate']
-year = date
+date = DateTime(bibliographicCitation['journalIssueDate'])
+year = date.strftime('%Y')
 urn = qdc['identifierURN'];
 id = self.PID.split(':')[-1]
 authors_list = ""

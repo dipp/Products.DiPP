@@ -12,6 +12,7 @@
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 from DateTime import DateTime
+from Products.PythonScripts.PythonScript import DateTime
 
 
 authors = []
@@ -23,8 +24,9 @@ author = ", ".join(authors)
 title = qdc["title"][0]["value"]
 journal = qdc['bibliographicCitation'][0]["journalTitle"]
 number = qdc['bibliographicCitation'][0]["journalIssueNumber"]
-year = qdc['bibliographicCitation'][0]["journalVolume"]
+volume = qdc['bibliographicCitation'][0]["journalVolume"]
 date = DateTime(qdc['bibliographicCitation'][0]["journalIssueDate"])
+year = date.strftime('%Y')
 id = ":".join((qdc['creatorPerson'][0]["lastName"],year))
 
 bibitem = """
