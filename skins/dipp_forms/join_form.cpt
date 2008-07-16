@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="dipp">
 
 <head>
     <metal:block fill-slot="top_slot"
@@ -47,33 +47,6 @@
              tal:attributes="value here/ZopeTime" />
       <input type="hidden" name="came_from_prefs" value=""
              tal:attributes="value request/came_from_prefs|nothing" />
-      <!--
-      <div class="field"
-           tal:define="error errors/fullname| nothing;
-                       fullname request/fullname | nothing;"
-           tal:attributes="class python:test(error, 'field error', 'field')">
-
-        <label for="fullname"
-               i18n:translate="label_full_name">Full Name</label>
-
-        <div class="formHelp" i18n:translate="help_full_name_creation">
-          Enter full name, eg. John Smith.
-        </div>
-
-        <div tal:content="error">Validation error output</div>
-
-        <input type="text"
-               name="fullname"
-               id="fullname"
-               size="30"
-               value="fullname"
-               tabindex=""
-               tal:attributes="value fullname;
-                               tabindex tabindex/next;"
-               />
-
-      </div>
-      -->
 
       <div class="field"
            tal:define="error errors/academictitle| nothing;
