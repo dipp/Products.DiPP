@@ -32,6 +32,20 @@
                                rights python:qdc['rights'][0];
                                DDCs python:qdc['DDC']">
 
+            <div tal:condition="citation_format">
+                <h2>Recommended Citation</h2>
+                <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
+            </div>
+            
+            
+            <h2>BibTeX</h2>
+            <pre tal:content="python: here.bibtex(qdc)">
+            @Artikel{
+            }
+            </pre>
+
+            <h2>Full Metadata</h2>
+        
             <table class="metadata" i18n:domain="qdc">
                 <tr>
                     <th i18n:translate="label_bibliographicCitation">Bibliographisches Zitat</th>
@@ -144,17 +158,6 @@
                 </tr>
             </table>
        
-        <div tal:condition="citation_format">
-            <h2>Recommended Citation</h2>
-            <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
-        </div>
-        
-        
-        <h2>BibTeX</h2>
-        <pre tal:content="python: here.bibtex(qdc)">
-        @Artikel{
-        }
-        </pre>
         </tal:block>
         <div metal:use-macro="here/document_byline/macros/byline">
           Get the byline - contains details about author and modification date.
