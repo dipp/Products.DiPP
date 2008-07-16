@@ -27,13 +27,24 @@ year = date.strftime('%Y')
 urn = qdc['identifierURN'];
 id = self.PID.split(':')[-1]
 authors_list = ""
+
 for author in authors:
-    authors_list += author['firstName'] + " " + author['lastName'] + ", "
+    author_number = authors.index(author) + 1
+    firstnames = author['firstName'].split()
+    firstnames_initials = ""
+    for firstname in firstnames:
+        firstnames_initials += firstname[0]
+    lastname = author['lastName']
+    if author_number == len(authors):
+        glue = ""
+    else:
+        glue = ", "
+    authors_list += "%s %s%s" % (lastname, firstnames_initials, glue)
 
 
-citation_format = """
-%(authors)s (%(year)s) . %(title)s, %(journal)s, Vol. %(volume)s, bmm%(id)s, (%(urn)s). 
-"""
+#citation_format = """
+#%(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume)s, bmm%(id)s. (%(urn)s) 
+#"""
 cite = citation_format % {
     'authors':authors_list, 
     'title':title,
