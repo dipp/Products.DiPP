@@ -78,8 +78,12 @@
          (<span tal:replace="bibliographicCitation/journalIssueDate"></span>)<br />
          <abbr title="Uniform Resource Name">URN</abbr>: <span tal:replace="urn">urn:nbn:de:0009-1-1234</span>
         </p>
-        </tal:block>
         
+        <h2>Number of Citations</h2>
+        <p>
+            Visit <a href="" tal:attributes="href python:here.makeGoogleScholarLink(here, qdc)">Google Scholar</a> to find out, how often this paper is cited.
+        </p>
+        </tal:block>
     </tal:main-macro>
 </metal:main>
 
