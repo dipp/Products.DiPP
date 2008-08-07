@@ -11,18 +11,24 @@
 from ZODB.POSException import ConflictError
 from Products.CMFCore.utils import getToolByName
 
+props = self.portal_properties.dipp_properties
+
+if hasattr(props, 'big_brother'):
+    BCC = self.portal_properties.dipp_properties.big_brother
+else:
+    BCC = ""
+
 REQUEST = context.REQUEST
-BCC = "reimer@hbz-nrw.de"
-MESSAGE = """
-From: %(from_name)s <%(from_address)s>
+
+MESSAGE = """From: %(from_name)s <%(from_address)s>
 To: %(to_address)s
 Bcc: %(BCC)s
-Subject: A new author is registered at %(journal)s
+Content-Type: text/plain; charset="UTF-8"
+X-DiPP-Journal: %(journal)s
+Subject: New Registration at %(journal)s
 
-A new author is registered at %(journal)s <%(portal_url)s>.
+New Registration at %(journal)s <%(portal_url)s>.
 username: %(username)s
-
-Make sure he is member of the group 'Autoren'.
 """
 portal_registration = context.portal_registration
 site_properties = context.portal_properties.site_properties
@@ -34,7 +40,7 @@ def email_notification(self):
     from_address = self.portal_properties.email_from_address
     from_name = self.portal_properties.email_from_name
     to_address = from_address
-    journal = self.portal_properties.title
+    journal = site_properties.title
     text = MESSAGE % {
         'from_name':from_name,
         'from_address':from_address,
