@@ -57,10 +57,18 @@
         <tal:block tal:define="path python:'/'.join(here.getPhysicalPath()); 
                        results python:here.portal_catalog(Type='Fedora Multimedia', path=path)">
             <tal:block tal:repeat="result results">
-                <p  tal:condition="python: result.id.endswith('pdf') and not result.id.startswith('srcdoc')"
-                            tal:define="url python:result.getObject().absolute_url()">
-                        Get the <a href="" tal:attributes="href url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
-                 </p>
+                <p tal:condition="python: result.id.endswith('pdf') and not result.id.startswith('srcdoc')"
+                   tal:define="pixel_domain here/pixel_domain|nothing;
+                               pixel_id here/pixel_id|nothing;
+                               url python:result.getObject().absolute_url()">
+                        <tal:block tal:condition="pixel_id"
+                            tal:define="vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url">
+                            Get the <a href="" tal:attributes="href vgwort_url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
+                        </tal:block>
+                        <tal:block tal:condition="not: pixel_id">
+                            Get the <a href="" tal:attributes="href url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
+                        </tal:block>
+                </p>
             </tal:block>
         </tal:block>
 

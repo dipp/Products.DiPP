@@ -16,6 +16,14 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         StringField('PID',
                 required=1,
                 widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
+        ),
+        StringField('pixel_domain',
+                required=1,
+                widget=StringWidget(label='VG Kürzel',description='Domain auf dem Zählserver: vgXX.met.vgwort.de, z.B. vg06',size='4')
+        ),
+        StringField('pixel_id',
+                required=1,
+                widget=StringWidget(label='VGWort Public ID',description='Der öffentliche Identifikationscode des Zählpixels',size='40')
         )
     ))
 
@@ -26,12 +34,12 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     filter_content_types= 1
     content_icon = 'fedoraarticle_icon.gif'
     actions = (
-        { "id": "edit",
-          "name": "Edit",
-          "action": "string:${folder_url}/fedoraarticle_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
+    #    { "id": "edit",
+    #      "name": "Edit",
+    #      "action": "string:${folder_url}/fedoraarticle_edit_form",
+    #      "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
+    #      "category":"folder",
+    #      },
           
         { "id": "view",
           "name": "View",
