@@ -386,16 +386,16 @@
                     <tr tal:repeat="person authors">
                         <tal:block tal:define="i repeat/person/index">
                             <td tal:content="repeat/person/number">#</td>
-                            <td><input type='text' name="corp_firstName:list" tal:attributes="value python: here.test('corp_firstName',person['firstName'],i)" /></td>
-                            <td><input type='text' name="corp_lastName:list"  tal:attributes="value python: here.test('corp_lastName',person['lastName'],i)" /></td>
-                            <td><input type='text' name="corp_emailAddress:list"  tal:attributes="value python: here.test('corp_emailAddress',person['emailAddress'],i)" /></td>
-                            <td><input type='text' name="corp_organization:list"  tal:attributes="value python: here.test('corp_organization',person['organization'],i)" /></td>
-                            <td><input type='text' name="corp_postalAddress:list"  tal:attributes="value python: here.test('corp_postalAddress',person['postalAddress'],i)" /></td>
-                            <td><input type='text' name="corp_GKDIdentNumber:list" tal:attributes="value python: here.test('corp_GKDIdentNumber',person['GKDIdentNumber'],i)" /></td>
-                            <td><input type='text' name="corp_PNDIdentNumber:list" tal:attributes="value python: here.test('corp_PNDIdentNumber',person['PNDIdentNumber'],i)" /></td>
-                            <td><input type='text' name="corp_academicTitle:list"  tal:attributes="value python: here.test('corp_academicTitle',person['academicTitle'],i)" /></td>
-                            <td><input type='text' name="corp_institutionelAuthor:list"  tal:attributes="value python: here.test('corp_institutionelAuthor',person['institutionelAuthor'],i)" /></td>
-                            <td><input type='text' name="corp_role:list"  tal:attributes="value python: here.test('corp_role',person['role'],i)" /></td>
+                            <td><input type='text' name="contrib_firstName:list" tal:attributes="value python: here.test('contrib_firstName',person['firstName'],i)" /></td>
+                            <td><input type='text' name="contrib_lastName:list"  tal:attributes="value python: here.test('contrib_lastName',person['lastName'],i)" /></td>
+                            <td><input type='text' name="contrib_emailAddress:list"  tal:attributes="value python: here.test('contrib_emailAddress',person['emailAddress'],i)" /></td>
+                            <td><input type='text' name="contrib_organization:list"  tal:attributes="value python: here.test('contrib_organization',person['organization'],i)" /></td>
+                            <td><input type='text' name="contrib_postalAddress:list"  tal:attributes="value python: here.test('contrib_postalAddress',person['postalAddress'],i)" /></td>
+                            <td><input type='text' name="contrib_GKDIdentNumber:list" tal:attributes="value python: here.test('contrib_GKDIdentNumber',person['GKDIdentNumber'],i)" /></td>
+                            <td><input type='text' name="contrib_PNDIdentNumber:list" tal:attributes="value python: here.test('contrib_PNDIdentNumber',person['PNDIdentNumber'],i)" /></td>
+                            <td><input type='text' name="contrib_academicTitle:list"  tal:attributes="value python: here.test('contrib_academicTitle',person['academicTitle'],i)" /></td>
+                            <td><input type='text' name="contrib_institutionelAuthor:list"  tal:attributes="value python: here.test('contrib_institutionelAuthor',person['institutionelAuthor'],i)" /></td>
+                            <td><input type='text' name="contrib_role:list"  tal:attributes="value python: here.test('contrib_role',person['role'],i)" /></td>
                         </tal:block>
                     </tr>
                     <tr tal:condition="python: newAuthorNumber > authorNumber"
@@ -405,16 +405,16 @@
                                                no     python:number + authorNumber;
                                                i      python:index + authorNumber">
                             <td tal:content="no">#</td>
-                            <td><input type='text' name="corp_firstName:list" tal:attributes="value python: here.test('corp_firstName',None,i)" value="" /></td>
-                            <td><input type='text' name="corp_lastName:list" tal:attributes="value python: here.test('corp_lastName',None,i)" value=""  /></td>
-                            <td><input type='text' name="corp_emailAddress:list" tal:attributes="value python: here.test('corp_emailAddress',None,i)" value="" /></td>
-                            <td><input type='text' name="corp_organization:list" tal:attributes="value python: here.test('corp_organization',None,i)" value="" /></td>
-                            <td><input type='text' name="corp_postalAddress:list" tal:attributes="value python: here.test('corp_postalAddress',None,i)" value=""/></td>
-                            <td><input type='text' name="corp_GKDIdentNumber:list" tal:attributes="value python: here.test('corp_GKDIdentNumber',None,i)" /></td>
-                            <td><input type='text' name="corp_PNDIdentNumber:list" tal:attributes="value python: here.test('corp_PNDIdentNumber',None,i)" /></td>
-                            <td><input type='text' name="corp_academicTitle:list"  tal:attributes="value python: here.test('corp_academicTitle',None,i)" /></td>
-                            <td><input type='text' name="corp_institutionelAuthor:list"  tal:attributes="value python: here.test('corp_institutionelAuthor',None,i)" /></td>
-                            <td><input type='text' name="corp_role:list"  tal:attributes="value python: here.test('corp_role',None,i)" /></td>
+                            <td><input type='text' name="contrib_firstName:list" tal:attributes="value python: here.test('contrib_firstName',None,i)" value="" /></td>
+                            <td><input type='text' name="contrib_lastName:list" tal:attributes="value python: here.test('contrib_lastName',None,i)" value=""  /></td>
+                            <td><input type='text' name="contrib_emailAddress:list" tal:attributes="value python: here.test('contrib_emailAddress',None,i)" value="" /></td>
+                            <td><input type='text' name="contrib_organization:list" tal:attributes="value python: here.test('contrib_organization',None,i)" value="" /></td>
+                            <td><input type='text' name="contrib_postalAddress:list" tal:attributes="value python: here.test('contrib_postalAddress',None,i)" value=""/></td>
+                            <td><input type='text' name="contrib_GKDIdentNumber:list" tal:attributes="value python: here.test('contrib_GKDIdentNumber',None,i)" /></td>
+                            <td><input type='text' name="contrib_PNDIdentNumber:list" tal:attributes="value python: here.test('contrib_PNDIdentNumber',None,i)" /></td>
+                            <td><input type='text' name="contrib_academicTitle:list"  tal:attributes="value python: here.test('contrib_academicTitle',None,i)" /></td>
+                            <td><input type='text' name="contrib_institutionelAuthor:list"  tal:attributes="value python: here.test('contrib_institutionelAuthor',None,i)" /></td>
+                            <td><input type='text' name="contrib_role:list"  tal:attributes="value python: here.test('contrib_role',None,i)" /></td>
                         </tal:block>
                     </tr>
                 </table>

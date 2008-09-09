@@ -16,7 +16,6 @@ fedora = getToolByName(context, 'fedora')
 
 params = REQUEST.form
 fedora.setQualifiedDCMetadata(params)
-#context.fedoraSetQDC(params)
 
 portal_status_message = "Änderungen wurden gespeichert"
 
