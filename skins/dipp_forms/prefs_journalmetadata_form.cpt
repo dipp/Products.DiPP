@@ -46,9 +46,9 @@
 
         <a href=""
            class="link-parent"
-           tal:attributes="href string: $portal_url/dipp_control_panel"
-           i18n:translate="label_up_to_dipp_control_panel">
-            Up to dipp Setup
+           tal:attributes="href string: $portal_url/plone_control_panel"
+           i18n:translate="label_up_to_plone_setup">
+          Up to Site Setup
         </a>
 
         <form tal:attributes="action string:${here/absolute_url}/${template/id};"
