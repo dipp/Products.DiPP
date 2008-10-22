@@ -15,15 +15,14 @@ RESPONSE = request.RESPONSE
 portal_url = getToolByName(context, 'portal_url')
 portal = portal_url.getPortalObject()
 
-dp = portal.portal_properties.dipp_properties
+#dp = portal.portal_properties.dipp_properties
+dp = portal
 dp.manage_changeProperties({'deadline_change':request.form['deadline_change'],
                                 'actions_to_list':request.form['actions_to_list'],
                                 'deadline_next_change':request.form['deadline_next_change']})
 portal_status_message = "Änderungen wurden gespeichert"
 
-#print portal_url
-#print request
-#return printed
+context.plone_log(request.form['actions_to_list'])
 
 if request:
      request.RESPONSE.redirect(request.HTTP_REFERER + "?portal_status_message=" + portal_status_message)
