@@ -84,33 +84,23 @@ $Date: 2006/05/30 11:44:03 $
            width="100%" class="listing" tal:condition="workitems">
     <thead>
         <tr valign="top" align="left" bgcolor="#cccccc" class="headings" >
-<!--            <th class="" style="white-space: nowrap;">Typ</th> -->
             <th class="" style="white-space: nowrap;" i18n:translate="deadline">Frist</th>
+            <th class="" style="white-space: nowrap;" i18n:translate="uploaded">Hochgeladen</th>
             <th class="" style="white-space: nowrap;" i18n:translate="actor">Bearbeiter</th>
             <th class="" style="white-space: nowrap;" i18n:translate="author">Autor</th>
             <th class="" style="white-space: nowrap;" i18n:translate="title">Titel des Artikels</th>
             <th class="" style="white-space: nowrap;" i18n:translate="issue">Ausgabe</th>
             <th class="" style="white-space: nowrap;" i18n:translate="next_step">nächster Schritt</th>
-<!--            <th class="" style="white-space: nowrap;" i18n:translate="status">Status</th> -->
             <th class="" style="white-space: nowrap;" i18n:translate="actions">Actions</th>
           </tr>
     </thead>
     <tbody>
     <tal:block tal:repeat="workitem workitems">
         <tal:block define="wi workitem/getObject;
+                           time python: wi.event_log[0]['time'];
                            action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
                            condition="action">
-
         <tr tal:attributes="class python:test(path('repeat/workitem/even'), 'even', 'odd')">
-<!--            <td>
-                <img tal:condition="python: wi.type == 'DiPP:container'"
-                     tal:attributes="src string:fedorahierarchie_icon.gif"
-                     title="Hierarchie-Element" />
-                <img tal:condition="python: wi.type == 'DiPP:article'"
-                     tal:attributes="src string:fedoraarticle_icon.gif"
-                     title="Artikel"/>
-            </td>
--->
             <td>
                 <span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
                     <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
@@ -118,13 +108,12 @@ $Date: 2006/05/30 11:44:03 $
                                   tal:attributes="class delay/class"
                                   tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
             </td>
+			<td tal:content="python: time.strftime(site_properties.localLongTimeFormat)">2008-01-01</td>
             <td tal:content="string: ${wi/actor}">Actor</td>
-            <!--<td tal:content="string: ${wi/autor}: ${wi/titel}">Autor:Titel</td>-->
             <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
             <td><a href='' tal:attributes="href string:$portal_url/history?instance_id=${wi/instance_id}" tal:content="string: ${wi/titel}">Der Herr der Ringe</a></td>
             <td tal:content="string: ${wi/hierarchie}">2001/1</td>
             <td><abbr tal:content="wi/activity_id" tal:attributes="title python: wi.title or '%s-%s'%(wi.instance_id,wi.id)" i18n:translate=""></abbr></td>
-<!--            <td tal:content="wi/status" i18n:translate="">Status</td> -->
             <td>
                 <ul class="actions">
                     <tal:block repeat="action_name python:action.keys()">
@@ -136,23 +125,7 @@ $Date: 2006/05/30 11:44:03 $
                     </tal:block>
                 </ul>
 
-<!--                <ul class="actions">
-                    <tal:block repeat="action_name python:action.keys()" tal:condition="python: not user.has_role('Manager')">
-                        <li tal:condition="python: action_name in portal_properties.actions_to_list">
-                            <a href="" tal:attributes="href python:action[action_name]"
-                                       tal:content="action_name"
-                                       i18n:translate="">action</a>
-                        </li>
-                    </tal:block>
-                    <tal:block repeat="action_name python:action.keys()" tal:condition="python: user.has_role('Manager')">
-                        <li>
-                            <a href="" tal:attributes="href python:action[action_name]"
-                                       tal:content="action_name"
-                                       i18n:translate="">action</a>
-                        </li>
-                    </tal:block>
-                </ul>
--->                            </td>
+            </td>
         </tr>
         </tal:block>
 
