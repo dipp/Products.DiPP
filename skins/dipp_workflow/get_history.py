@@ -10,12 +10,9 @@
 ## Warnings:
 ##  Prints, but never reads 'printed' variable.
 ##
-import MySQLdb
 request = container.REQUEST
 RESPONSE =  request.RESPONSE
 oftool = container.portal_openflow
-
-#print context.ext.get_comments(instance_id=instance_id,workitem_id='7')
 
 instance = getattr(oftool,instance_id)
 history = {}
@@ -43,13 +40,11 @@ history['instance'] = {'process_id':instance.process_id,
 						'deadline':instance.deadline}
 
 j=0
-print len(history['instance'])," vars"
+
 for key in history['instance'].keys():
 	print key,": ", history['instance'][key]
 	j+=1
 
-
-print "===========================================\n"
 
 history['workitems'] =[]
 i=0
