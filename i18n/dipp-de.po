@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2008-07-14 16:58+0100\n"
+"PO-Revision-Date: 2008-10-23 06:59+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -131,6 +131,9 @@ msgstr "Erzeugung einer URL aus bibliographischen Metadaten, mit der digitale Bi
 
 msgid "deadline"
 msgstr "Frist"
+
+msgid "uploaded"
+msgstr "Hochgeladen"
 
 msgid "actor"
 msgstr "Bearbeiter"
@@ -280,7 +283,7 @@ msgid "guest_publisher"
 msgstr "Gastherausgeber"
 
 msgid "help_guest_publisher"
-msgstr ""
+msgstr "Der Gastherausgeber für diese Ausgabe. Er muß der Veröffentlichung ebenfalls zustimmen."
 
 msgid "article_initialize"
 msgstr "Artikel initialisieren"
