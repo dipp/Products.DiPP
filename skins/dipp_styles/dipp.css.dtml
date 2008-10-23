@@ -15,7 +15,10 @@
 
 /* padding - thanks to the w3c box model :P */
 
-
+#testsystem {
+    text-align: center;
+    margin-top: 0;
+}
 #edit_xml_body {
     width: 100%;
     }
