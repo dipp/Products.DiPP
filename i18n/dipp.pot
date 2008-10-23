@@ -14,6 +14,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: dipp\n"
 
+msgid "message_testserver"
+msgstr ""
+
 msgid "heading_dipp_control_panel"
 msgstr ""
 
