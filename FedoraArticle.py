@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from config import PROJECTNAME
+from AccessControl import ClassSecurityInfo
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
@@ -10,6 +11,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         It can only contain FedoraDocument, FedoraImages,...
     """
     
+    security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
 
     schema = BaseSchema + Schema((
@@ -73,5 +75,23 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           },
           
     )
+    
+    security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetaData')
+    def syncMetadata(self,params):
+        """keep Metadata of Plone and Fedora synchron"""
+
+        firstNames = params['author_firstName'] 
+        lastNames = params['author_lastName']
+        contributors = []
+        for i in range(len(firstNames)):
+            contributors.append(lastNames[i] + ", " + firstNames[i])
+        
+        self.setContributors(contributors)
+        self.setSubject(params['subject'])
+        self.setRights(params['rights'][0])
+        self.reindexObject()
+         
+
+        
     
 registerType(FedoraArticle,PROJECTNAME)
