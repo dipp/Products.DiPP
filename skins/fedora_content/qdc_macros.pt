@@ -530,12 +530,25 @@
            <fieldset i18n:domain="qdc">
            <legend i18n:translate="label_keywords_subjects">subject</legend>
             <!-- KEYWORDS -->
+
+            
             <!-- freie Schlagwörter -->
             <div class="field"
                  tal:define="error errors/subject|nothing;
-                             subject request/subject|qdc/subject|nothing;"
+                             subject request/subject|qdc/subject|nothing;
+                             new_subjects request/new_subjects|nothing"
                  tal:attributes="class python:test(error, 'field error', 'field')"
             >
+                <select multiple="multiple"
+                        size="10" 
+                        name="subject"
+                        tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
+                    <tal:block tal:repeat="keyword allowedKeywords">
+                        <option tal:content="keyword"
+                                tal:attributes="selected python: keyword in subject;
+                                                value keyword">sdaf</option>
+                    </tal:block>
+                </select>
 <!--                <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
@@ -544,7 +557,7 @@
                 <div class="formHelp" i18n:translate="help_subject">
                     Freie Schlagwörter, eins pro Zeile.
                 </div>
-                <textarea name="subject:lines" rows="5" cols="50"><tal:block tal:repeat="keyword subject"><tal:block tal:replace="keyword">Keyword</tal:block>
+                <textarea name="new_subjects:lines" rows="5" cols="50"><tal:block tal:repeat="keyword new_subjects"><tal:block tal:replace="keyword">Keyword</tal:block>
 </tal:block></textarea>
             </div>
 
