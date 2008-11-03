@@ -33,10 +33,14 @@ try:
     PID = aPid
     DsID = aDsid
     objType = aObject_type
-    #state = 'hide'
+    
+    qdc = fedora.getQualifiedDCMetadata(document.PID)
+    #document.setSubject(qdc['subject'])
+    #document.reindexObject()
+    document.syncMetadata(qdc)
+    context.plone_log(qdc)
     
     if aLabel == 'index_html':
-        qdc = fedora.getQualifiedDCMetadata(document.PID)
         title = qdc['title'][0]['value']
     elif aLabel == 'toc_html':
         title = 'Table of Contents' 
@@ -51,7 +55,6 @@ try:
     else:
         contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID)
     contentDocument = getattr(document, id)
-    #contentDocument.portal_workflow.doActionFor(contentDocument, state, comment='')
 except:
     raise Exception, "could not create Content Object"
 
