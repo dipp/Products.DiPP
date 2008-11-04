@@ -20,12 +20,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
         ),
         StringField('pixel_domain',
-                required=1,
+                required=0,
                 widget=StringWidget(label='VG Kürzel',description='Domain auf dem Zählserver: vgXX.met.vgwort.de, z.B. vg06',size='4')
         ),
         StringField('pixel_id',
-                required=1,
+                required=0,
                 widget=StringWidget(label='VGWort Public ID',description='Der öffentliche Identifikationscode des Zählpixels',size='40')
+        ),
+        IntegerField('position',
+                widget=IntegerWidget(label="The Postion of the article in a special issue."),
+                storage=AttributeStorage(),
+                searchable=1,
+                index="FieldIndex"        
         )
     ))
 
@@ -76,7 +82,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           
     )
     
-    security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetaData')
+    security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
     def syncMetadata(self,params):
         """keep Metadata of Plone and Fedora synchron"""
 
