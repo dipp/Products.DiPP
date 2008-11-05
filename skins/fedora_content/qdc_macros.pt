@@ -541,7 +541,7 @@
             >
                 <select multiple="multiple"
                         size="10" 
-                        name="subject"
+                        name="subject:list"
                         tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
                     <tal:block tal:repeat="keyword allowedKeywords">
                         <option tal:content="keyword"
