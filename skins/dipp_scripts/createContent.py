@@ -35,13 +35,11 @@ try:
     objType = aObject_type
     
     qdc = fedora.getQualifiedDCMetadata(document.PID)
-    #document.setSubject(qdc['subject'])
-    #document.reindexObject()
-    document.syncMetadata(qdc)
-    context.plone_log(qdc)
     
     if aLabel == 'index_html':
+        id = 'fulltext'
         title = qdc['title'][0]['value']
+        document.manage_addProperty(id='default_page', value=id, type='string')
     elif aLabel == 'toc_html':
         title = 'Table of Contents' 
     else:
