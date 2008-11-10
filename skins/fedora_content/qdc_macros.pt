@@ -539,6 +539,9 @@
                              new_subjects request/new_subjects|nothing"
                  tal:attributes="class python:test(error, 'field error', 'field')"
             >
+                <div class="formHelp" i18n:translate="help_existing_keywords">
+                    Existing keywords
+                </div>
                 <select multiple="multiple"
                         size="10" 
                         name="subject:list"
@@ -554,8 +557,8 @@
                        i18n:translate="label_required">(Required)</span>
 -->
                 <div tal:content="error">Validation error output</div>
-                <div class="formHelp" i18n:translate="help_subject">
-                    Freie Schlagwörter, eins pro Zeile.
+                <div class="formHelp" i18n:translate="help_new_subject">
+                    New keywords, one per row.
                 </div>
                 <textarea name="new_subjects:lines" rows="5" cols="50"><tal:block tal:repeat="keyword new_subjects"><tal:block tal:replace="keyword">Keyword</tal:block>
 </tal:block></textarea>
