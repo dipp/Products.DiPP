@@ -24,6 +24,7 @@ SKIN_NAMES = [
 STYLESHEETS = (
     {'id': "dipp.css", 'media': 'screen', 'rendering': 'import'},
     {'id': "dipp_article.css", 'media': 'screen', 'rendering': 'import'},
+    {'id': "dipp_article_print.css", 'media': 'print', 'rendering': 'import'},
         )
         
 GLOBALS = globals()
