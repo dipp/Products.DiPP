@@ -493,3 +493,9 @@ msgstr ""
 
 msgid "label_surname"
 msgstr ""
+
+msgid "heading_recommended_citation"
+msgstr ""
+
+msgid "heading_comments"
+msgstr ""
