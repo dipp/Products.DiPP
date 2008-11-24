@@ -8,6 +8,8 @@ DEADLINE_DEFAULT = 14
 DEADLINE_RED = 3
 DEADLINE_YELLOW = 10
 
+CITATION_FORMAT = "%(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume)s. (%(urn)s)"
+
 ALERT_EMAIL_ADDRESSES = ('dipp-tech@hbz-nrw.de',) 
 ALERT_EMAIL_TEXT = """
 Dear Ladies and Gentlemen,

@@ -55,6 +55,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('floatingtoc_onload', 'boolean', ''),
         ('alertEmailAddresses', 'lines', ALERT_EMAIL_ADDRESSES),
         ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
+        ('citation_format', 'text', CITATION_FORMAT),
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
