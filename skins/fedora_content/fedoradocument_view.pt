@@ -27,21 +27,38 @@
 
         </div>
 
-        <div tal:define="PID python:here.getParentNode().PID;
+        <tal:block tal:define="PID python:here.getParentNode().PID;
+                         show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
+                         citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
+                         allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
                          qdc python:here.fedora.getQualifiedDCMetadata(PID);
                          rights python:qdc['rights'][0];
                          lang request/other/LANGUAGE|en;
-                         dppl python:here.dppl(rights,lang)"
-            class="licence">
-            <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
+                         dppl python:here.dppl(rights,lang)">
+                         
+            <div class="licence">
+                <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
 
-            <p i18n:translate="licence_text" i18n:domain="dipp">
-                Jedermann darf dieses Werk unter den Bedingungen der
-                <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
-                und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
-                unter der Adresse <a href="" tal:attributes="href python: dppl['url'][lang]" tal:content="python: dppl['url'][lang]" i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>.
-            </p>
-        </div>
+                <p i18n:translate="licence_text" i18n:domain="dipp">
+                    Jedermann darf dieses Werk unter den Bedingungen der
+                    <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
+                    und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
+                    unter der Adresse <a href="" tal:attributes="href python: dppl['url'][lang]" tal:content="python: dppl['url'][lang]" i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>.
+                </p>
+            </div>
+            
+            <div tal:condition="show_recommended_citation">
+                <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
+                <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
+            </div>
+            
+            <div tal:condition="allow_persistent_discussion">
+                <h2 i18n:translate="heading_comments">Comments</h2>
+                <p>
+                    Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
+                </p>
+            </div>
+        </tal:block>
 
         <div metal:use-macro="here/document_byline/macros/byline">
           Get the byline - contains details about author and modification date.
