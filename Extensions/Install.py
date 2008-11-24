@@ -56,6 +56,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('alertEmailAddresses', 'lines', ALERT_EMAIL_ADDRESSES),
         ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
         ('citation_format', 'text', CITATION_FORMAT),
+        ('show_recommended_citation', 'boolean', True),
+        ('allow_persistent_discussion', 'boolean', False)
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
