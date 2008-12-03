@@ -53,11 +53,8 @@
                 <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
             </div>
             
-            <div tal:condition="allow_persistent_discussion">
-                <h2 i18n:translate="heading_comments">Comments</h2>
-                <p>
-                    Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
-                </p>
+            <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
+                Comments which are treated like peer reviewed articles
             </div>
         </tal:block>
 

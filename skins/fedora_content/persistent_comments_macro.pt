@@ -1,0 +1,15 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="persistent_comments" i18n:domain="dipp"
+                 tal:condition="allow_persistent_discussion">
+            <h2 i18n:translate="heading_comments"><a id="comments">Comments</a></h2>
+            <p>
+                Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
+            </p>
+        </div>
+
+     </body>
+</html>
