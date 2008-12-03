@@ -3,11 +3,25 @@
     i18n:domain="DiPP">
     <body>
 
-        <div metal:define-macro="persistent_comments" i18n:domain="dipp"
-                 tal:condition="allow_persistent_discussion">
+        <div metal:define-macro="persistent_comments"
+             i18n:domain="dipp"
+             tal:define="PID python:here.getParentNode().PID;
+                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=PID, sort_on='getPosition')"
+             tal:condition="allow_persistent_discussion">
+             
             <h2 i18n:translate="heading_comments"><a id="comments">Comments</a></h2>
+            
+            <ol tal:condition="results">
+            <tal:block tal:repeat="result results">
+                <li tal:define="obj result/getObject;
+                                contributors obj/Contributors|nothing">
+                    <a tal:content="python: contributors[0]" tal:attributes="href result/getURL"></a> | <span tal:replace="result/Date">1.1.1970</span>
+                </li>
+            </tal:block>
+            </ol>
+            <em tal:condition="not:results">Es liegen noch keine Kommentare vor</em> 
             <p>
-                Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
+                Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen? <a href="" tal:attributes="href string:$portal_url/submitemail_form" >Zur Einreichung</a>
             </p>
         </div>
 
