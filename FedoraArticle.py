@@ -17,7 +17,9 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     schema = BaseSchema + Schema((
         StringField('PID',
                 required=1,
-                widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
+                widget=StringWidget(label='PID',description='Persistent Identifier',size='15'),
+                searchable=1,
+                index="FieldIndex:brains"        
         ),
         StringField('pixel_domain',
                 required=0,
@@ -32,7 +34,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 storage=AttributeStorage(),
                 searchable=1,
                 index="FieldIndex"        
-        )
+        ),
+        StringField(
+            name='comment_to',
+            widget=SelectionWidget(
+                label="Comment to",
+                description="This Article is a comment to another article",
+            ),
+            searchable=1,
+            index="FieldIndex:brains",
+            multiValued=0,
+            vocabulary="getPublishedArticles"
+        ),
     ))
 
     allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
@@ -96,6 +109,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         self.setSubject(params['subject'])
         self.setRights(params['rights'][0])
         self.reindexObject()
+    
+    def getPublishedArticles(self):
+
+        results = self.portal_catalog.searchResults(Type='Fedora Article')
+        articles = (('','None'),)
+        for result in results:
+            PID = result.getPID
+            title = result.Title
+            if not PID.startswith('temp'):
+                articles += ((PID,title),)
+
+        return articles
          
 
         
