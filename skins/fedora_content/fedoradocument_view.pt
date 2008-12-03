@@ -5,11 +5,17 @@
 <body >
 
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
-
+    <tal:main-macro metal:define-macro="main"
+         tal:define="parent python:here.getParentNode();
+                     articlePID parent/PID;
+                     comment_to  parent/comment_to|nothing">
+         
         <h1>&nbsp;</h1>
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
+        </div>
+        <div tal:condition="comment_to">
+        Dieser Beitrag ist ein Kommentar zu <span tal:replace="comment_to">dipp:123</span>
         </div>
 
         <div class="stx" tal:define="PID context/PID;
@@ -27,11 +33,10 @@
 
         </div>
 
-        <tal:block tal:define="PID python:here.getParentNode().PID;
-                         show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
+        <tal:block tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
                          citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
                          allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
-                         qdc python:here.fedora.getQualifiedDCMetadata(PID);
+                         qdc python:here.fedora.getQualifiedDCMetadata(articlePID);
                          rights python:qdc['rights'][0];
                          lang request/other/LANGUAGE|en;
                          dppl python:here.dppl(rights,lang)"
