@@ -34,7 +34,8 @@
                          qdc python:here.fedora.getQualifiedDCMetadata(PID);
                          rights python:qdc['rights'][0];
                          lang request/other/LANGUAGE|en;
-                         dppl python:here.dppl(rights,lang)">
+                         dppl python:here.dppl(rights,lang)"
+                   i18n:domain="dipp">
                          
             <div class="licence">
                 <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
