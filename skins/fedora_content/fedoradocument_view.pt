@@ -10,12 +10,17 @@
                      articlePID parent/PID;
                      comment_to  parent/comment_to|nothing">
          
-        <h1>&nbsp;</h1>
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        <div tal:condition="comment_to">
-        Dieser Beitrag ist ein Kommentar zu <span tal:replace="comment_to">dipp:123</span>
+        
+        <h1>&nbsp;</h1>
+
+        <div tal:condition="comment_to"
+             tal:define="results python:here.portal_catalog.searchResults(getPID=comment_to)">
+             <p tal:repeat="result results">
+                Dieser Beitrag ist ein Kommentar zu "<a tal:attributes="href result/getURL" tal:content="result/Title">dipp:123</a>" von <span tal:replace="python:result.getObject().Contributors()[0]">Dow, John</span>
+             </p>
         </div>
 
         <div class="stx" tal:define="PID context/PID;
