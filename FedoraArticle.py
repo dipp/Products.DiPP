@@ -21,6 +21,16 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 searchable=1,
                 index="FieldIndex:brains"        
         ),
+        StringField('type',
+                required=0,
+                widget=StringWidget(label='Textsorte',description='Welche Textsorte läßt sich der Artikel zuordnen?'),
+                index="FieldIndex:brains"
+        ),
+        StringField('section',
+                required=0,
+                widget=StringWidget(label='Section',description='Welcher Sektion läßt sich der Artikel zuordnen?'),
+                index="FieldIndex:brains"
+        ),
         StringField('pixel_domain',
                 required=0,
                 widget=StringWidget(label='VG Kürzel',description='Domain auf dem Zählserver: vgXX.met.vgwort.de, z.B. vg06',size='4')
@@ -33,7 +43,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 widget=IntegerWidget(label="The Postion of the article in a special issue."),
                 storage=AttributeStorage(),
                 searchable=1,
-                index="FieldIndex"        
+                index="FieldIndex:brains"
         ),
         StringField(
             name='comment_to',
@@ -55,12 +65,6 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     filter_content_types= 1
     content_icon = 'fedoraarticle_icon.gif'
     actions = (
-    #    { "id": "edit",
-    #      "name": "Edit",
-    #      "action": "string:${folder_url}/fedoraarticle_edit_form",
-    #      "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-    #      "category":"folder",
-    #      },
           
         { "id": "view",
           "name": "View",
