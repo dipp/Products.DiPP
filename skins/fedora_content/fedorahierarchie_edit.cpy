@@ -24,8 +24,8 @@ MetaType  = REQUEST.form['MetaType']
 
 if PID == '':
     description = "Eine Fedora Hierarchie"
-    text = "Dies ist die Startseite der neu angelegten FedoraHierarchie. Unter 'Bearbeiten' können Sie den Inhalt dieser Seite anpassen."
-    self.invokeFactory('Document',id='index_html',title=title,description=description,text=text,text_format="html")
+    #text = "Dies ist die Startseite der neu angelegten FedoraHierarchie. Unter 'Bearbeiten' können Sie den Inhalt dieser Seite anpassen."
+    #self.invokeFactory('Document',id='index_html',title=title,description=description,text=text,text_format="html")
     self.manage_addProperty(id="tmp", value=False, type='boolean')
     AbsoluteURL = parentURL + "/" + id
     #PID = fedora.createNewContainer(isChildOf, MetaType, title, id, parentURL + '/' + id)
