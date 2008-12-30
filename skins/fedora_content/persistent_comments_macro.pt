@@ -19,14 +19,15 @@
                 </li>
             </tal:block>
             </ol>
-            
+            <p>
             <em tal:condition="not:results" i18n:translate="text_no_persistent_comments" i18n:domain="dipp">
                 Es liegen noch keine Kommentare vor
-            </em> 
+            </em>
+            </p>
             
             <p>
-               <span i18n:translate="text_ask_for_persistent_commentext_ask_for_persistent_commentsts" i18n:domain="dipp" >
-               Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?<span> 
+               <span i18n:translate="ask_for_persistent_comments" i18n:domain="dipp">
+               Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?</span> 
                <a href="" tal:attributes="href string:$portal_url/submitemail_form" >Zur Einreichung</a>
             </p>
         </div>
