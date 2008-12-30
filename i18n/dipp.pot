@@ -499,3 +499,12 @@ msgstr ""
 
 msgid "heading_comments"
 msgstr ""
+
+msgid "text_recommended_citation"
+msgstr ""
+
+msgid "text_no_persistent_comments"
+msgstr ""
+
+msgid "ask_for_persistent_comments"
+msgstr ""

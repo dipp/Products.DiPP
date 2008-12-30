@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2008-11-25 00:23+0100\n"
+"PO-Revision-Date: 2008-12-30 12:04+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -503,4 +503,13 @@ msgstr "Empfohlene Zitierweise"
 
 msgid "heading_comments"
 msgstr "Kommentare"
+
+msgid "text_recommended_citation"
+msgstr "Bitte geben Sie beim Zitieren dieses Artikels die exakte URL und das Datum Ihres letzten Besuchs bei dieser Online-Adresse an."
+
+msgid "text_no_persistent_comments"
+msgstr "Es liegen noch keine Kommentare vor."
+
+msgid "ask_for_persistent_comments"
+msgstr "Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?"
 
