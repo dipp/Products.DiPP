@@ -60,7 +60,13 @@
             
             <div tal:condition="show_recommended_citation">
                 <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
-                <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
+                <p>
+                    <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
+                </p>
+                <p i18n:translate="text_recommended_citation" i18n:domain="dipp">
+                    Bitte geben Sie beim Zitieren dieses Artikels die exakte URL und das Datum Ihres
+                    letzten Besuchs bei dieser Online-Adresse an.
+                </p>
             </div>
             
             <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
