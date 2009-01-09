@@ -47,7 +47,9 @@
                          dppl python:here.dppl(rights,lang)"
                    i18n:domain="dipp">
                          
-            <div class="licence">
+            <div class="licence"
+                 tal:condition="python:rights != 'authorcontract'">
+
                 <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
 
                 <p i18n:translate="licence_text" i18n:domain="dipp">
