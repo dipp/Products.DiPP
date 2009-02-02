@@ -19,14 +19,14 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 required=1,
                 widget=StringWidget(label='PID',description='Persistent Identifier',size='15'),
                 searchable=1,
-                index="FieldIndex:brains"        
+                index='FieldIndex:brains'
         ),
-        StringField('type',
+        StringField('article_type',
                 required=0,
                 widget=StringWidget(label='Textsorte',description='Welche Textsorte läßt sich der Artikel zuordnen?'),
-                index="FieldIndex:brains"
+                index='FieldIndex:brains'
         ),
-        StringField('section',
+        StringField('journal_section',
                 required=0,
                 widget=StringWidget(label='Section',description='Welcher Sektion läßt sich der Artikel zuordnen?'),
                 index="FieldIndex:brains"
@@ -55,6 +55,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             index="FieldIndex:brains",
             multiValued=0,
             vocabulary="getPublishedArticles"
+            #vocabulary=('as','asasd')
         ),
     ))
 
@@ -119,10 +120,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         results = self.portal_catalog.searchResults(Type='Fedora Article')
         articles = (('','None'),)
         for result in results:
-            PID = result.getPID
-            title = result.Title
-            if not PID.startswith('temp'):
-                articles += ((PID,title),)
+            try:
+                PID = result.getPID
+                title = result.Title
+                if not PID.startswith('temp'):
+                    articles += ((PID,title),)
+            except:
+                pass
 
         return articles
          
