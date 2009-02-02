@@ -58,6 +58,6 @@ if PID.split(':')[0] != 'temp':
     }
     
 else:
-    cite = "Just a temporary conversion, not metadata available for PID %s. to build a citation" % PID
+    cite = "This is just a temporary conversion, no metadata available for PID %s. to build a citation" % PID
     
 return cite
