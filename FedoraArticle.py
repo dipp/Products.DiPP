@@ -116,6 +116,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         self.reindexObject()
     
     def getPublishedArticles(self):
+        """build a Vocabulary with PIDs and Title of all FedoraArticles of the journal
+           temporary articles are excluded""" 
 
         results = self.portal_catalog.searchResults(Type='Fedora Article')
         articles = (('','None'),)
@@ -127,7 +129,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                     articles += ((PID,title),)
             except:
                 pass
-
+        self.plone_log(articles)
+        articles = (('','None'),)
         return articles
          
 
