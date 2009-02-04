@@ -129,8 +129,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                     articles += ((PID,title),)
             except:
                 pass
-        self.plone_log(articles)
-        articles = (('','None'),)
+        
         return articles
          
 
