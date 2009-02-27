@@ -31,6 +31,7 @@ if PID.split(':')[0] != 'temp':
     id = self.PID.split(':')[-1]
     authors_list = ""
 
+
     for author in authors:
         author_number = authors.index(author) + 1
         firstnames = author['firstName'].split()
@@ -42,7 +43,7 @@ if PID.split(':')[0] != 'temp':
             glue = ""
         else:
             glue = ", "
-    authors_list += "%s %s%s" % (lastname, firstnames_initials, glue)
+        authors_list += "%s %s%s" % (lastname, firstnames_initials, glue)
 
 
     cite = citation_format % {
