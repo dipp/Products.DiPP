@@ -43,6 +43,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 widget=IntegerWidget(label="The Postion of the article in a special issue."),
                 storage=AttributeStorage(),
                 searchable=1,
+                default=0,
+                required=1,
                 index="FieldIndex:brains"
         ),
         StringField(
