@@ -214,7 +214,6 @@ elif activity_id == 'absegnen':
 elif activity_id == 'freischalten':
     instance.manage_changeProperties({'nachrichten':nachrichten})
     if type != 'DiPP:container':
-        #context.fedoraSetPublishingState(PID,1,1)
         fedora.setPublishingState(PID,1,1)
     msg = "Der Artikel wurde veröffentlicht!"
     
@@ -222,7 +221,7 @@ elif activity_id == 'freischalten':
     from_name = self.portal_properties.email_from_name
     addresses = self.portal_properties.dipp_properties.alertEmailAddresses
     text = self.portal_properties.dipp_properties.alertEmailText
-    journal = self.portal_properties.title
+    journal = self.portal_properties.title()
     body = text % {'url':url,'journal':journal}
     for to_address in addresses:
         text = alertMessage % (

@@ -21,7 +21,8 @@
                             i python:oftool[request.instance_id];
                             w python:i[request.workitem_id];
                             actor python:user.getUserName();
-                            wf_init python: container.pub_instance_init(i.id, w.id) ">
+                            wf_init python: container.pub_instance_init(i.id, w.id);
+                            alertEmailAddresses here/portal_properties/dipp_properties/alertEmailAddresses|nothing">
 
             <div metal:use-macro="here/pub_macros/macros/edit">
                  öffnen eines neuen Fensters zum Bearbeiten
@@ -35,6 +36,15 @@
                             <input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
                             <input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
                             <input type="hidden" name="actor" value="actor" tal:attributes="value user">
+                            <h3>Email alerts</h3>
+                            <p>
+                                An Email alert is send to following addresses:
+                            </p>
+                            <ol tal:condition="alertEmailAddresses">
+                                <tal:block tal:repeat="address alertEmailAddresses">
+                                    <li  tal:content="address">dipp@hbz</li>
+                                </tal:block>
+                            </ol>
                             <div metal:use-macro="here/pub_macros/macros/comments">
                                 Kommentarfelder
                             </div>
