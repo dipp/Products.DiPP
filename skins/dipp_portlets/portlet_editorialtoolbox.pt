@@ -90,18 +90,16 @@
                            <span class="navItemText" i18n:translate="title_openurl">openURL erzeugen</span></a>
                    </li>
                    <li>
-                        <!--<a href=""
+                        <a href=""
                            class="navItem"
-                           tal:attributes="href string:$portal_url/awstats/awstats.pl" 
-                        ></a>-->
-                             <span  style="color:gray" i18n:translate="webstats">allg. Zugriffsstatistik</span>
+                           tal:attributes="href string:$portal_url/awstats/awstats.pl">
+                           <span class="navItemText" i18n:translate="webstats">allg. Zugriffsstatistik</span></a>
                    </li>
                    <li>
-                      <!--  <a href=""
+                        <a href=""
                            class="navItem"
-                           tal:attributes="href string:$portal_url/" 
-                        ></a>-->
-                             <span  style="color:gray" i18n:translate="articlestats">artikelbasierte Statistik</span>
+                           tal:attributes="href string:$portal_url/statistics">
+                           <span class="navItemText" i18n:translate="articlestats">artikelbasierte Statistik</span></a>
                    </li>
                </ul>
                 
