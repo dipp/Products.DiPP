@@ -19,7 +19,14 @@
         <div tal:condition="comment_to"
              tal:define="results python:here.portal_catalog.searchResults(getPID=comment_to)">
              <p tal:repeat="result results">
-                Dieser Beitrag ist ein Kommentar zu "<a tal:attributes="href result/getURL" tal:content="result/Title">dipp:123</a>" von <span tal:replace="python:result.getObject().Contributors()[0]">Dow, John</span>
+                <tal:block tal:define="url result/getURL|nothing;
+                                       title result/Title;
+                                       author python:result.getObject().Contributors()">
+                    Dieser Beitrag ist ein Kommentar zu "<a tal:attributes="href result/getURL" tal:content="title">dipp:123</a>"
+                    <tal:block tal:condition="author">
+                    von <span tal:replace="python:author[0]">Dow, John</span>
+                    </tal:block>
+                </tal:block>
              </p>
         </div>
 
