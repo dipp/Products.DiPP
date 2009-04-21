@@ -9,7 +9,7 @@
                          results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=PID, sort_on='effective', sort_order='reverse')"
              tal:condition="allow_persistent_discussion">
              
-            <h2 i18n:translate="heading_comments"><a id="comments">Comments</a></h2>
+            <h2><a  i18n:translate="heading_comments" id="comments" name="comments">Comments</a></h2>
             
             <ol tal:condition="results">
             <tal:block tal:repeat="result results">
@@ -36,6 +36,8 @@
                i18n:domain="dipp">
                Der Text kann ab <span i18n:name="published" tal:content="python:toLocalizedTime(published, long_format=0)">1.1.2009</span>
                sechs Monate lang diskutiert werden
+            </p>
+            <p>
                <a href="" tal:attributes="href string:$portal_url/submitemail_form">Zur Einreichung</a>
             </p>
         </div>
