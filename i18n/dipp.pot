@@ -508,3 +508,6 @@ msgstr ""
 
 msgid "ask_for_persistent_comments"
 msgstr ""
+
+msgid "persistent_comments_deadline"
+msgstr "Der Text kann ab ${published} sechs Monate lang diskutiert werden"
