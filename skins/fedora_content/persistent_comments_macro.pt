@@ -6,7 +6,7 @@
         <div metal:define-macro="persistent_comments"
              i18n:domain="dipp"
              tal:define="PID python:here.getParentNode().PID;
-                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=PID, sort_on='getPosition')"
+                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=PID, sort_on='effective', sort_order='reverse')"
              tal:condition="allow_persistent_discussion">
              
             <h2 i18n:translate="heading_comments"><a id="comments">Comments</a></h2>
@@ -14,8 +14,10 @@
             <ol tal:condition="results">
             <tal:block tal:repeat="result results">
                 <li tal:define="obj result/getObject;
-                                contributors obj/Contributors|nothing">
-                    <a tal:content="python: contributors[0]" tal:attributes="href result/getURL"></a> | <span tal:replace="result/Date">1.1.1970</span>
+                                contributors obj/Contributors|nothing;
+                                effective result/effective|nothing">
+                    <a tal:content="python: contributors[0]" tal:attributes="href result/getURL"></a> |
+                    <span tal:replace="python:toLocalizedTime(effective, long_format=0)">1.1.1970</span>
                 </li>
             </tal:block>
             </ol>
@@ -25,10 +27,16 @@
             </em>
             </p>
             
-            <p>
-               <span i18n:translate="ask_for_persistent_comments" i18n:domain="dipp">
-               Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?</span> 
-               <a href="" tal:attributes="href string:$portal_url/submitemail_form" >Zur Einreichung</a>
+            <p i18n:translate="ask_for_persistent_comments"
+               i18n:domain="dipp">
+               Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
+            </p>
+            <p tal:define="published python:here.getParentNode().effective()"
+               i18n:translate="persistent_comments_deadline"
+               i18n:domain="dipp">
+               Der Text kann ab <span i18n:name="published" tal:content="python:toLocalizedTime(published, long_format=0)">1.1.2009</span>
+               sechs Monate lang diskutiert werden
+               <a href="" tal:attributes="href string:$portal_url/submitemail_form">Zur Einreichung</a>
             </p>
         </div>
 
