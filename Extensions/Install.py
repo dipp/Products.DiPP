@@ -88,9 +88,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('actions_to_list',('Call Application', 'Self Assign', 'Assign', 'Unassign'),'lines'),
         ('workflow_actions',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'),'lines'),
         ('copy_of_reminder',('',),'lines'),
-        ('gap_container','TestJournal','string'),
-        ('PID','','string'),
-        ('default_page',DEFAULT_PAGE,'string') 
+        ('gap_container','add label here','string'),
+        ('PID','','string')
     )
     
     for prop_id, prop_value, prop_type in site_properties:
