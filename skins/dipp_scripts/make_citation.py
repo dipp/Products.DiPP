@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self, qdc, citation_format
+##parameters=self, qdc, citation_format, initials_only, initials_period
 ##title=
 ##
 
