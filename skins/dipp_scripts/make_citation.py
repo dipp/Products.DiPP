@@ -30,20 +30,25 @@ if PID.split(':')[0] != 'temp':
     urn = qdc['identifierURN'];
     id = self.PID.split(':')[-1]
     authors_list = ""
-
+    period = ""
+    
+    if initials_period:
+        period = "."
 
     for author in authors:
         author_number = authors.index(author) + 1
         firstnames = author['firstName'].split()
         firstnames_initials = ""
         for firstname in firstnames:
-            firstnames_initials += firstname[0]
+            firstnames_initials += firstname[0] + period
         lastname = author['lastName']
         if author_number == len(authors):
             glue = ""
         else:
             glue = ", "
-        authors_list += "%s %s%s" % (lastname, firstnames_initials, glue)
+        if initials_only:
+            firstname = firstnames_initials
+        authors_list += "%s %s%s" % (lastname, firstname, glue)
 
 
     cite = citation_format % {
