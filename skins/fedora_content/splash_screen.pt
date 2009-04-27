@@ -91,6 +91,18 @@
         <p>
             Visit <a href="" tal:attributes="href python:here.makeGoogleScholarLink(here, qdc)">Google Scholar</a> to find out, how often this paper is cited.
         </p>
+        <h2>Supplementary Material</h2>
+        <tal:block tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                       results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getSupplement=True)">
+        <ul tal:condition="results">
+            <li tal:repeat="result results">
+                <a tal:content="result/id" tal:attributes="href result/getURL"></a>
+            </li>
+        </ul>
+        <p tal:condition="not:results">
+          This article does not have any supplemantary material. 
+        </p>
+        </tal:block>
         </tal:block>
     </tal:main-macro>
 </metal:main>
