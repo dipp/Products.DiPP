@@ -19,6 +19,14 @@ class FedoraMultimedia(BaseContent):
         StringField('DsID',
                 required=0,
                 widget=StringWidget(label='DsID',description='Datastream Identifier',size='15')
+        ),
+        BooleanField('supplement',
+                widget=BooleanWidget(label='Supplementary Material',description='Check this box, when the file should be listed with the supplementary material.'),
+                storage=AttributeStorage(),
+                searchable=1,
+                default=False,
+                required=1,
+                index="FieldIndex:brains"
         )
     ),
     marshall=PrimaryFieldMarshaller(),
