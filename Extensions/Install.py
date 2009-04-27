@@ -57,6 +57,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
         ('citation_format', 'text', CITATION_FORMAT),
         ('show_recommended_citation', 'boolean', True),
+        ('initials_only', 'boolean', True),
+        ('initials_period', 'boolean', False),
         ('allow_persistent_discussion', 'boolean', False)
     )
 
