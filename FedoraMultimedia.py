@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from config import PROJECTNAME
+from AccessControl import ClassSecurityInfo
 import Permissions
+from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
-class FedoraMultimedia(BaseContent):
+class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     """Multimedia files (Images, PDF, Movies) for storing in Fedora"""
+    
+    security = ClassSecurityInfo()
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
     
     schema = BaseSchema + Schema((
         FileField('File',
@@ -31,6 +36,9 @@ class FedoraMultimedia(BaseContent):
     ),
     marshall=PrimaryFieldMarshaller(),
     )
+    immediate_view = 'base_view'
+    default_view = 'base_view'
+    suppl_views = ('base_view', 'mp3_view')
     content_icon = "fedoramultimedia_icon.gif"
     
     actions = (
