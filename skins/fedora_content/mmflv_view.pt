@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main" 
+           tal:define="size python:here.getObjSize(here);
+                       content_type here/get_content_type|here/Format;
+                       PID here/PID|nothing;
+                       DsID here/DsID
+                      ">
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1 tal:content="object_title" class="documentFirstHeading">
+            Title or id
+        </h1>
+    
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
+
+        <div tal:define="url here/absolute_url;
+                         file here/id">
+        
+             <b tal:content="file"></b>
+            <script type="text/javascript" src="swfobject.js"></script>
+            <script type="text/javascript">
+                swfobject.registerObject("player","9.0.98","expressInstall.swf");
+            </script>
+
+            <object id="player"
+                    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                    name="player" 
+                    width="328" 
+                    height="200">
+                <param name="movie" value="player-viral.swf" />
+                <param name="allowfullscreen" value="true" />
+                <param name="allowscriptaccess" value="always" />
+                <param name="flashvars" value="" tal:attributes="value string:file=$file"/>
+                <object type="application/x-shockwave-flash" data="player-viral.swf" width="328" height="200">
+                    <param name="movie" value="player-viral.swf" />
+                    <param name="allowfullscreen" value="true" />
+                    <param name="allowscriptaccess" value="always" />
+                    <param name="flashvars" value="" tal:attributes="value string:file=$file" />
+                    <p><a href="http://get.adobe.com/flashplayer">Get Flash</a> to see this player.</p>
+
+                </object>
+
+            </object>
+
+        </div>
+    
+    
+    
+    </tal:main-macro>
+</div>
+
+</body>
+
+</html>

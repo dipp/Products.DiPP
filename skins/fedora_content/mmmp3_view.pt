@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/full_template/macros/master"
+      i18n:domain="plone">
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+        <h1 tal:content="here/title_or_id">audio.mp3</h1>
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+      
+
+        <div class="visualClear"></div>
+        <div class="stx" tal:define="url here/absolute_url;
+                                     file here/id">
+            <div>
+                <h2>Listen:</h2>
+                <b tal:content="file"></b>
+
+            <script type="text/javascript" src="swfobject.js"></script>
+            <script type="text/javascript">
+                swfobject.registerObject("player","9.0.98","expressInstall.swf");
+            </script>
+
+            <object id="player"
+                    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                    name="player" 
+                    width="328" 
+                    height="200">
+                <param name="movie" value="player-viral.swf" />
+                <param name="allowfullscreen" value="true" />
+                <param name="allowscriptaccess" value="always" />
+                <param name="flashvars" value="" tal:attributes="value string:file=$file"/>
+                <object type="application/x-shockwave-flash" data="player-viral.swf" width="328" height="200">
+                    <param name="movie" value="player-viral.swf" />
+                    <param name="allowfullscreen" value="true" />
+                    <param name="allowscriptaccess" value="always" />
+                    <param name="flashvars" value="" tal:attributes="value string:file=$file" />
+                    <p><a href="http://get.adobe.com/flashplayer">Get Flash</a> to see this player.</p>
+
+                </object>
+
+            </object>
+
+
+
+
+                <h2>Download:</h2>
+                <p>
+                    <a tal:attributes="href file">
+                       <img tal:attributes="src string:$portal_url/audio.png"/>
+                       <span tal:replace="here/title_or_id">
+                           audio.mp3
+                       </span>
+                    </a>
+                </p>
+
+            
+            </div>
+        </div>
+        <p>
+        <a i18n:translate="back_to_article" i18n:domain="dipp" class="windowClose" href="javascript:history.back()">Back to the article</a>
+        </p>
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+
+
