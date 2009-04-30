@@ -48,10 +48,13 @@ try:
     if  id[-3:].lower() == 'xml':
         objType = 'FedoraXML'
     
+    stream = fedora.access(PID=PID,DsID=DsID,Date=None)['stream']
+    MIMEType = fedora.access(PID=PID,DsID=DsID,Date=None)['MIMEType']
     if objType in ('FedoraDocument','FedoraXML'):
-        contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,body=fedora.access(PID=PID,DsID=DsID,Date=None)['stream'])
+        contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,body=stream,format=MIMEType)
     else:
         contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID)
+        
     contentDocument = getattr(document, id)
 except:
     raise Exception, "could not create Content Object"
