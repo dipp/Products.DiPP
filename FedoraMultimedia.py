@@ -41,10 +41,10 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                     description='The Datastream Identifier. DO NOT EDIT.',
                     size='15')
         ),
-        StringField('Type',
+        StringField('MMType',
                 required=0,
                 widget=SelectionWidget(
-                    label='Type',
+                    label='Multimedia type',
                     description='You can select, wether this file should be listed separatly in one of the categories below.'
                 ),
                 multiValued=0,
@@ -61,7 +61,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     )
     immediate_view = 'base_view'
     default_view = 'base_view'
-    suppl_views = ('base_view', 'mp3_view')
+    suppl_views = ('base_view', 'mmmp3_view', 'mmimage_view', 'mmflv_view')
     content_icon = "fedoramultimedia_icon.gif"
     
     inlineMimetypes= ('application/msword',
