@@ -1,0 +1,25 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="supplementary_material"
+             i18n:domain="dipp"
+             tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                         results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='supplementary_material')"
+             tal:condition="results">
+             
+            <h2><a  i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</a></h2>
+            <ul tal:condition="results">
+                <li tal:repeat="result results">
+                    <span tal:replace="result/Title">Supplemantary material</span>
+                    [ <a tal:define="url result/getURL"
+                       tal:attributes="href string:$url/view">view</a> |
+                    <a tal:define="url result/getURL"
+                       tal:attributes="href string:$url/at_download/File">download</a> ]
+                </li>
+            </ul>
+        </div>
+
+     </body>
+</html>
