@@ -33,7 +33,6 @@
         <div tal:define="url here/absolute_url;
                          file here/id">
         
-             <b tal:content="file"></b>
             <script type="text/javascript" src="swfobject.js"></script>
             <script type="text/javascript">
                 swfobject.registerObject("player","9.0.98","expressInstall.swf");

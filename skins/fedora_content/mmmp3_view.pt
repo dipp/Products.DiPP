@@ -22,7 +22,6 @@
                                      file here/id">
             <div>
                 <h2>Listen:</h2>
-                <b tal:content="file"></b>
 
             <script type="text/javascript" src="swfobject.js"></script>
             <script type="text/javascript">
