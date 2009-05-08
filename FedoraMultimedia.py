@@ -59,8 +59,8 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     ),
     marshall=PrimaryFieldMarshaller(),
     )
-    immediate_view = 'base_view'
-    default_view = 'base_view'
+    immediate_view = 'view'
+    default_view = 'view'
     suppl_views = ('base_view', 'mmmp3_view', 'mmimage_view', 'mmflv_view')
     content_icon = "fedoramultimedia_icon.gif"
     
@@ -71,27 +71,14 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                       'application/pdf')
 
     actions = (
-        { "id": "edit",
-          "name": "Edit",
-          "action": "string:${object_url}/fedoramultimedia_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          },
-          
-        #{ "id": "view",
-        #  "name": "View",
-        #  "action": "string:${object_url}/fedoramultimedia_view",
-        #  "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
+        #{ "id": "preview",
+        #  "name": "Preview",
+        #  "action": "string:${object_url}/preview",
+        #  "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
         #  },
-          
-        { "id": "preview",
-          "name": "Preview",
-          "action": "string:${object_url}/fedoramultimedia_preview",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          },
           
         { "id": "references",
           "name": "References",
-          #"action": "string:${object_url}/fedoradocument_view",
           "visible": 0,
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
