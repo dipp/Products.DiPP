@@ -90,10 +90,10 @@
             
 
             <div class="field"
-                tal:define="error errors/file|nothing;"
+                tal:define="error errors/file|nothing"
                 tal:attributes="class python:test(error, 'field error', 'field')"
                 i18n:domain="plone">
-                <label for="file" i18n:translate="label_short_name">file</label>
+                <label for="file" i18n:translate="label_file_name">file</label>
                 <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
@@ -102,11 +102,29 @@
                   Select the file to be added by clicking the 'Browse' button.
                 </div>
                 <input id="File_file" type="file" name="File_file" size="30"/>
-                <!--<input type="file"
-                       id="Image"
-                       name="file"
-                       size="30"
-                       value="">-->
+            </div>
+            
+            <div class="field"
+                tal:define="error errors/MMType|nothing;
+                            type_of_list here/getTypeOfList|nothing;
+                            MMType request/MMType|here/MMType|nothing"
+                tal:attributes="class python:test(error, 'field error', 'field')"
+                i18n:domain="plone">
+                <label for="file" i18n:translate="">Seperate Listing</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_MMType">
+                  You can select, wether this file should be listed separatly in one of the
+                  categories below.
+                </div>
+                <tal:block tal:replace="MMType"/>
+                <select name="MMType">
+                    <tal:block tal:repeat="listname type_of_list">
+                        <option tal:content="python:listname[1]"
+                                tal:attributes="value python:listname[0];
+                                 selected python:test(listname[0] == MMType ,'selected',None)"
+                        ></option>
+                    </tal:block>
+                </select>
             </div>
 
             <input class="context"
