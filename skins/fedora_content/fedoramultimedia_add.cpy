@@ -40,6 +40,9 @@ map = {
     'xml': XML_PID
 }
 
+PID = self.PID
+DsID = self.DsID
+LOG('DiPP', INFO, "fedoramultimedia_add: %s/%s" % (PID, DsID))
 
 try:
     PID = map[EXTENSION]
@@ -49,16 +52,21 @@ except:
 Location = self.absolute_url() + "/File"
 Label = filename
 
-DsID = fedora.addDatastream(REQUEST,PID,Label,MIMEType,Location,"M","","","A")
+if DsID == "":
+    DsID = fedora.addDatastream(REQUEST,PID,Label,MIMEType,Location,"M","","","A")
+    portal_status_message = "Saved new datastream."
+else:
+    LogMessage = "New Version"
+    tempID = ""
+    DsState = "A"
+    fedora.modifyDatastreamByReference(REQUEST,PID,DsID,Label,LogMessage,Location,DsState,MIMEType,tempID)
+    portal_status_message = "Saved new version."
 
 LOG('DiPP', INFO, "fedoramultimedia_add: %s/%s at %s" % (PID, DsID, Location))
-#LOG('DiPP', INFO, "fedoramultimedia_add: state %s" % state)
-LOG('DiPP', INFO, "fedoramultimedia_add: filename %s/%s" % (filename,MIMEType))
 
 self.setId(Label)
 self.setPID(PID)
 self.setDsID(DsID)
-portal_status_message = "Saved..."
 
 return state.set(Location='Location',\
                  PID='PID',\
