@@ -50,11 +50,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                 multiValued=0,
                 default = "",
                 index="FieldIndex:brains",
-                vocabulary = (
-                    ('','Do not list.'),
-                    ('alternative_format','Alternative format of the main text.'),
-                    ('supplementary_material','Supplementary Material')
-                )
+                vocabulary = "getTypeOfList"
         )
     ),
     marshall=PrimaryFieldMarshaller(),
@@ -71,6 +67,11 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                       'application/pdf')
 
     actions = (
+        { "id": "edit",
+          "name": "Edit",
+          "action": "string:${object_url}/fedoramultimedia_edit_form",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
+        },
         #{ "id": "preview",
         #  "name": "Preview",
         #  "action": "string:${object_url}/preview",
@@ -120,5 +121,14 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         # Please note that text/* cannot be returned inline as
         # this is a security risk (IE renders anything as HTML).
         return field.download(self)
+
+    security.declareProtected(View, 'getTypeOfList')
+    def getTypeOfList(self):
+        vocabulary = (
+            ('','Do not list.'),
+            ('alternative_format','Alternative format of the main text.'),
+            ('supplementary_material','Supplementary Material')
+        )
+        return vocabulary
 
 registerType(FedoraMultimedia,PROJECTNAME)
