@@ -21,12 +21,15 @@ if file.filename.split("\\")  > 1:
 else:
     filename = file.filename
 
-
+if not REQUEST.form['title']:
+    title = filename
+else:
+    title = REQUEST.form['title']
 
 item_path = '/'.join(self.getPhysicalPath())
 LOG('DiPP', INFO, "fedoramultimedia_edit: id " + filename)
 
 state.set(filename=filename)
-REQUEST.form['title'] = filename
+REQUEST.form['title'] = title
 
 return context.content_edit_impl(state, id)
