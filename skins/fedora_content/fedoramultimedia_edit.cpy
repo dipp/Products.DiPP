@@ -26,9 +26,6 @@ if not REQUEST.form['title']:
 else:
     title = REQUEST.form['title']
 
-item_path = '/'.join(self.getPhysicalPath())
-LOG('DiPP', INFO, "fedoramultimedia_edit: id " + filename)
-
 state.set(filename=filename)
 REQUEST.form['title'] = title
 

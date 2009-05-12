@@ -64,7 +64,6 @@ else:
 
 LOG('DiPP', INFO, "fedoramultimedia_add: %s/%s at %s" % (PID, DsID, Location))
 
-self.setId(Label)
 self.setPID(PID)
 self.setDsID(DsID)
 
