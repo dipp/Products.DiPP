@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2009-05-04 17:42+0100\n"
+"PO-Revision-Date: 2009-05-13 20:58+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -518,4 +518,10 @@ msgstr "Der Text kann ab ${published} sechs Monate lang diskutiert werden."
 
 msgid "heading_supplementary_material"
 msgstr "Zusatzmaterial"
+
+msgid "heading_number_citations"
+msgstr "Anzahl der Zitationen"
+
+msgid "text_google_scholar"
+msgstr "Besuchen Sie ${google_scholar_link} um herauszufinden, wie oft dieser Artikel zitiert wurde."
 
