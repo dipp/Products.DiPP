@@ -26,7 +26,7 @@
              i18n:domain="dipp">
             <h2 i18n:translate="heading_number_citations">Number of Citations</h2>
             <p i18n:translate="text_google_scholar">
-                Visit <a href="" i18n:name="google_scholar_link" tal:attributes="href python:here.makeGoogleScholarLink(here, qdc)">Google Scholar</a> to find out, how often this paper is cited.
+                Visit <span i18n:name="google_scholar_link"><a href="" tal:attributes="href python:here.makeGoogleScholarLink(here, qdc)">Google Scholar</a></span> to find out, how often this paper is cited.
             </p>
              
         </div>
