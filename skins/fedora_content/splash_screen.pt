@@ -83,6 +83,11 @@
         <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
             A list of supplementary materials.
         </div>
+        
+        <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
+            Comments which are treated like peer reviewed articles
+        </div>
+            
 
         </tal:block>
     </tal:main-macro>

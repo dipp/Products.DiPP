@@ -80,13 +80,14 @@
                 </p>
             </div>
             
+            <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
+                A list of supplementary materials.
+            </div>
+            
             <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
                 Comments which are treated like peer reviewed articles
             </div>
             
-            <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
-                A list of supplementary materials.
-            </div>
         </tal:block>
 
         <div metal:use-macro="here/document_byline/macros/byline">

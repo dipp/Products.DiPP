@@ -6,6 +6,7 @@
         <div metal:define-macro="persistent_comments"
              i18n:domain="dipp"
              tal:define="PID python:here.getParentNode().PID;
+                         allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
                          results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=PID, sort_on='effective', sort_order='reverse')"
              tal:condition="allow_persistent_discussion">
              
