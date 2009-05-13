@@ -60,6 +60,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('initials_only', 'boolean', True),
         ('initials_period', 'boolean', False),
         ('allow_persistent_discussion', 'boolean', False)
+        ('discussion_time', 'int', 0)
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:

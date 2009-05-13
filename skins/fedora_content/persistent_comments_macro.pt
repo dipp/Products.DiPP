@@ -31,7 +31,9 @@
                i18n:domain="dipp">
                Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
             </p>
-            <p tal:define="published python:here.getParentNode().effective()"
+            <p tal:define="discussion_time here/portal_properties/dipp_properties/discussion_time|nothing;
+                           published python:here.getParentNode().effective()"
+               tal:condition="discussion_time"
                i18n:translate="persistent_comments_deadline"
                i18n:domain="dipp">
                Der Text kann ab <span i18n:name="published" tal:content="python:toLocalizedTime(published, long_format=0)">1.1.2009</span>
