@@ -1,0 +1,35 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="recommended_citation"
+             i18n:domain="dipp">
+             
+            <div tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
+                             citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
+                             initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
+                             initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing"
+                 tal:condition="show_recommended_citation">
+                <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
+                <p>
+                    <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period)"></span>
+                </p>
+                <p i18n:translate="text_recommended_citation" i18n:domain="dipp">
+                    Bitte geben Sie beim Zitieren dieses Artikels die exakte URL und das Datum Ihres
+                    letzten Besuchs bei dieser Online-Adresse an.
+                </p>
+            </div>
+        </div>
+
+        <div metal:define-macro="google_scholar"
+             i18n:domain="dipp">
+            <h2 i18n:translate="heading_number_citations">Number of Citations</h2>
+            <p i18n:translate="text_google_scholar">
+                Visit <a href="" i18n:name="google_scholar_link" tal:attributes="href python:here.makeGoogleScholarLink(here, qdc)">Google Scholar</a> to find out, how often this paper is cited.
+            </p>
+             
+        </div>
+
+     </body>
+</html>
