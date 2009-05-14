@@ -28,5 +28,4 @@ else:
 
 state.set(filename=filename)
 REQUEST.form['title'] = title
-
 return context.content_edit_impl(state, id)
