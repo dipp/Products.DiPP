@@ -416,7 +416,13 @@ def install_types(self, out, site_id=SITE_NAME):
     tabs = getattr(props, 'use_folder_tabs')
     contents = getattr(props, 'use_folder_contents')
     types = getattr(props, 'default_page_types')
-    
+    typesUseViewActionInListings = getattr(props, 'typesUseViewActionInListings')
+
+    if 'FedoraMultimedia' not in typesUseViewActionInListings:
+        newviewtypes = list(typesUseViewActionInListings)
+        newviewtypes.append('FedoraMultimedia')
+        props._updateProperty('typesUseViewActionInListings',newviewtypes)
+           
     if 'FedoraDocument' not in types:
         newtypes = list(types)
         newtypes.append('FedoraDocument')
