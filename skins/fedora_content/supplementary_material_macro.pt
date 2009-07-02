@@ -9,7 +9,7 @@
                          results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='supplementary_material')"
              tal:condition="results">
              
-            <h2><a  i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</a></h2>
+            <h2 i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</h2>
             <ul tal:condition="results">
                 <li tal:repeat="result results">
                     <span tal:replace="result/Title">Supplemantary material</span>

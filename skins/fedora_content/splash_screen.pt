@@ -72,16 +72,16 @@
             </tal:block>
         </tal:block>
 
+        <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
+            A list of supplementary materials.
+        </div>
+        
         <div metal:use-macro="here/citation_macro/macros/recommended_citation">
             Show a custom formatted recommended citation
         </div>
 
         <div metal:use-macro="here/citation_macro/macros/google_scholar">
             Show this paper and its citations with google scholar
-        </div>
-        
-        <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
-            A list of supplementary materials.
         </div>
         
         <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
