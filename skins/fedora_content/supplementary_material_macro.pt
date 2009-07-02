@@ -12,7 +12,12 @@
             <h2 i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</h2>
             <ul tal:condition="results">
                 <li tal:repeat="result results">
-                    <span tal:replace="result/Title">Supplemantary material</span>
+                    <div tal:define="description result/Description"
+                       tal:condition="description"
+                       tal:content="description">
+                        Beschreibungstext des Attachments
+                    </div>
+                    <span tal:replace="result/Title">Primärdaten zum Artikel</span>
                     [ <a tal:define="url result/getURL"
                        tal:attributes="href string:$url/view">view</a> |
                     <a tal:define="url result/getURL"
