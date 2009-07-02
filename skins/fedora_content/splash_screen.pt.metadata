@@ -1,2 +1,3 @@
 [default]
-title = Splash screen
+title=Splash screen
+cache=HTTPCache
