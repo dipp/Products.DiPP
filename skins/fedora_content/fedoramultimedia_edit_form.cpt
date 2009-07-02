@@ -116,7 +116,6 @@
                   You can select, wether this file should be listed separatly in one of the
                   categories below.
                 </div>
-                <tal:block tal:replace="MMType"/>
                 <select name="MMType">
                     <tal:block tal:repeat="listname type_of_list">
                         <option tal:content="python:listname[1]"
