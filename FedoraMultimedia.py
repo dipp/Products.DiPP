@@ -55,9 +55,9 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     ),
     marshall=PrimaryFieldMarshaller(),
     )
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ('base_view', 'mmmp3_view', 'mmimage_view', 'mmflv_view')
+    immediate_view = 'file_view'
+    default_view = 'file_view'
+    suppl_views = ('base_view', 'mmmp3_view', 'mmimage_view', 'mmfile_view', 'mmflv_view')
     content_icon = "fedoramultimedia_icon.gif"
     
     inlineMimetypes= ('application/msword',
@@ -67,6 +67,12 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                       'application/pdf')
 
     actions = (
+        { "id": "view",
+          "name": "View",
+          "action": "string:${object_url}/view",
+          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
+        },
+          
         { "id": "edit",
           "name": "Edit",
           "action": "string:${object_url}/fedoramultimedia_edit_form",
