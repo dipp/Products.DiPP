@@ -34,7 +34,7 @@
 	    metal:use-macro="edit_macros/header|default"/>
 
 
-    <form name="fedoradocument_edit_form"
+    <form name="fedorahierarchie_edit_form"
           method="post"
           tal:define="parentPID python:here.getParentNode().PID;
                       parentURL python:here.getParentNode().absolute_url()"
@@ -53,29 +53,47 @@
 	    <!--isChildOf: <span tal:replace="parentPID"></span><br />
 	    parentURL:    <span tal:replace="parentURL"></span>
         -->
-             <div class="field"
-                tal:define="error errors/id|nothing;
-                            id request/id|here/id"
+           <div class="field"
+                tal:condition="python:site_properties.getProperty('visible_ids', None)"
+                tal:define="error errors/id | nothing;
+                            id python:request.get('id', test(here.show_id(),here.getId(),''));"
+                tal:attributes="class python:test(error, 'field error', 'field')">
+
+             <label for="id" i18n:translate="label_short_name">Short Name</label>
+
+             <div class="formHelp" i18n:translate="help_shortname">
+                    Short Name is part of the item's web address.
+                    For accessibility reasons, do not use spaces, upper case,
+                    underscores, or special characters.
+             </div>
+
+             <div tal:content="error">Validation error output</div>
+
+             <input type="text"
+                    id="id"
+                    name="id"
+                    value=""
+                    tal:attributes="value id"
+                    />
+
+           </div>
+            <div class="field"
+                tal:define="error errors/title|nothing;
+                            title request/title|here/title"
                 tal:attributes="class python:test(error, 'field error', 'field')"
                 i18n:domain="plone">
-                <label for="id" i18n:translate="label_short_name">id</label>
+                <label for="title" i18n:translate="label_title" >title</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                                                                
                 <div tal:content="error">Validation error output</div>
-                <div class="formHelp" i18n:translate="help_shortname">
-                    Short Name is part of the item's web address. 
-                    Should not contain spaces, upper case, underscores or other special characters.
-                </div>
                 <input type="text"
-                       id="id"
-                       name="id"
+                       name="title"
                        value=""
-                       size="40"
-                       tal:attributes="value id"/>
+                       tal:attributes="value title"/>
             </div>
-          <!--  <input type="hidden"
-                   name="id"
-                   tal:condition="python:not member.getProperty('visible_ids', '')"
-                   tal:attributes="value python:request.get('id', here.getId())"/>
-             -->
+ 
             <div class="field"
                 tal:define="error errors/MetaType|nothing"
                 tal:attributes="class python:test(error, 'field error', 'field')"
@@ -94,20 +112,6 @@
                 </select>
             </div>
 
-            <div class="field"
-                tal:define="error errors/title|nothing;
-                            title request/title|here/title"
-                tal:attributes="class python:test(error, 'field error', 'field')"
-                i18n:domain="plone">
-                <label for="title" i18n:translate="label_title" >title</label>
-                                                                
-                <div tal:content="error">Validation error output</div>
-                <input type="text"
-                       name="title"
-                       value=""
-                       tal:attributes="value title"/>
-            </div>
- 
             <!--
             <div class="field"
                 tal:define="error errors/PID|nothing;

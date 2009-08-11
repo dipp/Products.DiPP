@@ -2,6 +2,7 @@
 title = Edit content
 
 [validators]
+validators = validate_base
 
 [actions]
 action.success = redirect_to_action:string:view
