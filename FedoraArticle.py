@@ -4,6 +4,8 @@ from config import PROJECTNAME
 from AccessControl import ClassSecurityInfo
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
+from Products.CMFCore.utils import getToolByName
+from zLOG import LOG, ERROR, INFO
 
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """
@@ -103,18 +105,20 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     )
     
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
-    def syncMetadata(self,params):
+    def syncMetadata(self):
         """keep Metadata of Plone and Fedora synchron"""
-
-        firstNames = params['author_firstName'] 
-        lastNames = params['author_lastName']
-        contributors = []
-        for i in range(len(firstNames)):
-            contributors.append(lastNames[i] + ", " + firstNames[i])
+        fedora = getToolByName(self, 'fedora')
+        qdc = fedora.getQualifiedDCMetadata(self.PID)
+        LOG ('DIPP', INFO, self.PID)
+        #firstNames = params['author_firstName'] 
+        #lastNames = params['author_lastName']
+        #contributors = []
+        #for i in range(len(firstNames)):
+        #    contributors.append(lastNames[i] + ", " + firstNames[i])
         
-        self.setContributors(contributors)
-        self.setSubject(params['subject'])
-        self.setRights(params['rights'][0])
+        #self.setContributors(contributors)
+        self.setSubject(qdc['subject'])
+        self.setRights(qdc['rights'][0])
         self.reindexObject()
     
     def getPublishedArticles(self):

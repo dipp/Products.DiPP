@@ -19,7 +19,7 @@ new_subjects = params['new_subjects']
 subject = params['subject'] + new_subjects 
 params['subject'] = subject
 
-self.syncMetadata(params)
+self.syncMetadata()
 fedora.setQualifiedDCMetadata(params)
 
 portal_status_message = "Änderungen wurden gespeichert"
