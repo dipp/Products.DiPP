@@ -50,9 +50,6 @@
 	    <input type="hidden"   name="isChildOf" value="" tal:attributes="value parentPID" />
 	    <input type="hidden"   name="parentURL" value=""       tal:attributes="value parentURL" />
 
-	    <!--isChildOf: <span tal:replace="parentPID"></span><br />
-	    parentURL:    <span tal:replace="parentURL"></span>
-        -->
            <div class="field"
                 tal:condition="python:site_properties.getProperty('visible_ids', None)"
                 tal:define="error errors/id | nothing;
@@ -77,6 +74,8 @@
                     />
 
            </div>
+
+           
             <div class="field"
                 tal:define="error errors/title|nothing;
                             title request/title|here/title"
@@ -92,6 +91,23 @@
                        name="title"
                        value=""
                        tal:attributes="value title"/>
+            </div>
+            <div class="field"
+                tal:define="error errors/description|nothing;
+                            description request/description|here/description"
+                tal:attributes="class python:test(error, 'field error', 'field')"
+                i18n:domain="plone">
+                <label for="description" i18n:translate="label_description" >title</label>
+             
+             <div class="formHelp" i18n:translate="help_description">
+                    Short Name is part of the item's web address.
+                    For accessibility reasons, do not use spaces, upper case,
+                    underscores, or special characters.
+             </div>
+                                                                
+                <div tal:content="error">Validation error output</div>
+                <textarea id="description" name="description"
+                       tal:content="description"/>
             </div>
  
             <div class="field"

@@ -17,18 +17,23 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 required=0,
                 widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
         ),
+
+        TextField('description',
+            required=0,
+            widget=TextAreaWidget(label="description")
+        ),
+
         StringField('MetaType',
                 required=0,
                 vocabulary=('volume','series','category','topic','article','congress','other'),
                 widget=SelectionWidget(label='MetaType',description='Art des Containers',size='15')
         )
     ))
-
+    _at_rename_after_creation = True
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ('base_view', 'content_view')
-#    filter_content_types  = 1
     content_icon = 'fedorahierarchie_icon.gif'
     actions = (
         { "id": "edit",
@@ -37,7 +42,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           "category":"folder",
           },
-          
+         
         { "id": "view",
           "name": "View",
           "action": "string:${folder_url}/",
