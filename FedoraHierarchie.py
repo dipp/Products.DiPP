@@ -15,7 +15,9 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     schema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
-                widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
+                widget=StringWidget(label='PID',description='Persistent Identifier',size='15'),
+                searchable=1,
+                index='FieldIndex:brains'
         ),
 
         TextField('description',
