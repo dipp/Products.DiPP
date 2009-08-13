@@ -6,7 +6,8 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-           tal:define="len_text python:len(here.text);">
+             tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                         articles python: here.portal_catalog(path=path,portal_type='FedoraArticle')">
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
@@ -20,43 +21,18 @@
             description
         </div>
     
-        <p tal:condition="python: not len_text and is_editable"
-           i18n:translate="no_body_text"
-           class="discreet">
-            This item does not have any body text, click the edit tab to change it.
-        </p>
     
-        <div class="stx"
-             tal:condition="len_text"
-             tal:attributes="class python:test(here.Format() in ('text/structured',
-                                                   'text/x-rst', ), 'stx', 'plain')">
-            <div tal:replace="structure python:here.CookedBody(stx_level=2)" />
-        </div>
+        <p class="issue_content"
+             tal:condition="not:articles">
+             This Issue does not contain any articles.
+        </p>
         <div class="issue_content"
-            tal:define="articles python: here.contentValues('FedoraArticle')">
-            <ul>
+             tal:condition="articles">
+            <ol>
                 <li tal:repeat="article articles">
-                    <tal:block tal:define="qdc python:here.fedora.getQualifiedDCMetadata(article.PID);
-                                           titles python:qdc['title'];
-                                           authors python:qdc['creatorPerson'];">
-                        <tal:block tal:repeat="title titles" >
-                            <strong tal:content="title/value">Der Titel des Artikels</strong> <br />
-                        </tal:block>
-                        <tal:block tal:repeat="author authors" >
-                            <span tal:condition="not: repeat/author/end" 
-                                tal:define="firstName author/firstName; lastName author/lastName"
-                                tal:replace="string: $firstName $lastName,">
-                            </span>
-                            <span tal:condition="repeat/author/end" 
-                                tal:define="firstName author/firstName; lastName author/lastName"
-                                tal:replace="string: $firstName $lastName">
-                            </span>
-                        </tal:block>
-                        <br />
-                        <a href="" tal:attributes="href article/absolute_url" >mehr...</a>
-                    </tal:block>                    
+                <span tal:replace="article/Title"/>
                 </li>
-            </ul>
+            </ol>
         </div>
     
         <div metal:use-macro="here/document_byline/macros/byline">

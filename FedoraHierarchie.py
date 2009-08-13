@@ -6,8 +6,7 @@ from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     """
-        Folder, that represents a digital Object of the Fedora Database.
-        It can only contain FedoraDocument, FedoraImages,...
+    Hierarchical Object representing an issue or volume
     """
     
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
@@ -34,8 +33,8 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     _at_rename_after_creation = True
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
     immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ('base_view', 'content_view')
+    default_view = 'issue_contents_view'
+    suppl_views = ('base_view', 'issue_contents_view')
     content_icon = 'fedorahierarchie_icon.gif'
     actions = (
         { "id": "edit",
