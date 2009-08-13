@@ -29,9 +29,19 @@
         <div class="issue_content"
              tal:condition="articles">
             <ol>
-                <li tal:repeat="article articles">
-                <span tal:replace="article/Title"/>
-                </li>
+                <tal:items tal:repeat="item articles">
+                   <li tal:define="oddrow               repeat/item/odd;
+                                   item_url             item/getURL|item/absolute_url;
+                                   item_id              item/getId;
+                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                   item_title_or_id   item/pretty_title_or_id;"
+                                   tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                            <a href="#"
+                               tal:attributes="href item_url;" tal:content="item_title_or_id">
+                            Article titlArticle titlee   
+                            </a>
+                    </li>
+                 </tal:items>
             </ol>
         </div>
     
