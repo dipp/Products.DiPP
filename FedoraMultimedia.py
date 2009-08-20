@@ -31,15 +31,18 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                 widget=StringWidget(
                     label='Persistent Identifier (PID)',
                     description='The PID of this digital object as given by the repository software. DO NOT EDIT.',
-                    size='15'
-                )
+                    size='15',
+                    visible=-1
+                ),
+                index='FieldIndex:brains'
         ),
         StringField('DsID',
                 required=0,
                 widget=StringWidget(
                     label='Datastream Identifier (DsID)',
                     description='The Datastream Identifier. DO NOT EDIT.',
-                    size='15')
+                    size='15',
+                    visible=-1)
         ),
         StringField('MMType',
                 required=0,

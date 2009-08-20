@@ -20,11 +20,21 @@ class FedoraDocument(BaseContent):
         ),
         StringField('PID',
                 required=1,
-                widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
+                widget=StringWidget(
+                    label='PID',
+                    description='Persistent Identifier',
+                    size='15',
+                    visible=-1
+                    ),
+                index='FieldIndex:brains:schema'
         ),
         StringField('DsID',
                 required=1,
-                widget=StringWidget(label='DsID',description='Datastream Identifier',size='15')
+                widget=StringWidget(
+                    label='DsID',
+                    description='Datastream Identifier',
+                    size='15',
+                    visible=-1)
         ),
         StringField('MIMEType',
                 required=0,
@@ -36,12 +46,12 @@ class FedoraDocument(BaseContent):
     content_icon = "fedoradocument_icon.gif"
 
     actions = (
-        { "id": "edit",
-          "name": "Edit",
-          "action": "string:${object_url}/fedoradocument_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          },
-          
+        #{ "id": "edit",
+        #  "name": "Edit",
+        #  "action": "string:${object_url}/fedoradocument_edit_form",
+        #  "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
+        #  },
+        #  
         { "id": "view",
           "name": "View",
           "action": "string:${object_url}/fedoradocument_view",

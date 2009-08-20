@@ -20,11 +20,21 @@ class FedoraXML(BaseContent):
         ),
         StringField('PID',
                 required=1,
-                widget=StringWidget(label='PID',description='Persistent Identifier',size='15')
+                widget=StringWidget(
+                    label='PID',
+                    description='Persistent Identifier',
+                    size='15',
+                    visible=-1
+                ),
+                index='FieldIndex:brains'
         ),
         StringField('DsID',
                 required=1,
-                widget=StringWidget(label='DsID',description='Datastream Identifier',size='15')
+                widget=StringWidget(
+                    label='DsID',
+                    description='Datastream Identifier',
+                    size='15',
+                    visible=-1)
         ),
         StringField('MIMEType',
                 required=0,

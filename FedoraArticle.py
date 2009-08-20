@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
+from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from config import PROJECTNAME
 from AccessControl import ClassSecurityInfo
 import Permissions
@@ -19,27 +20,46 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     schema = BaseSchema + Schema((
         StringField('PID',
                 required=1,
-                widget=StringWidget(label='PID',description='Persistent Identifier',size='15'),
-                searchable=1,
-                index='FieldIndex:brains'
+                widget=StringWidget(
+                    label='PID',
+                    description='Persistent Identifier',
+                    size='15',
+                    visible={'edit':'invisible','view':'visible'}
+                    ),
+                index='FieldIndex:brains:schema'
         ),
         StringField('article_type',
                 required=0,
-                widget=StringWidget(label='Textsorte',description='Welche Textsorte läßt sich der Artikel zuordnen?'),
+                widget=StringWidget(
+                    label='Textsorte',
+                    description='Welche Textsorte läßt sich der Artikel zuordnen?'),
                 index='FieldIndex:brains'
         ),
         StringField('journal_section',
                 required=0,
-                widget=StringWidget(label='Section',description='Welcher Sektion läßt sich der Artikel zuordnen?'),
+                widget=SelectionWidget(
+                    label='Section',
+                    description='Welcher Sektion läßt sich der Artikel zuordnen?'
+                ),
+                vocabulary=NamedVocabulary("journal-sections"),
+                searchable=1,
                 index="FieldIndex:brains"
         ),
         StringField('pixel_domain',
                 required=0,
-                widget=StringWidget(label='VG Kürzel',description='Domain auf dem Zählserver: vgXX.met.vgwort.de, z.B. vg06',size='4')
+                widget=StringWidget(
+                    label='VG Kürzel',
+                    description='Domain auf dem Zählserver: vgXX.met.vgwort.de, z.B. vg06',
+                    size='4'),
+                #schemata="Metis"
         ),
         StringField('pixel_id',
                 required=0,
-                widget=StringWidget(label='VGWort Public ID',description='Der öffentliche Identifikationscode des Zählpixels',size='40')
+                widget=StringWidget(
+                    label='VGWort Public ID',
+                    description='Der öffentliche Identifikationscode des Zählpixels',
+                    size='40'),
+                #schemata="Metis"
         ),
         IntegerField('position',
                 widget=IntegerWidget(label="The Postion of the article in a special issue."),
