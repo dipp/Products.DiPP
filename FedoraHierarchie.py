@@ -3,6 +3,8 @@ from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
+from Products.CMFCore.utils import getToolByName
+from zLOG import LOG, ERROR, INFO
 
 class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     """
@@ -41,12 +43,12 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     suppl_views = ('base_view', 'issue_contents_view')
     content_icon = 'fedorahierarchie_icon.gif'
     actions = (
-        { "id": "edit",
-          "name": "Edit",
-          "action": "string:${folder_url}/fedorahierarchie_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
+        #{ "id": "edit",
+        #  "name": "Edit",
+        #  "action": "string:${folder_url}/fedorahierarchie_edit_form",
+        #  "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
+        #  "category":"folder",
+        #  },
          
         { "id": "view",
           "name": "View",
@@ -80,5 +82,19 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
           },
           
     )
+
+    def at_post_create_script(self):
+
+        fedora = getToolByName(self, 'fedora')
+        isChildOf = self.getParentNode().PID
+        MetaType = self.MetaType
+        title = self.title
+        id = self.id
+        AbsoluteURL = self.absolute_url()
+        PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
+        msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
+        LOG ('DIPP', INFO, msg)
+        self.setPID(PID)
+        
     
 registerType(FedoraHierarchie,PROJECTNAME)
