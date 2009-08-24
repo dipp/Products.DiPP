@@ -22,7 +22,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                     size='15',
                     visible={'edit':'invisible','view':'visible'}
                 ),
-                index='FieldIndex:brains:schema'
+                index='FieldIndex:brains'
         ),
 
         TextField('description',
@@ -57,6 +57,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
         LOG ('DIPP', INFO, msg)
         self.setPID(PID)
+        self.reindexObject()
 
     def at_post_edit_script(self):
         """ keep metadata in sync
