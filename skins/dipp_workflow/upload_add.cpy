@@ -60,11 +60,11 @@ else:
     newSubjectClassifiedNumber =int(REQUEST.get('newSubjectClassifiedNumber',None))
 
 subjects = REQUEST.get('subject',None)
-print 'LEN',len(subjects)
+#print 'LEN',len(subjects)
 subject = ""
-for i in subjects:
-    subject += i + "\n" 
-subject = [subject]
+#for i in subjects:
+#    subject += i + "\n" 
+#subject = [subject]
 
 return state.set(status='success',\
     portal_status_message=portal_status_message,\

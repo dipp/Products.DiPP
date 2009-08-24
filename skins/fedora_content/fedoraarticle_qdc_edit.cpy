@@ -1,4 +1,4 @@
-##script (Python) "content_edit"
+##script (Python) "fedoraarticle_qdc_edit"
 ##title=Edit content
 ##bind container=container
 ##bind context=context
@@ -16,11 +16,14 @@ fedora = getToolByName(self, 'fedora')
 params = REQUEST.form
 
 new_subjects = params['new_subjects']
-subject = params['subject'] + new_subjects 
-params['subject'] = subject
+subject = params.get('subject',[])
+params['subject'] = subject + new_subjects
 
-self.syncMetadata()
+context.plone_log("new:" + str(new_subjects))
+context.plone_log("exist:" + str(subject))
+
 fedora.setQualifiedDCMetadata(params)
+self.syncMetadata()
 
 portal_status_message = "Änderungen wurden gespeichert"
 
