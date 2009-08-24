@@ -388,11 +388,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         ('deadline_delay', '', 'DiPP.deadlines', 'deadline_delay'),
         ('deadline_time', '', 'DiPP.deadlines', 'deadline_time'),
         ('reminder', '', 'DiPP.reminder', 'reminder'),
-        ('membersOfGroup', '', 'DiPP.ldap', 'membersOfGroup'),
-        ('getMember', '', 'DiPP.ldap', 'member'),
-        ('usersAssignableTo', '', 'DiPP.ldap', 'usersAssignableTo'),
-        ('LDAPAddEntry', 'Benutzer in LDAP ergänzen', 'DiPP.ldap', 'addEntry'),
-        ('LDAPAuth', 'An LDAPServer authentifizieren', 'DiPP.ldap', 'auth')
     )
     for id, title, module, function in methods:
         if not hasattr(ext, id):
