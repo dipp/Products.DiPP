@@ -25,20 +25,11 @@ def newArticle(id,title,PID,subject,rights):
        portal.invokeFactory('Folder','tmp')
        tempDir = getattr(portal,'tmp')
     
-    #doc_id = aPid.replace(':','_')
-    #state = 'hide'
     try:
         docobj = tempDir.invokeFactory('FedoraArticle',id=id,title=title,PID=PID)
         document = getattr(tempDir, id)
         document.manage_addProperty(id="tmp", value=True, type='boolean')
-        subj = aSubject.split(';')
-        document.setTitle(title)
-        document.setSubject(subj)
-        #effDate = DateTime('2006-10-20 15:38:07')
-        #document.setEffectiveDate(aEffDate)
-        document.setRights(rights)
-        #document.portal_workflow.doActionFor(document, state, comment='')
-        #document.editMetadata(title=title, description=description)
+        document.syncMetadata()
     except:
         raise Exception, "could not create Article Object"
     return document.absolute_url()
