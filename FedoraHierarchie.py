@@ -39,51 +39,13 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     _at_rename_after_creation = True
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
     immediate_view = 'base_view'
-    default_view = 'issue_contents_view'
+    default_view = 'base_view'
     suppl_views = ('base_view', 'issue_contents_view')
     content_icon = 'fedorahierarchie_icon.gif'
-    actions = (
-        #{ "id": "edit",
-        #  "name": "Edit",
-        #  "action": "string:${folder_url}/fedorahierarchie_edit_form",
-        #  "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-        #  "category":"folder",
-        #  },
-         
-        { "id": "view",
-          "name": "View",
-          "action": "string:${folder_url}/",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
-        { "id": "folderlisting",
-          "name": "Folder Listing",
-          "action": "string:${folder_url}/folder_listing",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"folder",
-          "visible":0,
-          },
-          
-        { "id": "dc",
-          "name": "MetaData",
-          "action": "string:${folder_url}/fedorahierarchie_meta",
-          "visible":0,
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
-        { "id": "references",
-          "name": "References",
-          "visible":0,
-          #"action": "fedoraarticle_fedora",
-          #"permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
-    )
 
     def at_post_create_script(self):
+        """add a hierarchical object to fedora and write the PID back to the Plone object
+        """
 
         fedora = getToolByName(self, 'fedora')
         isChildOf = self.getParentNode().PID
@@ -95,6 +57,16 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
         LOG ('DIPP', INFO, msg)
         self.setPID(PID)
+
+    def at_post_edit_script(self):
+        """ keep metadata in sync
+        """
+
+        fedora = getToolByName(self, 'fedora')
+        id = self.id
+        AbsoluteURL = self.absolute_url()
+        msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
+        LOG ('DIPP', INFO, msg)
         
     
 registerType(FedoraHierarchie,PROJECTNAME)
