@@ -7,7 +7,7 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
              tal:define="path python:'/'.join(here.getPhysicalPath()); 
-                         articles python: here.portal_catalog(path=path,portal_type='FedoraArticle')">
+                         articles python: here.portal_catalog(path=path,portal_type='FedoraArticle', sort_on='getObjPositionInParent')">
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
@@ -28,21 +28,31 @@
         </p>
         <div class="issue_content"
              tal:condition="articles">
-            <ol>
+            <ul>
                 <tal:items tal:repeat="item articles">
                    <li tal:define="oddrow               repeat/item/odd;
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
-                                   item_title_or_id   item/pretty_title_or_id;"
+                                   item_title_or_id     item/pretty_title_or_id;
+                                   item_contributors python: item.getObject().Contributors()"
                                    tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                            <a href="#"
-                               tal:attributes="href item_url;" tal:content="item_title_or_id">
-                            Article titlArticle titlee   
-                            </a>
+                        <h2><a href="#"
+                           tal:attributes="href item_url;" tal:content="item_title_or_id">
+                         Article title   
+                        </a></h2>
+                        <ul class="authors" tal:condition="item_contributors">
+                            <li tal:repeat="contributor item_contributors">
+                            <a tal:define="firstname python: contributor.split(',')[-1];
+                                           lastname python: contributor.split(',')[0]"
+                               tal:attributes="href string: $portal_url/publication_list?contributor=$contributor" 
+                                  tal:content="string: $firstname $lastname">John Doe</a><span tal:condition="not: repeat/contributor/end"
+                                  tal:replace="string:,"/>
+                            </li>
+                        </ul>
                     </li>
                  </tal:items>
-            </ol>
+            </ul>
         </div>
     
         <div metal:use-macro="here/document_byline/macros/byline">
