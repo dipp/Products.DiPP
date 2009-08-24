@@ -130,13 +130,14 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         fedora = getToolByName(self, 'fedora')
         qdc = fedora.getQualifiedDCMetadata(self.PID)
         LOG ('DIPP', INFO, self.PID)
-        #firstNames = params['author_firstName'] 
-        #lastNames = params['author_lastName']
-        #contributors = []
-        #for i in range(len(firstNames)):
-        #    contributors.append(lastNames[i] + ", " + firstNames[i])
-        
-        #self.setContributors(contributors)
+        creatorPersons = qdc['creatorPerson']
+        contributors = []
+        for creatorPerson in creatorPersons:
+            firstName = creatorPerson['firstName'] 
+            lastName = creatorPerson['lastName'] 
+            author = "%s, %s" % (lastName, firstName)
+            contributors.append(author)
+        self.setContributors(contributors)
         self.setSubject(qdc['subject'])
         self.setRights(qdc['rights'][0])
         self.reindexObject()
