@@ -16,7 +16,6 @@ from Products.CMFCore.utils import getToolByName
 portal_url = getToolByName(self, 'portal_url')
 site = portal_url.getPortalObject()
 
-
 # add two folder to keep temporary files
 folders = (
     ('tmp','Temporäre Artikel'),
@@ -50,27 +49,31 @@ md = context.portal_memberdata
 try:
     np.manage_changeProperties(enable_wf_state_filtering=True)
     np.manage_changeProperties(wf_states_to_show=('published'))
-    print "Return to Plone 2.0.4 navigation"
+    print "Return to Plone 2.0.4 navigation\n"
 except:
-    print "Could not return to Plone 2.0.4 navigation"
+    print "Could not return to Plone 2.0.4 navigation\n"
 
 try:
     sp.manage_changeProperties(disable_folder_sections=True)
-    print "turn off the folders in the horizontal bar"
+    print "turn off the folders in the horizontal bar\n"
 except:
-    print "could not turn off the folders in the horizontal bar"
+    print "could not turn off the folders in the horizontal bar\n"
 
 try:
     sp.manage_changeProperties(allowAnonymousViewAbout=False)
-    print "turn off document_byline for anonymous users"
+    print "turn off document_byline for anonymous users\n"
 except:
-    print "could not turn off document_byline for anonymous users"
+    print "could not turn off document_byline for anonymous users\n"
 
 try:
     sp.manage_changeProperties(visible_ids=True)
     md.manage_changeProperties(visible_ids=True)
-    print "turn on visible_ids for anonymous users"
+    print "turn on visible_ids for anonymous users\n"
 except:
-    print "Could not turn on visible_ids for anonymous users"
+    print "Could not turn on visible_ids for anonymous users\n"
+
+
+vtool = getToolByName(self, 'portal_vocabularies')
+print vtool
 
 return printed
