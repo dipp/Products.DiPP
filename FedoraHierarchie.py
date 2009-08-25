@@ -1,15 +1,29 @@
 # -*- coding: utf-8 -*-
+#
+# File: FedoraHierarchie.py
+#
+# Copyright (c) 2009 by DiPP, hbz
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the 
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+
+__author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
+__docformat__ = 'plaintext'
+
 from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
+
 from zLOG import LOG, ERROR, INFO
 
 class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
-    """
-    Hierarchical Object representing an issue or volume
-    """
+    """Hierarchical Object representing an issue or volume."""
     
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
     
@@ -33,11 +47,72 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         StringField('MetaType',
                 required=0,
                 vocabulary=('volume','series','category','topic','article','congress','other'),
-                widget=SelectionWidget(label='MetaType',description='Art des Containers',size='15')
+                widget=SelectionWidget(
+                    label='MetaType',
+                    description='Art des Containers',
+                    size='15'),
+        ),
+        StringField('Volume',
+            required=0,
+            widget=StringWidget(
+                label='Volume',
+                label_msgid='label_volume_field',
+                description='An Volume to hold the Issues.',
+                description_msgid='help_volume_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
+        StringField('Issue',
+            required=0,
+            widget=StringWidget(
+                label='Issue',
+                label_msgid='label_issue_field',
+                description='An Issue to hold the Articles. Usally part of a volume',
+                description_msgid='help_issue_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
+        DateTimeField('IssueDate',
+            required=0,
+            widget=CalendarWidget(
+                label='Date',
+                label_msgid='label_issuedate_field',
+                description='The Date on which this issue is published.',
+                description_msgid='help_issuedate_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
+        FileField('CompleteIssue',
+            required=0,
+            widget=FileWidget(
+                label='Complete Isse',
+                description='The complete Issue in a single PDF file'
+            ),
+            schemata='Advanced'
+        ),
+        TextField('Body',
+            required=0,
+            widget=RichWidget(
+                label='Body',
+                description='Body'
+            ),
+            schemata='Advanced'
+        ),
+        ImageField('TitleImage',
+            required=0,
+            widget=ImageWidget(
+                label='Title image',
+                description='Select an image for the frontpage of this issue'
+            ),
+            schemata='Advanced'
         )
     ))
     _at_rename_after_creation = True
     archetype_name = "Volume/Issue"
+    archetype_description = "Hierarchical Object representing an issue or volume"
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
     immediate_view = 'base_view'
     default_view = 'base_view'
