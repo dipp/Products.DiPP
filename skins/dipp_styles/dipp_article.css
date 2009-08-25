@@ -1,9 +1,33 @@
+/* styles for the issue content page */
+
+ol.issue_content {
+    list-style: none;
+    margin-left: 0;
+}
+ol.issue_content li {
+    padding: 0.5em;
+    margin: 0;
+}
+/*
+.issue_content ul {
+    list-style: none;
+    margin-left: 0;
+} 
+.issue_content ul li {
+    display: inline;
+} 
+*/
 /* styles for the splashpage */
 
 
 ul.authors {
     list-style: none;
     margin-left: 0;
+}
+ul.authors li {
+    display: inline;
+    padding: 0;
+    margin: 0;
 }
 .authors .author {
     font-style: italic;
@@ -12,16 +36,6 @@ ul.authors {
 .authors .affiliation {
     font-style: italic; 
 }
-
-/* styles for the issue content page */
-
-.issue_content ul {
-    list-style: none;
-    margin-left: 0;
-} 
-.issue_content ul li {
-    display: inline;
-} 
 
 
 .articleinfo {
