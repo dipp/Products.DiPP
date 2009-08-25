@@ -37,10 +37,11 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         )
     ))
     _at_rename_after_creation = True
+    archetype_name = "Volume/Issue"
     allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
     immediate_view = 'base_view'
     default_view = 'base_view'
-    suppl_views = ('base_view', 'issue_contents_view')
+    suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
     content_icon = 'fedorahierarchie_icon.gif'
 
     def at_post_create_script(self):

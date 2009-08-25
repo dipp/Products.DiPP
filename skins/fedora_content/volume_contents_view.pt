@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+             tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                         issues python: here.portal_catalog(path=path,portal_type='FedoraHierarchie', sort_on='getObjPositionInParent')">
+        
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+        </h1>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    
+        <div class="documentDescription"
+             tal:content="here/Description">
+            description
+        </div>
+    
+    
+        <p class="discreet"
+             tal:condition="not:issues">
+             This Volume does not contain any issues.
+        </p>
+
+        <div tal:condition="issues">
+            <ol class="volume_content">
+                <tal:items tal:repeat="item issues">
+                   <li tal:define="oddrow               repeat/item/odd;
+                                   item_url             item/getURL|item/absolute_url;
+                                   item_id              item/getId;
+                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                   item_title_or_id     item/pretty_title_or_id;
+                                   item_description     item/Description"
+                                   tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                        <strong>    
+                            <a href="#"
+                               tal:attributes="href item_url;" tal:content="item_title_or_id">
+                             Article title</a>   
+
+                        </strong>
+                        <p tal:content="item_description"></p>
+                    </li>
+                 </tal:items>
+            </ol>
+        </div>
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+
