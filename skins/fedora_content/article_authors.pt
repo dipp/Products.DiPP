@@ -1,0 +1,20 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="article_authors"
+             i18n:domain="dipp"
+             tal:condition="authors">
+            <ul class="authors">
+                <li tal:repeat="author authors">
+                <a tal:define="firstname python: author.split(',')[-1];
+                               lastname python: author.split(',')[0]"
+                   tal:attributes="href string: $portal_url/publication_list?contributor=$author" 
+                      tal:content="string: $firstname $lastname">John Doe</a><span tal:condition="not: repeat/author/end"
+                      tal:replace="string:,"/>
+                </li>
+            </ul>
+        </div>
+     </body>
+</html>

@@ -8,12 +8,17 @@
     <tal:main-macro metal:define-macro="main"
              tal:define="path python:'/'.join(here.getPhysicalPath()); 
                          articles python: here.portal_catalog(path=path,portal_type='FedoraArticle', sort_on='getObjPositionInParent')">
+        
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
-    
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
         </div>
     
         <div class="documentDescription"
@@ -26,38 +31,34 @@
              tal:condition="not:articles">
              This Issue does not contain any articles.
         </p>
-        <div class="issue_content"
-             tal:condition="articles">
-            <ul>
+
+        <div tal:condition="articles">
+            <dl class="issue_content">
                 <tal:items tal:repeat="item articles">
-                   <li tal:define="oddrow               repeat/item/odd;
+                   <tal:block tal:define="oddrow               repeat/item/odd;
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id     item/pretty_title_or_id;
-                                   item_contributors python: item.getObject().Contributors()"
+                                   item_contributors python: item.getObject().Contributors();
+                                   authors              item_contributors"
                                    tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                        <h2><a href="#"
+                    <dt>    
+                        <a href="#"
                            tal:attributes="href item_url;" tal:content="item_title_or_id">
-                         Article title   
-                        </a></h2>
-                        <ul class="authors" tal:condition="item_contributors">
-                            <li tal:repeat="contributor item_contributors">
-                            <a tal:define="firstname python: contributor.split(',')[-1];
-                                           lastname python: contributor.split(',')[0]"
-                               tal:attributes="href string: $portal_url/publication_list?contributor=$contributor" 
-                                  tal:content="string: $firstname $lastname">John Doe</a><span tal:condition="not: repeat/contributor/end"
-                                  tal:replace="string:,"/>
-                            </li>
-                        </ul>
-                    </li>
+                         Article title</a>   
+
+                    </dt>
+                    <dd>
+                        <div metal:use-macro="here/article_authors/macros/article_authors">
+                            A nicely formatted list of authors
+                        </div>
+                    </dd>
+                    </tal:block>
                  </tal:items>
-            </ul>
+            </dl>
         </div>
     
-        <div metal:use-macro="here/document_byline/macros/byline">
-          Get the byline - contains details about author and modification date.
-        </div>
     </tal:main-macro>
 </metal:main>
 
