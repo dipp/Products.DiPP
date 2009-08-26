@@ -32,7 +32,9 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 required=0,
                 widget=StringWidget(
                     label='PID',
+                    label_msgid='label_pid_field',
                     description='Persistent Identifier',
+                    description_msgid='help_pid_field',
                     size='15',
                     visible={'edit':'invisible','view':'visible'}
                 ),
@@ -49,7 +51,9 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 vocabulary=('volume','series','category','topic','article','congress','other'),
                 widget=SelectionWidget(
                     label='MetaType',
+                    label_msgid='label_metatype_field',
                     description='Art des Containers',
+                    description_msgid='help_metatype_field',
                     size='15'),
         ),
         StringField('Volume',
@@ -97,23 +101,26 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
             required=0,
             widget=RichWidget(
                 label='Body',
-                description='Body'
+                description='Introductory Text for this issue.'
             ),
             schemata='Advanced'
         ),
         ImageField('TitleImage',
             required=0,
             widget=ImageWidget(
-                label='Title image',
-                description='Select an image for the frontpage of this issue'
+                label='Cover picture',
+                label_msgid='label_titleimage_field',
+                description='Select an image for the frontpage of this issue',
+                description_msgid='help_titleimage_field',
             ),
+            sizes={'small':(120,120),'medium':(250,250),'large':(600,600)},
             schemata='Advanced'
         )
     ))
     _at_rename_after_creation = True
     archetype_name = "Volume/Issue"
     archetype_description = "Hierarchical Object representing an issue or volume"
-    allowed_content_types = ('FedoraHierarchie','FedoraArticle','Document','Image')
+    allowed_content_types = ('FedoraHierarchie','FedoraArticle')
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
