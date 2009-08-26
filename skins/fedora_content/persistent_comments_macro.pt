@@ -41,7 +41,9 @@
                sechs Monate lang diskutiert werden
             </p>
             <p>
-               <a href="" tal:attributes="href string:$portal_url/submitemail_form">Zur Einreichung</a>
+               <a href=""
+                  tal:attributes="href string:$portal_url/submitemail_form"
+                  i18n:translate="button_submit_comment">Kommentar einreichen.</a>
             </p>
         </div>
 
