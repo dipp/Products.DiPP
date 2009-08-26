@@ -520,3 +520,6 @@ msgstr ""
 
 msgid "text_google_scholar"
 msgstr ""
+
+msgid "button_submit_comment"
+msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2009-05-13 20:59+0100\n"
+"PO-Revision-Date: 2009-08-26 18:48+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -524,4 +524,7 @@ msgstr "Number of citations"
 
 msgid "text_google_scholar"
 msgstr "Visit ${google_scholar_link} to find out, how often this paper is cited."
+
+msgid "button_submit_comment"
+msgstr "Submit comment."
 
