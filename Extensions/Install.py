@@ -7,7 +7,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS
+from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES
 from Products.DiPP.defaults import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
@@ -525,11 +525,23 @@ def install_content(self, out, site_id=SITE_NAME):
     site = getSite(self, site_id)
     if not hasattr(site, DEFAULT_PAGE):
         site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
+
+def install_dependencies(self,out,site_id=SITE_NAME):
+    """Try to install dependencies to other products"""
     
+    print >> out, "Dependency %s:" % str(len(DEPENDENCIES))
+    site = getSite(self, site_id)
+    quickinstaller = site.portal_quickinstaller
+    for dependency in DEPENDENCIES:
+        print >> out, "Installing dependency %s:" % dependency
+        quickinstaller.installProduct(dependency) 
+        get_transaction().commit(1)
+
 def install(self):
     """ install a dipp instance"""
     out = StringIO()
-
+    
+    install_dependencies(self,out)
     install_properties(self, out)
     install_memberproperties(self, out)
     install_subskins(self, out)

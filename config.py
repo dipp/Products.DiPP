@@ -26,5 +26,11 @@ STYLESHEETS = (
     {'id': "dipp_article.css", 'media': 'all', 'rendering': 'import'},
     {'id': "dipp_article_print.css", 'media': 'print', 'rendering': 'import'}
 )
-        
+
+DEPENDENCIES = [
+    'Archetypes',
+    'ATVocabularyManager',
+    'CMFOpenflow'
+    ]
+
 GLOBALS = globals()
