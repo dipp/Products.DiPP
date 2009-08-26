@@ -21,10 +21,36 @@
           Get the byline - contains details about author and modification date.
         </div>
     
-        <div class="documentDescription"
-             tal:content="here/Description">
-            description
+
+        <div class="coverpicture"
+             tal:define="has_cover here/TitleImage|nothing"
+             tal:condition="has_cover">
+             <img class="coverpicture" tal:replace="structure here/TitleImage" />
         </div>
+        
+        <div class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+           Description
+        </div>
+
+        <p tal:define="Body here/Body|nothing"
+           tal:condition="Body"
+           tal:content="structure Body">
+        </p>
+        
+        <p tal:define="CompleteIssue here/CompleteIssue|nothing"
+           tal:condition="CompleteIssue">
+           Get the entire issue 
+           <a tal:define="size python:here.getObjSize(CompleteIssue);
+                          icon CompleteIssue/getBestIcon | nothing;
+                          filename CompleteIssue/filename | nothing"
+              href=""
+              tal:attributes="href string:${here/absolute_url}/at_download/CompleteIssue">
+              <img tal:condition="icon" src=""
+                   tal:attributes="src string:${here/portal_url}/$icon"/>
+              <span tal:replace="filename">full.pdf</span> (<span tal:replace="size">1GB</span>)</a>
+        </p>
     
     
         <p class="discreet"
@@ -32,30 +58,30 @@
              This Issue does not contain any articles.
         </p>
 
-        <div tal:condition="articles">
-            <ol class="issue_content">
-                <tal:items tal:repeat="item articles">
-                   <li tal:define="oddrow               repeat/item/odd;
-                                   item_url             item/getURL|item/absolute_url;
-                                   item_id              item/getId;
-                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
-                                   item_title_or_id     item/pretty_title_or_id;
-                                   item_contributors python: item.getObject().Contributors();
-                                   authors              item_contributors"
-                                   tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                    <strong>    
-                        <a href="#"
-                           tal:attributes="href item_url;" tal:content="item_title_or_id">
-                         Article title</a>   
+        <ol class="issue_content"
+            tal:condition="articles">
+            
+            <tal:items tal:repeat="item articles">
+               <li tal:define="oddrow               repeat/item/odd;
+                               item_url             item/getURL|item/absolute_url;
+                               item_id              item/getId;
+                               item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                               item_title_or_id     item/pretty_title_or_id;
+                               item_contributors python: item.getObject().Contributors();
+                               authors              item_contributors"
+                               tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                <strong>    
+                    <a href="#"
+                       tal:attributes="href item_url;" tal:content="item_title_or_id">
+                     Article title</a>   
 
-                    </strong>
-                        <div metal:use-macro="here/article_authors/macros/article_authors">
-                            A nicely formatted list of authors
-                        </div>
-                    </li>
-                 </tal:items>
-            </ol>
-        </div>
+                </strong>
+                    <div metal:use-macro="here/article_authors/macros/article_authors">
+                        A nicely formatted list of authors
+                    </div>
+                </li>
+             </tal:items>
+        </ol>
     
     </tal:main-macro>
 </metal:main>
