@@ -30,7 +30,8 @@ STYLESHEETS = (
 DEPENDENCIES = [
     'Archetypes',
     'ATVocabularyManager',
-    'CMFOpenflow'
+    'CMFOpenflow',
+    'DiPPContent'
     ]
 
 GLOBALS = globals()
