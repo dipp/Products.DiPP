@@ -124,7 +124,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         ),
     ))
 
-    archetype_name = "Peer reviewed article"
+    #archetype_name = "Peer reviewed article"
     archetype_description = "An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"
     allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
     immediate_view = 'base_view'

@@ -118,7 +118,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         )
     ))
     _at_rename_after_creation = True
-    archetype_name = "Volume/Issue"
+    #archetype_name = "Volume/Issue"
     archetype_description = "Hierarchical Object representing an issue or volume"
     allowed_content_types = ('FedoraHierarchie','FedoraArticle')
     immediate_view = 'base_view'
