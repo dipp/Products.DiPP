@@ -523,3 +523,15 @@ msgstr ""
 
 msgid "button_submit_comment"
 msgstr ""
+
+msgid "label_volume_field"
+msgstr ""
+
+msgid "help_volume_field"
+msgstr ""
+
+msgid "label_issue_field"
+msgstr ""
+
+msgid "help_issue_field"
+msgstr ""
