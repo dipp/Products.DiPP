@@ -40,7 +40,7 @@
         </p>
         
         <p tal:define="CompleteIssue here/CompleteIssue|nothing"
-           tal:condition="CompleteIssue">
+           tal:condition="CompleteIssue/filename">
            Get the entire issue 
            <a tal:define="size python:here.getObjSize(CompleteIssue);
                           icon CompleteIssue/getBestIcon | nothing;
