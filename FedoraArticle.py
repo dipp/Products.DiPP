@@ -81,6 +81,39 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             vocabulary="getPublishedArticles"
             #vocabulary=('as','asasd')
         ),
+        StringField('Volume',
+            required=0,
+            widget=StringWidget(
+                label='Volume',
+                label_msgid='label_volume_field',
+                description='An Volume to hold the Issues.',
+                description_msgid='help_volume_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
+        StringField('Issue',
+            required=0,
+            widget=StringWidget(
+                label='Issue',
+                label_msgid='label_issue_field',
+                description='An Issue to hold the Articles. Usally part of a volume',
+                description_msgid='help_issue_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
+        DateTimeField('IssueDate',
+            required=0,
+            widget=CalendarWidget(
+                label='Date',
+                label_msgid='label_issuedate_field',
+                description='The Date on which this issue is published.',
+                description_msgid='help_issuedate_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
     ))
 
     allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
