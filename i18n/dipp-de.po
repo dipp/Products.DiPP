@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2009-08-26 18:48+0100\n"
+"PO-Revision-Date: 2009-08-27 11:10+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -527,4 +527,16 @@ msgstr "Besuchen Sie ${google_scholar_link} um herauszufinden, wie oft dieser Ar
 
 msgid "button_submit_comment"
 msgstr "Kommentar einreichen."
+
+msgid "label_volume_field"
+msgstr "Jahrgang"
+
+msgid "help_volume_field"
+msgstr "Jahrgang"
+
+msgid "label_issue_field"
+msgstr "Ausgabe"
+
+msgid "help_issue_field"
+msgstr "Ausgabe"
 
