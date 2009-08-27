@@ -9,10 +9,7 @@ from Products.CMFCore.utils import getToolByName
 from zLOG import LOG, ERROR, INFO
 
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
-    """
-        Folder, that represents a digital Object of the Fedora Database.
-        It can only contain FedoraDocument, FedoraImages,...
-    """
+    """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
@@ -35,23 +32,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                     description='Welche Textsorte läßt sich der Artikel zuordnen?'),
                 index='FieldIndex:brains'
         ),
-        StringField('journal_section',
-                required=0,
-                widget=SelectionWidget(
-                    label='Section',
-                    description='Welcher Sektion läßt sich der Artikel zuordnen?'
-                ),
-                vocabulary=NamedVocabulary("journal-sections"),
-                searchable=1,
-                index="FieldIndex:brains"
-        ),
         StringField('pixel_domain',
                 required=0,
                 widget=StringWidget(
                     label='VG Kürzel',
                     description='Domain auf dem Zählserver: vgXX.met.vgwort.de, z.B. vg06',
                     size='4'),
-                #schemata="Metis"
+                schemata="Metis"
         ),
         StringField('pixel_id',
                 required=0,
@@ -59,15 +46,14 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                     label='VGWort Public ID',
                     description='Der öffentliche Identifikationscode des Zählpixels',
                     size='40'),
-                #schemata="Metis"
+                schemata="Metis"
         ),
         IntegerField('position',
-                widget=IntegerWidget(label="The Postion of the article in a special issue."),
-                storage=AttributeStorage(),
-                searchable=1,
-                default=0,
-                required=1,
-                index="FieldIndex:brains"
+            widget=IntegerWidget(label="The Postion of the article in a special issue."),
+            storage=AttributeStorage(),
+            default=0,
+            required=1,
+            index="FieldIndex:brains"
         ),
         StringField(
             name='comment_to',
@@ -80,6 +66,28 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             multiValued=0,
             vocabulary="getPublishedArticles"
             #vocabulary=('as','asasd')
+        ),
+        StringField('journal_section',
+            required=0,
+            widget=SelectionWidget(
+                label='Section',
+                description='Welcher Sektion läßt sich der Artikel zuordnen?'
+            ),
+            vocabulary=NamedVocabulary("journal-sections"),
+            searchable=1,
+            index="FieldIndex:brains",
+            schemata='Bibliographic Data'
+        ),
+        StringField('JournalTitle',
+            required=0,
+            widget=StringWidget(
+                label='Journal title',
+                label_msgid='label_journaltitle_field',
+                description='The titel of this Journal.',
+                description_msgid='help_journaltitle_field',
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
         ),
         StringField('Volume',
             required=0,
@@ -116,6 +124,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         ),
     ))
 
+    archetype_name = "Peer reviewed article"
+    archetype_description = "An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"
     allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
     immediate_view = 'base_view'
     default_view = 'base_view'
@@ -130,31 +140,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           "category":"folder",
           },
-          
-        { "id": "dc",
-          "name": "MetaData",
-          "visible":0,
-          "action": "string:${folder_url}/fedoraarticle_meta",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
+        
         { "id": "qdc",
           "name": "Dublin Core",
           "action": "string:${folder_url}/fedoraarticle_qdc",
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           "category":"folder",
           },
-          
-          
-        { "id": "references",
-          "name": "References",
-          "visible":0,
-          #"action": "string:${object_url}/fedoraarticle_fedora",
-          #"permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
     )
     
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
@@ -162,7 +154,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         """keep Metadata of Plone and Fedora synchron"""
         fedora = getToolByName(self, 'fedora')
         qdc = fedora.getQualifiedDCMetadata(self.PID)
-        LOG ('DIPP', INFO, self.PID)
+        LOG ('DIPP', INFO, "Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
         creatorPersons = qdc['creatorPerson']
         contributors = []
         for creatorPerson in creatorPersons:
@@ -173,6 +165,9 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         self.setContributors(contributors)
         self.setSubject(qdc['subject'])
         self.setRights(qdc['rights'][0])
+        self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
+        self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
+        self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
         self.reindexObject()
     
     def getPublishedArticles(self):
