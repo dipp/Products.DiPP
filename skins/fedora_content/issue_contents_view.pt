@@ -7,6 +7,8 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
              tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                         avtm python:here.portal_vocabularies;
+                         journalsections python:avtm.getVocabularyByName('journal-sections');
                          articles python: here.portal_catalog(path=path,portal_type='FedoraArticle', sort_on='getObjPositionInParent')">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
@@ -57,6 +59,11 @@
              tal:condition="not:articles">
              This Issue does not contain any articles.
         </p>
+        <tal:block tal:replace="journalsections" />
+        <!--<ol tal:condition="journalsections"
+            tal:repeat="journalsection python:journalsections.getDisplayList(here)">
+            <li tal:content="journalsections"> </li>
+        </ol>-->
 
         <ol class="issue_content"
             tal:condition="articles">
@@ -65,6 +72,7 @@
                <li tal:define="oddrow               repeat/item/odd;
                                item_url             item/getURL|item/absolute_url;
                                item_id              item/getId;
+                               item_section         item/getJournal_section;
                                item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                item_title_or_id     item/pretty_title_or_id;
                                item_contributors python: item.getObject().Contributors();

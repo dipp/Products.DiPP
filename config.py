@@ -35,6 +35,6 @@ DEPENDENCIES = [
     ]
 
 VOCABULARIES = (
-    ( 'SimpleVocabulary','journal-sections', 'Journal Section'),
+    ( 'SimpleVocabulary','journal-sections','The sections of the journal, used to organize an issue.', 'Journal Sections'),
 )
 GLOBALS = globals()

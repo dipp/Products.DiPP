@@ -543,9 +543,9 @@ def create_vocabularies(self,out,site_id=SITE_NAME):
     
     site = getSite(self, site_id)
     atvm = site.portal_vocabularies
-    for type, name, title in VOCABULARIES:
+    for type, name, description, title in VOCABULARIES:
         if not  hasattr(atvm,name):
-            atvm.invokeFactory(type, name, title=title)
+            atvm.invokeFactory(type, name, description, title=title)
             print >> out, "created vocabulary %s" % title
         else:
             print >> out, "vocabulary %s exists" % title
@@ -563,6 +563,7 @@ def install(self):
     install_css(self,out)
     install_configlet(self, out)
     install_content(self, out)
+    create_vocabularies(self, out)
     
     reftool = getToolByName(self, 'portal_openflow')
     process_id = 'Publishing'
