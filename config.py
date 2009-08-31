@@ -34,4 +34,7 @@ DEPENDENCIES = [
     'DiPPContent'
     ]
 
+VOCABULARIES = (
+    ( 'SimpleVocabulary','journal-sections', 'Journal Section'),
+)
 GLOBALS = globals()

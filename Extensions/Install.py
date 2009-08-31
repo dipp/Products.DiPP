@@ -7,7 +7,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES
+from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES, VOCABULARIES
 from Products.DiPP.defaults import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
@@ -536,6 +536,19 @@ def install_dependencies(self,out,site_id=SITE_NAME):
         print >> out, "Installing dependency %s:" % dependency
         quickinstaller.installProduct(dependency) 
         get_transaction().commit(1)
+
+
+def create_vocabularies(self,out,site_id=SITE_NAME):
+    """create required vocabularies"""
+    
+    site = getSite(self, site_id)
+    atvm = site.portal_vocabularies
+    for type, name, title in VOCABULARIES:
+        if not  hasattr(atvm,name):
+            atvm.invokeFactory(type, name, title=title)
+            print >> out, "created vocabulary %s" % title
+        else:
+            print >> out, "vocabulary %s exists" % title
 
 def install(self):
     """ install a dipp instance"""
