@@ -16,7 +16,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
     schema = BaseSchema + Schema((
         StringField('PID',
-                required=1,
+                required=0,
                 widget=StringWidget(
                     label='PID',
                     description='Persistent Identifier',
@@ -68,12 +68,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             #vocabulary=('as','asasd')
         ),
         StringField('journal_section',
-            required=0,
             widget=SelectionWidget(
+                required=1,
                 label='Section',
                 description='Welcher Sektion läßt sich der Artikel zuordnen?'
             ),
             vocabulary=NamedVocabulary("journal-sections"),
+            default='no-section',
             searchable=1,
             index="FieldIndex:brains",
             schemata='Bibliographic Data'

@@ -545,7 +545,17 @@ def create_vocabularies(self,out,site_id=SITE_NAME):
     atvm = site.portal_vocabularies
     for type, name, description, title in VOCABULARIES:
         if not  hasattr(atvm,name):
-            atvm.invokeFactory(type, name, description, title=title)
+            atvm.invokeFactory(type, name, title=title, description=description, sortMethod='getObjPositionInParent')
+            vocab = atvm.getVocabularyByName(name)
+            print >> out, vocab
+            key = 'no-section'
+            value = 'No section'
+            if not hasattr(vocab,key):
+                vocab.invokeFactory('SimpleVocabularyTerm',key)
+                vocab[key].setTitle(value)
+                vocab[key].reindexObject()
+            vocab.reindexObject()
+
             print >> out, "created vocabulary %s" % title
         else:
             print >> out, "vocabulary %s exists" % title
