@@ -35,6 +35,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                     label_msgid='label_pid_field',
                     description='Persistent Identifier',
                     description_msgid='help_pid_field',
+                    i18n_domain='dipp',
                     size='15',
                     visible={'edit':'invisible','view':'visible'}
                 ),
@@ -54,6 +55,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                     label_msgid='label_metatype_field',
                     description='Art des Containers',
                     description_msgid='help_metatype_field',
+                    i18n_domain='dipp',
                     size='15'),
         ),
         StringField('Volume',
@@ -63,6 +65,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_volume_field',
                 description='An Volume to hold the Issues.',
                 description_msgid='help_volume_field',
+                i18n_domain='dipp',
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -74,6 +77,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_issue_field',
                 description='An Issue to hold the Articles. Usally part of a volume',
                 description_msgid='help_issue_field',
+                i18n_domain='dipp',
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -85,6 +89,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_issuedate_field',
                 description='The Date on which this issue is published.',
                 description_msgid='help_issuedate_field',
+                i18n_domain='dipp',
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -112,6 +117,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_titleimage_field',
                 description='Select an image for the frontpage of this issue',
                 description_msgid='help_titleimage_field',
+                i18n_domain='dipp',
             ),
             sizes={'small':(120,120),'medium':(250,250),'large':(600,600)},
             schemata='Advanced'
