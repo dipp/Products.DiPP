@@ -9,7 +9,8 @@
              tal:define="path python:'/'.join(here.getPhysicalPath()); 
                          avtm python:here.portal_vocabularies;
                          journalsections python:avtm.getVocabularyByName('journal-sections');
-                         articles python: here.portal_catalog(path=path,portal_type='FedoraArticle', sort_on='getObjPositionInParent')">
+                         section_dict python:journalsections.getVocabularyDict(journalsections);
+                         articles python: here.portal_catalog(path=path,portal_type='FedoraArticle')">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
@@ -59,38 +60,39 @@
              tal:condition="not:articles">
              This Issue does not contain any articles.
         </p>
-        <tal:block tal:replace="journalsections" />
-        <!--<ol tal:condition="journalsections"
-            tal:repeat="journalsection python:journalsections.getDisplayList(here)">
-            <li tal:content="journalsections"> </li>
-        </ol>-->
+            <div tal:repeat="section python: section_dict.keys()">
+                <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
+                           tal:condition="articles">
+                <h2 tal:condition="python: section != 'no-section'" tal:content="python: section"></h2>
+                <ol class="issue_content" >
+                    
+                    <tal:items tal:repeat="item articles">
+                       <li tal:define="oddrow               repeat/item/odd;
+                                       item_url             item/getURL|item/absolute_url;
+                                       item_id              item/getId;
+                                       item_section         item/getJournal_section;
+                                       item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                       item_title_or_id     item/pretty_title_or_id;
+                                       item_section         item/getJournal_section|nothing;
+                                       item_contributors python: item.getObject().Contributors();
+                                       authors              item_contributors"
+                                       tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                        <strong>    
+                            <a href="#"
+                               tal:attributes="href item_url;" tal:content="item_title_or_id">
+                             Article title</a>
 
-        <ol class="issue_content"
-            tal:condition="articles">
-            
-            <tal:items tal:repeat="item articles">
-               <li tal:define="oddrow               repeat/item/odd;
-                               item_url             item/getURL|item/absolute_url;
-                               item_id              item/getId;
-                               item_section         item/getJournal_section;
-                               item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
-                               item_title_or_id     item/pretty_title_or_id;
-                               item_contributors python: item.getObject().Contributors();
-                               authors              item_contributors"
-                               tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                <strong>    
-                    <a href="#"
-                       tal:attributes="href item_url;" tal:content="item_title_or_id">
-                     Article title</a>   
+                        </strong>
+                            <div metal:use-macro="here/article_authors/macros/article_authors">
+                                A nicely formatted list of authors
+                            </div>
+                        </li>
+                     </tal:items>
+                </ol>
 
-                </strong>
-                    <div metal:use-macro="here/article_authors/macros/article_authors">
-                        A nicely formatted list of authors
-                    </div>
-                </li>
-             </tal:items>
-        </ol>
-    
+                </tal:block>
+
+            </div>
     </tal:main-macro>
 </metal:main>
 
