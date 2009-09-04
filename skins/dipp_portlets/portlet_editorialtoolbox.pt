@@ -31,14 +31,6 @@
                         >
                                <span class="navItemText" i18n:translate="internal_workflow">Einreichen ohne Peer Review</span></a>
                    </li>
-                   <li>
-                        <a href="" 
-                           class="navItem"
-                           tal:attributes="href string:$portal_url/submit_form" 
-                           i18n:attributes="title help_external_workflow"
-                        >
-                               <span class="navItemText" i18n:translate="external_workflow">Einreichen mit Peer Review</span></a>
-                   </li>
                </ul>
                
                 <strong i18n:translate="articles_in_process">Artikel in Bearbeitung</strong>
