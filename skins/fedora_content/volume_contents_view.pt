@@ -31,17 +31,18 @@
              tal:condition="not:issues">
              This Volume does not contain any issues.
         </p>
-
         <div tal:condition="issues">
             <ol class="volume_content">
                 <tal:items tal:repeat="item issues">
                    <li tal:define="oddrow               repeat/item/odd;
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
+                                   item_pid             item/getPID;
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id     item/pretty_title_or_id;
                                    item_description     item/Description"
-                                   tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                       tal:attributes="class python:test(oddrow, 'even', 'odd')"
+                       tal:condition="python:here.PID!=item_pid ">
                         <strong>    
                             <a href="#"
                                tal:attributes="href item_url;" tal:content="item_title_or_id">
