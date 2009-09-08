@@ -63,7 +63,7 @@
             <div tal:repeat="section python: section_dict.keys()">
                 <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                            tal:condition="articles">
-                <h2 tal:condition="python: section != 'no-section'" tal:content="python: section"></h2>
+                <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>
                 <ol class="issue_content" >
                     
                     <tal:items tal:repeat="item articles">
