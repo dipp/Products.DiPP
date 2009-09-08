@@ -359,6 +359,35 @@
                         </div>
 
                         <div class="field"
+                             tal:define="error errors/areas_of_expertise | nothing;
+                                         atvm  python:here.portal_vocabularies;
+                                         vocab python:atvm.getVocabularyByName('areas-of-expertise');
+                                         all_areas python:vocab.getVocabularyDict(vocab);
+                                         areas_of_expertise python:request.get('areas_of_expertise',member.getProperty('areas_of_expertise',''))">
+                            <label for="areas_of_expertise" i18n:translate="label_areas_of_expertise">Areas of expertise</label>
+                            <div class="formHelp" i18n:translate="help_areas_of_expertise">
+                                Please select one or more areas of expertise from the list below. You will be considered
+                                as a peer reviewer when a paper is submitted for the appropriate section.
+                            </div>
+
+                            <div tal:content="error">Validation error output</div>
+                            
+                            <ul class="nobullets">
+                            <li tal:repeat="area python:all_areas.keys()">
+                                <input type="checkbox"
+                                       class="noborder"
+                                       name="areas_of_expertise:list"
+                                       tal:attributes="tabindex tabindex/next;
+                                                       value area;
+                                                       id string:${area}_id;
+                                                       checked python:test(area in areas_of_expertise, 'checked', None);" />
+                                <label class="plain"  tal:attributes="for string:${area}_id" tal:content="python:all_areas[area]">Accounting</label>
+                            </li>
+                            </ul>
+                        </div>
+                        
+
+                        <div class="field"
                              tal:define="error errors/language | nothing;
                                          language python:request.get('language', member.getProperty('language', ''));"
                              tal:attributes="class python:test(error, 'field error', 'field')">
@@ -407,30 +436,6 @@
                             </div>
 
                           </div>
-                        
-                        <div class="field"
-                             tal:define="error errors/areas_of_expertise | nothing;
-                                         areas_of_expertise python:request.get('areas_of_expertise',member.getProperty('areas_of_expertise',''))">
-                            <label for="areas_of_expertise" i18n:translate="label_areas_of_expertise">Areas of expertise</label>
-                            <div class="formHelp" i18n:translate="help_areas_of_expertise">
-                                Please select one or more areas of expertise from the list below. You will be considered
-                                as a peer reviewer when a paper is submitted for the appropriate section.
-                            </div>
-
-                            <div tal:content="error">Validation error output</div>
-                            <ul class="nobullets">
-                            <li tal:repeat="area here/portal_properties/member_properties/areas_of_expertise">
-                                <input type="checkbox"
-                                       class="noborder"
-                                       name="areas_of_expertise:list"
-                                       tal:attributes="tabindex tabindex/next;
-                                                       value area;
-                                                       id string:${area}_id;
-                                                       checked python:test(area in areas_of_expertise, 'checked', None);" />
-                                <label class="plain"  tal:attributes="for string:${area}_id" tal:content="area">Accounting</label>
-                            </li>
-                            </ul>
-                        </div>
                         
                         <div class="field"
                              tal:define="error errors/home_page | nothing;
