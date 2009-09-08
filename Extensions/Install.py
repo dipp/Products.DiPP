@@ -550,7 +550,7 @@ def create_vocabularies(self,out,site_id=SITE_NAME):
             print >> out, vocab
             key = 'no-section'
             value = 'No section'
-            if not hasattr(vocab,key):
+            if name is 'journal-sections' and not hasattr(vocab,key):
                 vocab.invokeFactory('SimpleVocabularyTerm',key)
                 vocab[key].setTitle(value)
                 vocab[key].reindexObject()
