@@ -38,4 +38,8 @@ VOCABULARIES = (
     ( 'SimpleVocabulary','journal-sections','The sections of the journal, used to organize an issue. Do not delete the "no section" entry.', 'Journal Sections'),
     ( 'SimpleVocabulary','areas-of-expertise','Areas, in which the potentiel reviewer feels competend.', 'Areas of expertise'),
 )
+
+INDEXES = (
+    ('Contributors','KeywordIndex'),
+)
 GLOBALS = globals()

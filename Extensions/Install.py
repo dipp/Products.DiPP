@@ -7,7 +7,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES, VOCABULARIES
+from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES, VOCABULARIES, INDEXES
 from Products.DiPP.defaults import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
@@ -537,7 +537,17 @@ def install_dependencies(self,out,site_id=SITE_NAME):
         quickinstaller.installProduct(dependency) 
         get_transaction().commit(1)
 
-
+def create_indexes(self,out,site_id=SITE_NAME):
+    """create and reindex custom indexes"""
+    
+    pcat = getToolByName(self, 'portal_catalog')
+    for name, type in INDEXES:
+        if name not in pcat.indexes():
+            pcat.manage_addIndex(name,type)
+            pcat.manage_reindexIndex([name])
+            print >> out, "Adding and indexing %s:" % name
+        
+    
 def create_vocabularies(self,out,site_id=SITE_NAME):
     """create required vocabularies"""
     
@@ -574,6 +584,7 @@ def install(self):
     install_configlet(self, out)
     install_content(self, out)
     create_vocabularies(self, out)
+    create_indexes(self, out)
     
     reftool = getToolByName(self, 'portal_openflow')
     process_id = 'Publishing'
