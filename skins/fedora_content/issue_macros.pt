@@ -1,0 +1,16 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="footer"
+             i18n:domain="dipp">
+             
+            <tal:comment tal:replace="nothing">
+                put here your custom code
+            </tal:comment>
+        </div>
+
+
+     </body>
+</html>
