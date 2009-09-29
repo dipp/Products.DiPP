@@ -52,8 +52,7 @@ if REQUEST.form.has_key('form.button.addKeyword'):
 else:
     newSubjectClassifiedNumber =int(REQUEST.get('newSubjectClassifiedNumber',None))
 
-subjects = REQUEST.get('subject',None)
-print 'LEN',len(subjects)
+subjects = REQUEST.get('subject',[])
 subject = ""
 for i in subjects:
     subject += i + "\n" 
