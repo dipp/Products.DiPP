@@ -5,7 +5,8 @@
 
         <div metal:define-macro="supplementary_material"
              i18n:domain="dipp"
-             tal:define="path python:'/'.join(here.getPhysicalPath()); 
+             tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
+                         path python:'/'.join(articleFolder.getPhysicalPath()); 
                          results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='supplementary_material')"
              tal:condition="results">
              
