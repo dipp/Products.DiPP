@@ -9,11 +9,12 @@
             <div tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
                              citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
                              initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
+                             comma_separated here/comma_separated|here/portal_properties/dipp_properties/comma_separated|nothing;
                              initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing"
                  tal:condition="show_recommended_citation">
                 <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
                 <p>
-                    <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period)"></span>
+                    <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period, comma_separated)"></span>
                 </p>
                 <p i18n:translate="text_recommended_citation" i18n:domain="dipp">
                     Bitte geben Sie beim Zitieren dieses Artikels die exakte URL und das Datum Ihres

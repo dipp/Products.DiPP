@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self, qdc, citation_format, initials_only, initials_period
+##parameters=self, qdc, citation_format, initials_only, initials_period, comma_separated
 ##title=
 ##
 
@@ -32,9 +32,13 @@ if PID.split(':')[0] != 'temp':
     id = self.PID.split(':')[-1]
     authors_list = ""
     period = ""
+    comma = ""
     
     if initials_period:
         period = "."
+
+    if comma_separated:
+        comma = ','
 
     for author in authors:
         author_number = authors.index(author) + 1
@@ -49,7 +53,7 @@ if PID.split(':')[0] != 'temp':
             glue = ", "
         if initials_only:
             firstname = firstnames_initials
-        authors_list += "%s %s%s" % (lastname, firstname, glue)
+        authors_list += "%s%s %s%s" % (lastname, comma, firstname, glue)
 
 
     cite = citation_format % {
@@ -61,7 +65,7 @@ if PID.split(':')[0] != 'temp':
     'year':year,
     'date':date,
     'id':id,
-    'urn':urn
+    'urn': '<a href="http://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn':urn}
     }
     
 else:
