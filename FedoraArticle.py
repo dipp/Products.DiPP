@@ -86,6 +86,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_journaltitle_field',
                 description='The titel of this Journal.',
                 description_msgid='help_journaltitle_field',
+                visible={'edit':'invisible','view':'visible'}
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -97,6 +98,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_volume_field',
                 description='An Volume to hold the Issues.',
                 description_msgid='help_volume_field',
+                visible={'edit':'invisible','view':'visible'}
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -108,6 +110,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_issue_field',
                 description='An Issue to hold the Articles. Usally part of a volume',
                 description_msgid='help_issue_field',
+                visible={'edit':'invisible','view':'visible'}
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -119,6 +122,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_issuedate_field',
                 description='The Date on which this issue is published.',
                 description_msgid='help_issuedate_field',
+                visible={'edit':'invisible','view':'visible'}
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
+        LinesField('AvailableAbstracts',
+            required=0,
+            widget=LinesWidget(
+                label='Available Abstracts',
+                label_msgid='label_issue_field',
+                description='Languages, in which abstracts are available',
+                description_msgid='help_issue_field',
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
@@ -156,6 +171,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         fedora = getToolByName(self, 'fedora')
         qdc = fedora.getQualifiedDCMetadata(self.PID)
         LOG ('DIPP', INFO, "Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
+        
         creatorPersons = qdc['creatorPerson']
         contributors = []
         for creatorPerson in creatorPersons:
@@ -164,11 +180,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             author = "%s, %s" % (lastName, firstName)
             contributors.append(author)
         self.setContributors(contributors)
+        
         self.setSubject(qdc['subject'])
         self.setRights(qdc['rights'][0])
         self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
         self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
         self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
+        
+        available_abstracts = []
+        for abstract in qdc['DCTermsAbstract']:
+            available_abstracts.append(abstract['lang'])
+        self.setAvailableAbstracts(available_abstracts)
+        
         self.reindexObject()
     
     def getPublishedArticles(self):
