@@ -134,6 +134,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 label_msgid='label_issue_field',
                 description='Languages, in which abstracts are available',
                 description_msgid='help_issue_field',
+                visible={'edit':'invisible','view':'visible'}
             ),
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
