@@ -61,6 +61,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('initials_period', 'boolean', False),
         ('comma_separated', 'boolean', False),
         ('allow_persistent_discussion', 'boolean', False),
+        ('issue_show_abstracts', 'boolean', False),
         ('discussion_time', 'int', 0)
     )
 
