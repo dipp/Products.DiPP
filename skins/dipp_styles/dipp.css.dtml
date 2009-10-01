@@ -58,6 +58,10 @@ label.plain {
 ul.nobullets {
     list-style: none;
 }
+/* do not display article info in mixed_view*/
+.mixed .articleinfo {
+    display: none;
+}
 
 /* </dtml-with> */
 
