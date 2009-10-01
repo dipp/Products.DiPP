@@ -6,11 +6,12 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-             tal:define="path python:'/'.join(here.getPhysicalPath()); 
-                         avtm python:here.portal_vocabularies;
-                         journalsections python:avtm.getVocabularyByName('journal-sections');
-                         section_dict python:journalsections.getVocabularyDict(journalsections);
-                         articles python: here.portal_catalog(path=path,portal_type='FedoraArticle')">
+             tal:define="path                 python:'/'.join(here.getPhysicalPath()); 
+                         avtm                 python:here.portal_vocabularies;
+                         journalsections      python:avtm.getVocabularyByName('journal-sections');
+                         section_dict         python:journalsections.getVocabularyDict(journalsections);
+                         articles             python: here.portal_catalog(path=path,portal_type='FedoraArticle');
+                         issue_show_abstracts here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
@@ -69,21 +70,32 @@
                 
                 <tal:items tal:repeat="item articles">
                    <li tal:define="oddrow               repeat/item/odd;
+                                   obj                  item/getObject;
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
                                    item_section         item/getJournal_section;
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id     item/pretty_title_or_id;
                                    item_section         item/getJournal_section|nothing;
-                                   item_contributors python: item.getObject().Contributors();
+                                   item_abstracts       python:obj.getAvailableAbstracts;
+                                   item_contributors    python:obj.Contributors();
                                    authors              item_contributors"
                                    tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                    <strong>    
-                        <a href="#"
-                           tal:attributes="href item_url;" tal:content="item_title_or_id">
-                         Article title</a>
+                        <strong>    
+                            <a href="#"
+                               tal:attributes="href item_url;" tal:content="item_title_or_id">
+                             Article title</a>
 
-                    </strong>
+                        </strong>
+                        <div class="abstracts"
+                            tal:condition="python: issue_show_abstracts and len(item_abstracts())>0">
+                            Abstracts in  
+                            <tal:block tal:repeat="abstract item_abstracts">
+                                <a href="#"
+                                   tal:attributes="href string:$item_url/abstract_view?lang=$abstract"
+                                   tal:content="python:here.map_languages(abstract)"></a>
+                            </tal:block>
+                        </div>
                         <div metal:use-macro="here/article_authors/macros/article_authors">
                             A nicely formatted list of authors
                         </div>
