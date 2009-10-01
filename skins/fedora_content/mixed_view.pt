@@ -6,15 +6,20 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-         tal:define="parent python:here.getParentNode();
-                     articlePID parent/PID;
-                     comment_to  parent/comment_to|nothing">
+         tal:define="articlePID  here/PID;
+                     DsID        here/fulltext/DsID|nothing;
+                     PID         here/fulltext/PID|nothing;
+                     qdc         python:here.fedora.getQualifiedDCMetadata(articlePID);
+                     urn         python:qdc['identifierURN'];
+                     doi         python:qdc['identifierDOI'];
+                     authors     python:qdc['creatorPerson'];
+                     comment_to  here/comment_to|nothing">
          
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
         
-        <h1>&nbsp;</h1>
+        <h1 tal:content="python:qdc['title'][0]['value']"></h1>
 
         <div tal:condition="comment_to"
              tal:define="results python:here.portal_catalog.searchResults(getPID=comment_to)">
@@ -29,11 +34,33 @@
                 </tal:block>
              </p>
         </div>
+        
 
-        <div class="stx" tal:define="PID context/PID;
-                                     DsID here/DsID;
-                                     content python:here.fedora.access(PID,DsID,Date=None);
-                                     MIMEType python:content['MIMEType']">
+        <tal:block tal:repeat="author authors" >
+            <span tal:condition="not: repeat/author/end" 
+                tal:define="firstName author/firstName; lastName author/lastName"
+                tal:replace="string: $firstName $lastName,">
+            </span>
+            <span tal:condition="repeat/author/end" 
+                tal:define="firstName author/firstName; lastName author/lastName"
+                tal:replace="string: $firstName $lastName">
+            </span>
+        </tal:block>
+        
+        <h2>Abstract</h2>
+        <script type="text/javascript" src="tabber.js">
+        </script>
+        <div class="tabber">
+            <div tal:repeat="abstract python:qdc['DCTermsAbstract']"
+                 class="tabbertab"
+                 tal:attributes="title python:'[' + here.map_languages(abstract['lang'])+']'">
+                <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+            </div>
+        </div>
+        
+        <div class="stx mixed" tal:define="content python:here.fedora.access(PID,DsID,Date=None);
+                                           MIMEType python:content['MIMEType']"
+                         tal:condition="python:DsID.startswith('DS')">
             <div tal:condition="python:content['MIMEType'] != 'text/xml' " 
                  tal:replace="structure python:content['stream']">
                 Hier kommt der Inhalt hin
@@ -44,13 +71,11 @@
             </pre>
 
         </div>
-
         <tal:block tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
                          citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
                          initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
                          initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing;
                          allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
-                         qdc python:here.fedora.getQualifiedDCMetadata(articlePID);
                          rights python:qdc['rights'][0];
                          lang request/other/LANGUAGE|en;
                          dppl python:here.dppl(rights,lang)"
@@ -69,17 +94,10 @@
                 </p>
             </div>
             
-            <div tal:condition="show_recommended_citation">
-                <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
-                <p>
-                    <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period)"></span>
-                </p>
-                <p i18n:translate="text_recommended_citation" i18n:domain="dipp">
-                    Bitte geben Sie beim Zitieren dieses Artikels die exakte URL und das Datum Ihres
-                    letzten Besuchs bei dieser Online-Adresse an.
-                </p>
+            <div metal:use-macro="here/citation_macro/macros/recommended_citation">
+                Show a custom formatted recommended citation
             </div>
-            
+           
             <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
                 A list of supplementary materials.
             </div>
