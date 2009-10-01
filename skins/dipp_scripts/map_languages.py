@@ -15,7 +15,7 @@ from Products.PythonScripts.PythonScript import DateTime
 map = {
     'ger': 'Deutsch',
     'eng': 'English',
-    'fra': 'Francais',
+    'fra': 'Français',
 }
 try:
     return map[lang]
