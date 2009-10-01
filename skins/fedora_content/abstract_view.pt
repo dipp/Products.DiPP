@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body >
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+         tal:define="articlePID  here/PID;
+                     DsID        here/fulltext/DsID|nothing;
+                     PID         here/fulltext/PID|nothing;
+                     abstract_lang request/form/lang|nothing;
+                     qdc         python:here.fedora.getQualifiedDCMetadata(articlePID);
+                     urn         python:qdc['identifierURN'];
+                     doi         python:qdc['identifierDOI'];
+                     authors     python:qdc['creatorPerson'];
+                     comment_to  here/comment_to|nothing">
+         
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1 tal:content="python:qdc['title'][0]['value']"></h1>
+
+        
+
+        <tal:block tal:repeat="author authors" >
+            <span tal:condition="not: repeat/author/end" 
+                tal:define="firstName author/firstName; lastName author/lastName"
+                tal:replace="string: $firstName $lastName,">
+            </span>
+            <span tal:condition="repeat/author/end" 
+                tal:define="firstName author/firstName; lastName author/lastName"
+                tal:replace="string: $firstName $lastName">
+            </span>
+        </tal:block>
+        
+        <h2>Abstract</h2>
+        <script type="text/javascript" src="tabber.js">
+        </script>
+        <div class="tabber">
+            <div tal:repeat="abstract python:qdc['DCTermsAbstract']"
+                 class=""
+                 tal:attributes="title python:'[' + here.map_languages(abstract['lang'])+']';
+                                 class python:test(abstract_lang==abstract['lang'],'tabbertab tabbertabdefault','tabbertab')">
+                <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+            </div>
+        </div>
+        
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>
+
