@@ -18,32 +18,11 @@
 
         <dd class="portletItem">
         
-            <a href="" tal:attributes="href string:$portal_url/search_form" >...suche</a>
         
-            <tal:comment tal:replace="nothing">
-            <form name="searchform"
-                  action="search"
-                  tal:attributes="action string:${portal_url}/search" >
-                <label for="searchGadget" class="hiddenStructure" i18n:translate="text_search">Search</label>
-                <input id="searchGadget"
-                       name="SearchableText"
-                       type="text"
-                       size="15"
-                       value=""
-                       alt="Search"
-                       title="Search"
-                       accesskey="accesskeys-search"
-                       i18n:attributes="alt accesskey title"
-                       tal:attributes="value request/SearchableText|nothing;
-                                       tabindex tabindex/next" class="visibility:visible" />
-                <input class="searchButton"
-                       type="submit"
-                       value="Search"
-                   accesskey="accesskeys-search"
-                   tal:attributes="tabindex tabindex/next"
-                       i18n:attributes="value accesskey" />
-            </form>
-            </tal:comment>
+             <div metal:use-macro="here/global_searchbox/macros/quick_search">
+               The quicksearch box, normally placed at the top right
+             </div>
+
         </dd>
     </dl>
 
