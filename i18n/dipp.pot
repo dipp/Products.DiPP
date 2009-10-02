@@ -535,3 +535,6 @@ msgstr ""
 
 msgid "help_issue_field"
 msgstr ""
+
+msgid "current_issue"
+msgstr ""
