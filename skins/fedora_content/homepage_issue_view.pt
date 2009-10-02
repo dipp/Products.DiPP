@@ -19,6 +19,7 @@
                         journalsections      python:avtm.getVocabularyByName('journal-sections');
                         section_dict         python:journalsections.getVocabularyDict(journalsections)">
             <div tal:define="issue python:issues[0].getObject();
+                             description issue/Description|nothing;
                              path python:'/'.join(issue.getPhysicalPath())">
                              
                 <h1 tal:content="issue/title_or_id" class="documentFirstHeading">
@@ -30,8 +31,8 @@
                 </div>
 
                 <p class="documentDescription"
-                   tal:content="here/Description"
-                   tal:condition="here/Description">
+                   tal:content="description"
+                   tal:condition="description">
                     Description
                 </p>
                    
@@ -75,6 +76,12 @@
         <h1 tal:content="object_title">
           Title or id
         </h1>
+        
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
 
         <p tal:condition="python: not text and is_editable"
            i18n:translate="no_body_text"

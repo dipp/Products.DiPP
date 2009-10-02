@@ -20,16 +20,20 @@
                         avtm                 python:here.portal_vocabularies;
                         journalsections      python:avtm.getVocabularyByName('journal-sections');
                         section_dict         python:journalsections.getVocabularyDict(journalsections)">
-            <div tal:define="issue python:issues[0].getObject();
+            <div tal:define="issue       python:issues[0].getObject();
+                             description issue/Description|nothing;
                              path python:'/'.join(issue.getPhysicalPath())">
-                <a href=""
+                <h3><a href=""
                    tal:attributes="href issue/absolute_url"
-                   tal:content="issue/title_or_id"></a>
-                   
+                   tal:content="issue/title_or_id"></a></h3>
+                <div tal:content="description" tal:condition="description">Descriptiontext of this issue</div>
                 <div tal:repeat="section python: section_dict.keys()">
                     <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                                tal:condition="articles">
-                    <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>
+                    <h4 tal:condition="python: section != 'no-section'"
+                        tal:content="python: section_dict[section]">
+                        This is a section title</h4>
+
                     <ol class="issue_content" >
                         
                         <tal:items tal:repeat="item articles">
