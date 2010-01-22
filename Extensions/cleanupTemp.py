@@ -1,8 +1,25 @@
 # -*- coding: utf-8 -*-
 #
+# This skript deletes temporary files in Plone, i.e. Testkonversions, which are
+# stored in the tmp-folder of a Journalistance. An external Method has to be
+# placed in the ZMI of the Zopeinstanz (not Ploninstance!) with following
+# settings:
+#
+# Id:            cronCleanup
+# Title:         delete temporary files
+# Module Name:   DiPP.cleanupTemp
+# Function Name: run
+#
+# It can be run manually from the test Tab of the external Method or ideally on
+# regular basis by a cron job, e.g. at 2:00 each night:
 # 
+# 0 2 * * * /usr/bin/wget -O - http://localhost:9080/cronCleanup
 # 
-# $Id: cleanupTemp.py,v 1.1.1.1 2005/10/31 14:50:27 dippadm Exp $
+# Only one script is needed per Zopeinstance since it find all installed
+# Journals.
+#
+# $Id$
+
 import string
 
 from Products.CMFCore.utils import getToolByName
@@ -14,11 +31,16 @@ from dipp2.ContentModel import ContentModel
 from DateTime import DateTime
 from StringIO import StringIO
 
-
+# when on journal should be excluded from regular cleaning, the id of the
+# mountpoint can be put in this list:
 EXCEPTIONS = ['']
+
+# maximum age of a testkonversion (in days)
 LIMIT = 1
 
 def getContainers(PID):
+    """return a list with the PIDs of the content Containers """
+    
     cModel = ContentModel()
     response =cModel.getContentModel(PID)
     list = []
@@ -32,10 +54,14 @@ def getContainers(PID):
     return list
 
 def purgeObject(PID):
+    """permanently delete an object from the fedora repository"""
+    
     management = FedoraManagement()
     management.purgeObject(PID,'deleted')
 
 def cleanAll(self, out):
+    """loop through all journals and delete all temp Articles older than LIMIT"""
+    
     Folders = self.objectValues('Folder')
     print Folders
     now = DateTime()
@@ -97,6 +123,7 @@ def cleanAll(self, out):
             print "Hmmm, something went wrong"
         
 def cleanOne(self,out,PID):
+    """just delete the article object and it content containers of a given PID"""
 
     containers = getContainers(PID)
 
@@ -108,6 +135,8 @@ def cleanOne(self,out,PID):
     print >>out, PID," deleted"
 
 def run(self,PID=None):
+    """if a PID is given, delete just this article, otherwise all"""
+    
     out = StringIO()
     if PID:
         cleanOne(self,out,PID)
