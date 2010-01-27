@@ -5,6 +5,10 @@ request  = context.REQUEST
 fedora = getToolByName(context, 'fedora')
 
 Location   = request.get('Location')
+
+if Location.startswith('https'):
+    Location = Location.replace('https','http',1)
+
 JournalPID = request.get('journalPID')
 params     = request.form
 
