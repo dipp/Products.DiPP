@@ -170,29 +170,32 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     def syncMetadata(self):
         """keep Metadata of Plone and Fedora synchron"""
         fedora = getToolByName(self, 'fedora')
-        qdc = fedora.getQualifiedDCMetadata(self.PID)
-        LOG ('DIPP', INFO, "Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
-        
-        creatorPersons = qdc['creatorPerson']
-        contributors = []
-        for creatorPerson in creatorPersons:
-            firstName = creatorPerson['firstName'] 
-            lastName = creatorPerson['lastName'] 
-            author = "%s, %s" % (lastName, firstName)
-            contributors.append(author)
-        self.setContributors(contributors)
-        
-        self.setSubject(qdc['subject'])
-        self.setRights(qdc['rights'][0])
-        self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
-        self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
-        self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
-        
-        available_abstracts = []
-        for abstract in qdc['DCTermsAbstract']:
-            available_abstracts.append(abstract['lang'])
-        self.setAvailableAbstracts(available_abstracts)
-        
+        if not self.PID.startswith('temp:'):
+            qdc = fedora.getQualifiedDCMetadata(self.PID)
+            LOG ('DIPP', INFO, "Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
+            
+            creatorPersons = qdc['creatorPerson']
+            contributors = []
+            for creatorPerson in creatorPersons:
+                firstName = creatorPerson['firstName'] 
+                lastName = creatorPerson['lastName'] 
+                author = "%s, %s" % (lastName, firstName)
+                contributors.append(author)
+            self.setContributors(contributors)
+            
+            self.setSubject(qdc['subject'])
+            self.setRights(qdc['rights'][0])
+            self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
+            self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
+            self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
+            
+            available_abstracts = []
+            for abstract in qdc['DCTermsAbstract']:
+                available_abstracts.append(abstract['lang'])
+            self.setAvailableAbstracts(available_abstracts)
+        else:
+            LOG ('DIPP', INFO, "Skipping synchronization of Metadata for temp. article %s at %s" % (self.PID, self.absolute_url() ))
+            
         self.reindexObject()
     
     def getPublishedArticles(self):
