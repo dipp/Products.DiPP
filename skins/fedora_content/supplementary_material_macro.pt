@@ -7,11 +7,12 @@
              i18n:domain="dipp"
              tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
                          path python:'/'.join(articleFolder.getPhysicalPath()); 
-                         results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='supplementary_material')"
+                         results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='supplementary_material', sort_on='getObjPositionInParent')"
              tal:condition="results">
              
             <h2 i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</h2>
-            <ul tal:condition="results">
+            <ul tal:condition="results"
+                class="supplementary-material">
                 <li tal:repeat="result results">
                     <div tal:define="description result/Description"
                        tal:condition="description"
