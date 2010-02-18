@@ -31,7 +31,10 @@ for article in articles:
         OK = "OK"
     else:
         if fix == "1":
+            if ploneURL.startswith('https'): 
+                ploneURL = ploneURL.replace('https','http',1)
             fedora.setURL(PID, ploneURL)
+            fedora.setPublishingState(PID,1,1)
             OK = "FIXED"
         else:
             OK = "BROKEN"
