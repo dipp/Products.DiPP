@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-
- $Author: dippadm $
- $Revision: 1.3 $
- $Date: 2005/11/02 09:33:41 $
- $Id: __init__.py,v 1.3 2005/11/02 09:33:41 dippadm Exp $
+ $Id$
 
 """
 
