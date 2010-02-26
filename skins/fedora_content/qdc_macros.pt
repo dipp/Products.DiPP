@@ -532,7 +532,7 @@
             <!-- KEYWORDS -->
 
             
-            <!-- freie Schlagwˆrter -->
+            <!-- freie Schlagw√∂rter -->
             <div class="field"
                  tal:define="error errors/subject|nothing;
                              subject request/subject|qdc/subject|nothing;
@@ -564,7 +564,7 @@
 </tal:block></textarea>
             </div>
 
-            <!-- normierte Schlagwˆrter -->
+            <!-- normierte Schlagw√∂rter -->
             <div class="field"
                  tal:define="error errors/subjectClassified|nothing;
                              subjectClassified python:qdc['subjectClassified'];
@@ -708,7 +708,9 @@
                 tal:define="error errors/dates|nothing;
                             created python:qdc['created']; 
                             modified python:qdc['modified'];
-                            valid python:qdc['valid']"
+                            valid python:qdc['valid'];
+                            today python:DateTime().Date();
+                            today python:today.replace('/','-')"
                 tal:attributes="class python:test(error, 'field error', 'field')" >
                 <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
@@ -724,7 +726,7 @@
                         <th i18n:translate="valid">valid</th>
                     </tr>
                     <tr>
-                        <td><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value request/created|created|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value request/created|today|nothing" /></td>
                         <td><input class="date" maxlength="10" type="text" name="modified" value="" tal:attributes="value request/modified|modified|nothing" /></td>
                         <td><input class="date" maxlength="10" type="text" name="valid"    value="" tal:attributes="value request/valid|valid|nothing"/></td>
                     </tr>
@@ -795,7 +797,7 @@
                     <div tal:content="error">Validation error output</div>
                     <div class="formHelp" i18n:translate="help_rights">
                         Sollten Sie nicht der Autor sein, stellen Sie
-                        sicher, dass sie das Einverst‰ndnis des Autors zur Wahl dieser Lizenz
+                        sicher, dass sie das Einverst√§ndnis des Autors zur Wahl dieser Lizenz
                         vorliegen haben.
                     </div>
                     <div>
