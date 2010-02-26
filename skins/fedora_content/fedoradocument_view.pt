@@ -51,17 +51,18 @@
                          initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing;
                          allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
                          qdc python:here.fedora.getQualifiedDCMetadata(articlePID);
-                         rights python:qdc['rights'][0];
-                         lang request/other/LANGUAGE|en;
-                         dppl python:here.dppl(rights,lang)"
+                         rights python:qdc['rights'];
+                         lang request/other/LANGUAGE|en;"
                    i18n:domain="dipp">
-                         
+            
+                                     
             <div class="licence"
-                 tal:condition="python:rights != 'authorcontract'">
+                 tal:condition="python:len(rights) > 0 and rights != 'authorcontract'">
 
                 <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
 
-                <p i18n:translate="licence_text" i18n:domain="dipp">
+                <p i18n:translate="licence_text" i18n:domain="dipp"
+                   tal:define="dppl python:here.dppl(rights[0],lang)">
                     Jedermann darf dieses Werk unter den Bedingungen der
                     <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
                     und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
