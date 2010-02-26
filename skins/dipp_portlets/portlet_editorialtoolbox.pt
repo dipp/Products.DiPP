@@ -25,11 +25,10 @@
                 <ul class="configlets">
                     <li>
                         <a href="" 
-                           class="navItem"
                            tal:attributes="href string:$portal_url/upload_file_form" 
                            i18n:attributes="title help_internal_workflow"
                         >
-                               <span class="navItemText" i18n:translate="internal_workflow">Einreichen ohne Peer Review</span></a>
+                               <span i18n:translate="internal_workflow">Einreichen ohne Peer Review</span></a>
                    </li>
                </ul>
                
@@ -38,17 +37,15 @@
                     <li>
 
                         <a href=""
-                           class="navItem"
                            tal:attributes="href string:$portal_url/worklist"
                            i18n:attributes="title help_myworklist">
-                            <span class="navItemText" i18n:translate="title_myworklist">myworklist</span></a>
+                            <span  i18n:translate="title_myworklist">myworklist</span></a>
                    </li>
                    <li>
                         <a href=""
-                           class="navItem"
                            tal:attributes="href string:$portal_url/all_worklists"
                            i18n:attributes="title help_allworklists">
-                            <span class="navItemText" i18n:translate="title_allworklists">allworklists</span></a>
+                            <span  i18n:translate="title_allworklists">allworklists</span></a>
                    </li>
                </ul>
                             
@@ -56,10 +53,9 @@
                 <ul tal:condition="python: user.has_role('Manager')" class="configlets">
                     <li>
                         <a href=""
-                           class="navItem"
                            tal:attributes="href string:$portal_url/prefs_journalmetadata_form" 
                         >
-                             <span class="navItemText" i18n:translate="metadata">Metadaten</span></a>
+                             <span i18n:translate="metadata">Metadaten</span></a>
                    </li>
                </ul>
                         
@@ -68,49 +64,32 @@
                 <ul tal:condition="python: user.has_role('Manager')" class="configlets">
                     <li>
                         <a href=""
-                           class="navItem"
                            tal:attributes="href string:${here/portal_url}/prefs_users_overview"
                            target="_blank"
                         >
-                           <span class="navItemText" i18n:translate="user_administration">Benutzerverwaltung</span></a>
+                           <span  i18n:translate="user_administration">Benutzerverwaltung</span></a>
                    </li>
                    <li>
                         <a href="http://www.dipp.nrw.de/openurl.html"
-                           class="navItem"
                            tal:attributes="target string:'openurl'"
                            i18n:attributes="title help_openurl">
-                           <span class="navItemText" i18n:translate="title_openurl">openURL erzeugen</span></a>
+                           <span  i18n:translate="title_openurl">openURL erzeugen</span></a>
                    </li>
                    <li>
                         <a href=""
-                           class="navItem"
                            tal:attributes="href string:$portal_url/awstats/awstats.pl">
-                           <span class="navItemText" i18n:translate="webstats">allg. Zugriffsstatistik</span></a>
+                           <span  i18n:translate="webstats">allg. Zugriffsstatistik</span></a>
                    </li>
                    <li>
                         <a href=""
-                           class="navItem"
                            tal:attributes="href string:$portal_url/statistics">
-                           <span class="navItemText" i18n:translate="articlestats">artikelbasierte Statistik</span></a>
+                           <span  i18n:translate="articlestats">artikelbasierte Statistik</span></a>
                    </li>
                </ul>
                 
                 
                 <strong i18n:translate="title_support">Support</strong><br />
-                <small i18n:translate="description_support">
-                    (Password-geschützter Bereich auf <a i18n:name="url" href="" tal:attributes="href string:http://www.dipp.nrw.de/">www.dipp.nrw.de</a>).
-                </small>
                 <ul class="configlets">
-                    <li>
-                        <a href="http://www.dipp.nrw.de/wiki">
-                               <span>Wiki</span>
-                        </a>
-                   </li>
-                   <li>
-                        <a href="http://www.dipp.nrw.de/Issuetracker">
-                               <span>Issuetracker</span>
-                        </a>
-                   </li>
                    <li>
                         <a href="http://www.dipp.nrw.de/download/userdoc.pdf">
                                <span i18n:translate="userguide">Benutzeranleitung (pdf)</span>
