@@ -509,9 +509,9 @@
       </div>
 
       <div class="field"
-           tal:condition="not: allowEnterPassword"
-           tal:define="mail_me request/mail_me|nothing">
-
+           tal:condition="python: allowEnterPassword == False and visible"
+           tal:define="mail_me request/mail_me|nothing;
+                       visible here/portal_properties/member_properties/mail_password_visible|nothing">
         <input type="checkbox"
                class="noborder"
                name="mail_me"

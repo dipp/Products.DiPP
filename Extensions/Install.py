@@ -513,6 +513,7 @@ def install_memberproperties(self,out):
         ('phone_required','boolean',False),
         ('location_visible','boolean',True),
         ('location_required','boolean',False),
+        ('mail_password_visible','boolean',True),
         ('areas_of_expertise','lines','')
     )
 
