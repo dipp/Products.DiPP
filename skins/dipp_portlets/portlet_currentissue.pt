@@ -27,6 +27,15 @@
                 <div tal:define="issue       python:issues[0].getObject();
                                  description issue/Description|nothing;
                                  path python:'/'.join(issue.getPhysicalPath())">
+                    
+                    <div class="coverpicture"
+                         tal:define="has_cover issue/TitleImage|nothing"
+                         tal:condition="has_cover">
+                         <a href="" tal:attributes="href issue/absolute_url">
+                            <img class="coverpicture" tal:replace="structure issue/TitleImage" />
+                         </a>
+                    </div>
+                    
                     <h3><a href=""
                        tal:attributes="href issue/absolute_url"
                        tal:content="issue/title_or_id"></a></h3>
