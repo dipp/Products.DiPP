@@ -1,7 +1,7 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="dipp">
 <body>
 
 <div metal:fill-slot="main"
@@ -19,7 +19,7 @@
 </h1>
 
 <p i18n:translate="description_you_are_registered">
-    You have been registered.
+    Your registration finished successfully.
 </p>
 
 <p tal:condition="ve" 
@@ -35,7 +35,7 @@
 
 <tal:block condition="python:not(ve)">
     <p i18n:translate="description_you_can_log_on_now">
-        Click the button to log in immediately.
+        Click the button to proceed immediately.
     </p>
 
     <div id="enable_cookies_message" i18n:translate="enable_cookies_message" class="portalMessage" style="display:none">
@@ -77,7 +77,7 @@
         <input class="standalone"
                type="submit"
                value="Log in"
-               i18n:attributes="value label_log_in;"
+               i18n:attributes="value proceed;"
                tal:attributes="onclick string:javascript:return setLoginVars('$ac_name','login_name','$ac_password','pwd_empty','js_enabled','cookies_enabled');"
                />
     </form>
