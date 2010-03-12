@@ -28,6 +28,11 @@
     
     
         <p class="discreet"
+             tal:condition="python: issues[0].getPID == here.PID and len(issues) == 1">
+             This Volume does not contain any issues.
+        </p>
+        
+        <p class="discreet"
              tal:condition="not:issues">
              This Volume does not contain any issues.
         </p>
