@@ -32,7 +32,9 @@ DEPENDENCIES = [
     'Archetypes',
     'ATVocabularyManager',
     'CMFOpenflow',
-    'DiPPContent'
+    'DiPPContent',
+    'LinguaPlone',
+    'PloneLanguageTool'
     ]
 
 VOCABULARIES = (
