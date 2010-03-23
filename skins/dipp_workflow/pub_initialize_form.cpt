@@ -127,7 +127,8 @@
 
             <div class="field"
                tal:define="error errors/isChildOf|nothing;
-                           isChildOf request/isChildOf|python:w.isChildOf[0]"
+                           isChildOf request/isChildOf|python:w.isChildOf[0];
+                           issues python: here.portal_catalog(portal_type='FedoraHierarchie', sort_on='Date', sort_order='reverse')"
                tal:attributes="class python:test(error, 'field error', 'field')"
                >
                <label for="isChildOf" i18n:translate="assignment">Zuordnung</label>
@@ -147,12 +148,13 @@
                     bearbeiten zunächst den entsprechenden Eintrag in der Worklist.
                  </span>
                </div>
-                <select size="5" name="isChildOf">
-                    <tal:block tal:repeat="tree here/hierarchieTree">
-                        <option tal:condition="python: tree['PID'] == isChildOf" tal:attributes="value tree/PID" value="" tal:content="tree/URL" selected="selected"></option>
-                        <option tal:condition="python: tree['PID'] != isChildOf" tal:attributes="value tree/PID" value="" tal:content="tree/URL"></option>
-                    </tal:block>
-                </select>
+               <select size="5" name="isChildOf">
+               <tal:block tal:repeat="issue issues">
+                     <option tal:attributes="value issue/getPID;
+                                             selected python: issue.getPID == isChildOf"
+                             tal:content="issue/Title"> Issue 34 </option>
+               </tal:block>
+               </select>
             </div>
             
             <div metal:use-macro="here/pub_macros/macros/comments">
