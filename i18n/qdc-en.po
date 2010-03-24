@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2005-11-24 08:58+0100\n"
+"PO-Revision-Date: 2010-03-24 17:56+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgid "label_subjectClassified"
 msgstr "Classified Subjects"
 
 msgid "help_subjectClassified"
-msgstr "Add classified keywords according to the following schemes."
+msgstr "Add classified keywords according to the following schemes: ${classifications}."
 
 msgid "label_rights"
 msgstr "Rights"
@@ -188,3 +188,4 @@ msgstr "modular Digital Peer Publishing Licence"
 
 msgid "fdppl"
 msgstr "free Digital Peer Publishing Licence"
+

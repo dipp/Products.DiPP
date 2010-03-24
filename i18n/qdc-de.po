@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2005-11-24 08:58+0100\n"
+"PO-Revision-Date: 2010-03-24 17:57+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgid "label_subjectClassified"
 msgstr "Normierte Schlagworte"
 
 msgid "help_subjectClassified"
-msgstr "Geben sie normierte Schlagworte gemäß folgenden Schemata ein."
+msgstr "Geben sie normierte Schlagworte gemäß folgenden Schemata ein: ${classifications}."
 
 msgid "label_rights"
 msgstr "Rechte"
@@ -188,3 +188,4 @@ msgstr "modulare Digital Peer Publishing Lizenz"
 
 msgid "fdppl"
 msgstr "freie Digital Peer Publishing Lizenz"
+
