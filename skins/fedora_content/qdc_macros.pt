@@ -527,9 +527,6 @@
             </div>
            </fieldset>
 
-           <fieldset i18n:domain="qdc">
-           <legend i18n:translate="label_keywords_subjects">subject</legend>
-            <!-- KEYWORDS -->
 
             
             <!-- freie Schlagwörter -->
@@ -538,7 +535,8 @@
                              subject request/subject|qdc/subject|nothing;
                              new_subjects request/new_subjects|nothing"
                  tal:attributes="class python:test(error, 'field error', 'field')"
-            >
+                 i18n:domain="qdc">
+                <label for="subjectClassified" i18n:translate="label_subject">Freie Schlagworte</label>
                 <div class="formHelp" i18n:translate="help_existing_keywords">
                     Existing keywords
                 </div>
@@ -552,10 +550,6 @@
                                                 value keyword">sdaf</option>
                     </tal:block>
                 </select>
-<!--                <span class="fieldRequired" title="Required"
-                       i18n:attributes="title"
-                       i18n:translate="label_required">(Required)</span>
--->
                 <div tal:content="error">Validation error output</div>
                 <div class="formHelp" i18n:translate="help_new_subject">
                     New keywords, one per row.
@@ -577,6 +571,11 @@
                 <div tal:content="error">Validation error output</div>
                 <div class="formHelp" >
                 <p i18n:translate="help_subjectClassified">Normierte Schlagworte</p>
+                
+                <tal:block tal:repeat="classification here/classifications">
+                    <a tal:attributes="href classification/url; title classification/title" tal:content="classification/id">abc</a>
+                </tal:block>
+                
                 <ul class='inline'>
                     <li><a href='http://www.bsz-bw.de/cgi-bin/oswd-suche.pl' title="Schlagwort Normdatei" target="_blank">SWD</a></li>
                     <li><a href='http://authorities.loc.gov' title="Library of Congress Subject Headings" target="_blank">LCSH </a></li>
@@ -591,7 +590,6 @@
                     <li><a href='http://www.ams.org/msc/' title="2000 Mathematics Subject Classification" target="_blank">MSC</a></li>
                 </ul>
                 </div>
-                <tal:block tal:replace="subjectClassified"/>
                 <table class="listing">
                     <tr>
                         <th></th>
@@ -648,7 +646,6 @@
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
            </div>
-           </fieldset>
 
            <fieldset i18n:domain="qdc">
            <legend i18n:translate="label_pubType_docType">pubType</legend>
