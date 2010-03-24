@@ -159,8 +159,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           },
         
         { "id": "qdc",
-          "name": "Dublin Core",
-          "action": "string:${folder_url}/fedoraarticle_qdc",
+          "name": "Metadata",
+          "action": "string:${folder_url}/fedoraarticle_metadata_form",
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           "category":"folder",
           },

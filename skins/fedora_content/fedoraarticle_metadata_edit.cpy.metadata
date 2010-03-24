@@ -4,5 +4,5 @@ title = Edit content
 [validators]
 
 [actions]
-action.success = redirect_to_action:string:qdc
+action.success = traverse_to_action:string:qdc
 action.failure = traverse_to_action:string:qdc

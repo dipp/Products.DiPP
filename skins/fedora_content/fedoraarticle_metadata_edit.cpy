@@ -8,6 +8,19 @@
 ##parameters=id=''
 
 REQUEST = context.REQUEST
+portal_status_message = REQUEST.get('portal_status_message', None)
+
+def del_from_list(old_list, selection):
+    """the item with numbers from selection are deletet from list"""
+    context.plone_log(selection)
+    context.plone_log(old_list)
+    new_list = []
+    for i in range(0, len(old_list)):
+        context.plone_log('index' + str(i))
+        if i not in selection:
+            new_list.append(old_list[i])
+    return new_list
+
 
 # add DDC
 if REQUEST.form.has_key('form.button.addDDC'):
@@ -44,13 +57,21 @@ if REQUEST.form.has_key('form.button.addAuthor'):
 else:
     newAuthorNumber =int(REQUEST.get('newAuthorNumber',None))
 
-#add Keyword
-
+# add Keyword
+default = {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''}
+subjectClassified = REQUEST.get('subjectClassified',None)
 if REQUEST.form.has_key('form.button.addKeyword'):
-    newSubjectClassifiedNumber =int(REQUEST.get('newSubjectClassifiedNumber',None)) + 1
+    subjectClassified.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Schlagword-Feld wurde hinzugefügt')
-else:
-    newSubjectClassifiedNumber =int(REQUEST.get('newSubjectClassifiedNumber',None))
+
+
+# del Keyword
+if REQUEST.form.has_key('form.button.delKeyword'):
+    keyword_index = REQUEST.get('keyword_index',[])
+    subjectClassified = del_from_list(subjectClassified,keyword_index)
+    if len(subjectClassified ) == 0:
+        subjectClassified.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Schlagword-Feld wurde gelöscht')
 
 subjects = REQUEST.get('subject',[])
 subject = ""
@@ -65,7 +86,7 @@ return state.set(status='success',\
     newAlternativeNumber=newAlternativeNumber,
     newAbstractNumber=newAbstractNumber,
     newAuthorNumber=newAuthorNumber,
-    newSubjectClassifiedNumber=newSubjectClassifiedNumber,
+    #newSubjectClassifiedNumber=newSubjectClassifiedNumber,
     storageType                = REQUEST.get('storageType',None),
     DDC                        = REQUEST.get('DDC',None),
     language                   = REQUEST.get('language',None),
@@ -103,9 +124,11 @@ return state.set(status='success',\
     articleType                = REQUEST.get('articleType',None),
     subject                    = REQUEST.get('subject',None),
     new_subjects               = REQUEST.get('new_subjects',None),
-    sc_subjectClassified       = REQUEST.get('sc_subjectClassified',None),
-    sc_classificationIdent     = REQUEST.get('sc_classificationIdent',None),
-    sc_classificationSystem    = REQUEST.get('sc_classificationSystem',None),
+    subjectClassified          = subjectClassified,
+    #subjectClassified          = REQUEST.get('subjectClassified',None),
+    #sc_subjectClassified       = REQUEST.get('sc_subjectClassified',None),
+    #sc_classificationIdent     = REQUEST.get('sc_classificationIdent',None),
+    #sc_classificationSystem    = REQUEST.get('sc_classificationSystem',None),
     dateAccepted               = REQUEST.get('dateAccepted',None),
     dateSubmitted              = REQUEST.get('dateSubmitted',None),
     dateCopyrighted            = REQUEST.get('dateCopyrighted',None),

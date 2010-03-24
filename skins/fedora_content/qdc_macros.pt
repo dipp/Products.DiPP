@@ -567,18 +567,13 @@
             <!-- normierte Schlagwörter -->
             <div class="field"
                  tal:define="error errors/subjectClassified|nothing;
-                             subjectClassified python:qdc['subjectClassified'];
-                             subjectClassifiedNumber python:len(subjectClassified);
-                             newSubjectClassifiedNumber request/newSubjectClassifiedNumber|subjectClassifiedNumber"
+                             default python: {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''};
+                             subjectClassified request/subjectClassified|qdc/subjectClassified|default"
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
-                <input type="hidden" name="newSubjectClassifiedNumber" value="" tal:attributes="value newSubjectClassifiedNumber"/>
-                <input type="hidden" name="subjectClassifiedNumber" value="" tal:attributes="value subjectClassifiedNumber"/>
+
                 <label for="subjectClassified" i18n:translate="label_subjectClassified">subjectClassified</label>
-<!--                <span class="fieldRequired" title="Required"
-                       i18n:attributes="title"
-                       i18n:translate="label_required">(Required)</span>
--->
+
                 <div tal:content="error">Validation error output</div>
                 <div class="formHelp" >
                 <p i18n:translate="help_subjectClassified">Normierte Schlagworte</p>
@@ -596,48 +591,54 @@
                     <li><a href='http://www.ams.org/msc/' title="2000 Mathematics Subject Classification" target="_blank">MSC</a></li>
                 </ul>
                 </div>
+                <tal:block tal:replace="subjectClassified"/>
                 <table class="listing">
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th i18n:translate="keyword">Schlagwort</th>
                         <th i18n:translate="identNo">IdentNr.</th>
                         <th i18n:translate="source">Quelle</th>
                     </tr>
                     <tr tal:repeat="keyword subjectClassified">
                         <tal:block tal:define="i repeat/keyword/index; no repeat/keyword/number">
-                            <td tal:content="no">#</td>
                             <td>
-                                <input class="subject" type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',keyword['subjectClassified'],i)" />
-                            </td>
-                            <td>
-                                <input class="identNr" type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',keyword['classificationIdent'],i)" />
-                            </td>
-                            <td tal:define="value python: here.test('sc_classificationSystem',keyword['classificationSystem'],i)"
-                                tal:content="structure python:here.NormList('sc_classificationSystem:list',value)">
-                                    dropdown normlisten
-                            </td>
-                        </tal:block>
-                    </tr>
-                    <tr tal:condition="python: newSubjectClassifiedNumber > subjectClassifiedNumber"
-                        tal:repeat="keyword python:range(int(subjectClassifiedNumber),int(newSubjectClassifiedNumber))">
-                        <tal:block tal:define="number repeat/keyword/number;
-                                               index  repeat/keyword/index;
-                                               no     python:number + subjectClassifiedNumber;
-                                               i      python:index + subjectClassifiedNumber">
-                            <td tal:content="no">#</td>
-                            <td>
-                                <input class="subject" type="text" value="" name="sc_subjectClassified:list" tal:attributes="value python: here.test('sc_subjectClassified',None,i)" />
+                                <input type="checkbox" 
+                                       class="noborder"
+                                       name="keyword_index:int:list" 
+                                       value=""
+                                       tal:attributes="value repeat/keyword/index"/>
                             </td>
                             <td>
-                                <input class="identNr" type="text" value="" name="sc_classificationIdent:list" tal:attributes="value python: here.test('sc_classificationIdent',None,i)" />
+                                <input class="subject"
+                                       type="text"
+                                       value="" 
+                                       name="subjectClassified.subjectClassified:records"
+                                       tal:attributes="value keyword/subjectClassified"/>
                             </td>
-                            <td tal:define="value python: here.test('sc_classificationSystem',None,i)"
-                                tal:content="structure python:here.NormList('sc_classificationSystem:list',value)">
-                                    dropdown normlisten
+                            <td>
+                                <input class="identNr" 
+                                       type="text" 
+                                       value="" 
+                                       name="subjectClassified.classificationIdent:records"
+                                       tal:attributes="value keyword/classificationIdent"/>
+                            </td>
+                            <td>
+                                <select name="subjectClassified.classificationSystem:records">
+                                    <option value="">--- wählen Sie eine Normdatei ---</option>
+                                    <option value="swd">SWD (Schlagwortnormdatei)</option>
+                                    <option value="lcsh">LCSH (Library of Congress Subject Headings)</option>
+                                </select>
                             </td>
                         </tal:block>
                     </tr>
                 </table>
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delKeyword"
+                   value="delete selected"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
                 <input class="context"
                    tabindex=""
                    type="submit"
