@@ -467,6 +467,23 @@ def install_css(self,out):
     """register the stylesheets"""
     registerResources(self, out, 'portal_css', STYLESHEETS)
 
+def install_metadataproperties(self,out):
+    """available metadata and default values"""
+    
+    if not hasattr(self.portal_properties, 'metadata_properties'):
+        self.portal_properties.addPropertySheet('metadata_properties', 'QDC Metadata properties')
+    
+    props = self.portal_properties.metadata_properties
+    
+    metadata_props= (
+        ('default_language','string',DEFAULT_LANGUAGE),
+        ('available_languages','lines',AVAILABLE_LANGUAGES)
+    )
+    
+    for prop_id, prop_type, prop_value in metadata_props:
+        if not hasattr(props, prop_id):
+            props.manage_addProperty(id=prop_id, value=prop_value, type=prop_type)
+
 def install_memberproperties(self,out):
     """add some memberproperties"""
 
@@ -580,6 +597,7 @@ def install(self):
     install_dependencies(self,out)
     install_properties(self, out)
     install_memberproperties(self, out)
+    install_metadataproperties(self,out)
     install_subskins(self, out)
     install_extMethods(self, out)
     install_types(self, out)

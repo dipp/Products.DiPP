@@ -1,6 +1,9 @@
 """
 $Id$
 """
+DEFAULT_LANGUAGE = "eng"
+AVAILABLE_LANGUAGES = ('ger','eng','fra','ita','spa')
+
 WYSIWYG_EDITOR = "FCKeditor"
 
 DEADLINE_MAX = 56
