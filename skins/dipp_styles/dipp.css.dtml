@@ -31,17 +31,17 @@
 /* Metadata Form */
 
 textarea.abstract { width: 100%; }
-input.academicTitle { width: 4em; }
-input.lastName { width: 15em; }
-input.firstName { width: 15em; }
-input.emailAddress { width: 20em; }
-input.PNDIdentNumber, input.GKDIdentNumber { width: 20em; }
-input.organization { width: 20em; }
+input.academicTitle { width: 50px; }
+input.lastName { width: 120px; }
+input.firstName { width: 120px; }
+input.emailAddress { width: 120px; }
+input.PNDIdentNumber, input.GKDIdentNumber { width: 100px; }
+input.organization { width: 120px; }
 input.role { width: 20em; }
-input.postalAddress { width: 20em; }
+input.postalAddress { width: 120px; }
 input.institutionelAuthor { width: 20em; }
-input.subject { width: 15em; }
-input.identNr { width: 15em; }
+input.subject { width: 200px; }
+input.identNr { width: 200px; }
 input.date { width: 10em; }
 input.journalTitle { width: 20em; }
 input.journalVolume { width: 5em; }
@@ -49,6 +49,9 @@ input.journalIssueNumber { width: 5em; }
 input.journalIssueDate { width: 10em; }
 .inline li{
     display: inline;
+}
+.metadata td {
+    padding: 0.25em;
 }
 
 /* personalize form  */
