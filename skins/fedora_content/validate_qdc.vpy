@@ -4,12 +4,9 @@ language                = context.REQUEST.get('language', None)
 DDC                     = context.REQUEST.get('DDC', None)
 title_value             = context.REQUEST.get('title_value', None)
 title_lang              = context.REQUEST.get('title_lang', None)
-author_firstName        = context.REQUEST.get('author_firstName', None)
-author_lastName         = context.REQUEST.get('author_lastName', None)
+creatorPerson           = context.REQUEST.get('creatorPerson', None)
 subject                 = context.REQUEST.get('subject', None)
-sc_subjectClassified    = context.REQUEST.get('sc_subjectClassifield', None)
-sc_classificationIdent  = context.REQUEST.get('sc_classificationIdent', None)
-sc_classificationSystem = context.REQUEST.get('sc_classificationSystem', None)
+subjectClassified       = context.REQUEST.get('subjectClassifield', None)
 bc_journalTitle         = context.REQUEST.get('bc_journalTitle', None)
 bc_journalVolume        = context.REQUEST.get('bc_journalVolume', None)
 bc_journalIssueNumber   = context.REQUEST.get('bc_journalIssueNumber', None)
@@ -41,7 +38,7 @@ if storageType == "permanent":
     if language[0] == "":
         state.setError('language', 'Es muß eine Sprache angegeben werden', new_status='failure')
 
-    if author_firstName[0] == "" or author_lastName[0] == "":
+    if creatorPerson[0]['firstName'] == "" or creatorPerson[0]['lastName'] == "":
         state.setError('creatorPerson', 'Es muß mindestens ein Autor mit Vor- und Nachnamen angegeben werden.', new_status='failure')
 
     if str(subject) == '[]':

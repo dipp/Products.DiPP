@@ -12,11 +12,8 @@ portal_status_message = REQUEST.get('portal_status_message', None)
 
 def del_from_list(old_list, selection):
     """the item with numbers from selection are deletet from list"""
-    context.plone_log(selection)
-    context.plone_log(old_list)
     new_list = []
     for i in range(0, len(old_list)):
-        context.plone_log('index' + str(i))
         if i not in selection:
             new_list.append(old_list[i])
     return new_list
@@ -43,23 +40,38 @@ if REQUEST.form.has_key('form.button.addAlternative'):
 else:
     newAlternativeNumber =int(REQUEST.get('newAlternativeNumber',None))
 
-#add Abstract
+# add Abstract
+default = {'value':'','lang':''}
+DCTermsAbstract = REQUEST.get('DCTermsAbstract',None)
 if REQUEST.form.has_key('form.button.addAbstract'):
-    newAbstractNumber =int(REQUEST.get('newAbstractNumber',None)) + 1
+    DCTermsAbstract.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Abstract-Feld wurde hinzugefügt')
-else:
-    newAbstractNumber =int(REQUEST.get('newAbstractNumber',None))
 
-#add Author
+if REQUEST.form.has_key('form.button.delAbstract'):
+    abstract_index = REQUEST.get('abstract_index',[])
+    DCTermsAbstract = del_from_list(DCTermsAbstract,abstract_index)
+    if len(DCTermsAbstract) == 0:
+        DCTermsAbstract.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Abstract-Feld wurde gelöscht')
+
+# add Author
+creatorPerson = REQUEST.get('creatorPerson',None)
+default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
 if REQUEST.form.has_key('form.button.addAuthor'):
-    newAuthorNumber =int(REQUEST.get('newAuthorNumber',None)) + 1
+    creatorPerson.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Autoren-Feld wurde hinzugefügt')
-else:
-    newAuthorNumber =int(REQUEST.get('newAuthorNumber',None))
+
+# del Author
+if REQUEST.form.has_key('form.button.delAuthor'):
+    author_index = REQUEST.get('author_index',[])
+    creatorPerson = del_from_list(creatorPerson,author_index)
+    if len(creatorPerson) == 0:
+        creatorPerson.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Autoren-Feld wurde gelöscht')
 
 # add Keyword
-default = {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''}
 subjectClassified = REQUEST.get('subjectClassified',None)
+default = {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''}
 if REQUEST.form.has_key('form.button.addKeyword'):
     subjectClassified.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Schlagword-Feld wurde hinzugefügt')
@@ -84,9 +96,6 @@ return state.set(status='success',\
     newDDCNumber=newDDCNumber,
     newTitleNumber=newTitleNumber,
     newAlternativeNumber=newAlternativeNumber,
-    newAbstractNumber=newAbstractNumber,
-    newAuthorNumber=newAuthorNumber,
-    #newSubjectClassifiedNumber=newSubjectClassifiedNumber,
     storageType                = REQUEST.get('storageType',None),
     DDC                        = REQUEST.get('DDC',None),
     language                   = REQUEST.get('language',None),
@@ -95,16 +104,9 @@ return state.set(status='success',\
     title_lang                 = REQUEST.get('title_lang',None),
     alternative_value          = REQUEST.get('alternative_value',None),
     alternative_lang           = REQUEST.get('alternative_lang',None),
-    abstract_lang              = REQUEST.get('abstract_lang',None),
-    abstract_value             = REQUEST.get('abstract_value',None),
+    DCTermsAbstract            = DCTermsAbstract,
     subjects                   = REQUEST.get('subjects',None),
-    author_academicTitle       = REQUEST.get('author_academicTitle',None),
-    author_firstName           = REQUEST.get('author_firstName',None),
-    author_lastName            = REQUEST.get('author_lastName',None),
-    author_emailAddress        = REQUEST.get('author_emailAddress',None),
-    author_PNDIdentNumber      = REQUEST.get('author_PNDIdentNumber',None),
-    author_organization        = REQUEST.get('author_organization',None),
-    author_postalAddress       = REQUEST.get('author_postalAddress',None),
+    creatorPerson              = creatorPerson,
     corp_institutionelAuthor   = REQUEST.get('corp_institutionelAuthor',None),
     corp_emailAddress          = REQUEST.get('corp_emailAddress',None),
     corp_organization          = REQUEST.get('corp_organization',None),
@@ -125,10 +127,6 @@ return state.set(status='success',\
     subject                    = REQUEST.get('subject',None),
     new_subjects               = REQUEST.get('new_subjects',None),
     subjectClassified          = subjectClassified,
-    #subjectClassified          = REQUEST.get('subjectClassified',None),
-    #sc_subjectClassified       = REQUEST.get('sc_subjectClassified',None),
-    #sc_classificationIdent     = REQUEST.get('sc_classificationIdent',None),
-    #sc_classificationSystem    = REQUEST.get('sc_classificationSystem',None),
     dateAccepted               = REQUEST.get('dateAccepted',None),
     dateSubmitted              = REQUEST.get('dateSubmitted',None),
     dateCopyrighted            = REQUEST.get('dateCopyrighted',None),
