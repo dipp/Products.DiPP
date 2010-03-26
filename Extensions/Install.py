@@ -476,8 +476,8 @@ def install_metadataproperties(self,out):
     props = self.portal_properties.metadata_properties
     
     metadata_props= (
-        ('default_language','string',DEFAULT_LANGUAGE),
-        ('available_languages','lines',AVAILABLE_LANGUAGES)
+        ('default_language', 'string', DEFAULT_LANGUAGE),
+        ('available_languages', 'lines', AVAILABLE_LANGUAGES)
     )
     
     for prop_id, prop_type, prop_value in metadata_props:
