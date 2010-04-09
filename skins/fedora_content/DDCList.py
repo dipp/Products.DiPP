@@ -4,15 +4,14 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=name,DDC
+##parameters=
 ##title=
 ##
 request = container.REQUEST
 RESPONSE =  request.RESPONSE
 
 
-Sachgruppen = {
-    ''   :'--- wählen Sie eine DDC Sachgrupe ---',
+ddc = {
     '000':'Informatik, Informationswissenschaft, allgemeine Werke',
     '004':' Informatik',
     '010':' Bibliografien',
@@ -110,19 +109,4 @@ Sachgruppen = {
     '990':' Geschichte der übrigen Welt'
 }
 
-
-keys = Sachgruppen.keys()
-keys.sort()
-#print DDC
-print '<select name="' + name + '">'
-
-for Sachgruppe in keys:
-    if Sachgruppe == DDC:
-        selected = ' selected="selected"'
-    else:
-        selected = ''
-    print '  <option value="' + Sachgruppe + '"' + selected + '>' + Sachgruppe + ' ' + Sachgruppen[Sachgruppe] + '</option>\n'
-
-print '</select>'
-
-return printed
+return ddc
