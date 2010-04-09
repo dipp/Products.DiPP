@@ -6,8 +6,6 @@
 <!-- BEARBEITEN-->
 
         <div metal:define-macro="fields" id="qdc-fields">
-       <fieldset>
-       <legend i18n:domain="qdc" i18n:translate="label_language_ddc">Sprache und DDC des Artikels</legend>
             <!-- language -->
             <div class="field"
                  tal:define="error errors/language|nothing;
@@ -32,36 +30,53 @@
             <!-- DDC --> 
             <div class="field"
                  tal:define="error errors/DDC|nothing;
-                             DDCs python:qdc['DDC'];
-                             DDCNumber python:len(DDCs);
-                             newDDCNumber request/newDDCNumber|DDCNumber"
+                             DDCs request/DDC|python:qdc['DDC'];
+                             DDCList python:here.DDCList"
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
-                <input type="hidden" name="newDDCNumber" value="" tal:attributes="value newDDCNumber"/>
-                <input type="hidden" name="DDCNumber" value="" tal:attributes="value DDCNumber"/>
 
                 <label for="DDC" i18n:translate="label_ddc">DDC</label>
                 <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
                 <div tal:content="error">Validation error output</div>
-                <tal:block tal:repeat="DDC DDCs">
-                    <tal:block tal:define="i repeat/DDC/index">
-                        <div tal:content="structure python:here.DDCList('DDC:list',here.test('DDC',DDC, i))">
-                        </div>
-                    </tal:block>
-                </tal:block>
-                <tal:block tal:condition="python: newDDCNumber > DDCNumber"
-                    tal:repeat="DDC python:range(int(DDCNumber),int(newDDCNumber))">
-                    <tal:block tal:define="number repeat/DDC/number;
-                                           index  repeat/DDC/index;
-                                           no     python:number + DDCNumber;
-                                           i      python:index + DDCNumber">
-                    <div tal:content="structure python:here.DDCList('DDC:list',here.test('DDC',DDC, i))">
-                    </div>
-                    </tal:block>
-                </tal:block>
+               <tal:block tal:replace="DDCs"/> 
+                <table class="listing nosort metadata">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th i18n:translate="label_ddc">DDC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="DDC DDCs" tal:attributes="class python:test(path('repeat/DDC/even'), 'even', 'odd')">
+                        <td>
+                            <input type="checkbox" 
+                                   class="noborder"
+                                   name="ddc_index:int:list" 
+                                   value=""
+                                   tal:attributes="value repeat/DDC/index"/>
+                        </td>
+                        <td>
+                            <select name="DDC:list">
+                                <tal:block tal:repeat="ddc DDCList">
+                                    <option tal:attributes="value ddc/code;
+                                                            selected python: ddc['code'] == DDC"
+                                            tal:content="string: ${ddc/code} - ${ddc/description}">123</option> 
+                                </tal:block>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
 
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.delDDC"
+                       value="delete selected"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
                 <input class="context"
                        tabindex=""
                        type="submit"
@@ -72,7 +87,6 @@
                                        disabled python:test(isLocked, 'disabled', None);" />
 
             </div>   
-           </fieldset>
 
 
             <!-- ALTERNATIVER TITEL -->
@@ -123,16 +137,16 @@
                 <input class="context"
                        tabindex=""
                        type="submit"
-                       name="form.button.addAlternative"
-                       value="value_addAlternative"
-                       i18n:attributes="value"
+                       name="form.button.delAlternative"
+                       value="delete selected"
                        tal:attributes="tabindex tabindex/next;
                                        disabled python:test(isLocked, 'disabled', None);" />
                 <input class="context"
                        tabindex=""
                        type="submit"
-                       name="form.button.delAlternative"
-                       value="delete selected"
+                       name="form.button.addAlternative"
+                       value="value_addAlternative"
+                       i18n:attributes="value"
                        tal:attributes="tabindex tabindex/next;
                                        disabled python:test(isLocked, 'disabled', None);" />
 

@@ -20,11 +20,19 @@ def del_from_list(old_list, selection):
 
 
 # add DDC
+DDC = REQUEST.get('DDC',([],)),
+DDC = DDC[0]
 if REQUEST.form.has_key('form.button.addDDC'):
-    newDDCNumber =int(REQUEST.get('newDDCNumber',None)) + 1
+    DDC.append('')
     portal_status_message = REQUEST.get('portal_status_message', 'Neues DDC-Feld wurde hinzugefügt')
-else:
-    newDDCNumber =int(REQUEST.get('newDDCNumber',None))
+if REQUEST.form.has_key('form.button.delDDC'):
+    ddc_index = REQUEST.get('ddc_index',[])
+    DDC = del_from_list(DDC,ddc_index)
+    if len(DDC) == 0:
+        DDC.append('') 
+    portal_status_message = REQUEST.get('portal_status_message', 'DDC-Feld wurde gelöscht')
+
+context.plone_log(DDC)
 
 #add Title
 if REQUEST.form.has_key('form.button.addTitle'):
@@ -100,10 +108,9 @@ subject = [subject]
 
 return state.set(status='success',\
     portal_status_message=portal_status_message,\
-    newDDCNumber=newDDCNumber,
     newTitleNumber=newTitleNumber,
     storageType                = REQUEST.get('storageType',None),
-    DDC                        = REQUEST.get('DDC',None),
+    DDC                        = DDC,
     language                   = REQUEST.get('language',None),
     targetFormat               = REQUEST.get('targetFormat',None),
     title_value                = REQUEST.get('title_value',None),
@@ -144,33 +151,3 @@ return state.set(status='success',\
     rights                     = REQUEST.get('rights',None)
 )
 
-"""
-return state.set(status='success',\
-    portal_status_message=portal_status_message,\
-    newDDCNumber=newDDCNumber,
-    newTitleNumber=newTitleNumber,
-    newAlternativeNumber=newAlternativeNumber,
-    newAuthorNumber=newAuthorNumber,
-    newSubjectClassifiedNumber=newSubjectClassifiedNumber,
-    DDC                        = REQUEST.get('DDC',None),
-    language                   = REQUEST.get('language',None),
-    title_value                = REQUEST.get('title_value',None),
-    title_lang                 = REQUEST.get('title_lang',None),
-    alternative_value          = REQUEST.get('alternative_value',None),
-    alternative_lang           = REQUEST.get('alternative_lang',None),
-    author_firstName           = REQUEST.get('author_firstName',None),
-    author_lastName            = REQUEST.get('author_lastName',None),
-    author_emailAddress        = REQUEST.get('author_emailAddress',None),
-    author_organization        = REQUEST.get('author_organization',None),
-    author_postalAddress       = REQUEST.get('author_postalAddress',None),
-    author_GKDIdentNumber      = REQUEST.get('author_GKDIdentNumber',None),
-    author_PNDIdentNumber      = REQUEST.get('author_PNDIdentNumber',None),
-    author_academicTitle       = REQUEST.get('author_academicTitle',None),
-    author_institutionelAuthor = REQUEST.get('author_institutionelAuthor',None),
-    author_role                = REQUEST.get('author_role',None),
-    subject                    = subject,
-    sc_subjectClassified       = REQUEST.get('sc_subjectClassified',None),
-    sc_classificationIdent     = REQUEST.get('sc_classificationIdent',None),
-    sc_classificationSystem    = REQUEST.get('sc_classificationSystem',None)
-)
-"""

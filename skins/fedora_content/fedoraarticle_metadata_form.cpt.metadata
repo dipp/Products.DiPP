@@ -12,6 +12,7 @@ validators..Save = validate_qdc
 action.success                  = traverse_to:string:fedoraarticle_metadata_save
 action.success..Save            = traverse_to:string:fedoraarticle_metadata_save
 action.success..addDDC          = traverse_to:string:fedoraarticle_metadata_edit
+action.success..delDDC          = traverse_to:string:fedoraarticle_metadata_edit
 action.success..addTitle        = traverse_to:string:fedoraarticle_metadata_edit
 action.success..addAbstract     = traverse_to:string:fedoraarticle_metadata_edit
 action.success..delAbstract     = traverse_to:string:fedoraarticle_metadata_edit
