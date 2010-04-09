@@ -621,85 +621,82 @@
             </div>
 
            </fieldset>
-           <fieldset i18n:domain="qdc">
-           <legend i18n:translate="label_bibliographicCitation">Bibliographic Citation</legend>
 
                 <!-- BibliographicCitation-->
-                <div class="field" i18n:domain="qdc" 
-                    tal:define="error errors/bibliographicCitation|nothing;
-                                bibliographicCitation  python:qdc['bibliographicCitation'][0]"
-                    tal:attributes="class python:test(error, 'field error', 'field')">
-                    <span class="fieldRequired" title="Required"
-                           i18n:attributes="title"
-                           i18n:translate="label_required">(Required)</span>
-                    <div tal:content="error">Validation error output</div>
-                    <div class="formHelp" i18n:translate="help_bibliographicCitation">
-                    </div>
-                    <table class="listing">
-                        <tr>
-                            <th i18n:translate="label_journalTitle">journalTitle</th>
-                            <th i18n:translate="label_journalVolume">journalVolume</th>
-                            <th i18n:translate="label_journalIssueNumber">journalIssueNumber</th>
-                            <th i18n:translate="label_journalIssueDate">journalIssueDate</th>
-                        </tr>
-                        <tr>
-                            <td><input class="journalTitle" type="text" name="bc_journalTitle"   value ="" tal:attributes="value request/bc_journalTitle|bibliographicCitation/journalTitle|nothing" /></td>
-                            <td><input class="journalVolume" type="text" name="bc_journalVolume"   value ="" tal:attributes="value request/bc_journalVolume|bibliographicCitation/journalVolume|nothing" /></td>
-                            <td><input class="journalIssueNumber" type="text" name="bc_journalIssueNumber"   value ="" tal:attributes="value request/bc_journalIssueNumber|bibliographicCitation/journalIssueNumber|nothing" /></td>
-                            <td><input class="journalIssueDate" type="text" maxlength="10" name="bc_journalIssueDate"   value ="" tal:attributes="value request/bc_journalIssueDate|bibliographicCitation/journalIssueDate|nothing" /></td>
-                        </tr>
-                    </table>
-                    
+            <div class="field"
+                tal:define="error errors/bibliographicCitation|nothing;
+                            bibliographicCitation  python:qdc['bibliographicCitation'][0]"
+                tal:attributes="class python:test(error, 'field error', 'field')"
+                i18n:domain="qdc">
+                <label i18n:translate="label_bibliographicCitation" id="bc">Bibliographic Citation</label>
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_bibliographicCitation">
                 </div>
-           </fieldset>
-           <fieldset i18n:domain="qdc">
-           <legend i18n:translate="label_identifierDOI">DOI</legend>
-                <!-- DOI-->
-                <div class="field" i18n:domain="qdc" 
-                    tal:define="error errors/identifierDOI|nothing;
-                                identifierDOI  python:qdc['identifierDOI']"
-                    tal:attributes="class python:test(error, 'field error', 'field')">
-                    <div tal:content="error">Validation error output</div>
-                    <div class="formHelp" i18n:translate="help_identifierDOI">
-                        Digital Object Identifier 
-                    </div>
-                    <input type="text" name="identifierDOI"   value ="" tal:attributes="value request/identifierDOI|identifierDOI|nothing" />
-                    
+                <table class="listing">
+                    <tr>
+                        <th i18n:translate="label_journalTitle">journalTitle</th>
+                        <th i18n:translate="label_journalVolume">journalVolume</th>
+                        <th i18n:translate="label_journalIssueNumber">journalIssueNumber</th>
+                        <th i18n:translate="label_journalIssueDate">journalIssueDate</th>
+                    </tr>
+                    <tr>
+                        <td><input class="journalTitle" type="text" name="bc_journalTitle"   value ="" tal:attributes="value request/bc_journalTitle|bibliographicCitation/journalTitle|nothing" /></td>
+                        <td><input class="journalVolume" type="text" name="bc_journalVolume"   value ="" tal:attributes="value request/bc_journalVolume|bibliographicCitation/journalVolume|nothing" /></td>
+                        <td><input class="journalIssueNumber" type="text" name="bc_journalIssueNumber"   value ="" tal:attributes="value request/bc_journalIssueNumber|bibliographicCitation/journalIssueNumber|nothing" /></td>
+                        <td><input class="journalIssueDate" type="text" maxlength="10" name="bc_journalIssueDate"   value ="" tal:attributes="value request/bc_journalIssueDate|bibliographicCitation/journalIssueDate|nothing" /></td>
+                    </tr>
+                </table>
+                
+            </div>
+
+            <!-- DOI-->
+            <div class="field" i18n:domain="qdc" 
+                tal:define="error errors/identifierDOI|nothing;
+                            identifierDOI  python:qdc['identifierDOI']"
+                tal:attributes="class python:test(error, 'field error', 'field')">
+                <label i18n:translate="label_identifierDOI" id="doi">DOI</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_identifierDOI">
+                    Digital Object Identifier 
                 </div>
-           </fieldset> 
+                <input type="text" name="identifierDOI"   value ="" tal:attributes="value request/identifierDOI|identifierDOI|nothing" />
+                
+            </div>
 
-           <fieldset i18n:domain="qdc">
-           <legend i18n:translate="label_rights">rights</legend>
 
-                <!--rights-->
-                <div class="field"
-                     tal:define="error errors/rights|nothing;
-                         rights  python:qdc['rights'][0]"
-                     tal:attributes="class python:test(error, 'field error', 'field')" >
+            <!--rights-->
+            <div class="field"
+                 tal:define="error errors/rights|nothing;
+                     rights  python:qdc['rights'][0]"
+                 tal:attributes="class python:test(error, 'field error', 'field')"
+                 i18n:domain="qdc">
+                 <label i18n:translate="label_rights" id="rights">rights</label>
 
-                    <span class="fieldRequired" title="Required"
-                           i18n:attributes="title"
-                           i18n:translate="label_required">(Required)</span>
-                    <div tal:content="error">Validation error output</div>
-                    <div class="formHelp" i18n:translate="help_rights">
-                        Sollten Sie nicht der Autor sein, stellen Sie
-                        sicher, dass sie das Einverständnis des Autors zur Wahl dieser Lizenz
-                        vorliegen haben.
-                    </div>
-                    <div>
-                        <input type="radio" name="rights:list" value="DPPL" tal:attributes="checked python:'DPPL' in path('request/rights | rights | python:[]')"/>
-                        <span i18n:translate="dppl">Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                        <input type="radio" name="rights:list" value="mDPPL" tal:attributes="checked python:'mDPPL' in path('request/rights | rights | python:[]')"/>
-                        <span i18n:translate="mdppl">modulare Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                        <input type="radio" name="rights:list" value="fDPPL" tal:attributes="checked python:'fDPPL' in path('request/rights | rights | python:[]')"/>
-                        <span i18n:translate="fdppl">freie Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                        <input type="radio" name="rights:list" value="authorcontract" tal:attributes="checked python:'authorcontract' in path('request/rights | rights | python:[]')"/>
-                        <span i18n:translate="">No Licence is used. All rights are covered by an author contract</span><br />
-                    
-                    </div>
-
+                <span class="fieldRequired" title="Required"
+                       i18n:attributes="title"
+                       i18n:translate="label_required">(Required)</span>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_rights">
+                    Sollten Sie nicht der Autor sein, stellen Sie
+                    sicher, dass sie das Einverständnis des Autors zur Wahl dieser Lizenz
+                    vorliegen haben.
                 </div>
-               </fieldset>
+                <div>
+                    <input type="radio" name="rights:list" value="DPPL" tal:attributes="checked python:'DPPL' in path('request/rights | rights | python:[]')"/>
+                    <span i18n:translate="dppl">Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
+                    <input type="radio" name="rights:list" value="mDPPL" tal:attributes="checked python:'mDPPL' in path('request/rights | rights | python:[]')"/>
+                    <span i18n:translate="mdppl">modulare Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
+                    <input type="radio" name="rights:list" value="fDPPL" tal:attributes="checked python:'fDPPL' in path('request/rights | rights | python:[]')"/>
+                    <span i18n:translate="fdppl">freie Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
+                    <input type="radio" name="rights:list" value="authorcontract" tal:attributes="checked python:'authorcontract' in path('request/rights | rights | python:[]')"/>
+                    <span i18n:translate="">No Licence is used. All rights are covered by an author contract</span><br />
+                
+                </div>
+
+            </div>
 <!--
             </div>
 -->
