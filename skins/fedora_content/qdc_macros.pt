@@ -74,71 +74,52 @@
             </div>   
            </fieldset>
 
-           <fieldset>
-            <legend i18n:domain="qdc" i18n:translate="label_alternative">alternative</legend>
 
             <!-- ALTERNATIVER TITEL -->
             <div class="field"
                  tal:define="error errors/alternative|nothing;
-                             alternatives python:qdc['alternative'];
-                             alternativeNumber python:len(alternatives);
-                             newAlternativeNumber request/newAlternativeNumber|alternativeNumber"
+                             languages here/portal_properties/metadata_properties/available_languages|nothing;
+                             alternatives request/alternative|python:qdc['alternative']"
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
+                <label i18n:domain="qdc" i18n:translate="label_alternative">alternative</label>
                 
-                <input type="hidden" name="newAlternativeNumber" value="" tal:attributes="value newAlternativeNumber"/>
-                <input type="hidden" name="alternativeNumber" value="" tal:attributes="value alternativeNumber"/>
                 
                 <div tal:content="error">Validation error output</div>
-                <table class="listing">
+                
+                <table class="listing nosort metadata">
+                <thead>
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th i18n:translate="label_title">Titel</th>
                         <th i18n:translate="label_language">Sprache</th>
                     </tr>
-                    <tr tal:repeat="alternative alternatives">
-                        <td tal:content="repeat/alternative/number">#</td>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="alternative alternatives" tal:attributes="class python:test(path('repeat/alternative/even'), 'even', 'odd')">
                         <td>
-                            <input type="hidden" name="alternative_type:list" value="">
-                            <input type="text"
-                                   name="alternative_value:list"
-                                   tal:define="i repeat/alternative/index;
-                                               value python:alternative['value']"
-                                   tal:attributes="value python: here.test('alternative_value',value,i)" />
+                            <input type="checkbox" 
+                                   class="noborder"
+                                   name="alternative_index:int:list" 
+                                   value=""
+                                   tal:attributes="value repeat/alternative/index"/>
                         </td>
-                        <td tal:define="i repeat/alternative/index;
-                                        lang python:alternative['lang']" 
-                            tal:content="structure python:here.langList('alternative_lang:list',here.test('alternative_lang',lang,i))">
-                            Sprachauswahlliste
-                            <input type="text"
-                                   name="alternative_lang:list"
-                                   tal:define="i repeat/alternative/index;
-                                               value python:alternative['lang']"
-                                   tal:attributes="value python: here.test('alternative_lang',value,i)" />
+                        <td>
+                            <input type="text" class="alternative" name="alternative.value:records"  tal:attributes="value python: alternative['value']" />
+                        </td>
+                        <td>
+                            <select name="alternative.lang:records">
+                                <tal:block tal:repeat="language languages">
+                                    <option tal:attributes="value language;
+                                                            selected python: language == alternative['lang']"
+                                            tal:content="language">ger</option> 
+                                </tal:block>
+                            </select>
                         </td>
                     </tr>
-                    <tr tal:condition="python: newAlternativeNumber > alternativeNumber"
-                        tal:repeat="alternative python:range(int(alternativeNumber),int(newAlternativeNumber))">
-                        <tal:block tal:define="number repeat/alternative/number;
-                                               index  repeat/alternative/index;
-                                               no     python:number + alternativeNumber;
-                                               i      python:index + alternativeNumber">
-                            <td tal:content="no">#</td>
-                            <td>
-                                <input type="hidden" name="alternative_type:list" value="">
-                                <input type="text"
-                                       name="alternative_value:list"
-                                       tal:attributes="value python: here.test('alternative_value',None,i)" />
-                            </td>
-                            <td tal:content="structure python:here.langList('alternative_lang:list',here.test('alternative_lang',None,i))">
-                                Sprachauswahlliste
-                                <input type="text"
-                                       name="alternative_lang:list"
-                                       tal:attributes="value python: here.test('alternative_lang',None,i)" />
-                            </td>
-                        </tal:block>    
-                    </tr>
+                </tbody>
                 </table>
+                
                 <input class="context"
                        tabindex=""
                        type="submit"
@@ -147,9 +128,15 @@
                        i18n:attributes="value"
                        tal:attributes="tabindex tabindex/next;
                                        disabled python:test(isLocked, 'disabled', None);" />
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.delAlternative"
+                       value="delete selected"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);" />
 
             </div>
-           </fieldset>
 
 
             <!--Abstract -->
@@ -161,7 +148,6 @@
                  i18n:domain="qdc">
                 <label i18n:domain="qdc" i18n:translate="label_abstract">Abstract</label>
                 <div tal:content="error">Validation error output</div>
-                <tal:block tal:replace="languages"/>
                 <table class="listing nosort metadata">
                 <thead>
                     <tr>

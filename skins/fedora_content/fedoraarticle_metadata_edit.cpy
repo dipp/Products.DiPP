@@ -34,11 +34,18 @@ else:
     newTitleNumber =int(REQUEST.get('newTitleNumber',None))
 
 #add Alternative
+default = {'value':'','lang':''}
+alternative = REQUEST.get('alternative',None)
 if REQUEST.form.has_key('form.button.addAlternative'):
-    newAlternativeNumber =int(REQUEST.get('newAlternativeNumber',None)) + 1
+    alternative.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Alternativ-Feld wurde hinzugefügt')
-else:
-    newAlternativeNumber =int(REQUEST.get('newAlternativeNumber',None))
+
+if REQUEST.form.has_key('form.button.delAlternative'):
+    alternative_index = REQUEST.get('alternative_index',[])
+    alternative = del_from_list(alternative,alternative_index)
+    if len(alternative) == 0:
+        alternative.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Alternative-Feld wurde gelöscht')
 
 # add Abstract
 default = {'value':'','lang':''}
@@ -95,15 +102,13 @@ return state.set(status='success',\
     portal_status_message=portal_status_message,\
     newDDCNumber=newDDCNumber,
     newTitleNumber=newTitleNumber,
-    newAlternativeNumber=newAlternativeNumber,
     storageType                = REQUEST.get('storageType',None),
     DDC                        = REQUEST.get('DDC',None),
     language                   = REQUEST.get('language',None),
     targetFormat               = REQUEST.get('targetFormat',None),
     title_value                = REQUEST.get('title_value',None),
     title_lang                 = REQUEST.get('title_lang',None),
-    alternative_value          = REQUEST.get('alternative_value',None),
-    alternative_lang           = REQUEST.get('alternative_lang',None),
+    alternative                = alternative,
     DCTermsAbstract            = DCTermsAbstract,
     subjects                   = REQUEST.get('subjects',None),
     creatorPerson              = creatorPerson,
