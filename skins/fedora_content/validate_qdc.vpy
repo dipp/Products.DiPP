@@ -7,10 +7,7 @@ title_lang              = context.REQUEST.get('title_lang', None)
 creatorPerson           = context.REQUEST.get('creatorPerson', None)
 subject                 = context.REQUEST.get('subject', None)
 subjectClassified       = context.REQUEST.get('subjectClassifield', None)
-bc_journalTitle         = context.REQUEST.get('bc_journalTitle', None)
-bc_journalVolume        = context.REQUEST.get('bc_journalVolume', None)
-bc_journalIssueNumber   = context.REQUEST.get('bc_journalIssueNumber', None)
-bc_journalIssueDate     = context.REQUEST.get('bc_journalIssueDate', None)
+bibliographicCitation   = context.REQUEST.get('bibliographicCitation', None)
 rights                  = context.REQUEST.get('rights', None)
 created                 = context.REQUEST.get('created', None)
 modified                = context.REQUEST.get('modified', None)
@@ -44,9 +41,6 @@ if storageType == "permanent":
     if str(subject) == '[]':
         state.setError('subject', 'Bitte geben Sie Schlagworte ein.', new_status='failure')
 
-    #if sc_subjectClassified[0] == "" or sc_classificationIdent[0] == "" or sc_classificationSystem[0] == "":
-    #    state.setError('subjectClassified', 'Bitte geben Sie normierte Schlagworte ein.', new_status='failure')
-
     if  created == '' or modified == '' or valid == '':
         state.setError('dates', 'Bitte Daten angeben', new_status='failure')
 
@@ -69,17 +63,16 @@ if storageType == "permanent":
         state.setError('dates', 'Falsches Format', new_status='failure')
 
         
-    if str(bc_journalTitle) == '':
+    bc = bibliographicCitation[0]
+    if str(bc['journalTitle']) == '':
         state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-    if str(bc_journalVolume) == '':
+    if str(bc['journalVolume']) == '':
         state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-    if str(bc_journalIssueNumber) == '':
-        state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-    if str(bc_journalIssueDate) == '':
+    if str(bc['journalIssueDate']) == '':
         state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
     else:
         try:
-            date = DateTime(bc_journalIssueDate)
+            date = DateTime(bc['journalIssueDate'])
         except:
             state.setError('bibliographicCitation', 'Falsches Datumsformat.', new_status='failure')
         
