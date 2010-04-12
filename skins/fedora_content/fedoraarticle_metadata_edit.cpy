@@ -84,6 +84,36 @@ if REQUEST.form.has_key('form.button.delAuthor'):
         creatorPerson.append(default) 
     portal_status_message = REQUEST.get('portal_status_message', 'Autoren-Feld wurde gelöscht')
 
+# add corp author
+creatorCorporated = REQUEST.get('creatorCorporated',None)
+default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
+if REQUEST.form.has_key('form.button.addCorp'):
+    creatorCorporated.append(default)
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues corp Autoren-Feld wurde hinzugefügt')
+
+# del corp Author
+if REQUEST.form.has_key('form.button.delCorp'):
+    corp_index = REQUEST.get('corp_index',[])
+    creatorCorporated = del_from_list(creatorCorporated,corp_index)
+    if len(creatorCorporated) == 0:
+        creatorCorporated.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Koop. Autoren-Feld wurde gelöscht')
+
+# add Contrbutor
+contributor = REQUEST.get('contributor',None)
+default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
+if REQUEST.form.has_key('form.button.addContributor'):
+    contributor.append(default)
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues Beitragenden-Feld wurde hinzugefügt')
+
+# del Contributor
+if REQUEST.form.has_key('form.button.delContributor'):
+    contributor_index = REQUEST.get('contributor_index',[])
+    contributor = del_from_list(contributor,contributor_index)
+    if len(contributor) == 0:
+        contributor.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Beitragenden-Feld wurde gelöscht')
+
 # add Keyword
 subjectClassified = REQUEST.get('subjectClassified',None)
 default = {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''}
@@ -119,19 +149,8 @@ return state.set(status='success',\
     DCTermsAbstract            = DCTermsAbstract,
     subjects                   = REQUEST.get('subjects',None),
     creatorPerson              = creatorPerson,
-    corp_institutionelAuthor   = REQUEST.get('corp_institutionelAuthor',None),
-    corp_emailAddress          = REQUEST.get('corp_emailAddress',None),
-    corp_organization          = REQUEST.get('corp_organization',None),
-    corp_postalAddress         = REQUEST.get('corp_postalAddress',None),
-    corp_GKDIdentNumber        = REQUEST.get('corp_GKDIdentNumber',None),
-    contrib_academicTitle      = REQUEST.get('contrib_academicTitle',None),
-    contrib_firstName          = REQUEST.get('contrib_firstName',None),
-    contrib_lastName           = REQUEST.get('contrib_lastName',None),
-    contrib_emailAddress       = REQUEST.get('contrib_emailAddress',None),
-    contrib_PNDIdentNumber     = REQUEST.get('contrib_PNDIdentNumber',None),
-    contrib_role               = REQUEST.get('contrib_role',None),
-    contrib_organization       = REQUEST.get('contrib_organization',None),
-    contrib_postalAddress      = REQUEST.get('contrib_postalAddress',None),
+    creatorCorporated          = creatorCorporated,
+    contributor                = contributor,
     created                    = REQUEST.get('created',None),
     modified                   = REQUEST.get('modified',None),
     valid                      = REQUEST.get('valid',None),
@@ -142,10 +161,7 @@ return state.set(status='success',\
     dateAccepted               = REQUEST.get('dateAccepted',None),
     dateSubmitted              = REQUEST.get('dateSubmitted',None),
     dateCopyrighted            = REQUEST.get('dateCopyrighted',None),
-    bc_journalTitle            = REQUEST.get('bc_journalTitle',None),
-    bc_journalVolume           = REQUEST.get('bc_journalVolume',None),
-    bc_journalIssueNumber      = REQUEST.get('bc_journalIssueNumber',None),
-    bc_journalIssueDate        = REQUEST.get('bc_journalIssueDate',None),
+    bibliographicCitation      = REQUEST.get('bibliographicCitation',None),
     pubType                    = REQUEST.get('pubType',None),
     docType                    = REQUEST.get('docType',None),
     rights                     = REQUEST.get('rights',None)

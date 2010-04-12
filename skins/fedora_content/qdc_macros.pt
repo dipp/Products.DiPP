@@ -40,7 +40,6 @@
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
                 <div tal:content="error">Validation error output</div>
-               <tal:block tal:replace="DDCs"/> 
                 <table class="listing nosort metadata">
                 <thead>
                     <tr>
@@ -59,6 +58,7 @@
                         </td>
                         <td>
                             <select name="DDC:list">
+                                <option value="">---wählen Sie eine DDC Sachgruppe---</option>
                                 <tal:block tal:repeat="ddc DDCList">
                                     <option tal:attributes="value ddc/code;
                                                             selected python: ddc['code'] == DDC"
@@ -297,123 +297,199 @@
             <!-- korporative Autoren -->
             <div class="field"
                  tal:define="error errors/creatorCorporated|nothing;
-                             corporateauthors python:qdc['creatorCorporated'];
-                             corporateauthorNumber python:len(corporateauthors);
-                             newCorporateAuthorNumber request/newCorporateAuthorNumber|corporateauthorNumber"
+                             creatorCorporated request/creatorCorporated|python:qdc['creatorCorporated']"
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
                  <label i18n:translate="label_creatorCorporate">korporative Autoren</label>
-                 <input type="hidden" name="newCorporateAuthorNumber" value="" tal:attributes="value newCorporateAuthorNumber"/>
-                 <input type="hidden" name="corporateauthorNumber" value="" tal:attributes="value corporateauthorNumber"/>
                  <div tal:content="error">Validation error output</div>
-
-                 <table class="listing">
-                    <tr tal:repeat="corporateperson corporateauthors">
+                <table class="listing nosort metadata">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th i18n:translate="">Name</th>
+                        <th i18n:translate="emailAddress">E-Mail</th>
+                        <th i18n:translate="organization">Organisation</th>
+                        <th i18n:translate="postalAddress">Anschrift</th>
+                        <th i18n:translate="GKDIdentNumber">GKDIdentNummer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="creator creatorCorporated" tal:attributes="class python:test(path('repeat/creator/even'), 'even', 'odd')">
                         <td>
-                            <table tal:define="i repeat/corporateperson/index">
-                                <tr>
-                                    <td rowspan="5" tal:content="repeat/corporateperson/number">
-                                    </td>
-                                    <td>Name</td>
-                                    <td><input class="institutionelAuthor" type='text' name="corp_institutionelAuthor:list"  tal:attributes="value python: here.test('corp_institutionelAuthor',corporateperson['institutionelAuthor'],i)" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td><input class="emailAddress" type='text' name="corp_emailAddress:list"  tal:attributes="value python: here.test('corp_emailAddress',corporateperson['emailAddress'],i)" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Organisation</td>
-                                    <td><input class="organization" type='text' name="corp_organization:list"  tal:attributes="value python: here.test('corp_organization',corporateperson['organization'],i)" /></td>
-                                </tr>
-                                <tr>
-                                    <td i18n:translate="postalAddress">Anschrift</td>
-                                    <td><input class="postalAddress" type='text' name="corp_postalAddress:list"  tal:attributes="value python: here.test('corp_postalAddress',corporateperson['postalAddress'],i)" /></td>
-                                </tr>
-                                <tr>
-                                    <td>GKDIdentNummer</td>
-                                    <td><input class="GKDIdentNumber" type='text' name="corp_GKDIdentNumber:list"  tal:attributes="value python: here.test('corp_GKDIdentNumber',corporateperson['GKDIdentNumber'],i)" /></td>
-                                </tr>
-                            </table>
+                            <input type="checkbox" 
+                                   class="noborder"
+                                   name="corp_index:int:list" 
+                                   value=""
+                                   tal:attributes="value repeat/creator/index"/>
+                        </td>
+                        <td>
+                            <input type="text" 
+                                   class="institutionelAuthor" 
+                                   value="" 
+                                   name="creatorCorporated.institutionelAuthor:records" 
+                                   tal:attributes="value creator/institutionelAuthor">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="emailAddress"
+                                   value="" 
+                                   name="creatorCorporated.emailAddress:records" 
+                                   tal:attributes="value creator/emailAddress">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="organization"
+                                   value="" 
+                                   name="creatorCorporated.organization:records"
+                                   tal:attributes="value creator/organization">    
+                        </td>
+                        <td>
+                            <input type="text" 
+                                   class="postalAddress"
+                                   value="" 
+                                   name="creatorCorporated.postalAddress:records"
+                                   tal:attributes="value creator/postalAddress">    
+                        </td>
+                        <td>
+                            <input type="text" 
+                                   class="GKDIdentNumber"
+                                   value=""
+                                   name="creatorCorporated.GKDIdentNumber:records"
+                                   tal:attributes="value creator/GKDIdentNumber">    
                         </td>
                     </tr>
-                 </table>
+                </tbody>
+                </table>
+                
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delCorp"
+                   value="delete selected"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+                
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addCorp"
+                   value="add Corporative Author"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
             </div>
 
             <!-- Mitwirkende -->
             <div class="field"
                  tal:define="error errors/contributor|nothing;
-                             contributors python:qdc['contributor'];
-                             contributorNumber python:len(contributors);
-                             newContributorNumber request/newContributorNumber|contributorNumber"
+                             contributor request/contributor|python:qdc['contributor']"
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
                  <label i18n:translate="label_contributor">Mitwirkende</label>
             
-                 <input type="hidden" name="newContributorNumber" value="" tal:attributes="value newContributorNumber"/>
-                 <input type="hidden" name="contributorNumber" value="" tal:attributes="value contributorNumber"/>
                  <div tal:content="error">Validation error output</div>
-                 <table class="listing">
-                    <tr tal:repeat="contributorperson contributors">
+                <table class="listing nosort metadata">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th i18n:translate="academicTitle">akad. Titel</th>
+                        <th i18n:translate="lastName">Nachname</th>
+                        <th i18n:translate="firstName">Vorname</th>
+                        <th i18n:translate="emailAddress">E-Mail</th>
+                        <th i18n:translate="role">Rolle</th>
+                        <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
+                        <th i18n:translate="organization">Organisation</th>
+                        <th i18n:translate="postalAddress">Anschrift</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="person contributor" tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd')">
                         <td>
-                            <table tal:define="i repeat/contributorperson/index" class="listing1">
-                                <tr>
-                                    <td rowspan="6" tal:content="repeat/contributorperson/number">
-                                    </td>
-                                    <td>
-                                        <span i18n:translate="academicTitle">akad. Titel</span>,
-                                        <span i18n:translate="lastName">Nachname</span>,
-                                        <span i18n:translate="firstName">Vorname</span>
-                                    </td>
-                                    <td>
-                                        <input class="academicTitle"  type='text' name="contrib_academicTitle:list"  tal:attributes="value python: here.test('contrib_academicTitle',contributorperson['academicTitle'],i)" />
-                                        <input class="lastName" type='text' name="contrib_lastName:list"  tal:attributes="value python: here.test('contrib_lastName',contributorperson['lastName'],i)" />,
-                                        <input class="firstName" type='text' name="contrib_firstName:list" tal:attributes="value python: here.test('contrib_firstName',contributorperson['firstName'],i)" />
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                        <span i18n:translate="emailAddress">E-Mail</span>
-                                    </td>
-                                    <td>
-                                        <input class="emailAddress" type='text' name="contrib_emailAddress:list"  tal:attributes="value python: here.test('contrib_emailAddress',contributorperson['emailAddress'],i)" />
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                        <span i18n:translate="PNDIdentNumber">PNDIdentNummer</span>
-                                    </td>
-                                    <td>
-                                        <input class="PNDIdentNumber" type='text' name="contrib_PNDIdentNumber:list" tal:attributes="value python: here.test('contrib_PNDIdentNumber',contributorperson['PNDIdentNumber'],i)" />
-                                    </td>   
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                        <span i18n:translate="role">Rolle</span>
-                                    </td>
-                                    <td>
-                                        <input class="role" type='text' name="contrib_role:list"  tal:attributes="value python: here.test('contrib_role',contributorperson['role'],i)" />
-                                    </td>   
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                        <span i18n:translate="organization">Organisation</span>
-                                    </td>
-                                    <td>
-                                        <input class="organization" type='text' name="contrib_organization:list"  tal:attributes="value python: here.test('contrib_organization',contributorperson['organization'],i)" />
-                                    </td>   
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                        <span i18n:translate="postalAddress">Anschrift</span>
-                                    </td>
-                                    <td>
-                                        <input class="postalAddress" type='text' name="contrib_postalAddress:list"  tal:attributes="value python: here.test('contrib_postalAddress',contributorperson['postalAddress'],i)" />
-                                    </td>   
-                                 </tr>
-                            </table>
-            </td>
-            </tr>
-         </table>
+                            <input type="checkbox" 
+                                   class="noborder"
+                                   name="contributor_index:int:list" 
+                                   value=""
+                                   tal:attributes="value repeat/person/index"/>
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="academicTitle"
+                                   value="" 
+                                   name="contributor.academicTitle:records" 
+                                   tal:attributes="value person/academicTitle">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="lastName"
+                                   value="" 
+                                   name="contributor.lastName:records"
+                                   tal:attributes="value person/lastName">    
+                        </td>
+                        <td>
+                            <input type="text" 
+                                   class="firstName" 
+                                   value="" 
+                                   name="contributor.firstName:records"
+                                   tal:attributes="value person/firstName">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="emailAddress"
+                                   value="" 
+                                   name="contributor.emailAddress:records"
+                                   tal:attributes="value person/emailAddress">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="role"
+                                   value="" 
+                                   name="contributor.role:records" 
+                                   tal:attributes="value person/role">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="PNDIdentNumber"
+                                   value="" 
+                                   name="contributor.PNDIdentNumber:records"
+                                   tal:attributes="value person/PNDIdentNumber">    
+                        </td>
+                        <td>
+                            <input type="text"
+                                   class="organization" 
+                                   value=""
+                                   name="contributor.organization:records"
+                                   tal:attributes="value person/organization">    
+                        </td>
+                        <td>
+                            <input type="text" 
+                                   class="postalAddress" 
+                                   value="" 
+                                   name="contributor.postalAddress:records" 
+                                   tal:attributes="value person/postalAddress">    
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delContributor"
+                   value="delete selected"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+                
+                <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addContributor"
+                   value="add contributor"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+                 
             </div>
 
 
@@ -426,25 +502,39 @@
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
                 <label for="subjectClassified" i18n:translate="label_subject">Freie Schlagworte</label>
-                <div class="formHelp" i18n:translate="help_existing_keywords">
-                    Existing keywords
-                </div>
-                <select multiple="multiple"
-                        size="10" 
-                        name="subject:list"
-                        tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
-                    <tal:block tal:repeat="keyword allowedKeywords">
-                        <option tal:content="keyword"
-                                tal:attributes="selected python: keyword in subject;
-                                                value keyword">sdaf</option>
-                    </tal:block>
-                </select>
                 <div tal:content="error">Validation error output</div>
-                <div class="formHelp" i18n:translate="help_new_subject">
-                    New keywords, one per row.
-                </div>
+                <table class="nosort metadata listing">
+                    <thead>
+                        <tr>
+                            <th i18n:translate="help_existing_keywords">
+                                Existing keywords
+                            </th>
+                            <th i18n:translate="help_new_subject">
+                                New keywords, one per row.
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                            <select multiple="multiple"
+                                    size="10" 
+                                    name="subject:list"
+                                    tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
+                                <tal:block tal:repeat="keyword allowedKeywords">
+                                    <option tal:content="keyword"
+                                            tal:attributes="selected python: keyword in subject;
+                                                            value keyword">sdaf</option>
+                                </tal:block>
+                            </select>
+                        </td>
+                        <td>
                 <textarea name="new_subjects:lines" rows="5" cols="50"><tal:block tal:repeat="keyword new_subjects"><tal:block tal:replace="keyword">Keyword</tal:block>
 </tal:block></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
 
             <!-- normierte Schlagwörter -->
@@ -625,7 +715,7 @@
                 <!-- BibliographicCitation-->
             <div class="field"
                 tal:define="error errors/bibliographicCitation|nothing;
-                            bibliographicCitation  python:qdc['bibliographicCitation'][0]"
+                            bibliographicCitation  request/bibliographicCitation|python:qdc['bibliographicCitation']"
                 tal:attributes="class python:test(error, 'field error', 'field')"
                 i18n:domain="qdc">
                 <label i18n:translate="label_bibliographicCitation" id="bc">Bibliographic Citation</label>
@@ -643,10 +733,35 @@
                         <th i18n:translate="label_journalIssueDate">journalIssueDate</th>
                     </tr>
                     <tr>
-                        <td><input class="journalTitle" type="text" name="bc_journalTitle"   value ="" tal:attributes="value request/bc_journalTitle|bibliographicCitation/journalTitle|nothing" /></td>
-                        <td><input class="journalVolume" type="text" name="bc_journalVolume"   value ="" tal:attributes="value request/bc_journalVolume|bibliographicCitation/journalVolume|nothing" /></td>
-                        <td><input class="journalIssueNumber" type="text" name="bc_journalIssueNumber"   value ="" tal:attributes="value request/bc_journalIssueNumber|bibliographicCitation/journalIssueNumber|nothing" /></td>
-                        <td><input class="journalIssueDate" type="text" maxlength="10" name="bc_journalIssueDate"   value ="" tal:attributes="value request/bc_journalIssueDate|bibliographicCitation/journalIssueDate|nothing" /></td>
+                        <td>
+                            <input class="journalTitle"
+                                   type="text"
+                                   name="bibliographicCitation.journalTitle:records"
+                                   value =""
+                                   tal:attributes="value python:bibliographicCitation[0]['journalTitle']" />
+                        </td>
+                        <td>
+                            <input class="journalVolume"
+                                   type="text"
+                                   name="bibliographicCitation.journalVolume:records"
+                                   value =""
+                                   tal:attributes="value python:bibliographicCitation[0]['journalVolume']" />
+                        </td>
+                        <td>
+                            <input class="journalIssueNumber"
+                                   type="text"
+                                   name="bibliographicCitation.journalIssueNumber:records"  
+                                   value =""
+                                   tal:attributes="value python:bibliographicCitation[0]['journalIssueNumber']" />
+                        </td>
+                        <td>
+                            <input class="journalIssueDate" 
+                                   type="text" 
+                                   maxlength="10"
+                                   name="bibliographicCitation.journalIssueDate:records"   
+                                   value =""
+                                   tal:attributes="value python:bibliographicCitation[0]['journalIssueDate']" />
+                        </td>
                     </tr>
                 </table>
                 
