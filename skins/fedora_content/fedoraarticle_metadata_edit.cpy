@@ -155,7 +155,6 @@ return state.set(status='success',\
     modified                   = REQUEST.get('modified',None),
     valid                      = REQUEST.get('valid',None),
     articleType                = REQUEST.get('articleType',None),
-    subject                    = REQUEST.get('subject',None),
     new_subjects               = REQUEST.get('new_subjects',None),
     subjectClassified          = subjectClassified,
     dateAccepted               = REQUEST.get('dateAccepted',None),
