@@ -52,13 +52,15 @@ else:
     storageType = 'permanent'
 
 #state.set(form.submitted='1')
-state.set(status=storageType)
-state.set(bc_journalTitle=request['bc_journalTitle'])
-state.set(journalPID=JournalPID)
-state.set(title_value=request['title_value'])
-state.set(title_lang=request['title_lang'])
-state.set(storageType=storageType)
-state.set(targetFormat=targetFormat)
-state.set(Location=Location)
+
+state.set(status=storageType,
+    bc_journalTitle=request['bc_journalTitle'],
+    journalPID=JournalPID,
+    title_value=request['title_value'],
+    title_lang=request['title_lang'],
+    storageType=storageType,
+    targetFormat=targetFormat,
+    Location=Location)
+
 # Always make sure to return the ControllerState object
 return state
