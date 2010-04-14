@@ -5,7 +5,6 @@ title = Edit Qualified DC Metadata
 View=0:Redakteur,Herausgeber,Manager
 
 [validators]
-validators       = validate_qdc
 validators..Save = validate_qdc
 
 [actions]
