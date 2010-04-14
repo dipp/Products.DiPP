@@ -37,7 +37,7 @@ input.firstName { width: 120px; }
 input.emailAddress { width: 120px; }
 input.PNDIdentNumber, input.GKDIdentNumber { width: 100px; }
 input.organization { width: 120px; }
-input.role { width: 20em; }
+input.role { width: 120px; }
 input.postalAddress { width: 120px; }
 input.institutionelAuthor { width: 20em; }
 input.subject { width: 200px; }
@@ -52,6 +52,7 @@ input.journalIssueDate { width: 10em; }
 }
 .metadata td {
     padding: 0.25em;
+    vertical-align: top;
 }
 
 /* personalize form  */
