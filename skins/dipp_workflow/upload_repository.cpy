@@ -26,8 +26,6 @@ if storageType == 'temporary':
     params['bibliographicCitation'] = [{'journalIssueDate':'','journalIssueNumber':'','journalTitle':'','journalVolume':''}]
     params['rights'] = ['DPPL']
 
-context.plone_log(storageType)
-context.plone_log(params)
 
 newPID = fedora.createNewArticle(JournalPID, JournalPID, params, Location)
 context.plone_log('neuer Artikel: %s' % Location)
