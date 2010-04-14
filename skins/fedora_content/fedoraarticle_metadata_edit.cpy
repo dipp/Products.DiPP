@@ -163,6 +163,6 @@ return state.set(status='success',\
     bibliographicCitation      = REQUEST.get('bibliographicCitation',None),
     pubType                    = REQUEST.get('pubType',None),
     docType                    = REQUEST.get('docType',None),
-    rights                     = REQUEST.get('rights',None)
+    rights                     = REQUEST.get('rights',[])
 )
 
