@@ -99,9 +99,27 @@
 
 
             </div>
+            
+            <div id="qdc-fields">
+                <div metal:use-macro="here/qdc_macros/macros/language"> Language </div>
+                <div metal:use-macro="here/qdc_macros/macros/ddc"> DDC </div>
+                <div metal:use-macro="here/qdc_macros/macros/alternative"> alternative </div>
+                <div metal:use-macro="here/qdc_macros/macros/abstract"> abstract </div>
+                <div metal:use-macro="here/qdc_macros/macros/creatorPerson"> authors </div>
+                <div metal:use-macro="here/qdc_macros/macros/creatorCorporated"> corporated authors </div>
+                <div metal:use-macro="here/qdc_macros/macros/contributor"> contributors </div>
+                <div metal:use-macro="here/qdc_macros/macros/subject"> subject </div>
+                <div metal:use-macro="here/qdc_macros/macros/subjectClassified"> subject classified </div>
+                <div metal:use-macro="here/qdc_macros/macros/pubType"> pubtype </div>
+                <div metal:use-macro="here/qdc_macros/macros/docType"> docType </div>
+                <div metal:use-macro="here/qdc_macros/macros/dates"> subject </div>
+                <div metal:use-macro="here/qdc_macros/macros/bibliographicCitation"> subject classified </div>
+                <div metal:use-macro="here/qdc_macros/macros/doi"> pubtype </div>
+                <div metal:use-macro="here/qdc_macros/macros/rights"> docType </div>
 
-            <div metal:use-macro="here/qdc_macros/macros/fields">
-                Qualified DublinCore Eingabefelder
+                <div metal:use-macro="here/qdc_macros/macros/fields">
+                    Qualified DublinCore Eingabefelder
+                </div>
             </div>
 
             <input type="hidden" id="storageType"  name="storageType" value="permanent" />
