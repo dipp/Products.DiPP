@@ -676,8 +676,6 @@
 
             </div>
             
-           <fieldset i18n:domain="qdc">
-           <legend i18n:translate="label_dates">Daten</legend>
 
             <!-- Daten -->
             <div class="field"
@@ -687,7 +685,9 @@
                             valid python:qdc['valid'];
                             today python:DateTime().Date();
                             today python:today.replace('/','-')"
+                i18n:domain="qdc"
                 tal:attributes="class python:test(error, 'field error', 'field')" >
+                <label i18n:translate="label_dates">Daten</label>
                 <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
                        i18n:translate="label_required">(Required)</span>
@@ -710,7 +710,6 @@
                 
             </div>
 
-           </fieldset>
 
                 <!-- BibliographicCitation-->
             <div class="field"
