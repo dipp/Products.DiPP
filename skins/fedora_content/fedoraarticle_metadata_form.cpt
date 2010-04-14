@@ -116,10 +116,6 @@
                 <div metal:use-macro="here/qdc_macros/macros/bibliographicCitation"> subject classified </div>
                 <div metal:use-macro="here/qdc_macros/macros/doi"> pubtype </div>
                 <div metal:use-macro="here/qdc_macros/macros/rights"> docType </div>
-
-                <div metal:use-macro="here/qdc_macros/macros/fields">
-                    Qualified DublinCore Eingabefelder
-                </div>
             </div>
 
             <input type="hidden" id="storageType"  name="storageType" value="permanent" />
