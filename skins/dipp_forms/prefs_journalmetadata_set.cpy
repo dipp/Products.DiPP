@@ -15,6 +15,11 @@ REQUEST = context.REQUEST
 fedora = getToolByName(context, 'fedora')
 
 params = REQUEST.form
+params['alternative']= [{'value':'','lang':''}]
+params['DCTermsAbstract']= []
+params['creatorPerson']= []
+params['creatorCorporated']= []
+params['bibliographicCitation'] = [{'journalIssueDate':'','journalIssueNumber':'','journalTitle':'','journalVolume':''}]
 fedora.setQualifiedDCMetadata(params)
 
 portal_status_message = "Änderungen wurden gespeichert"
