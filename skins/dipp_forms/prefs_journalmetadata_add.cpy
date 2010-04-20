@@ -8,13 +8,31 @@
 ##parameters=id=''
 
 REQUEST = context.REQUEST
+portal_status_message = REQUEST.get('portal_status_message', None)
+
+def del_from_list(old_list, selection):
+    """the item with numbers from selection are deletet from list"""
+    new_list = []
+    for i in range(0, len(old_list)):
+        if i not in selection:
+            new_list.append(old_list[i])
+    return new_list
+
 
 # add DDC
+DDC = REQUEST.get('DDC',([],)),
+DDC = DDC[0]
 if REQUEST.form.has_key('form.button.addDDC'):
-    newDDCNumber =int(REQUEST.get('newDDCNumber',None)) + 1
+    DDC.append('')
     portal_status_message = REQUEST.get('portal_status_message', 'Neues DDC-Feld wurde hinzugefügt')
-else:
-    newDDCNumber =int(REQUEST.get('newDDCNumber',None))
+if REQUEST.form.has_key('form.button.delDDC'):
+    ddc_index = REQUEST.get('ddc_index',[])
+    DDC = del_from_list(DDC,ddc_index)
+    if len(DDC) == 0:
+        DDC.append('') 
+    portal_status_message = REQUEST.get('portal_status_message', 'DDC-Feld wurde gelöscht')
+
+context.plone_log(DDC)
 
 #add Title
 if REQUEST.form.has_key('form.button.addTitle'):
@@ -24,27 +42,96 @@ else:
     newTitleNumber =int(REQUEST.get('newTitleNumber',None))
 
 #add Alternative
+default = {'value':'','lang':''}
+alternative = REQUEST.get('alternative',None)
 if REQUEST.form.has_key('form.button.addAlternative'):
-    newAlternativeNumber =int(REQUEST.get('newAlternativeNumber',None)) + 1
+    alternative.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Alternativ-Feld wurde hinzugefügt')
-else:
-    newAlternativeNumber =int(REQUEST.get('newAlternativeNumber',None))
-#add Author
+
+if REQUEST.form.has_key('form.button.delAlternative'):
+    alternative_index = REQUEST.get('alternative_index',[])
+    alternative = del_from_list(alternative,alternative_index)
+    if len(alternative) == 0:
+        alternative.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Alternative-Feld wurde gelöscht')
+
+# add Abstract
+default = {'value':'','lang':''}
+DCTermsAbstract = REQUEST.get('DCTermsAbstract',None)
+if REQUEST.form.has_key('form.button.addAbstract'):
+    DCTermsAbstract.append(default)
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues Abstract-Feld wurde hinzugefügt')
+
+if REQUEST.form.has_key('form.button.delAbstract'):
+    abstract_index = REQUEST.get('abstract_index',[])
+    DCTermsAbstract = del_from_list(DCTermsAbstract,abstract_index)
+    if len(DCTermsAbstract) == 0:
+        DCTermsAbstract.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Abstract-Feld wurde gelöscht')
+
+# add Author
+creatorPerson = REQUEST.get('creatorPerson',None)
+default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
 if REQUEST.form.has_key('form.button.addAuthor'):
-    newAuthorNumber =int(REQUEST.get('newAuthorNumber',None)) + 1
+    creatorPerson.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Autoren-Feld wurde hinzugefügt')
-else:
-    newAuthorNumber =int(REQUEST.get('newAuthorNumber',None))
 
-#add Keyword
+# del Author
+if REQUEST.form.has_key('form.button.delAuthor'):
+    author_index = REQUEST.get('author_index',[])
+    creatorPerson = del_from_list(creatorPerson,author_index)
+    if len(creatorPerson) == 0:
+        creatorPerson.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Autoren-Feld wurde gelöscht')
+
+# add corp author
+creatorCorporated = REQUEST.get('creatorCorporated',None)
+default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
+if REQUEST.form.has_key('form.button.addCorp'):
+    creatorCorporated.append(default)
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues corp Autoren-Feld wurde hinzugefügt')
+
+# del corp Author
+if REQUEST.form.has_key('form.button.delCorp'):
+    corp_index = REQUEST.get('corp_index',[])
+    creatorCorporated = del_from_list(creatorCorporated,corp_index)
+    if len(creatorCorporated) == 0:
+        creatorCorporated.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Koop. Autoren-Feld wurde gelöscht')
+
+# add Contrbutor
+contributor = REQUEST.get('contributor',None)
+context.plone_log(contributor)
+default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
+if REQUEST.form.has_key('form.button.addContributor'):
+    contributor.append(default)
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues Beitragenden-Feld wurde hinzugefügt')
+
+# del Contributor
+if REQUEST.form.has_key('form.button.delContributor'):
+    contributor_index = REQUEST.get('contributor_index',[])
+    contributor = del_from_list(contributor,contributor_index)
+    if len(contributor) == 0:
+        contributor.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Beitragenden-Feld wurde gelöscht')
+
+# add Keyword
+subjectClassified = REQUEST.get('subjectClassified',None)
+default = {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''}
 if REQUEST.form.has_key('form.button.addKeyword'):
-    newSubjectClassifiedNumber =int(REQUEST.get('newSubjectClassifiedNumber',None)) + 1
+    subjectClassified.append(default)
     portal_status_message = REQUEST.get('portal_status_message', 'Neues Schlagword-Feld wurde hinzugefügt')
-else:
-    newSubjectClassifiedNumber =int(REQUEST.get('newSubjectClassifiedNumber',None))
 
-subjects = REQUEST.get('subject',None)
-print 'LEN',len(subjects)
+
+# del Keyword
+if REQUEST.form.has_key('form.button.delKeyword'):
+    keyword_index = REQUEST.get('keyword_index',[])
+    subjectClassified = del_from_list(subjectClassified,keyword_index)
+    if len(subjectClassified ) == 0:
+        subjectClassified.append(default) 
+    portal_status_message = REQUEST.get('portal_status_message', 'Schlagword-Feld wurde gelöscht')
+
+subjects = REQUEST.get('subject',[])
 subject = ""
 for i in subjects:
     subject += i + "\n" 
@@ -52,35 +139,31 @@ subject = [subject]
 
 return state.set(status='success',\
     portal_status_message=portal_status_message,\
-    newDDCNumber=newDDCNumber,
     newTitleNumber=newTitleNumber,
-    newAlternativeNumber=newAlternativeNumber,
-    newAuthorNumber=newAuthorNumber,
-    newSubjectClassifiedNumber=newSubjectClassifiedNumber,
-    identifierISSN             = REQUEST.get('identifierISSN',None),
-    identifierURL              = REQUEST.get('identifierURL',None),
-    DDC                        = REQUEST.get('DDC',None),
+    storageType                = REQUEST.get('storageType',None),
+    DDC                        = DDC,
     language                   = REQUEST.get('language',None),
+    targetFormat               = REQUEST.get('targetFormat',None),
     title_value                = REQUEST.get('title_value',None),
     title_lang                 = REQUEST.get('title_lang',None),
-    alternative_value          = REQUEST.get('alternative_value',None),
-    alternative_lang           = REQUEST.get('alternative_lang',None),
-    corp_firstName             = REQUEST.get('corp_firstName',None),
-    corp_lastName              = REQUEST.get('corp_lastName',None),
-    corp_emailAddress          = REQUEST.get('corp_emailAddress',None),
-    corp_organization          = REQUEST.get('corp_organization',None),
-    corp_postalAddress         = REQUEST.get('corp_postalAddress',None),
-    corp_GKDIdentNumber        = REQUEST.get('corp_GKDIdentNumber',None),
-    corp_PNDIdentNumber        = REQUEST.get('corp_PNDIdentNumber',None),
-    corp_academicTitle         = REQUEST.get('corp_academicTitle',None),
-    corp_institutionelAuthor   = REQUEST.get('corp_institutionelAuthor',None),
-    corp_role                  = REQUEST.get('corp_role',None),
-    subject                    = subject,
-    sc_subjectClassified       = REQUEST.get('sc_subjectClassified',None),
-    sc_classificationIdent     = REQUEST.get('sc_classificationIdent',None),
-    sc_classificationSystem    = REQUEST.get('sc_classificationSystem',None),
+    alternative                = alternative,
+    DCTermsAbstract            = DCTermsAbstract,
+    subjects                   = REQUEST.get('subjects',None),
+    creatorPerson              = creatorPerson,
+    creatorCorporated          = creatorCorporated,
+    contributor                = contributor,
+    created                    = REQUEST.get('created',None),
+    modified                   = REQUEST.get('modified',None),
+    valid                      = REQUEST.get('valid',None),
+    articleType                = REQUEST.get('articleType',None),
+    new_subjects               = REQUEST.get('new_subjects',None),
+    subjectClassified          = subjectClassified,
     dateAccepted               = REQUEST.get('dateAccepted',None),
     dateSubmitted              = REQUEST.get('dateSubmitted',None),
     dateCopyrighted            = REQUEST.get('dateCopyrighted',None),
-    publisher                  = REQUEST.get('publisher',None)
+    bibliographicCitation      = REQUEST.get('bibliographicCitation',None),
+    pubType                    = REQUEST.get('pubType',None),
+    docType                    = REQUEST.get('docType',None),
+    rights                     = REQUEST.get('rights',[])
 )
+
