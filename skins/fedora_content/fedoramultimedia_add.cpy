@@ -54,6 +54,9 @@ except:
     PID = OTHER_PID
 
 Location = self.absolute_url() + "/File"
+if Location.startswith('https'):
+    Location = Location.replace('https','http',1)
+
 Label = filename
 
 if DsID == "":
