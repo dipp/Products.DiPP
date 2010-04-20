@@ -23,7 +23,39 @@
                 </tal:block>
             </tal:block>
         </div>
-        
+
+        <!-- ISSN -->
+        <div metal:define-macro="issn"
+             class="field"
+             tal:define="error errors/identifierISSN|nothing;
+                         identifierISSN request/identifierISSN|python:qdc['identifierISSN']"
+             tal:attributes="class python:test(error, 'field error', 'field')"
+             i18n:domain="qdc">
+
+            <label for="language" i18n:translate="label_ISSN">ISSN</label>
+            <span class="fieldRequired" title="Required"
+                   i18n:attributes="title"
+                   i18n:translate="label_required">(Required)</span>
+            <div tal:content="error">Validation error output</div>
+            <input type="text" name="identifierISSN" tal:attributes="value identifierISSN" />
+        </div>
+
+        <!-- URL -->
+        <div metal:define-macro="url"
+             class="field"
+             tal:define="error errors/identifierURL|nothing;
+                         identifierURL request/identifierURL|python:qdc['identifierURL']"
+             tal:attributes="class python:test(error, 'field error', 'field')"
+             i18n:domain="qdc">
+
+            <label for="language" i18n:translate="label_URL">URL</label>
+            <span class="fieldRequired" title="Required"
+                   i18n:attributes="title"
+                   i18n:translate="label_required">(Required)</span>
+            <div tal:content="error">Validation error output</div>
+            <input type="text" name="identifierURL" tal:attributes="value identifierURL" />
+        </div>
+    
         <!-- DDC --> 
         <div metal:define-macro="ddc"
              class="field"
@@ -85,6 +117,73 @@
                                    disabled python:test(isLocked, 'disabled', None);" />
 
         </div>   
+        
+        <!--  TITEL -->
+        <div metal:define-macro="title"
+             class="field"
+             tal:define="error errors/title|nothing;
+                         languages here/portal_properties/metadata_properties/available_languages|nothing;
+                         titles request/title|python:qdc['title']"
+             tal:attributes="class python:test(error, 'field error', 'field')"
+             i18n:domain="qdc">
+            <label i18n:domain="qdc" i18n:translate="label_title">title</label>
+            
+            
+            <div tal:content="error">Validation error output</div>
+            
+            <table class="listing nosort metadata">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th i18n:translate="label_title">Titel</th>
+                    <th i18n:translate="label_language">Sprache</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="title titles" tal:attributes="class python:test(path('repeat/title/even'), 'even', 'odd')">
+                    <td>
+                        <input type="checkbox" 
+                               class="noborder"
+                               name="title_index:int:list" 
+                               value=""
+                               tal:attributes="value repeat/title/index"/>
+                    </td>
+                    <td>
+                        <input type="text"
+                               class="title"
+                               name="title.value:records" 
+                               tal:attributes="value python: title['value']" />
+                    </td>
+                    <td>
+                        <select name="title.lang:records">
+                            <tal:block tal:repeat="language languages">
+                                <option tal:attributes="value language;
+                                                        selected python: language == title['lang']"
+                                        tal:content="language">ger</option> 
+                            </tal:block>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delTitle"
+                   value="delete selected"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addTitle"
+                   value="value_addTitle"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+
+        </div>
 
         <!-- ALTERNATIVER TITEL -->
         <div metal:define-macro="alternative"
