@@ -5,4 +5,4 @@ title = Edit content
 #asdasda 
 
 [actions]
-action.success = redirect_to:string:prefs_journalmetadata_form
+action.success = traverse_to:string:prefs_journalmetadata_form
