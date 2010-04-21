@@ -888,7 +888,7 @@
         <div metal:define-macro="rights"
              class="field"
              tal:define="error errors/rights|nothing;
-                 rights  python:qdc['rights'][0]"
+                         rights  request/rights|python:qdc['rights']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
              <label i18n:translate="label_rights" id="rights">rights</label>
@@ -902,6 +902,7 @@
                 sicher, dass sie das Einverständnis des Autors zur Wahl dieser Lizenz
                 vorliegen haben.
             </div>
+            <tal:block tal:replace="rights" />
             <div>
                 <input type="radio" name="rights:list" value="DPPL" tal:attributes="checked python:'DPPL' in path('request/rights | rights | python:[]')"/>
                 <span i18n:translate="dppl">Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
