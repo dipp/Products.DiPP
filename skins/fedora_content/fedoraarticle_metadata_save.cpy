@@ -19,8 +19,6 @@ new_subjects = params['new_subjects']
 subject = params.get('subject',[])
 params['subject'] = subject + new_subjects
 
-context.plone_log("sc:" + str(params.get('subjectClassified',None)))
-
 fedora.setQualifiedDCMetadata(params)
 self.syncMetadata()
 
