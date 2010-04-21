@@ -129,7 +129,7 @@ if activity_id == 'initialize':
     cut = tempDir.manage_cutObjects(instance_id)        # ausschneiden
     
     for folder in folders:                              # Zielorder suchen
-        if folder.getObject().PID == isChildOf and not folder.getObject().tmp:
+        if folder.getObject().PID == isChildOf:
             destination = folder.getObject()            # Zielordner gefunden
             destObjectPID = destination.PID
     destination.manage_pasteObjects(cut)                # einfügen
