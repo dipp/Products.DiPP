@@ -32,7 +32,7 @@
                          tal:define="has_cover issue/TitleImage|nothing"
                          tal:condition="has_cover">
                          <a href="" tal:attributes="href issue/absolute_url">
-                            <img class="coverpicture" tal:replace="structure issue/TitleImage" />
+                            <img class="coverpicture" tal:replace="structure issue/TitleImage_medium" />
                          </a>
                     </div>
                     

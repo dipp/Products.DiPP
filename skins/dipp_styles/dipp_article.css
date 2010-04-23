@@ -4,6 +4,7 @@ ol.issue_content {
     clear: both;
     list-style: none;
     margin-left: 0;
+    padding: 0;
 }
 ol.issue_content li {
     padding: 0.5em;
