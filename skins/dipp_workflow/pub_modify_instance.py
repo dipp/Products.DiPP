@@ -148,7 +148,10 @@ if activity_id == 'initialize':
                                       'gastHrsgOK':gastHrsgOK,
                                       'hierarchie':hierarchie,
                                       'deadline_next':deadline_next})
-    #context.fedoraSetURL(PID,url)
+    
+    if url.startswith('https'):
+        url = url.replace('https','http',1)
+    
     fedora.setURL(PID,url)
     fedora.moveObject(moveObjectPID, sourceObjectPID, destObjectPID)
     msg = "Der Artikel ist nun initialisiert und kann weiter bearbeitet werden."
