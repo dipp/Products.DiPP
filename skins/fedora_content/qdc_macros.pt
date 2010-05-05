@@ -70,6 +70,7 @@
                    i18n:attributes="title"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
+            
             <table class="listing nosort metadata">
             <thead>
                 <tr>
@@ -902,7 +903,6 @@
                 sicher, dass sie das Einverständnis des Autors zur Wahl dieser Lizenz
                 vorliegen haben.
             </div>
-            <tal:block tal:replace="rights" />
             <div>
                 <input type="radio" name="rights:list" value="DPPL" tal:attributes="checked python:'DPPL' in path('request/rights | rights | python:[]')"/>
                 <span i18n:translate="dppl">Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
