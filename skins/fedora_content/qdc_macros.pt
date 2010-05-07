@@ -16,12 +16,22 @@
                    i18n:attributes="title"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
+            <select name="language:list">
+                <option i18n:translate="">---Sprache---</option>
+                <tal:block tal:repeat="language available_languages">
+                    <option tal:attributes="value language;
+                                            selected python: language in languages"
+                            tal:content="python:all_languages[language]">ger</option> 
+                </tal:block>
+            </select>
+            <!--
             <tal:block tal:repeat="language languages">
                 <tal:block tal:define="i repeat/language/index">
                     <div tal:content="structure python:here.langList('language:list',here.test('language',language, i))">
                     </div>
                 </tal:block>
             </tal:block>
+            -->
         </div>
 
         <!-- ISSN -->
@@ -32,7 +42,7 @@
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
 
-            <label for="language" i18n:translate="label_ISSN">ISSN</label>
+            <label for="identifierISSN" i18n:translate="label_ISSN">ISSN</label>
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
                    i18n:translate="label_required">(Required)</span>
@@ -190,7 +200,6 @@
         <div metal:define-macro="alternative"
              class="field"
              tal:define="error errors/alternative|nothing;
-                         languages here/portal_properties/metadata_properties/available_languages|nothing;
                          alternatives request/alternative|python:qdc['alternative']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
@@ -221,10 +230,11 @@
                     </td>
                     <td>
                         <select name="alternative.lang:records">
-                            <tal:block tal:repeat="language languages">
+                            <option i18n:translate="">---Sprache---</option>
+                            <tal:block tal:repeat="language available_languages">
                                 <option tal:attributes="value language;
                                                         selected python: language == alternative['lang']"
-                                        tal:content="language">ger</option> 
+                                        tal:content="python:all_languages[language]">ger</option> 
                             </tal:block>
                         </select>
                     </td>
@@ -254,7 +264,6 @@
         <div metal:define-macro="abstract"
              class="field"
              tal:define="error errors/abstract|nothing;
-                         languages here/portal_properties/metadata_properties/available_languages|nothing;
                          abstracts request/DCTermsAbstract|python:qdc['DCTermsAbstract']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
@@ -282,10 +291,10 @@
                     </td>
                     <td>
                         <select name="DCTermsAbstract.lang:records">
-                            <tal:block tal:repeat="language languages">
+                            <tal:block tal:repeat="language available_languages">
                                 <option tal:attributes="value language;
                                                         selected python: language == abstract['lang']"
-                                        tal:content="language">ger</option> 
+                                        tal:content="python:all_languages[language]">ger</option> 
                             </tal:block>
                         </select>
                     </td>

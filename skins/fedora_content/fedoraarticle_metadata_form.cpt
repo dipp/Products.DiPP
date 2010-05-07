@@ -18,7 +18,9 @@
               method="post"
               enctype="multipart/form-data"
               tal:define="errors options/state/getErrors;
-                          qdc python:here.fedora.getQualifiedDCMetadata(here.PID)"
+                          qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
+                          available_languages here/portal_properties/metadata_properties/available_languages|nothing;
+                          all_languages python:here.fedora.getLanguages()"
               tal:attributes="action python:here.absolute_url()+'/'+template.id" >
 
             <input type="hidden" name="form.submitted" value="1" />
@@ -56,15 +58,15 @@
                                                value python:title['value']"
                                    tal:attributes="value python: here.test('title_value',value,i)" />
                         </td>
-                        <td tal:define="i repeat/title/index;
-                                        lang python:title['lang']" 
-                            tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',lang,i))">
-                            Sprachauswahlliste
-                            <input type="text"
-                                   name="title_lang:list"
-                                   tal:define="i repeat/title/index;
-                                               value python:title['lang']"
-                                   tal:attributes="value python: here.test('title_lang',value,i)" />
+                        <td>
+                            <select name="title_lang:list">
+                                <option i18n:translate="">---Sprache---</option>
+                                <tal:block tal:repeat="language available_languages">
+                                    <option tal:attributes="value language;
+                                                            selected python: language == title['lang']"
+                                            tal:content="python:all_languages[language]">ger</option> 
+                                </tal:block>
+                            </select>
                         </td>
                     </tr>
                     <tr tal:condition="python: newTitleNumber > titleNumber"
@@ -79,11 +81,14 @@
                                        name="title_value:list"
                                        tal:attributes="value python: here.test('title_value',None,i)" />
                             </td>
-                            <td tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',None,i))">
-                                Sprachauswahlliste
-                                <input type="text"
-                                       name="title_lang:list"
-                                       tal:attributes="value python: here.test('title_lang',None,i)" />
+                            <td>
+                                <select name="title_lang:list">
+                                    <option i18n:translate="">---Sprache---</option>
+                                    <tal:block tal:repeat="language available_languages">
+                                        <option tal:attributes="value language"
+                                                tal:content="python:all_languages[language]">ger</option> 
+                                    </tal:block>
+                                </select>
                             </td>
                         </tal:block>    
                     </tr>
