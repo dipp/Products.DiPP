@@ -64,7 +64,8 @@
         
         <div tal:repeat="section python: section_dict.keys()">
             <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
-                       tal:condition="articles">
+                       tal:condition="articles"
+                       i18n:domain="dipp">
             <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>
             <ol class="issue_content" >
                 
@@ -88,12 +89,15 @@
 
                         </strong>
                         <div class="abstracts"
+                            tal:define="lang_dict   python:here.fedora.getLanguages()"
                             tal:condition="python: issue_show_abstracts and len(item_abstracts())>0">
-                            Abstracts in  
+                            <span i18n:translate="abstract_available">Abstracts available in</span>
                             <tal:block tal:repeat="abstract item_abstracts">
                                 <a href="#"
-                                   tal:attributes="href string:$item_url/abstract_view?lang=$abstract"
-                                   tal:content="python:here.map_languages(abstract)"></a>
+                                   tal:define="title python:lang_dict[abstract]"
+                                   tal:attributes="href string:$item_url/abstract_view?lang=$abstract;
+                                                   title abstract"
+                                   tal:content="title"></a><span tal:condition="not: repeat/abstract/end">,</span>
                             </tal:block>
                         </div>
                         <div metal:use-macro="here/article_authors/macros/article_authors">

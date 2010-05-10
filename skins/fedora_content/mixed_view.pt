@@ -10,6 +10,7 @@
                      DsID        here/fulltext/DsID|nothing;
                      PID         here/fulltext/PID|nothing;
                      qdc         python:here.fedora.getQualifiedDCMetadata(articlePID);
+                     lang_dict   python:here.fedora.getLanguages();
                      urn         python:qdc['identifierURN'];
                      doi         python:qdc['identifierDOI'];
                      authors     python:qdc['creatorPerson'];
@@ -51,11 +52,14 @@
         <script type="text/javascript" src="tabber.js">
         </script>
         <div class="tabber">
-            <div tal:repeat="abstract python:qdc['DCTermsAbstract']"
-                 class="tabbertab"
-                 tal:attributes="title python:'[' + here.map_languages(abstract['lang'])+']'">
-                <p class="dippAbstract" tal:content="python:abstract['value']"></p>
-            </div>
+            <tal:block tal:repeat="abstract python:qdc['DCTermsAbstract']">
+                <div class="tabbertab"
+                     tal:define="lang python:abstract['lang'];
+                                 title python:lang_dict[lang]"
+                     tal:attributes="title python:'[' + str(title) + ']'">
+                    <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+                </div>
+             </tal:block>
         </div>
         
         <div class="stx mixed" tal:define="content python:here.fedora.access(PID,DsID,Date=None);
