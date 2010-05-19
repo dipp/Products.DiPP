@@ -548,3 +548,8 @@ msgstr "weiter"
 msgid "abstract_available"
 msgstr "Abstracts available in"
 
+msgid "heading_fulltext"
+msgstr "Fulltext"
+
+msgid "text_fulltext"
+msgstr "Get the ${fulltext} as pdf."
