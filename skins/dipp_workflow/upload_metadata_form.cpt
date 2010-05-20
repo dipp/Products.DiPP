@@ -20,7 +20,9 @@
                                   storageType string:permanent;
                                   Location request/Location|nothing;
                                   targetFormats request/targetFormat;
-                                  storage request/form/storageType|storageType"
+                                  storage request/form/storageType|storageType;
+                                  available_languages here/portal_properties/metadata_properties/available_languages|nothing;
+                                  all_languages python:here.fedora.getLanguages()"
                       method="post"
                       name="metadata_form"
                       id="metadata_form"

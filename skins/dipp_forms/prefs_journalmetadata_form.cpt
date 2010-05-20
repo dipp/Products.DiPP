@@ -54,7 +54,9 @@
         <form tal:attributes="action string:${here/absolute_url}/${template/id};"
               tal:define="errors options/state/getErrors;
                           journalPID python:here.getJournalPID(here);
-                          qdc python:here.fedora.getQualifiedDCMetadata(journalPID)"
+                          qdc python:here.fedora.getQualifiedDCMetadata(journalPID);
+                          available_languages here/portal_properties/metadata_properties/available_languages|nothing;
+                          all_languages python:here.fedora.getLanguages()"
               method="post"
               encType="multipart/form-data">
 
