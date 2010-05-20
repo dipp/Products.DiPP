@@ -1,0 +1,33 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="fulltext"
+             i18n:domain="dipp"
+             tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
+                         path python:'/'.join(articleFolder.getPhysicalPath()); 
+                         results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='alternative_format', sort_on='getObjPositionInParent')"
+             tal:condition="results">
+             
+            <h2 i18n:translate="heading_fulltext" id="fulltext" name="fulltext">Fulltext</h2>
+            
+            <tal:block tal:repeat="result results">
+                <tal:block tal:condition="python: result.id.endswith('pdf') and not result.id.startswith('srcdoc')"
+                   tal:define="pixel_domain here/pixel_domain|nothing;
+                               pixel_id here/pixel_id|nothing;
+                               url python:result.getObject().absolute_url()">
+                        <p tal:condition="pixel_id"
+                           i18n:translate="text_fulltext"
+                            tal:define="vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url">
+                            Get the <a href="" i18n:name="fulltext" tal:attributes="href vgwort_url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
+                         </p>
+                        
+                        <p tal:condition="not: pixel_id">
+                            Get the <a href="" tal:attributes="href url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
+                        </p>
+                </tal:block>
+            </tal:block>
+        </div>
+     </body>
+</html>
