@@ -18,10 +18,19 @@ def initialize(context):
     import FedoraXML
     import FedoraMultimedia
     import MyThreadTest
+    import EditorialToolbox
+
+
 
     content_types, constructors, ftis = process_types(
         listTypes(PROJECTNAME), PROJECTNAME)
-
+    
+    tools = [EditorialToolbox.EditorialToolbox]
+    utils.ToolInit(EditorialToolbox.EditorialToolbox.meta_type + 'Tool',
+        tools = tools,
+        icon = 'skins/dipp_images/toolbox.gif'
+        ).initialize(context)
+    
     utils.ContentInit(
         PROJECTNAME + ' Content',
         content_types      = content_types,

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# File: peerreview.py
+# File: EditorialToolbox.py
 #
 # Copyright (c) 2010 by DiPP, hbz
 #
@@ -28,36 +28,30 @@ schema = Schema((
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
-
 editorialtoolbox_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
-
-class editorialtoolbox(UniqueObject, BaseFolder):
+class EditorialToolbox(UniqueObject, BaseFolder):
     """
     """
     security = ClassSecurityInfo()
     __implements__ = (getattr(UniqueObject,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
 
     # This name appears in the 'add' box
-    archetype_name = 'editorialtoolbox'
+    archetype_name = 'EditorialToolbox'
 
-    meta_type = 'editorialtoolbox'
-    portal_type = 'editorialtoolbox'
+    meta_type = 'EditorialToolbox'
+    portal_type = 'EditorialToolbox'
     allowed_content_types = ['Fedora Article']
     filter_content_types = 1
     global_allow = 0
-    #content_icon = 'peerreview.gif'
+    content_icon = 'skins/dipp_images/toolbox.gif'
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ()
     typeDescription = "editorialtoolbox"
     typeDescMsgId = 'description_editorialtoolbox'
-    #toolicon = 'peerreview.gif'
+    toolicon = 'skins/dipp_images/toolbox.gif'
 
 
     actions =  (
@@ -77,40 +71,17 @@ class editorialtoolbox(UniqueObject, BaseFolder):
 
     _at_rename_after_creation = True
 
-    schema = peerreview_schema
-
-    ##code-section class-header #fill in your manual code here
-    ##/code-section class-header
+    schema = editorialtoolbox_schema
 
 
     # tool-constructors have no id argument, the id is fixed
     def __init__(self, id=None):
         BaseFolder.__init__(self,'editorialtoolbox')
-        self.setTitle('Editorial toolbox')
+        self.setTitle('Editorial Toolbox')
         
-        ##code-section constructor-footer #fill in your manual code here
-        ##/code-section constructor-footer
-
 
     # tool should not appear in portal_catalog
     def at_post_edit_script(self):
         self.unindexObject()
         
-        ##code-section post-edit-method-footer #fill in your manual code here
-        ##/code-section post-edit-method-footer
-
-
-    # Methods
-
-    # Manually created methods
-
-
-
-registerType(editorialtoolbox, PROJECTNAME)
-# end of class peerreview
-
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
-
-
-
+registerType(EditorialToolbox, PROJECTNAME)
