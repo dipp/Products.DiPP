@@ -34,7 +34,8 @@ DEPENDENCIES = [
     'CMFOpenflow',
     'DiPPContent',
     'LinguaPlone',
-    'PloneLanguageTool'
+    'PloneLanguageTool',
+    'TextIndexNG3'
     ]
 
 VOCABULARIES = (
