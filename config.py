@@ -42,6 +42,10 @@ VOCABULARIES = (
     ( 'SimpleVocabulary','areas-of-expertise','Areas, in which the potentiel reviewer feels competend.', 'Areas of expertise'),
 )
 
+TOOLS = (
+    ('EditorialToolbox','')
+)
+
 INDEXES = (
     ('Contributors','KeywordIndex'),
 )
