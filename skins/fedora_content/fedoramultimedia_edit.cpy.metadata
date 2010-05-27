@@ -5,7 +5,6 @@ title = Edit content
 validators = validate_base
 
 [actions]
-#action.success = traverse_to:string:fedoramultimedia_add
 action.success = redirect_to:string:fedoramultimedia_add
 action.success_add_reference = redirect_to:python:object.REQUEST['last_referer']
 action.failure = traverse_to_action:string:edit

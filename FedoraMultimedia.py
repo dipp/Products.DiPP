@@ -10,12 +10,16 @@ from AccessControl import ClassSecurityInfo
 import Permissions
 from zLOG import LOG, ERROR, INFO
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
+from zope.interface import implements, Interface
+from textindexng.interfaces import IIndexableContent
+from textindexng.content import IndexContentCollector as ICC
 
 class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     """Multimedia files (Images, PDF, Movies) for storing in Fedora"""
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
+    implements(IIndexableContent)
     
     schema = BaseSchema + Schema((
         FileField('File',
@@ -24,7 +28,9 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                 widget=FileWidget(
                     label='File',
                     description='Multimedia file'
-                )
+                ),
+               searchable=1,
+               index='TextIndexNG3:brains'
         ),
         StringField('PID',
                 required=0,
@@ -97,6 +103,29 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
 
     security = ClassSecurityInfo()
 
+    def indexableContent(self, fields):
+        """get the binary datastream from fedora and return in to TextIndexNG
+           Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
+           to keep the burdon of fedora when reindexing the portal_catalog
+        """
+        icc = ICC()
+        fedora = getToolByName(self, 'fedora')
+        PID = self.PID
+        DsID = self.DsID
+        MIMEType = self.get_content_type()
+        if PID and DsID and MIMEType == "application/pdf": 
+            data =  fedora.accessMultiMedia(PID,DsID,None)
+            stream = data['stream']
+            MIMEType =data['MIMEType']
+            LOG ('DIPP', INFO, "Fetching %s/%s for indexing." % (PID, DsID))
+            icc.addBinary('SearchableText', 
+                          stream,
+                          MIMEType,
+                          'iso-8859-15',
+                          None)
+            return icc
+        return None
+        
     security.declareProtected(View, 'index_html')
     def index_html(self, REQUEST=None, RESPONSE=None):
         """ fetch a file from the repository
