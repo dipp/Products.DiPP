@@ -1,2 +1,2 @@
-[title]
-Return a dict with all names
+[default]
+title=Return a dict with all names
