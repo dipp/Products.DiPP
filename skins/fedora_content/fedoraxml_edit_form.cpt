@@ -160,7 +160,7 @@
                    tal:attributes="tabindex tabindex/next;" />
      
             <input type="hidden" name="storageType" value="temporary">
-            <input type="hidden" name="JournalPID" value="" tal:attributes="value python:here.getJournalPID(here)" />
+            <input type="hidden" name="JournalPID" value="" tal:attributes="value here/fedora/PID" />
             <input type="hidden" name="title_value:list" value="" />
             <input type="hidden" name="title_lang:list" value="" />
             <input type="hidden" name="targetFormat:list" value="html" />
