@@ -146,7 +146,12 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         """
 
         fedora = getToolByName(self, 'fedora')
-        isChildOf = self.getParentNode().PID
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        parent = self.getParentNode()
+        if parent == portal:
+            isChildOf = fedora.PID
+        else:
+            isChildof = parent.PID
         MetaType = self.MetaType
         title = self.title
         id = self.id
