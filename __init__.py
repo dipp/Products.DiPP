@@ -18,7 +18,7 @@ def initialize(context):
     import FedoraXML
     import FedoraMultimedia
     import MyThreadTest
-    import EditorialToolbox
+    import EditorialToolboxTool
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
 
@@ -27,19 +27,12 @@ def initialize(context):
     content_types, constructors, ftis = process_types(
         listTypes(PROJECTNAME), PROJECTNAME)
     
-    tools = [EditorialToolbox.EditorialToolbox]
-    utils.ToolInit(EditorialToolbox.EditorialToolbox.meta_type + 'Tool',
+    tools = (Fedora2DiPP3Tool.Fedora, Fedora2DiPP2Tool.Fedora, EditorialToolboxTool.toolbox,)
+    utils.ToolInit(PROJECTNAME + ' Tools',
         tools = tools,
-        icon = 'skins/dipp_images/toolbox.gif'
+        icon = 'dipptool.gif'
         ).initialize(context)
 
-    tools = (Fedora2DiPP3Tool.Fedora, Fedora2DiPP2Tool.Fedora)
-    utils.ToolInit('Fedora Tool',
-        tools = tools,
-        icon = 'fedora.png'
-        ).initialize(context)
-
-    
     utils.ContentInit(
         PROJECTNAME + ' Content',
         content_types      = content_types,

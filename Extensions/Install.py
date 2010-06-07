@@ -7,12 +7,13 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES, VOCABULARIES, INDEXES
+from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
 from Products.DiPP.defaults import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
 from Products.Archetypes.public import listTypes
 from Products.Archetypes.Extensions.utils import installTypes
+from zExceptions import NotFound, BadRequest
 from StringIO import StringIO
 
 
@@ -594,7 +595,14 @@ def install_tools(self,out,site_id=SITE_NAME):
     """install tools"""
     
     site = getSite(self, site_id)
-    portal.manage_addProduct['DiPP'].manage_addTool('Fedora2DiPP3')
+    for tool in TOOLS:
+        try:
+            site.manage_addProduct[PROJECTNAME].manage_addTool(tool)
+        except BadRequest:
+            # if an instance with the same name already exists this error will
+            # be swallowed. Zope raises in an unelegant manner a 'Bad Request' error
+            pass
+            
 
 
 def install(self):

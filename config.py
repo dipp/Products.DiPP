@@ -61,7 +61,7 @@ LANGUAGES = {
 
 
 TOOLS = (
-    ('EditorialToolbox','')
+    ('EditorialToolbox','Fedora2DiPP3')
 )
 
 INDEXES = (
