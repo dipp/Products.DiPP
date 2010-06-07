@@ -590,6 +590,13 @@ def create_vocabularies(self,out,site_id=SITE_NAME):
         else:
             print >> out, "vocabulary %s exists" % title
 
+def install_tools(self,out,site_id=SITE_NAME):
+    """install tools"""
+    
+    site = getSite(self, site_id)
+    portal.manage_addProduct['DiPP'].manage_addTool('Fedora2DiPP3')
+
+
 def install(self):
     """ install a dipp instance"""
     out = StringIO()
@@ -604,6 +611,7 @@ def install(self):
     install_css(self,out)
     install_configlet(self, out)
     install_content(self, out)
+    install_tools(self, out)
     create_vocabularies(self, out)
     create_indexes(self, out)
     
