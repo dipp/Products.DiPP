@@ -4,9 +4,7 @@ if __name__ == '__main__':
 
 from Products.PloneTestCase import PloneTestCase
 from Products.CMFCore.utils import getToolByName
-from Products.PloneFedora2DiPP3.config import TOOLNAME
 
-PloneTestCase.installProduct('PloneFedora2DiPP3')
 PloneTestCase.installProduct('ATVocabularyManager')
 PloneTestCase.installProduct('CMFOpenflow')
 PloneTestCase.installProduct('DiPPContent')
@@ -25,7 +23,7 @@ class TestMetadata(PloneTestCase.PloneTestCase):
     port = '9280'
 
     def afterSetUp(self):
-        self.portal.manage_addProduct['PloneFedora2DiPP3'].manage_addTool('PloneFedora2DiPP3')
+        self.portal.manage_addProduct['DiPP'].manage_addTool('Fedora2DiPP3')
         self.tool = getToolByName(self.portal, 'fedora')
     
     def testSetFedoraSettings(self):
