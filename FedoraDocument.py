@@ -46,12 +46,6 @@ class FedoraDocument(BaseContent):
     content_icon = "fedoradocument_icon.gif"
 
     actions = (
-        #{ "id": "edit",
-        #  "name": "Edit",
-        #  "action": "string:${object_url}/fedoradocument_edit_form",
-        #  "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-        #  },
-        #  
         { "id": "view",
           "name": "View",
           "action": "string:${object_url}/fedoradocument_view",
