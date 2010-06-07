@@ -63,6 +63,9 @@
             <span tal:content="content_type">
             Content type
             </span>
+
+            <span tal:content="python: '(%s/%s)' % (PID, DsID)">
+            </span>
         </small>
 
         

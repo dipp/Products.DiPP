@@ -8,7 +8,12 @@
 <body>
 
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="size python:here.getObjSize(here);
+                       content_type here/get_content_type|here/Format;
+                       PID here/PID|nothing;
+                       DsID here/DsID
+                      ">
 
         <h1 tal:content="here/title_or_id">audio.mp3</h1>
         <div metal:use-macro="here/document_actions/macros/document_actions">
@@ -51,15 +56,43 @@
 
 
 
-                <h2>Download:</h2>
-                <p>
-                    <a tal:attributes="href file">
-                       <img tal:attributes="src string:$portal_url/audio.png"/>
-                       <span tal:replace="here/title_or_id">
-                           audio.mp3
-                       </span>
-                    </a>
-                </p>
+            <h2>Download:</h2>
+            <p>
+                <a href=""
+                   tal:attributes="href here_url">
+                    <img src="" tal:define="icon python:here.getIcon(1)" tal:attributes="src string:${portal_url}/${icon}" alt="" />
+                    <tal:block i18n:translate="label_click_to_get_file">
+                    Click here to get the file
+                    </tal:block>
+                </a>
+            </p>
+            <small class="discreet">
+                <span i18n:translate="label_size">
+                Size
+                </span>
+
+                <span tal:condition="size"
+                    tal:content="size">
+                257 KB
+                </span>
+
+                <span tal:condition="python:test(size,0,1)" i18n:translate="no_file_uploaded">
+                  (No file has been uploaded yet)
+                </span>
+
+                -
+              
+                <span i18n:translate="label_file_type">
+                File type
+                </span>
+
+                <span tal:content="content_type">
+                Content type
+                </span>
+
+                <span tal:content="python: '(%s/%s)' % (PID, DsID)">
+                </span>
+            </small>
 
             
             </div>
