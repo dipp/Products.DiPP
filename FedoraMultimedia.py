@@ -134,7 +134,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         fedora = getToolByName(self, 'fedora')
         PID = self.PID
         DsID = self.DsID
-        data =  fedora.accessMultiMedia(PID,DsID,None)
+        data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
         stream = data['stream']
         MIMEType =data['MIMEType']
         RESPONSE.setHeader('Content-Type', MIMEType)
