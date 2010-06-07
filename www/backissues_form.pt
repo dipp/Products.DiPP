@@ -1,0 +1,43 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>Backissues</h3>
+<p>
+    Add old issues to the repository without workflow,...
+</p>
+<tal:block tal:condition="python: request.other.has_key('articles')">
+<tal:block tal:replace="structure  request/other" />
+</tal:block>
+
+<tal:block tal:condition="not: python: request.other.has_key('articles')">
+    <h4>Batchupload</h4>
+
+    <form action="manage_batchingest"
+          encType="multipart/form-data"
+          tal:define="folders python:here.portal_catalog(portal_type='FedoraHierarchie');"
+          method="post">
+        <h5>CSV-File</h5>
+        <p>Comma seperated File with the Metadata</p>
+        <input type="file"     id="file"       name="file" />
+        <h5>Dry run</h5>
+        <p>
+        <input type="checkbox" id="dryrun"     name="dryrun:boolean" checked="checked" /> Check this, if only a test run is required. Nothig is written to Fedora and Plone.
+        </p>
+        <h5>Target Folder</h5>
+        <div>
+        Select an Issue/Volume, in which the Articles will be imported. Folders greyed out do not have a PID starting with 'dipp:'
+        </div>
+        <select name="target" id="target">
+            <tal:block tal:repeat="folder folders" >
+            <option tal:define="PID folder/getPID"
+                    tal:attributes="value PID;
+                                    disabled python:PID.split(':')[0]!='dipp'"
+                    tal:content="folder/Title">Issue/Volume Folder</option>
+            </tal:block>
+        </select>
+        <br />
+        <input type="submit"  value="Start Import" />
+    </form>
+</tal:block>
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>

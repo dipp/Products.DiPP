@@ -19,6 +19,8 @@ def initialize(context):
     import FedoraMultimedia
     import MyThreadTest
     import EditorialToolbox
+    import Fedora2DiPP3Tool
+    import Fedora2DiPP2Tool
 
 
 
@@ -30,6 +32,13 @@ def initialize(context):
         tools = tools,
         icon = 'skins/dipp_images/toolbox.gif'
         ).initialize(context)
+
+    tools = (Fedora2DiPP3Tool.Fedora, Fedora2DiPP2Tool.Fedora)
+    utils.ToolInit('Fedora Tool',
+        tools = tools,
+        icon = 'fedora.png'
+        ).initialize(context)
+
     
     utils.ContentInit(
         PROJECTNAME + ' Content',

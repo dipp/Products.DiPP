@@ -1,10 +1,14 @@
 """
 $Id$
 """
+from Products.Archetypes.public import DisplayList
+from Products.CMFCore import permissions
+
 from Permissions import ADD_CONTENTS_PERMISSION
 from Permissions import EDIT_CONTENTS_PERMISSION
 from Permissions import VIEW_CONTENTS_PERMISSION
-from Products.Archetypes.public import DisplayList
+
+view_permission = permissions.ManagePortal
 
 PROJECTNAME = 'DiPP'
 SKINS_DIR   = 'skins'
@@ -42,6 +46,19 @@ VOCABULARIES = (
     ( 'SimpleVocabulary','journal-sections','The sections of the journal, used to organize an issue. Do not delete the "no section" entry.', 'Journal Sections'),
     ( 'SimpleVocabulary','areas-of-expertise','Areas, in which the potentiel reviewer feels competend.', 'Areas of expertise'),
 )
+
+LANGUAGES = {
+    'ger':'Deutsch',
+    'eng':'English',
+    'fra':'Français',
+    'spa':'Español',
+    'ita':'Italiano',
+    'rus':'Русский',
+    'chi':'中文',
+    'cze':'Čeština',
+    'hun':'Magyar'
+}
+
 
 TOOLS = (
     ('EditorialToolbox','')

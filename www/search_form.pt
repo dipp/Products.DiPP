@@ -1,0 +1,76 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>Search the repository</h3>
+
+<form action="manage_search_form">
+    <select name="field">
+        <option value="pid" selected="selected">pid</option>
+        <option value="cModel">cModel</option>
+    </select>
+    <select name="comparison">
+        <option value="has" selected="selected">has</option>
+        <option value="equals">equals</option>
+    </select>
+    <input name="value" type="text" value="temp:*" /><br />
+    <input type="submit" value="OK">
+    <input type="reset" value="Cancel">
+</form>
+
+<p>
+    This form can be used to find and delete Article, which have been deleted in Plone, but
+    still exist in the Fedora Repository. By using this form not only the object representing the article
+    (dipp:???) but also the objects containing the actual texts, images,... (content:???) are 
+    purged from the repository.
+</p>
+
+<div tal:define="field request/field|nothing;
+                 comparison request/comparison|nothing;
+                 value request/value|nothing" >
+
+    <tal:block tal:condition="python: field!=None and comparison!=None and value!=None">
+        <tal:block  tal:define="results python:here.manage_search(field=field,comparison=comparison,value=value);
+                                PIDs python:here.getFedoraArticles()">
+            <form action="manage_deleteObjectForm" tal:attributes="action python:here.absolute_url()+'/manage_deleteObjectForm'" method="POST">
+                <table border="0" cellpadding="2" cellspacing="0" width="98%">
+                    <tr class="list-header">
+                        <th width="16">&nbsp;</th>
+                        <th>PID</th>
+                        <th>state</th>
+                        <th>Plone</th>
+                        <th>cDate</th>
+                        <th>cModel</th>
+                        <th>creator</th>
+                        <th>Title</th>
+                    </tr>
+                    <tal:block tal:repeat="result results">
+                        <tr tal:define="PID result/PID;
+                                        cModel result/cModel"
+                            tal:attributes="class python:test(path('repeat/result/even'), 'row-hilite', 'row-normal')">
+                            <td width="16">
+                                <input tal:condition="python: cModel == 'DiPP:article'" type="checkbox" name="PIDs:list" value="" tal:attributes="value result/PID">
+                            </td>
+                            <td tal:content="PID"></td>
+                            <td tal:content="result/state"></td>
+                            <td>
+                                <span tal:condition="python: PID in PIDs">
+                                yes
+                                </span>
+                                <span tal:condition="python: PID not in PIDs">
+                                no
+                                </span>
+                            </td>
+                            <td tal:content="result/cDate"></td>
+                            <td tal:content="cModel"></td>
+                            <td tal:content="result/creator"></td>
+                            <td tal:content="result/title"></td>
+                        </tr>
+                    </tal:block>
+                </table>
+                <input type="submit" value="delete">
+            </form>
+        </tal:block>
+    </tal:block>
+</div>
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>

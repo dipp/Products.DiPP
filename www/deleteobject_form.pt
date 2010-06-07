@@ -1,0 +1,42 @@
+<p tal:define="global objects request/form/PIDs|nothing"
+   tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+
+<h3>Delete Fedora Objects</h3>
+<p tal:condition="not: objects">
+    <em>No objects selected</em>
+</p>
+<form action="manage_deleteObjects" tal:attributes="action python:here.absolute_url()+'/manage_deleteObjects'" method="POST">
+    <table
+       border="0" cellpadding="2" cellspacing="0" width="98%">
+        <tr class="list-header">
+            <th width="16">&nbsp;</th>
+            <th>PID</th>
+            <th>Content objects</th>
+        </tr>
+        <tal:block tal:repeat="object objects">
+            <tr tal:attributes="class python:test(path('repeat/object/even'), 'row-hilite', 'row-normal')">
+                <td><input type="checkbox" name="PIDs:list" value="" tal:attributes="value object" checked="checked" /></td>
+                <td tal:content="object"></td>
+                <td tal:define="contents python: here.manage_getContentContainer(object)">
+                    <small><tal:block tal:repeat="content contents">
+                        <input tal:condition="content"
+                               type="checkbox"
+                               name="PIDs:list"
+                               value=""
+                               tal:attributes="value content;
+                                               id content"
+                               checked="checked" />
+                        <label for="" tal:attributes="for content" tal:content="content">content:12345</label>
+                    </tal:block></small>
+                </td>
+            </tr>
+        </tal:block>
+    </table>
+    <p>
+    <label for="LogMessage">Logmessage</label><br />
+    <textarea name="LogMessage">
+    </textarea>
+    </p>
+    <input type="submit" >
+</form>
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
