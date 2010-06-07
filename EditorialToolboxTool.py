@@ -31,7 +31,7 @@ schema = Schema((
 editorialtoolbox_schema = BaseFolderSchema.copy() + \
     schema.copy()
 
-class EditorialToolbox(UniqueObject, BaseFolder):
+class toolbox(UniqueObject, BaseFolder):
     """
     """
     security = ClassSecurityInfo()
@@ -84,4 +84,4 @@ class EditorialToolbox(UniqueObject, BaseFolder):
     def at_post_edit_script(self):
         self.unindexObject()
         
-registerType(EditorialToolbox, PROJECTNAME)
+registerType(toolbox, PROJECTNAME)
