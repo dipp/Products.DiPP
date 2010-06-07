@@ -30,7 +30,7 @@
 
 
                     <input type="hidden" name="form.submitted"    value="1" />
-                    <input type="hidden" name="journalPID"        value="" tal:attributes="value python:here.getJournalPID(here)" />
+                    <input type="hidden" name="journalPID"        value="" tal:attributes="value here/fedora/PID" />
                     <input type="hidden" name="Location"          value="" tal:attributes="value python:Location" />
                     <input type="hidden" name="storageType"       value="permanent" />
                     <tal:block tal:repeat="targetFormat targetFormats">

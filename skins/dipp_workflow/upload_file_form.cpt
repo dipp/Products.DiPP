@@ -10,7 +10,13 @@
     <body i18n:domain="dipp">
 
 
-        <div metal:fill-slot="main">
+        <div metal:fill-slot="main"
+             tal:define="journalPID here/fedora/PID|nothing">
+        
+            <div tal:condition="not:journalPID" class="portalMessage" i18n:translate="message_fedora_configuration">
+                The connection to the Fedora Repository has not been configured yet. Go to the
+                <a href="#" i18n:name="fedora_tool_url" tal:attributes="href string:portal_url/fedora/manage_config_form">Configuration page</a> to fix this.
+            </div>
         
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
@@ -21,7 +27,8 @@
             </h1>
 
             
-                <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+                <form tal:condition="journalPID"
+                      tal:attributes="action string:${here/absolute_url}/${template/id};"
                       tal:define="errors options/state/getErrors;
                                   qdc python:here.fedora.getQualifiedDCMetadata(None)"
                       method="post"
@@ -32,7 +39,7 @@
 
 
                     <input type="hidden" name="form.submitted"  value="1" />
-                    <input type="hidden" name="journalPID"      value="" tal:attributes="value python:here.getJournalPID(here)" />
+                    <input type="hidden" name="journalPID"      value="" tal:attributes="value journalPID" />
                     <input type="hidden" name="bc_journalTitle" value="" tal:attributes="value portal_properties/title|nothing" />
                     
           <fieldset>

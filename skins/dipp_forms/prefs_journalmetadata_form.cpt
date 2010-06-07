@@ -11,7 +11,8 @@
 	<body>
 
 
-	<div metal:fill-slot="prefs_configlet_main">
+	<div metal:fill-slot="prefs_configlet_main"
+         tal:define="journalPID here/fedora/PID|nothing" >
 
           <ul class="contentViews">
             <li class="selected">
@@ -51,9 +52,14 @@
           Up to Site Setup
         </a>
 
-        <form tal:attributes="action string:${here/absolute_url}/${template/id};"
+        <div tal:condition="not:journalPID" class="portalMessage" i18n:translate="message_fedora_configuration">
+            The connection to the Fedora Repository has not been configured yet. Go to the
+            <a href="#" i18n:name="fedora_tool_url" tal:attributes="href string:portal_url/fedora/manage_config_form">Configuration page</a> to fix this.
+        </div>
+        
+        <form tal:condition="journalPID"
+              tal:attributes="action string:${here/absolute_url}/${template/id};"
               tal:define="errors options/state/getErrors;
-                          journalPID python:here.getJournalPID(here);
                           qdc python:here.fedora.getQualifiedDCMetadata(journalPID);
                           available_languages here/portal_properties/metadata_properties/available_languages|nothing;
                           all_languages python:here.fedora.getLanguages()"
