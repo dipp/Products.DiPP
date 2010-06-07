@@ -52,6 +52,7 @@ class Fedora(UniqueObject, SimpleItem):
     meta_type = 'Fedora2DiPP2'
     id = 'fedora'
     title = 'Interact with the repository Fedora 2'
+    toolicon = 'skins/dipp_images/fedora.png'
     security = ClassSecurityInfo()
     
     manage_search_form = PageTemplateFile('www/search_form.pt', globals())

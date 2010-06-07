@@ -45,6 +45,7 @@ class Fedora(UniqueObject, SimpleItem):
     meta_type = 'Fedora2DiPP3'
     id = 'fedora'
     title = 'Interact with the repository Fedora 2 und DiPP3'
+    toolicon = 'skins/dipp_images/fedora.png'
     security = ClassSecurityInfo()
     
     fedoraaccess = FedoraAccess.FedoraAccess()
