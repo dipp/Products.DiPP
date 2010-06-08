@@ -1,0 +1,15 @@
+DiPP changelog
+
+  DiPP 2.4 (2010/06/08)
+
+    Features Added
+    
+      -
+	
+	Bugs Fixed
+
+      - 
+
+    Other
+    
+      -      

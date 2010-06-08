@@ -8,36 +8,28 @@
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
-# $Id$
+# $Id: FedoraTool.py 2132 2010-06-04 07:08:42Z reimer $
 
-__version__ = "$Revision: 2087 $"
-__author__ = "$Author: reimer $"
-
-from Globals import InitializeClass
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from config import view_permission
-# from backissues import import_backissues
+from config import view_permission, LANGUAGES
+
 from DateTime import DateTime
-from time import *
-from fedora2.FedoraAccess import *
-from fedora2.FedoraManagement import *
-from dipp2.ContentModel import *
-import dipp2.ContentModel
-from mimetypes import guess_type
-from base64 import *
-from zLOG import LOG, ERROR, INFO
-import dipp2.ContentModel
-
-
-import sys
+from time import mktime, strptime, strftime
+from fedora2 import FedoraAccess
+from fedora2 import FedoraManagement
+#from dipp2.ContentModel import *
+#import dipp2.ContentModel
+from dipp2 import ContentModel
+from zLOG import LOG, INFO
 from marshal import loads
 from zlib import decompress
 from urllib import unquote
-import re
 from threading import Timer
+import httplib
+import urlparse
 
 try:
     from Products.CMFCore.permissions import ManagePortal
@@ -45,6 +37,7 @@ try:
 except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
+
 
 class Fedora(UniqueObject, SimpleItem):
     """ interact with the repository Fedora 2 """
@@ -54,6 +47,9 @@ class Fedora(UniqueObject, SimpleItem):
     title = 'Interact with the repository Fedora 2'
     toolicon = 'skins/dipp_images/fedora.png'
     security = ClassSecurityInfo()
+    
+    fedoraaccess = FedoraAccess.FedoraAccess()
+    fedoramanagement = FedoraManagement.FedoraManagement()
     
     manage_search_form = PageTemplateFile('www/search_form.pt', globals())
     security.declareProtected(view_permission, 'manage_search_form')
@@ -66,6 +62,10 @@ class Fedora(UniqueObject, SimpleItem):
                 
     manage_config_form = PageTemplateFile('www/config_form.pt', globals())
     security.declareProtected(view_permission, 'manage_config_form')
+    
+    manage_maintenance_form = PageTemplateFile('www/maintenance_form.pt', globals())
+    security.declareProtected(view_permission, 'manage_maintenance_form')
+                
                 
     
     manage_options = ({'label':'Search',
@@ -73,6 +73,9 @@ class Fedora(UniqueObject, SimpleItem):
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Configure',
                        'action':'manage_config_form',
+                       'help':('PloneFedora2', 'search.stx')},
+                      {'label':'Maintenance',
+                       'action':'manage_maintenance_form',
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Backissues',
                        'action':'manage_backissues_form',
@@ -88,33 +91,13 @@ class Fedora(UniqueObject, SimpleItem):
     security.declareProtected(ManagePortal, 'manage_setFedoraSettings')
     def manage_setFedoraSettings(self, PID, label, address, port, REQUEST):
         """store the settings of the fedora tool"""
-        self.setPID(PID)
-        self.setLabel(label)
-        self.setAddress(address)
-        self.setPort(port)
+        self.PID = PID
+        self.label = label
+        self.address = address
+        self.port = port
         manage_tabs_message = "Saved"
         return self.manage_config_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
         
-    security.declareProtected(ManagePortal, 'setPID')
-    def setPID(self, PID):
-        """set the PID"""
-        self.PID = PID
-
-    security.declareProtected(ManagePortal, 'setLabel')
-    def setLabel(self, label):
-        """set the label"""
-        self.label = label
-
-    security.declareProtected(ManagePortal, 'setAddress')
-    def setAddress(self, address):
-        """set the address"""
-        self.address = address
-        
-    security.declareProtected(ManagePortal, 'setPort')
-    def setPort(self, port):
-        """set the port"""
-        self.port = port
-
     def getFedoraArticles(self):
         """find all FedoraArticles in Plone and return a list of PIDs
         """
@@ -132,11 +115,13 @@ class Fedora(UniqueObject, SimpleItem):
         
     def manage_search(self, field, comparison, value, REQUEST=None):
         """search the repository"""
-        label = self.label
-        query = ((field,comparison,value),('label','has',label),)
-        x = self.search(query)
-        #x = [{'PID':'dipp:123','cModel':'article','creator':'peter','title':'dummy'}]
-        return x
+        query = []
+        
+        for i in range(len(field)):
+            if not field[i] == '0':
+                query.append((field[i],comparison[i], value[i]))
+        query = tuple(query)
+        return self.search(query)
         
     def manage_deleteObjects(self, REQUEST, LogMessage, PIDs = []):
         """delete Objects in Fedora"""
@@ -156,7 +141,7 @@ class Fedora(UniqueObject, SimpleItem):
     def manage_getContentContainer(self, PID):
         """ return the PIDs of the Fedoraopjects which contain the html, xml,...
         """
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         response =cModel.getContentModel(PID)
         PIDs = (response._objectHTML,
             response._objectMultimedia,
@@ -173,8 +158,7 @@ class Fedora(UniqueObject, SimpleItem):
         """purge object
         """
         Force = False
-        management = FedoraManagement()
-        management.purgeObject(PID, LogMessage, Force)
+        self.fedoramanagement.purgeObject(PID, LogMessage, Force)
         
     def manage_batchingest(self, file, target, dryrun=False, REQUEST=None):
         """batchingest of old issues"""
@@ -187,7 +171,7 @@ class Fedora(UniqueObject, SimpleItem):
     def setURL(self, PID, identifierURL):
         """modify the URL in the qdc after moving in Plone
         """
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         DCMetadata = cModel.getQualifiedDCMetadata(PID)
         DCMetadata._identifierURL = identifierURL
         cModel.setQualifiedDCMetadata(PID,DCMetadata)
@@ -196,8 +180,7 @@ class Fedora(UniqueObject, SimpleItem):
     def getDatastreams(self, PID):
         """
         """
-        management = FedoraManagement()
-        response = management.getDatastreams(PID)
+        response = self.fedoramanagement.getDatastreams(PID)
 
         liste = []
         for i in range(len(response)):
@@ -217,26 +200,39 @@ class Fedora(UniqueObject, SimpleItem):
         """
         Label= None
         LogMessage = None
-        management = FedoraManagement()
-        management.modifyObject(PID, State, Label, LogMessage)
+        self.fedoramanagement.modifyObject(PID, State, Label, LogMessage)
 
-    def accessImage(self, PID, DsID, Date):
-        access = FedoraAccess()
+
+    def accessMultiMediaByFedoraURL(self, PID, DsID, Date):
+        """alternative method to retrieve objects from the Fedora
+        Repository. It uses the FedoraURL directly insteht the Wbservice
+        via ZSI, which fails with larger Objects
+        """
+        SERVER = self.address
+        PORT = self.port
+        parts = ['fedora','get']
+        parts.append(PID)
+        parts.append(DsID)
         if Date:
-            Date = eval(Date) 
-        response = access.getDissemination(PID, DsID, Date)
-        
-        liste = {'MIMEType':response._MIMEType,
-                 'stream':response._stream}
-        return response._stream
+            parts.append(Date)
 
+        path = '/'.join(parts)
+        netloc = ':'.join((SERVER,PORT))
+        conn = httplib.HTTPConnection(netloc)
+        URL = urlparse.urlunparse(('http',netloc,path,'','',''))
+        LOG ('DIPP', INFO, URL)
+        conn.request("GET", URL)
+        r = conn.getresponse()
+        data = {'MIMEType':r.getheader('content-type'),
+                'stream':r.read()}
+        return data
+        
     def accessMultiMedia(self, PID, DsID, Date):
         """return the MIMEType and content of a datastream
         """
-        access = FedoraAccess()
         if Date:
             Date = eval(Date) 
-        response = access.getDissemination(PID, DsID, Date)
+        response = self.fedoraaccess.getDissemination(PID, DsID, Date)
         
         data = {'MIMEType':response._MIMEType,
                 'stream':response._stream}
@@ -245,10 +241,9 @@ class Fedora(UniqueObject, SimpleItem):
     def access(self, PID, DsID, Date):
         """return the MIMEType and content of a datastream
         """
-        access = FedoraAccess()
         if Date:
             Date = eval(Date) 
-        response = access.getDissemination(PID, DsID, Date)
+        response = self.fedoraaccess.getDissemination(PID, DsID, Date)
         
         liste = {'MIMEType':response._MIMEType,
                  'stream':response._stream}
@@ -257,9 +252,7 @@ class Fedora(UniqueObject, SimpleItem):
     def search(self, query):
         """ return a list with metadata of an object
         """
-        access = FedoraAccess()
-        #response = access.findObject(((field, comparison, value),))
-        response = access.findObject(query)
+        response = self.fedoraaccess.findObject(query)
         liste = []
         if len(response) > 0:
             for i in range(len(response)):
@@ -297,15 +290,12 @@ class Fedora(UniqueObject, SimpleItem):
                               'isChildOf':isChildOf,
                               'creator':creator})
 
-            result = {'number':len(response),'hits':liste}
-        else:
-            result = 'FALSE'
         return liste
 
     def getContentModel(self, PID, Type):
         """ return the PID of a content object
         """
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         response =cModel.getContentModel(PID)
         if Type == "HTML":
             return response._objectHTML
@@ -325,26 +315,22 @@ class Fedora(UniqueObject, SimpleItem):
             return response._objectOther
     
     def modifyDatastreamByReference(self, REQUEST, PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType, tempID):
-        management = FedoraManagement()
         LOG ('DIPP', INFO, Location)
-        management.modifyDatastreamByReference(PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType)
+        self.fedoramanagement.modifyDatastreamByReference(PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType)
         return Location
 
     def logging(self, log):
         LOG('DiPP', INFO, log)
-
-
 
     def makeDCMetadataObject(self, params):
         """return a Metadata object"""
         
         if params.has_key('PID'):
             PID = params['PID']
-            cModel = dipp2.ContentModel.ContentModel()
+            cModel = ContentModel.ContentModel()
             DCMetadata = cModel.getQualifiedDCMetadata(PID)
         else:  
             DCMetadata = ns2.QualifiedDublinCore_Def()
-
 
         # Titel   
         DCMetadata._title = []
@@ -566,7 +552,7 @@ class Fedora(UniqueObject, SimpleItem):
 
     def getQualifiedDCMetadata(self,PID):
         if PID != None:
-            cModel = dipp2.ContentModel.ContentModel()
+            cModel = ContentModel.ContentModel()
             response =cModel.getQualifiedDCMetadata(PID)
 
             creatorPerson = []
@@ -891,7 +877,7 @@ class Fedora(UniqueObject, SimpleItem):
     def setQualifiedDCMetadata(self, params):
         """ set the qualified Dublin Core Metadata of an object"""
         
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         DCMetadata = ns2.QualifiedDublinCore_Def()
         PID = params['PID']
         DCMetadata = self.makeDCMetadataObject(params)
@@ -901,7 +887,7 @@ class Fedora(UniqueObject, SimpleItem):
     def createNewArticle(self, ContainerPID, JournalPID, params, Location):
         """creates a new article object for DiPP"""
     
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         DCMetadata = self.makeDCMetadataObject(params)
         ContainerPIDs = []
         ContainerPIDs.append(ContainerPID)
@@ -917,7 +903,7 @@ class Fedora(UniqueObject, SimpleItem):
     def createNewEntry(self, ContainerPID, JournalPID, params, Location):
         """creates a new entry object for DiPA"""
     
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         DCMetadata = self.makeDCMetadataObject(params)
         ContainerPIDs = []
         ContainerPIDs.append(ContainerPID)
@@ -933,21 +919,21 @@ class Fedora(UniqueObject, SimpleItem):
     def setPublishingState(self, PID, State, Published):
         """change the state of a digital object in fedora"""
 
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         State     = State
         Published = Published
-        response = cModel.setPublishingState(PID, State, Published)
+        cModel.setPublishingState(PID, State, Published)
         m = 'PID: ' + PID + '/ State: ' +str(State) + '/ Published: ' + str(Published)
         LOG('DiPP', INFO, m)
 
     
     def createNewContainer(self, JournalPID, MetaType, Title, ChunkURL, AbsoluteURL):
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         response = cModel.createNewContainer(JournalPID, MetaType, Title, ChunkURL, AbsoluteURL)
         return response
 
     def moveObject(self,moveObjectPID, sourceObjectPID, destObjectPID):
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         cModel.moveObject(moveObjectPID, sourceObjectPID, destObjectPID)
         msg  = "Object " +  moveObjectPID
         msg += " moved from " + sourceObjectPID
@@ -960,7 +946,7 @@ class Fedora(UniqueObject, SimpleItem):
         when moving objects in the folder_contents view of plone
         keep it in sync with fedora
         """
-        cModel = dipp2.ContentModel.ContentModel()
+        cModel = ContentModel.ContentModel()
         raw = loads(decompress(unquote(clipboard)))[1]
         for x in raw:
             try:
@@ -978,14 +964,12 @@ class Fedora(UniqueObject, SimpleItem):
                 pass
     
     def addDatastream(self,REQUEST,PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState):
-        management = FedoraManagement()
-        return management.addDatastream(PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState)._response
+        DSID =  self.fedoramanagement.addDatastream(PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState)
+        LOG('DiPP', INFO, DSID)
+        return DSID
     
     def getDatastreamHistory(self,PID,DsID):
-        management = FedoraManagement()
-        
-        response = management.getDatastreamHistory(PID, DsID)
-        #return DateTime(mktime(response[0]._createDate))
+        response = self.fedoramanagement.getDatastreamHistory(PID, DsID)
         liste = []
         for i in range(len(response)):
             params  = "PID=" + PID
@@ -1024,12 +1008,12 @@ class Fedora(UniqueObject, SimpleItem):
         return raw 
         
     def lazyIndex(self, pid, fedora, obj):
-       params = []
-       params.append(pid)
-       params.append(fedora)
-       params.append(obj)
-       t = Timer(10.0, self.index, params)
-       t.start() 
+        params = []
+        params.append(pid)
+        params.append(fedora)
+        params.append(obj)
+        t = Timer(10.0, self.index, params)
+        t.start() 
 
     def index (self, Supplementary_PID, fedora, obj):
         
@@ -1040,4 +1024,7 @@ class Fedora(UniqueObject, SimpleItem):
                 title = datastream['label']
                 if datastream['MIMEType'] in ['text/html']:
                     obj.invokeFactory('FedoraDocument',id=id,title=title,PID=Supplementary_PID,DsID=DsID,body=fedora.access(PID=Supplementary_PID,DsID=DsID,Date=None)['stream'])
-        
+
+    def getLanguages(self):
+        """return a dictionary with languages codes"""
+        return LANGUAGES

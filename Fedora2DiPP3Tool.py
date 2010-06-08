@@ -331,9 +331,7 @@ class Fedora(UniqueObject, SimpleItem):
             DCMetadata = cModel.getQualifiedDCMetadata(PID)
         else:  
             DCMetadata = ContentModel.setQualifiedDublinCoreRequest().new_in1()
-        #DCMetadata = ns2.QualifiedDublinCore_Def()
 
-        
         # Titel   
         DCMetadata._title = []
         for i in range(len(params['title_value'])):
