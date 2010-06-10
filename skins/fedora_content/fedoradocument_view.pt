@@ -8,12 +8,23 @@
     <tal:main-macro metal:define-macro="main"
          tal:define="parent python:here.getParentNode();
                      articlePID parent/PID;
-                     comment_to  parent/comment_to|nothing">
+                     comment_to  parent/comment_to|nothing;
+                     PID context/PID;
+                     DsID here/DsID;
+                     content python:here.fedora.access(PID,DsID,Date=None);
+                     MIMEType python:content['MIMEType']">
+        
+        <div tal:condition="python: content['stream'].strip() == ''" 
+             class="portalMessage"
+             i18n:translate="content_not_permanently stored"> 
+            The Content of this page is not yet stored in the repository.
+            Go to the 'Versions' tab to make the working copy (available under "Preview")
+            permanent.
+        </div>
          
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        
         <h1>&nbsp;</h1>
 
         <div tal:condition="comment_to"
@@ -30,10 +41,7 @@
              </p>
         </div>
 
-        <div class="stx" tal:define="PID context/PID;
-                                     DsID here/DsID;
-                                     content python:here.fedora.access(PID,DsID,Date=None);
-                                     MIMEType python:content['MIMEType']">
+        <div class="stx">
             <div tal:condition="python:content['MIMEType'] != 'text/xml' " 
                  tal:replace="structure python:content['stream']">
                 Hier kommt der Inhalt hin
