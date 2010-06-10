@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from Products.Archetypes.Marshall import PrimaryFieldMarshaller
-from config import PROJECTNAME
+from Products.CMFCore.permissions import View
+from Products.CMFCore.utils import getToolByName
+from AccessControl import ClassSecurityInfo
+from zLOG import LOG, ERROR, INFO
 import Permissions
+from config import PROJECTNAME
 
 class FedoraDocument(BaseContent):
     """store text files in the repository"""
 
+    security = ClassSecurityInfo()
     schema = BaseSchema + Schema((
         TextField('body',
                 searchable=1,
@@ -19,7 +24,7 @@ class FedoraDocument(BaseContent):
                 widget=RichWidget(label='Body Content')
         ),
         StringField('PID',
-                required=1,
+                required=0,
                 widget=StringWidget(
                     label='PID',
                     description='Persistent Identifier',
@@ -29,7 +34,7 @@ class FedoraDocument(BaseContent):
                 index='FieldIndex:brains:schema'
         ),
         StringField('DsID',
-                required=1,
+                required=0,
                 widget=StringWidget(
                     label='DsID',
                     description='Datastream Identifier',
@@ -43,6 +48,8 @@ class FedoraDocument(BaseContent):
     ),
     marshall=PrimaryFieldMarshaller(),
     )
+    
+    _at_rename_after_creation = True
     content_icon = "fedoradocument_icon.gif"
 
     actions = (
@@ -71,4 +78,26 @@ class FedoraDocument(BaseContent):
           },
  
     )
+    
+    def at_post_create_script(self):
+        """ when a document is not converted but added manually via the "add article"
+            menu, it does not habe PID and DiID. Thie method takes care of creating a
+            a digital object for the page.
+        """
+
+        fedora = getToolByName(self, 'fedora')
+        article = self.getParentNode()
+        PID = fedora.getContentModel(PID=article.PID, Type='HTML')
+        MIMEType = "text/html"
+        Label = self.id
+        Location = article.absolute_url() + "/dummy.html"
+
+        if self.DsID == '' and self.PID == '':
+            DsID = fedora.addDatastream(None,PID,Label,MIMEType,Location,"M","","","A")
+            self.setPID(PID)
+            self.setDsID(DsID)
+
+        self.reindexObject()
+        
+
 registerType(FedoraDocument,PROJECTNAME)
