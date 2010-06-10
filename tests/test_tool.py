@@ -4,6 +4,7 @@ if __name__ == '__main__':
 
 from Products.PloneTestCase import PloneTestCase
 from Products.CMFCore.utils import getToolByName
+from Products.DiPP.config import PID, label, address, port
 
 PloneTestCase.installProduct('ATVocabularyManager')
 PloneTestCase.installProduct('CMFOpenflow')
@@ -12,25 +13,41 @@ PloneTestCase.installProduct('LinguaPlone')
 PloneTestCase.installProduct('PloneLanguageTool')
 PloneTestCase.installProduct('TextIndexNG3')
 PloneTestCase.installProduct('DiPP')
-#PloneTestCase.setupPloneSite(products=('DiPP',))
-PloneTestCase.setupPloneSite()
+PloneTestCase.setupPloneSite(products=('DiPP',))
 
 
 class TestMetadata(PloneTestCase.PloneTestCase):
-    PID = 'dipp:1898'
-    label = '81' 
-    address = '193.30.112.98'
-    port = '9280'
 
+    PID = PID
+    label = label
+    address = address
+    port = port
+    
     def afterSetUp(self):
-        self.portal.manage_addProduct['DiPP'].manage_addTool('Fedora2DiPP3')
+        #self.portal.manage_addProduct['DiPP'].manage_addTool('Fedora2DiPP3')
         self.tool = getToolByName(self.portal, 'fedora')
+        self.typestool = getToolByName(self.portal, 'portal_types')
     
-    def testSetFedoraSettings(self):
+    def testSetFedoraPID(self):
         self.setRoles(['Manager'])
-        self.tool.manage_setFedoraSettings(self.PID, self.label, self.address, self.port, None)
+        self.tool.manage_setFedoraSettings(self.PID, None, None, None, None)
         self.assertEquals(self.tool.PID, self.PID)
-    
+        
+    def testSetFedoraLabel(self):
+        self.setRoles(['Manager'])
+        self.tool.manage_setFedoraSettings(None, self.label,  None, None, None)
+        self.assertEquals(self.tool.label, self.label)
+
+    def testSetFedoraAddress(self):
+        self.setRoles(['Manager'])
+        self.tool.manage_setFedoraSettings(None, None,  self.address, None, None)
+        self.assertEquals(self.tool.address, self.address)
+
+    def testSetFedoraPort(self):
+        self.setRoles(['Manager'])
+        self.tool.manage_setFedoraSettings(None, None, None, self.port, None)
+        self.assertEquals(self.tool.port, self.port)
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()

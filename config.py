@@ -68,3 +68,10 @@ INDEXES = (
     ('Contributors','KeywordIndex'),
 )
 GLOBALS = globals()
+
+# Configuration for the testrunner
+
+PID = 'dipp:1898'
+label = '81' 
+address = '193.30.112.98'
+port = '9280'
