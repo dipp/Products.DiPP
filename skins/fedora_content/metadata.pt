@@ -30,11 +30,14 @@
                                subjectClassified python:qdc['subjectClassified'];
                                bibliographicCitation python:qdc['bibliographicCitation'][0];
                                rights python:qdc['rights'][0];
-                               DDCs python:qdc['DDC']">
+                               DDCs python:qdc['DDC'];
+                               initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
+                               comma_separated here/comma_separated|here/portal_properties/dipp_properties/comma_separated|nothing;
+                               initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing">
 
             <div tal:condition="citation_format">
                 <h2>Recommended Citation</h2>
-                <span tal:content="structure python: here.make_citation(here, qdc, citation_format)"></span>
+                <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period, comma_separated)"></span>
             </div>
             
             
