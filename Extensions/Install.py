@@ -91,9 +91,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('roles_not_to_list',('Manager', 'Owner', 'Reviewer', 'Member'),'lines'),
         ('actions_to_list',('Call Application', 'Self Assign', 'Assign', 'Unassign'),'lines'),
         ('workflow_actions',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'),'lines'),
-        ('copy_of_reminder',('',),'lines'),
-        ('gap_container','add label here','string'),
-        ('PID','','string')
+        ('copy_of_reminder',('',),'lines')
     )
     
     for prop_id, prop_value, prop_type in site_properties:
