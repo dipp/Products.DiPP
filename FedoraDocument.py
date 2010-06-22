@@ -81,7 +81,7 @@ class FedoraDocument(BaseContent):
     
     def at_post_create_script(self):
         """ when a document is not converted but added manually via the "add article"
-            menu, it does not habe PID and DiID. Thie method takes care of creating a
+            menu, it does not have PID and DsID. This method takes care of creating a
             a digital object for the page.
         """
 
