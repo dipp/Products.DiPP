@@ -4,16 +4,33 @@
 
 <h3>Search the repository</h3>
 
-<form action="manage_search_form">
-    <select name="field">
-        <option value="pid" selected="selected">pid</option>
-        <option value="cModel">cModel</option>
-    </select>
-    <select name="comparison">
-        <option value="has" selected="selected">has</option>
-        <option value="equals">equals</option>
-    </select>
-    <input name="value" type="text" value="temp:*" /><br />
+<form tal:condition="here/label"
+      action="manage_search_form"
+      tal:define="fields python:('pid','cDate','mDate','title');
+                  comparisions python:(('has','contains'),('eq','equals'),('lt','less'),('le','less or equal'),('gt','greater'),('ge','greater or equal'))">
+    <input name="field:list"      type="hidden" value="label">
+    <input name="comparison:list" type="hidden" value="has">
+    <input name="value:list"      type="hidden" value="" tal:attributes="value here/label">
+    
+    <input name="field:list"      type="hidden" value="cModel">
+    <input name="comparison:list" type="hidden" value="has">
+    <input name="value:list"      type="hidden" value="DiPP:article">
+    
+    <tal:block tal:repeat="opt python:range(3)">
+        <select name="field:list">
+            <option value="0">Select a field</option>
+            <tal:block tal:repeat="field fields">
+                <option value="" tal:attributes="value field" tal:content="field"></option>
+            </tal:block>
+        </select>
+        <select name="comparison:list">
+            <tal:block tal:repeat="comparision comparisions">
+                <option value="" tal:attributes="value python:comparision[0]" tal:content="python:comparision[1]"></option>
+            </tal:block>
+        </select>
+        <input name="value:list" type="text" value="" /><br />
+    </tal:block>
+    
     <input type="submit" value="OK">
     <input type="reset" value="Cancel">
 </form>
