@@ -188,10 +188,14 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
             self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
             self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
-            
+           
+            # list with available abstract languages ist stored on article object. The calculation
+            # on the fly would be to expensive, since for issue pages each single Article would
+            # have to be fetched from fedora. Bad for the performance
             available_abstracts = []
             for abstract in qdc['DCTermsAbstract']:
-                available_abstracts.append(abstract['lang'])
+                if abstract['value'].strip() != '':
+                    available_abstracts.append(abstract['lang'])
             self.setAvailableAbstracts(available_abstracts)
         else:
             LOG ('DIPP', INFO, "Skipping synchronization of Metadata for temp. article %s at %s" % (self.PID, self.absolute_url() ))
