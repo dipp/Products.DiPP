@@ -23,6 +23,7 @@ from fedora2 import FedoraManagement
 #from dipp3.ContentModel import *
 #import dipp3.ContentModel
 from dipp3 import ContentModel
+from openurl import openurl
 from zLOG import LOG, INFO
 from marshal import loads
 from zlib import decompress
@@ -986,6 +987,24 @@ class Fedora(UniqueObject, SimpleItem):
                           'MIMEType':response[i]._MIMEType})
         
         return liste
+
+    def getopenurl(self,qdc,issn):
+        """return the metadata as openurl to use fpr COinS"""
+        creators = qdc['creatorPerson']
+        authors = ()
+        for creator in creators:
+            authors += ((creator['lastName'], creator['firstName']),)
+        titles = qdc['title']
+        bibliographicCitation = qdc['bibliographicCitation'][0]
+        x = openurl.OpenURL()
+        x.atitle = titles[0]['value']
+        x.jtitle = bibliographicCitation['journalTitle']
+        x.authors = authors
+        x.urn = qdc['identifierURN']
+        x.url = 'http://www.dipp.nrw.de/'
+        x.date = bibliographicCitation['journalIssueDate']
+        x.issn = issn
+        return x.geturl()
 
     def getTempID(self,REQUEST):
         '''temporary ID for intermediate saving of new datastreams'''
