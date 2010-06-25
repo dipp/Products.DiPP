@@ -1,0 +1,71 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="table_of_contents"
+             tal:define="path                 python:'/'.join(here.getPhysicalPath()); 
+                         avtm                 python:here.portal_vocabularies;
+                         journalsections      python:avtm.getVocabularyByName('journal-sections');
+                         section_dict         python:journalsections.getVocabularyDict(journalsections);
+                         articles             python: here.portal_catalog(path=path,portal_type='FedoraArticle');
+                         issue_show_abstracts here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing"
+             i18n:domain="dipp">
+
+            <p class="discreet"
+                 tal:condition="not:articles">
+                 This Issue does not contain any articles.
+            </p>
+            
+            <div tal:repeat="section python: section_dict.keys()">
+                <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
+                           tal:condition="articles"
+                           i18n:domain="dipp">
+                <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>
+                <ol class="issue_content" >
+                    
+                    <tal:items tal:repeat="item articles">
+                       <li tal:define="oddrow               repeat/item/odd;
+                                       obj                  item/getObject;
+                                       item_url             item/getURL|item/absolute_url;
+                                       item_id              item/getId;
+                                       item_section         item/getJournal_section;
+                                       item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                       item_title_or_id     item/pretty_title_or_id;
+                                       item_section         item/getJournal_section|nothing;
+                                       item_abstracts       python:obj.getAvailableAbstracts;
+                                       item_contributors    python:obj.Contributors();
+                                       authors              item_contributors"
+                                       tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                            <strong>    
+                                <a href="#"
+                                   tal:attributes="href item_url;" tal:content="item_title_or_id">
+                                 Article title</a>
+
+                            </strong>
+                            <div class="abstracts"
+                                tal:define="lang_dict   python:here.fedora.getLanguages()"
+                                tal:condition="python: issue_show_abstracts and len(item_abstracts())>0">
+                                <span i18n:translate="abstract_available">Abstracts available in</span>
+                                <tal:block tal:repeat="abstract item_abstracts">
+                                    <a href="#"
+                                       tal:define="title python:lang_dict[abstract]"
+                                       tal:attributes="href string:$item_url/abstract_view?lang=$abstract;
+                                                       title abstract"
+                                       tal:content="title"></a><span tal:condition="not: repeat/abstract/end">,</span>
+                                </tal:block>
+                            </div>
+                            <div metal:use-macro="here/article_authors/macros/article_authors">
+                                A nicely formatted list of authors
+                            </div>
+                        </li>
+                     </tal:items>
+                </ol>
+
+                </tal:block>
+
+            </div>
+        </div>
+
+     </body>
+</html>
