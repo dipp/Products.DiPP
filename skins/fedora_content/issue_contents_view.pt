@@ -4,7 +4,8 @@
       i18n:domain="plone">
 <body>
 
-<metal:main fill-slot="main">
+<metal:main fill-slot="main"
+            tal:define="issue_path python:'/'.join(here.getPhysicalPath())">
     <tal:main-macro metal:define-macro="main">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
@@ -50,7 +51,7 @@
               <span tal:replace="filename">full.pdf</span> (<span tal:replace="size">1GB</span>)</a>
         </p>
     
-        <div metal:use-macro="here/issue_macro/macros/table_of_contents">
+        <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
             TOC of an issue
         </div>
         

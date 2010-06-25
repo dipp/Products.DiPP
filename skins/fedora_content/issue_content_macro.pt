@@ -2,23 +2,28 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     i18n:domain="DiPP">
     <body>
-
+        <tal:comment>
+            The calling template must define the value for 'issue_path' otherwise the catalog
+            query fails. We want to use this template to display the latest issue on the homepage
+            and also in the issue_view itself.
+        </tal:comment>
         <div metal:define-macro="table_of_contents"
-             tal:define="path                 python:'/'.join(here.getPhysicalPath()); 
-                         avtm                 python:here.portal_vocabularies;
+             tal:define="avtm                 python:here.portal_vocabularies;
                          journalsections      python:avtm.getVocabularyByName('journal-sections');
                          section_dict         python:journalsections.getVocabularyDict(journalsections);
-                         articles             python: here.portal_catalog(path=path,portal_type='FedoraArticle');
+                         articles             python: here.portal_catalog(path=issue_path,portal_type='FedoraArticle');
                          issue_show_abstracts here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing"
              i18n:domain="dipp">
-
+            
+            <tal:block tal:replace="issue_path"/>
+            
             <p class="discreet"
                  tal:condition="not:articles">
                  This Issue does not contain any articles.
             </p>
             
             <div tal:repeat="section python: section_dict.keys()">
-                <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
+                <tal:block tal:define="articles python: here.portal_catalog(path=issue_path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                            tal:condition="articles"
                            i18n:domain="dipp">
                 <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>

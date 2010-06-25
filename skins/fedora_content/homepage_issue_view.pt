@@ -14,18 +14,19 @@
 
         
         <div class="current-issue"
-            tal:define="issues               python:here.portal_catalog(portal_type='FedoraHierarchie', review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1);
-                        avtm                 python:here.portal_vocabularies;
-                        journalsections      python:avtm.getVocabularyByName('journal-sections');
-                        section_dict         python:journalsections.getVocabularyDict(journalsections)">
+            tal:define="issues  python:here.portal_catalog(portal_type='FedoraHierarchie', review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1)">
             <tal:block tal:condition="issues">
                  <div tal:define="issue python:issues[0].getObject();
                                   description issue/Description|nothing;
-                                  path python:'/'.join(issue.getPhysicalPath())">
+                                  issue_path python:'/'.join(issue.getPhysicalPath())">
                                  
                     <h1 tal:content="issue/title_or_id" class="documentFirstHeading">
                       Title or id
                     </h1>
+
+                    <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
+                        TOC of an issue
+                    </div>
                 
                     <div metal:use-macro="here/document_byline/macros/byline">
                       Get the byline - contains details about author and modification date.
@@ -37,40 +38,6 @@
                         Description
                     </p>
                        
-                    <div tal:repeat="section python: section_dict.keys()">
-                        <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
-                                   tal:condition="articles">
-                        <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>
-                        <ol class="issue_content" >
-                            
-                            <tal:items tal:repeat="item articles">
-                               <li tal:define="oddrow               repeat/item/odd;
-                                               obj                  item/getObject;
-                                               item_url             item/getURL|item/absolute_url;
-                                               item_id              item/getId;
-                                               item_section         item/getJournal_section;
-                                               item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
-                                               item_title_or_id     item/pretty_title_or_id;
-                                               item_section         item/getJournal_section|nothing;
-                                               item_abstracts       python:obj.getAvailableAbstracts;
-                                               item_contributors    python:obj.Contributors();
-                                               authors              item_contributors"
-                                               tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                                    <strong>    
-                                        <a href="#"
-                                           tal:attributes="href item_url;" tal:content="item_title_or_id">
-                                         Article title</a>
-
-                                    </strong>
-                                    <div metal:use-macro="here/article_authors/macros/article_authors">
-                                        A nicely formatted list of authors
-                                    </div>
-                                </li>
-                             </tal:items>
-                        </ol>
-
-                        </tal:block>
-                    </div>
                 </div>
             </tal:block>
         </div>
