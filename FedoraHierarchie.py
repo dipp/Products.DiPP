@@ -151,7 +151,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         if parent == portal:
             isChildOf = fedora.PID
         else:
-            isChildof = parent.PID
+            isChildOf = parent.PID
         MetaType = self.MetaType
         title = self.title
         id = self.id
