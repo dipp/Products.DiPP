@@ -14,6 +14,15 @@ Installation
 	can not be uploaded.
 
 Changes
+
+    DiPP 2.4.1 (2010-06-29)
+
+        * COinS/Zotero support added, requires python module openurl
+
+        * worklist: show PID of the article, user 'dippadm' can now
+          easily delete workitems from the list. 
+
+        * nicer abstract_view
 	
 	DiPP 2.4 (2010-06-22)
 	
