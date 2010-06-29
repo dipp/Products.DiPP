@@ -553,3 +553,9 @@ msgstr "Fulltext"
 
 msgid "text_fulltext"
 msgstr "Get the ${fulltext} as pdf."
+
+msgid "back_to_article"
+msgstr "Back to the article."
+
+msgid "abstracts"
+msgstr "Abstracts"

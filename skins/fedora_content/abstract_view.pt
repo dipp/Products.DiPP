@@ -9,41 +9,53 @@
          tal:define="articlePID  here/PID;
                      DsID        here/fulltext/DsID|nothing;
                      PID         here/fulltext/PID|nothing;
+                     lang_dict   python:here.fedora.getLanguages();
                      abstract_lang request/form/lang|nothing;
                      qdc         python:here.fedora.getQualifiedDCMetadata(articlePID);
                      urn         python:qdc['identifierURN'];
                      doi         python:qdc['identifierDOI'];
-                     authors     python:qdc['creatorPerson'];
+                     authors     here/Contributors;
+                     titles      python:qdc['title'];
+                     abstracts   python:qdc['DCTermsAbstract'];
                      comment_to  here/comment_to|nothing">
          
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
         
-        <h1 tal:content="python:qdc['title'][0]['value']"></h1>
 
+        <h1 i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h1>
         
+        <div class="documentByLine">
+            <a href="#"
+               i18n:translate="back_to_article"
+               i18n:domain="dipp"
+               tal:attributes="href string:${here/absolute_url}/view;">
+               back to the article</a>
+        </div>
 
-        <tal:block tal:repeat="author authors" >
-            <span tal:condition="not: repeat/author/end" 
-                tal:define="firstName author/firstName; lastName author/lastName"
-                tal:replace="string: $firstName $lastName,">
-            </span>
-            <span tal:condition="repeat/author/end" 
-                tal:define="firstName author/firstName; lastName author/lastName"
-                tal:replace="string: $firstName $lastName">
-            </span>
-        </tal:block>
-        
-        <h2>Abstract</h2>
         <script type="text/javascript" src="tabber.js">
         </script>
+        
         <div class="tabber">
-            <div tal:repeat="abstract python:qdc['DCTermsAbstract']"
+            <div tal:repeat="abstract abstracts"
                  class=""
-                 tal:attributes="title python:'[' + here.map_languages(abstract['lang'])+']';
+                 tal:attributes="title python: lang_dict[abstract['lang']];
                                  class python:test(abstract_lang==abstract['lang'],'tabbertab tabbertabdefault','tabbertab')">
-                <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+                
+                <tal:block tal:repeat="title titles"> 
+                    <h2 tal:condition="python:title['lang'] == abstract['lang']"
+                        tal:content="title/value">
+                        Der Sinn des Lebens</h2>
+                </tal:block>
+                
+                <div metal:use-macro="here/article_authors/macros/article_authors">
+                    A nicely formatted list of authors
+                </div>
+                
+                <p class="dippAbstract" tal:content="python:abstract['value']">
+                    Lorem ipsum abstractum.
+                </p>
             </div>
         </div>
         

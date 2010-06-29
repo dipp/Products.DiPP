@@ -25,6 +25,7 @@ ol.issue_content li {
 ul.authors {
     list-style: none;
     margin-left: 0;
+    padding:0;
 }
 ul.authors li {
     display: inline;
