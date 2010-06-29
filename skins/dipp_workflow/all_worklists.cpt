@@ -112,7 +112,8 @@ $Date: 2006/05/30 11:44:03 $
             <td tal:content="string: ${wi/actor}">Actor</td>
             <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
             <td><a href='' tal:attributes="href string:$portal_url/history?instance_id=${wi/instance_id}" tal:content="string: ${wi/titel}">Der Herr der Ringe</a></td>
-            <td tal:content="string: ${wi/hierarchie}">2001/1</td>
+            <td><span tal:content="string: ${wi/hierarchie}">2001/1</span><br />
+            <span tal:content="string: (${wi/PID})">dipp:1234</span></td>
             <td><abbr tal:content="wi/activity_id" tal:attributes="title python: wi.title or '%s-%s'%(wi.instance_id,wi.id)" i18n:translate=""></abbr></td>
             <td>
                 <ul class="actions">
