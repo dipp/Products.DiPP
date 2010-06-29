@@ -124,6 +124,9 @@ $Date: 2006/05/30 11:44:03 $
                                        i18n:translate="">action</a>
                         </li>
                     </tal:block>
+                    <li tal:condition="python:user.getId() == 'dippadm'">
+                        <a tal:attributes="href string:$portal_url/portal_openflow/terminateInstance?instance_id=${wi/instance_id}">terminate</a>
+                    </li>
                 </ul>
 
             </td>
