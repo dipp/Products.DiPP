@@ -15,6 +15,11 @@ Installation
 
 Changes
 
+	DiPP 2.4.2 (2010-06-30)
+	
+		* Bugfixes: corrected use of volume/issue in COinS
+		 
+		
     DiPP 2.4.1 (2010-06-29)
 
         * COinS/Zotero support added, requires python module openurl
