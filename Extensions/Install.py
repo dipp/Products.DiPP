@@ -475,6 +475,8 @@ def install_metadataproperties(self,out):
     props = self.portal_properties.metadata_properties
     
     metadata_props= (
+        ('journalname', 'string', ''),
+        ('journalname_abbr', 'string', ''),
         ('default_language', 'string', DEFAULT_LANGUAGE),
         ('available_languages', 'lines', AVAILABLE_LANGUAGES)
     )

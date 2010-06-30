@@ -988,7 +988,7 @@ class Fedora(UniqueObject, SimpleItem):
         
         return liste
 
-    def getopenurl(self,qdc,issn):
+    def getopenurl(self,qdc,journalname_abbr,issn):
         """return the metadata as openurl to use fpr COinS"""
         creators = qdc['creatorPerson']
         authors = ()
@@ -999,10 +999,14 @@ class Fedora(UniqueObject, SimpleItem):
         x = openurl.OpenURL()
         x.atitle = titles[0]['value']
         x.jtitle = bibliographicCitation['journalTitle']
+        x.stitle = journalname_abbr
+        x.volume = bibliographicCitation['journalVolume']
+        x.issue = bibliographicCitation['journalIssueNumber']
+        x.date = bibliographicCitation['journalIssueDate']
         x.authors = authors
         x.urn = qdc['identifierURN']
-        x.url = 'http://www.dipp.nrw.de/'
-        x.date = bibliographicCitation['journalIssueDate']
+        x.doi = qdc['identifierDOI']
+        x.url = qdc['identifierURL']
         x.issn = issn
         return x.geturl()
 
