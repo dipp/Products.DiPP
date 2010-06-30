@@ -21,10 +21,10 @@ RESPONSE =  request.RESPONSE
 fedora = getToolByName(self, 'fedora')
 portal = getToolByName(self, 'portal_url').getPortalObject()
 
-port = 9280
+port = str(9280)
 
 if hasattr(portal, 'PID'):
-    PID = portal.PID
+    PID = str(portal.PID)
 
 if hasattr(portal, 'gap_container'):
     label = portal.gap_container
