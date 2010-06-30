@@ -15,8 +15,6 @@
                          issue_show_abstracts here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing"
              i18n:domain="dipp">
             
-            <tal:block tal:replace="issue_path"/>
-            
             <p class="discreet"
                  tal:condition="not:articles">
                  This Issue does not contain any articles.
