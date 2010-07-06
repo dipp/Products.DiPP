@@ -25,9 +25,11 @@
 
 .issue_content .paper {
     margin-left: 2em;
-
 }
-
+ol.volume_content {
+    list-style-type: none;
+    margin-left: 0;
+}
 /* Metadata Form */
 
 textarea.abstract { width: 100%; }
