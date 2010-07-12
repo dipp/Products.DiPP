@@ -8,6 +8,7 @@
 ##title=
 ##
 
+# -*- coding: utf-8 -*-
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 authors = self.portal_catalog.uniqueValuesFor('Contributors')

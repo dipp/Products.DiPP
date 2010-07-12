@@ -14,6 +14,7 @@
              tal:define="default string:a;
              			 authors python:here.alphabetic_authors(here);
              			 initials python:here.alphabetic_authors(here).keys();
+                         dummy python: initials.sort();
              			 current request/current|default">
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
@@ -22,25 +23,32 @@
             
             <div class="documentDescription" i18n:translate="">
             </div>
-            <ol style="margin-left:0">
-                <li tal:repeat="initial initials" style="display: inline">
-                	<a tal:condition="python: initial != current"
-                	   tal:attributes="href string:${here/absolute_url}/${template/id}?current=$initial;"
+            
+            <ol id="authors-initials">
+                <li tal:repeat="initial initials">
+                	<a tal:attributes="href string:${here/absolute_url}/${template/id}#author-$initial;"
                 	   tal:content="initial">A</a>
-                	<span tal:condition="python: initial == current"
-                	      tal:content="initial">B</span>
                 </li>
             </ol>
-            <ol>
+
+            <dl id="authors-by-initial">
             <tal:block tal:repeat="initial initials">
-           		<li tal:content="initial"></li>
-           		<ol>
-           		<tal:block tal:repeat="author python:authors[initial]">
-           			<li tal:content="author">Adams, Douglas</li>
+           		<dt tal:content="initial"
+                    tal:attributes="id string:author-$initial">A</dt>
+           		<dd tal:define="authors_by_initial python:authors[initial]"
+                    tal:condition="authors_by_initial">
+                <ol >
+           		<tal:block tal:repeat="author authors_by_initial">
+           			<li>
+                        <a tal:content="author"
+                           tal:attributes="href string:$portal_url/publication_list?contributor=$author">
+                        Adams, Douglas</a>
+                    </li>
            		</tal:block>
-           		</ol>
+                </ol>
+           		</dd>
            	</tal:block>
-			</ol>
+			</dl>
         </div>
     </body>
 </html>

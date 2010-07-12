@@ -69,6 +69,38 @@ ul.nobullets {
     display: none;
 }
 
+/* Alphabetic List of Authors*/
+#authors-initials {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#authors-initials li {
+    display: inline;
+}
+
+#authors-initials li a {
+    text-transform: uppercase;
+}
+
+dl#authors-by-initial dt {
+    text-transform: uppercase;
+}
+dl#authors-by-initial dd {
+    margin-left: 0;
+}
+dl#authors-by-initial dt {
+    font-size: 120%;
+    margin-top: 1em;
+}
+dl#authors-by-initial ol {
+    margin-left: 0;
+    list-style: none;
+}
+dl#authors-by-initial ol li{
+    margin: 0;
+}
+
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */

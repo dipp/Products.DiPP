@@ -17,7 +17,6 @@ def initialize(context):
     import FedoraDocument
     import FedoraXML
     import FedoraMultimedia
-    import MyThreadTest
     import EditorialToolboxTool
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
