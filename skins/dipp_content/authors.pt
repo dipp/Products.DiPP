@@ -1,0 +1,48 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    metal:use-macro="here/dipp_workflow_template/macros/master">
+    <metal:block fill-slot="base">
+        <base href="" tal:attributes="href python: here.absolute_url() + '/'">
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+    <body i18n:domain="dipp">
+
+
+        <div metal:fill-slot="main"
+             tal:define="default string:a;
+             			 authors python:here.alphabetic_authors(here);
+             			 initials python:here.alphabetic_authors(here).keys();
+             			 current request/current|default">
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
+            <h1 class="documentFirstheading" i18n:translate="">Authors</h1>
+            
+            <div class="documentDescription" i18n:translate="">
+            </div>
+            <ol style="margin-left:0">
+                <li tal:repeat="initial initials" style="display: inline">
+                	<a tal:condition="python: initial != current"
+                	   tal:attributes="href string:${here/absolute_url}/${template/id}?current=$initial;"
+                	   tal:content="initial">A</a>
+                	<span tal:condition="python: initial == current"
+                	      tal:content="initial">B</span>
+                </li>
+            </ol>
+            <ol>
+            <tal:block tal:repeat="initial initials">
+           		<li tal:content="initial"></li>
+           		<ol>
+           		<tal:block tal:repeat="author python:authors[initial]">
+           			<li tal:content="author">Adams, Douglas</li>
+           		</tal:block>
+           		</ol>
+           	</tal:block>
+			</ol>
+        </div>
+    </body>
+</html>
+
+
