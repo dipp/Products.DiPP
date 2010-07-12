@@ -15,6 +15,12 @@ Installation
 
 Changes
 
+	DiPP 2.4.3 (2010-07-12)
+		
+		* new alphabetic list of authors, grouped by initial
+		
+		* cleanup and minor bugfixes
+	
 	DiPP 2.4.2 (2010-06-30)
 	
 		* Bugfixes: corrected use of volume/issue in COinS
@@ -44,4 +50,4 @@ Changes
 		  
 	DiPP 2.3.6 (2010-05-27)
 	
-	    * TextIndexNG3 used to index PDFs
+	    * TextIndexNG3 used to index PDFs (requires reindexing of portal_catalog)
