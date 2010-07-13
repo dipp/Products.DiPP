@@ -1,6 +1,8 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    metal:use-macro="here/dipp_workflow_template/macros/master">
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master" 
+      i18n:domain="plone">
+
     <metal:block fill-slot="base">
         <base href="" tal:attributes="href python: here.absolute_url() + '/'">
     </metal:block>
@@ -11,14 +13,13 @@
 
 
         <div metal:fill-slot="main"
-             tal:define="default string:a;
-             			 authors python:here.alphabetic_authors(here);
+             tal:define="authors python:here.alphabetic_authors(here);
              			 initials python:here.alphabetic_authors(here).keys();
-                         dummy python: initials.sort();
-             			 current request/current|default">
+                         dummy python: initials.sort()">
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
             </div>
+            
             <h1 class="documentFirstheading" i18n:translate="">Authors</h1>
             
             <div class="documentDescription" i18n:translate="">
