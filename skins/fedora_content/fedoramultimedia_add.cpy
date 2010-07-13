@@ -60,8 +60,21 @@ if Location.startswith('https'):
 Label = filename
 
 if DsID == "":
+    # freshly created objects are not yet in Fedora, thus do not have a DsID
     DsID = fedora.addDatastream(REQUEST,PID,Label,MIMEType,Location,"M","","","A")
     portal_status_message = "Saved new datastream (%s/%s)." % (PID, DsID)
+
+elif self.File.size == 0:
+    # files coming from the the conversion prozess are not stored in the ZODB
+    # when editing, we need a file, since it is fetched from fedora in a later
+    # editing step
+    data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
+    stream = data['stream']
+    MIMEType =data['MIMEType']
+    self.setFile(stream)
+    LOG('DiPP File', INFO, "safe file from Fedora to ZODB" )
+    portal_status_message = "safe file from Fedora to ZODB"
+
 else:
     LogMessage = "New Version"
     tempID = ""
