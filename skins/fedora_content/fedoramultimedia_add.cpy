@@ -48,10 +48,6 @@ PID = self.PID
 DsID = self.DsID
 LOG('DiPP', INFO, "fedoramultimedia_add: %s/%s" % (PID, DsID))
 
-try:
-    PID = map[EXTENSION]
-except:
-    PID = MULTIMEDIA_PID
 
 Location = self.absolute_url() + "/File"
 if Location.startswith('https'):
@@ -60,7 +56,11 @@ if Location.startswith('https'):
 Label = filename
 
 if DsID == "":
-    # freshly created objects are not yet in Fedora, thus do not have a DsID
+    # freshly created objects are not yet in Fedora, thus do not have a DsID and a PID
+    try:
+        PID = map[EXTENSION]
+    except:
+        PID = MULTIMEDIA_PID
     DsID = fedora.addDatastream(REQUEST,PID,Label,MIMEType,Location,"M","","","A")
     portal_status_message = "Saved new datastream (%s/%s)." % (PID, DsID)
 
@@ -76,6 +76,7 @@ elif self.File.size == 0:
     portal_status_message = "safe file from Fedora to ZODB"
 
 else:
+    # editing of an already in plne existing object
     LogMessage = "New Version"
     tempID = ""
     DsState = "A"
