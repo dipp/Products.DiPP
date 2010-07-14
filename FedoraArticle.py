@@ -164,6 +164,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           "category":"folder",
           },
+          
+        { "id": "citation",
+          "name": "Citation",
+          "action": "string:${object_url}/metadata",
+          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
+          "category":"document_actions",
+          },
     )
     
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')

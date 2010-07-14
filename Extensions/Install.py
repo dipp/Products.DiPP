@@ -444,6 +444,12 @@ def install_types(self, out, site_id=SITE_NAME):
         newcontents.append('FedoraArticle')
         props._updateProperty('use_folder_contents', newcontents)
 
+    pai = getToolByName(site, 'portal_actionicons')
+    
+    pai.updateActionIcon('plone', 'citation', 'citation_icon.png', 'Citation and Metadata', 0)
+    pai.updateActionIcon('plone', 'fulltextpdf', 'pdf_icon.png', 'Get Fulltext as PDF', 0)
+
+
 def install_configlet(self,out):
     """register the configlet"""
     portal_conf=getToolByName(self,'portal_controlpanel')
