@@ -76,7 +76,14 @@ class FedoraDocument(BaseContent):
           "action": "string:${object_url}/fedoradocument_versions",
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
- 
+          
+         { "id": "citation",
+          "name": "Citation and Metadata",
+          "action": "string:${object_url}/metadata",
+          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
+          "category":"document_actions",
+          },
+
     )
     
     def at_post_create_script(self):

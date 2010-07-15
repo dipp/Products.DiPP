@@ -166,7 +166,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           },
           
         { "id": "citation",
-          "name": "Citation",
+          "name": "Citation and Metadata",
           "action": "string:${object_url}/metadata",
           "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           "category":"document_actions",

@@ -1,8 +1,9 @@
-#Thu Jun 10 06:44:31 CEST 2010
+#Thu Jul 15 08:35:44 CEST 2010
 eclipse.preferences.version=1
 encoding//Extensions/Install.py=utf-8
 encoding/Fedora2DiPP2Tool.py=utf-8
 encoding/Fedora2DiPP3Tool.py=utf-8
+encoding/FedoraArticle.py=utf-8
 encoding/FedoraDocument.py=utf-8
 encoding/FedoraHierarchie.py=utf-8
 encoding/FedoraMultimedia.py=utf-8

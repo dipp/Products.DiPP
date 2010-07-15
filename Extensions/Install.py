@@ -446,8 +446,18 @@ def install_types(self, out, site_id=SITE_NAME):
 
     pai = getToolByName(site, 'portal_actionicons')
     
-    pai.updateActionIcon('plone', 'citation', 'citation_icon.png', 'Citation and Metadata', 0)
-    pai.updateActionIcon('plone', 'fulltextpdf', 'pdf_icon.png', 'Get Fulltext as PDF', 0)
+    action_icons = (
+        ('plone', 'citation', 'citation_icon.gif', 'Citation and Metadata', 0),
+    )
+    for category, action_id, icon_url, title, priority in action_icons:
+        try:
+            pai.addActionIcon(category, action_id, icon_url, title, priority)
+        except:
+            print >> out, "Action icon already exists"
+    
+        
+    # pai.manage_addActionIcon('plone', 'citation', 'citation_icon.gif', 'Citation and Metadata', 0, None)
+    # pai.manage_addActionIcon('plone', 'fulltextpdf', 'pdf_icon.png', 'Get Fulltext as PDF', 0, None)
 
 
 def install_configlet(self,out):
