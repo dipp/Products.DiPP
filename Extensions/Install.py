@@ -448,12 +448,13 @@ def install_types(self, out, site_id=SITE_NAME):
     
     action_icons = (
         ('plone', 'citation', 'citation_icon.gif', 'Citation and Metadata', 0),
+        ('plone', 'fulltextpdf', 'pdf_icon.gif', 'Fulltext PDF', 0),
     )
     for category, action_id, icon_url, title, priority in action_icons:
         try:
             pai.addActionIcon(category, action_id, icon_url, title, priority)
         except:
-            print >> out, "Action icon already exists"
+            print >> out, "Action icon for %s already exists" % action_id
     
         
     # pai.manage_addActionIcon('plone', 'citation', 'citation_icon.gif', 'Citation and Metadata', 0, None)

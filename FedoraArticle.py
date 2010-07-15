@@ -171,6 +171,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           "category":"document_actions",
           },
+        { "id": "fulltextpdf",
+          "name": "Get the fulltext as pdf.",
+          "action": "python:object.getFulltextPdf()",
+          "condition": "python:object.getFulltextPdf()",
+          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
+          "category":"document_actions",
+          },
     )
     
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
@@ -225,6 +232,24 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 pass
         
         return articles
+
+
+    def getFulltextPdf(self):
+        """return the first listed pdf file which is declared als alternative format
+        if not found, return none. this is used by the document action for the pdf icon
+        """
+        path = '/'.join(self.getPhysicalPath())
+        result = self.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='alternative_format', sort_on='getObjPositionInParent')
+        x = []
+        for item in result:
+            obj = item.getObject()
+            mimetype = obj.get_content_type()
+            if mimetype == 'application/pdf':
+                x.append(item)
+        if len(x) > 0:
+            return x[0].getURL()
+        else:
+            return False
          
 
         
