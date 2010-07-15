@@ -11,9 +11,19 @@
             Document actions (print, sendto etc)
         </div>
         
-        <h1  class="documentFirstHeading">
-          Metadaten
+        <h1 class="documentFirstHeading"
+            i18n:translate="citation_and_metadata"
+            i18n:domain="dipp">
+          Citation and Metadata
         </h1>
+        
+        <div class="documentByLine">
+            <a href="#"
+               i18n:translate="back_to_article"
+               i18n:domain="dipp"
+               tal:attributes="href string:${here/absolute_url};">
+               back to the article</a>
+        </div>
 
 
         <tal:block tal:define="citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
