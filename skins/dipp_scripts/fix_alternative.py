@@ -32,9 +32,13 @@ for article in articles:
     result = self.portal_catalog(Type='Fedora Multimedia', path=path, sort_on='getObjPositionInParent')
     
     for item in result:
+        fixme = False
         obj = item.getObject()
         mimetype = obj.get_content_type()
         type = obj.getMMType()
-        if mimetype == 'application/pdf':
-            print "  -", obj.id, type
+        extension = obj.id.split('.')[-1]
+        # extension = 'dd'
+        if mimetype == 'application/pdf' or extension == 'pdf':
+            fixme = True 
+            print "  -", obj.id, type, extension, fixme
 return printed
