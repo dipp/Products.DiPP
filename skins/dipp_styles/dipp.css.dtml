@@ -101,6 +101,15 @@ dl#authors-by-initial ol li{
     margin: 0;
 }
 
+
+/* DiPP portlets */
+#portlet-search #portal-searchbox {
+    float: none;
+    margin: 0;
+}
+#portlet-search #portal-searchbox #searchGadget {
+    width: 100px;
+}
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
