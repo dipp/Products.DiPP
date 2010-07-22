@@ -42,7 +42,7 @@
            		<tal:block tal:repeat="author authors_by_initial">
            			<li>
                         <a tal:content="author"
-                           tal:attributes="href string:$portal_url/publication_list?contributor=$author">
+                           tal:attributes="href string:$portal_url/author?contributor=$author">
                         Adams, Douglas</a>
                     </li>
            		</tal:block>

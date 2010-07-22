@@ -10,7 +10,7 @@
                 <li tal:repeat="author authors">
                 <a tal:define="firstname python: author.split(',')[-1];
                                lastname python: author.split(',')[0]"
-                   tal:attributes="href string: $portal_url/publication_list?contributor=$author" 
+                   tal:attributes="href string: $portal_url/author?contributor=$author" 
                       tal:content="string: $firstname $lastname">John Doe</a><span tal:condition="not: repeat/author/end"
                       tal:replace="string:,"/>
                 </li>
