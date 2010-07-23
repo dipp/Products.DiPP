@@ -15,6 +15,12 @@ Installation
 
 Changes
 
+    DiPP 2.4.4 (2010-07-23)
+
+        * icons for metadata/citation and fulltext pdf as document_action implemented
+
+        * author page: in a case a contributor also has an account, the profile is shown
+
 	DiPP 2.4.3 (2010-07-12)
 		
 		* new alphabetic list of authors, grouped by initial
