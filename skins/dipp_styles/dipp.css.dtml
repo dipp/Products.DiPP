@@ -110,6 +110,27 @@ dl#authors-by-initial ol li{
 #portlet-search #portal-searchbox #searchGadget {
     width: 100px;
 }
+
+/* worklist */
+.worklist th {
+    white-space: nowrap;
+}
+.worklist tbody tr:hover {
+    background-color: &dtml-evenRowBackgroundColor;
+}
+
+.worklist td {
+    vertical-align: top;
+}
+
+.worklist ul.actions  {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.worklist ul.actions  li {
+    white-space: nowrap;
+}
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
