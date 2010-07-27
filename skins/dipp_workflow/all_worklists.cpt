@@ -72,44 +72,67 @@
 
 
 <div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time');
-                 ip python:here.instance_pids(here)">
-    <tal:block tal:replace="ip"/>
+                 article_pids python:here.article_pids(here)">
 
     <table id="sortable" cellpadding="2" cellspacing="0" border="0"
-           width="100%" class="listing" tal:condition="workitems">
+           width="100%" class="listing worklist" tal:condition="workitems">
     <thead>
         <tr valign="top" align="left" bgcolor="#cccccc" class="headings" >
-            <th class="" style="white-space: nowrap;" i18n:translate="deadline">Frist</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="uploaded">Hochgeladen</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="actor">Bearbeiter</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="author">Autor</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="title">Titel des Artikels</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="issue">Ausgabe</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="next_step">nächster Schritt</th>
-            <th class="" style="white-space: nowrap;" i18n:translate="actions">Actions</th>
+            <th i18n:translate=""><abbr title="Persistent Identifier">PID</abbr></th>
+            <th>
+                <span i18n:translate="uploaded">Hochgeladen</span>(<span i18n:translate="deadline">Frist</span>)
+            </th>
+            <th i18n:translate="actor">Bearbeiter</th>
+            <th i18n:translate="author">Autor</th>
+            <th i18n:translate="title">Titel des Artikels</th>
+            <th i18n:translate="issue">Ausgabe</th>
+            <th i18n:translate="next_step">nächster Schritt</th>
+            <th i18n:translate="actions">Actions</th>
           </tr>
     </thead>
     <tbody>
     <tal:block tal:repeat="workitem workitems">
-        <tal:block define="wi workitem/getObject;
+        <tal:block define="oddrow repeat/workitem/odd;
+                           wi workitem/getObject;
                            time python: wi.event_log[0]['time'];
+                           PID wi/PID|nothing;
+                           wtitle python: wi.title or '%s-%s'%(wi.instance_id,wi.id);
+                           article_url python:article_pids.get(PID,None);
                            action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
                            condition="action">
-        <tr tal:attributes="class python:test(path('repeat/workitem/even'), 'even', 'odd')">
+        <tr>
             <td>
-                <span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
+                <a href='' 
+                   tal:attributes="href string:$portal_url/history?instance_id=${wi/instance_id};
+                                   title string: History of workitem $wtitle"
+                   title="Workitem history"
+                   tal:content="PID">dipp:1234</a>
+            </td>
+            <td>
+			    <span tal:content="python: time.strftime(site_properties.localLongTimeFormat)">2008-01-01</span><br />
+                (<span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
                     <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
                                   tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
                                   tal:attributes="class delay/class"
-                                  tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
+                                  tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>)
             </td>
-			<td tal:content="python: time.strftime(site_properties.localLongTimeFormat)">2008-01-01</td>
             <td tal:content="string: ${wi/actor}">Actor</td>
             <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
-            <td><a href='' tal:attributes="href string:$portal_url/history?instance_id=${wi/instance_id}" tal:content="string: ${wi/titel}">Der Herr der Ringe</a></td>
-            <td><span tal:content="string: ${wi/hierarchie}">2001/1</span><br />
-            <span tal:content="string: (${wi/PID})">dipp:1234</span></td>
-            <td><abbr tal:content="wi/activity_id" tal:attributes="title python: wi.title or '%s-%s'%(wi.instance_id,wi.id)" i18n:translate=""></abbr></td>
+            <td>
+                <span tal:content="string: ${wi/titel}">Der Herr der Ringe</span>
+            </td>
+            <td>
+                <em tal:condition="not:article_url" 
+                    tal:content="string: no article with PID $PID">
+                   no article with this PID</em>
+                <a tal:condition="article_url"
+                   href=''
+                   tal:attributes="href article_url"
+                   tal:content="string: ${wi/hierarchie}">2010/7</a>
+            
+            <td>
+                <span tal:replace="wi/activity_id" >initialize</span>
+            </td>
             <td>
                 <ul class="actions">
                     <tal:block repeat="action_name python:action.keys()">
