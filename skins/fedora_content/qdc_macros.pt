@@ -7,7 +7,7 @@
         <div metal:define-macro="language"
              class="field"
              tal:define="error errors/language|nothing;
-                         languages python:qdc['language']"
+                         languages request/language|python:qdc['language']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
 
@@ -17,21 +17,13 @@
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             <select name="language:list">
-                <option i18n:translate="">---Sprache---</option>
+                <option i18n:translate="" value="">---Sprache---</option>
                 <tal:block tal:repeat="language available_languages">
                     <option tal:attributes="value language;
                                             selected python: language in languages"
                             tal:content="python:all_languages[language]">ger</option> 
                 </tal:block>
             </select>
-            <!--
-            <tal:block tal:repeat="language languages">
-                <tal:block tal:define="i repeat/language/index">
-                    <div tal:content="structure python:here.langList('language:list',here.test('language',language, i))">
-                    </div>
-                </tal:block>
-            </tal:block>
-            -->
         </div>
 
         <!-- ISSN -->
@@ -230,7 +222,7 @@
                     </td>
                     <td>
                         <select name="alternative.lang:records">
-                            <option i18n:translate="">---Sprache---</option>
+                            <option i18n:translate="" value="">---Sprache---</option>
                             <tal:block tal:repeat="language available_languages">
                                 <option tal:attributes="value language;
                                                         selected python: language == alternative['lang']"
@@ -291,6 +283,7 @@
                     </td>
                     <td>
                         <select name="DCTermsAbstract.lang:records">
+                            <option i18n:translate="" value="">---Sprache---</option>
                             <tal:block tal:repeat="language available_languages">
                                 <option tal:attributes="value language;
                                                         selected python: language == abstract['lang']"
