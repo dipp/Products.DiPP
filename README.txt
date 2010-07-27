@@ -18,42 +18,34 @@ Changes
     DiPP 2.4.4 (2010-07-23)
 
         * icons for metadata/citation and fulltext pdf as document_action implemented
-
         * author page: in a case a contributor also has an account, the profile is shown
 
-	DiPP 2.4.3 (2010-07-12)
+    DiPP 2.4.3 (2010-07-12)
 		
 		* new alphabetic list of authors, grouped by initial
-		
 		* cleanup and minor bugfixes
 	
-	DiPP 2.4.2 (2010-06-30)
+    DiPP 2.4.2 (2010-06-30)
 	
 		* Bugfixes: corrected use of volume/issue in COinS
-		 
 		
     DiPP 2.4.1 (2010-06-29)
 
         * COinS/Zotero support added, requires python module openurl
-
         * worklist: show PID of the article, user 'dippadm' can now
           easily delete workitems from the list. 
-
         * nicer abstract_view
 	
-	DiPP 2.4 (2010-06-22)
+    DiPP 2.4 (2010-06-22)
 	
 		* include the tools PloneFedora2DiPP2 and PloneFedora2DiPP3 replacing
 		  two seperate products. PloneFedora2DiPP3 is automatically installed
-		
 		* finally removing root properties GAP_CONTAINER and label. These are
 		  replaces by PID and label configurable directly in the fedora tool
-		  
 		* Editing of FedoraDocuments simplified, less templates needed
-		
 		* FedoraMultimedia fetches content/datastream directly from fedora, not
 		  via webservice, to improve performance
 		  
-	DiPP 2.3.6 (2010-05-27)
+    DiPP 2.3.6 (2010-05-27)
 	
 	    * TextIndexNG3 used to index PDFs (requires reindexing of portal_catalog)
