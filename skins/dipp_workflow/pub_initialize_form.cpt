@@ -151,6 +151,7 @@
                <select size="5" name="isChildOf">
                <tal:block tal:repeat="issue issues">
                      <option tal:attributes="value issue/getPID;
+                                             title issue/getURL;
                                              selected python: issue.getPID == isChildOf"
                              tal:content="issue/Title"> Issue 34 </option>
                </tal:block>
