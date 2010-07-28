@@ -114,7 +114,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         DsID = self.DsID
         MIMEType = self.get_content_type()
         if PID and DsID and MIMEType == "application/pdf": 
-            data =  fedora.accessMultiMedia(PID,DsID,None)
+            data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
             stream = data['stream']
             MIMEType =data['MIMEType']
             LOG ('DIPP', INFO, "Fetching %s/%s for indexing." % (PID, DsID))
