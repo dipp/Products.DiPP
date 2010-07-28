@@ -16,7 +16,7 @@ Installation
 
 Changes
     
-    DiPP 2.4.5 (2010-07-27)
+    DiPP 2.4.5 (2010-07-28)
 
         * worklist makes ist easer to spot workitems which can be deleted because the
           items articleobject has been deleted. Needs the PID to be catalogued. Using with
