@@ -15,7 +15,11 @@ Installation
 	can not be uploaded. 
 
 Changes
+
+    DiPP 2.4.6 (2010-07-28)
     
+        * direct access to fedora bypassing the webservice also for indexing pdf 
+        
     DiPP 2.4.5 (2010-07-28)
 
         * worklist makes ist easer to spot workitems which can be deleted because the
