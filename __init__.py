@@ -20,13 +20,17 @@ def initialize(context):
     import EditorialToolboxTool
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
+    import BibTool
 
 
 
     content_types, constructors, ftis = process_types(
         listTypes(PROJECTNAME), PROJECTNAME)
     
-    tools = (Fedora2DiPP3Tool.Fedora, Fedora2DiPP2Tool.Fedora, EditorialToolboxTool.toolbox,)
+    tools = (Fedora2DiPP3Tool.Fedora,
+             Fedora2DiPP2Tool.Fedora,
+             EditorialToolboxTool.toolbox,
+             BibTool.BibTool)
     utils.ToolInit(PROJECTNAME + ' Tools',
         tools = tools,
         icon = 'dipptool.gif'
