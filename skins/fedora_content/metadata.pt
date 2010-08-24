@@ -49,10 +49,27 @@
                 <h2>Recommended Citation</h2>
                 <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period, comma_separated)"></span>
             </div>
+
+            <h2>Bibtex</h2>
+            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'bib')">
+            @Artikel{
+            }
+            </pre>
             
+            <h2>Endnote</h2>
+            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'end')">
+            @Artikel{
+            }
+            </pre>
             
-            <h2>BibTeX</h2>
-            <pre tal:content="python: here.bibtex(qdc)">
+            <h2>RIS</h2>
+            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'ris')">
+            @Artikel{
+            }
+            </pre>
+
+            <h2>MODS</h2>
+            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'xml')">
             @Artikel{
             }
             </pre>
