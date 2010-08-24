@@ -127,6 +127,28 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
+        IntegerField('startpage',
+            required=0,
+            widget=StringWidget(
+                label='First page',
+                label_msgid='label_startpage_field',
+                description='The first page of the article.',
+                description_msgid='help_startpage_field',
+                visible={'edit':'visible','view':'visible'}
+            ),
+            schemata='Bibliographic Data'
+        ), 
+        IntegerField('endpage',
+            required=0,
+            widget=StringWidget(
+                label='Last page',
+                label_msgid='label_endpage_field',
+                description='The last page of the article.',
+                description_msgid='help_endpage_field',
+                visible={'edit':'visible','view':'visible'}
+            ),
+            schemata='Bibliographic Data'
+        ), 
         LinesField('AvailableAbstracts',
             required=0,
             widget=LinesWidget(
