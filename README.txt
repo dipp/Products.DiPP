@@ -16,6 +16,11 @@ Installation
 
 Changes
 
+    DiPP 2.4.8 (2010-08-25)
+
+		* show metadata/citation as tabs to make the page more compact
+		* citation downloadable for better integration with Endnote, Zotero,... 
+		
     DiPP 2.4.7 (2010-08-24)
     	
     	* citation formats with bibutils: Endnote, Bibtex,...
