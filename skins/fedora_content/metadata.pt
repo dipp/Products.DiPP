@@ -49,30 +49,31 @@
                 <h2>Recommended Citation</h2>
                 <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period, comma_separated)"></span>
             </div>
+        
+        
+            <script type="text/javascript" src="tabber.js">
+            </script>
 
-            <h2>Bibtex</h2>
-            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'bib')">
-            @Artikel{
-            }
-            </pre>
-            
-            <h2>Endnote</h2>
-            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'end')">
-            @Artikel{
-            }
-            </pre>
-            
-            <h2>RIS</h2>
-            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'ris')">
-            @Artikel{
-            }
-            </pre>
-
-            <h2>MODS</h2>
-            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, 'xml')">
-            @Artikel{
-            }
-            </pre>
+            <h2>Download Citation</h2>
+            <div class="citation">
+            <div class="tabber">
+                <div class="tabbertab"
+                     tal:attributes="title python:format[0]"
+                     tal:repeat="format here/bibtool/formats">
+                     
+                    <h3 tal:content="python:format[0]">Endnote</h3>
+                    <pre tal:content="python: here.bibtool.convert(qdc, here.PID, format[1])">
+                    @Artikel{
+                    }
+                    </pre>
+                    <form method="post" action="citation">
+                        <input type="hidden" name="target_format" value="" tal:attributes="value python: format[1]" />
+                        <input type="hidden" name="PID" value="" tal:attributes="value here/PID" />
+                        <input type="submit" value="Download citation" />
+                    </form>
+                </div>
+            </div>
+            </div>
 
             <h2>Full Metadata</h2>
         
