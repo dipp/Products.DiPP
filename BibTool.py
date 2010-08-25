@@ -29,6 +29,18 @@ class BibTool(UniqueObject, SimpleItem):
     title = 'convert metadaformats'
     toolicon = 'skins/dipp_images/fedora.png'
     security = ClassSecurityInfo()
+
+    def formats(self):
+        """return a list of available Citation formats. Bibutils support more,
+           but not the bibliograph.core Python module. 
+        """
+        formats = (
+            ("Endnote","end"),
+            ("Bibtex","bib"),
+            ("Reference Manger","ris"),
+            ("MESH","xml")
+        )
+        return formats
    
     def indent(self, elem, level=0):
         """Pretty printing of the mods xml format"""
@@ -133,7 +145,7 @@ class BibTool(UniqueObject, SimpleItem):
 
         
         # identifier
-        id = ":".join((qdc['creatorPerson'][0]["lastName"],year))
+        id = qdc['creatorPerson'][0]["lastName"].lower() + str(year)
         if ISSN:
             issn = SubElement(mods, "identifier", type="issn")
             issn.text = ISSN
