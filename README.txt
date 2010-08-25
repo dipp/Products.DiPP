@@ -16,6 +16,12 @@ Installation
 
 Changes
 
+    DiPP 2.4.7 (2010-08-24)
+    	
+    	* citation formats with bibutils: Endnote, Bibtex,...
+    	* bibutils needs to be installed and in the path
+    	* bibliograph python modules are required
+
     DiPP 2.4.6 (2010-07-28)
     
         * direct access to fedora bypassing the webservice also for indexing pdf 

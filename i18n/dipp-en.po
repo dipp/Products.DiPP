@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2010-06-29 16:25+0100\n"
+"PO-Revision-Date: 2010-08-25 09:55+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -563,4 +563,16 @@ msgstr "Back to the article."
 
 msgid "abstracts"
 msgstr "Abstracts"
+
+msgid "label_startpage_field"
+msgstr "First page"
+
+msgid "help_startpage_field"
+msgstr "Start page of the pdf version of the article."
+
+msgid "label_endpage_field"
+msgstr "Last page"
+
+msgid "help_endpage_field"
+msgstr "End page of the pdf version of the article."
 
