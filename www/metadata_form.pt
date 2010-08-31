@@ -1,0 +1,46 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>Metadata</h3>
+<tal:block tal:replace="structure python:here.fedora.metadata" />
+<form action="manage_save_metadata" 
+      tal:attributes="action python:here.absolute_url()+'/manage_save_metadata'"
+      method="POST">
+    <table cellspacing="0">
+        <tr class="list-header">
+            <th>Metadate</th>
+            <th>visible</th>
+            <th>required</th>
+            <th>default</th>
+        </tr>
+        <tr tal:repeat="metadata python:here.fedora.getQualifiedDCMetadata(PID=None).keys()"
+            tal:attributes="class python:test(path('repeat/metadata/even'), 'row-hilite', 'row-normal')">
+            <td tal:content="metadata">
+            </td>
+            <td>
+                <input type="checkbox"
+                       value="1"
+                       name=""
+                       tal:attributes="name string:${metadata}.visible:boolean:record;
+                                       checked python:here.fedora.metadata[metadata].get('visible',None)">
+            </td>
+            <td>
+                <input type="checkbox"
+                       value="1"
+                       name=""
+                       tal:attributes="name string:${metadata}.required:boolean:record;
+                                       checked python:here.fedora.metadata[metadata].get('required',None)"/>
+            </td>
+            <td>
+                <input type="text"
+                       value=""
+                       name=""
+                       tal:attributes="name string:${metadata}.default:string:record;
+                                       value python:here.fedora.metadata[metadata].get('default',None)">
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="save">
+</form>
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>

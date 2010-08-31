@@ -59,6 +59,16 @@ LANGUAGES = {
     'hun':'Magyar'
 }
 
+# format: medatata, visible, required, default
+# all not listed metadata are True, True, ""
+DEFAULT_METADATA = (
+    ('docType', True, True, 'text'),
+    ('pubType', True, True, 'article'),
+    ('alternative', True, False, ''),
+    ('DCTermsAbstract', True, False, ''),
+    ('creatorCorporated',True, False, ''),
+    ('contributor', True, False, '') 
+)
 
 TOOLS = (
     ('EditorialToolbox','Fedora2DiPP3','BibTool')

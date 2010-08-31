@@ -14,7 +14,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from config import view_permission, LANGUAGES
+from config import view_permission, LANGUAGES, DEFAULT_METADATA
 from backissues import import_backissues
 from DateTime import DateTime
 from time import mktime, strptime, strftime
@@ -66,6 +66,9 @@ class Fedora(UniqueObject, SimpleItem):
     
     manage_maintenance_form = PageTemplateFile('www/maintenance_form.pt', globals())
     security.declareProtected(view_permission, 'manage_maintenance_form')
+    
+    manage_metadata_form = PageTemplateFile('www/metadata_form.pt', globals())
+    security.declareProtected(view_permission, 'manage_metadata_form')
                 
                 
     
@@ -75,6 +78,9 @@ class Fedora(UniqueObject, SimpleItem):
                       {'label':'Configure',
                        'action':'manage_config_form',
                        'help':('PloneFedora2', 'search.stx')},
+                      {'label':'Metadata',
+                       'action':'manage_metadata_form',
+                       'help':('PloneFedora2', 'metadata.stx')},
                       {'label':'Maintenance',
                        'action':'manage_maintenance_form',
                        'help':('PloneFedora2', 'search.stx')},
@@ -88,6 +94,14 @@ class Fedora(UniqueObject, SimpleItem):
         self.label = "" 
         self.address = "127.0.0.1"
         self.port = "9280"
+        self.metadata = {}
+        for metadata in self.getQualifiedDCMetadata(PID=None).keys():
+            self.metadata[metadata] = {'required':True,'visible':True,'default':''}
+        
+        for metadate, visible, required, default in DEFAULT_METADATA:
+            self.metadata[metadate]['visible'] = visible
+            self.metadata[metadate]['required'] = required
+            self.metadata[metadate]['default'] = default
         
     security.declareProtected(ManagePortal, 'manage_setFedoraSettings')
     def manage_setFedoraSettings(self, PID, label, address, port, REQUEST):
@@ -98,6 +112,22 @@ class Fedora(UniqueObject, SimpleItem):
         self.port = port
         manage_tabs_message = "Saved"
         return self.manage_config_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
+    
+    security.declareProtected(ManagePortal, 'manage_save_metadata')
+    def manage_save_metadata(self, REQUEST):
+        """save default metadata as attributes of the fedora tool"""
+        for metadata in self.getQualifiedDCMetadata(PID=None).keys():
+            metadata_form_dict = REQUEST.form.get(metadata, None)
+            metadata_to_save = (('required',False), ('visible',False), ( 'default',''))
+            for key, value in metadata_to_save:
+                new_value = metadata_form_dict.get(key,value)
+                old_value = self.metadata[metadata][key]
+                if new_value != old_value:
+                    self.metadata[metadata][key] = new_value
+                    LOG('DIPP', INFO, "Modified: %s: changed %s from %s  to %s" % (metadata, str(key), str(old_value), str(new_value)))
+        manage_tabs_message = "Saved Metadata"
+        return self.manage_metadata_form(REQUEST, management_view='Metadata', manage_tabs_message=manage_tabs_message)
+    
         
     def getFedoraArticles(self):
         """find all FedoraArticles in Plone and return a list of PIDs
