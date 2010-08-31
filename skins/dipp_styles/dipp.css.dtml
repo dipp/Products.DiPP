@@ -103,6 +103,9 @@ dl#authors-by-initial ol li{
 
 
 /* DiPP portlets */
+div.portletContent {
+    padding:0;
+}
 #portlet-search #portal-searchbox {
     float: none;
     margin: 0;
@@ -110,7 +113,9 @@ dl#authors-by-initial ol li{
 #portlet-search #portal-searchbox #searchGadget {
     width: 100px;
 }
-
+#portlet-toc .portletItem dd {
+    margin-left:1em;
+}
 /* worklist */
 .worklist th {
     white-space: nowrap;
