@@ -21,7 +21,7 @@
             </p>
             
             <div tal:repeat="section python: section_dict.keys()">
-                <tal:block tal:define="articles python: here.portal_catalog(path=issue_path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
+                <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':1},portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                            tal:condition="articles"
                            i18n:domain="dipp">
                 <h2 tal:condition="python: section != 'no-section'" tal:content="python: section_dict[section]"></h2>

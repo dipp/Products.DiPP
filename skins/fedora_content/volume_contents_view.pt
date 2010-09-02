@@ -7,7 +7,7 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
              tal:define="path python:'/'.join(here.getPhysicalPath()); 
-                         issues python: here.portal_catalog(path=path,portal_type='FedoraHierarchie', sort_on='getObjPositionInParent')">
+                         issues python: here.portal_catalog(path = {'query':path, 'depth':1}, portal_type='FedoraHierarchie', sort_on='getObjPositionInParent')">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
@@ -28,7 +28,7 @@
     
     
         <p class="discreet"
-             tal:condition="python: issues[0].getPID == here.PID and len(issues) == 1">
+           tal:condition="not: issues">
              This Volume does not contain any issues.
         </p>
         
