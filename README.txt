@@ -16,6 +16,15 @@ Installation
 
 Changes
 
+    DiPP 2.4.9 (2010-09-02)
+    
+    	* beginning support for default metadata and configurable meadata form
+    	  (not complete yet, required removing fedora tool before updating. remember
+    	  to add label and pid again)    	  
+    	* Use of PyRRS2Gen for feeds started
+    	* issues and volume show only content of current navigation level
+    	* fixed minor design flaws
+    	
     DiPP 2.4.8 (2010-08-25)
 
 		* show metadata/citation as tabs to make the page more compact
