@@ -221,56 +221,5 @@ class BibTool(UniqueObject, SimpleItem):
                  pubDate = datetime.datetime(2003, 9, 6, 21, 49)),
             ])
         
-        atom = """<?xml version="1.0" encoding="utf-8"?>
-            <feed xmlns="http://www.w3.org/2005/Atom">
-            
-              <title>Example Feed</title> 
-              <link href="http://example.org/"/>
-              <updated>2003-12-15T18:30:02Z</updated>
-              <id>urn:uuid:40a76c80-d399-11d9-b93C-0003939e0af6</id>
-            
-              <entry>
-                <title>Atom-Powered Robots Run Amok</title>
-                <author> 
-                    <name>John Doe</name>
-                </author> 
-                <contributor> 
-                    <name>Jane Doe</name>
-                </contributor> 
-                <link href="http://example.org/2003/12/13/atom03"/>
-                <id>urn:uuid:1225c695-cfb8-4ebb-a1aaa-80d344efa6a</id>
-                <updated>2003-12-15T18:30:02Z</updated>
-                <summary>Some text.</summary>
-              </entry>
-              <entry>
-                <title>Atom draft-07 snapshot</title>
-                <link rel="alternate" type="text/html" 
-                 href="http://example.org/2005/04/02/atom"/>
-                <link rel="enclosure" type="audio/mpeg" length="1337"
-                 href="http://example.org/audio/ph34r_my_podcast.mp3"/>
-                <id>tag:example.org,2003:3.2397</id>
-                <updated>2010-07-31T12:29:29Z</updated>
-                <published>2003-12-13T08:29:29-04:00</published>
-                <author>
-                  <name>Mark Pilgrim</name>
-                  <uri>http://example.org/</uri>
-                  <email>f8dy@example.com</email>
-                </author>
-                <contributor>
-                  <name>Sam Ruby</name>
-                </contributor>
-                <contributor>
-                  <name>Joe Gregorio</name>
-                </contributor>
-                <content type="xhtml" xml:lang="en" 
-                 xml:base="http://diveintomark.org/">
-                  <div xmlns="http://www.w3.org/1999/xhtml">
-                    <p><i>[Update: The Atom draft is finished.]</i></p>
-                  </div>
-                </content>
-              </entry>
-            
-            </feed>"""
-        return atom
         return feed.to_xml()
         
