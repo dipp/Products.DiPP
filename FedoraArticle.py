@@ -1,18 +1,33 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from config import PROJECTNAME
 from AccessControl import ClassSecurityInfo
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 from zLOG import LOG, ERROR, INFO
+try:
+    from Products.CMFCore.permissions import ManagePortal
+    from Products.CMFCore.permissions import View
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import ManagePortal
+    from Products.CMFCore.CMFCorePermissions import View
 
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+
+    manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
+    security.declareProtected(ManagePortal, 'manage_fedora_form')
+
+    manage_options = ({'label':'Fedora',
+                       'action':'manage_fedora_form',
+                       'help':('DiPP', 'fedora.stx')},
+        ) + OrderedBaseFolder.manage_options
 
     schema = BaseSchema + Schema((
         StringField('PID',

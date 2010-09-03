@@ -1,0 +1,7 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>Fedora</h3>
+
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
