@@ -272,8 +272,7 @@ class Fedora(UniqueObject, SimpleItem):
     def access(self, PID, DsID, Date):
         """return the MIMEType and content of a datastream
         """
-        if Date:
-            Date = eval(Date) 
+
         response = self.fedoraaccess.getDissemination(PID, DsID, Date)
         
         liste = {'MIMEType':response._MIMEType,
