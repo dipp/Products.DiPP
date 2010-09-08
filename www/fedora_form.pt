@@ -2,6 +2,80 @@
 <h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
     tal:replace="structure here/manage_tabs">Tabs</h2>
 
-<h3>Fedora</h3>
+<h2>Fedora</h2>
+
+<p>
+<strong><abbr title="Persistent Identifier">PID</abbr>:</strong> <tal:block tal:replace="python: here.PID"/>
+</p>
+
+<h3>Datastreams</h3>
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%"
+       tal:define="format here/portal_properties/site_properties/localLongTimeFormat">
+    <tr class="list-header">
+        <th align="left">Id</th>
+        <th align="left">Label</th>
+        <th align="left">Created</th>
+        <th align="left">Control Group</th>
+        <th align="left">State</th>
+        <th align="left">Size</th>
+        <th align="left">MIME Type</th>
+    </tr>
+    <tr tal:attributes="class python:test(path('repeat/ds/even'), 'row-hilite', 'row-normal')"
+        tal:repeat="ds python: here.fedora.getDatastreams(here.PID)">
+        <td>
+            <a tal:content="ds/ID"
+               href=""
+               tal:attributes="href string:${here/absolute_url}/manage_fedora_form?DsID=${ds/ID}">RELS-Ext
+            </a>
+        </td>
+        <td tal:content="ds/label"></td>
+        <td tal:content="python: ds['createDate'].strftime(format)"></td>
+        <td tal:content="ds/controlGroup"></td>
+        <td tal:content="ds/state"></td>
+        <td tal:content="ds/size"></td>
+        <td tal:content="ds/MIMEType"></td>
+    </tr>
+</table>
+
+<div tal:define="DsID request/DsID|nothing" tal:condition="not: DsID">
+    <h3>No Datastream selected</h3>
+    <p>
+        Click on a Datastream Id to ist Versions.
+    </p>
+</div>
+<div tal:define="DsID request/DsID|nothing" tal:condition="DsID">
+    <h3>Selected Datastream: <tal:block tal:replace="DsID"/></h3>
+
+    <form tal:define="createDate request/createDate|nothing;
+                      zformat here/portal_properties/site_properties/localLongTimeFormat;
+                      fformat here/portal_properties/dipp_properties/fedora_time_format"
+          tal:attributes="action python:here.absolute_url()+'/manage_fedora_form'"
+          method="post">
+         <input name="DsID"
+                type="hidden" 
+                value=""
+                tal:attributes="value DsID"/>
+         <select name="createDate">
+             <tal:block tal:repeat="version python: here.fedora.getDatastreamHistory(here.PID,DsID)">
+                 <option value=""
+                         tal:define="versionCreateDate python: version['createDate'].strftime(fformat)"
+                         tal:attributes="value versionCreateDate;
+                                         selected python: versionCreateDate == createDate">
+                     <span tal:replace="version/versionID">
+                        DS1.1
+                     </span> &ndash;
+                     <span tal:replace="python: version['createDate'].strftime(zformat)">
+                        2010-05-04
+                     </span>
+                 </option>
+             </tal:block>
+         </select>
+
+         <input type="submit" value="Load"><br />
+         
+         <textarea rows="15" cols="100" tal:content="python: here.fedora.access(here.PID,DsID,createDate)['stream'].strip()"></textarea>
+    </form>
+</div>
 
 <p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
