@@ -16,6 +16,12 @@ Installation
 
 Changes
 
+    DiPP 2.4.10 (2010-09-08)
+    
+    	* ZMI: fedora manage tab for articles. Currently  allows direct read 
+    	  access to datastreams and versions of the xml datastreams (DC, 
+    	  RELS-EXT,...) of the DiPP:article object  
+    	
     DiPP 2.4.9 (2010-09-02)
     
     	* beginning support for default metadata and configurable meadata form
