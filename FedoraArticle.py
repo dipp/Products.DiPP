@@ -40,6 +40,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                     ),
                 index='FieldIndex:brains:schema'
         ),
+        TextField('abstract',
+                widget=TextAreaWidget(
+                    label='Abstract',
+                    visible={'edit':'invisible','view':'invisible'}
+                    ),
+                searchable=True
+        ),
         StringField('article_type',
                 required=0,
                 widget=StringWidget(
@@ -80,7 +87,6 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             index="FieldIndex:brains",
             multiValued=0,
             vocabulary="getPublishedArticles"
-            #vocabulary=('as','asasd')
         ),
         StringField('journal_section',
             widget=SelectionWidget(
@@ -208,6 +214,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           "category":"document_actions",
           },
+          
         { "id": "fulltextpdf",
           "name": "Get the fulltext as pdf.",
           "action": "python:object.getFulltextPdf()",
@@ -248,6 +255,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 if abstract['value'].strip() != '':
                     available_abstracts.append(abstract['lang'])
             self.setAvailableAbstracts(available_abstracts)
+            self.setAbstract(qdc['DCTermsAbstract'][0]['value'].strip())
         else:
             LOG ('DIPP', INFO, "Skipping synchronization of Metadata for temp. article %s at %s" % (self.PID, self.absolute_url() ))
             
