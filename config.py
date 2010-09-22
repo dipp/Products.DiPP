@@ -71,7 +71,7 @@ DEFAULT_METADATA = (
 )
 
 TOOLS = (
-    ('EditorialToolbox','Fedora2DiPP3','BibTool')
+    ('EditorialToolbox','Fedora2DiPP3','BibTool','Feeds')
 )
 
 INDEXES = (
