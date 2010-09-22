@@ -61,9 +61,9 @@ class Feeds(UniqueObject, SimpleItem):
                 title = obj.title,
                 link = article.getURL(),
                 description = obj.getAbstract(),
+                categories = ['Development'],
                 author = obj.Contributors()[0],
-                guid = PyRSS2Gen.Guid("http://www.dalkescientific.com/news/"
-                "030906-PyRSS2Gen.html"),
+                guid = PyRSS2Gen.Guid("http://nbn-resolving.org/urn/resolver.pl?"+obj.PID),
                 pubDate = obj.Date()
             )
             items.append(item)
