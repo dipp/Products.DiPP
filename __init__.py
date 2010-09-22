@@ -13,6 +13,8 @@ from config import *
 def initialize(context):
     ##Import Types to register them
     import FedoraHierarchie
+    import Volume
+    import Issue
     import FedoraArticle
     import FedoraDocument
     import FedoraXML
