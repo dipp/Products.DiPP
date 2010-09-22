@@ -313,6 +313,7 @@ class Fedora(UniqueObject, SimpleItem):
                               'description':response[i]._description,
                               'cModel':response[i]._cModel,
                               'state':response[i]._state,
+                              'publisher':response[i]._publisher,
                               'cDate':response[i]._cDate,
                               'title':title,
                               #'title':response[i]._pid.replace(':','_'),
