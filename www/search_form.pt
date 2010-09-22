@@ -49,17 +49,20 @@
     <tal:block tal:condition="python: field!=None and comparison!=None and value!=None">
         <tal:block  tal:define="results python:here.manage_search(field=field,comparison=comparison,value=value);
                                 PIDs python:here.getFedoraArticles()">
-            <form action="manage_deleteObjectForm" tal:attributes="action python:here.absolute_url()+'/manage_deleteObjectForm'" method="POST">
+            <form action="manage_deleteObjectForm"
+                  tal:attributes="action python:here.absolute_url()+'/manage_deleteObjectForm'"
+                  method="POST"
+                  tal:define="format here/portal_properties/site_properties/localLongTimeFormat">
                 <table border="0" cellpadding="2" cellspacing="0" width="98%">
                     <tr class="list-header">
-                        <th width="16">&nbsp;</th>
-                        <th>PID</th>
-                        <th>state</th>
-                        <th>Plone</th>
-                        <th>cDate</th>
-                        <th>cModel</th>
-                        <th>creator</th>
-                        <th>Title</th>
+                        <th align="left" width="16">&nbsp;</th>
+                        <th align="left">PID</th>
+                        <th align="left">state</th>
+                        <th align="left">publisher</th>
+                        <th align="left">Plone</th>
+                        <th align="left">cDate</th>
+                        <th align="left">cModel</th>
+                        <th align="left">Title</th>
                     </tr>
                     <tal:block tal:repeat="result results">
                         <tr tal:define="PID result/PID;
@@ -70,6 +73,7 @@
                             </td>
                             <td tal:content="PID"></td>
                             <td tal:content="result/state"></td>
+                            <td tal:content="python:result['publisher'][0]"></td>
                             <td>
                                 <span tal:condition="python: PID in PIDs">
                                 yes
@@ -78,10 +82,12 @@
                                 no
                                 </span>
                             </td>
-                            <td tal:content="result/cDate"></td>
+                            <td tal:content="python: result['cDate']"></td>
                             <td tal:content="cModel"></td>
-                            <td tal:content="result/creator"></td>
-                            <td tal:content="result/title"></td>
+                            <td>
+                                <abbr tal:attributes="title string: ${result/creator}: ${result/title}"
+                                      tal:content="python:result['title'][0:40] + '...'"></abbr>
+                            </td>
                         </tr>
                     </tal:block>
                 </table>
