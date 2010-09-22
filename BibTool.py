@@ -13,7 +13,6 @@
 from  elementtree.ElementTree import Element, SubElement
 import elementtree.ElementTree as ET    
 import datetime
-import PyRSS2Gen
 from bibliograph.core.bibutils import _getCommand
 from bibliograph.core.utils import _encode
 from subprocess import Popen, PIPE
@@ -183,43 +182,3 @@ class BibTool(UniqueObject, SimpleItem):
             fe.close()
 
         return result
-    
-    def rss(self):
-        portal_url = getToolByName(self, 'portal_url')
-        portal = portal_url.getPortalObject()
-        title = portal.title
-        description = portal.description
-        
-        feed = PyRSS2Gen.RSS2(
-            title = title,
-            link = portal.absolute_url(),
-            description = description,
-        
-            lastBuildDate = datetime.datetime.now(),
-        
-            items = [
-               # PyRSS2Gen.RSSItem(title, link, description, author, categories, comments, enclosure, guid, pubDate, source)      
-               PyRSS2Gen.RSSItem(
-                 title = "PyRSS2Gen-0.0 released",
-                 link = "http://www.dalkescientific.com/news/030906-PyRSS2Gen.html",
-                 description = "Dalke Scientific today announced PyRSS2Gen-0.0, "
-                               "a library for generating RSS feeds for Python.  ",
-                 author = "Peter Reimer",
-                 guid = PyRSS2Gen.Guid("http://www.dalkescientific.com/news/"
-                                  "030906-PyRSS2Gen.html"),
-                 pubDate = datetime.datetime(2003, 9, 6, 21, 31)),
-               PyRSS2Gen.RSSItem(
-                 title = "Thoughts on RSS feeds for bioinformatics",
-                 link = "http://www.dalkescientific.com/writings/diary/"
-                        "archive/2003/09/06/RSS.html",
-                 description = "One of the reasons I wrote PyRSS2Gen was to "
-                               "experiment with RSS for data collection in "
-                               "bioinformatics.  Last year I came across...",
-                 author = "Quast Andres",
-                 guid = PyRSS2Gen.Guid("http://www.dalkescientific.com/writings/"
-                                       "diary/archive/2003/09/06/RSS.html"),
-                 pubDate = datetime.datetime(2003, 9, 6, 21, 49)),
-            ])
-        
-        return feed.to_xml()
-        
