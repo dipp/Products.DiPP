@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # ...
-# File: Feeds.py
+# File: DiPPFeeds.py
 #
 # German Free Software License (D-FSL)
 #
@@ -20,10 +20,10 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
 class Feeds(UniqueObject, SimpleItem):
-    """ Wrapper for Bibutils """
+    """ Feeds for Articles, Issues,... """
     
-    meta_type = 'Feeds'
-    id = 'feeds'
+    meta_type = 'DiPPFeeds'
+    id = 'dippfeeds'
     title = 'Provide RSS of of articles'
     toolicon = 'skins/dipp_images/fedora.png'
     security = ClassSecurityInfo()
@@ -47,7 +47,7 @@ class Feeds(UniqueObject, SimpleItem):
                 elem.tail = i
    
     
-    def rss(self):
+    def article_feed(self, section=None):
         portal_url = getToolByName(self, 'portal_url')
         portal = portal_url.getPortalObject()
         title = portal.title
@@ -68,8 +68,8 @@ class Feeds(UniqueObject, SimpleItem):
                 categories = ['Development'],
                 author = author,
                 guid = PyRSS2Gen.Guid("http://nbn-resolving.org/urn/resolver.pl?"+obj.PID),
-                #pubDate = obj.Date()
-                pubDate = "2009-09-01T17:03:32Z"
+                pubDate = obj.Date()
+                #pubDate = "2009-09-01T17:03:32Z"
             )
             items.append(item)
             
