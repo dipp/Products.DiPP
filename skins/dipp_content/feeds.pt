@@ -11,7 +11,31 @@
 <body>
 
 <metal:main fill-slot="main">
-<h1>Feeds</h1>
+    <tal:main-macro metal:define-macro="main"
+             tal:define="avtm                 python:here.portal_vocabularies;
+                         journalsections      python:avtm.getVocabularyByName('journal-sections');
+                         section_dict         python:journalsections.getVocabularyDict(journalsections);">
+    
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1 class="documentFirstHeading">
+            Feeds
+        </h1>
+        <ul>
+            <tal:block tal:repeat="section python: section_dict.keys()">
+                <li>
+                    <img src="" tal:attributes="src string:$portal_url/rss.gif" />
+                    <a href=""
+                       tal:attributes="href string:$portal_url/feed/articles/$section"
+                       tal:content="python:section_dict[section]">
+                        all articles
+                    </a>
+                </li>
+            </tal:block>
+        </ul>
+    </tal:main-macro>
 </metal:main>
 
 </body>

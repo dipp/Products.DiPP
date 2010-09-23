@@ -23,7 +23,6 @@ def initialize(context):
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
     import BibTool
-    import DiPPFeeds
 
 
 
@@ -33,8 +32,7 @@ def initialize(context):
     tools = (Fedora2DiPP3Tool.Fedora,
              Fedora2DiPP2Tool.Fedora,
              EditorialToolboxTool.toolbox,
-             BibTool.BibTool,
-             DiPPFeeds.Feeds)
+             BibTool.BibTool)
 
     utils.ToolInit(PROJECTNAME + ' Tools',
         tools = tools,
