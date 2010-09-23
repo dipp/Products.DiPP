@@ -17,7 +17,9 @@ portal_url = getToolByName(self, 'portal_url')
 rss = getToolByName(self, 'feeds')
 portal     = portal_url.getPortalObject()
 
-feeds = request.traverse_subpath
-return rss.rss()
-print feeds
-return printed
+if len(request.traverse_subpath) < 1:
+    msg = "No valid Feed"
+    RESPONSE.redirect('%s/worklist' % context.absolute_url() + '?portal_status_message=' + msg)
+else:
+    return rss.rss()
+

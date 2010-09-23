@@ -57,14 +57,19 @@ class Feeds(UniqueObject, SimpleItem):
         for article in articles:
             obj = article.getObject()            
             # PyRSS2Gen.RSSItem(title, link, description, author, categories, comments, enclosure, guid, pubDate, source)      
+            try:
+                author = obj.Contributors()[0]
+            except:
+                author = None
             item = PyRSS2Gen.RSSItem(
                 title = obj.title,
                 link = article.getURL(),
                 description = obj.getAbstract(),
                 categories = ['Development'],
-                author = obj.Contributors()[0],
+                author = author,
                 guid = PyRSS2Gen.Guid("http://nbn-resolving.org/urn/resolver.pl?"+obj.PID),
-                pubDate = obj.Date()
+                #pubDate = obj.Date()
+                pubDate = "2009-09-01T17:03:32Z"
             )
             items.append(item)
             
