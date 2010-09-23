@@ -14,12 +14,12 @@ request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
-rss = getToolByName(self, 'feeds')
+feed = getToolByName(self, 'dippfeeds')
 portal     = portal_url.getPortalObject()
 
 if len(request.traverse_subpath) < 1:
     msg = "No valid Feed"
     RESPONSE.redirect('%s/worklist' % context.absolute_url() + '?portal_status_message=' + msg)
 else:
-    return rss.rss()
+    return feed.article_feed()
 
