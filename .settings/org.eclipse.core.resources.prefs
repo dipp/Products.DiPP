@@ -1,4 +1,4 @@
-#Wed Sep 22 22:25:05 CEST 2010
+#Thu Sep 23 17:11:35 CEST 2010
 eclipse.preferences.version=1
 encoding//Extensions/Install.py=utf-8
 encoding/BibTool.py=utf-8
@@ -9,5 +9,4 @@ encoding/FedoraArticle.py=utf-8
 encoding/FedoraDocument.py=utf-8
 encoding/FedoraHierarchie.py=utf-8
 encoding/FedoraMultimedia.py=utf-8
-encoding/Feeds.py=utf-8
 encoding/__init__.py=utf-8

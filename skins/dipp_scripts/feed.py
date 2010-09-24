@@ -16,7 +16,6 @@ request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
-feed = getToolByName(self, 'dippfeeds')
 ptool = getToolByName(self, 'portal_properties')
 stool = getToolByName(self, 'portal_syndication')
 catalog = getToolByName(self, 'portal_catalog')
@@ -28,7 +27,8 @@ b_size = stool.getMaxItems()
 if len(request.traverse_subpath) < 1:
     msg = "No valid Feed"
     RESPONSE.redirect('%s/feeds' % context.absolute_url() + '?portal_status_message=' + msg)
-else:
+
+elif request.traverse_subpath[0] == "articles":
 
     articles  = catalog(portal_type='FedoraArticle',sort_on='Date', review_state=['published'])
     email = portal.email_from_address

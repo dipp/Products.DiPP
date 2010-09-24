@@ -49,6 +49,7 @@ input.journalTitle { width: 20em; }
 input.journalVolume { width: 5em; }
 input.journalIssueNumber { width: 5em; }
 input.journalIssueDate { width: 10em; }
+
 .inline li{
     display: inline;
 }
@@ -135,6 +136,18 @@ div.portletContent {
 }
 .worklist ul.actions  li {
     white-space: nowrap;
+}
+
+ul.list-of-feeds {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.list-of-feeds li a{
+	padding-left: 20px;
+	background-image: url(&dtml-portal_url;/rss.gif); 
+    background-repeat: no-repeat; 
+    background-position: 0% 0%;
 }
 /* </dtml-with> */
 
