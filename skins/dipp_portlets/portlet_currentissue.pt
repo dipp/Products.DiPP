@@ -16,7 +16,7 @@
             <span class="portletTopRight"></span>
         </dt>
         <dd class="portletItem"
-            tal:define="issues               python: here.portal_catalog(portal_type='FedoraHierarchie', review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1);
+            tal:define="issues               python: here.portal_catalog(portal_type=('FedoraHierarchie','Issue'), review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1);
                         avtm                 python:here.portal_vocabularies;
                         journalsections      python:avtm.getVocabularyByName('journal-sections');
                         section_dict         python:journalsections.getVocabularyDict(journalsections)">
