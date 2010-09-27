@@ -26,32 +26,36 @@
             description
         </div>
     
-    
-        <p class="discreet"
-           tal:condition="not: issues">
-             This Volume does not contain any issues.
-        </p>
-        
         <p class="discreet"
              tal:condition="not:issues">
              This Volume does not contain any issues.
         </p>
+        
         <div tal:condition="issues">
             <ol class="volume_content">
                 <tal:items tal:repeat="item issues">
                    <li tal:define="oddrow               repeat/item/odd;
+                                   obj                  python: item.getObject();
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
                                    item_pid             item/getPID;
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id     item/pretty_title_or_id;
-                                   item_description     item/Description"
-                       tal:attributes="class python:test(oddrow, 'even', 'odd')"
-                       tal:condition="python:here.PID!=item_pid ">
-                        <strong>    
+                                   item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                   item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                   item_description     item/Description;
+                                   item_has_cover       obj/TitleImage|nothing"
+                       tal:attributes="class python:test(oddrow, 'even', 'odd')" >
+                       
+                       <img tal:condition="item_has_cover"
+                            tal:replace="structure obj/TitleImage_small"/>
+                       
+                       <strong>    
                             <a href="#"
-                               tal:attributes="href item_url;" tal:content="item_title_or_id">
-                             Article title</a>   
+                               tal:attributes="href item_url; 
+                                           class string:$item_wf_state_class"
+                                           tal:content="item_title_or_id">
+                             Issue title</a>   
 
                         </strong>
                         <p tal:content="item_description"></p>
