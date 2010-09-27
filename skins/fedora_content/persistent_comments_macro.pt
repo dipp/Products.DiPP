@@ -2,22 +2,28 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     i18n:domain="DiPP">
     <body>
-
+        <tal:comment>
+            articlePID is defined inthecalling template
+        </tal:comment>
         <div metal:define-macro="persistent_comments"
              i18n:domain="dipp"
-             tal:define="PID python:here.getParentNode().PID;
-                         allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
-                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=PID, sort_on='effective', sort_order='reverse')"
+             tal:define="allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
+                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=articlePID, sort_on='effective', sort_order='reverse')"
              tal:condition="allow_persistent_discussion">
              
             <h2 i18n:translate="heading_comments" id="comments" name="comments">Comments</h2>
             
             <ol tal:condition="results">
-            <tal:block tal:repeat="result results">
-                <li tal:define="obj result/getObject;
+            <tal:block tal:repeat="item results">
+                <li tal:define="obj item/getObject;
                                 contributors obj/Contributors|nothing;
-                                effective result/effective|nothing">
-                    <a tal:content="python: contributors[0]" tal:attributes="href result/getURL"></a> |
+                                effective item/effective|nothing;
+                                item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                item_wf_state_class python:'state-' + normalizeString(item_wf_state)">
+                    <a tal:content="python: contributors[0]"
+                       tal:attributes="href item/getURL;
+                                       class string:$item_wf_state_class">
+                       Max Muster</a> |
                     <span tal:replace="python:toLocalizedTime(effective, long_format=0)">1.1.1970</span>
                 </li>
             </tal:block>

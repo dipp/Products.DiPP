@@ -9,7 +9,8 @@
 
 
 
-        <tal:block tal:define="qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
+        <tal:block tal:define="articlePID here/PID;
+                               qdc python:here.fedora.getQualifiedDCMetadata(articlePID);
                                titles python:qdc['title'];
                                languages python:qdc['language'];
                                urn python:qdc['identifierURN'];
