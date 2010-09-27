@@ -24,7 +24,7 @@
         <div class="coverpicture"
              tal:define="has_cover here/TitleImage|nothing"
              tal:condition="has_cover">
-             <img class="coverpicture" tal:replace="structure here/TitleImage" />
+             <img class="coverpicture" tal:replace="structure here/TitleImage_medium" />
         </div>
         
         <div class="documentDescription"
