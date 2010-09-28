@@ -7,7 +7,7 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
              tal:define="path python:'/'.join(here.getPhysicalPath()); 
-                         issues python: here.portal_catalog(path = {'query':path, 'depth':1}, portal_type=('FedoraHierarchie', 'Issue'), sort_on='getObjPositionInParent')">
+                         issues python: here.portal_catalog(path = {'query':path, 'depth':1}, portal_type=('FedoraHierarchie', 'Issue', 'Volume'), sort_on='getObjPositionInParent')">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
