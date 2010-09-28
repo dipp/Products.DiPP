@@ -16,7 +16,7 @@
                  tal:condition="show_recommended_citation">
                 <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
                 <p>
-                    <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period, comma_separated)"></span>
+                    <span tal:content="structure python: here.bibtool.recommended_citation(articlePID, qdc)"></span>
                     <span class="Z3988" title="" tal:attributes="title python: here.fedora.getopenurl(qdc, journalname_abbr,issn)">&nbsp; </span>
                 </p>
                 <p i18n:translate="text_recommended_citation" i18n:domain="dipp">

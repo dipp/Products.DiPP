@@ -26,7 +26,8 @@
         </div>
 
 
-        <tal:block tal:define="citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
+        <tal:block tal:define="articlePID here/PID;
+                               citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
                                qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
                                titles python:qdc['title'];
                                languages python:qdc['language'];
@@ -47,7 +48,7 @@
 
             <div tal:condition="citation_format">
                 <h2>Recommended Citation</h2>
-                <span tal:content="structure python: here.make_citation(here, qdc, citation_format, initials_only, initials_period, comma_separated)"></span>
+                <span tal:content="structure python: here.bibtool.recommended_citation(articlePID, qdc)"></span>
             </div>
         
         
