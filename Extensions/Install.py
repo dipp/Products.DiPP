@@ -307,12 +307,6 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     for group in groups:
         site.portal_groups.addGroup(group,(),())
         
-    #groupstool=site.portal_groups
-    #groupstool.editGroup('Herausgeber', roles=('Herausgeber',), groups=())
-    #groupstool.editGroup('Redakteure', roles=('Redakteur',), groups=())
-    #groupstool.editGroup('Autoren', roles=('Autor',), groups=())
-    #groupstool.editGroup('Gastherausgeber', roles=('Gastherausgeber',), groups=())
-    #groupstool.editGroup('Manager', roles=('Manager',), groups=())
     print >> out, "Set roles to groups"
     
 
@@ -322,6 +316,24 @@ def configure_workflow(self, out, site_id=SITE_NAME):
                 id = 'Submit',
                 name = 'Submit',
                 action = 'string: ${portal_url}/submitemail_form',
+                condition = '',
+                permission = '',
+                category = 'portal_tabs',
+                visible = 1)
+                
+    portal_actions.addAction(
+                id = 'authors',
+                name = 'Authors',
+                action = 'string: ${portal_url}/authors',
+                condition = '',
+                permission = '',
+                category = 'portal_tabs',
+                visible = 1)
+
+    portal_actions.addAction(
+                id = 'currentissue',
+                name = 'Current issue',
+                action = 'string: ${portal_url}/currentissue',
                 condition = '',
                 permission = '',
                 category = 'portal_tabs',

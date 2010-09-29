@@ -1,4 +1,4 @@
-## Script (Python) "checkForNewPIDs"
+## Script (Python) "setArticleTitle"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
