@@ -17,6 +17,8 @@
         </dt>
         <dd class="portletItem"
             tal:define="issues               python: here.portal_catalog(portal_type=('FedoraHierarchie','Issue'), review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1);
+                        articles_in_portlet  here/portal_properties/dipp_properties/articles_in_portlet|nothing; 
+                        authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
                         avtm                 python:here.portal_vocabularies;
                         journalsections      python:avtm.getVocabularyByName('journal-sections');
                         section_dict         python:journalsections.getVocabularyDict(journalsections)">
@@ -25,29 +27,41 @@
             </em>
             <tal:block tal:condition="issues">
                 <div tal:define="issue       python:issues[0].getObject();
+                                 issue_url   issue/absolute_url;
                                  description issue/Description|nothing;
                                  path python:'/'.join(issue.getPhysicalPath())">
                     
                     <div class="coverpicture"
                          tal:define="has_cover issue/TitleImage|nothing"
                          tal:condition="has_cover">
-                         <a href="" tal:attributes="href issue/absolute_url">
+                         <a href="" tal:attributes="href issue_url">
                             <img class="coverpicture" tal:replace="structure issue/TitleImage_medium" />
                          </a>
                     </div>
                     
-                    <h3><a href=""
-                       tal:attributes="href issue/absolute_url"
-                       tal:content="issue/title_or_id"></a></h3>
-                    <div tal:content="description" tal:condition="description">Descriptiontext of this issue</div>
+                    <h3>
+                        <a href=""
+                           tal:attributes="href issue_url"
+                           tal:content="issue/title_or_id">Issue 1</a>
+                    </h3>
+                       
+                    <div tal:content="description"
+                         tal:condition="description">
+                         Descriptiontext of this issue
+                    </div>
+                    
                     <div tal:repeat="section python: section_dict.keys()">
                         <tal:block tal:define="articles python: here.portal_catalog(path=path,portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                                    tal:condition="articles">
-                        <h4 tal:condition="python: section != 'no-section'"
-                            tal:content="python: section_dict[section]">
-                            This is a section title</h4>
+                        <h4 tal:condition="python: section != 'no-section'">
+                            <a href=""
+                               tal:content="python: section_dict[section]"
+                               tal:attributes="href string: $issue_url#$section">
+                                This is a section title</a>
+                        </h4>
 
-                        <ol class="issue_content" >
+                        <ol tal:condition="articles_in_portlet"
+                            class="issue_content" >
                             
                             <tal:items tal:repeat="item articles">
                                <li tal:define="oddrow               repeat/item/odd;
@@ -62,15 +76,17 @@
                                                item_contributors    python:obj.Contributors();
                                                authors              item_contributors"
                                                tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                                    <strong>    
+                                    <h5>    
                                         <a href="#"
                                            tal:attributes="href item_url;" tal:content="item_title_or_id">
                                          Article title</a>
 
-                                    </strong>
-                                    <div metal:use-macro="here/article_authors/macros/article_authors">
-                                        A nicely formatted list of authors
-                                    </div>
+                                    </h5>
+                                    <tal:block tal:condition="authors_in_portlet">
+                                        <div metal:use-macro="here/article_authors/macros/article_authors">
+                                            A nicely formatted list of authors
+                                        </div>
+                                    </tal:block>
                                 </li>
                              </tal:items>
                         </ol>

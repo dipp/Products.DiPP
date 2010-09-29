@@ -33,22 +33,12 @@ def install_properties(self, out, site_id=SITE_NAME):
 
 
     dipp_properties = (
-        ('mysql_host', 'string', 'localhost'),
-        ('mysql_user', 'string', ''),
-        ('mysql_passwd', 'string', ''),
-        ('mysql_table', 'string', ''),
-        ('mysql_db', 'string', 'dipp'),
-        ('deadline_max', 'int', DEADLINE_MAX),
-        ('deadline_default', 'int', DEADLINE_DEFAULT),
         ('deadline_red', 'int', DEADLINE_RED),
         ('deadline_yellow', 'int', DEADLINE_YELLOW),
         ('author_notice_de','text',AUTHOR_NOTICE_DE),
         ('author_notice_en','text',AUTHOR_NOTICE_EN),
         ('fedora_tmp', 'string', 'fedora'),
         ('ISSN', 'string', ''),
-        ('ldap_ou', 'string', ''),
-        ('ldap_server', 'string', ''),
-        ('container_id', 'string', ''),
         ('articleTypes', 'lines', ''),
         ('label', 'string', ''),
         ('rssFeeds', 'lines', ''),
@@ -61,6 +51,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('initials_only', 'boolean', True),
         ('initials_period', 'boolean', False),
         ('comma_separated', 'boolean', False),
+        ('articles_in_portlet','boolean',True),
+        ('authors_in_portlet','boolean',True),
         ('allow_persistent_discussion', 'boolean', False),
         ('issue_show_abstracts', 'boolean', False),
         ('discussion_time', 'int', 0),
@@ -74,7 +66,6 @@ def install_properties(self, out, site_id=SITE_NAME):
     print >> out, "DiPP-Properties installed"
 
     site_properties = (
-        ('repository','/opt/digijournals/repository','string'), 
         ('deadline_max',56,'int') ,
         ('deadline_default',14,'int'), 
         ('deadline_red',3,'int'),
