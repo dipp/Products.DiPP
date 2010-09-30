@@ -13,13 +13,13 @@ request     = container.REQUEST
 RESPONSE    = request.RESPONSE
 
 ftool = getToolByName(context, 'fedora')
-
-items = self.getFolderListingFolderContents(suppressHiddenFiles=1) 
+path ='/'.join(self.getPhysicalPath());
+items = self.portal_catalog(path=path,portal_type=('FedoraArticle','FedoraHierarchie'))
 articles = []
 
 for item in items:
     if item.portal_type == "FedoraArticle":
-        articles.append(item)
+        articles.append(item.getObject())
 
 toc = []
 for article in articles:
