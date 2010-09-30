@@ -18,7 +18,8 @@ MIMEType = REQUEST.form['MIMEType']
 LogMessage = REQUEST.form['LogMessage']
 Label = REQUEST.form['Label']
 Location =  context.absolute_url() + "/getPrivateContent"
-#Location =  context.absolute_url()
+if Location.startswith('https'):
+    Location = Location.replace('https','http',1)
 DsState = "A"
 tempID = ""
 
