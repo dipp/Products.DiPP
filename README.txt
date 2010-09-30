@@ -15,6 +15,16 @@ Installation
 	can not be uploaded. 
 
 Changes
+	
+	DiPP 2.5 (2010-09-30)
+	
+		* New Contenttype Issue and Volume, which are identical with
+		  FedoraHierachie, just another name. Existing Issues/volumes, made with 
+		  FedoraHierachies can be migrated, but don't need to.
+		* feeds include now the abstract, which requires running of the synchronize
+		  script, since the abstract stored in fedora has to be made available in the
+		  FedoraArticle contenttype
+		* Hierarchien, Issues, Volumes linguaplone aware.  
 
     DiPP 2.4.10 (2010-09-08)
     
