@@ -15,11 +15,16 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
 
+from zope.interface import implements, Interface
+from textindexng.interfaces import IIndexableContent
+from textindexng.content import IndexContentCollector as ICC
+
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IIndexableContent)
 
     manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_fedora_form')
@@ -224,6 +229,19 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           },
     )
     
+    def indexableContent(self, fields):
+        """get the binary datastream from fedora and return in to TextIndexNG
+           Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
+           to keep the burdon of fedora when reindexing the portal_catalog
+        """
+        icc = ICC()
+        fedora = getToolByName(self, 'fedora')
+        PID = self.PID
+        for contributor in self.Contributors():
+            LOG ('DIPP', INFO, "Fetching %s for indexing: %s" % (PID, contributor))
+            icc.addContent('SearchableText',unicode(contributor), self.language)
+        return icc
+
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
     def syncMetadata(self):
         """keep Metadata of Plone and Fedora synchron"""
