@@ -49,7 +49,7 @@ DsID = self.DsID
 LOG('DiPP', INFO, "fedoramultimedia_add: %s/%s" % (PID, DsID))
 
 
-Location = self.absolute_url() + "/File"
+Location = self.absolute_url() + "/getPrivateContent"
 if Location.startswith('https'):
     Location = Location.replace('https','http',1)
 

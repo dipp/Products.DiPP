@@ -29,8 +29,6 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                     label='File',
                     description='Multimedia file'
                 ),
-               searchable=1,
-               index='TextIndexNG3:brains'
         ),
         StringField('PID',
                 required=0,
@@ -116,7 +114,6 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         if PID and DsID and MIMEType == "application/pdf": 
             data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
             stream = data['stream']
-            MIMEType =data['MIMEType']
             LOG ('DIPP', INFO, "Fetching %s/%s for indexing." % (PID, DsID))
             icc.addBinary('SearchableText', 
                           stream,

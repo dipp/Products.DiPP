@@ -41,16 +41,19 @@ fedora = getToolByName(self,'fedora')
 fedoraIP = fedora.address
 
 
+context.plone_log ("private Id: %s" % (self.id))
 
 if IP == fedoraIP:
 
     MIMEType = self.content_type
-    type = MIMEType.split('/')[0]
     
     RESPONSE.setHeader('Content-Type', MIMEType)
-    if type in ['application','image']:
-        return self
-    if type in ['text']:
+    if MIMEType in ['application/pdf','image/jpg']:
+        cd = 'attachment; filename=%s' % (id)
+        RESPONSE.setHeader('Content-Disposition', cd)
+        return self.getFile()
+
+    if MIMEType in ['text/html']:
         return self.body
     else:
         print "Unsupported MIME Type"
