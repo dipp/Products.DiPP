@@ -19,40 +19,73 @@ portal_url = getToolByName(self, 'portal_url')
 ptool = getToolByName(self, 'portal_properties')
 stool = getToolByName(self, 'portal_syndication')
 catalog = getToolByName(self, 'portal_catalog')
+avtm = getToolByName(self, 'portal_vocabularies')
 portal     = portal_url.getPortalObject()
 
+limit = stool.getMaxItems()
 
-b_size = stool.getMaxItems()
+journalsections = avtm.getVocabularyByName('journal-sections')
+section_dict = journalsections.getVocabularyDict(journalsections)
+types = ('articles','events')
 
-if len(request.traverse_subpath) < 1:
+try:
+    type = request.traverse_subpath[0]
+except IndexError:
+    type = ""
+
+try:
+    section = request.traverse_subpath[1]
+except IndexError:
+    section = ""
+
+section_name = section_dict.get(section,"All articles")
+
+if len(request.traverse_subpath) == 0 or type not in types:
     msg = "No valid Feed"
     RESPONSE.redirect('%s/feeds' % context.absolute_url() + '?portal_status_message=' + msg)
 
-elif request.traverse_subpath[0] == "articles":
+elif type == "articles":
 
-    articles  = catalog(portal_type='FedoraArticle',sort_on='Date', review_state=['published'])
+    articles  = catalog(
+                    portal_type='FedoraArticle',
+                    review_state=['published'],
+                    getJournal_section=section,
+                    sort_on='Date',
+                    sort_order='reverse',
+                    sort_limit=limit
+                )[:limit]
+
     email = portal.email_from_address
     name = portal.email_from_name
     editor = "%s (%s)" % (email, name) 
+    title = "%s - %s" % (portal.Title(),section_name)
+    description = portal.Description(),
     options = {}
 
     options['channel_info'] = { 'base': '2004-12-13T12:00:00Z',
-                            'description': context.Description(),
+                            'description':description,
                             'frequency': stool.getUpdateFrequency(),
                             'period': stool.getUpdatePeriod(),
-                            'title': context.Title(),
+                            'title': title,
                             'url': context.absolute_url(),
                             'managingEditor':editor}
     items = []
     for article in articles:
         item = article.getObject()
+
+        section = item.getJournal_section()
+        if section != 'no-section':
+            category = section_dict.get(section, None)
+        else:
+            category = None
+            
         items.append( { 'date': item.modified().HTML4(),
                         'listCreators': item.Contributors(),
                         'publisher': item.Publisher(),
                         'rights': item.Rights(),
                         'title': item.Title(),
                         'description': item.getAbstract(),
-                        'category':item.getJournal_section(),
+                        'category':category,
                         'url': item.absolute_url() } )
 
     options['listItemInfos'] = tuple(items)
