@@ -237,9 +237,9 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         icc = ICC()
         fedora = getToolByName(self, 'fedora')
         PID = self.PID
-        for contributor in self.Contributors():
-            LOG ('DIPP', INFO, "Fetching %s for indexing: %s" % (PID, contributor))
-            icc.addContent('SearchableText',unicode(contributor), self.language)
+        authors = ",".join(self.Contributors())
+        LOG ('DIPP', INFO, "Fetching %s for indexing: %s" % (PID, authors))
+        icc.addContent('SearchableText',unicode(authors), self.language)
         return icc
 
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
