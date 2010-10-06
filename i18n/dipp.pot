@@ -571,3 +571,13 @@ msgstr ""
 
 msgid "help_endpage_field"
 msgstr ""
+
+msgid "feeds_description"
+msgstr ""
+
+msgid "feed-articles-by-section"
+msgstr ""
+
+msgid "feed-all-articles"
+msgstr ""
+

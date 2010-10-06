@@ -1,0 +1,47 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="dipp">
+
+<body>
+
+<div metal:define-macro="portlet">
+                 
+
+    <dl class="portlet" id="portlet-feeds">
+        
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span><abbr title="Really Simple Syndication">RSS</abbr>-Feeds</span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem"
+             tal:define="avtm                 python:here.portal_vocabularies;
+                         journalsections      python:avtm.getVocabularyByName('journal-sections');
+                         section_dict         python:journalsections.getVocabularyDict(journalsections);">
+
+            <p i18n:translate="feeds_description">
+            	Subscribe to the individual journal sections to get notified
+            	when new articles are published. 
+            </p>
+            
+	        <ul class="list-of-feeds">
+	            <tal:block tal:repeat="section python: section_dict.keys()">
+	                <li tal:condition="python: section  != 'no-section'">
+	                    <a href=""
+	                       tal:attributes="href string:$portal_url/feed/articles/$section"
+	                       tal:content="python:section_dict[section]">
+	                        all articles
+	                    </a>
+	                </li>
+	            </tal:block>
+	        </ul>
+
+
+        </dd>
+    </dl>
+
+</div>
+
+</body>
+
+</html>

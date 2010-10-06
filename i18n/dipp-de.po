@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2010-08-25 09:53+0100\n"
+"PO-Revision-Date: 2010-10-05 18:22+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
@@ -575,4 +575,13 @@ msgstr "Letzte Seite"
 
 msgid "help_endpage_field"
 msgstr "Letzte Seite des Artikels, falls eine PDF Datei vorliegt."
+
+msgid "feeds_description"
+msgstr "Abonnieren Sie die jeweilige Journalsektion, um über neue Artikel benachrichtigt zu werden."
+
+msgid "feed-articles-by-section"
+msgstr "Artikel einer bestimmten Journalsektion"
+
+msgid "feed-all-articles"
+msgstr "Alle Artikel"
 

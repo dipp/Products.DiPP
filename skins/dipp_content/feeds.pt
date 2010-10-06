@@ -21,22 +21,34 @@
         </div>
         
         <h1 class="documentFirstHeading">
-            Feeds
+            <abbr title="Really Simple Syndicaton">RSS</abbr>-Feeds
         </h1>
         
-        <h2 i18n:translate="feed-all-articles">All articles</h2>
+        <p class="documentDescription"
+           i18n:domain="dipp"
+           i18n:translate="feeds_description">
+        	Subscribe to the individual journal sections to get notified
+        	when new articles are published. 
+        </p>
+
+        <h2 i18n:domain="dipp"
+            i18n:translate="feed-all-articles">
+            All articles</h2>
         
         <ul class="list-of-feeds">
             <li>
                 <a href=""
                    tal:attributes="href string:$portal_url/feed/articles"
-                   i18n:translate="all-articles">
+                   i18n:domain="dipp" 
+                   i18n:translate="feed-all-articles">
                     all articles
                 </a>
-                </li>
+           </li>
         </ul>
         
-        <h2 i18n:translate="feed-articles-by-section">Only articles of a certain section</h2>
+        <h2 i18n:domain="dipp"
+            i18n:translate="feed-articles-by-section">
+            Only articles of an individual section</h2>
         
         <ul class="list-of-feeds">
             <tal:block tal:repeat="section python: section_dict.keys()">
