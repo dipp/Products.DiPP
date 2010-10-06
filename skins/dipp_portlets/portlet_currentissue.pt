@@ -83,13 +83,16 @@
                                                item_section         item/getJournal_section|nothing;
                                                item_abstracts       python:obj.getAvailableAbstracts;
                                                item_contributors    python:obj.Contributors();
+                                               item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                               item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
                                                authors              item_contributors"
                                                tal:attributes="class python:test(oddrow, 'even', 'odd')">
                                     <h5>    
                                         <a href="#"
-                                           tal:attributes="href item_url;" tal:content="item_title_or_id">
+                                           tal:content="item_title_or_id"
+                                           tal:attributes="href item_url;
+                                                   class string:$item_wf_state_class">
                                          Article title</a>
-
                                     </h5>
                                     <tal:block tal:condition="authors_in_portlet">
                                         <div metal:use-macro="here/article_authors/macros/article_authors">
