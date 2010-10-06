@@ -1,3 +1,6 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
 /* styles for the issue content page */
 
 ol.issue_content {
@@ -19,8 +22,62 @@ ol.issue_content li {
     display: inline;
 } 
 */
-/* styles for the splashpage */
 
+/* styles for the mixed_view template */
+#authorblurb {
+    background: &dtml-globalBackgroundColor;;
+    padding: 1em;
+}
+#authorblurb ol.authors {
+    list-style: none;
+    margin:  1em 0 1em 0;
+}
+#authorblurb ol.authors li{
+    margin:  0;
+}
+
+#authorblurb .authorname {
+    font-weight: bold;
+}
+#authorblurb .organization {
+    font-weight: normal;
+    font-style: italic;
+}
+
+#authorblurb h1 {
+    text-decoration: none;
+    border: 0;
+    font-size: 200%;
+}
+#authorblurb h2 {
+    text-decoration: none;
+    border: 0;
+    font-size: 100%;
+    font-weight: bold;
+}
+#authorblurb h2.keywords-label {
+    display: inline;
+}
+#authorblurb ul.keywords {
+    display: inline;
+    margin: 0;
+}
+#authorblurb .keywords li {
+    display: inline;
+}
+
+#authorblurb .keywords li:after {
+    content: ", ";
+}
+#authorblurb .keywords li.last:after {
+    content: "";
+}
+
+div.mixed {
+    margin-top: 2em;
+}
+
+/* styles for the splashpage */
 
 ul.authors {
     list-style: none;
@@ -86,3 +143,4 @@ ul.authors li {
     font-style: italic; 
 }
 
+/* </dtml-with> */
