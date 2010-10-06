@@ -12,6 +12,15 @@
         
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
+            <span class="portletHeaderIcon">
+                <a href=""
+                   tal:attributes="href string:$portal_url/feed/articles">
+                   <img src=""
+                        alt="RSS"
+                        title="Subscribe to feed with all articles"
+                        tal:attributes="src string:$portal_url/rss.gif"/>
+                </a>
+            </span>
             <span i18n:translate="current_issue">Current Issue</span>
             <span class="portletTopRight"></span>
         </dt>
