@@ -117,6 +117,9 @@ div.portletContent {
 #portlet-toc .portletItem dd {
     margin-left:1em;
 }
+.portletHeaderIcon {
+    float: right;
+}
 /* worklist */
 .worklist th {
     white-space: nowrap;
