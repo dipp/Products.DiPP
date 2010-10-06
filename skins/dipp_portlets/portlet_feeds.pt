@@ -34,6 +34,14 @@
 	                    </a>
 	                </li>
 	            </tal:block>
+                <li>
+                    <a href=""
+                       tal:attributes="href string:$portal_url/feed/articles"
+                       i18n:domain="dipp" 
+                       i18n:translate="feed-all-articles">
+                        all articles
+                    </a>
+               </li>
 	        </ul>
 
 
