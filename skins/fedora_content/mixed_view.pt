@@ -53,21 +53,23 @@
             </tal:block>
             </ol>
             
-            <h2 class="abstracts" i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h2>
+            <tal:block tal:condition="python: abstracts[0]['lang']!=''"
+                       tal:define="abstracts python:qdc['DCTermsAbstract']">
+                <h2 class="abstracts" i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h2>
+                <script type="text/javascript" src="tabber.js">
+                </script>
+                <div class="tabber">
+                    <tal:block tal:repeat="abstract abstracts">
+                        <div class="tabbertab"
+                             tal:define="lang python:abstract['lang'];
+                                         title python:lang_dict[lang]"
+                             tal:attributes="title python:'[' + str(title) + ']'">
+                            <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+                        </div>
+                     </tal:block>
+                </div>
+            </tal:block>
 
-            <script type="text/javascript" src="tabber.js">
-            </script>
-            <div class="tabber">
-                <tal:block tal:repeat="abstract python:qdc['DCTermsAbstract']">
-                    <div class="tabbertab"
-                         tal:define="lang python:abstract['lang'];
-                                     title python:lang_dict[lang]"
-                         tal:attributes="title python:'[' + str(title) + ']'">
-                        <p class="dippAbstract" tal:content="python:abstract['value']"></p>
-                    </div>
-                 </tal:block>
-            </div>
-            
             <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
             
             <ul class="keywords">
