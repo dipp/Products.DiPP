@@ -120,7 +120,7 @@
                       id="newId"
                       name="newId"
                       value=""
-                      size="40"
+                      size="20"
                       tal:attributes="value newId"/>
             </div>
 
@@ -128,7 +128,7 @@
             <div class="field"
                tal:define="error errors/isChildOf|nothing;
                            isChildOf request/isChildOf|python:w.isChildOf[0];
-                           issues python: here.portal_catalog(portal_type=('FedoraHierarchie','Issue','Volume'), sort_on='Date', sort_order='reverse')"
+                           issues python: here.portal_catalog(portal_type=('FedoraHierarchie','Issue','Volume'), Language='all', sort_on='Date', sort_order='reverse')"
                tal:attributes="class python:test(error, 'field error', 'field')"
                >
                <label for="isChildOf" i18n:translate="assignment">Zuordnung</label>
@@ -150,10 +150,13 @@
                </div>
                <select size="5" name="isChildOf">
                <tal:block tal:repeat="issue issues">
-                     <option tal:attributes="value issue/getPID;
+                     <option tal:define="lang issue/Language|neutral;
+                                         title issue/Title;
+                                         label python:test(lang=='','neutral',lang)"
+                             tal:attributes="value issue/getPID;
                                              title issue/getURL;
                                              selected python: issue.getPID == isChildOf"
-                             tal:content="issue/Title"> Issue 34 </option>
+                             tal:content="string: $title [$label]"> Issue 34 [en] </option>
                </tal:block>
                </select>
             </div>
