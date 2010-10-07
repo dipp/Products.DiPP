@@ -124,7 +124,7 @@ if activity_id == 'initialize':
         
     moveObjectPID = PID
     sourceObjectPID = workitem.isChildOf[0]
-    folders = container.portal_catalog(portal_type='FedoraHierarchie')
+    folders = container.portal_catalog(portal_type=('FedoraHierarchie','Issue','Volume'), Language='all')
     tempDir = getattr(portal,'tmp')
     cut = tempDir.manage_cutObjects(instance_id)        # ausschneiden
     
