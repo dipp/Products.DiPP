@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-from Products.Archetypes.public import *
+try:
+    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone import utils
+except ImportError:
+    from Products.Archetypes.public import *
+
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from config import PROJECTNAME
@@ -313,7 +318,23 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             return x[0].getURL()
         else:
             return False
-         
+    
+    def linkTranslations(self,PID):
+        articles = self.portal_catalog(Type='Fedora Article', getPID=PID)
+        LOG ('DIPP', INFO, PID)
+        LOG ('DIPP', INFO, len(articles))
+        lang = self.Language()
+        path = self.getPhysicalPath()
+        todo = []
+        translation = [(path,lang)]
+        for article in articles:
+            obj = article.getObject()
+            lang = obj.Language()
+            path = obj.getPhysicalPath()
+            translation.append((path, lang))
+            todo.append(translation)
+        LOG ('DIPP', INFO, todo)
+        #utils.linkTranslations(self,todo)
 
         
     

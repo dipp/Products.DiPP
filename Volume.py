@@ -13,8 +13,12 @@
 
 __author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
 __docformat__ = 'plaintext'
+try:
+    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone import utils
+except ImportError:
+    from Products.Archetypes.public import *
 
-from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
@@ -172,5 +176,21 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
         msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
         LOG ('DIPP', INFO, msg)
         
+    def linkTranslations(self,PID):
+        articles = self.portal_catalog(Type='Volume', getPID=PID)
+        LOG ('DIPP', INFO, PID)
+        LOG ('DIPP', INFO, len(articles))
+        lang = self.Language()
+        path = self.getPhysicalPath()
+        todo = []
+        translation = [(path,lang)]
+        for article in articles:
+            obj = article.getObject()
+            lang = obj.Language()
+            path = obj.getPhysicalPath()
+            translation.append((path, lang))
+            todo.append(translation)
+        LOG ('DIPP', INFO, todo)
+        utils.linkTranslations(self,todo)
     
 registerType(Volume,PROJECTNAME)
