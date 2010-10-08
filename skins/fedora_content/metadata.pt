@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="dipp">
 <body>
 
 <metal:main fill-slot="main">
@@ -47,8 +47,10 @@
                                initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing">
 
             <div tal:condition="citation_format">
-                <h2>Recommended Citation</h2>
-                <span tal:content="structure python: here.bibtool.recommended_citation(articlePID, qdc)"></span>
+                <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
+                <p tal:content="structure python: here.bibtool.recommended_citation(articlePID, qdc)">
+                    Muster, M. Dev Journal, 2005
+                </p>
             </div>
         
         
@@ -56,26 +58,27 @@
             </script>
 
             <h2>Download Citation</h2>
-            <div class="citation">
-            <div class="tabber">
-                <div class="tabbertab"
-                     tal:attributes="title python:format[0]"
-                     tal:repeat="format here/bibtool/formats">
-                     
-                    <h3 tal:content="python:format[0]">Endnote</h3>
-                    <pre tal:content="python: here.bibtool.convert(qdc, here.PID, format[1])">
-                    @Artikel{
-                    }
-                    </pre>
-                    <form method="post" action="citation">
-                        <input type="hidden" name="target_format" value="" tal:attributes="value python: format[1]" />
-                        <input type="hidden" name="PID" value="" tal:attributes="value here/PID" />
-                        <input type="submit" value="Download citation" />
-                    </form>
+            <p>
+                <div class="citation">
+                    <div class="tabber">
+                        <div class="tabbertab"
+                             tal:attributes="title python:format[0]"
+                             tal:repeat="format here/bibtool/formats">
+                             
+                            <h3 tal:content="python:format[0]">Endnote</h3>
+                            <pre tal:content="python: here.bibtool.convert(qdc, here.PID, format[1])">
+                            @Artikel{
+                            }
+                            </pre>
+                            <form method="post" action="citation">
+                                <input type="hidden" name="target_format" value="" tal:attributes="value python: format[1]" />
+                                <input type="hidden" name="PID" value="" tal:attributes="value here/PID" />
+                                <input type="submit" value="Download citation" />
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
-
+            <p>
             <h2>Full Metadata</h2>
         
             <table class="metadata" i18n:domain="qdc">
