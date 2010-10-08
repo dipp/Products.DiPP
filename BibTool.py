@@ -39,6 +39,8 @@ class BibTool(UniqueObject, SimpleItem):
             ("Endnote","end"),
             ("Bibtex","bib"),
             ("Reference Manger","ris"),
+            ("Wordbib","wordbib"),
+            ("ISI","isi"),
             ("Mods","xml")
         )
         return formats
@@ -247,15 +249,16 @@ class BibTool(UniqueObject, SimpleItem):
         mods = self._make_mods(qdc, PID)
         if target_format == 'xml':
             self.indent(mods)
-            xml = ET.tostring(mods)
+            xml = ET.tostring(mods,encoding='utf-8')
             result = xml
         else:
-            xml = ET.tostring(mods)
+            xml = ET.tostring(mods,encoding='utf-8')
             command = _getCommand('xml', target_format)
             p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=PIPE,
                       close_fds=False)
             (fi, fo, fe) = (p.stdin, p.stdout, p.stderr)
-            fi.write(_encode(xml))
+            #fi.write(_encode(xml))
+            fi.write(xml)
             fi.close()
             result = fo.read()
             fo.close()
