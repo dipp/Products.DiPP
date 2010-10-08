@@ -38,7 +38,7 @@ class BibTool(UniqueObject, SimpleItem):
         formats = (
             ("Endnote","end"),
             ("Bibtex","bib"),
-            ("Reference Manger","ris"),
+            ("RIS","ris"),
             ("Wordbib","wordbib"),
             ("ISI","isi"),
             ("Mods","xml")
