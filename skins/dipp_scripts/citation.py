@@ -26,7 +26,9 @@ formats = {
     "end":{"MIMEType":"application/x-endnote-refer","Extension":"enw"},
     "bib":{"MIMEType":"application/x-bibtex","Extension":"tex"},
     "ris":{"MIMEType":"application/x-research-info-systems","Extension":"ris"},
-    "xml":{"MIMEType":"text/xml","Extension":"xml"}
+    "xml":{"MIMEType":"text/xml","Extension":"xml"},
+    "isi":{"MIMEType":"text/plain","Extension":"isi"},
+    "wordbib":{"MIMEType":"application/vnd.openxmlformats","Extension":"docx"}
 }
 
 ext = formats[target_format]["Extension"]
