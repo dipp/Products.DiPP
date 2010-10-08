@@ -15,6 +15,13 @@ Installation
 	can not be uploaded. 
 
 Changes
+
+	DiPP 2.5.1 (2010-10-08)
+	
+		* authors/contributors indexed and searchable
+		* feeds: dedicated page and portlet
+		* article template to replace the authorblurb from the docbook
+		* minor bugfixes
 	
 	DiPP 2.5 (2010-09-30)
 	
