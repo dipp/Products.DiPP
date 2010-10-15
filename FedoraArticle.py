@@ -218,6 +218,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "category":"folder",
           },
           
+        { "id": "manage_translations",
+          "name": "Manage translations",
+          "action": "string:${folder_url}/manage_translations_form",
+          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
+          "category":"folder",
+          },
+          
         { "id": "citation",
           "name": "Citation and Metadata",
           "action": "string:${object_url}/metadata",
