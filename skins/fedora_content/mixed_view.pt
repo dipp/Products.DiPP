@@ -69,20 +69,22 @@
                      </tal:block>
                 </div>
             </tal:block>
-
-            <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
             
-            <ul class="keywords">
-                <tal:items tal:repeat="subject subjects">
-                    <li tal:define="islast repeat/subject/end;
-                                    subject python:subject.strip()" 
-                        tal:attributes="class python:test(islast,'last')">
-                        <a tal:content="subject"
-                           tal:attributes="href string: $portal_url/search?Subject=$subject&portal_type=FedoraArticle">
-                           key</a>
-                    </li>
-                </tal:items>
-            </ul>
+            <tal:block tal:condition="subjects">
+                <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
+                
+                <ul class="keywords">
+                    <tal:items tal:repeat="subject subjects">
+                        <li tal:define="islast repeat/subject/end;
+                                        subject python:subject.strip()" 
+                            tal:attributes="class python:test(islast,'last')">
+                            <a tal:content="subject"
+                               tal:attributes="href string: $portal_url/search?Subject=$subject&portal_type=FedoraArticle">
+                               key</a>
+                        </li>
+                    </tal:items>
+                </ul>
+            </tal:block>
             <p class="urn" tal:content="urn">
             </p>
             
