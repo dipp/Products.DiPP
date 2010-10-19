@@ -4,7 +4,8 @@
     <body>
 
         <div metal:define-macro="footer"
-             i18n:domain="dipp">
+             i18n:domain="dipp"
+             class="visualClear">
              
             <tal:comment tal:replace="nothing">
                 put here your custom code
