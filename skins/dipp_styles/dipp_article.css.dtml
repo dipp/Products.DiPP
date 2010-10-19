@@ -1,28 +1,5 @@
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
-
-/* styles for the issue content page */
-
-ol.issue_content {
-    clear: both;
-    list-style: none;
-    margin-left: 0;
-    padding: 0;
-}
-ol.issue_content li {
-    padding: 0.5em;
-    margin: 0;
-}
-/*
-.issue_content ul {
-    list-style: none;
-    margin-left: 0;
-} 
-.issue_content ul li {
-    display: inline;
-} 
-*/
-
 /* styles for the mixed_view template */
 #authorblurb {
     background: &dtml-globalBackgroundColor;;

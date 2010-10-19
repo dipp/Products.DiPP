@@ -47,6 +47,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('alertEmailAddresses', 'lines', ALERT_EMAIL_ADDRESSES),
         ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
         ('citation_format', 'text', CITATION_FORMAT),
+        ('short_citation_format', 'text', SHORT_CITATION_FORMAT),
         ('show_recommended_citation', 'boolean', True),
         ('initials_only', 'boolean', True),
         ('initials_period', 'boolean', False),
@@ -54,7 +55,9 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('articles_in_portlet','boolean',True),
         ('authors_in_portlet','boolean',True),
         ('allow_persistent_discussion', 'boolean', False),
+        ('volume_show_covers', 'boolean', False),
         ('issue_show_abstracts', 'boolean', False),
+        ('issue_show_full_abstracts', 'boolean', False),
         ('discussion_time', 'int', 0),
         ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ')
     )
