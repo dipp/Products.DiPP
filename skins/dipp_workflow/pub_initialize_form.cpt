@@ -152,10 +152,12 @@
                <tal:block tal:repeat="issue issues">
                      <option tal:define="lang issue/Language|neutral;
                                          title issue/Title;
+                                         PID issue/getPID;
                                          label python:test(lang=='','neutral',lang)"
-                             tal:attributes="value issue/getPID;
+                             tal:attributes="value PID;
                                              title issue/getURL;
-                                             selected python: issue.getPID == isChildOf"
+                                             selected python: issue.getPID == isChildOf;
+                                             disabled python: PID == ''"
                              tal:content="string: $title [$label]"> Issue 34 [en] </option>
                </tal:block>
                </select>
