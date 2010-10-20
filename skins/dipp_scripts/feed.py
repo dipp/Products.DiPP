@@ -61,7 +61,11 @@ elif type == "articles":
     title = "%s - %s" % (portal.Title(),section_name)
     description = portal.Description(),
     options = {}
-
+    
+    options['image_info'] = {'title':title,
+                             'link':portal.absolute_url(),
+                             'url':portal.absolute_url() + '/logo.gif'}
+    
     options['channel_info'] = { 'base': '2004-12-13T12:00:00Z',
                             'description':description,
                             'frequency': stool.getUpdateFrequency(),
@@ -79,7 +83,7 @@ elif type == "articles":
         else:
             category = None
             
-        items.append( { 'date': item.modified().HTML4(),
+        items.append( { 'date': item.effective().HTML4(),
                         'listCreators': item.Contributors(),
                         'publisher': item.Publisher(),
                         'rights': item.Rights(),
