@@ -12,7 +12,7 @@ from AccessControl import ClassSecurityInfo
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
-from zLOG import LOG, ERROR, INFO
+from zLOG import LOG, ERROR, INFO, DEBUG
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
@@ -249,7 +249,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         icc = ICC()
         fedora = getToolByName(self, 'fedora')
         PID = self.PID
-        authors = ",".join(self.Contributors())
+        authors = ", ".join(self.Contributors())
         LOG ('DIPP', INFO, "Fetching %s for indexing: %s" % (PID, authors))
         icc.addContent('SearchableText',unicode(authors), self.language)
         return icc
@@ -276,7 +276,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
             self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
             self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
-            self.setEffectiveDate(DateTime(qdc['bibliographicCitation'][0]['journalIssueDate']))
+            date = qdc['bibliographicCitation'][0]['journalIssueDate']
+            self.setEffectiveDate(date)
            
             # list with available abstract languages ist stored on article object. The calculation
             # on the fly would be to expensive, since for issue pages each single Article would
