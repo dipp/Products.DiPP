@@ -6,7 +6,8 @@
     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
     xmlns="http://purl.org/rss/1.0/">
   <channel rdf:about="URL"
-      tal:define="channel_info options/channel_info"
+      tal:define="channel_info options/channel_info;
+                  image_info options/image_info"
       tal:attributes="rdf:about channel_info/url">
     <title tal:content="channel_info/title">TITLE</title>
     <link tal:content="channel_info/url">URL</link>
@@ -15,7 +16,19 @@
         EDITOR</dc:creator>
     <description
         tal:content="channel_info/description">DESCRIPTION</description>
-    <image rdf:resource="logo.png" />
+    <image rdf:resource=""
+        tal:attributes="rdf:resource image_info/url">
+        <title
+            tal:condition="image_info/title"
+            tal:content="image_info/title"
+            >TITLE</title>
+        <link
+           tal:condition="image_info/link"
+           tal:content="image_info/link">LINK</link>
+        <url
+           tal:condition="image_info/url"
+           tal:content="image_info/url">URL</url>
+    </image>
     <sy:updatePeriod
         tal:content="channel_info/period">PERIOD</sy:updatePeriod>
     <sy:updateFrequency
