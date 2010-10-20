@@ -38,6 +38,7 @@
         <ul class="list-of-feeds">
             <li>
                 <a href=""
+                   type="application/rss+xml"
                    tal:attributes="href string:$portal_url/feed/articles"
                    i18n:domain="dipp" 
                    i18n:translate="feed-all-articles">
@@ -54,6 +55,7 @@
             <tal:block tal:repeat="section python: section_dict.keys()">
                 <li tal:condition="python: section  != 'no-section'">
                     <a href=""
+                       type="application/rss+xml"
                        tal:attributes="href string:$portal_url/feed/articles/$section"
                        tal:content="python:section_dict[section]">
                         all articles
