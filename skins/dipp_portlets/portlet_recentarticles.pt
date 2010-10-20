@@ -24,51 +24,67 @@
             <span i18n:translate="recent_articles">Recent Articles</span>
             <span class="portletTopRight"></span>
         </dt>
-        <dd class="portletItem"
-            tal:define="articles             python: here.portal_catalog(portal_type='FedoraArticle', review_state='published', sort_on='Date', sort_order='reverse', sort_limit=5);
-                        authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
-                        avtm                 python:here.portal_vocabularies;
-                        journalsections      python:avtm.getVocabularyByName('journal-sections');
-                        section_dict         python:journalsections.getVocabularyDict(journalsections)">
-            <em tal:condition="not: articles">
+        
+        <tal:block tal:define="articles             python: here.portal_catalog(portal_type='FedoraArticle', review_state='published', 
+                                                                                sort_on='Date', sort_order='reverse', sort_limit=5);
+                               authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
+                               avtm                 python:here.portal_vocabularies;
+                               journalsections      python:avtm.getVocabularyByName('journal-sections');
+                               section_dict         python:journalsections.getVocabularyDict(journalsections)">
+       
+            <dd class="portletItem" 
+                tal:condition="not: articles">
                 There are no published Articles
-            </em>
-            <tal:block tal:condition="articles">
-                <div>
-                    <tal:items tal:repeat="item articles">
-                       <li tal:define="obj                  item/getObject;
-                                       item_url             item/getURL|item/absolute_url;
-                                       item_id              item/getId;
-                                       item_section         item/getJournal_section;
-                                       item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
-                                       item_title_or_id     item/pretty_title_or_id;
-                                       item_section         item/getJournal_section|nothing;
-                                       item_abstracts       python:obj.getAvailableAbstracts;
-                                       item_contributors    python:obj.Contributors();
-                                       item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
-                                       item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
-                                       authors              item_contributors">
-                            <h5>    
-                                <a href="#"
-                                   tal:content="item_title_or_id"
-                                   tal:attributes="href item_url;
-                                           class string:$item_wf_state_class">
-                                 Article title</a>
-                            </h5>
-                            <div metal:use-macro="here/article_authors/macros/article_authors">
-                                A nicely formatted list of authors
-                            </div>
-                        </li>
-                     </tal:items>
+            </dd>
 
-                </div>
+            <tal:block tal:condition="articles">
+                <tal:items tal:repeat="item articles">
+                   <dd tal:define="oddrow repeat/item/odd;
+                                   obj                  item/getObject;
+                                   item_url             item/getURL|item/absolute_url;
+                                   item_id              item/getId;
+                                   item_section         item/getJournal_section;
+                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                   item_title_or_id     item/pretty_title_or_id;
+                                   item_section         item/getJournal_section|nothing;
+                                   item_abstracts       python:obj.getAvailableAbstracts;
+                                   item_contributors    python:obj.Contributors();
+                                   item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                   item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+                                   authors              item_contributors"
+                       tal:attributes="class python:test(oddrow,
+                                                         'portletItem even',
+                                                         'portletItem odd')"
+                                                                                                    
+                                   
+                                   >
+                        <h5>    
+                            <a href="#"
+                               tal:content="item_title_or_id"
+                               tal:attributes="href item_url;
+                                       class string:$item_wf_state_class">
+                             Article title</a>
+                        </h5>
+                        <div metal:use-macro="here/article_authors/macros/article_authors">
+                            A nicely formatted list of authors
+                        </div>
+                        <span class="portletItemDetails"
+                              tal:content="python:toLocalizedTime(item.EffectiveDate)"
+                              >May 5</span>
+
+
+                    </dd>
+                 </tal:items>
+
             </tal:block>
 
 
-        </dd>
+        </tal:block>
+        
         <dd class="portletFooter">
-        <a href="" tal:attributes="href string:$portal_url/recent_articles">all articles</a>
+            <a href="" tal:attributes="href string:$portal_url/recent_articles">all articles</a>
         </dd>
+        
     </dl>
 
 </div>
