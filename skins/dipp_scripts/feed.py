@@ -18,6 +18,7 @@ RESPONSE = request.RESPONSE
 portal_url = getToolByName(self, 'portal_url')
 ptool = getToolByName(self, 'portal_properties')
 stool = getToolByName(self, 'portal_syndication')
+bibtool = getToolByName(self, 'bibtool')
 catalog = getToolByName(self, 'portal_catalog')
 avtm = getToolByName(self, 'portal_vocabularies')
 portal     = portal_url.getPortalObject()
@@ -82,13 +83,15 @@ elif type == "articles":
             category = section_dict.get(section, None)
         else:
             category = None
-            
-        items.append( { 'date': item.effective().HTML4(),
+        citation = bibtool.short_citation(item)
+        abstract = item.getAbstract()
+        description = "%s: %s" % (citation, abstract)
+        items.append( { 'date':item.effective().HTML4(),
                         'listCreators': item.Contributors(),
                         'publisher': item.Publisher(),
                         'rights': item.Rights(),
                         'title': item.Title(),
-                        'description': item.getAbstract(),
+                        'description': description,
                         'category':category,
                         'url': item.absolute_url() } )
 

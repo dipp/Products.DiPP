@@ -15,7 +15,8 @@
                     tal:content="channel_info/managingEditor">
         EDITOR</dc:creator>
     <description
-        tal:content="channel_info/description">DESCRIPTION</description>
+        tal:content="python:channel_info['description'][0]">DESCRIPTION</description>
+    
     <image rdf:resource=""
         tal:attributes="rdf:resource image_info/url">
         <title

@@ -85,15 +85,7 @@
                 <tr>
                     <th i18n:translate="label_bibliographicCitation">Bibliographisches Zitat</th>
                     <td>
-                         <span tal:replace="bibliographicCitation/journalTitle"></span>,
-                         <span i18n:translate="label_journalVolume">Volume</span>
-                         <span tal:replace="bibliographicCitation/journalVolume"></span>,
-                         <tal:block tal:condition="bibliographicCitation/journalIssueNumber">
-                             <span i18n:translate="label_journalIssueNumber">Number</span>
-                             <span tal:replace="bibliographicCitation/journalIssueNumber"></span>
-                         </tal:block>
-                         (<span tal:replace="bibliographicCitation/journalIssueDate"></span>)
-
+                         <span tal:content="structure python: container.bibtool.short_citation(here)"></span>
                     </td>
                 </tr>
                 <tr>

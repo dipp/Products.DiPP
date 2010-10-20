@@ -62,6 +62,20 @@ class BibTool(UniqueObject, SimpleItem):
             if level and (not elem.tail or not elem.tail.strip()):
                 elem.tail = i
     
+    def short_citation(self,article):
+        
+        dp = self.portal_properties.dipp_properties
+        citation_format = dp.short_citation_format
+        
+        cite = citation_format % {
+            'journal':article.JournalTitle,
+            'volume':article.Volume,
+            'issue':article.Issue,
+            'startpage':article.startpage,
+            'endpage':article.endpage,
+            }
+        return cite
+        
     def recommended_citation(self,PID,qdc):
 
         # citation_format = self.citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
