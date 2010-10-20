@@ -19,7 +19,7 @@ try:
 except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
-
+from DateTime import DateTime
 from zope.interface import implements, Interface
 from textindexng.interfaces import IIndexableContent
 from textindexng.content import IndexContentCollector as ICC
@@ -276,6 +276,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
             self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
             self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
+            self.setEffectiveDate(DateTime(qdc['bibliographicCitation'][0]['journalIssueDate']))
            
             # list with available abstract languages ist stored on article object. The calculation
             # on the fly would be to expensive, since for issue pages each single Article would
