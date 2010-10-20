@@ -3,7 +3,14 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
       
-      <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+    <metal:block metal:fill-slot="head_slot">
+        <link rel="alternate"
+              title="Recent Articles"
+              type="application/rss+xml"
+              tal:attributes="href string:$portal_url/feed/articles"/>
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
 <body>
 
 <metal:main fill-slot="main">
