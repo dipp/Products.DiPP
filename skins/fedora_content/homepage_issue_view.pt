@@ -11,36 +11,6 @@
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-
-        
-        <div class="current-issue"
-            tal:define="issues  python:here.portal_catalog(portal_type='FedoraHierarchie', review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1)">
-            <tal:block tal:condition="issues">
-                 <div tal:define="issue python:issues[0].getObject();
-                                  description issue/Description|nothing;
-                                  issue_path python:'/'.join(issue.getPhysicalPath())">
-                                 
-                    <h1 tal:content="issue/title_or_id" class="documentFirstHeading">
-                      Title or id
-                    </h1>
-
-                    <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
-                        TOC of an issue
-                    </div>
-                
-                    <div metal:use-macro="here/document_byline/macros/byline">
-                      Get the byline - contains details about author and modification date.
-                    </div>
-
-                    <p class="documentDescription"
-                       tal:content="description"
-                       tal:condition="description">
-                        Description
-                    </p>
-                       
-                </div>
-            </tal:block>
-        </div>
         
         <h1 tal:content="object_title">
           Title or id
@@ -68,6 +38,38 @@
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">
             show related items if they exist
         </div>
+		
+		<h1>Current Issue</h1>
+        
+        <div class="current-issue"
+            tal:define="issues  python:here.portal_catalog(portal_type=('FedoraHierarchie','Issue'), review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1)">
+            <tal:block tal:condition="issues">
+                 <div tal:define="issue python:issues[0].getObject();
+                                  description issue/Description|nothing;
+                                  issue_path python:'/'.join(issue.getPhysicalPath())">
+                                 
+                    <h2 tal:content="issue/title_or_id">
+                      Title or id
+                    </h2>
+                
+                    <div metal:use-macro="here/document_byline/macros/byline">
+                      Get the byline - contains details about author and modification date.
+                    </div>
+
+                    <p class="documentDescription"
+                       tal:content="description"
+                       tal:condition="description">
+                        Description
+                    </p>
+                    
+                    <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
+                        TOC of an issue
+                    </div>
+                       
+                </div>
+            </tal:block>
+        </div>
+        
     
     </tal:main-macro>
 </metal:main>
