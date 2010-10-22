@@ -16,6 +16,15 @@ Installation
 
 Changes
 
+	DiPP 2.5.2 (2010-10-22)
+	
+	    * Feeds as alternate content in header of some templates (icon in
+	      firefox address bar)
+	    * Feeds optional contain a short bibliographic citation
+	    * portlet and dedicated template for recent articles 
+	    * journalIssueDate in sync with Plones effective date
+	    
+	    
 	DiPP 2.5.1 (2010-10-08)
 	
 		* authors/contributors indexed and searchable
