@@ -8,11 +8,12 @@
             and also in the issue_view itself.
         </tal:comment>
         <div metal:define-macro="table_of_contents"
-             tal:define="avtm                 python:here.portal_vocabularies;
-                         journalsections      python:avtm.getVocabularyByName('journal-sections');
-                         section_dict         python:journalsections.getVocabularyDict(journalsections);
-                         articles             python: here.portal_catalog(path=issue_path,portal_type='FedoraArticle');
-                         issue_show_abstracts here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing"
+             tal:define="avtm                      python:here.portal_vocabularies;
+                         journalsections           python:avtm.getVocabularyByName('journal-sections');
+                         section_dict              python:journalsections.getVocabularyDict(journalsections);
+                         articles                  python: here.portal_catalog(path=issue_path,portal_type='FedoraArticle');
+                         issue_show_abstracts      here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing;
+                         issue_show_full_abstracts here/issue_show_full_abstracts|here/portal_properties/dipp_properties/issue_show_full_abstracts|nothing"
              i18n:domain="dipp">
             
             <p class="discreet"
@@ -41,6 +42,7 @@
                                        item_title_or_id     item/pretty_title_or_id;
                                        item_section         item/getJournal_section|nothing;
                                        item_abstracts       python:obj.getAvailableAbstracts;
+                                       item_abstract        obj/getAbstract;
                                        item_contributors    python:obj.Contributors();
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
@@ -54,6 +56,9 @@
                                  Article title</a>
 
                             </strong>
+                            <p tal:condition="issue_show_full_abstracts"
+                               tal:content="item_abstract">
+                            </p>
                             <div class="abstracts"
                                 tal:define="lang_dict   python:here.fedora.getLanguages()"
                                 tal:condition="python: issue_show_abstracts and len(item_abstracts())>0">
