@@ -29,6 +29,8 @@
 
         <div tal:define="articles            python: here.portal_catalog(portal_type='FedoraArticle', sort_on='Date', sort_order='reverse');
                         Batch                python:modules['Products.CMFPlone'].Batch;
+                        desc_length site_properties/search_results_description_length;
+                        desc_ellipsis site_properties/ellipsis;
                         b_size               python:10;b_start python:0;b_start request/b_start | b_start;
                         authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
                         avtm                 python:here.portal_vocabularies;
@@ -40,38 +42,39 @@
             <tal:block tal:condition="articles"
                        tal:define="batch python:Batch(articles, b_size, int(b_start), orphan=1);">
 
-                <strong i18n:translate="batch_x_items_matching_your_criteria">
-                    <span i18n:name="number" tal:omit-tag="" tal:content="python:len(articles)">234</span> items matching your criteria.
-                </strong>
                 
-                <div>
+                <dl>
+                <dd>geht ohne titel</dd>
                     <tal:items tal:repeat="item batch">
-                       <li tal:define="obj                  item/getObject;
-                                       item_url             item/getURL|item/absolute_url;
-                                       item_id              item/getId;
-                                       item_section         item/getJournal_section;
-                                       item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
-                                       item_title_or_id     item/pretty_title_or_id;
-                                       item_section         item/getJournal_section|nothing;
-                                       item_abstracts       python:obj.getAvailableAbstracts;
-                                       item_contributors    python:obj.Contributors();
-                                       item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
-                                       item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
-                                       authors              item_contributors">
-                            <h2>    
+                       <tal:block tal:define="obj                  item/getObject;
+                                           item_url             item/getURL|item/absolute_url;
+                                           item_id              item/getId;
+                                           item_section         item/getJournal_section;
+                                           item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                           item_title_or_id     item/pretty_title_or_id;
+                                           item_section         item/getJournal_section|nothing;
+                                           item_abstract        obj/getAbstract;
+                                           item_abstracts       python:obj.getAvailableAbstracts;
+                                           item_contributors    python:obj.Contributors();
+                                           item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                           item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+                                           authors              item_contributors">
+                            <dt>
                                 <a href="#"
                                    tal:content="item_title_or_id"
                                    tal:attributes="href item_url;
                                            class string:$item_wf_state_class">
                                  Article title</a>
-                            </h2>
-                            <div metal:use-macro="here/article_authors/macros/article_authors">
-                                A nicely formatted list of authors
-                            </div>
-                        </li>
+                            </dt>
+                                <!--<div metal:use-macro="here/article_authors/macros/article_authors">
+                                    A nicely formatted list of authors
+                                </div>-->
+                            <dd tal:content="python:here.cropText(item_abstract, desc_length, desc_ellipsis)"> Abstract </dd>
+                            
+                        </tal:block>
                      </tal:items>
 
-                </div>
+                </dl>
                 <!-- Navigation -->
                 <div metal:use-macro="here/batch_macros/macros/navigation" />
             </tal:block>
