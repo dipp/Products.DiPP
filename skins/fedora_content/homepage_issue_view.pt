@@ -2,6 +2,27 @@
       lang="en"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
+
+    <metal:block metal:fill-slot="head_slot"
+         tal:define="avtm                 python:here.portal_vocabularies;
+                     journalsections      python:avtm.getVocabularyByName('journal-sections');
+                     section_dict         python:journalsections.getVocabularyDict(journalsections);
+                     portal_title portal_properties/title">
+        
+        <link rel="alternate"
+              type="application/rss+xml"
+              tal:attributes="href string:$portal_url/feed/articles;
+                              title string:$portal_title - All recent articles"/>
+        
+        <tal:block tal:repeat="section python: section_dict.keys()">
+            <link tal:condition="python: section  != 'no-section'"
+                  rel="alternate"
+                  type="application/rss+xml"
+                  tal:define="sectionname python:section_dict[section]"
+                  tal:attributes="href string:$portal_url/feed/articles/$section;
+                                  title string:$portal_title - $sectionname" />
+        </tal:block>
+    </metal:block>
 <body>
 
 <metal:main fill-slot="main">
@@ -15,6 +36,10 @@
         <h1 tal:content="object_title">
           Title or id
         </h1>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
         
         <p class="documentDescription"
            tal:content="here/Description"
@@ -39,7 +64,9 @@
             show related items if they exist
         </div>
 		
-		<h1>Current Issue</h1>
+		<h1 i18n:translate="current_issue"
+            i18n:domain="dipp"
+            >Current Issue</h1>
         
         <div class="current-issue"
             tal:define="issues  python:here.portal_catalog(portal_type=('FedoraHierarchie','Issue'), review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1)">
@@ -52,9 +79,6 @@
                       Title or id
                     </h2>
                 
-                    <div metal:use-macro="here/document_byline/macros/byline">
-                      Get the byline - contains details about author and modification date.
-                    </div>
 
                     <p class="documentDescription"
                        tal:content="description"
