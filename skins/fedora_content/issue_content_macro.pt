@@ -20,16 +20,17 @@
                  tal:condition="not:articles">
                  This Issue does not contain any articles.
             </p>
-            
-            <div tal:repeat="section python: section_dict.keys()">
-                <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':1},portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
+            <dl>
+            <tal:section tal:repeat="section python: section_dict.keys()">
+                <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':2},portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                            tal:condition="articles"
                            i18n:domain="dipp">
-                <h2 tal:condition="python: section != 'no-section'"
+                <dt tal:condition="python: section != 'no-section'"
                     tal:content="python: section_dict[section]"
                     tal:attributes="id section">
                     The name of the section
-                </h2>
+                </dt>
+                <dd>
                 <ol class="issue_content" >
                     
                     <tal:items tal:repeat="item articles">
@@ -77,10 +78,10 @@
                         </li>
                      </tal:items>
                 </ol>
-
-                </tal:block>
-
-            </div>
+                </dd>
+</tal:block>
+            </tal:section>
+                </dl>
         </div>
 
      </body>
