@@ -8,6 +8,7 @@
 ##parameters=self
 
 from Products.CMFCore.utils import getToolByName
+from zLOG import LOG, INFO
 
 request  = context.REQUEST
 
@@ -20,29 +21,42 @@ tempFiles    = 'fedora_tmp'
 try:
     tmp = getattr(container,tempFiles)
 except:
-    raise Exception, "Directory 'fedora_tmp' does not exist!"
+    raise Exception, "Directory %s  does not exist!" % tempFiles
 
 filename = file.filename
 
 title = file.filename
-extension = title.split('.')[-1]
-tempID = fedora.getTempID(request) + '.' + extension
+tempID = fedora.getTempID(request)
 try:
-    #tmp.invokeFactory(id=tempID,type_name='File',file=file,title=title)
-    tmp.manage_addFile(id=tempID, file=file, title=title)
+    tmp.manage_addFolder(id=tempID, title=tempID)
+    folder = getattr(tmp, tempID)
+    folder.manage_addFile(id=filename, file=file, title=title)
 except:
-    raise Exception, "file couldn't created"
-obj=getattr(tmp,tempID) 
+    raise Exception, "file couldn't be created"
 
-#make sure tempID is visible and thus reachable for the converter
+obj=getattr(folder,filename) 
+
+# make sure tempID is visible and thus reachable for the converter
 new_context = context.portal_factory.doCreate(context)
 
-Location = obj.absolute_url()                                                                
+Location = obj.absolute_url()                                                              
+if Location.startswith('https'):
+    Location = Location.replace('https','http',1)
+
+LOG('DiPP File Location', INFO, Location )
+
 MIMEType = obj.content_type
 size     = obj.size
 
+convertible = ('application/rtf', 
+    'application/msword', 
+    'application/octet-stream',
+    'text/rtf',
+    'text/xml')
+    
 targetFormat = ['']
-if MIMEType == 'application/rtf' or MIMEType == 'application/msword' or MIMEType == 'application/octet-stream' or MIMEType == 'text/rtf' or MIMEType == 'text/xml':
+
+if MIMEType in  convertible:
     targetFormat.append("html")
 
 formButton = request.get('form.button.testconvert', None)
