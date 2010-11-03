@@ -42,7 +42,7 @@ class toolbox(UniqueObject, BaseFolder):
 
     meta_type = 'EditorialToolbox'
     portal_type = 'EditorialToolbox'
-    allowed_content_types = ['Fedora Article']
+    allowed_content_types = ['FedoraArticle']
     filter_content_types = 1
     global_allow = 0
     content_icon = 'skins/dipp_images/toolbox.gif'
