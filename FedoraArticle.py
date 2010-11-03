@@ -218,9 +218,9 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "category":"folder",
           },
           
-        { "id": "manage_translations",
-          "name": "Manage translations",
-          "action": "string:${folder_url}/manage_translations_form",
+        { "id": "link_translations",
+          "name": "Link translations",
+          "action": "string:${folder_url}/link_translations_form",
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           "category":"folder",
           },
