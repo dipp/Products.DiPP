@@ -12,6 +12,8 @@ from zLOG import LOG, INFO
 
 request  = context.REQUEST
 
+portal_url = getToolByName(self, 'portal_url')
+portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
 
 file         = request['file']
@@ -21,7 +23,8 @@ tempFiles    = 'fedora_tmp'
 try:
     tmp = getattr(container,tempFiles)
 except:
-    raise Exception, "Directory %s  does not exist!" % tempFiles
+    portal.manage_addFolder(id=tempFiles, title='Temporary objects for Fedora ingest')
+    tmp = getattr(container,tempFiles)
 
 filename = file.filename
 
