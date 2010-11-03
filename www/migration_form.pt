@@ -1,0 +1,15 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>Migration</h3>
+
+<form action=""
+      tal:attributes="action python:here.absolute_url()+'/migrate'"
+      method="POST">
+    <input type="radio" name="target" value="Issue" id="issue"> <label for="issue">Issue</label><br />
+    <input type="radio" name="target" value="Volume" id="volume"> <label for="volume">Volume</label><br />
+    <input type="submit"/>
+</form>
+
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
