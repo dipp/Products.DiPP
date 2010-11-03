@@ -17,16 +17,17 @@ from Products.CMFCore.utils import getToolByName
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
+default_article_view = portal.portal_properties.dipp_properties.default_article_view
 
 try:
-   tempDir = getattr(portal,'tmp')
+   tempDir = getattr(portal,'editorialtoolbox')
 except:
     raise Exception, "the requested tempFolder does not exist"
 
 try:
-    document = getattr(tempDir, aParent_id)
+    article = getattr(tempDir, aParent_id)
 except:
-    raise Exception, "the requested Document does not exist"
+    raise Exception, "the requested article does not exist"
 
 try:
     id = aLabel
@@ -34,12 +35,15 @@ try:
     DsID = aDsid
     objType = aObject_type
     
-    qdc = fedora.getQualifiedDCMetadata(document.PID)
+    qdc = fedora.getQualifiedDCMetadata(article.PID)
     
     if aLabel == 'index_html':
         id = 'fulltext'
         title = qdc['title'][0]['value']
-        document.manage_addProperty(id='default_page', value=id, type='string')
+        if default_article_view != "":
+            article.manage_addProperty(id='layout', value=default_article_view, type='string')
+        else:
+            article.manage_addProperty(id='default_page', value=id, type='string')
     elif aLabel == 'toc_html':
         title = 'Table of Contents' 
     else:
@@ -51,11 +55,11 @@ try:
     stream = fedora.access(PID=PID,DsID=DsID,Date=None)['stream']
     MIMEType = fedora.access(PID=PID,DsID=DsID,Date=None)['MIMEType']
     if objType in ('FedoraDocument','FedoraXML'):
-        contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,body=stream,format=MIMEType)
+        contentObj = article.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,body=stream,format=MIMEType)
     else:
-        contentObj = document.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID)
+        contentObj = article.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID)
         
-    contentDocument = getattr(document, id)
+    contentDocument = getattr(article, id)
 except:
     raise Exception, "could not create Content Object"
 

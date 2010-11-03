@@ -16,17 +16,14 @@ portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 
 def newArticle(id,title,PID,subject,rights):
-    """
-      code from checkForNewPIDs-Script
-    """
-    try:
-       tempDir = getattr(portal,'tmp')
-    except:
-       portal.invokeFactory('Folder','tmp')
-       tempDir = getattr(portal,'tmp')
     
     try:
-        docobj = tempDir.invokeFactory('FedoraArticle',id=id,title=title,PID=PID)
+       tempDir = getattr(portal,'editorialtoolbox')
+    except:
+        raise Exception, "the requested tempFolder does not exist"
+    
+    try:
+        tempDir.invokeFactory('FedoraArticle',id=id,title=title,PID=PID)
         document = getattr(tempDir, id)
         document.manage_addProperty(id="tmp", value=True, type='boolean')
         document.syncMetadata()
@@ -84,4 +81,3 @@ else:
     #    url = newFedoraObject(id,title,PID,cModel)
 
 return id
-
