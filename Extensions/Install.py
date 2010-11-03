@@ -47,6 +47,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('alertEmailAddresses', 'lines', ALERT_EMAIL_ADDRESSES),
         ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
         ('citation_format', 'text', CITATION_FORMAT),
+        ('default_article_view', 'string', ''),
         ('short_citation_format', 'text', SHORT_CITATION_FORMAT),
         ('show_recommended_citation', 'boolean', True),
         ('initials_only', 'boolean', True),
