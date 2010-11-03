@@ -166,7 +166,14 @@
       <span i18n:translate="help_temporaryarticles_2">Einmal täglich werden Artikel, die älter als 24h sind, gelöscht.
       </span>
     </div>
-
+    <table class="listing" 
+           tal:define="path python: '/'.join(context.editorialtoolbox.getPhysicalPath());
+                       results python: here.portal_catalog.searchResults(Type='Fedora Article', path=path, sort_on='Date', sort_order='reverse', PID='temp')">
+    <tal:block tal:replace="path"/>
+    <tr tal:repeat="item results">
+        <td tal:content="item/getURL"></td>
+    </tr>
+    </table>
     <table class="listing">
         <tr>
                   <th>&nbsp;<tal:title i18n:translate="listingheader_title" i18n:domain="plone"
