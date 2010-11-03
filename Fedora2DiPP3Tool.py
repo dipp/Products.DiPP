@@ -391,13 +391,13 @@ class Fedora(UniqueObject, SimpleItem):
         DCMetadata._creatorPerson = []
         for author in params['creatorPerson']:
             x = DCMetadata.new_creatorPerson()
-            x._PNDIdentNumber      = author['PNDIdentNumber']
-            x._academicTitle       = author['academicTitle']
-            x._emailAddress        = author['emailAddress']
-            x._firstName           = author['firstName']
-            x._lastName            = author['lastName']
-            x._organization        = author['organization']
-            x._postalAddress       = author['postalAddress']
+            x._PNDIdentNumber      = author.get('PNDIdentNumber','')
+            x._academicTitle       = author.get('academicTitle','')
+            x._emailAddress        = author.get('emailAddress','')
+            x._firstName           = author.get('firstName','')
+            x._lastName            = author.get('lastName','')
+            x._organization        = author.get('organization','')
+            x._postalAddress       = author.get('postalAddress','')
             DCMetadata._creatorPerson.append(x)
 
         # creatorCorporated
