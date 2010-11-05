@@ -18,7 +18,7 @@ portal = portal_url.getPortalObject()
 def newArticle(id,title,PID,subject,rights):
     
     try:
-       tempDir = getattr(portal,'editorialtoolbox')
+       tempDir = getattr(portal,'tmp')
     except:
         raise Exception, "the requested tempFolder does not exist"
     

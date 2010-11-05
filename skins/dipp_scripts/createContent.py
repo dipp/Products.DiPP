@@ -20,7 +20,7 @@ fedora = getToolByName(self, 'fedora')
 default_article_view = portal.portal_properties.dipp_properties.default_article_view
 
 try:
-   tempDir = getattr(portal,'editorialtoolbox')
+   tempDir = getattr(portal,'tmp')
 except:
     raise Exception, "the requested tempFolder does not exist"
 
