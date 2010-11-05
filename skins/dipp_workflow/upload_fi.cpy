@@ -20,11 +20,11 @@ file         = request['file']
 JournalPID   = request['journalPID']
 
 tempFiles    = 'fedora_tmp'
+
 try:
     tmp = getattr(container,tempFiles)
 except:
-    portal.manage_addFolder(id=tempFiles, title='Temporary objects for Fedora ingest')
-    tmp = getattr(container,tempFiles)
+    raise Exception, "Directory %s does not exist!" % tempFiles
 
 filename = file.filename
 
@@ -53,7 +53,6 @@ size     = obj.size
 
 convertible = ('application/rtf', 
     'application/msword', 
-    'application/octet-stream',
     'text/rtf',
     'text/xml')
     
