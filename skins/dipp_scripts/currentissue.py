@@ -17,7 +17,7 @@ portal_url = getToolByName(self, 'portal_url')
 
 catalog = getToolByName(self, 'portal_catalog')
 issues = catalog(
-            portal_type='Issue',
+            portal_type=('Issue','FedoraHierarchie'),
             review_state='published',
             sort_on='Date',
             sort_order='reverse',
