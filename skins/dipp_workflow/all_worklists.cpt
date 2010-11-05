@@ -166,35 +166,43 @@
       <span i18n:translate="help_temporaryarticles_2">Einmal täglich werden Artikel, die älter als 24h sind, gelöscht.
       </span>
     </div>
-    <table class="listing" 
-           tal:define="path python: '/'.join(context.editorialtoolbox.getPhysicalPath());
+    
+    <table class="listing nosort" 
+           tal:define="path python: '/'.join(context.tmp.getPhysicalPath());
                        results python: here.portal_catalog.searchResults(Type='Fedora Article', path=path, sort_on='Date', sort_order='reverse', PID='temp')">
-    <tal:block tal:replace="path"/>
-    <tr tal:repeat="item results">
-        <td tal:content="item/getURL"></td>
-    </tr>
-    </table>
-    <table class="listing">
+        <thead>
         <tr>
-                  <th>&nbsp;<tal:title i18n:translate="listingheader_title" i18n:domain="plone"
-                      >Title</tal:title>&nbsp;</th>
-                  <th >&nbsp;<tal:modified i18n:translate="listingheader_modified" i18n:domain="plone"
-                      >Modified</tal:modified>&nbsp;</th>
-                  <th>
-                      Feedback
-                  </th>
-
+              <th>
+                    <tal:title i18n:translate="listingheader_title" i18n:domain="plone" >Title</tal:title>
+              </th>
+              <th>
+                    <tal:modified i18n:translate="listingheader_modified" i18n:domain="plone" >Modified</tal:modified></th>
+              <th>
+                  Feedback
+              </th>
         </tr>
-        <tr tal:repeat="x here/showTempFiles">
-            <td><a href="" tal:attributes="href python: x['url']" tal:content="python: x['title']">title</a></td>
-            <td tal:content="python:x['date']">2005-05-05</td>
-            <td><a tal:define="subject python:'Problem mit ' + x['url']" href="" 
-                   tal:attributes="href  python:'mailto:dipp-tech@hbz-nrw.de?subject=' + subject;
-                                   title string:Subject: $subject">
-                dipp-tech@hbz-nrw.de</a></td>
-        </tr>
+        </thead>
+        <tbody>
+            <tal:block tal:repeat="item results">
+            <tr tal:define="tmp python:item.id.startswith('temp')"
+                tal:condition="tmp">
+                <td>
+                    <a tal:attributes="href item/getURL"
+                       tal:content="item/Title"></a>
+                </td>
+                <td>
+                    <span tal:replace="item/Date"></span>
+                </td>
+                <td>
+                    <a tal:define="subject string:Problem mit ${item/getURL}" href="" 
+                       tal:attributes="href  python:'mailto:dipp-tech@hbz-nrw.de?subject=' + subject;
+                                       title string:Subject: $subject">
+                    dipp-tech@hbz-nrw.de</a>
+                </td>
+            </tr>
+            </tal:block>
+        </tbody>
     </table>
-
     
 </div>
 
