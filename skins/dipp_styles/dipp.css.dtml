@@ -27,20 +27,20 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
 }
 /* styles for the issue content page */
 
-ol.issue_content {
+ol.section-content {
     clear: both;
     list-style: none;
     margin-left: 0;
     padding: 0;
 }
 
-ol.issue_content li {
+ol.section-content li {
     padding: 0.5em;
     margin: 0;
 }
 
 
-.issue_content .paper {
+.section-content .paper {
     margin-left: 2em;
 }
 ol.volume_content {

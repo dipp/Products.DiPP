@@ -20,18 +20,19 @@
                  tal:condition="not:articles">
                  This Issue does not contain any articles.
             </p>
-            <dl>
+            <dl class="issue-content">
             <tal:section tal:repeat="section python: section_dict.keys()">
                 <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':2},portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
                            tal:condition="articles"
                            i18n:domain="dipp">
                 <dt tal:condition="python: section != 'no-section'"
                     tal:content="python: section_dict[section]"
-                    tal:attributes="id section">
+                    tal:attributes="id section"
+                    class="section-name">
                     The name of the section
                 </dt>
                 <dd>
-                <ol class="issue_content" >
+                <ol class="section-content" >
                     
                     <tal:items tal:repeat="item articles">
                        <li tal:define="oddrow               repeat/item/odd;
@@ -75,6 +76,11 @@
                             <div metal:use-macro="here/article_authors/macros/article_authors">
                                 A nicely formatted list of authors
                             </div>
+                            <span class="more_link">
+                                <a tal:attributes="href item_url"
+                                   i18n:domain="plone"
+                                   i18n:translate="box_morelink">More...</a>
+                            </span>
                         </li>
                      </tal:items>
                 </ol>
