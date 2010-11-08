@@ -7,6 +7,28 @@
 <form action=""
       tal:attributes="action python:here.absolute_url()+'/migrate'"
       method="POST">
+    <dl>
+        <dt>PID</dt>
+        <dd tal:content="here/PID"></dd>
+        <dt>* descripton</dt>
+        <dd tal:content="here/description"></dd>
+        <dt>MetaType</dt>
+        <dd tal:content="here/MetaType"></dd>
+        <dt>Volume</dt>
+        <dd tal:content="here/Volume"></dd>
+        <dt>Issue</dt>
+        <dd tal:content="here/Issue"></dd>
+        <dt>IssueDate</dt>
+        <dd tal:content="here/IssueDate"></dd>
+        <dt>* CompleteIssue</dt>
+        <dd tal:content="here/CompleteIssue"></dd>
+        <dt>* Body</dt>
+        <dd tal:content="here/Body"></dd>
+        <dt>* TitleImage</dt>
+        <dd tal:define="has_cover here/TitleImage|nothing">
+            <img tal:condition="has_cover"  tal:replace="structure here/TitleImage_small" /></dd>
+     </dl>
+     <hr />
     <input type="radio" name="target" value="Issue" id="issue"> <label for="issue">Issue</label><br />
     <input type="radio" name="target" value="Volume" id="volume"> <label for="volume">Volume</label><br />
     <input type="submit"/>
