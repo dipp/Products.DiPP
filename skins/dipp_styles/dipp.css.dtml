@@ -27,6 +27,16 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
 }
 /* styles for the issue content page */
 
+.issue-content .section-name {
+    font-size: 125%;
+    font-weight: bold;
+}
+.issue-content dd {
+    margin: 0;
+}
+.issue-content .more_link {
+    display: none;
+}
 ol.section-content {
     clear: both;
     list-style: none;
