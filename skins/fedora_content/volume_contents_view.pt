@@ -72,11 +72,6 @@
                  </tal:items>
             </ol>
         </div>
-        <tal:block tal:define="issue_path python:'/'.join(here.getPhysicalPath())">
-            <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
-                TOC of an issue
-            </div>
-        </tal:block>
     
     </tal:main-macro>
 </metal:main>
