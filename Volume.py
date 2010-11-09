@@ -27,7 +27,7 @@ from Products.CMFCore.utils import getToolByName
 from zLOG import LOG, ERROR, INFO
 
 class Volume(BrowserDefaultMixin, OrderedBaseFolder):
-    """Hierarchical Object representing an issue."""
+    """Hierarchical Object representing a Volume."""
     
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
     
@@ -133,7 +133,7 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
     allowed_content_types = ('FedoraArticle', 'Issue')
     immediate_view = 'base_view'
     default_view = 'base_view'
-    suppl_views = ('base_view', 'volume_contents_view')
+    suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
     content_icon = 'fedorahierarchie_icon.gif'
     actions = (
           
