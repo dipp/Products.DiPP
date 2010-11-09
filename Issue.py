@@ -13,8 +13,12 @@
 
 __author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
 __docformat__ = 'plaintext'
+try:
+    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone import utils
+except ImportError:
+    from Products.Archetypes.public import *
 
-from Products.Archetypes.public import *
 from config import PROJECTNAME
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
