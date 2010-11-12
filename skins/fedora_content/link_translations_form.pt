@@ -56,8 +56,6 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
 			
                 <label for="link_language"
                        i18n:translate="label_link_language">Language</label>
-				
-				
 			
                 <div class="formHelp" i18n:translate="help_link_language">
                     Select the language that the translation will be linked as.
@@ -75,84 +73,37 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                 						  physicalPath pfolder/getPhysicalPath|nothing">
                 						  
                 		<tal:block tal:condition="physicalPath">
-                			<p tal:content="python:'/'.join(physicalPath)"/>
+                        
                 			<ol>
 	                		<tal:block tal:define="path python:'/'.join(physicalPath);
 	                							   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1})"
 	                		           tal:repeat="item items">
 	                		
-		                		<li>
-		                			                		
-			                    <input type="radio"
-			                           class="noborder"
-			                           id="link"
-			                           name="link_language"
-			                           tal:attributes="value python:lang[0];
-			                                           id python:'link_' + lang[0];
-			                                           checked python:content_language == lang[0]"
-			                           />
+                                <li  tal:define="uid python:item.getObject().UID;
+                                                 has_uid python:hasattr(item.aq_explicit, 'UID')">
+                                        <i tal:content="has_uid"/>
+                                    <input type="text"
+                                           value=""
+                                           id="link"
+                                           name="link_language"
+                                           tal:attributes="value python:lang[0]"/>	
+                                    
+                                    <input type="radio"
+                                           class="noborder"
+                                           name="link_content"
+                                           id="link_content"
+                                           tal:attributes="value uid;
+                                                           id python:'link_' + lang[0];
+                                                           checked python:content_language == lang[0]" />
 			                     <span tal:content="item/Title"/>
 			                     <span tal:content="item/Language"/>
+                                 XXX<b tal:content="python: context.reference_catalog.lookupObject(uid)">654654654bx6c4bvx6c54vb</b>
 								</li>
 							</tal:block>
 							</ol>
 						</tal:block>
 	                </tal:item>
                 </div>
-
-            </div>
-
-            <div class="field"
-                 tal:define="startup_directory python:here.referencebrowser_startupDirectory('');
-                             value request/link_content | nothing;
-                             fieldName string:link_content;
-                             fieldRealName fieldName;
-                             at_url python:'/'.join(here.getPhysicalPath());
-                 ">
-
-                <label for="link_content_browse"
-                       i18n:translate="label_link_content">Content</label>
-
-                <div class="formHelp" i18n:translate="help_link_content">
-                    Select the content to link as a translation.
-                </div>
-
-                <tal:value tal:condition="value">
-                    <input size="30"
-                           type="text"
-                           id="link_content_label"
-                           readonly="readonly"
-                           value=""
-                           tal:define="obj python:here.reference_catalog.lookupObject(value)"
-                           tal:attributes="value obj/title_or_id"
-                           />
-                </tal:value>
-
-                <input tal:condition="not:value"
-                       id="link_content_label"
-                       size="50"
-                       type="text"
-                       readonly="readonly"
-                       value="No translation content selected. Click the browse button to select."
-                       i18n:attributes="value label_no_translation_selected;"
-                       />
-
-                <input type="hidden"
-                       name="link_content"
-                       id="link_content"
-                       value=""
-                       tal:attributes="value value"
-                       />
-
-                <input type="button"
-                       name="link_content_browse"
-                       class="searchButton"
-                       value="Browse..."
-                       onClick=""
-                       i18n:attributes="value label_browse;"
-                       tal:attributes="onClick string:javascript:referencebrowser_openBrowser('${startup_directory}','${fieldName}', '${at_url}', '${fieldRealName}')"
-                       />
-
 
             </div>
 
