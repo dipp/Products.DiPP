@@ -72,6 +72,12 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                 						  
                 		<tal:block tal:condition="physicalPath">
                         
+                            <input type="hidden"
+                               value=""
+                               id="link"
+                               name="link_language"
+                               tal:attributes="value python:lang[0]"/>	
+                        
                 			<ol>
 	                		<tal:block tal:define="path python:'/'.join(physicalPath);
 	                							   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1})"
@@ -80,11 +86,6 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                                 <li  tal:define="uid python:item.getObject().UID;
                                                  has_uid python:hasattr(item.aq_explicit, 'UID')">
 
-                                    <input type="hidden"
-                                           value=""
-                                           id="link"
-                                           name="link_language"
-                                           tal:attributes="value python:lang[0]"/>	
                                     
                                     <input type="radio"
                                            class="noborder"
