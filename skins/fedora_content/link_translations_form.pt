@@ -65,9 +65,7 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                      tal:define="content_language context/Language;
                      			 parent here/getParentNode;">
                      			 
-                    <label tal:attributes="for python:'link_' + lang[0]"
-                           tal:content="python:lang[1]"
-                           />
+                    <strong tal:content="python:'%s (%s)' % (lang[1], lang[0]) ">Deutsch (de)</strong>
                     
                 	<tal:item tal:define="pfolder python: parent.getTranslation(lang[0]);
                 						  physicalPath pfolder/getPhysicalPath|nothing">
@@ -81,8 +79,8 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
 	                		
                                 <li  tal:define="uid python:item.getObject().UID;
                                                  has_uid python:hasattr(item.aq_explicit, 'UID')">
-                                        <i tal:content="has_uid"/>
-                                    <input type="text"
+
+                                    <input type="hidden"
                                            value=""
                                            id="link"
                                            name="link_language"
@@ -93,11 +91,13 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                                            name="link_content"
                                            id="link_content"
                                            tal:attributes="value uid;
-                                                           id python:'link_' + lang[0];
+                                                           id  uid;
                                                            checked python:content_language == lang[0]" />
-			                     <span tal:content="item/Title"/>
-			                     <span tal:content="item/Language"/>
-                                 XXX<b tal:content="python: context.reference_catalog.lookupObject(uid)">654654654bx6c4bvx6c54vb</b>
+                                                           
+                                     <label tal:attributes="for uid" tal:content="item/Title">Der Titel des Artikels</label>                      
+				                     [<a  tal:attributes="href item/getURL">view</a>]
+				                     <span tal:content="item/Language"/>
+	                                 
 								</li>
 							</tal:block>
 							</ol>
