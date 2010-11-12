@@ -131,12 +131,14 @@ if activity_id == 'initialize':
     for folder in folders:                              # Zielorder suchen
         if folder.getObject().PID == isChildOf:
             destination = folder.getObject()            # Zielordner gefunden
+            language = folder.Language
             destObjectPID = destination.PID
     destination.manage_pasteObjects(cut)                # einfügen
     
     destination.manage_renameObject(instance_id,newId)  # umbenennen
     obj = getattr(destination,newId)
     obj.manage_changeProperties({'tmp':0})
+    obj.setLanguage(language)                           # sprache des Zielordners
     url = obj.absolute_url()                            # neue URL zurückgeben
     hierarchie = "/".join(url.split("/")[3:-1])         # verkürzte URL zur Darstellung in der worklist
     instance.manage_changeProperties({'nachrichten':nachrichten,
