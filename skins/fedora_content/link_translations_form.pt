@@ -2,7 +2,7 @@
       xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="dipp">
+      i18n:domain="linguaplone">
 
 <body>
 
@@ -24,6 +24,13 @@
         <h2 i18n:translate="header_link_translations">
             Link translations
         </h2>
+        
+<pre>
+DEBUGGING
+sprachen: <tal:block tal:replace="python:len(context.languageSelectorData())"/>
+type: <tal:block tal:replace="here/portal_type"/>
+canonical: <tal:block tal:replace="here/getCanonical"/>
+</pre>
 
         <p tal:condition="untranslated_languages"
            i18n:translate="description_link_translations">
@@ -43,30 +50,54 @@
               class="group"
               tal:condition="untranslated_languages"
               tal:attributes="action here/absolute_url">
-
+			
+			
             <div class="field">
-
+			
                 <label for="link_language"
                        i18n:translate="label_link_language">Language</label>
-
+				
+				
+			
                 <div class="formHelp" i18n:translate="help_link_language">
                     Select the language that the translation will be linked as.
                 </div>
 
                 <div tal:repeat="lang untranslated_languages"
-                     tal:define="content_language context/Language">
-                    <input type="radio"
-                           class="noborder"
-                           id="link"
-                           name="link_language"
-                           tal:attributes="value python:lang[0];
-                                           id python:'link_' + lang[0];
-                                           checked python:content_language == lang[0]"
-                           />
-                    <label for=""
-                           tal:attributes="for python:'link_' + lang[0]"
+                     tal:define="content_language context/Language;
+                     			 parent here/getParentNode;">
+                     			 
+                    <label tal:attributes="for python:'link_' + lang[0]"
                            tal:content="python:lang[1]"
                            />
+                    
+                	<tal:item tal:define="pfolder python: parent.getTranslation(lang[0]);
+                						  physicalPath pfolder/getPhysicalPath|nothing">
+                						  
+                		<tal:block tal:condition="physicalPath">
+                			<p tal:content="python:'/'.join(physicalPath)"/>
+                			<ol>
+	                		<tal:block tal:define="path python:'/'.join(physicalPath);
+	                							   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1})"
+	                		           tal:repeat="item items">
+	                		
+		                		<li>
+		                			                		
+			                    <input type="radio"
+			                           class="noborder"
+			                           id="link"
+			                           name="link_language"
+			                           tal:attributes="value python:lang[0];
+			                                           id python:'link_' + lang[0];
+			                                           checked python:content_language == lang[0]"
+			                           />
+			                     <span tal:content="item/Title"/>
+			                     <span tal:content="item/Language"/>
+								</li>
+							</tal:block>
+							</ol>
+						</tal:block>
+	                </tal:item>
                 </div>
 
             </div>
@@ -122,10 +153,6 @@
                        tal:attributes="onClick string:javascript:referencebrowser_openBrowser('${startup_directory}','${fieldName}', '${at_url}', '${fieldRealName}')"
                        />
 
-                <script type="text/javascript"
-                        charset="iso-8859-1"
-                        src="referencebrowser.js"
-                        tal:attributes="src string:$portal_url/referencebrowser.js"></script>
 
             </div>
 
