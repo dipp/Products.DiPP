@@ -148,19 +148,56 @@
                     bearbeiten zunächst den entsprechenden Eintrag in der Worklist.
                  </span>
                </div>
-               <select size="5" name="isChildOf">
-               <tal:block tal:repeat="issue issues">
-                     <option tal:define="lang issue/Language|neutral;
-                                         title issue/Title;
-                                         PID issue/getPID;
-                                         label python:test(lang=='','neutral',lang)"
-                             tal:attributes="value PID;
-                                             title issue/getURL;
-                                             selected python: issue.getPID == isChildOf;
-                                             disabled python: PID == ''"
-                             tal:content="string: $title [$label]"> Issue 34 [en] </option>
-               </tal:block>
-               </select>
+               <table class="listing nosort">
+                    <thead>
+                        <th>&nbsp;</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Language</th>
+                        <th>Path</th>
+                    </thead>
+                    <tbody>
+                        <tal:block tal:define="issues python: here.portal_catalog(portal_type=('FedoraHierarchie','Issue','Volume'), Language='all', sort_on='Date', sort_order='reverse')"
+                                   tal:repeat="item issues">
+                        
+                            <tr tal:define="obj item/getObject;
+                                            PID item/getPID; 
+                                            lang item/Language|neutral;
+                                            oddrow repeat/item/odd;
+                                            item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                            item_wf_state_class python:'state-' + normalizeString(item_wf_state)"
+                                tal:attributes="class python:test(oddrow, 'even', 'odd')">
+
+                                <td>
+                                    <input type="radio"
+                                           class="noborder"
+                                           name="isChildOf"
+                                           tal:condition="python: PID!=''"
+                                           tal:attributes="value PID;
+                                                           checked python: PID == isChildOf" />
+                                 </td>
+                                 <td>
+                                    <a href=""
+                                       tal:content="item/Title"
+                                       tal:attributes="href item/getURL;
+                                                       class string:$item_wf_state_class">
+                                        Issue 4
+                                    </a>
+                                 </td>
+                                 <td>
+                                    <span tal:content="item/Date"/>
+                                 </td>
+                                 <td>
+                                    <span tal:content="lang"/>
+                                 </td>
+                                 <td>
+                                    <span tal:content="python:'/'.join(obj.getPhysicalPath()[3:])"/>
+                                 </td>
+                             </tr>
+                         </tal:block>
+                    </tbody>
+               </table>
+
             </div>
             
             <div metal:use-macro="here/pub_macros/macros/comments">
