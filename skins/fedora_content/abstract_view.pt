@@ -34,9 +34,6 @@
                back to the article</a>
         </div>
 
-        <script type="text/javascript" src="tabber.js">
-        </script>
-        
         <div class="tabber">
             <div tal:repeat="abstract abstracts"
                  class=""

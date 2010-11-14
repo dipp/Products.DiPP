@@ -7,7 +7,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
+from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, JAVASCRIPTS, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
 from Products.DiPP.defaults import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
@@ -491,6 +491,10 @@ def install_css(self,out):
     """register the stylesheets"""
     registerResources(self, out, 'portal_css', STYLESHEETS)
 
+def install_js(self,out):
+    """register the javascripts"""
+    registerResources(self, out, 'portal_javascripts', JAVASCRIPTS)
+
 def install_metadataproperties(self,out):
     """available metadata and default values"""
     
@@ -642,6 +646,7 @@ def install(self):
     install_extMethods(self, out)
     install_types(self, out)
     install_css(self,out)
+    install_js(self,out)
     install_configlet(self, out)
     install_content(self, out)
     install_tools(self, out)

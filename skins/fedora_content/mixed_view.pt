@@ -56,8 +56,6 @@
             <tal:block tal:condition="python: abstracts[0]['lang']!=''"
                        tal:define="abstracts python:qdc['DCTermsAbstract']">
                 <h2 class="abstracts" i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h2>
-                <script type="text/javascript" src="tabber.js">
-                </script>
                 <div class="tabber">
                     <tal:block tal:repeat="abstract abstracts">
                         <div class="tabbertab"

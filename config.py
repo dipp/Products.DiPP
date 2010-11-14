@@ -32,6 +32,10 @@ STYLESHEETS = (
     {'id': "dipp_article_print.css", 'media': 'print', 'rendering': 'import'}
 )
 
+JAVASCRIPTS = (
+    {'id':'tabber.js','compression':'none'},
+)
+
 DEPENDENCIES = [
     'Archetypes',
     'ATVocabularyManager',
