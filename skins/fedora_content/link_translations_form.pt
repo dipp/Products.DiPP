@@ -77,16 +77,26 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                                id="link"
                                name="link_language"
                                tal:attributes="value python:lang[0]"/>	
-                        
-                			<ol>
+                            <table class="listing">
+                            <thead>
+                                <th></th>
+                            </thead>
+                            <tbody>
 	                		<tal:block tal:define="path python:'/'.join(physicalPath);
-	                							   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1})"
+	                							   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1}, sort_on='Date', sort_order='reverse')"
 	                		           tal:repeat="item items">
 	                		
-                                <li  tal:define="uid python:item.getObject().UID;
-                                                 has_uid python:hasattr(item.aq_explicit, 'UID')">
+                                <tr  tal:define="obj                  item/getObject;
+                                                 oddrow               repeat/item/odd;
+                                                 uid                  obj/UID;
+                                                 item_contributors    python:obj.Contributors();
+                                                 item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                                 item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                                 authors              item_contributors;
+                                                 has_uid python:hasattr(item.aq_explicit, 'UID')"
+                                       tal:attributes="class python:test(oddrow, 'even', 'odd')">
 
-                                    
+                                    <td>
                                     <input type="radio"
                                            class="noborder"
                                            name="link_content"
@@ -94,14 +104,18 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                                            tal:attributes="value uid;
                                                            id  uid;
                                                            checked python:content_language == lang[0]" />
-                                                           
-                                     <label tal:attributes="for uid" tal:content="item/Title">Der Titel des Artikels</label>                      
+                                     </td>
+                                     <td>
+                                     <label tal:attributes="for uid;
+                                                            class string:$item_wf_state_class"
+                                            tal:content="item/Title">Der Titel des Artikels</label>                      
 				                     [<a  tal:attributes="href item/getURL">view</a>]
-				                     <span tal:content="item/Language"/>
+                                     </td>
 	                                 
-								</li>
+								</tr>
 							</tal:block>
-							</ol>
+                            </tbody>
+                            </table>
 						</tal:block>
 	                </tal:item>
                 </div>
