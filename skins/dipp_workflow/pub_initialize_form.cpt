@@ -148,21 +148,31 @@
                     bearbeiten zunächst den entsprechenden Eintrag in der Worklist.
                  </span>
                </div>
+
+               <tal:block tal:define="data python:context.languageSelectorData();
+                                      dummy python:data.append({'Language':'neutral','Title':'Neutral'})"
+                          tal:repeat="lang data">
+               
+               <div tal:define="allissues here/issueByLanguage;
+                                issues python:allissues.get(lang['Language'],None)"
+                    tal:condition="issues">
+               
+               <strong tal:content="lang/Title">Deutsch</strong>
+               
                <table class="listing nosort">
                     <thead>
                         <th>&nbsp;</th>
                         <th>Title</th>
                         <th>Date</th>
-                        <th>Language</th>
                         <th>Path</th>
                     </thead>
                     <tbody>
-                        <tal:block tal:define="issues python: here.portal_catalog(portal_type=('FedoraHierarchie','Issue','Volume'), Language='all', sort_on='Date', sort_order='reverse')"
-                                   tal:repeat="item issues">
+                        <tal:block tal:repeat="item issues">
                         
-                            <tr tal:define="obj item/getObject;
+                            <tr tal:condition="python: lang['Language'] != ''"
+                                tal:define="obj item/getObject;
                                             PID item/getPID; 
-                                            lang item/Language|neutral;
+                                            issuelang item/Language|neutral;
                                             oddrow repeat/item/odd;
                                             item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                             item_wf_state_class python:'state-' + normalizeString(item_wf_state)"
@@ -188,15 +198,14 @@
                                     <span tal:content="item/Date"/>
                                  </td>
                                  <td>
-                                    <span tal:content="lang"/>
-                                 </td>
-                                 <td>
                                     <span tal:content="python:'/'.join(obj.getPhysicalPath()[3:])"/>
                                  </td>
                              </tr>
                          </tal:block>
                     </tbody>
                </table>
+               </div>
+               </tal:block>
 
             </div>
             
