@@ -148,14 +148,17 @@
                     bearbeiten zunächst den entsprechenden Eintrag in der Worklist.
                  </span>
                </div>
-
+               
+			   <div class='tabber'>
                <tal:block tal:define="data python:context.languageSelectorData();
                                       dummy python:data.append({'Language':'neutral','Title':'Neutral'})"
                           tal:repeat="lang data">
                
                <div tal:define="allissues here/issueByLanguage;
                                 issues python:allissues.get(lang['Language'],None)"
-                    tal:condition="issues">
+                    tal:condition="issues"
+                    tal:attributes="class string:tabbertab;
+                                    title lang/Title">
                
                <strong tal:content="lang/Title">Deutsch</strong>
                
@@ -206,7 +209,7 @@
                </table>
                </div>
                </tal:block>
-
+			   </div>
             </div>
             
             <div metal:use-macro="here/pub_macros/macros/comments">

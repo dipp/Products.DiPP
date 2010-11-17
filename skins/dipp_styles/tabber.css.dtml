@@ -109,6 +109,9 @@ ul.tabbernav li.tabberactive a:hover
  /* overflow:auto; */
 
 /* If desired, hide the heading since a heading is provided by the tab */
+.tabberlive .tabbertab strong {
+	display:none;
+}
 .tabberlive .tabbertab h2 {
     display:block;
     margin:0;
