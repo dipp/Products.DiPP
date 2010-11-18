@@ -48,6 +48,7 @@ ul.tabbernav li a
  margin-left: 0px;
  border: 1px solid &dtml-globalBorderColor;;
  background-color: transparent;
+ background-color: &dtml-evenRowBackgroundColor;;
  text-decoration: none;
 }
 
@@ -58,7 +59,6 @@ ul.tabbernav li a:visited { color: #667; }
 ul.tabbernav li a:hover
 {
  color: #000;
- background-color: transparent;
  border: 1px solid &dtml-globalBorderColor;;
 }
 
@@ -66,16 +66,16 @@ ul.tabbernav li.tabberactive a
 {
  color: #000;
  background-color: &dtml-globalBackgroundColor;;
+ background-color: transparent;
  border: 1px solid &dtml-globalBorderColor;;
- border-bottom: 1px solid &dtml-globalBackgroundColor;;
+ border-bottom: 1px solid &dtml-backgroundColor;;
 }
 
 ul.tabbernav li.tabberactive a:hover
 {
  color: #000;
- background-color: &dtml-globalBackgroundColor;;
  border: 1px solid &dtml-globalBorderColor;;
- border-bottom: 1px solid &dtml-globalBackgroundColor;;
+ border-bottom: 1px solid &dtml-backgroundColor;;
 }
 
 /*--------------------------------------------------
