@@ -132,7 +132,7 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
     archetype_description = "Hierarchical Object representing a volume"
     allowed_content_types = ('FedoraArticle', 'Issue')
     immediate_view = 'base_view'
-    default_view = 'base_view'
+    default_view = 'volume_contents_view'
     suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
     content_icon = 'fedorahierarchie_icon.gif'
     actions = (
