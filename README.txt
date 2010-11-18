@@ -16,6 +16,16 @@ Installation
 
 Changes
 
+	DiPP 2.5.3 (2010-11-18)
+	
+		* default view of articles configurable (fulltext for converted articles,
+		  mixed_view for pdf only publications)
+		* better linguaplone support for FedoraArticles. Tranlations can easily
+		  be linked after the conversion via the editorial toolbox
+		* more dummy metadata for temp. conversions. Citation and metadata views
+		  can be rendered now
+
+
 	DiPP 2.5.2 (2010-10-22)
 	
 	    * Feeds as alternate content in header of some templates (icon in
