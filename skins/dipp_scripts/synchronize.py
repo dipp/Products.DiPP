@@ -20,7 +20,7 @@ portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 out = StringIO()
 
-articles   = container.portal_catalog(portal_type='FedoraArticle')
+articles   = container.portal_catalog(portal_type='FedoraArticle', Language='all')
 for article in articles:
     # only permanently stored articles are synchronized
     # those with id/PID starting with 'temp' are skipped
