@@ -60,8 +60,16 @@
             </tal:block>
 
             <ul class="identifier"> 
-                <li class="doi" tal:content="doi">10.120234-ff983 </li>
-                <li class="urn" tal:content="urn">urn:nbn:de:0009-81-19666</li>
+                <li tal:condition="doi" 
+                    class="doi">
+                    <abbr title="Digital Object Identifier">DOI</abbr>:
+                    <span tal:replace="doi">10.120234-ff983</span>
+                </li>
+                <li tal:condition="urn" 
+                    class="urn">
+                    <abbr title="Uniform Resource Name">URN</abbr>:
+                    <span tal:replace="urn">urn:nbn:de:0009-81-19666</span>
+                </li>
             </ul>
                 
         </div>
