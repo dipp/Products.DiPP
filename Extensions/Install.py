@@ -60,7 +60,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('issue_show_abstracts', 'boolean', False),
         ('issue_show_full_abstracts', 'boolean', False),
         ('discussion_time', 'int', 0),
-        ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ')
+        ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ'),
+        ('issue_date_format', 'string','%d-%m-%Y')
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:

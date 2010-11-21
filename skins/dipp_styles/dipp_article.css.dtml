@@ -2,8 +2,7 @@
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 /* styles for the mixed_view template */
 #authorblurb {
-    background: &dtml-globalBackgroundColor;;
-    padding: 1em;
+    padding: 1em 0;
 }
 #authorblurb ol.authors {
     list-style: none;
@@ -48,6 +47,10 @@
 }
 #authorblurb .keywords li.last:after {
     content: "";
+}
+#authorblurb ul.identifier {
+    list-style: none;
+    margin-left: 0;
 }
 
 div.mixed {
