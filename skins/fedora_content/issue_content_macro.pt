@@ -50,13 +50,13 @@
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        authors              item_contributors"
                                        tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                            <p tal:content="item/Date"></p>
                             <strong>    
                                 <a href="#"
                                    tal:content="item_title_or_id"
                                    tal:attributes="href item_url;
                                            class string:$item_wf_state_class">
                                  Article title</a>
-
                             </strong>
                             <p tal:condition="issue_show_full_abstracts"
                                tal:content="item_abstract">
