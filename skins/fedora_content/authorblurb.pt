@@ -1,0 +1,71 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div id="authorblurb" metal:define-macro="authorblurb"
+             tal:define="urn         python:qdc['identifierURN'];
+                         doi         python:qdc['identifierDOI'];
+                         authors     python:qdc['creatorPerson'];
+                         subjects    python:qdc['subject']"
+             i18n:domain="dipp">
+            <h1 tal:content="python:qdc['title'][0]['value']"></h1>
+            
+            <ol class="authors">
+            <tal:block tal:repeat="author authors" >
+                <li tal:define="academicTitle author/academicTitle;
+                                firstName author/firstName;
+                                lastName author/lastName;
+                                organization author/organization">
+                    <a class="authorname"
+                       tal:attributes="href string:$portal_url/author?contributor=$lastName, $firstName">
+                       <span tal:content="academicTitle"
+                             class="academicTitle"
+                             tal:condition="academicTitle">prof. Dr. Dr.</span>
+                       <span tal:replace="string: $firstName $lastName">John Doe</span></a>,
+                    <span class="organization" tal:content="organization">MIT</span>
+                </li>
+            </tal:block>
+            </ol>
+            
+            <tal:block tal:condition="python: abstracts[0]['lang']!=''"
+                       tal:define="abstracts python:qdc['DCTermsAbstract']">
+                <h2 class="abstracts" i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h2>
+                <div class="tabber">
+                    <tal:block tal:repeat="abstract abstracts">
+                        <div class="tabbertab"
+                             tal:define="lang python:abstract['lang'];
+                                         title python:lang_dict[lang]"
+                             tal:attributes="title title">
+                            <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+                        </div>
+                     </tal:block>
+                </div>
+            </tal:block>
+            
+            <tal:block tal:condition="subjects">
+                <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
+                
+                <ul class="keywords">
+                    <tal:items tal:repeat="subject subjects">
+                        <li tal:define="islast repeat/subject/end;
+                                        subject python:subject.strip()" 
+                            tal:attributes="class python:test(islast,'last')">
+                            <a tal:content="subject"
+                               tal:attributes="href string: $portal_url/search?Subject=$subject&portal_type=FedoraArticle">
+                               key</a>
+                        </li>
+                    </tal:items>
+                </ul>
+            </tal:block>
+
+            <ul class="identifier"> 
+                <li class="doi" tal:content="doi">10.120234-ff983 </li>
+                <li class="urn" tal:content="urn">urn:nbn:de:0009-81-19666</li>
+            </ul>
+                
+        </div>
+
+
+     </body>
+</html>
