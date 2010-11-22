@@ -63,12 +63,12 @@
                 <li tal:condition="doi" 
                     class="doi">
                     <abbr title="Digital Object Identifier">DOI</abbr>:
-                    <span tal:replace="doi">10.120234-ff983</span>
+                    <a tal:content="doi" tal:attributes="href string:http://dx.doi.org/$doi">10.120234-ff983</a>
                 </li>
                 <li tal:condition="urn" 
                     class="urn">
                     <abbr title="Uniform Resource Name">URN</abbr>:
-                    <span tal:replace="urn">urn:nbn:de:0009-81-19666</span>
+                    <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
                 </li>
             </ul>
                 

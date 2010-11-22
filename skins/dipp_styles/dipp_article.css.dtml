@@ -52,6 +52,10 @@
     list-style: none;
     margin-left: 0;
 }
+#authorblurb ul.identifier .link-external {
+   background: none;
+   padding: 0;
+}
 
 div.mixed {
     margin-top: 2em;
