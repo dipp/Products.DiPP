@@ -44,7 +44,6 @@
 
                 
                 <dl>
-                <dd>geht ohne titel</dd>
                     <tal:items tal:repeat="item batch">
                        <tal:block tal:define="obj                  item/getObject;
                                            item_url             item/getURL|item/absolute_url;
