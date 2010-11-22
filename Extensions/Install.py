@@ -59,6 +59,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('volume_show_covers', 'boolean', False),
         ('issue_show_abstracts', 'boolean', False),
         ('issue_show_full_abstracts', 'boolean', False),
+        ('issue_sort_on', 'string', 'getObjPositionInParent'),
+        ('issue_sort_order', 'string', 'ascending'),
         ('discussion_time', 'int', 0),
         ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ'),
         ('issue_date_format', 'string','%d-%m-%Y')

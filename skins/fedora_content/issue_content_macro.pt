@@ -12,6 +12,10 @@
                          journalsections           python:avtm.getVocabularyByName('journal-sections');
                          section_dict              python:journalsections.getVocabularyDict(journalsections);
                          articles                  python: here.portal_catalog(path=issue_path,portal_type='FedoraArticle');
+                         default_sort_on           string:getObjPositionInParent;
+                         sort_on                   here/issue_sort_on|here/portal_properties/dipp_properties/issue_sort_on|default_sort_on;
+                         default_sort_order        string:ascending;
+                         sort_order                here/issue_sort_order|here/portal_properties/dipp_properties/issue_sort_order|default_sort_order;
                          issue_show_abstracts      here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing;
                          issue_show_full_abstracts here/issue_show_full_abstracts|here/portal_properties/dipp_properties/issue_show_full_abstracts|nothing"
              i18n:domain="dipp">
@@ -22,7 +26,7 @@
             </p>
             <dl class="issue-content">
             <tal:section tal:repeat="section python: section_dict.keys()">
-                <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':2},portal_type='FedoraArticle',getJournal_section=section, sort_on='getObjPositionInParent')"
+                <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':2},portal_type='FedoraArticle',getJournal_section=section, sort_on=sort_on, sort_order=sort_order)"
                            tal:condition="articles"
                            i18n:domain="dipp">
                 <dt tal:condition="python: section != 'no-section'"
