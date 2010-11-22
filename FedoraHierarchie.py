@@ -148,7 +148,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     _at_rename_after_creation = True
     #archetype_name = "Volume/Issue"
     archetype_description = "Hierarchical Object representing an issue or volume"
-    allowed_content_types = ('FedoraHierarchie','FedoraArticle')
+    allowed_content_types = ('FedoraHierarchie','FedoraArticle','Volume','Issue')
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')

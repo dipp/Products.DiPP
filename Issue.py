@@ -130,7 +130,7 @@ class Issue(BrowserDefaultMixin, OrderedBaseFolder):
     _at_rename_after_creation = True
     archetype_name = "Issue"
     archetype_description = "Hierarchical Object representing an issue"
-    allowed_content_types = ('FedoraArticle')
+    allowed_content_types = ('FedoraArticle','FedoraHierarchie')
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ('base_view', 'issue_contents_view')

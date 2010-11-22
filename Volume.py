@@ -130,7 +130,7 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
     _at_rename_after_creation = True
     archetype_name = "Volume"
     archetype_description = "Hierarchical Object representing a volume"
-    allowed_content_types = ('FedoraArticle', 'Issue')
+    allowed_content_types = ('FedoraArticle', 'Issue', 'FedoraHierarchie')
     immediate_view = 'base_view'
     default_view = 'volume_contents_view'
     suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
