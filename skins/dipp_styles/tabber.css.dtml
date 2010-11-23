@@ -10,7 +10,9 @@
 .tabberlive .tabbertabhide {
  display:none;
 }
-
+.hidenav .tabbernav {
+    display: none;
+}
 /*--------------------------------------------------
   .tabber = before the tabber interface is set up
   .tabberlive = after the tabber interface is set up

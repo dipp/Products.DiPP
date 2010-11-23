@@ -27,11 +27,10 @@
                 </li>
             </tal:block>
             </ol>
-            
             <tal:block tal:condition="python: abstracts[0]['lang']!=''"
                        tal:define="abstracts python:qdc['DCTermsAbstract']">
                 <h2 class="abstracts" i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h2>
-                <div class="tabber">
+                <div tal:attributes="class python:test(len(abstracts) < 2,'tabber hidenav', 'tabber')">
                     <tal:block tal:repeat="abstract abstracts">
                         <div class="tabbertab"
                              tal:define="lang python:abstract['lang'];
