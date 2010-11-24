@@ -19,7 +19,7 @@
                                url python:result.getObject().absolute_url();
                                vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url;
                                obj result/getObject;
-                               size python:obj.getObjSize(here);
+                               size python:here.getObjSize(obj);
                                content_type obj/get_content_type|result/Format">
                     <p>
                         <a href=""
