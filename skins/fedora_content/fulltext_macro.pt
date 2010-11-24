@@ -1,6 +1,6 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
     xmlns:metal="http://xml.zope.org/namespaces/metal"
-    i18n:domain="DiPP">
+    i18n:domain="Plone">
     <body>
 
         <div metal:define-macro="fulltext"
@@ -10,22 +10,43 @@
                          results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='alternative_format', sort_on='getObjPositionInParent')"
              tal:condition="results">
              
-            <h2 i18n:translate="heading_fulltext" id="fulltext" name="fulltext">Fulltext</h2>
+            <h2 i18n:translate="heading_fulltext" i18n:domain="dipp" id="fulltext" name="fulltext">Fulltext</h2>
             
             <tal:block tal:repeat="result results">
                 <tal:block tal:condition="python: result.id.endswith('pdf') and not result.id.startswith('srcdoc')"
                    tal:define="pixel_domain here/pixel_domain|nothing;
                                pixel_id here/pixel_id|nothing;
-                               url python:result.getObject().absolute_url()">
-                        <p tal:condition="pixel_id"
-                           i18n:translate="text_fulltext"
-                            tal:define="vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url">
-                            Get the <a href="" i18n:name="fulltext" tal:attributes="href vgwort_url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
-                         </p>
-                        
-                        <p tal:condition="not: pixel_id">
-                            Get the <a href="" tal:attributes="href url">fulltext as <abbr title="Portable Document Format">pdf</abbr></a>.
-                        </p>
+                               url python:result.getObject().absolute_url();
+                               vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url;
+                               obj result/getObject;
+                               size python:obj.getObjSize(here);
+                               content_type obj/get_content_type|result/Format">
+                    <p>
+                        <a href=""
+                           tal:attributes="href python:test(pixel_id,vgwort_url,url)">
+                            <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />
+                            <tal:block i18n:domain="plone" i18n:translate="label_click_to_get_file">
+                            Click here to get the file
+                            </tal:block>
+                        </a>
+
+                        <span class="discreet" i18n:domain="plone" >
+                           (
+                            <span i18n:translate="label_size">
+                            Size
+                            </span>
+
+                            <span tal:condition="size"
+                                tal:content="size">
+                            257 KB
+                            </span>
+
+                            <span tal:condition="python:test(size,0,1)" i18n:translate="no_file_uploaded">
+                              (No file has been uploaded yet)
+                            </span>
+                            )
+                        </span>
+                    </p>
                 </tal:block>
             </tal:block>
         </div>
