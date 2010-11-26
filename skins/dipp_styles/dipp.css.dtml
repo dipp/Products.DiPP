@@ -170,6 +170,7 @@ dl#authors-by-initial dd {
 dl#authors-by-initial dt {
     font-size: 120%;
     margin-top: 1em;
+    display: inline;
 }
 dl#authors-by-initial ol {
     margin-left: 0;
