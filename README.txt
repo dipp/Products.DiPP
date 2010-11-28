@@ -16,6 +16,14 @@ Installation
 
 Changes
 
+	DiPP 2.5.4 (2010-11-29)
+
+        * Fulltext with size
+        * issue sorting (by date, by position) configurable via ZMI
+        * DOI/URN linked with resolver
+        * date in issue configurable
+
+        
 	DiPP 2.5.3 (2010-11-18)
 	
 		* default view of articles configurable (fulltext for converted articles,
