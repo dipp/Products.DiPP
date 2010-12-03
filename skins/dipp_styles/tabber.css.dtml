@@ -99,6 +99,9 @@ ul.tabbernav li.tabberactive a:hover
     background-color: #fff;
     margin: 0 0 1em 0;
 }
+.hidenav .tabbertab {
+    padding-top: 0;
+}
 
  /* If you don't want the tab size changing whenever a tab is changed
     you can set a fixed height */
