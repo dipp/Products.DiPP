@@ -563,7 +563,7 @@ msgid "back_to_article"
 msgstr "Back to the article."
 
 msgid "abstract"
-msgstr "Zusammenfassung"
+msgstr "Abstract"
 
 msgid "abstracts"
 msgstr "Abstracts"
