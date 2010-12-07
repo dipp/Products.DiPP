@@ -104,9 +104,13 @@ class BibTool(UniqueObject, SimpleItem):
         journal = bibliographicCitation['journalTitle']
         volume = bibliographicCitation['journalVolume']
         issue = bibliographicCitation['journalIssueNumber']
-        issuedate = DateTime(bibliographicCitation['journalIssueDate'])
-        date = issuedate.strftime(self.portal_properties.site_properties.localTimeFormat)
-        year = issuedate.strftime('%Y')
+        try:
+            issuedate = DateTime(bibliographicCitation['journalIssueDate'])
+            date = issuedate.strftime(self.portal_properties.site_properties.localTimeFormat)
+            year = issuedate.strftime('%Y')
+        except:
+            date = "????-??-??"
+            year = "????"
         urn = qdc['identifierURN'];
         id = self.PID.split(':')[-1]
         authors_list = ""
@@ -226,7 +230,10 @@ class BibTool(UniqueObject, SimpleItem):
         number = SubElement(issue, "number")
         number.text = bc["journalIssueNumber"]
         date = SubElement(part, "date")
-        year = DateTime(bc["journalIssueDate"]).strftime('%Y')
+        try:
+            year = DateTime(bc["journalIssueDate"]).strftime('%Y')
+        except:
+            year = "????"
         date.text = year
         if startpage:
             extent = SubElement(part,"extent", unit="page")
