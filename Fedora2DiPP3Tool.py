@@ -679,11 +679,10 @@ class Fedora(UniqueObject, SimpleItem):
                         'value':aAlternative._value
                     })
             else:
-                for aAlternative in response._alternative:
-                    alternative.append({
-                        'lang':'',
-                        'value':''
-                    })
+                alternative.append({
+                    'lang':'',
+                    'value':''
+                })
 
             DCTermsAbstract=[]
             if len(response._DCTermsAbstract)!=0:
