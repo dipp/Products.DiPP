@@ -234,8 +234,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           
         { "id": "fulltextpdf",
           "name": "Get the fulltext as pdf.",
-          "action": "python:object.getFulltextPdf()",
-          "condition": "python:object.getFulltextPdf()",
+          "action": "python:object.getFulltextPdf().get('URL',None)",
+          "condition": "python:object.getFulltextPdf().get('URL',None)",
           "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
           "category":"document_actions",
           },
@@ -250,8 +250,22 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         fedora = getToolByName(self, 'fedora')
         PID = self.PID
         authors = ", ".join(self.Contributors())
+        # indexing authors
         LOG ('DIPP', INFO, "Fetching %s for indexing: %s" % (PID, authors))
         icc.addContent('SearchableText',unicode(authors), self.language)
+        # indexing pdf
+        PDF_PID = self.getFulltextPdf().get('PID',None)
+        PDF_DsID = self.getFulltextPdf().get('DsID', None)
+        MIMEType = "application/pdf" 
+        if PDF_PID and PDF_DsID: 
+            data =  fedora.accessMultiMediaByFedoraURL(PDF_PID,PDF_DsID,None)
+            stream = data['stream']
+            LOG ('DIPP', INFO, "Fetching PDF with %s/%s for indexing." % (PDF_PID, PDF_DsID))
+            icc.addBinary('SearchableText', 
+                          stream,
+                          MIMEType,
+                          'iso-8859-15',
+                          self.language)
         return icc
 
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
@@ -322,11 +336,11 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             obj = item.getObject()
             mimetype = obj.get_content_type()
             if mimetype == 'application/pdf':
-                x.append(item)
+                x.append(obj)
         if len(x) > 0:
-            return x[0].getURL()
+            return {'PID':x[0].PID,'DsID':x[0].DsID,'URL':x[0].absolute_url()}
         else:
-            return False
+            return {}
     
     def linkTranslations(self,PID):
         articles = self.portal_catalog(Type='Fedora Article', getPID=PID)
