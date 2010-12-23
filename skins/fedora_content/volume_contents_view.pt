@@ -32,6 +32,11 @@
              This Volume does not contain any issues.
         </p>
         
+        <p tal:condition="here/Body"
+           tal:content="structure here/Body">
+             This Volume does not contain any issues.
+        </p>
+        
         <div tal:condition="issues">
             <ol class="volume_content">
                 <tal:items tal:repeat="item issues">
@@ -64,8 +69,11 @@
                         </div>
                        <div tal:condition="show_covers"
                             class="issuepicture">
-                            <img tal:condition="item_has_cover"
-                                 tal:replace="structure obj/TitleImage_small" />
+                            <a tal:condition="item_has_cover"
+                               href=""
+                               tal:attributes="href item_url">
+                                <img tal:replace="structure obj/TitleImage_small" />
+                            </a>
                        </div>
                        <div class="visualClear"></div>
                     </li>
