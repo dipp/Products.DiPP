@@ -35,12 +35,14 @@
                 
                 <div tal:attributes="class python:test(len(abstracts) < 2,'tabber hidenav', 'tabber')">
                     <tal:block tal:repeat="abstract abstracts">
-                        <div class="tabbertab"
-                             tal:define="lang python:abstract['lang'];
-                                         title python:lang_dict[lang]"
-                             tal:attributes="title title">
-                            <p class="dippAbstract" tal:content="python:abstract['value']"></p>
-                        </div>
+                        <tal:block tal:define="lang python:abstract.get('lang',None);"
+                                   tal:condition="lang">
+                            <div tal:condition="lang"
+                                 class="tabbertab"
+                                 tal:attributes="title python:lang_dict[lang]">
+                                <p class="dippAbstract" tal:content="python:abstract['value']"></p>
+                            </div>
+                         </tal:block>
                      </tal:block>
                 </div>
             </tal:block>
