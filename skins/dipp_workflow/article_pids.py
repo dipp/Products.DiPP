@@ -4,24 +4,15 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self
+##parameters=
 ##title=
 ##
 request = container.REQUEST
 RESPONSE =  request.RESPONSE
 from Products.CMFCore.utils import getToolByName
-portal = getToolByName(self, 'portal_url').getPortalObject()
+portal = getToolByName(context, 'portal_url').getPortalObject()
 
-"""
-openflow = getToolByName(portal, 'portal_openflow')
-workitems = openflow.Catalog(meta_type='Workitem')
-PIDs = []
-for workitem in workitems:
-    wi = workitem.getObject()
-    action = openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)
-    if action:
-        PIDs.append(wi.PID)
-"""
+# return a PID sorted dictionary with some basic metadata
 
 catalog = getToolByName(portal, 'portal_catalog')
 results = catalog.searchResults(portal_type='FedoraArticle')
@@ -29,5 +20,7 @@ articles = {}
 
 for result in results:
     if result.getPID:
-        articles[result.getPID] = result.getURL()
+        articles[result.getPID] = {}
+        articles[result.getPID]['url'] = result.getURL()
+        articles[result.getPID]['title'] = result.Title
 return articles
