@@ -72,7 +72,7 @@
 
 
 <div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time');
-                 article_pids python:here.article_pids(here)">
+                 article_pids here/article_pids">
 
     <table id="sortable" cellpadding="2" cellspacing="0" border="0"
            width="100%" class="listing worklist" tal:condition="workitems">
@@ -97,7 +97,7 @@
                            time python: wi.event_log[0]['time'];
                            PID wi/PID|nothing;
                            wtitle python: wi.title or '%s-%s'%(wi.instance_id,wi.id);
-                           article_url python:article_pids.get(PID,None);
+                           article python:article_pids.get(PID,None);
                            action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
                            condition="action">
         <tr>
@@ -118,18 +118,21 @@
             </td>
             <td tal:content="string: ${wi/actor}">Actor</td>
             <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
-            <td>
-                <span tal:content="string: ${wi/titel}">Der Herr der Ringe</span>
-            </td>
-            <td>
-                <em tal:condition="not:article_url" 
+            <td tal:condition="not:article"
+                colspan="2">
+                <em tal:condition="not:article" 
                     tal:content="string: no article with PID $PID">
                    no article with this PID</em>
-                <a tal:condition="article_url"
-                   href=''
-                   tal:attributes="href article_url"
+            </td>
+            <td tal:condition="article" tal:content="article/title">
+                Der Herr der Ringe
+            </td>
+            <td tal:condition="article">
+                <a href=''
+                   tal:attributes="href article/url"
                    tal:content="string: ${wi/hierarchie}">2010/7</a>
             
+            </td>
             <td>
                 <span tal:replace="wi/activity_id" >initialize</span>
             </td>
@@ -169,7 +172,7 @@
     
     <table class="listing nosort" 
            tal:define="path python: '/'.join(context.tmp.getPhysicalPath());
-                       results python: here.portal_catalog.searchResults(Type='Fedora Article', path=path, sort_on='Date', sort_order='reverse', PID='temp')">
+                       results python: here.portal_catalog.searchResults(Type='Fedora Article', path=path, sort_on='Date', sort_order='reverse')">
         <thead>
         <tr>
               <th>
@@ -184,7 +187,7 @@
         </thead>
         <tbody>
             <tal:block tal:repeat="item results">
-            <tr tal:define="tmp python:item.id.startswith('temp')"
+            <tr tal:define="tmp python:item.getPID.startswith('temp')"
                 tal:condition="tmp">
                 <td>
                     <a tal:attributes="href item/getURL"
