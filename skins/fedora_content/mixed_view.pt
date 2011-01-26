@@ -48,29 +48,18 @@
             </pre>
 
         </div>
+
         <tal:block tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
                          citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
                          initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
                          initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing;
-                         allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
-                         rights python:qdc['rights'][0];
-                         lang request/other/LANGUAGE|en;
-                         dppl python:here.dppl(rights,lang)"
+                         allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing"
                    i18n:domain="dipp">
-                         
-            <div class="licence"
-                 tal:condition="python:rights != 'authorcontract'">
 
-                <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
-
-                <p i18n:translate="licence_text" i18n:domain="dipp">
-                    Jedermann darf dieses Werk unter den Bedingungen der
-                    <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
-                    und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
-                    unter der Adresse <a href="" tal:attributes="href python: dppl['url'][lang]" tal:content="python: dppl['url'][lang]" i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>.
-                </p>
+            <div metal:use-macro="here/rights_macro/macros/rights">
+               some explanation about the rights and link to the licence 
             </div>
-            
+
             <div metal:use-macro="here/citation_macro/macros/recommended_citation">
                 Show a custom formatted recommended citation
             </div>

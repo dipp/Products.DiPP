@@ -1,0 +1,24 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPP">
+    <body>
+
+        <div metal:define-macro="rights"
+             i18n:domain="dipp"
+             tal:define="rights python: qdc.get('rights',[]);
+                         lang request/other/LANGUAGE|en">
+
+                <h2><a name="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</a></h2>
+                
+                <tal:block tal:content="rights"/> 
+                <p i18n:translate="licence_text" i18n:domain="dipp"
+                   tal:define="dppl python:here.dppl(rights[0],lang)">
+                    Jedermann darf dieses Werk unter den Bedingungen der
+                    <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
+                    und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
+                    unter der Adresse <a href="" tal:attributes="href python: dppl['url'][lang]" tal:content="python: dppl['url'][lang]" i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>.
+                </p>
+        </div>
+
+     </body>
+</html>
