@@ -672,7 +672,7 @@ class Fedora(UniqueObject, SimpleItem):
                 
 
             alternative = []
-            if len(response._alternative)!=0:
+            if len(response._alternative) > 0:
                 for aAlternative in response._alternative:
                     alternative.append({
                         'lang':aAlternative._lang,
