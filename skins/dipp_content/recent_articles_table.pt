@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+      
+    <metal:block metal:fill-slot="head_slot">
+        <link rel="alternate"
+              title="Recent Articles"
+              type="application/rss+xml"
+              tal:attributes="href string:$portal_url/feed/articles"/>
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1  class="documentFirstHeading">
+          Articles
+        </h1>
+    
+        <div class="documentDescription">
+        </div>
+
+        <div tal:define="articles            python: here.portal_catalog(portal_type='FedoraArticle', sort_on='Date', sort_order='reverse');
+                        Batch                python:modules['Products.CMFPlone'].Batch;
+                        desc_length site_properties/search_results_description_length;
+                        desc_ellipsis site_properties/ellipsis;
+                        b_size               python:25;b_start python:0;b_start request/b_start | b_start;
+                        authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
+                        avtm                 python:here.portal_vocabularies;
+                        journalsections      python:avtm.getVocabularyByName('journal-sections');
+                        section_dict         python:journalsections.getVocabularyDict(journalsections)">
+            <em tal:condition="not: articles">
+                There are no published Articles
+            </em>
+            <tal:block tal:condition="articles"
+                       tal:define="batch python:Batch(articles, b_size, int(b_start), orphan=1);">
+
+                <tal:block tal:replace="python: len(articles)"/> Articles
+                
+                <table class="listing">
+                    <thead>
+                        <tr>
+                            <th>PID</th>
+                            <th>Title</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                    <tal:items tal:repeat="item batch">
+                       <tal:block tal:define="obj                  item/getObject;
+                                           item_url             item/getURL|item/absolute_url;
+                                           item_id              item/getId;
+                                           item_pid              item/getPID;
+                                           item_section         item/getJournal_section;
+                                           item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                           item_title_or_id     item/pretty_title_or_id;
+                                           item_section         item/getJournal_section|nothing;
+                                           item_abstract        obj/getAbstract;
+                                           item_abstracts       python:obj.getAvailableAbstracts;
+                                           item_contributors    python:obj.Contributors();
+                                           item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                           item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+                                           authors              item_contributors">
+                            <tr>
+                               <td>
+                                <a href="#"
+                                   tal:content="item_pid"
+                                   tal:attributes="href item_url;
+                                           class string:$item_wf_state_class">
+                                 Article title</a>
+                                 </td>
+                                <td>
+                                    <span tal:content="item_title_or_id"></span><br>
+                                    <em tal:content="authors"></em>
+                                </td>
+                                <td>
+                                    <a tal:attributes="href item_url" tal:content="item_url"></a>
+                                </td>
+                            </tr>
+                            
+                        </tal:block>
+                     </tal:items>
+                     </tbody>
+
+                </table>
+                <!-- Navigation -->
+                <div metal:use-macro="here/batch_macros/macros/navigation" />
+            </tal:block>
+        </div>
+        
+
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
