@@ -32,8 +32,8 @@
 
 <div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time', actor=UserName)">
 
-    <table id="sortable1" cellpadding="2" cellspacing="0" border="0"
-           width="100%" class="listing" tal:condition="workitems">
+    <table id="sortable" cellpadding="2" cellspacing="0" border="0"
+           width="100%" class="listing worklist" tal:condition="workitems">
         <thead>
             <tr valign="top" align="left" bgcolor="#cccccc" class="headings" >
                 <th i18n:translate=""><abbr title="Persistent Identifier">PID</abbr></th>
@@ -123,8 +123,8 @@
 <h2 i18n:translate="free_workitems">Workitems not yet assigned</h2>
 <div tal:define="workitems python:openflow.Catalog(meta_type='Workitem',sort_on='creation_time')">
 
-    <table id="sortable1" cellpadding="2" cellspacing="0" border="0"
-           width="100%" class="listing" tal:condition="workitems">
+    <table id="sortable" cellpadding="2" cellspacing="0" border="0"
+           width="100%" class="listing worklist" tal:condition="workitems">
         <thead>
             <tr valign="top" align="left" bgcolor="#cccccc" class="headings" >
                 <th i18n:translate=""><abbr title="Persistent Identifier">PID</abbr></th>
