@@ -8,15 +8,17 @@
      tal:omit-tag=""
      tal:condition="python: request.form.has_key('instance_id')">
     <!-- tal:condition="python: 'Herausgeber' in user.getRoles() or  'Manager' in user.getRoles()"> -->
-	<div class="portlet" id="portlet-status">
-	<div class="active">
+	<dl class="portlet" id="portlet-status">
 
-		<h5 i18n:translate="status" i18n:domain="plone">Status</h5>
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+		    <span i18n:translate="status" i18n:domain="plone">Status</span>
+            <span class="portletTopRight"></span>
+        </dt>
 
-		<div class="portletBody">
 		
             <tal:block tal:define="instance request/instance_id">
-                <div class="portletContent even">
+                <dd class="portletItem odd">
                     <tal:block tal:define="i python:here.get_status(instance);">
                         <b>ID:</b> <tal:block tal:replace="i/id" /><br />
                         <b>deadline</b>
@@ -35,17 +37,15 @@
                         <b>gasthrsg:</b> <tal:block tal:replace="i/gastHrsgOK" /><br />
                         <b>autor:</b> <tal:block tal:replace="i/autorOK" />
                     </tal:block>
-                </div>
-                <div class="portletContent even">
+                </dd>
+                <dd class="portletFooter">
                     <a href="" tal:attributes="href string:$portal_url/history?instance_id=$instance"> zur history</a>
-                </div>
+                </dd>
 			</tal:block>
-			<div class="portletContent odd"  tal:condition="python:not request.form.has_key('instance_id')">
+			<dd class="portletItem odd"  tal:condition="python:not request.form.has_key('instance_id')">
 			kein Artikel ausgewählt
-			</div>
-		</div>
-	</div>
-	</div>
+			</dd>
+	</dl>
 
 </div>
 
