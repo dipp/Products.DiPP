@@ -218,6 +218,13 @@ div.portletContent {
 .worklist ul.actions  li {
     white-space: nowrap;
 }
+/* workflow */
+pre.wfcomments {
+    height: 150px;
+}
+div.wfbuttons {
+    margin: 1em 0;
+}
 
 ul.list-of-feeds {
     list-style: none;
