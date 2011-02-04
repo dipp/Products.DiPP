@@ -43,7 +43,7 @@ else:
     mail+= lang
 
 
-journal = self.portal_properties.title
+journal = self.portal_properties.title()
 email_from_name = self.portal_properties.email_from_name
 next_workitem_id = str(int(workitem_id) + 1)
 next_step = portal_url()
