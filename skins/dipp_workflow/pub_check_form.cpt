@@ -73,7 +73,7 @@
                         </td>
                     </tr>
                 </table>
-                <div class="wfbutttons">
+                <div class="wfbuttons">
                 
                     <input class="context"
                            tabindex=""

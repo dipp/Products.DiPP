@@ -51,9 +51,7 @@
 
 			<tal:block tal:condition="python: user.has_role('Herausgeber') or user.has_role('Redakteur') or user.has_role('Manager')">
 			<h3 i18n:translate="existing_comments" i18n:domain="dipp">Vorhandene Kommentare</h3>
-				<div class="even" style="height: 150px;overflow: auto;">
-					<pre tal:content="w/nachrichten">nachrichten</pre>
-				</div>
+		    <pre class="wfcomments" tal:content="w/nachrichten">nachrichten</pre>
 			</tal:block>
 			
 			<h3 i18n:translate="your_comment" i18n:domain="dipp">Ihr Kommentar</h3>
