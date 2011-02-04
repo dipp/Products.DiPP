@@ -216,25 +216,28 @@
                 Kommentarfelder
             </div>
 
-            <input class="context"
-                   tabindex=""
-                   type="submit"
-                   name="form.button.Save"
-                   value="Save"
-                   i18n:domain="plone"
-                   i18n:attributes="value"
-                   tal:attributes="tabindex tabindex/next;
-                                   disabled python:test(isLocked, 'disabled', None);" />
-
-            <input class="standalone"
-                   tabindex=""
-                   type="submit"
-                   name="form.button.Cancel"
-                   value="Cancel"
-                   i18n:domain="plone"
-                   i18n:attributes="value"
-                   tal:attributes="tabindex tabindex/next;" />                          
-
+			<div class="wfbutttons">
+			
+	            <input class="context"
+	                   tabindex=""
+	                   type="submit"
+	                   name="form.button.Cancel"
+	                   value="Cancel"
+	                   i18n:domain="dipp"
+	                   i18n:attributes="value label_cancel"
+	                   tal:attributes="tabindex tabindex/next;" />
+	
+	            <input class="context"
+	                   tabindex=""
+	                   type="submit"
+	                   name="form.button.Save"
+	                   value="Continue"
+	                   i18n:domain="dipp"
+	                   i18n:attributes="value label_continue"
+	                   tal:attributes="tabindex tabindex/next;
+	                                   disabled python:test(isLocked, 'disabled', None);" />
+	                                   
+			</div>
 
             </form>
         </tal:block>

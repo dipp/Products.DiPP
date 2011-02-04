@@ -473,6 +473,12 @@ msgstr ""
 msgid "label_cancel"
 msgstr ""
 
+msgid "label_continue"
+msgstr ""
+
+msgid "label_finish"
+msgstr ""
+
 msgid "label_proceed_with_metadata"
 msgstr ""
 

@@ -33,9 +33,15 @@
 		</div>
         
 <!-- BEARBEITEN-->
-		<div metal:define-macro="edit" id="pub_edit-field" >
+		<div metal:define-macro="edit" id="pub_edit-field" 
+            tal:define="article python:here.article_pids(w.PID)[w.PID];
+                        title article/title|nothing;
+                        url article/url|nothing">
+            <div class="documentDescription" 
+                 tal:content="string:Title: $title (${w/PID})">
+            </div>
             <p>
-                <a target="_blank" href="" tal:attributes="href string:${w/url}/" i18n:domain="dipp" i18n:translate="edit_article">
+                <a target="_blank" href="" tal:attributes="href url" i18n:domain="dipp" i18n:translate="edit_article">
                      Zum Bearbeiten den Artikel in einem neuen Browserfenster öffnen</a>
             </p>
 		</div>
