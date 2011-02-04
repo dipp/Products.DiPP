@@ -36,6 +36,8 @@ if lang.lower() == "de":
     mail = dp.author_notice_de
 elif lang.lower() == "en":
     mail= dp.author_notice_en
+elif lang.lower() == "":
+    mail= dp.author_notice_en
 else:
     mail = "no mail template found for Language\n   "
     mail+= lang
