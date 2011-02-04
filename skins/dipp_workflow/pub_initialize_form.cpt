@@ -40,6 +40,7 @@
             <input type="hidden" name="process_id" value="process_id" tal:attributes="value request/process_id">
             <input type="hidden" name="activity_id" value="activity_id" tal:attributes="value request/activity_id">
             <input type="hidden" name="actor" value="actor" tal:attributes="value user">
+            
             <div metal:use-macro="here/pub_macros/macros/deadline">
                 Deadline
             </div>
@@ -216,7 +217,7 @@
                 Kommentarfelder
             </div>
 
-			<div class="wfbutttons">
+			<div class="wfbuttons">
 			
 	            <input class="context"
 	                   tabindex=""
@@ -244,5 +245,3 @@
         </div>
     </body>
 </html>
-
-

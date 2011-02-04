@@ -1,0 +1,6 @@
+[default]
+title=Artikel freischalten
+
+[actions]
+action.success..Save       = traverse_to:string:pub_modify_instance
+action.success..Cancel     = traverse_to:string:pub_inactivate
