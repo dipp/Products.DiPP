@@ -47,6 +47,7 @@
                                        item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                        item_title_or_id     item/pretty_title_or_id;
                                        item_section         item/getJournal_section|nothing;
+                                       item_date       item/getIssueDate|nothing;
                                        item_abstracts       python:obj.getAvailableAbstracts;
                                        item_abstract        obj/getAbstract;
                                        item_contributors    python:obj.Contributors();
@@ -56,7 +57,7 @@
                             
                             <p tal:define="format here/issue_date_format|here/portal_properties/dipp_properties/issue_date_format|nothing"
                                tal:condition="format"
-                               tal:content="python: item['effective'].strftime(format)">
+                               tal:content="python: item_date.strftime(format)">
                                 2004-06-08</p>
                             
                             <strong>    
