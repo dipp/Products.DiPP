@@ -52,8 +52,7 @@
                                        item_contributors    python:obj.Contributors();
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
-                                       authors              item_contributors"
-                                       tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                                       authors              item_contributors" >
                             
                             <p tal:define="format here/issue_date_format|here/portal_properties/dipp_properties/issue_date_format|nothing"
                                tal:condition="format"
