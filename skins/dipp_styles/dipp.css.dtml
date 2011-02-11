@@ -108,6 +108,22 @@ ul.allauthors li {
     display: inline;
 }
 /* Metadata Form */
+/* Recent Articles */
+#recent_articles {
+    list-style: none;
+    margin-left: 0;
+}
+#recent_articles .read_link {
+    display: block;
+    text-align: right;
+}
+#recent_articles > li {
+    padding: 0.5em;
+}
+#recent_articles li:hover {
+    background-color: &dtml-evenRowBackgroundColor;
+}
+
 
 textarea.abstract { width: 100%; }
 input.academicTitle { width: 50px; }
