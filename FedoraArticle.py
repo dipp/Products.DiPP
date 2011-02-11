@@ -292,6 +292,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
             date = qdc['bibliographicCitation'][0]['journalIssueDate']
             self.setEffectiveDate(date)
+            self.setIssueDate(date)
            
             # list with available abstract languages ist stored on article object. The calculation
             # on the fly would be to expensive, since for issue pages each single Article would
