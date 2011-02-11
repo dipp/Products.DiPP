@@ -15,7 +15,10 @@ Installation
 	can not be uploaded. 
 
 Changes
+    DiPP 2.5.5 ()
 
+        * After Install: cal synchronize Skript to put the JournalIssueDate into plones catalog 
+        
 	DiPP 2.5.4 (2010-11-29)
 
         * Fulltext with size
