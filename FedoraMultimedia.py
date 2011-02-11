@@ -36,7 +36,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                     label='Persistent Identifier (PID)',
                     description='The PID of this digital object as given by the repository software. DO NOT EDIT.',
                     size='15',
-                    visible=-1
+                    visible={'edit':'invisible','view':'visible'}
                 ),
                 index='FieldIndex:brains'
         ),
@@ -46,7 +46,8 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                     label='Datastream Identifier (DsID)',
                     description='The Datastream Identifier. DO NOT EDIT.',
                     size='15',
-                    visible=-1)
+                    visible={'edit':'invisible','view':'visible'}
+                )
         ),
         StringField('MMType',
                 required=0,
