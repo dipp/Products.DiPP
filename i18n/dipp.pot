@@ -590,3 +590,8 @@ msgstr ""
 msgid "feed-all-articles"
 msgstr ""
 
+msgid "recent_articles"
+msgstr ""
+
+msgid "no_published_articles"
+msgstr ""
