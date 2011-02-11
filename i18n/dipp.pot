@@ -595,3 +595,6 @@ msgstr ""
 
 msgid "no_published_articles"
 msgstr ""
+
+msgid "read_article"
+msgstr ""

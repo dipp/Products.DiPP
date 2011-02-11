@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-02-11 11:17+0100\n"
+"PO-Revision-Date: 2011-02-11 14:23+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "Language: \n"
@@ -600,4 +600,7 @@ msgstr "Neueste Artikel"
 
 msgid "no_published_articles"
 msgstr "Es wurden noch keine Artikel veröffentlicht."
+
+msgid "read_article"
+msgstr "Artikel lesen"
 
