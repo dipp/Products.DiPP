@@ -35,7 +35,7 @@
             <dd class="portletItem" 
                 tal:condition="not: articles"
                 i18n:translate="no_published_articles"
-                i18n_domain="dipp">
+                i18n:domain="dipp">
                 There are no published Articles
             </dd>
 
