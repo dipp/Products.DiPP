@@ -192,6 +192,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
+        LinesField('Authors',
+            required=0,
+            widget=LinesWidget(
+                label='Authors',
+                label_msgid='label_author_field',
+                description='Authors of this article, one per line.-',
+                description_msgid='help_author_field',
+                visible={'edit':'invisible','view':'visible'}
+            ),
+            index='KeywordIndex:brains',
+            schemata='Bibliographic Data'
+        ),
     ))
 
     #archetype_name = "Peer reviewed article"
@@ -284,6 +296,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 author = "%s, %s" % (lastName, firstName)
                 contributors.append(author)
             self.setContributors(contributors)
+            self.setAuthors(contributors)
             
             self.setSubject(qdc['subject'])
             self.setRights(qdc['rights'][0])
