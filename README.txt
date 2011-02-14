@@ -20,57 +20,77 @@ Changes
 
         * After Install: call synchronize Skript to put the JournalIssueDate and
           Authors into plones catalog
+        
         * recent articles: batched list with section support
+        
         * workflow: templates as controller page templates with cancel button, 
           Title and PID on every page
+        
         * my_worklist and all_worklist unified
+        
         * licence is now a macro and used in mixed_view and fedoradocument_view
+        
         * pdf indexed together with article folder: found pdf in search result
           now has url of articlefolder/splashpage
+        
         * jQuery used to display references as tooltips 
         
-	DiPP 2.5.4 (2010-11-29)
-
+	
+    DiPP 2.5.4 (2010-11-29)
+        
         * Fulltext with size
+        
         * issue sorting (by date, by position) configurable via ZMI
+        
         * DOI/URN linked with resolver
+        
         * date in issue configurable
 
         
-	DiPP 2.5.3 (2010-11-18)
+    DiPP 2.5.3 (2010-11-18)
 	
 		* default view of articles configurable (fulltext for converted articles,
 		  mixed_view for pdf only publications)
+		
 		* better linguaplone support for FedoraArticles. Tranlations can easily
 		  be linked after the conversion via the editorial toolbox
+		
 		* more dummy metadata for temp. conversions. Citation and metadata views
 		  can be rendered now
 
 
-	DiPP 2.5.2 (2010-10-22)
+    DiPP 2.5.2 (2010-10-22)
 	
 	    * Feeds as alternate content in header of some templates (icon in
 	      firefox address bar)
+	    
 	    * Feeds optional contain a short bibliographic citation
+	    
 	    * portlet and dedicated template for recent articles 
+	    
 	    * journalIssueDate in sync with Plones effective date
 	    
 	    
-	DiPP 2.5.1 (2010-10-08)
+    DiPP 2.5.1 (2010-10-08)
 	
 		* authors/contributors indexed and searchable
+		
 		* feeds: dedicated page and portlet
+		
 		* article template to replace the authorblurb from the docbook
+		
 		* minor bugfixes
 	
-	DiPP 2.5 (2010-09-30)
+    DiPP 2.5 (2010-09-30)
 	
 		* New Contenttype Issue and Volume, which are identical with
 		  FedoraHierachie, just another name. Existing Issues/volumes, made with 
 		  FedoraHierachies can be migrated, but don't need to.
+		
 		* feeds include now the abstract, which requires running of the synchronize
 		  script, since the abstract stored in fedora has to be made available in the
 		  FedoraArticle contenttype
+		
 		* Hierarchien, Issues, Volumes linguaplone aware.  
 
     DiPP 2.4.10 (2010-09-08)
@@ -84,19 +104,25 @@ Changes
     	* beginning support for default metadata and configurable meadata form
     	  (not complete yet, required removing fedora tool before updating. remember
     	  to add label and pid again)    	  
+    	
     	* Use of PyRRS2Gen for feeds started
+    	
     	* issues and volume show only content of current navigation level
+    	
     	* fixed minor design flaws
     	
     DiPP 2.4.8 (2010-08-25)
 
 		* show metadata/citation as tabs to make the page more compact
+		
 		* citation downloadable for better integration with Endnote, Zotero,... 
 		
     DiPP 2.4.7 (2010-08-24)
     	
     	* citation formats with bibutils: Endnote, Bibtex,...
+    	
     	* bibutils needs to be installed and in the path
+    	
     	* bibliograph python modules are required
 
     DiPP 2.4.6 (2010-07-28)
