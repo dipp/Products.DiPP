@@ -47,7 +47,7 @@
                                        item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                        item_title_or_id     item/pretty_title_or_id;
                                        item_section         item/getJournal_section|nothing;
-                                       item_date       item/getIssueDate|nothing;
+                                       item_date            item/getIssueDate|nothing;
                                        item_abstracts       python:obj.getAvailableAbstracts;
                                        item_abstract        obj/getAbstract;
                                        item_contributors    python:obj.Contributors();

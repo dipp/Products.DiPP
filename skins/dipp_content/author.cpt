@@ -236,7 +236,7 @@
 			        <tal:block tal:repeat="publication publications">
 			            <li tal:define="url publication/getURL;
 			                            title publication/Title;
-			                            published publication/effective;
+			                            published publication/getIssueDate;
 			                            journal publication/getJournalTitle | nothing;
 			                            volume publication/getVolume | nothing;
 			                            issue publication/getIssue | nothing">

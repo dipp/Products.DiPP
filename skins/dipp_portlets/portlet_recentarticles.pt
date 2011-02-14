@@ -26,7 +26,7 @@
         </dt>
         
         <tal:block tal:define="articles             python: here.portal_catalog(portal_type='FedoraArticle', review_state='published', 
-                                                                                sort_on='Date', sort_order='reverse', sort_limit=5);
+                                                                                sort_on='getIssueDate', sort_order='reverse', sort_limit=5);
                                authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
                                avtm                 python:here.portal_vocabularies;
                                journalsections      python:avtm.getVocabularyByName('journal-sections');
@@ -49,6 +49,7 @@
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id     item/pretty_title_or_id;
                                    item_section         item/getJournal_section|nothing;
+                                   item_published       item/getIssueDate;
                                    item_abstracts       python:obj.getAvailableAbstracts;
                                    item_contributors    python:obj.Contributors();
                                    item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
@@ -71,7 +72,7 @@
                             A nicely formatted list of authors
                         </div>
                         <span class="portletItemDetails"
-                              tal:content="python:toLocalizedTime(item.EffectiveDate)"
+                              tal:content="python:toLocalizedTime(item_published)"
                               >May 5</span>
 
 
