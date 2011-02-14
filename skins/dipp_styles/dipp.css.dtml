@@ -112,6 +112,7 @@ ul.allauthors li {
 #recent_articles {
     list-style: none;
     margin-left: 0;
+    padding-left: 0;
 }
 #recent_articles .read_link {
     display: block;
@@ -119,6 +120,7 @@ ul.allauthors li {
 }
 #recent_articles > li {
     padding: 0.5em;
+    margin: 0;
 }
 #recent_articles li:hover {
     background-color: &dtml-evenRowBackgroundColor;
