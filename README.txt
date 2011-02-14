@@ -15,9 +15,19 @@ Installation
 	can not be uploaded. 
 
 Changes
-    DiPP 2.5.5 ()
 
-        * After Install: cal synchronize Skript to put the JournalIssueDate into plones catalog 
+    DiPP 2.5.5 (2010-02-14)
+
+        * After Install: call synchronize Skript to put the JournalIssueDate and
+          Authors into plones catalog
+        * recent articles: batched list with section support
+        * workflow: templates as controller page templates with cancel button, 
+          Title and PID on every page
+        * my_worklist and all_worklist unified
+        * licence is now a macro and used in mixed_view and fedoradocument_view
+        * pdf indexed together with article folder: found pdf in search result
+          now has url of articlefolder/splashpage
+        * jQuery used to display references as tooltips 
         
 	DiPP 2.5.4 (2010-11-29)
 
