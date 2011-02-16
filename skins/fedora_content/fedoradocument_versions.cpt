@@ -110,11 +110,18 @@
         </tr>
         <tal:block tal:repeat="loop python:ftool.getDatastreamHistory(here.PID,here.DsID)">
             <tr tal:attributes="class python:test(path('repeat/loop/even'), 'even', 'odd')">
-                <td tal:content="loop/versionID">DS1</td>
+                <td>
+                    <a tal:define="format here/portal_properties/dipp_properties/fedora_time_format;
+                                   fdate  python: loop['createDate']"
+                       tal:content="loop/versionID"
+                       tal:attributes="href string:${here/absolute_url}/fedoradocument_versions_view?Date=${fdate}">DS1</a>
+                </td>
                 <td tal:content="loop/label">kurze Beschreibung</td>
                 <td tal:content="loop/state">A</td>
                 <td tal:content="loop/MIMEType">text/html</td>
-                <td tal:content="python: loop['createDate'].strftime(site_properties.localLongTimeFormat)">2004-06-08</td>
+                <!--<td tal:content="python: loop['createDate'].strftime(site_properties.localLongTimeFormat)">2004-06-08</td>
+                <td tal:content="python: loop['createDate'].strftime('%Y-%m-%dT%H:%M:%SZ')">2004-06-08</td>-->
+                <td tal:content="python: loop['createDate']">2004-06-08</td>
                 <!--<td tal:content="python: loop['createDate']">2004-06-08</td>-->
                 <!--
                 <td>
@@ -128,8 +135,6 @@
         </tal:block>
     </table>
       </div>
-      <tal:block tal:replace="here/getPhysicalPath" />
-      <tal:block tal:replace="structure request" />
     </div>
 
   </body>
