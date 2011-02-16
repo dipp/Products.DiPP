@@ -1034,8 +1034,8 @@ class Fedora(UniqueObject, SimpleItem):
                           'versionID':response[i]._versionID,
                           'label':response[i]._label,
                           'state':response[i]._state,
-                          'createDate':DateTime(response[i]._createDate),
-                          #'createDate':response[i]._createDate,
+                          #'createDate':DateTime(response[i]._createDate),
+                          'createDate':response[i]._createDate,
                           'params':params,
                           'MIMEType':response[i]._MIMEType})
         
