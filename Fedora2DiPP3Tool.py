@@ -269,6 +269,30 @@ class Fedora(UniqueObject, SimpleItem):
                 'stream':response._stream}
         return data
         
+    def accessByFedoraURL(self, PID, DsID, Date):
+        """alternative method to retrieve objects from the Fedora
+        Repository. It uses the FedoraURL directly insteht the Wbservice
+        via ZSI, which fails with larger Objects
+        """
+        SERVER = self.address
+        PORT = self.port
+        parts = ['fedora','get']
+        parts.append(PID)
+        parts.append(DsID)
+        if Date:
+            parts.append(Date)
+
+        path = '/'.join(parts)
+        netloc = ':'.join((SERVER,PORT))
+        conn = httplib.HTTPConnection(netloc)
+        URL = urlparse.urlunparse(('http',netloc,path,'','',''))
+        LOG ('DIPP', INFO, URL)
+        conn.request("GET", URL)
+        r = conn.getresponse()
+        data = {'MIMEType':r.getheader('content-type'),
+                'stream':r.read()}
+        return data
+
     def access(self, PID, DsID, Date):
         """return the MIMEType and content of a datastream
         """
