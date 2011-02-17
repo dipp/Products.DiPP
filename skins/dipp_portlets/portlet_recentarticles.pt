@@ -56,7 +56,7 @@
                                    item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
                                    authors              item_contributors"
                        tal:attributes="class python:test(oddrow,
-                                                         'portletItem even',
+                                                         'portletItem odd',
                                                          'portletItem odd')"
                                                                                                     
                                    
