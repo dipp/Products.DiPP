@@ -7,134 +7,116 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="fedora">
 
-  <metal:block fill-slot="javascript_head_slot">
-    <tal:block define="macro here/archetypes_custom_js/macros/javascript_head | nothing"
-	       condition="macro">
-      <metal:block use-macro="macro" />
-    </tal:block>
-  </metal:block>
 
   <body>
 
     <div metal:fill-slot="main">
-      <div metal:define-macro="main"
-	   tal:define="errors options/state/getErrors|nothing;
-	   Iterator python:modules['Products.Archetypes'].IndexIterator;
-	   tabindex python:Iterator();
-	   schematas here/Schemata;
-	   default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or schematas.keys()[0];
-	   fieldset request/fieldset|options/fieldset|default_fieldset;
-	   fieldsets python:[key for key in schematas.keys() if key != 'metadata'];
-	   portal_type python:here.getPortalTypeName().lower();
-	   edit_template python:'%s_edit' % portal_type;
-	   edit_macros python:path('here/%s/macros|here/edit_macros/macros' % edit_template);"
-	   tal:omit-tag="">
+        <div metal:define-macro="main"
+	         tal:define="errors options/state/getErrors|nothing;
+	                     tabindex python:Iterator();
+                         PID context/PID;
+                         DsID here/DsID;
+                         Date1 request/Date1|nothing;
+                         Date2 request/Date2|nothing;
+                         content python:here.fedora.access(PID,DsID,Date=None);
+                         MIMEType python:content['MIMEType']"
+	         tal:omit-tag="">
 
-	<h1 tal:content="here/title_or_id"
-	    metal:use-macro="edit_macros/header|default"/>
+            <h1>Versions</h1>
 
-    <form tal:define="errors options/state/getErrors"
-          method="post"
-          enctype="multipart/form-data"
-	      tal:attributes="action python:here.absolute_url()+'/'+template.id" >
+            <form tal:define="errors options/state/getErrors"
+                  method="post"
+                  enctype="multipart/form-data"
+                  tal:attributes="action python:here.absolute_url()+'/'+template.id" >
 
-        <fieldset>
+                <input type="hidden" name="form.submitted" value="1" />
+                <input type="hidden" name="PID" value="" tal:attributes="value PID" />
+                <input type="hidden" name="DsID" value="" tal:attributes="value DsID"/>
+                <input type="hidden" name="MIMEType" value="" tal:attributes="value MIMEType"/>
+                <input type="hidden" name="Label" value="" tal:attributes="value here/id"/>
+                
+                <fieldset>
+                    <legend> New Version </legend>
+                    <div class="field"
+                        tal:define="error errors/LogMessage|nothing;
+                                    LogMessage request/LogMessage|nothing"
+                        tal:attributes="class python:test(error, 'field error', 'field')">
+                        <label for="LogMessage" >LogMessage</label>
 
-            <legend i18n:translate=""
-                    tal:content="python:(len(fieldsets) > 1 and fieldset != 'default') and fieldset or here.archetype_name" />
-
-
-            <input type="hidden" name="form.submitted" value="1" />
-            <input type="hidden" name="PID" value="" tal:attributes="value here/PID" />
-            <input type="hidden" name="DsID" value="" tal:attributes="value here/DsID"/>
-            <input type="hidden" name="MIMEType" value="" tal:attributes="value here/format"/>
-
-
-            
-            <div class="field"
-                tal:define="error errors/LogMessage|nothing;
-                            LogMessage request/LogMessage|nothing"
-                tal:attributes="class python:test(error, 'field error', 'field')">
-                <label for="LogMessage" >LogMessage</label>
-
-                <div tal:content="error">Validation error output</div>
-                <div class="formHelp" i18n:translate="">
-                    Kurze Beschreibung der Änderungen an dieser Version
-                </div>
-     
-                <input type="text"
-                       name="LogMessage"
-                       value=""
-                       tal:attributes="value LogMessage"/>
-            </div>
-            
-            <div class="field"
-                tal:define="error errors/Label|nothing;
-                            Label request/Label|here/id"
-                tal:attributes="class python:test(error, 'field error', 'field')">
-                <label for="Label" >Label</label>
-
-                <div tal:content="error">Validation error output</div>
-                <div class="formHelp" i18n:translate="">
-                    Neues Label für den Datenstrom
-                </div>
-                <span tal:content="Label">index_html </span> 
-                <input type="hidden"
-                       name="Label"
-                       value=""
-                       tal:attributes="value Label"/>
-            </div>
-
-            <input class="context"
-                   tabindex=""
-                   type="submit"
-                   name="form.button.NewVersion"
-                   value="New version"
-                   i18n:attributes="value"
-                   tal:attributes="tabindex tabindex/next;
-                                   disabled python:test(isLocked, 'disabled', None);" />
-
-        </fieldset>
-    </form>
-    <!--
-    -->
-    <table class="listing" 
-        tal:define="ftool here/fedora;">
-        <tr>
-            <th>ID</th>
-            <th>label</th>
-            <th>state</th>
-            <th>MIME Type</th>
-            <th>create Date</th>
-            <!--<th>&nbsp;</th>-->
-        </tr>
-        <tal:block tal:repeat="loop python:ftool.getDatastreamHistory(here.PID,here.DsID)">
-            <tr tal:attributes="class python:test(path('repeat/loop/even'), 'even', 'odd')">
-                <td>
-                    <a tal:define="format here/portal_properties/dipp_properties/fedora_time_format;
-                                   fdate  python: loop['createDate']"
-                       tal:content="loop/versionID"
-                       tal:attributes="href string:${here/absolute_url}/fedoradocument_versions_view?Date=${fdate}">DS1</a>
-                </td>
-                <td tal:content="loop/label">kurze Beschreibung</td>
-                <td tal:content="loop/state">A</td>
-                <td tal:content="loop/MIMEType">text/html</td>
-                <!--<td tal:content="python: loop['createDate'].strftime(site_properties.localLongTimeFormat)">2004-06-08</td>
-                <td tal:content="python: loop['createDate'].strftime('%Y-%m-%dT%H:%M:%SZ')">2004-06-08</td>-->
-                <td tal:content="python: loop['createDate']">2004-06-08</td>
-                <!--<td tal:content="python: loop['createDate']">2004-06-08</td>-->
-                <!--
-                <td>
-                    <ul  class="actions">                                   
-                        <li><a tal:attributes="href string:${portal_url}/fedora/getItem_html?${loop/params}">View</a></li>
-                        <li><a tal:attributes="href string:${portal_url}/fedora/getDatastream?${loop/params}">Edit</a></li>
-                    </ul>
-                </td>
-                -->
-            </tr>
-        </tal:block>
-    </table>
-      </div>
+                        <div tal:content="error">Validation error output</div>
+                        <div class="formHelp" i18n:translate="">
+                            Kurze Beschreibung der Änderungen an dieser Version
+                        </div>
+             
+                        <input type="text"
+                               name="LogMessage"
+                               value=""
+                               tal:attributes="value LogMessage"/>
+                    </div>
+                    
+                    <input class="context"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.NewVersion"
+                           value="New version"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;
+                                           disabled python:test(isLocked, 'disabled', None);" />
+                </fieldset>
+                <fieldset>
+                    <legend>Compare datastream versions</legend>
+                    <table class="listing" 
+                        tal:define="ftool here/fedora;">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>ID</th>
+                            <th>label</th>
+                            <th>state</th>
+                            <th>MIME Type</th>
+                            <th>create Date</th>
+                        </tr>
+                        <tal:block tal:repeat="loop python:ftool.getDatastreamHistory(here.PID,here.DsID)">
+                            <tr tal:attributes="class python:test(path('repeat/loop/even'), 'even', 'odd')">
+                                <td>
+                                    <input type="radio" 
+                                           name="Date1" 
+                                           tal:attributes="value loop/createDate;
+                                                           checked python:loop['createDate'] == Date1"/>
+                                </td>
+                                <td>
+                                    <input type="radio" 
+                                           name="Date2" 
+                                           tal:attributes="value loop/createDate;
+                                                           checked python:loop['createDate'] == Date2"/>
+                                </td>
+                                <td>
+                                    <a tal:define="format here/portal_properties/dipp_properties/fedora_time_format;
+                                                   fdate  python: loop['createDate']"
+                                       tal:content="loop/versionID"
+                                       tal:attributes="href string:${here/absolute_url}/fedoradocument_versions_view?Date=${fdate}">DS1</a>
+                                </td>
+                                <td tal:content="loop/label">kurze Beschreibung</td>
+                                <td tal:content="loop/state">A</td>
+                                <td tal:content="loop/MIMEType">text/html</td>
+                                <td tal:content="python: loop['createDate']">2004-06-08</td>
+                            </tr>
+                        </tal:block>
+                    </table>
+                    <input class="context"
+                           tabindex=""
+                           type="submit"
+                           name="form.button.DiffVersions"
+                           value="Compare versions"
+                           i18n:attributes="value"
+                           tal:attributes="tabindex tabindex/next;
+                                           disabled python:test(isLocked, 'disabled', None);" />
+                </fieldset>
+        </form>
+        
+        <p tal:replace="structure python:here.fedora.diffDatastreamVersions(PID, DsID, Date1, Date2)"></p>
+        
+          </div>
     </div>
 
   </body>
