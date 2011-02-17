@@ -255,6 +255,14 @@ ul.list-of-feeds li a{
     background-repeat: no-repeat; 
     background-position: 0% 0%;
 }
+
+/* Diff of versions*/
+.insert { background-color: #aaffaa }
+.delete { background-color: #ff8888 }
+.tagInsert { background-color: #007700; color: #ffffff }
+.tagDelete { background-color: #770000; color: #ffffff }
+
+
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
