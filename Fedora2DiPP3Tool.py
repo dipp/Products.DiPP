@@ -31,6 +31,7 @@ from urllib import unquote
 from threading import Timer
 import httplib
 import urlparse
+from htmldiff import htmldiff
 
 try:
     from Products.CMFCore.permissions import ManagePortal
@@ -1104,3 +1105,10 @@ class Fedora(UniqueObject, SimpleItem):
     def getLanguages(self):
         """return a dictionary with languages codes"""
         return LANGUAGES
+
+    def diffDatastreamVersions(self, PID, DsID, version1date, version2date):
+        """return the difference between two versions of a datastream"""
+        
+        source1 = self.accessByFedoraURL(PID, DsID, version1date)["stream"]
+        source2 = self.accessByFedoraURL(PID, DsID, version2date)["stream"]
+        return htmldiff(source1,source2)
