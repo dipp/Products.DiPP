@@ -117,6 +117,7 @@ class Fedora(UniqueObject, SimpleItem):
     security.declareProtected(ManagePortal, 'manage_save_metadata')
     def manage_save_metadata(self, REQUEST):
         """save default metadata as attributes of the fedora tool"""
+        md = self.metadata
         for metadata in self.getQualifiedDCMetadata(PID=None).keys():
             metadata_form_dict = REQUEST.form.get(metadata, None)
             metadata_to_save = (('required',False), ('visible',False), ( 'default',''))
@@ -124,8 +125,9 @@ class Fedora(UniqueObject, SimpleItem):
                 new_value = metadata_form_dict.get(key,value)
                 old_value = self.metadata[metadata][key]
                 if new_value != old_value:
-                    self.metadata[metadata][key] = new_value
+                    md[metadata][key] = new_value
                     LOG('DIPP', INFO, "Modified: %s: changed %s from %s  to %s" % (metadata, str(key), str(old_value), str(new_value)))
+        self.metadata = md
         manage_tabs_message = "Saved Metadata"
         return self.manage_metadata_form(REQUEST, management_view='Metadata', manage_tabs_message=manage_tabs_message)
     
