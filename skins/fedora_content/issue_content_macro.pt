@@ -56,9 +56,10 @@
                                        authors              item_contributors" >
                             
                             <p tal:define="format here/issue_date_format|here/portal_properties/dipp_properties/issue_date_format|nothing"
-                               tal:condition="format"
+                               tal:condition="item_date"
                                tal:content="python: item_date.strftime(format)">
                                 2004-06-08</p>
+                            <p tal:condition="not:item_date"><em>not to be published</em></p>
                             
                             <strong>    
                                 <a href="#"
