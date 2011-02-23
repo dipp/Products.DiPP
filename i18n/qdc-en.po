@@ -4,9 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2010-03-24 17:56+0100\n"
+"PO-Revision-Date: 2011-02-23 22:03+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,9 +31,6 @@ msgstr "Language"
 msgid "label_ddc"
 msgstr "DDC"
 
-msgid "label_language_ddc"
-msgstr "Language and DDC of the Document"
-
 msgid "label_title"
 msgstr "Title"
 
@@ -45,14 +43,14 @@ msgstr "Abstract"
 msgid "label_creatorPerson"
 msgstr "Author"
 
-msgid "label_publisher"
-msgstr "Publisher"
+msgid "label_creatorCorporated"
+msgstr "Corporative Authors"
+
+msgid "label_contributor"
+msgstr "Contributor"
 
 msgid "label_subject"
 msgstr "Subject"
-
-msgid "label_keywords_subjects"
-msgstr "Keywords and classified Subjects"
 
 msgid "help_subject"
 msgstr "Add one keyword per row."
@@ -87,6 +85,12 @@ msgstr "Number"
 msgid "label_journalIssueDate"
 msgstr "Date"
 
+msgid "label_startpage"
+msgstr "First page"
+
+msgid "label_endpage"
+msgstr "Last page"
+
 msgid "label_docType"
 msgstr "Document type"
 
@@ -95,9 +99,6 @@ msgstr "The type of the Document."
 
 msgid "label_pubType"
 msgstr "Publication type"
-
-msgid "label_pubType_docType"
-msgstr "Publication Type and Document Type"
 
 msgid "help_pubType"
 msgstr "The type of the Publication."
@@ -117,69 +118,6 @@ msgstr "modified"
 msgid "valid"
 msgstr "valid"
 
-msgid "label_articleType"
-msgstr "Type of article"
-
-msgid "help_articleType"
-msgstr "Select the type of the article, so that the correct conversion can be accomplished."
-
-msgid "label_targetFormat"
-msgstr "Target format(s)"
-
-msgid "help_targetFormat"
-msgstr "Select the required target formats."
-
-msgid "value_addTitle"
-msgstr "add Title"
-
-msgid "value_addAbstract"
-msgstr "add Abstract"
-
-msgid "value_addAlternative"
-msgstr "add Alternative"
-
-msgid "value_addDDC"
-msgstr "add DDC"
-
-msgid "academicTitle"
-msgstr "academic title"
-
-msgid "firstName"
-msgstr "first name"
-
-msgid "lastName"
-msgstr "last name"
-
-msgid "postalAddress"
-msgstr "Address"
-
-msgid "value_addAuthor"
-msgstr "add Author"
-
-msgid "label_creatorCorporate"
-msgstr "Corporative Authors"
-
-msgid "value_add"
-msgstr "add"
-
-msgid "label_contributor"
-msgstr "Contributor"
-
-msgid "keyword"
-msgstr "Keyword"
-
-msgid "identNo"
-msgstr "Ident No."
-
-msgid "source"
-msgstr "Classification Scheme"
-
-msgid "role"
-msgstr "Role"
-
-msgid "select_licence"
-msgstr "--- Select a licence  ---"
-
 msgid "dppl"
 msgstr "Digital Peer Publishing Licence"
 
@@ -188,4 +126,53 @@ msgstr "modular Digital Peer Publishing Licence"
 
 msgid "fdppl"
 msgstr "free Digital Peer Publishing Licence"
+
+#~ msgid "label_language_ddc"
+#~ msgstr "Language and DDC of the Document"
+#~ msgid "label_publisher"
+#~ msgstr "Publisher"
+#~ msgid "label_keywords_subjects"
+#~ msgstr "Keywords and classified Subjects"
+#~ msgid "label_pubType_docType"
+#~ msgstr "Publication Type and Document Type"
+#~ msgid "label_articleType"
+#~ msgstr "Type of article"
+#~ msgid "help_articleType"
+#~ msgstr ""
+#~ "Select the type of the article, so that the correct conversion can be "
+#~ "accomplished."
+#~ msgid "label_targetFormat"
+#~ msgstr "Target format(s)"
+#~ msgid "help_targetFormat"
+#~ msgstr "Select the required target formats."
+#~ msgid "value_addTitle"
+#~ msgstr "add Title"
+#~ msgid "value_addAbstract"
+#~ msgstr "add Abstract"
+#~ msgid "value_addAlternative"
+#~ msgstr "add Alternative"
+#~ msgid "value_addDDC"
+#~ msgstr "add DDC"
+#~ msgid "academicTitle"
+#~ msgstr "academic title"
+#~ msgid "firstName"
+#~ msgstr "first name"
+#~ msgid "lastName"
+#~ msgstr "last name"
+#~ msgid "postalAddress"
+#~ msgstr "Address"
+#~ msgid "value_addAuthor"
+#~ msgstr "add Author"
+#~ msgid "value_add"
+#~ msgstr "add"
+#~ msgid "keyword"
+#~ msgstr "Keyword"
+#~ msgid "identNo"
+#~ msgstr "Ident No."
+#~ msgid "source"
+#~ msgstr "Classification Scheme"
+#~ msgid "role"
+#~ msgstr "Role"
+#~ msgid "select_licence"
+#~ msgstr "--- Select a licence  ---"
 

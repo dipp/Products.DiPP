@@ -4,9 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2010-03-24 17:57+0100\n"
+"PO-Revision-Date: 2011-02-23 22:01+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,9 +31,6 @@ msgstr "Sprache"
 msgid "label_ddc"
 msgstr "DDC"
 
-msgid "label_language_ddc"
-msgstr "Sprache und DDC des Dokuments"
-
 msgid "label_title"
 msgstr "Titel"
 
@@ -45,14 +43,14 @@ msgstr "Zusammenfassung"
 msgid "label_creatorPerson"
 msgstr "Autor"
 
-msgid "label_publisher"
-msgstr "Herausgeber"
+msgid "label_creatorCorporated"
+msgstr "Korporative Autoren"
+
+msgid "label_contributor"
+msgstr "Mitwirkende"
 
 msgid "label_subject"
 msgstr "Freie Schlagworte"
-
-msgid "label_keywords_subjects"
-msgstr "Frei und Normierte Schlagworte"
 
 msgid "help_subject"
 msgstr "Geben Sie pro Zeile ein Schlagwort ein."
@@ -79,13 +77,19 @@ msgid "label_journalTitle"
 msgstr "Titel"
 
 msgid "label_journalVolume"
-msgstr "Ausgabe"
+msgstr "Jahrgang"
 
 msgid "label_journalIssueNumber"
-msgstr "Nummer"
+msgstr "Ausgabe"
 
 msgid "label_journalIssueDate"
 msgstr "Datum"
+
+msgid "label_startpage"
+msgstr "Erste Seite"
+
+msgid "label_endpage"
+msgstr "Letzte Seite"
 
 msgid "label_docType"
 msgstr "Dokumententyp"
@@ -95,9 +99,6 @@ msgstr "Geben sie den Dokumenttyp des Artikels an."
 
 msgid "label_pubType"
 msgstr "Publikationstyp"
-
-msgid "label_pubType_docType"
-msgstr "Publikations- und Dokumenttyp"
 
 msgid "help_pubType"
 msgstr "Geben sie die Art der Publikation an."
@@ -117,69 +118,6 @@ msgstr "verändert"
 msgid "valid"
 msgstr "gültig"
 
-msgid "label_articleType"
-msgstr "Artikeltyp"
-
-msgid "help_articleType"
-msgstr "Wählen Sie den Typ des Artikels aus, damit die richtige Konvertierung durchgeführt werden kann."
-
-msgid "label_targetFormat"
-msgstr "Zielformat(e)"
-
-msgid "help_targetFormat"
-msgstr "Wählen Sie die zu erstellenden Zielformate."
-
-msgid "value_addTitle"
-msgstr "Titel hinzufügen"
-
-msgid "value_addAbstract"
-msgstr "Zusammenfassung hinzufügen"
-
-msgid "value_addAlternative"
-msgstr "Altern. Titel hinzufügen"
-
-msgid "value_addDDC"
-msgstr "DDC hinzufügen"
-
-msgid "academicTitle"
-msgstr "akad. Titel"
-
-msgid "firstName"
-msgstr "Vorname"
-
-msgid "lastName"
-msgstr "Nachname"
-
-msgid "postalAddress"
-msgstr "Anschrift"
-
-msgid "value_addAuthor"
-msgstr "Autor hinzufügen"
-
-msgid "label_creatorCorporate"
-msgstr "korporative Autoren"
-
-msgid "value_add"
-msgstr "hinzufügen"
-
-msgid "label_contributor"
-msgstr "Mitwirkende"
-
-msgid "keyword"
-msgstr "Schlagwort"
-
-msgid "identNo"
-msgstr "Ident-Nr."
-
-msgid "source"
-msgstr "Klassifikationsschema"
-
-msgid "role"
-msgstr "Rolle"
-
-msgid "select_licence"
-msgstr "--- wählen Sie eine Lizenz ---"
-
 msgid "dppl"
 msgstr "Digital Peer Publishing Lizenz"
 
@@ -188,4 +126,53 @@ msgstr "modulare Digital Peer Publishing Lizenz"
 
 msgid "fdppl"
 msgstr "freie Digital Peer Publishing Lizenz"
+
+#~ msgid "label_language_ddc"
+#~ msgstr "Sprache und DDC des Dokuments"
+#~ msgid "label_publisher"
+#~ msgstr "Herausgeber"
+#~ msgid "label_keywords_subjects"
+#~ msgstr "Frei und Normierte Schlagworte"
+#~ msgid "label_pubType_docType"
+#~ msgstr "Publikations- und Dokumenttyp"
+#~ msgid "label_articleType"
+#~ msgstr "Artikeltyp"
+#~ msgid "help_articleType"
+#~ msgstr ""
+#~ "Wählen Sie den Typ des Artikels aus, damit die richtige Konvertierung "
+#~ "durchgeführt werden kann."
+#~ msgid "label_targetFormat"
+#~ msgstr "Zielformat(e)"
+#~ msgid "help_targetFormat"
+#~ msgstr "Wählen Sie die zu erstellenden Zielformate."
+#~ msgid "value_addTitle"
+#~ msgstr "Titel hinzufügen"
+#~ msgid "value_addAbstract"
+#~ msgstr "Zusammenfassung hinzufügen"
+#~ msgid "value_addAlternative"
+#~ msgstr "Altern. Titel hinzufügen"
+#~ msgid "value_addDDC"
+#~ msgstr "DDC hinzufügen"
+#~ msgid "academicTitle"
+#~ msgstr "akad. Titel"
+#~ msgid "firstName"
+#~ msgstr "Vorname"
+#~ msgid "lastName"
+#~ msgstr "Nachname"
+#~ msgid "postalAddress"
+#~ msgstr "Anschrift"
+#~ msgid "value_addAuthor"
+#~ msgstr "Autor hinzufügen"
+#~ msgid "value_add"
+#~ msgstr "hinzufügen"
+#~ msgid "keyword"
+#~ msgstr "Schlagwort"
+#~ msgid "identNo"
+#~ msgstr "Ident-Nr."
+#~ msgid "source"
+#~ msgstr "Klassifikationsschema"
+#~ msgid "role"
+#~ msgstr "Rolle"
+#~ msgid "select_licence"
+#~ msgstr "--- wählen Sie eine Lizenz ---"
 
