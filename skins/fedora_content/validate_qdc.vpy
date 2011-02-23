@@ -8,6 +8,8 @@ creatorPerson           = context.REQUEST.get('creatorPerson', None)
 subject                 = context.REQUEST.get('subject', None)
 subjectClassified       = context.REQUEST.get('subjectClassifield', None)
 bibliographicCitation   = context.REQUEST.get('bibliographicCitation', None)
+startpage               = context.REQUEST.get('startpage', None)
+endpage                 = context.REQUEST.get('endpage', None)
 rights                  = context.REQUEST.get('rights', None)
 created                 = context.REQUEST.get('created', None)
 modified                = context.REQUEST.get('modified', None)
@@ -15,18 +17,14 @@ valid                   = context.REQUEST.get('valid', None)
 
 from DateTime import DateTime
 
-"""
-filename = file.filename
-if filename == "":
-    state.setError('file', 'Es muß eine Datei zum hochladen ausgewählt werden.', new_status='failure')
-else:
-    try:
-        extension = filename.split(".")[-1]
-        if extension not in ('rtf','xml'):
-            state.setError('file', 'Nur rtf oder xml.', new_status='failure')
-    except:
-        pass
-"""
+def is_integer(pagenumber):
+    try: 
+        int(pagenumber)
+        return True
+    except ValueError:
+        return False
+
+
 if storageType == "permanent":
 
     if DDC[0] == "":
@@ -75,7 +73,18 @@ if storageType == "permanent":
             date = DateTime(bc['journalIssueDate'])
         except:
             state.setError('bibliographicCitation', 'Falsches Datumsformat.', new_status='failure')
-        
+    
+    # pagenumbers
+    if startpage and not is_integer(startpage):
+        state.setError('bibliographicCitation', 'Seitenzahlen sind ganze Zahlen.', new_status='failure')
+    if endpage and not is_integer(endpage):
+        state.setError('bibliographicCitation', 'Seitenzahlen sind ganze Zahlen.', new_status='failure')
+    
+    if is_integer(startpage) and is_integer(endpage):
+        if int(startpage) > int(endpage):
+            state.setError('bibliographicCitation', 'Erste Seite ist grüßer als zweite seite.', new_status='failure')
+            
+    
     #if rights[0] == '':
     if not rights:
         state.setError('rights', 'Bitte wählen Sie eine Lizenz.', new_status='failure')
