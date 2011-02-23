@@ -128,6 +128,15 @@
             <input class="context"
                    tabindex=""
                    type="submit"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:attributes="value"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+            
+            <input class="context"
+                   tabindex=""
+                   type="submit"
                    name="form.button.Save"
                    value="Save"
                    i18n:attributes="value"
@@ -135,9 +144,6 @@
                                    disabled python:test(isLocked, 'disabled', None);" />
         </form>
             		
-        <div metal:use-macro="here/document_byline/macros/byline">
-          Get the byline - contains details about author and modification date.
-        </div>
     </tal:main-macro>
 </metal:main>
 

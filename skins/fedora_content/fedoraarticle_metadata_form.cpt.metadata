@@ -10,3 +10,4 @@ validators..Save = validate_qdc
 [actions]
 action.success                  = traverse_to:string:fedoraarticle_metadata_edit
 action.success..Save            = traverse_to:string:fedoraarticle_metadata_save
+action.success..Cancel          = redirect_to:string:view
