@@ -3,7 +3,6 @@
     tal:replace="structure here/manage_tabs">Tabs</h2>
 
 <h3>Metadata</h3>
-<tal:block tal:replace="structure python:here.fedora.metadata" />
 <form action="manage_save_metadata" 
       tal:attributes="action python:here.absolute_url()+'/manage_save_metadata'"
       method="POST">
