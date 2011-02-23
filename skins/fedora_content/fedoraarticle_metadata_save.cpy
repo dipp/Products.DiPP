@@ -19,6 +19,12 @@ new_subjects = params['new_subjects']
 subject = params.get('subject',[])
 params['subject'] = subject + new_subjects
 
+#  pagenumbers are only kept in plone
+startpage = params.get('startpage',[])
+endpage = params.get('endpage',[])
+self.setStartpage(startpage)
+self.setEndpage(endpage)
+
 fedora.setQualifiedDCMetadata(params)
 self.syncMetadata()
 
