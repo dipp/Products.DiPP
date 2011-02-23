@@ -82,6 +82,12 @@ msgstr ""
 msgid "label_journalIssueDate"
 msgstr ""
 
+msgid "label_startpage"
+msgstr ""
+
+msgid "label_endpage"
+msgstr ""
+
 msgid "label_docType"
 msgstr ""
 
