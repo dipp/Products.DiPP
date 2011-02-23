@@ -818,7 +818,9 @@
         <div metal:define-macro="bibliographicCitation"
             class="field"
             tal:define="error errors/bibliographicCitation|nothing;
-                        bibliographicCitation  request/bibliographicCitation|python:qdc['bibliographicCitation']"
+                        bibliographicCitation  request/bibliographicCitation|python:qdc['bibliographicCitation'];
+                        startpage request/startpage|here/startpage|nothing;
+                        endpage request/endpage|here/endpage|nothing"
             tal:attributes="class python:test(error, 'field error', 'field')"
             i18n:domain="qdc">
             <label i18n:translate="label_bibliographicCitation" id="bc">Bibliographic Citation</label>
@@ -833,6 +835,8 @@
                     <th i18n:translate="label_journalTitle">journalTitle</th>
                     <th i18n:translate="label_journalVolume">journalVolume</th>
                     <th i18n:translate="label_journalIssueNumber">journalIssueNumber</th>
+                    <th i18n:translate="label_startpage">startpage</th>
+                    <th i18n:translate="label_endpage">endpage</th>
                     <th i18n:translate="label_journalIssueDate">journalIssueDate</th>
                 </tr>
                 <tr>
@@ -856,6 +860,20 @@
                                name="bibliographicCitation.journalIssueNumber:records"  
                                value =""
                                tal:attributes="value python:bibliographicCitation[0]['journalIssueNumber']" />
+                    </td>
+                    <td>
+                        <input  class="pagenumber"
+                                type="text"
+                                name="startpage"
+                                value=""
+                                tal:attributes="value startpage" />
+                    </td>
+                    <td>
+                        <input class="pagenumber"
+                               type="text" 
+                               name="endpage"
+                               value=""
+                               tal:attributes="value endpage" />
                     </td>
                     <td>
                         <input class="journalIssueDate" 
