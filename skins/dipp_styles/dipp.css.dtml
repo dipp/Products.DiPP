@@ -143,6 +143,7 @@ input.date { width: 10em; }
 input.journalTitle { width: 20em; }
 input.journalVolume { width: 5em; }
 input.journalIssueNumber { width: 5em; }
+input.pagenumber { width: 5em; }
 input.journalIssueDate { width: 10em; }
 
 .inline li{
