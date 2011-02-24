@@ -16,6 +16,11 @@ Installation
 
 Changes
 
+    DiPP 2.6.1 (2010-02-24)
+    
+    	* edit journal sections in the Metadaform   
+    	
+    	
     DiPP 2.6 (2010-02-24)
     
     	* adding pagenumbers also in the metadata form possible
