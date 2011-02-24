@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-02-23 22:38+0100\n"
+"PO-Revision-Date: 2011-02-24 15:41+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -90,6 +90,12 @@ msgstr "First page"
 
 msgid "label_endpage"
 msgstr "Last page"
+
+msgid "label_journalsection"
+msgstr "Section"
+
+msgid "help_journalsection"
+msgstr "Choose a section in which this article should appear. This is used to structure both the content pages and the feeds."
 
 msgid "label_docType"
 msgstr "Document type"
