@@ -88,6 +88,12 @@ msgstr ""
 msgid "label_endpage"
 msgstr ""
 
+msgid "label_journalsection"
+msgstr ""
+
+msgid "help_journalsection"
+msgstr ""
+
 msgid "label_docType"
 msgstr ""
 

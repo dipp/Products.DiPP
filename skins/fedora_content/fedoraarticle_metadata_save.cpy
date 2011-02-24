@@ -19,11 +19,13 @@ new_subjects = params['new_subjects']
 subject = params.get('subject',[])
 params['subject'] = subject + new_subjects
 
-#  pagenumbers are only kept in plone
+#  pagenumbers and section are only kept in plone
 startpage = params.get('startpage',[])
 endpage = params.get('endpage',[])
+journal_section = params.get('journal_section','no-section')
 self.setStartpage(startpage)
 self.setEndpage(endpage)
+self.setJournal_section(journal_section)
 
 fedora.setQualifiedDCMetadata(params)
 self.syncMetadata()

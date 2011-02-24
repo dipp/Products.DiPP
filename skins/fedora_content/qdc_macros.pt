@@ -888,6 +888,35 @@
             
         </div>
 
+        <!-- Section-->
+        <div metal:define-macro="section"  
+            class="field" 
+            i18n:domain="qdc" 
+            tal:define="error            errors/journal_section|nothing;
+                        avtm             python:here.portal_vocabularies;
+                        journalsections  python:avtm.getVocabularyByName('journal-sections');
+                        default_section  string:no-section;
+                        section_dict     python:journalsections.getVocabularyDict(journalsections);
+                        journal_section  request/journal_section|here/journal_section|default_section"
+            tal:attributes="class python:test(error, 'field error', 'field')">
+            <label i18n:translate="label_journalsection" id="journal_section">Section</label>
+            <div tal:content="error">Validation error output</div>
+            <div class="formHelp" i18n:translate="help_journalsection">
+                A journal section
+            </div>
+            
+            <select name="journal_section">
+                <tal:block tal:repeat="section python: section_dict.keys()">
+                    <option tal:attributes="value section;
+                                            selected python: section == journal_section"
+                           tal:content="python:section_dict[section]">
+                            Research and development
+                    </option>
+                </tal:block>
+            </select>
+            
+        </div>
+        
         <!-- DOI-->
         <div metal:define-macro="doi"  
             class="field" 
@@ -945,9 +974,6 @@
 
 
             </div>
-<!--
-            </div>
--->
         </div>
     </body>
 </html>

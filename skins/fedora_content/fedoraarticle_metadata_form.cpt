@@ -118,7 +118,8 @@
                 <div metal:use-macro="here/qdc_macros/macros/pubType"> pubtype </div>
                 <div metal:use-macro="here/qdc_macros/macros/docType"> docType </div>
                 <div metal:use-macro="here/qdc_macros/macros/dates"> subject </div>
-                <div metal:use-macro="here/qdc_macros/macros/bibliographicCitation"> subject classified </div>
+                <div metal:use-macro="here/qdc_macros/macros/bibliographicCitation"> bibliographic citation</div>
+                <div metal:use-macro="here/qdc_macros/macros/section"> section </div>
                 <div metal:use-macro="here/qdc_macros/macros/doi"> pubtype </div>
                 <div metal:use-macro="here/qdc_macros/macros/rights"> docType </div>
             </div>
