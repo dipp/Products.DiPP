@@ -16,6 +16,15 @@ Installation
 
 Changes
 
+    DiPP 2.6 (2010-02-24)
+    
+    	* adding pagenumbers also in the metadata form possible
+    	
+    	* Metadata form: finally a cancel button plus a few refined translations
+    	
+    	* Colored Differences between version of an article
+    	
+    	
     DiPP 2.5.5 (2010-02-14)
 
         * After Install: call synchronize Skript to put the JournalIssueDate and
