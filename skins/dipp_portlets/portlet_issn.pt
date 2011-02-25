@@ -1,0 +1,29 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="dipp">
+
+<body>
+
+<div metal:define-macro="portlet">
+                 
+
+    <dl class="portlet" id="portlet-issn"
+        tal:define="issn here/portal_properties/dipp_properties/ISSN|nothing"
+        tal:condition="issn">
+        
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span><abbr title="International Stadard Serial Number ">ISSN</abbr></span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem">
+                         <abbr title="International Standard Serial Number">ISSN</abbr>
+                         <span tal:content="issn">0123456789</span>
+        </dd>
+    </dl>
+
+</div>
+
+</body>
+
+</html>
