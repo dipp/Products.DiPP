@@ -63,11 +63,12 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
 
                 <div tal:repeat="lang untranslated_languages"
                      tal:define="content_language context/Language;
-                     			 parent here/getParentNode;">
+                     			 parent here/getParentNode;
+                                 thisfolder request/thisfolder|nothing ">
                      			 
                     <strong tal:content="python:'%s (%s)' % (lang[1], lang[0]) ">Deutsch (de)</strong>
                     
-                	<tal:item tal:define="pfolder python: parent.getTranslation(lang[0]);
+                	<tal:item tal:define="pfolder python: test(thisfolder,parent,parent.getTranslation(lang[0]));
                 						  physicalPath pfolder/getPhysicalPath|nothing">
                 		<div class="formHelp"
                 		     tal:condition="not: physicalPath">
