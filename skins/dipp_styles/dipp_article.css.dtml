@@ -120,12 +120,22 @@ ul.authors li {
 }
 
 .section h2.title {
-    font-size: 130%;
+    font-size: 140%;
+    font-weight: normal;
+    padding: 1em 0 0.5em 0;
 }
 
 .section h3.title {
-    font-size: 110%;
+    font-size: 125%;
+    font-weight: normal;
+    padding: 1em 0 0.5em 0;
 }
+.section h4.title {
+    font-size: 115%;
+    font-weight: normal;
+    padding: 1em 0 0.5em 0;
+}
+
 
 
 /* Abbildungen */
