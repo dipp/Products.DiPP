@@ -30,7 +30,7 @@
             <a href="#"
                i18n:translate="back_to_article"
                i18n:domain="dipp"
-               tal:attributes="href string:${here/absolute_url}/view;">
+               tal:attributes="href string:${here/absolute_url}">
                back to the article</a>
         </div>
 
