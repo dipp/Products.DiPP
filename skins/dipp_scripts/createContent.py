@@ -20,10 +20,10 @@ fedora = getToolByName(self, 'fedora')
 default_article_view = portal.portal_properties.dipp_properties.default_article_view
 
 try:
-   tempDir = getattr(portal,'tmp')
+    tempDir = getattr(portal,'tmp')
 except:
     raise Exception, "the requested tempFolder does not exist"
-
+    
 try:
     article = getattr(tempDir, aParent_id)
 except:
@@ -48,7 +48,7 @@ elif aLabel == 'toc_html':
 else:
     title = aLabel
 
-if  id[-3:].lower() == 'xml':
+if id[-3:].lower() == 'xml':
     objType = 'FedoraXML'
 
 # fetch the object from fedora without using the webservice
