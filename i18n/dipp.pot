@@ -598,3 +598,9 @@ msgstr ""
 
 msgid "read_article"
 msgstr ""
+
+msgid "no-published-volumes"
+msgstr ""
+
+msgid "no-published-issues"
+msgstr ""
