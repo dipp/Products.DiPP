@@ -1,4 +1,4 @@
-## Script (Python) "currentissue"
+## Script (Python) "currentvolume"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
@@ -19,14 +19,14 @@ portal_url = getToolByName(self, 'portal_url')
 
 catalog = getToolByName(self, 'portal_catalog')
 issues = catalog(
-            portal_type=('Issue','FedoraHierarchie'),
+            portal_type=('Volume'),
             review_state='published',
-            sort_on='Date',
+            sort_on='getIssueDate',
             sort_order='reverse',
             sort_limit=1)
 if issues:
     RESPONSE.redirect(issues[0].getURL())
 else:
-    msg = context.safePortalMessage(translate('no-published-issues', domain='dipp'))
+    msg = context.safePortalMessage(translate('no-published-volumes', domain='dipp'))
     context.plone_utils.addPortalMessage(msg)
     RESPONSE.redirect(portal_url())
