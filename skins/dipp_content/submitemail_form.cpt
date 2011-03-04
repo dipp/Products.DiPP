@@ -46,7 +46,7 @@
             <label i18n:translate="label_memberdata">Personal Data</label>
             
             <div class="formHelp" i18n:translate="help_memberdata">
-                We have saved saved your personal data as shown in the table below. Visit your
+                We have saved your personal data as shown in the table below. Visit your
                 <a href="" tal:attributes="href string: $portal_url/personalize_form"><img alt="" src="user.gif"/>Personal Preferences</a>
                 to change them, if required.
             </div>
