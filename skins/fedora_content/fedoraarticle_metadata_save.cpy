@@ -12,6 +12,7 @@ from Products.CMFCore.utils import getToolByName
 REQUEST = context.REQUEST
 
 fedora = getToolByName(self, 'fedora')
+translate = context.translate
 
 params = REQUEST.form
 
@@ -30,7 +31,9 @@ self.setJournal_section(journal_section)
 fedora.setQualifiedDCMetadata(params)
 self.syncMetadata()
 
-portal_status_message = "Änderungen wurden gespeichert"
 
 if REQUEST:
-     REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER + "?portal_status_message=" + portal_status_message)
+    msg = context.safePortalMessage(translate('metadata-updated', domain='qdc'))
+    context.plone_utils.addPortalMessage(msg)
+    REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER)
+    #REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER + "?portal_status_message=" + portal_status_message)
