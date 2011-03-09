@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-03-09 20:27+0100\n"
+"PO-Revision-Date: 2011-03-09 21:10+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -135,6 +135,18 @@ msgstr "free Digital Peer Publishing Licence"
 
 msgid "metadata-updated"
 msgstr "Metadata updated"
+
+msgid "remove-selected"
+msgstr "Remove selected fields"
+
+msgid "add-field"
+msgstr "Add field"
+
+msgid "field-removed"
+msgstr "Field removed"
+
+msgid "field-added"
+msgstr "Field added"
 
 #~ msgid "label_language_ddc"
 #~ msgstr "Language and DDC of the Document"
