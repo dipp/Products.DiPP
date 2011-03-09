@@ -593,7 +593,10 @@ msgstr ""
 msgid "recent_articles"
 msgstr ""
 
-msgid "no_published_articles"
+msgid "desc_published_articles"
+msgstr ""
+
+msgid "desc_no_published_articles"
 msgstr ""
 
 msgid "read_article"

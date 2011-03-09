@@ -24,23 +24,34 @@
           Articles
         </h1>
     
-        <div class="documentDescription">
-        </div>
 
-        <div tal:define="articles            python: here.portal_catalog(portal_type='FedoraArticle', sort_on='getIssueDate', sort_order='reverse');
-                        Batch                python:modules['Products.CMFPlone'].Batch;
-                        desc_length          site_properties/search_results_description_length;
-                        desc_ellipsis        site_properties/ellipsis;
-                        b_size               python:10;b_start python:0;b_start request/b_start | b_start;
-                        authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
-                        avtm                 python:here.portal_vocabularies;
-                        journalsections      python:avtm.getVocabularyByName('journal-sections');
-                        section_dict         python:journalsections.getVocabularyDict(journalsections)">
-            <em tal:condition="not: articles"
-                i18n:translate="no_published_articles"
-                i18n_domain="dipp">
-                There are no published Articles
-            </em>
+        <div tal:define="end                  python: DateTime();
+                         range                here/portal_properties/dipp_properties/recent_articles_range|request/range|python:100; 
+                         all                  request/all|nothing;
+                         start                python: end - int(range);
+                         query                python: test(all,'',{'query':[start, end], 'range': 'minmax'});
+                         articles             python: here.portal_catalog(portal_type='FedoraArticle', review_state='published',sort_on='getIssueDate', getIssueDate=query, sort_order='reverse');
+                         Batch                python:modules['Products.CMFPlone'].Batch;
+                         desc_length          site_properties/search_results_description_length;
+                         desc_ellipsis        site_properties/ellipsis;
+                         b_size               python:3;b_start python:0;b_start request/b_start | b_start;
+                         authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
+                         avtm                 python:here.portal_vocabularies;
+                         journalsections      python:avtm.getVocabularyByName('journal-sections');
+                         section_dict         python:journalsections.getVocabularyDict(journalsections)">
+            
+            <div class="documentDescription" tal:condition="articles"
+                 i18n:translate="desc_published_articles"
+                 i18n_domain="dipp">
+                 <span i18n:name="number" tal:replace="python: len(articles)">5</span> new articles have published within the last <span i18n:name="range" tal:replace="range">100</span> days.
+            </div>
+            
+            <div class="documentDescription" tal:condition="not: articles"
+                 i18n:translate="desc_no_published_articles"
+                 i18n_domain="dipp">
+                No new articles have been published within the last <span i18n:name="range" tal:replace="range">100</span> days.
+            </div>
+            
             <tal:block tal:condition="articles"
                        tal:define="batch python:Batch(articles, b_size, int(b_start), orphan=1);">
 
