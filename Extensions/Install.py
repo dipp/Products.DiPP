@@ -63,7 +63,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('issue_sort_order', 'string', 'ascending'),
         ('discussion_time', 'int', 0),
         ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ'),
-        ('issue_date_format', 'string','')
+        ('issue_date_format', 'string',''),
+        ('recent_articles_range', 'int',30)
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
