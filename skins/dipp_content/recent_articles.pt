@@ -42,13 +42,13 @@
             
             <div class="documentDescription" tal:condition="articles"
                  i18n:translate="desc_published_articles"
-                 i18n_domain="dipp">
+                 i18n:domain="dipp">
                  <span i18n:name="number" tal:replace="python: len(articles)">5</span> new articles have published within the last <span i18n:name="range" tal:replace="range">100</span> days.
             </div>
             
             <div class="documentDescription" tal:condition="not: articles"
                  i18n:translate="desc_no_published_articles"
-                 i18n_domain="dipp">
+                 i18n:domain="dipp">
                 No new articles have been published within the last <span i18n:name="range" tal:replace="range">100</span> days.
             </div>
             
