@@ -8,7 +8,8 @@
 ##parameters=id=''
 
 REQUEST = context.REQUEST
-portal_status_message = REQUEST.get('portal_status_message', None)
+translate = context.translate
+portal_status_message = ""
 
 def del_from_list(old_list, selection):
     """the item with numbers from selection are deletet from list"""
@@ -24,13 +25,15 @@ DDC = REQUEST.get('DDC',([],)),
 DDC = DDC[0]
 if REQUEST.form.has_key('form.button.addDDC'):
     DDC.append('')
-    portal_status_message = REQUEST.get('portal_status_message', 'Neues DDC-Feld wurde hinzugefügt')
+    portal_status_message = context.safePortalMessage(translate('field-added', domain='qdc'))
+    #portal_status_message = REQUEST.get('portal_status_message', 'Neues DDC-Feld wurde hinzugefügt')
 if REQUEST.form.has_key('form.button.delDDC'):
     ddc_index = REQUEST.get('ddc_index',[])
     DDC = del_from_list(DDC,ddc_index)
     if len(DDC) == 0:
         DDC.append('') 
-    portal_status_message = REQUEST.get('portal_status_message', 'DDC-Feld wurde gelöscht')
+    portal_status_message = context.safePortalMessage(translate('field-removed', domain='qdc'))
+    #portal_status_message = REQUEST.get('portal_status_message', 'DDC-Feld wurde gelöscht')
 
 context.plone_log(DDC)
 
@@ -136,8 +139,8 @@ for i in subjects:
     subject += i + "\n" 
 subject = [subject]
 
+context.plone_utils.addPortalMessage(portal_status_message)
 return state.set(status='success',\
-    portal_status_message=portal_status_message,\
     newTitleNumber=newTitleNumber,
     storageType                = REQUEST.get('storageType',None),
     DDC                        = DDC,

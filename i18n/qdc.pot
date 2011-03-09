@@ -132,3 +132,15 @@ msgstr ""
 
 msgid "metadata-updated"
 msgstr ""
+
+msgid "remove-selected"
+msgstr ""
+
+msgid "add-field"
+msgstr ""
+
+msgid "field-removed"
+msgstr ""
+
+msgid "field-added"
+msgstr ""

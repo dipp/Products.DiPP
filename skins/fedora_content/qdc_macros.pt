@@ -107,15 +107,16 @@
                    tabindex=""
                    type="submit"
                    name="form.button.delDDC"
-                   value="delete selected"
+                   value="remove selected"
+                   i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
             <input class="context"
                    tabindex=""
                    type="submit"
                    name="form.button.addDDC"
-                   value="value_addDDC"
-                   i18n:attributes="value"
+                   value="add field"
+                   i18n:attributes="value add-field"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
 
