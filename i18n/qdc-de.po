@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-03-09 21:09+0100\n"
+"PO-Revision-Date: 2011-03-10 15:31+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -54,6 +54,12 @@ msgstr "Freie Schlagworte"
 
 msgid "help_subject"
 msgstr "Geben Sie pro Zeile ein Schlagwort ein."
+
+msgid "help_existing_keywords"
+msgstr "Bestehende Stichworte"
+
+msgid "help_new_subject"
+msgstr "Neue Stichworte, eins pro Zeile"
 
 msgid "label_subjectClassified"
 msgstr "Normierte Schlagworte"

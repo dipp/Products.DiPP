@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-03-09 21:10+0100\n"
+"PO-Revision-Date: 2011-03-10 15:32+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -54,6 +54,12 @@ msgstr "Subject"
 
 msgid "help_subject"
 msgstr "Add one keyword per row."
+
+msgid "help_existing_keywords"
+msgstr "Existing Keywords"
+
+msgid "help_new_subject"
+msgstr "New keywords, one per row"
 
 msgid "label_subjectClassified"
 msgstr "Classified Subjects"
