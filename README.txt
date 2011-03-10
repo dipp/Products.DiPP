@@ -16,9 +16,20 @@ Installation
 
 Changes
 
+    DiPP 2.6.2 (2010-03-10)
+    
+        * portlet for ISSN 
+        
+        * recent_articles shows only articles of the last 30 days (configurable)
+		
+		* Metadata: keywords as checkboxes to allow easier selection 
+		        
+        * minor i18n and css corrections 
+        
+    
     DiPP 2.6.1 (2010-02-24)
     
-    	* edit journal sections in the Metadaform   
+    	* edit journal sections in the Metadataform   
     	
     	
     DiPP 2.6 (2010-02-24)
