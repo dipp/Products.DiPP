@@ -239,15 +239,16 @@
                    tabindex=""
                    type="submit"
                    name="form.button.delAlternative"
-                   value="delete selected"
+                   value="remove selected"
+                   i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
             <input class="context"
                    tabindex=""
                    type="submit"
                    name="form.button.addAlternative"
-                   value="value_addAlternative"
-                   i18n:attributes="value"
+                   value="add field"
+                   i18n:attributes="value add-field"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
 
@@ -300,7 +301,8 @@
                    tabindex=""
                    type="submit"
                    name="form.button.delAbstract"
-                   value="delete selected"
+                   value="remove selected"
+                   i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
             
@@ -308,8 +310,8 @@
                    tabindex=""
                    type="submit"
                    name="form.button.addAbstract"
-                   value="value_addAbstract"
-                   i18n:attributes="value"
+                   value="add field"
+                   i18n:attributes="value add-field"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
         </div>
@@ -380,7 +382,7 @@
                type="submit"
                name="form.button.delAuthor"
                value="delete selected"
-               i18n:attributes="value"
+               i18n:attributes="value remove-selected"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
             
@@ -388,8 +390,8 @@
                tabindex=""
                type="submit"
                name="form.button.addAuthor"
-               value="value_addAuthor"
-               i18n:attributes="value"
+               value="add field"
+               i18n:attributes="value add-field"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
         </div>
@@ -468,7 +470,7 @@
                type="submit"
                name="form.button.delCorp"
                value="delete selected"
-               i18n:attributes="value"
+               i18n:attributes="value remove-selected"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
             
@@ -476,8 +478,8 @@
                tabindex=""
                type="submit"
                name="form.button.addCorp"
-               value="add Corporative Author"
-               i18n:attributes="value"
+               value="add field"
+               i18n:attributes="value add-field"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
         </div>
@@ -580,7 +582,7 @@
                type="submit"
                name="form.button.delContributor"
                value="delete selected"
-               i18n:attributes="value"
+               i18n:attributes="value remove-selected"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
             
@@ -588,8 +590,8 @@
                tabindex=""
                type="submit"
                name="form.button.addContributor"
-               value="add contributor"
-               i18n:attributes="value"
+               value="add field"
+               i18n:attributes="value add-field"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
              
@@ -605,7 +607,14 @@
              i18n:domain="qdc">
             <label for="subjectClassified" i18n:translate="label_subject">Freie Schlagworte</label>
             <div tal:content="error">Validation error output</div>
+            
             <table class="nosort metadata listing">
+            
+                <colgroup>
+                  <col width="50%">
+                  <col width="50%">
+                </colgroup>
+                            
                 <thead>
                     <tr>
                         <th i18n:translate="help_existing_keywords">
@@ -619,16 +628,26 @@
                 <tbody>
                   <tr>
                     <td>
-                        <select multiple="multiple"
-                                size="10" 
-                                name="subject:list"
-                                tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
+                        <ol class="keywords"
+                            tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
                             <tal:block tal:repeat="keyword allowedKeywords">
-                                <option tal:content="keyword"
-                                        tal:attributes="selected python: keyword in subject;
-                                                        value keyword">sdaf</option>
+                            <li>
+                                <input type="checkbox" 
+                                       class="noborder"
+                                       name="subject:list"
+                                       value=""
+                                       id=""
+                                       tal:attributes="value keyword;
+                                                       id string: keyword_$keyword;
+                                                       checked python: keyword in subject"/>
+                                <label tal:content="keyword"
+                                       for=""
+                                       tal:attributes="selected python: keyword in subject;
+                                                       for string: keyword_$keyword;
+                                                       value keyword">sdaf</label>
+                            </li>
                             </tal:block>
-                        </select>
+                        </ol>
                     </td>
                     <td>
             <textarea name="new_subjects:lines" rows="5" cols="50"><tal:block tal:repeat="keyword new_subjects"><tal:block tal:replace="keyword">Keyword</tal:block>
@@ -716,15 +735,16 @@
                tabindex=""
                type="submit"
                name="form.button.delKeyword"
-               value="delete selected"
+               value="remove selected"
+               i18n:attributes="value remove-selected"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
             <input class="context"
                tabindex=""
                type="submit"
                name="form.button.addKeyword"
-               value="value_add"
-               i18n:attributes="value"
+               value="add field"
+               i18n:attributes="value add-field"
                tal:attributes="tabindex tabindex/next;
                                disabled python:test(isLocked, 'disabled', None);" />
        </div>
