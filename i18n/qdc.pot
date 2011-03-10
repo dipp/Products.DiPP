@@ -52,6 +52,12 @@ msgstr ""
 msgid "help_subject"
 msgstr ""
 
+msgid "help_existing_keywords"
+msgstr ""
+
+msgid "help_new_subject"
+msgstr ""
+
 msgid "label_subjectClassified"
 msgstr ""
 

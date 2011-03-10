@@ -107,7 +107,6 @@ ul.allauthors  {
 ul.allauthors li {
     display: inline;
 }
-/* Metadata Form */
 /* Recent Articles */
 #recent_articles {
     list-style: none;
@@ -126,6 +125,7 @@ ul.allauthors li {
     background-color: &dtml-evenRowBackgroundColor;
 }
 
+/* Metadata Form */
 
 textarea.abstract { width: 100%; }
 input.academicTitle { width: 50px; }
@@ -146,6 +146,18 @@ input.journalIssueNumber { width: 5em; }
 input.pagenumber { width: 5em; }
 input.journalIssueDate { width: 10em; }
 
+ol.keywords {
+    list-style: None;
+    margin:0;
+    height: 10em;
+    overflow: auto;
+}
+ol.keywords li {
+    margin: 0;
+}
+ol.keywords label {
+    font-weight: normal;
+}
 .inline li{
     display: inline;
 }
