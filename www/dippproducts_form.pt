@@ -1,0 +1,26 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>DiPP Products</h3>
+
+<table border="0" cellpadding="2" cellspacing="0" width="98%" 
+       tal:define="folders python:context.restrictedTraverse('/').objectValues('Folder');
+                   products here/products">
+    <tr class="list-header">
+        <th>Journal Title</th>
+        <tal:block tal:repeat="product products">
+            <th tal:content="product">DiPP</th>
+        </tal:block>
+    </tr>
+    <tal:block tal:repeat="folder folders ">
+        <tr tal:condition="python:hasattr(folder,'DiPP')"
+            tal:attributes="class python:test(path('repeat/folder/even'), 'row-hilite', 'row-normal')">
+            <td tal:define="dipp python:getattr(folder,'DiPP')"
+                tal:content="dipp/title">Dev Journal
+            </td>
+        </tr>
+    </tal:block>
+</table>
+
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
