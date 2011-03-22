@@ -2,5 +2,6 @@
 title=Edit Article
 
 [actions]
+action.success             = traverse_to:string:pub_inactivate
 action.success..Save       = traverse_to:string:pub_modify_instance
 action.success..Cancel     = traverse_to:string:pub_inactivate
