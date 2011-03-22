@@ -32,7 +32,6 @@
 
                         <br />
                         <b>Autor:</b> <tal:block tal:replace="i/autor" /><br />
-                        <b>Titel:</b> <tal:block tal:replace="i/titel" /><br />
                         <b>formal:</b> <tal:block tal:replace="i/formalOK" /><br />
                         <b>gasthrsg:</b> <tal:block tal:replace="i/gastHrsgOK" /><br />
                         <b>autor:</b> <tal:block tal:replace="i/autorOK" />

@@ -1,4 +1,4 @@
-##Script (Python) ""
+##Script (Python) "createWorkflowInstance"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
@@ -16,6 +16,7 @@ portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 
 def newArticle(id,title,PID,subject,rights):
+    """create a new Article container in a temporary folder """
     
     try:
        tempDir = getattr(portal,'tmp')
@@ -29,9 +30,12 @@ def newArticle(id,title,PID,subject,rights):
         document.syncMetadata()
     except:
         raise Exception, "could not create Article Object"
+        
     return document.absolute_url()
 
 def newInstance(PID,creator,title,cModel,isChildOf,isParentOf):
+    """Create a new workflow instance and initialize it with the needed values"""
+    
     id = aPID.split(":")[-1]
     autorOK = False    
     gastHrsgOK = False    
@@ -53,12 +57,11 @@ def newInstance(PID,creator,title,cModel,isChildOf,isParentOf):
     instance.manage_addProperty(id='url',           value="",           type='string')
     instance.manage_addProperty(id='autor',         value=creator,      type='string')
     instance.manage_addProperty(id='gastHrsg',      value="",           type='string')
-    instance.manage_addProperty(id='titel',         value=title,        type='string')
+    # instance.manage_addProperty(id='titel',         value=title,        type='string')
     instance.manage_addProperty(id='hierarchie',    value="n/a",        type='string')
     instance.manage_addProperty(id='autorOK',       value=autorOK,      type='boolean')
     instance.manage_addProperty(id='gastHrsgOK',    value=gastHrsgOK,   type='boolean')
     instance.manage_addProperty(id='formalOK',      value=formalOK,     type='boolean')
-    #    instance.manage_addProperty(id='licenceAgree',  value=False,        type='boolean')
     instance.manage_addProperty(id='nachrichten',   value=comment,      type='text')
     instance.manage_addProperty(id='deadline',      value=dl,           type='date')
     instance.manage_addProperty(id='deadline_next', value=dl,           type='date')
@@ -66,11 +69,9 @@ def newInstance(PID,creator,title,cModel,isChildOf,isParentOf):
     oftool.startInstance(instance_id=instance_id)
     return instance_id
 
-"""
-main
-"""
+# workflow items are only created for permanent stored articles 
+
 if aPID.split(':')[0] != 'temp':
-    #                    newObjects += 1
     id = newInstance(aPID,aCreator,aTitle,aCModel,aIsChildOf,aIsParentOf) 
     url = newArticle(id,aTitle,aPID,aSubject,aRights)
     instance,workitem = oftool.getInstanceAndWorkitem(id,'0')
@@ -78,6 +79,5 @@ if aPID.split(':')[0] != 'temp':
 else:
     id = aPID.replace(':','_')
     url = newArticle(id,aTitle,aPID,aSubject,aRights)
-    #    url = newFedoraObject(id,title,PID,cModel)
 
 return id

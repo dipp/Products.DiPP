@@ -13,6 +13,7 @@ from Products.CMFCore.utils import getToolByName
 
 fedora = getToolByName(self, 'fedora')
 mhost = context.MailHost
+translate = context.translate
 
 
 alertMessage = """
@@ -37,7 +38,8 @@ Subject: Request Imprimatur
 def finish():
     instance.manage_changeProperties({'alert':'green'})
     oftool.completeWorkitem(instance_id=instance_id, workitem_id=workitem_id)
-    RESPONSE.redirect('%s/worklist' % context.absolute_url() + '?portal_status_message=' + msg)
+    context.plone_utils.addPortalMessage(msg)
+    RESPONSE.redirect('%s/worklist' % context.absolute_url())
 	
 request     = container.REQUEST
 RESPONSE    = request.RESPONSE
@@ -71,7 +73,6 @@ except:
 
 #wurden Artikeldaten geaendert
 autor       = request.form.get('autor',workitem.autor)
-titel       = request.form.get('titel',workitem.titel)
 PID         = request.form.get('PID',workitem.PID)
 isChildOf   = request.form.get('isChildOf',workitem.isChildOf)
 isParentOf  = request.form.get('isParentOf',workitem.isParentOf)
@@ -256,27 +257,8 @@ elif activity_id == 'pushworkitem':
 
     oftool.assignWorkitem(instance_id=instance_id, workitem_id=workitem_id, actor=next_actor)
 
-    RESPONSE.redirect('%s/all_worklists' % context.absolute_url() + '?portal_status_message=' + msg)
-    #RESPONSE.redirect(url)
-    #print url
-    #return printed
+    context.plone_utils.addPortalMessage(msg)
+    RESPONSE.redirect('%s/all_worklists' % context.absolute_url())
 
 else:
 	pass
-
-"""	
-context.ext.history_insert(instance_id=instance_id,
-						workitem_id=workitem_id,
-						process_id=process_id,
-						activity_id=activity_id,
-						message=message,
-						formalOK=str(formalOK),
-						autorOK=str(autorOK),
-						gastHrsgOK=str(gastHrsgOK),
-						deadline=deadline.strftime("%Y-%m-%d %H:%M:%S"),
-						deadline_next=deadline_next.strftime("%Y-%m-%d %H:%M:%S"),
-						autor=autor,
-						titel=titel,
-						#hierarchie=hierarchie,
-						actor=actor)
-"""
