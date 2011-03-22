@@ -16,6 +16,15 @@ Installation
 
 Changes
 
+	DiPP 2.6.3 (2010-03-22)
+	
+		* "titel" attribute (ZMI) of workflow instance removes to prevent trouble
+		  with special characters
+		
+		* add basis for a "DiPPManagementTool" which allows checking and 
+		  installing of products in all journals of a zopeinstance
+		  
+
     DiPP 2.6.2 (2010-03-10)
     
         * portlet for ISSN 
@@ -24,7 +33,10 @@ Changes
 		
 		* Metadata: keywords as checkboxes to allow easier selection 
 		        
-        * minor i18n and css corrections 
+        * minor i18n and css corrections
+        
+        * bypass webservice when uploading rtf. This might solve the timeout
+          problems  
         
     
     DiPP 2.6.1 (2010-02-24)
