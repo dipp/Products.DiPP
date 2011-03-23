@@ -15,6 +15,10 @@ if Location.startswith('https'):
 JournalPID = request.get('journalPID')
 params     = request.form
 
+new_subjects = params['new_subjects']
+subject = params.get('subject',[])
+params['subject'] = subject + new_subjects
+
 journalTitle = portal.Title()
 now = DateTime().strftime("%Y-%m-%d")
 if storageType == 'temporary':
