@@ -16,6 +16,13 @@ Installation
 
 Changes
 
+	DiPP 2.6.4 (2010-03-23)
+	
+	    * fixed broken pdf link in html version of article
+	    
+	    * adding new keywords when uploading articles fixed
+	    
+
 	DiPP 2.6.3 (2010-03-22)
 	
 		* "titel" attribute (ZMI) of workflow instance removes to prevent trouble
