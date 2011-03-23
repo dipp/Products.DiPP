@@ -33,10 +33,10 @@ STYLESHEETS = (
 )
 
 JAVASCRIPTS = (
-    {'id':'references.js','compression':'none'},
-    {'id':'tabber.js','compression':'none'},
     {'id':'jquery.js','compression':'none'},
-    {'id':'tooltip.js','compression':'none'}
+    {'id':'references.js','compression':'none'},
+    {'id':'tooltip.js','compression':'none'},
+    {'id':'tabber.js','compression':'none'}
 )
 
 DEPENDENCIES = [
