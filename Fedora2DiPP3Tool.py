@@ -32,6 +32,9 @@ from threading import Timer
 import httplib
 import urlparse
 from htmldiff import htmldiff
+import logging
+
+logger = logging.getLogger("DiPP")
 
 try:
     from Products.CMFCore.permissions import ManagePortal
@@ -112,6 +115,7 @@ class Fedora(UniqueObject, SimpleItem):
         self.address = address
         self.port = port
         manage_tabs_message = "Saved"
+        logger.info("saved Fedora Configuration")
         return self.manage_config_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
     
     security.declareProtected(ManagePortal, 'manage_save_metadata')
@@ -126,7 +130,7 @@ class Fedora(UniqueObject, SimpleItem):
                 old_value = self.metadata[metadata][key]
                 if new_value != old_value:
                     md[metadata][key] = new_value
-                    LOG('DIPP', INFO, "Modified: %s: changed %s from %s  to %s" % (metadata, str(key), str(old_value), str(new_value)))
+                    logger.info("Modified: %s: changed %s from %s  to %s" % (metadata, str(key), str(old_value), str(new_value)))
         self.metadata = md
         manage_tabs_message = "Saved Metadata"
         return self.manage_metadata_form(REQUEST, management_view='Metadata', manage_tabs_message=manage_tabs_message)
@@ -254,7 +258,7 @@ class Fedora(UniqueObject, SimpleItem):
         netloc = ':'.join((SERVER,PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
-        LOG ('DIPP', INFO, URL)
+        logger.debug(URL)
         conn.request("GET", URL)
         r = conn.getresponse()
         data = {'MIMEType':r.getheader('content-type'),
@@ -289,7 +293,7 @@ class Fedora(UniqueObject, SimpleItem):
         netloc = ':'.join((SERVER,PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
-        LOG ('DIPP', INFO, URL)
+        logger.debug(URL)
         conn.request("GET", URL)
         r = conn.getresponse()
         data = {'MIMEType':r.getheader('content-type'),
@@ -373,7 +377,6 @@ class Fedora(UniqueObject, SimpleItem):
             return response._objectOther
     
     def modifyDatastreamByReference(self, REQUEST, PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType, tempID):
-        LOG ('DIPP', INFO, Location)
         self.fedoramanagement.modifyDatastreamByReference(PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType)
         return Location
 
@@ -439,7 +442,6 @@ class Fedora(UniqueObject, SimpleItem):
             DCMetadata._creatorCorporated.append(x)
 
         # contributor
-        LOG('contributor', INFO, params['contributor'])
         DCMetadata._contributor = []
         for contrib in params['contributor']:
             x = DCMetadata.new_contributor()
@@ -571,7 +573,6 @@ class Fedora(UniqueObject, SimpleItem):
             pass
 
         #DOI
-        #LOG('DOI', INFO, params['identifierDOI'])
         try:
             DCMetadata._identifierDOI = params['identifierDOI']
         except:
@@ -601,10 +602,6 @@ class Fedora(UniqueObject, SimpleItem):
         except:
             pass
         
-        #DCMetadata._articleType =[]
-        #articleType = "paper"
-        #DCMetadata._articleType.append(articleType)
-        LOG('DiPP', INFO, DCMetadata._bibliographicCitation)
         return DCMetadata
 
 
@@ -967,10 +964,6 @@ class Fedora(UniqueObject, SimpleItem):
         StorageType  = "permanent"
         targetFormat = []
         response = cModel.createNewArticle(ContainerPIDs, JournalPID, DCMetadata, Location, StorageType, targetFormat)
-        LOG('DiPP:Location', INFO, Location)
-        LOG('DiPP:StorageType', INFO, StorageType)
-        LOG('DiPP:targetFormat', INFO, targetFormat)
-        LOG('DiPP:PID', INFO, response)
         return response
 
     def setPublishingState(self, PID, State, Published):
@@ -980,8 +973,8 @@ class Fedora(UniqueObject, SimpleItem):
         State     = State
         Published = Published
         cModel.setPublishingState(PID, State, Published)
-        m = 'PID: ' + PID + '/ State: ' +str(State) + '/ Published: ' + str(Published)
-        LOG('DiPP', INFO, m)
+        msg = 'PID: %s/ State: %d/ Published: %d' % (PID, State, Published)
+        logger.info(msg)
 
     
     def createNewContainer(self, JournalPID, MetaType, Title, ChunkURL, AbsoluteURL):
@@ -992,10 +985,8 @@ class Fedora(UniqueObject, SimpleItem):
     def moveObject(self,moveObjectPID, sourceObjectPID, destObjectPID):
         cModel = ContentModel.ContentModel()
         cModel.moveObject(moveObjectPID, sourceObjectPID, destObjectPID)
-        msg  = "Object " +  moveObjectPID
-        msg += " moved from " + sourceObjectPID
-        msg += " to " + destObjectPID
-        LOG('DiPP', INFO, msg)
+        msg  = "Object %s moved from %s to %s" % (moveObjectPID, sourceObjectPID, destObjectPID)
+        logger.info(msg)
 
     
     def moveObjects(self,clipboard,dest):
