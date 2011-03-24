@@ -15,9 +15,12 @@ if Location.startswith('https'):
 JournalPID = request.get('journalPID')
 params     = request.form
 
-new_subjects = params['new_subjects']
+new_subjects = params.get('new_subjects', [])
 subject = params.get('subject',[])
-params['subject'] = subject + new_subjects
+subjects = subject + new_subjects
+params['subject'] = subjects
+
+context.plone_log(subjects)
 
 journalTitle = portal.Title()
 now = DateTime().strftime("%Y-%m-%d")
