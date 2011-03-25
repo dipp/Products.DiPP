@@ -8,7 +8,7 @@
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
-# $Id: FedoraTool.py 2132 2010-06-04 07:08:42Z reimer $
+# $Id$
 
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
@@ -20,11 +20,8 @@ from DateTime import DateTime
 from time import mktime, strptime, strftime
 from fedora2 import FedoraAccess
 from fedora2 import FedoraManagement
-#from dipp3.ContentModel import *
-#import dipp3.ContentModel
 from dipp3 import ContentModel
 from openurl import openurl
-from zLOG import LOG, INFO
 from marshal import loads
 from zlib import decompress
 from urllib import unquote
@@ -381,7 +378,7 @@ class Fedora(UniqueObject, SimpleItem):
         return Location
 
     def logging(self, log):
-        LOG('DiPP', INFO, log)
+        logger(log)
 
     def makeDCMetadataObject(self, params):
         """return a Metadata object"""
@@ -1007,13 +1004,13 @@ class Fedora(UniqueObject, SimpleItem):
                 msg  = "Object " +  aMoveObjectPID
                 msg += " moved from " + aSourceObjectPID
                 msg += " to " + aDestObjectPID
-                LOG('DiPP', INFO, msg)
+                logger.info(msg)
             except:
                 pass
     
     def addDatastream(self,REQUEST,PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState):
         DSID =  self.fedoramanagement.addDatastream(PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState)
-        LOG('DiPP', INFO, DSID)
+        logger.info(DSID)
         return DSID
     
     def getDatastreamHistory(self,PID,DsID):
@@ -1036,7 +1033,7 @@ class Fedora(UniqueObject, SimpleItem):
         return liste
 
     def getopenurl(self,qdc,journalname_abbr,issn):
-        """return the metadata as openurl to use fpr COinS"""
+        """return the metadata as openurl to use for COinS"""
         creators = qdc['creatorPerson']
         authors = ()
         for creator in creators:
