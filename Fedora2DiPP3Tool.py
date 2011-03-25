@@ -377,8 +377,6 @@ class Fedora(UniqueObject, SimpleItem):
         self.fedoramanagement.modifyDatastreamByReference(PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType)
         return Location
 
-    def logging(self, log):
-        logger(log)
 
     def makeDCMetadataObject(self, params):
         """return a Metadata object"""
