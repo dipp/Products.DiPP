@@ -18,19 +18,13 @@ dp = self.portal_properties.dipp_properties
 
 instance, workitem = oftool.getInstanceAndWorkitem(instance_id, workitem_id)
 
+PID = workitem.PID
 autor     = workitem.autor
-titel     = instance.titel
 member    = mtool.getMemberById(autor)
 fullname = member.getProperty('fullname', '')
 email = member.getProperty('email', '')
 lang = member.getProperty('language', 'en')
 
-"""
-try:
-    lang = member.preferredLanguage
-except:
-    lang = "en"
-"""
 
 if lang.lower() == "de":
     mail = dp.author_notice_de
@@ -43,21 +37,24 @@ else:
     mail+= lang
 
 
+results = context.portal_catalog.searchResults(
+    getPID = PID
+)
+if results:
+    title = results[0].Title
+else:
+    title = PID
+
+
 journal = self.portal_properties.title()
 email_from_name = self.portal_properties.email_from_name
 next_workitem_id = str(int(workitem_id) + 1)
-next_step = portal_url()
-next_step += "/pub_imprimatur_form"
-next_step += "?instance_id=" + instance_id
-next_step += "&workitem_id=" + next_workitem_id
-next_step += "&process_id=Publishing&activity_id=imprimatur"
-
-
+next_step = "%s/pub_imprimatur_form?instance_id=%s&workitem_id=%s&process_id=Publishing&activity_id=imprimatur" % (portal_url(), instance_id, next_workitem_id)
 
 body = mail % {
     "fullname":fullname,
     "login":workitem.autor,
-    "title":workitem.titel,
+    "title":title,
     "deadline":str(workitem.deadline_next),
     "url":context.worklist.absolute_url(),
     "journal":journal,
