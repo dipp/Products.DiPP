@@ -15,6 +15,7 @@ request  = context.REQUEST
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
+utils = context.plone_utils
 
 file         = request['file']
 JournalPID   = request['journalPID']
@@ -27,17 +28,19 @@ except:
     raise Exception, "Directory %s does not exist!" % tempFiles
 
 filename = file.filename
+normalized = utils.normalizeString(filename)
 
 title = file.filename
 tempID = fedora.getTempID(request)
+
 try:
-    tmp.manage_addFolder(id=tempID, title=tempID)
+    tmp.manage_addFolder(id=tempID, title=title)
     folder = getattr(tmp, tempID)
-    folder.manage_addFile(id=filename, file=file, title=title)
+    folder.manage_addFile(id=normalized, file=file, title=title)
 except:
     raise Exception, "file couldn't be created"
 
-obj=getattr(folder,filename) 
+obj=getattr(folder,normalized) 
 
 # make sure tempID is visible and thus reachable for the converter
 new_context = context.portal_factory.doCreate(context)
