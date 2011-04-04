@@ -108,6 +108,19 @@ ul.allauthors li {
     display: inline;
 }
 /* Recent Articles */
+
+#sections-drill-down {
+    float: right;
+    margin-top: 0.4em;
+}
+
+#sections-drill-down ol,
+#sections-drill-down li {
+    display: inline;
+}
+#sections-drill-down label {
+    font-weight: normal;
+}
 #recent_articles {
     list-style: none;
     margin-left: 0;

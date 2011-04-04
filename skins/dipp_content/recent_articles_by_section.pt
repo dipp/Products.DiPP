@@ -1,0 +1,144 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+      
+    <metal:block metal:fill-slot="head_slot">
+        <link rel="alternate"
+              title="Recent Articles"
+              type="application/rss+xml"
+              tal:attributes="href string:$portal_url/feed/articles"/>
+    </metal:block>
+
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    
+        <div tal:define="end                  python: DateTime();
+                         range                here/portal_properties/dipp_properties/recent_articles_range|request/range|python:100; 
+                         all                  request/all|nothing;
+                         start                python: end - int(range);
+                         query                python: test(all,'',{'query':[start, end], 'range': 'minmax'});
+                         Batch                python:modules['Products.CMFPlone'].Batch;
+                         desc_length          site_properties/search_results_description_length;
+                         desc_ellipsis        site_properties/ellipsis;
+                         b_size               python:3;b_start python:0;b_start request/b_start | b_start;
+                         authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
+                         avtm                 python:here.portal_vocabularies;
+                         journalsections      python:avtm.getVocabularyByName('journal-sections');
+                         section_dict         python:journalsections.getVocabularyDict(journalsections);
+                         sections_to_show     request/sections_to_show|python:section_dict.keys();
+                         articles             python: here.portal_catalog(portal_type='FedoraArticle', review_state='published',getJournal_section=sections_to_show,sort_on='getIssueDate', sort_order='reverse')">
+            
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
+
+            <div id="sections-drill-down">
+                <form method="GET"
+                      tal:attributes="action string:${here/absolute_url}/${template/id};" >
+                <ol>
+                    <tal:block tal:repeat="section python:section_dict.keys()">
+                        <li tal:condition="not: python: section == 'no-section'">
+                            <input name="sections_to_show:list"
+                                   type="checkbox"
+                                   id=""
+                                   value=""
+                                   tal:attributes="value section;
+                                                   id string:section-$section;
+                                                   checked python:test(section in sections_to_show)"/>
+                            <label for=""
+                                   tal:attributes="for string:section-$section"
+                                   tal:content="python:section_dict[section]"/>
+                        </li>
+                    </tal:block>
+                </ol>
+                <input type="submit" value="OK"/>
+                </form>
+            </div>
+
+
+            <h1 i18n:translate="recent_articles" i18n:domain="dipp" class="documentFirstHeading">
+              Articles
+            </h1>
+    
+            <tal:comment tal:replace="nothing">
+                <div class="documentDescription" tal:condition="articles"
+                     i18n:translate="desc_published_articles"
+                     i18n:domain="dipp">
+                     <span i18n:name="number" tal:replace="python: len(articles)">5</span> new articles have published within the last <span i18n:name="range" tal:replace="range">100</span> days.
+                </div>
+            
+                <div class="documentDescription" tal:condition="not: articles"
+                     i18n:translate="desc_no_published_articles"
+                     i18n:domain="dipp">
+                    No new articles have been published within the last <span i18n:name="range" tal:replace="range">100</span> days.
+                </div>
+            </tal:comment>
+            
+            <tal:block tal:condition="articles"
+                       tal:define="batch python:Batch(articles, b_size, int(b_start), orphan=1);">
+
+            <ol id="recent_articles">
+                
+                <tal:items tal:repeat="item batch">
+                   <li tal:define="obj                  item/getObject;
+                                   item_url             item/getURL|item/absolute_url;
+                                   item_id              item/getId;
+                                   item_section         item/getJournal_section;
+                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                   item_title_or_id     item/pretty_title_or_id;
+                                   item_section         item/getJournal_section|nothing;
+                                   item_abstract        obj/getAbstract;
+                                   item_published       item/getIssueDate;
+                                   item_abstracts       python:obj.getAvailableAbstracts;
+                                   authors              item/getAuthors;
+                                   item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                   item_wf_state_class  python:'state-' + normalizeString(item_wf_state)">
+                                       
+                        <span class="discreet">
+                              <tal:block tal:replace="python:toLocalizedTime(item_published)">
+                                  14.12.2004
+                               </tal:block><tal:block tal:condition="python: item_section !='no-section'">,
+                                  <span tal:replace="python:section_dict[item_section]">Forschung und Entwicklung</span>
+                              </tal:block>
+                        </span>
+
+                        <h2>
+                            <a href="#"
+                               tal:content="item_title_or_id"
+                               tal:attributes="href item_url;
+                                       class string:$item_wf_state_class">
+                             Article title</a>
+                        </h2>
+                        <div metal:use-macro="here/article_authors/macros/article_authors">
+                            A nicely formatted list of authors
+                        </div>
+                        <p tal:condition="item_abstract"
+                           tal:content="python:here.cropText(item_abstract, desc_length, desc_ellipsis)">
+                            Abstract
+                        </p>
+                        <span class="read_link">
+                            <a tal:attributes="href item_url"
+                               i18n:domain="dipp"
+                               i18n:translate="read article">read article</a>
+                        </span>
+                        
+                    </li>
+                 </tal:items>
+
+            </ol>
+                <!-- Navigation -->
+                <div metal:use-macro="here/batch_macros/macros/navigation" />
+            </tal:block>
+        </div>
+        
+
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
