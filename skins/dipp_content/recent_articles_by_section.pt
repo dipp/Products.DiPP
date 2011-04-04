@@ -98,11 +98,12 @@
                                    item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                    item_wf_state_class  python:'state-' + normalizeString(item_wf_state)">
                                        
-                        <span class="discreet">
-                              <tal:block tal:replace="python:toLocalizedTime(item_published)">
+                        <span class="publishing-date">
+                              <span class="discreet" tal:content="python:toLocalizedTime(item_published)">
                                   14.12.2004
-                               </tal:block><tal:block tal:condition="python: item_section !='no-section'">,
-                                  <span tal:replace="python:section_dict[item_section]">Forschung und Entwicklung</span>
+                               </span>
+                               <tal:block tal:condition="python: item_section !='no-section'">
+                                  <span class="discreet" tal:content="python:section_dict[item_section]">Forschung und Entwicklung</span>
                               </tal:block>
                         </span>
 
