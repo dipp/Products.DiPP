@@ -1,29 +1,29 @@
 Changes
 
-	DiPP 2.6.4 (2010-03-23)
-	
-	    * fixed broken pdf link in html version of article
-	    
-	    * adding new keywords when uploading articles fixed
-	    
+    DiPP 2.6.4 (2010-03-23)
+    
+        * fixed broken pdf link in html version of article
+        
+        * adding new keywords when uploading articles fixed
+        
 
-	DiPP 2.6.3 (2010-03-22)
-	
-		* "titel" attribute (ZMI) of workflow instance removes to prevent trouble
-		  with special characters
-		
-		* add basis for a "DiPPManagementTool" which allows checking and 
-		  installing of products in all journals of a zopeinstance
-		  
+    DiPP 2.6.3 (2010-03-22)
+    
+        * "titel" attribute (ZMI) of workflow instance removes to prevent trouble
+          with special characters
+        
+        * add basis for a "DiPPManagementTool" which allows checking and 
+          installing of products in all journals of a zopeinstance
+          
 
     DiPP 2.6.2 (2010-03-10)
     
         * portlet for ISSN 
         
         * recent_articles shows only articles of the last 30 days (configurable)
-		
-		* Metadata: keywords as checkboxes to allow easier selection 
-		        
+        
+        * Metadata: keywords as checkboxes to allow easier selection 
+                
         * minor i18n and css corrections
         
         * bypass webservice when uploading rtf. This might solve the timeout
@@ -32,18 +32,18 @@ Changes
     
     DiPP 2.6.1 (2010-02-24)
     
-    	* edit journal sections in the Metadataform   
-    	
-    	
+        * edit journal sections in the Metadataform   
+        
+        
     DiPP 2.6 (2010-02-24)
     
-    	* adding pagenumbers also in the metadata form possible
-    	
-    	* Metadata form: finally a cancel button plus a few refined translations
-    	
-    	* Colored Differences between version of an article
-    	
-    	
+        * adding pagenumbers also in the metadata form possible
+        
+        * Metadata form: finally a cancel button plus a few refined translations
+        
+        * Colored Differences between version of an article
+        
+        
     DiPP 2.5.5 (2010-02-14)
 
         * After Install: call synchronize Skript to put the JournalIssueDate and
@@ -63,7 +63,7 @@ Changes
         
         * jQuery used to display references as tooltips 
         
-	
+    
     DiPP 2.5.4 (2010-11-29)
         
         * Fulltext with size
@@ -76,82 +76,82 @@ Changes
 
         
     DiPP 2.5.3 (2010-11-18)
-	
-		* default view of articles configurable (fulltext for converted articles,
-		  mixed_view for pdf only publications)
-		
-		* better linguaplone support for FedoraArticles. Tranlations can easily
-		  be linked after the conversion via the editorial toolbox
-		
-		* more dummy metadata for temp. conversions. Citation and metadata views
-		  can be rendered now
+    
+        * default view of articles configurable (fulltext for converted articles,
+          mixed_view for pdf only publications)
+        
+        * better linguaplone support for FedoraArticles. Tranlations can easily
+          be linked after the conversion via the editorial toolbox
+        
+        * more dummy metadata for temp. conversions. Citation and metadata views
+          can be rendered now
 
 
     DiPP 2.5.2 (2010-10-22)
-	
-	    * Feeds as alternate content in header of some templates (icon in
-	      firefox address bar)
-	    
-	    * Feeds optional contain a short bibliographic citation
-	    
-	    * portlet and dedicated template for recent articles 
-	    
-	    * journalIssueDate in sync with Plones effective date
-	    
-	    
+    
+        * Feeds as alternate content in header of some templates (icon in
+          firefox address bar)
+        
+        * Feeds optional contain a short bibliographic citation
+        
+        * portlet and dedicated template for recent articles 
+        
+        * journalIssueDate in sync with Plones effective date
+        
+        
     DiPP 2.5.1 (2010-10-08)
-	
-		* authors/contributors indexed and searchable
-		
-		* feeds: dedicated page and portlet
-		
-		* article template to replace the authorblurb from the docbook
-		
-		* minor bugfixes
-	
+    
+        * authors/contributors indexed and searchable
+        
+        * feeds: dedicated page and portlet
+        
+        * article template to replace the authorblurb from the docbook
+        
+        * minor bugfixes
+    
     DiPP 2.5 (2010-09-30)
-	
-		* New Contenttype Issue and Volume, which are identical with
-		  FedoraHierachie, just another name. Existing Issues/volumes, made with 
-		  FedoraHierachies can be migrated, but don't need to.
-		
-		* feeds include now the abstract, which requires running of the synchronize
-		  script, since the abstract stored in fedora has to be made available in the
-		  FedoraArticle contenttype
-		
-		* Hierarchien, Issues, Volumes linguaplone aware.  
+    
+        * New Contenttype Issue and Volume, which are identical with
+          FedoraHierachie, just another name. Existing Issues/volumes, made with 
+          FedoraHierachies can be migrated, but don't need to.
+        
+        * feeds include now the abstract, which requires running of the synchronize
+          script, since the abstract stored in fedora has to be made available in the
+          FedoraArticle contenttype
+        
+        * Hierarchien, Issues, Volumes linguaplone aware.  
 
     DiPP 2.4.10 (2010-09-08)
     
-    	* ZMI: fedora manage tab for articles. Currently  allows direct read 
-    	  access to datastreams and versions of the xml datastreams (DC, 
-    	  RELS-EXT,...) of the DiPP:article object  
-    	
+        * ZMI: fedora manage tab for articles. Currently  allows direct read 
+          access to datastreams and versions of the xml datastreams (DC, 
+          RELS-EXT,...) of the DiPP:article object  
+        
     DiPP 2.4.9 (2010-09-02)
     
-    	* beginning support for default metadata and configurable meadata form
-    	  (not complete yet, required removing fedora tool before updating. remember
-    	  to add label and pid again)    	  
-    	
-    	* Use of PyRRS2Gen for feeds started
-    	
-    	* issues and volume show only content of current navigation level
-    	
-    	* fixed minor design flaws
-    	
+        * beginning support for default metadata and configurable meadata form
+          (not complete yet, required removing fedora tool before updating. remember
+          to add label and pid again)          
+        
+        * Use of PyRRS2Gen for feeds started
+        
+        * issues and volume show only content of current navigation level
+        
+        * fixed minor design flaws
+        
     DiPP 2.4.8 (2010-08-25)
 
-		* show metadata/citation as tabs to make the page more compact
-		
-		* citation downloadable for better integration with Endnote, Zotero,... 
-		
+        * show metadata/citation as tabs to make the page more compact
+        
+        * citation downloadable for better integration with Endnote, Zotero,... 
+        
     DiPP 2.4.7 (2010-08-24)
-    	
-    	* citation formats with bibutils: Endnote, Bibtex,...
-    	
-    	* bibutils needs to be installed and in the path
-    	
-    	* bibliograph python modules are required
+        
+        * citation formats with bibutils: Endnote, Bibtex,...
+        
+        * bibutils needs to be installed and in the path
+        
+        * bibliograph python modules are required
 
     DiPP 2.4.6 (2010-07-28)
     
@@ -170,15 +170,15 @@ Changes
         * author page: in a case a contributor also has an account, the profile is shown
 
     DiPP 2.4.3 (2010-07-12)
-		
-		* new alphabetic list of authors, grouped by initial
         
-		* cleanup and minor bugfixes
-	
+        * new alphabetic list of authors, grouped by initial
+        
+        * cleanup and minor bugfixes
+    
     DiPP 2.4.2 (2010-06-30)
-	
-		* Bugfixes: corrected use of volume/issue in COinS
-		
+    
+        * Bugfixes: corrected use of volume/issue in COinS
+        
     DiPP 2.4.1 (2010-06-29)
 
         * COinS/Zotero support added, requires python module openurl
@@ -187,23 +187,23 @@ Changes
           easily delete workitems from the list. 
           
         * nicer abstract_view
-	
+    
     DiPP 2.4 (2010-06-22)
-	
-		* include the tools PloneFedora2DiPP2 and PloneFedora2DiPP3 replacing
-		  two seperate products. PloneFedora2DiPP3 is automatically installed
+    
+        * include the tools PloneFedora2DiPP2 and PloneFedora2DiPP3 replacing
+          two seperate products. PloneFedora2DiPP3 is automatically installed
           
-		* finally removing root properties GAP_CONTAINER and label. These are
-		  replaces by PID and label configurable directly in the fedora tool. 
+        * finally removing root properties GAP_CONTAINER and label. These are
+          replaces by PID and label configurable directly in the fedora tool. 
           For new Installations t has to be done manually, for upgrades from Version <2.4
           a script mig23to24 is provided
           
-		* Editing of FedoraDocuments simplified, less templates needed
+        * Editing of FedoraDocuments simplified, less templates needed
         
-		* FedoraMultimedia fetches content/datastream directly from fedora, not
-		  via webservice, to improve performance
-		  
+        * FedoraMultimedia fetches content/datastream directly from fedora, not
+          via webservice, to improve performance
+          
     DiPP 2.3.6 (2010-05-27)
-	
-	    * TextIndexNG3 used to index PDFs (requires reindexing of portal_catalog
+    
+        * TextIndexNG3 used to index PDFs (requires reindexing of portal_catalog
           and converting existing indexes, see Products Readme)
