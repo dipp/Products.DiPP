@@ -6,3 +6,5 @@ Disallow: /fedora_tmp/
 Disallow: /upload_folder/
 Disallow: /tmp/
 Disallow: /ext/
+Disallow: /search   # don't do searches
+Disallow: /feed/    # don' feed the robots
