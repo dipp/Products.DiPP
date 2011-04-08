@@ -24,7 +24,7 @@ RESPONSE = request.RESPONSE
 portal_url = getToolByName(self, 'portal_url')
 fedora = getToolByName(self,'fedora')
 portal     = portal_url.getPortalObject()
-articles   = container.portal_catalog(portal_type='FedoraArticle', sort_on='getIssueDate')
+articles   = container.portal_catalog(portal_type='FedoraArticle', sort_on='getIssueDate', Language="all")
 
 print "H:email=support@crossref.org;fromPrefix=%s;toPrefix=%s" % (prefix, prefix)
 for article in articles:
