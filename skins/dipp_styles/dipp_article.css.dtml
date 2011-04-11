@@ -76,7 +76,10 @@ div.mixed {
 }
 
 /* styles for the splashpage */
-
+h1.splash_screen,
+h1.mixed_view {
+    display: none;
+}
 ul.authors {
     list-style: none;
     margin-left: 0;

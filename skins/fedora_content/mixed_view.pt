@@ -11,11 +11,19 @@
                      PID         here/fulltext/PID|nothing;
                      qdc         python:here.fedora.getQualifiedDCMetadata(articlePID);
                      lang_dict   python:here.fedora.getLanguages();
-                     comment_to  here/comment_to|nothing">
-                     
+                     comment_to  here/comment_to|nothing;
+                     avtm python:here.portal_vocabularies;
+                     journalsections python:avtm.getVocabularyByName('journal-sections');
+                     section_dict python:journalsections.getVocabularyDict(journalsections);">
+        
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
+
+        <h1 class="documentFirstHeading mixed_view"
+            tal:content="python: section_dict[here.journal_section]">
+            Article
+        </h1>
          
         <div tal:condition="comment_to"
              tal:define="results python:here.portal_catalog.searchResults(getPID=comment_to)">
