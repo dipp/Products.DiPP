@@ -9,10 +9,11 @@
             <ul class="authors">
                 <li tal:repeat="author authors">
                 <a tal:define="firstname python: author.split(',')[-1];
-                               lastname python: author.split(',')[0]"
-                   tal:attributes="href string: $portal_url/author?contributor=$author" 
-                      tal:content="string: $firstname $lastname">John Doe</a><span tal:condition="not: repeat/author/end"
-                      tal:replace="string:,"/>
+                               lastname python: author.split(',')[0];
+                               end repeat/author/end;"
+                   tal:attributes="href string: $portal_url/author?contributor=$author;
+                                   class python:test(end,'last')" 
+                   tal:content="string: $firstname $lastname">John Doe</a>
                 </li>
             </ul>
         </div>

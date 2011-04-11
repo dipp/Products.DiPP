@@ -87,6 +87,12 @@ ul.authors li {
     padding: 0;
     margin: 0;
 }
+ul.authors li a:after {
+    content: ",";
+}
+ul.authors li a.last:after {
+    content: "";
+}
 .authors .author {
     font-style: italic;
     font-weight: bold;
