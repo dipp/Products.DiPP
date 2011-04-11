@@ -8,7 +8,7 @@
 
 <div metal:fill-slot="main">
 
-    <h1 i18n:translate="heading_advanced_search">Advanced search for content</h1>
+    <h1 i18n:translate="heading_advanced_articlesearch">Advanced search for articles</h1>
 
     <p i18n:translate="description_advanced_search">
     This search form enables you to find content on the site by
@@ -18,9 +18,9 @@
     good enough, this search form is just if you want to be more specific.
     </p>
 
-  	<form action="search"
+  	<form action="articlesearch"
           method="get"
-          name="search"
+          name="articlesearch"
           tal:define="DateTime python:modules['DateTime'].DateTime">
 
         <fieldset>
@@ -118,23 +118,6 @@
                 </label>
             </div>
     
-            <div class="field">
-                <label for="Description" i18n:translate="label_description">Description</label>
-
-                <div class="formHelp" i18n:translate="help_search_description">
-                Return items matching this description.
-                Multiple words may be found
-                by combining them with <strong>AND</strong> and <strong>OR</strong>.
-                </div>
-    
-                <input type="text"
-                       id="Description"
-                       name="Description"
-                       size="25"
-                       tabindex=""
-                       tal:attributes="tabindex tabindex/next;"
-                       />
-            </div>
     
             <div class="field">
                 <label for="created" i18n:translate="label_new_items_since">New items since</label>
@@ -173,46 +156,9 @@
                 Return items of a specific type.
                 </div>
     
-                <span class="optionsToggle" tal:define="tabindex tabindex/next">
-                    <input type="checkbox"
-                           onclick="javascript:toggleSelect(this, 'portal_type:list', true);"
-                           name="pt_toggle"
-                           value="#"
-                           id="pt_toggle"
-                           class="noborder"
-                           tabindex=""
-                           checked="checked"
-                           tal:attributes="tabindex tabindex;"/>
-                    <label for="pt_toggle"
-                           i18n:translate="label_toggle"
-                           >Select All/None
-                    </label>
-                </span>
-                <br />
-                <div style="float:left; margin-right: 2em;"
-                     tal:define="allTypes python:putils.getUserFriendlyTypes();
-                             typeLists python:here.createMultiColumnList(allTypes, numCols=2, sort_on='self');"
-                     tal:repeat="sublist typeLists">
-                    <tal:items repeat="type sublist">
-                    <tal:tabindex define="tabindex tabindex/next">
-                    <input type="checkbox"
+                    <input type="text"
                            name="portal_type:list"
-                           value="#"
-                           class="noborder"
-                           checked="checked"
-                           tabindex=""
-                           tal:attributes="value type;
-                                           tabindex tabindex;
-                                           id string:portal_type_${repeat/sublist/number}_${repeat/type/number}"/>
-                    <label for=""
-                           i18n:translate=""
-                           tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
-                           tal:content="python: portal_types.getTypeInfo(type).Title()"
-                           />
-                    <br />
-                    </tal:tabindex>
-                    </tal:items>
-                </div>
+                           value="FedoraArticle">
             </div>
 
             <div class="visualClear" id="clear-space-before-author"><!-- --></div>
@@ -225,73 +171,25 @@
                 Return items created by a particular person.
                 </div>
     
-                <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator')">
-                    <select name="Creator"
-                            id="Creator"
+                <tal:creators tal:define="authors python:portal.portal_catalog.uniqueValuesFor('getAuthors')">
+                    <select name="author"
+                            id="author"
                             tabindex=""
                             tal:attributes="tabindex tabindex/next;"
-                            tal:condition="python: len(creators) &lt;= 30">
+                            tal:condition="python: len(authors) &lt;= 30">
                         <option value="" i18n:translate="label_any_author">Any Author</option>
-                        <metal:block tal:repeat="creator creators">
-                            <option value="" tal:attributes="value creator" tal:content="creator"> username </option>
+                        <metal:block tal:repeat="author authors">
+                            <option value="" tal:attributes="value author" tal:content="author"> authorname </option>
                         </metal:block>
                     </select>
     
-                    <input name="Creator"
+                    <input name="author"
                            tabindex=""
                            tal:attributes="tabindex tabindex/next;"
-                           tal:condition="python: len(creators) &gt; 30 " />
+                           tal:condition="python: len(authors) &gt; 30 " />
                 </tal:creators>
             </div>
     
-            <div class="field">
-    
-                <label for="review_state" i18n:translate="label_review_status">Review status</label>
-
-                <div class="formHelp" i18n:translate="help_search_review_status">
-                You may search for items based on their
-                review state. If you wish to constrain results to items
-                in certain states, select them from this list.
-                </div>
-    
-                <span class="optionsToggle" tal:define="tabindex tabindex/next">
-                <input type="checkbox"
-                       onclick="javascript:toggleSelect(this, 'review_state:list', true);"
-                       name="rs_toggle"
-                       value="#"
-                       id="rs_toggle"
-                       class="noborder"
-                       checked="checked"
-                       tabindex=""
-                       tal:attributes="tabindex tabindex;"/>
-                <label for="rs_toggle"
-                       i18n:translate="label_toggle"
-                       >Select All/None
-                </label>
-                <br />
-                </span>
-
-                <tal:states define="
-                                navtree_props portal_properties/navtree_properties;
-                                states          python:wtool.listWFStatesByTitle(filter_similar=1);
-                                state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
-                            repeat="sublist state_lists">
-                    <tal:items repeat="state sublist">
-                    <input class="noborder"
-                           type="checkbox"
-                           name="review_state:list"
-                           checked="checked"
-                           tal:attributes="value python:state[1];
-                                           id python:normalizeString(state[1]);" />
-                    <label for=""
-                           tal:attributes="for python:normalizeString(state[1])"
-                           i18n:translate=""
-                           tal:content="python:state[0] or state[1]"
-                           />
-                    <br />
-                    </tal:items>
-                </tal:states>
-            </div>
 
             <div class="visualClear" id="clear-space-before-submit"><!-- --></div>
 
