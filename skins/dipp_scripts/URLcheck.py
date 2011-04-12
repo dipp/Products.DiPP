@@ -25,14 +25,14 @@ for article in articles:
     obj       = article.getObject()
     PID       = obj.PID
     ploneURL  = obj.absolute_url()
+    if ploneURL.startswith('https'): 
+        ploneURL = ploneURL.replace('https','http',1)
     fedoraURL = fedora.getQualifiedDCMetadata(PID)['identifierURL']
     
     if ploneURL == fedoraURL:
         OK = "OK"
     else:
         if fix == "1":
-            if ploneURL.startswith('https'): 
-                ploneURL = ploneURL.replace('https','http',1)
             fedora.setURL(PID, ploneURL)
             fedora.setPublishingState(PID,1,1)
             OK = "FIXED"
