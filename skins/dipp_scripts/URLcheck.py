@@ -16,7 +16,7 @@ RESPONSE = request.RESPONSE
 portal_url = getToolByName(self, 'portal_url')
 fedora     = getToolByName(self, 'fedora')
 portal     = portal_url.getPortalObject()
-articles   = container.portal_catalog(portal_type='FedoraArticle',sort_on='Date', review_state=['visible','published'])
+articles   = container.portal_catalog(portal_type='FedoraArticle', Language="all", sort_on='Date', review_state=['visible','published'])
 
 print '#', len(articles)
 print 'fix:', fix
