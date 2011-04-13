@@ -22,9 +22,16 @@
                 Document actions (print, sendto etc)
             </div>
         
-            <h1 class="documentFirstheading" i18n:translate="heading_file_submit">
+            <h1 i18n:translate="heading_file_submit">
                 Dokument - Dateiformular
             </h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/editorial_toolbox"
+       i18n:translate="label_up_to_editorial_toolbox">
+    Up to Editorial Toolbox
+    </a>
 
             
                 <form tal:condition="journalPID"

@@ -11,10 +11,6 @@
     
 <body>
 
-  <div metal:fill-slot="header">
-
-
-  </div>
 
 <div metal:fill-slot="main" class="desktop">
 
@@ -25,9 +21,16 @@
         Document actions (print, sendto etc)
     </div>
     
-    <h1 i18n:translate="title_reloadworklist">
-        Artikelliste aktualisieren
+    <h1 i18n:translate="title_allworklists">
+        Alle Artikel
     </h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/editorial_toolbox"
+       i18n:translate="label_up_to_editorial_toolbox">
+    Up to Editorial Toolbox
+    </a>
     
     <div class="formHelp" i18n:translate="help_reloadworklist">
        Kürzlich hochgeladene Artikel erscheinen möglicherweise nicht sofort in der Worklist.
@@ -66,7 +69,6 @@
 
 
 
-    <h2 i18n:translate="title_allworklists">Alle in Bearbeitung befindlichen Artikel</h2>
 
 <!-- workitems assigned to user-->
 
