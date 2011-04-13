@@ -607,3 +607,6 @@ msgstr ""
 
 msgid "no-published-issues"
 msgstr ""
+
+msgid "label_up_to_editorial_toolbox"
+msgstr ""
