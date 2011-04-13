@@ -9,8 +9,6 @@
 ##parameters=self
 ##
 
-from zLOG import LOG, INFO
-
 REQUEST = context.REQUEST
 RESPONSE =  REQUEST.RESPONSE
 
