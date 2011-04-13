@@ -25,14 +25,17 @@ from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
-
-from zLOG import LOG, ERROR, INFO
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
 except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
+
+import logging
+
+logger = logging.getLogger("DiPP")
+
 
 class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     """Hierarchical Object representing an issue or volume."""
@@ -180,7 +183,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         AbsoluteURL = self.absolute_url()
         PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
         msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
-        LOG ('DIPP', INFO, msg)
+        logger.info(msg)
         self.setPID(PID)
         self.reindexObject()
 
@@ -192,7 +195,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         id = self.id
         AbsoluteURL = self.absolute_url()
         msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
-        LOG ('DIPP', INFO, msg)
+        logger.info(msg)
 
     def migrate(self,target):
         """Migrate from FedoraHierarchie to Volume or Issue"""
