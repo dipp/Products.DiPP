@@ -8,11 +8,14 @@ from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
 import Permissions
-from zLOG import LOG, ERROR, INFO
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from zope.interface import implements, Interface
 from textindexng.interfaces import IIndexableContent
 from textindexng.content import IndexContentCollector as ICC
+import logging
+
+logger = logging.getLogger("DiPP")
+
 
 class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     """Multimedia files (Images, PDF, Movies) for storing in Fedora"""
@@ -102,6 +105,26 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
 
     security = ClassSecurityInfo()
 
+    def reindex_article(self):
+        """ if this object is a pdf version of the article the article has to be 
+            reindexed upon changes/creation.
+        """
+        if self.MMType == "alternative_format":
+            article = self.getParentNode()
+            article.reindexObject()
+            logger.info("Reindexed %s" % article.PID)
+            
+
+    def at_post_create_script(self):
+        """ reindex article folder when pdf flltext is added
+        """
+        self.reindex_article()
+    
+    def at_post_edit_script(self):
+        """ reindex article folder when pdf flltext is modified
+        """
+        self.reindex_article()
+    
     def indexableContent(self, fields):
         """get the binary datastream from fedora and return in to TextIndexNG
            Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
@@ -115,7 +138,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         if PID and DsID and MIMEType == "application/pdf": 
             data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
             stream = data['stream']
-            LOG ('DIPP', INFO, "Fetching %s/%s for indexing." % (PID, DsID))
+            logger.info("Fetching %s/%s for indexing." % (PID, DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,
@@ -136,7 +159,6 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         stream = data['stream']
         MIMEType =data['MIMEType']
         RESPONSE.setHeader('Content-Type', MIMEType)
-        LOG('DiPP', INFO, MIMEType)
         return stream
 
     security.declareProtected(View, 'preview')
