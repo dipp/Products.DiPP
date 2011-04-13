@@ -25,7 +25,7 @@
         Document actions (print, sendto etc)
     </div>
     
-    <h1 class="documentFirstHeading" i18n:translate="title_reloadworklist">
+    <h1 i18n:translate="title_reloadworklist">
         Artikelliste aktualisieren
     </h1>
     
@@ -66,7 +66,7 @@
 
 
 
-    <h1 i18n:translate="title_allworklists">Alle in Bearbeitung befindlichen Artikel</h1>
+    <h2 i18n:translate="title_allworklists">Alle in Bearbeitung befindlichen Artikel</h2>
 
 <!-- workitems assigned to user-->
 
@@ -162,7 +162,7 @@
         <b>No workitems assigned yet.</b>
     </p>
     
-    <h1 i18n:translate="title_temporaryarticles">Temporäre Artikel</h1>
+    <h2 i18n:translate="title_temporaryarticles">Temporäre Artikel</h2>
     <div class="formHelp">
       <span i18n:translate="help_temporaryarticles_1">Hier aufgelistete Artikel wurden nur zu Testzwecken konvertiert und durchlaufen nicht den workflow.
       </span><br/>
