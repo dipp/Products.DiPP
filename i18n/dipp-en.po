@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-03-09 16:28+0100\n"
+"PO-Revision-Date: 2011-04-13 16:59+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -612,4 +612,7 @@ msgstr "There are no published Volumes."
 
 msgid "no-published-issues"
 msgstr "There are no published Issues."
+
+msgid "label_up_to_editorial_toolbox"
+msgstr "Up to Editorial Toolbox"
 
