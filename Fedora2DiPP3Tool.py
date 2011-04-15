@@ -68,6 +68,9 @@ class Fedora(UniqueObject, SimpleItem):
     manage_maintenance_form = PageTemplateFile('www/maintenance_form.pt', globals())
     security.declareProtected(view_permission, 'manage_maintenance_form')
     
+    manage_urn_form = PageTemplateFile('www/urn_form.pt', globals())
+    security.declareProtected(view_permission, 'manage_urn_form')
+    
     manage_metadata_form = PageTemplateFile('www/metadata_form.pt', globals())
     security.declareProtected(view_permission, 'manage_metadata_form')
                 
@@ -84,6 +87,9 @@ class Fedora(UniqueObject, SimpleItem):
                        'help':('PloneFedora2', 'metadata.stx')},
                       {'label':'Maintenance',
                        'action':'manage_maintenance_form',
+                       'help':('PloneFedora2', 'search.stx')},
+                      {'label':'URN',
+                       'action':'manage_urn_form',
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Backissues',
                        'action':'manage_backissues_form',

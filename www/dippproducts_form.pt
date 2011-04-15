@@ -6,20 +6,34 @@
 
 <table border="0" cellpadding="2" cellspacing="0" width="98%" 
        tal:define="folders python:context.restrictedTraverse('/').objectValues('Folder');
-                   products here/products">
-    <tr class="list-header">
-        <th>Journal Title</th>
-        <tal:block tal:repeat="product products">
-            <th tal:content="product">DiPP</th>
-        </tal:block>
-    </tr>
+                   myproducts here/products">
     <tal:block tal:repeat="folder folders ">
-        <tr tal:condition="python:hasattr(folder,'DiPP')"
-            tal:attributes="class python:test(path('repeat/folder/even'), 'row-hilite', 'row-normal')">
-            <td tal:define="dipp python:getattr(folder,'DiPP')"
-                tal:content="dipp/title">Dev Journal
-            </td>
-        </tr>
+        <tal:block tal:define="dipp python:getattr(folder,'DiPP', None)"
+                   tal:condition="dipp">
+            <tr class="list-header"
+                tal:define="QI python:dipp.portal_url.getPortalObject().portal_quickinstaller">
+                <th>Journal Title</th>
+                <tal:block tal:repeat="product QI/listInstalledProducts">
+                    <th>
+                        <span tal:replace="product/id">
+                        1.2
+                        </span>
+                    </th>
+                </tal:block>
+            </tr>
+            <tr tal:define="QI python:dipp.portal_url.getPortalObject().portal_quickinstaller"
+                tal:attributes="class python:test(path('repeat/folder/even'), 'row-hilite', 'row-normal')">
+                <td tal:content="dipp/title">Dev Journal
+                </td>
+                <tal:block tal:repeat="product QI/listInstalledProducts">
+                    <td>
+                        <span tal:replace="product/installedVersion">
+                        1.2
+                        </span>
+                    </td>
+                </tal:block>
+            </tr>
+        </tal:block>
     </tal:block>
 </table>
 
