@@ -136,6 +136,18 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
+        StringField('URN',
+            required=0,
+            widget=StringWidget(
+                label='URN',
+                label_msgid='label_urn_field',
+                description='The Uniform Resource Name of this article',
+                description_msgid='help_urn_field',
+                visible={'edit':'invisible','view':'visible'}
+            ),
+            index='FieldIndex:brains',
+            schemata='Bibliographic Data'
+        ),
         StringField('Issue',
             required=0,
             widget=StringWidget(
@@ -312,6 +324,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             date = qdc['bibliographicCitation'][0]['journalIssueDate']
             self.setEffectiveDate(date)
             self.setIssueDate(date)
+            self.setURN(qdc['identifierURN'])
            
             # list with available abstract languages ist stored on article object. The calculation
             # on the fly would be to expensive, since for issue pages each single Article would
