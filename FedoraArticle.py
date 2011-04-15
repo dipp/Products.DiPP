@@ -12,7 +12,6 @@ from AccessControl import ClassSecurityInfo
 import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
-from zLOG import LOG, ERROR, INFO, DEBUG
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
@@ -23,6 +22,9 @@ from DateTime import DateTime
 from zope.interface import implements, Interface
 from textindexng.interfaces import IIndexableContent
 from textindexng.content import IndexContentCollector as ICC
+import logging
+
+logger = logging.getLogger("DiPP")
 
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
@@ -253,6 +255,10 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           },
     )
     
+    def at_post_edit_script(self):
+        logger.info("ARTICLE POST EDIT")
+    
+    
     def indexableContent(self, fields):
         """get the binary datastream from fedora and return in to TextIndexNG
            Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
@@ -263,7 +269,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         PID = self.PID
         authors = ", ".join(self.Contributors())
         # indexing authors
-        LOG ('DIPP', INFO, "Fetching %s for indexing: %s" % (PID, authors))
+        logger.info("Fetching %s for indexing: %s" % (PID, authors))
         icc.addContent('SearchableText',unicode(authors), self.language)
         # indexing pdf
         PDF_PID = self.getFulltextPdf().get('PID',None)
@@ -272,7 +278,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         if PDF_PID and PDF_DsID: 
             data =  fedora.accessMultiMediaByFedoraURL(PDF_PID,PDF_DsID,None)
             stream = data['stream']
-            LOG ('DIPP', INFO, "Fetching PDF with %s/%s for indexing." % (PDF_PID, PDF_DsID))
+            logger.info("Fetching PDF with %s/%s for indexing." % (PDF_PID, PDF_DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,
@@ -286,7 +292,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         fedora = getToolByName(self, 'fedora')
         if not self.PID.startswith('temp:'):
             qdc = fedora.getQualifiedDCMetadata(self.PID)
-            LOG ('DIPP', INFO, "Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
+            logger.info("Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
             
             creatorPersons = qdc['creatorPerson']
             contributors = []
@@ -317,7 +323,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             self.setAvailableAbstracts(available_abstracts)
             self.setAbstract(qdc['DCTermsAbstract'][0]['value'].strip())
         else:
-            LOG ('DIPP', INFO, "Skipping synchronization of Metadata for temp. article %s at %s" % (self.PID, self.absolute_url() ))
+            logger.info("Skipping synchronization of Metadata for temp. article %s at %s" % (self.PID, self.absolute_url() ))
             
         self.reindexObject()
     
@@ -358,8 +364,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     
     def linkTranslations(self,PID):
         articles = self.portal_catalog(Type='Fedora Article', getPID=PID)
-        LOG ('DIPP', INFO, PID)
-        LOG ('DIPP', INFO, len(articles))
+        logger.info(PID)
+        logger.info(len(articles))
         lang = self.Language()
         path = self.getPhysicalPath()
         todo = []
@@ -370,7 +376,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             path = obj.getPhysicalPath()
             translation.append((path, lang))
             todo.append(translation)
-        LOG ('DIPP', INFO, todo)
+        logger.info(todo)
         #utils.linkTranslations(self,todo)
 
         
