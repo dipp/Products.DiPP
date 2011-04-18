@@ -20,6 +20,7 @@ from DateTime import DateTime
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
+from dipp.tools import urnvalidator
 from config import view_permission, LANGUAGES
 
 class BibTool(UniqueObject, SimpleItem):
@@ -281,3 +282,10 @@ class BibTool(UniqueObject, SimpleItem):
             fe.close()
 
         return result
+
+    def urnstatus(self, urn, url):
+        """ check status of an urn with the dnb resolver
+        """
+        
+        u = urnvalidator.URN(urn, url)
+        return {'valid':u.is_valid(),'registered':u.is_registered(),'url':u.registered_url()}
