@@ -1,6 +1,6 @@
 <p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
 <h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
-    tal:replace="structure here/manage_tabs">Tabs</h2>
+tal:replace="structure here/manage_tabs">Tabs</h2>
 
 <div tal:condition="not: here/label" class="system-msg">You must configure alabel first
 </div>
@@ -9,82 +9,51 @@
 <p>
     Only Object with the Content Model DiPP:Article are shown.
 </p>
-<form tal:condition="here/label"
-      action="manage_maintenance_form"
-      tal:define="fields python:('pid','cDate','mDate','title');
-                  comparisions python:(('has','contains'),('eq','equals'),('lt','less'),('le','less or equal'),('gt','greater'),('ge','greater or equal'))">
 
-    <input name="field:list"      type="hidden" value="label">
-    <input name="comparison:list" type="hidden" value="has">
-    <input name="value:list"      type="hidden" value="" tal:attributes="value here/label">
+<table border="0" cellpadding="2" cellspacing="0" width="98%"
+       tal:define="bibtool context/bibtool;
+                   articles  python:here.portal_catalog(portal_type='FedoraArticle', sort_on='getPID', sort_order='reverse')">
+    <tr class="list-header">
+        <th width="16">&nbsp;</th>
+        <th>URN</th>
+        <th>URL</th>
+        <th>Title</th>
+        <th>registered</th>
+        <th>valid</th>
+    </tr>
     
-    <input name="field:list"      type="hidden" value="cModel">
-    <input name="comparison:list" type="hidden" value="has">
-    <input name="value:list"      type="hidden" value="DiPP:article">
-    
-    <tal:block tal:repeat="opt python:range(3)">
-        <select name="field:list">
-            <option value="0">Select a field</option>
-            <tal:block tal:repeat="field fields">
-                <option value="" tal:attributes="value field" tal:content="field"></option>
-            </tal:block>
-        </select>
-        <select name="comparison:list">
-            <tal:block tal:repeat="comparision comparisions">
-                <option value="" tal:attributes="value python:comparision[0]" tal:content="python:comparision[1]"></option>
-            </tal:block>
-        </select>
-        <input name="value:list" type="text" value="" /><br />
+    <tr tal:define="URN string:urn:nbn:de:0009-11-29231;
+                    URL string:http://www.socwork.net/2011/1/salisbury;
+                    urn_status python:bibtool.urnstatus(URN,URL)">
+        <td>&nbsp;</td>
+        <td tal:content="URN"></td>
+        <td tal:content="URL"></td>
+        <td>Dummy Title</td>
+        <td tal:content="urn_status/registered"> </td>
+        <td tal:content="urn_status/valid"> </td>
+    </tr>
+
+    <tal:block tal:repeat="article articles">
+        <tr tal:define="PID article/getPID;
+                        title article/Title;
+                        URL article/getURL;
+                        URN article/getURN;
+                        urn_status python:bibtool.urnstatus(URN,URL)"
+            tal:condition="not: python:PID.startswith('temp')"
+            tal:attributes="class python:test(path('repeat/article/even'), 'row-hilite', 'row-normal')">
+            <td width="16">
+                <input type="checkbox" name="PIDs:list" value="" tal:attributes="value article/PID">
+            </td>
+            <td tal:content="URN"></td>
+            <td tal:content="URL"></td>
+            <td>
+                <abbr tal:attributes="title title"
+                      tal:content="python:title[0:40] + '...'"></abbr>
+            </td>
+            <td tal:content="urn_status/registered"> </td>
+            <td tal:content="urn_status/valid"> </td>
+        </tr>
     </tal:block>
-    
-    <input type="submit" value="OK">
-    <input type="reset" value="Cancel">
-</form>
+</table>
 
-<div tal:define="field request/field|nothing;
-                 comparison request/comparison|nothing;
-                 value request/value|nothing" >
-
-    <tal:block tal:condition="python: field!=None and comparison!=None and value!=None">
-        <tal:block  tal:define="results python:here.manage_search(field=field,comparison=comparison,value=value);
-                                PIDs python:here.getFedoraArticles()">
-            <form action="manage_fixURLForm" tal:attributes="action python:here.absolute_url()+'/manage_fixURLForm'" method="POST">
-                <table border="0" cellpadding="2" cellspacing="0" width="98%">
-                    <tr class="list-header">
-                        <th width="16">&nbsp;</th>
-                        <th>PID</th>
-                        <th>state</th>
-                        <th>Plone</th>
-                        <th>cDate</th>
-                        <th>creator</th>
-                        <th>Title</th>
-                    </tr>
-                    <tal:block tal:repeat="result results">
-                        <tr tal:define="PID result/PID;
-                                        cModel result/cModel"
-                            tal:attributes="class python:test(path('repeat/result/even'), 'row-hilite', 'row-normal')">
-                            <td width="16">
-                                <input tal:condition="python: cModel == 'DiPP:article'" type="checkbox" name="PIDs:list" value="" tal:attributes="value result/PID">
-                            </td>
-                            <td tal:content="PID"></td>
-                            <td tal:content="result/state"></td>
-                            <td>
-                                <span tal:condition="python: PID in PIDs">
-                                yes
-                                </span>
-                                <span tal:condition="python: PID not in PIDs">
-                                no
-                                </span>
-                            </td>
-                            <td tal:content="result/cDate"></td>
-                            <td tal:content="result/creator"></td>
-                            <td tal:content="result/title"></td>
-                        </tr>
-                    </tal:block>
-                </table>
-                <input type="submit" value="fix URLs">
-            </form>
-        </tal:block>
-    </tal:block>
-</div>
 <p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
