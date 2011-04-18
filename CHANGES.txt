@@ -1,5 +1,25 @@
 Changes
 
+	DiPP 2.7 ()
+	
+	    * fedoratool shows status of URN
+	    
+		* fixed some problems when indexing pdfs
+		
+		* new main_template for workflow related pages. only left column is
+		  visible and not modified by left_slot
+		
+		* new articlesearch_form, not active yet
+		
+		* feeds und search in robots.txt disabled for performance reasons
+		
+		* new template for recent article with section drilldown (logistics)
+		
+        * normalized rtf filenames, uplod of files with strange filenames now
+          possible
+        
+        * zlog replaced with logger
+
     DiPP 2.6.4 (2010-03-23)
     
         * fixed broken pdf link in html version of article

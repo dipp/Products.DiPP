@@ -12,7 +12,9 @@ Installation
     deleted from the ZMI. After reinstalling  the configuration
 	for fedora has to be manually adjusted, i.e. pid and label must be specified
 	on the fedora tool itself, not in the root properties. Otherwise new articles 
-	can not be uploaded. 
+	can not be uploaded.
+	
+	Version 2.7 required a "synchronize" run, since the urn is now in the portal_catalog
 
 Configuration
 
