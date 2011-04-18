@@ -21,7 +21,7 @@ from time import mktime, strptime, strftime
 from fedora2 import FedoraAccess
 from fedora2 import FedoraManagement
 from dipp3 import ContentModel
-from openurl import openurl
+from dipp.tools import openurl
 from marshal import loads
 from zlib import decompress
 from urllib import unquote
