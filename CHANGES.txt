@@ -1,6 +1,8 @@
 Changes
 
-	DiPP 2.7 ()
+	DiPP 2.7 (2011-04-18)
+	
+        * After Install: call synchronize Skript to put the URN into plones catalog
 	
 	    * fedoratool shows status of URN
 	    
@@ -20,14 +22,14 @@ Changes
         
         * zlog replaced with logger
 
-    DiPP 2.6.4 (2010-03-23)
+    DiPP 2.6.4 (2011-03-23)
     
         * fixed broken pdf link in html version of article
         
         * adding new keywords when uploading articles fixed
         
 
-    DiPP 2.6.3 (2010-03-22)
+    DiPP 2.6.3 (2011-03-22)
     
         * "titel" attribute (ZMI) of workflow instance removes to prevent trouble
           with special characters
@@ -36,7 +38,7 @@ Changes
           installing of products in all journals of a zopeinstance
           
 
-    DiPP 2.6.2 (2010-03-10)
+    DiPP 2.6.2 (2011-03-10)
     
         * portlet for ISSN 
         
@@ -50,12 +52,12 @@ Changes
           problems  
         
     
-    DiPP 2.6.1 (2010-02-24)
+    DiPP 2.6.1 (2011-02-24)
     
         * edit journal sections in the Metadataform   
         
         
-    DiPP 2.6 (2010-02-24)
+    DiPP 2.6 (2011-02-24)
     
         * adding pagenumbers also in the metadata form possible
         
@@ -64,7 +66,7 @@ Changes
         * Colored Differences between version of an article
         
         
-    DiPP 2.5.5 (2010-02-14)
+    DiPP 2.5.5 (2011-02-14)
 
         * After Install: call synchronize Skript to put the JournalIssueDate and
           Authors into plones catalog
