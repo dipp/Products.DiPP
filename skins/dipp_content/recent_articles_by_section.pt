@@ -132,7 +132,7 @@
                                 Download <abbr title="Portable Document Format">PDF</abbr>
                             </a>
                         </span>
-                        <span>
+                        <span class="read_link">
                             <a tal:attributes="href item_url"
                                i18n:domain="dipp"
                                i18n:translate="read article">read article</a>
