@@ -74,8 +74,8 @@
                </span>
 
                 <span class="discreet" i18n:translate="results_by_author">
-                by <span tal:omit-tag="" tal:content="result/getAuthors" i18n:name="author">Author</span>,
-                <span tal:omit-tag="" tal:content="python:toLocalizedTime(result.getIssueDate, long_format=1)" i18n:name="date">Modification Date</span>
+               
+                <span tal:omit-tag="" tal:content="python:toLocalizedTime(result.getIssueDate)">Issue Date</span>
                 </span>
                 <div metal:use-macro="here/article_authors/macros/article_authors">
                     A nicely formatted list of authors
