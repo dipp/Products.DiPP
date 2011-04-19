@@ -58,6 +58,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('allow_persistent_discussion', 'boolean', False),
         ('volume_show_covers', 'boolean', False),
         ('issue_show_abstracts', 'boolean', False),
+        ('issue_show_pdf_link', 'boolean', False),
         ('issue_show_full_abstracts', 'boolean', False),
         ('issue_sort_on', 'string', 'getObjPositionInParent'),
         ('issue_sort_order', 'string', 'ascending'),
