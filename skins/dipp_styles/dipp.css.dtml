@@ -134,7 +134,7 @@ ul.allauthors li {
     padding: 0.5em;
     margin: 0;
 }
-#recent_articles li:hover {
+#recent_articles > li:hover {
     background-color: &dtml-evenRowBackgroundColor;
 }
 
