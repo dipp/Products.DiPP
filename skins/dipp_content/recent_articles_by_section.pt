@@ -104,7 +104,9 @@
                                   14.12.2004
                                </span>
                                <tal:block tal:condition="python: item_section !='no-section'">
-                                  <span class="discreet" tal:content="python:section_dict[item_section]">Forschung und Entwicklung</span>
+                                  <a class="discreet"
+                                     tal:attributes="href string: $template_id?sections_to_show:list=$item_section"
+                                     tal:content="python:section_dict[item_section]">Forschung und Entwicklung</a>
                               </tal:block>
                         </span>
 
