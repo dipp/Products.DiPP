@@ -33,7 +33,7 @@
     <span i18n:name="advanced_search">
     <a href=""
        i18n:translate="search_results_advanced_link"
-       tal:attributes="href string:$portal_url/search_form">Advanced Search</a>
+       tal:attributes="href string:$portal_url/articlesearch_form">Advanced Search</a>
     </span>
     for more precise search options.
     </p>
@@ -56,11 +56,11 @@
                            url python:'%s?searchterm=%s'%(test(result_type in use_view_action, result_url+'/view', result_url+'/'), searchterm);">
             <dt tal:define="item_wf_state result/review_state;
                             item_wf_state_class python:'state-' + normalizeString(item_wf_state);">
-                <span tal:attributes="class python: 'visualIcon contenttype-' + normalizeString(result.portal_type)">
+                <span>
                     <a
                      href="#" 
                      tal:attributes="href url;
-                                     class string:$item_wf_state_class visualIconPadding"
+                                     class string:$item_wf_state_class"
                 tal:content="result/pretty_title_or_id" />
                 </span>
                <span class="discreet" 
