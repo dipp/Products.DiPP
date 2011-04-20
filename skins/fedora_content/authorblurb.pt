@@ -56,7 +56,7 @@
                                         subject python:subject.strip()" 
                             tal:attributes="class python:test(islast,'last')">
                             <a tal:content="subject"
-                               tal:attributes="href string: $portal_url/search?Subject=$subject&portal_type=FedoraArticle">
+                               tal:attributes="href string: $portal_url/articlesearch?Subject=$subject&portal_type=FedoraArticle">
                                key</a>
                         </li>
                     </tal:items>
