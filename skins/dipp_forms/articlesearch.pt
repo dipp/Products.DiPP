@@ -48,38 +48,60 @@
 
         <!-- Search results -->
 
-        <dl>
+        <dl id="article-search-results">
         <tal:results repeat="result batch">
         <tal:entry define="result_url result/getURL;
                            result_type result/portal_type;
                            authors result/getAuthors;
-                           url python:'%s?searchterm=%s'%(test(result_type in use_view_action, result_url+'/view', result_url+'/'), searchterm);">
+                           section result/getJournal_section|nothing;
+                           issue result/getIssue|nothing;
+                           date result/getIssueDate|nothing;
+                           volume result/getVolume|nothing;
+                           journal result/getJournalTitle|nothing;
+                           url python:'%s?searchterm=%s'%(test(result_type in use_view_action, result_url+'/view', result_url+'/'), searchterm);
+                           avtm                 python:here.portal_vocabularies;
+                           journalsections      python:avtm.getVocabularyByName('journal-sections');
+                           section_dict         python:journalsections.getVocabularyDict(journalsections)">
+                           
             <dt tal:define="item_wf_state result/review_state;
                             item_wf_state_class python:'state-' + normalizeString(item_wf_state);">
-                <span>
+                            
+                <span tal:condition="not: python: section == 'no-section'"
+                      class="section discreet"
+                      tal:content="python:section_dict[section]">
+                    Die journal Section
+                </span>
+                <span class="title">
                     <a
                      href="#" 
                      tal:attributes="href url;
                                      class string:$item_wf_state_class"
                 tal:content="result/pretty_title_or_id" />
                 </span>
-               <span class="discreet" 
-                     title="Relevance"
-                     tal:condition="result/data_record_normalized_score_"
-                     i18n:translate="label_relevance_percentage"
-                     i18n:attributes="title title_relevance;">
-                    [<span tal:content="result/data_record_normalized_score_"
-                           tal:omit-tag=""
-                           i18n:name="percentage">23%</span>%]
-               </span>
 
-                <span class="discreet" i18n:translate="results_by_author">
-               
-                <span tal:omit-tag="" tal:content="python:toLocalizedTime(result.getIssueDate)">Issue Date</span>
-                </span>
+                <tal:comment tal:replace="nothing">
+                    <span class="discreet" 
+                         title="Relevance"
+                         tal:condition="result/data_record_normalized_score_"
+                         i18n:translate="label_relevance_percentage"
+                         i18n:attributes="title title_relevance;">
+                        [<span tal:content="result/data_record_normalized_score_"
+                               tal:omit-tag=""
+                               i18n:name="percentage">23%</span>%]
+                   </span>
+                </tal:comment>
+
                 <div metal:use-macro="here/article_authors/macros/article_authors">
                     A nicely formatted list of authors
                 </div>
+                <span class="discreet">
+                    <span tal:omit-tag="" tal:content="journal">JournalName</span>,
+                    <span i18n:domain="qdc" i18n:translate="label_journalVolume">journalVolume</span>
+                    <span tal:omit-tag="" tal:content="volume">Volume</span>,
+                    <span i18n:domain="qdc" i18n:translate="label_journalIssueNumber">journalIssueNumber</span>
+                    <span tal:omit-tag="" tal:content="issue">issue</span>,
+                    (<span tal:omit-tag="" tal:content="python:toLocalizedTime(date)">Issue Date</span>)
+                </span>
 
             </dt>
             

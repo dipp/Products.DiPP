@@ -289,6 +289,28 @@ ul.list-of-feeds li a{
 .tagDelete { background-color: #770000; color: #ffffff }
 
 
+/* Article rearch results */
+#article-search-results .section {
+   display: block;
+}
+/* Article rearch results */
+#article-search-results .authors {
+   margin-top: 0;
+}
+#article-search-results dt {
+    font-weight: normal;
+    margin-bottom: 1.3em;
+}
+#article-search-results .title {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+#article-search-results a {
+    border: none;
+    text-decoration: none;
+}
+
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
