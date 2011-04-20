@@ -8,7 +8,7 @@
         <div metal:define-macro="persistent_comments"
              i18n:domain="dipp"
              tal:define="allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
-                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=articlePID, sort_on='effective', sort_order='reverse')"
+                         results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=articlePID, sort_on='getIssueDate', sort_order='reverse')"
              tal:condition="allow_persistent_discussion">
              
             <h2 i18n:translate="heading_comments" id="comments" name="comments">Comments</h2>
@@ -17,14 +17,14 @@
             <tal:block tal:repeat="item results">
                 <li tal:define="obj item/getObject;
                                 contributors obj/Contributors|nothing;
-                                effective item/effective|nothing;
+                                date item/getIssueDate|nothing;
                                 item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                 item_wf_state_class python:'state-' + normalizeString(item_wf_state)">
                     <a tal:content="python: contributors[0]"
                        tal:attributes="href item/getURL;
                                        class string:$item_wf_state_class">
                        Max Muster</a> |
-                    <span tal:replace="python:toLocalizedTime(effective, long_format=0)">1.1.1970</span>
+                    <span tal:replace="python:toLocalizedTime(date, long_format=0)">1.1.1970</span>
                 </li>
             </tal:block>
             </ol>
@@ -33,19 +33,20 @@
                 Es liegen noch keine Kommentare vor
             </em>
             </p>
-            
             <p i18n:translate="ask_for_persistent_comments"
                i18n:domain="dipp">
                Möchten Sie Stellung zu diesem Artikel nehmen oder haben Sie Ergänzungen?
             </p>
+            <tal:comment tal:replace="nothing"> 
             <p tal:define="discussion_time here/portal_properties/dipp_properties/discussion_time|nothing;
-                           published python:here.getParentNode().effective()"
+                           published python:here.getParentNode().IssueDate"
                tal:condition="discussion_time"
                i18n:translate="persistent_comments_deadline"
                i18n:domain="dipp">
                Der Text kann ab <span i18n:name="published" tal:content="python:toLocalizedTime(published, long_format=0)">1.1.2009</span>
                sechs Monate lang diskutiert werden
             </p>
+            </tal:comment>
             <p>
                <a href=""
                   tal:attributes="href string:$portal_url/submitemail_form"
