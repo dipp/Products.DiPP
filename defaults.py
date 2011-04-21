@@ -1,6 +1,6 @@
-"""
-$Id$
-"""
+# -*- coding: utf-8 -*-
+# $Id$
+
 DEFAULT_LANGUAGE = 'eng'
 AVAILABLE_LANGUAGES = ('ger','eng','fra','ita','spa')
 
