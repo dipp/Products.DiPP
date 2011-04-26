@@ -7,7 +7,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, SKIN_NAMES, STYLESHEETS, JAVASCRIPTS, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
+from Products.DiPP.config import PROJECTNAME, STYLESHEETS, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
 from Products.DiPP.defaults import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
@@ -347,36 +347,6 @@ def configure_workflow(self, out, site_id=SITE_NAME):
                 permission = '',
                 category = 'portal_tabs',
                 visible = 1)
- 
-
-                
-def install_subskins(self, out, skin_names=SKIN_NAMES, globals=dippworkflow_globals, site_id=SITE_NAME):
-    """Installation von Subskins"""
-
-    print >> out, "  Installing subskin."
-    site = getSite(self, site_id)
-    #site = self
-    skinstool = getToolByName(site, 'portal_skins')
-    for skin_name in skin_names:
-        if skin_name not in skinstool.objectIds():
-            print >> out, "    Adding directory view for dipp"
-            addDirectoryViews(skinstool, 'skins', globals)
-
-        for skinName in skinstool.getSkinSelections():
-            path = skinstool.getSkinPath(skinName)
-            path = [i.strip() for i in  path.split(',')]
-            try:
-                if skin_name not in path:
-                    path.insert(path.index('custom') +1, skin_name)
-            except ValueError:
-                if skin_name not in path:
-                    path.append(skin_name)
-
-            path = ','.join(path)
-            skinstool.addSkinSelection( skinName, path)
-
-    
-    print >> out, "  Done installing subskin."
 
 
 def getSite(self, site_id):
@@ -496,9 +466,6 @@ def install_css(self,out):
     """register the stylesheets"""
     registerResources(self, out, 'portal_css', STYLESHEETS)
 
-def install_js(self,out):
-    """register the javascripts"""
-    registerResources(self, out, 'portal_javascripts', JAVASCRIPTS)
 
 def install_metadataproperties(self,out):
     """available metadata and default values"""
@@ -636,8 +603,24 @@ def install_tools(self,out,site_id=SITE_NAME):
             # if an instance with the same name already exists this error will
             # be swallowed. Zope raises in an unelegant manner a 'Bad Request' error
             pass
-            
 
+def install_profiles(self, out, site_id=SITE_NAME):
+    
+    site = getSite(self, site_id)
+    setup_tool = getToolByName(site, 'portal_setup')
+    setup_tool.setImportContext('profile-DiPP:install')
+    setup_tool.runAllImportSteps()
+    setup_tool.setImportContext('profile-CMFPlone:plone')
+    print >> out, "Ran all import steps."
+
+def uninstall_profiles(self, out, site_id=SITE_NAME):
+    
+    site = getSite(self, site_id)
+    setup_tool = getToolByName(site, 'portal_setup')
+    setup_tool.setImportContext('profile-DiPP:uninstall')
+    setup_tool.runAllImportSteps()
+    setup_tool.setImportContext('profile-CMFPlone:plone')
+    print >> out, "Ran all uninstall steps."
 
 def install(self):
     """ install a dipp instance"""
@@ -647,11 +630,10 @@ def install(self):
     install_properties(self, out)
     install_memberproperties(self, out)
     install_metadataproperties(self,out)
-    install_subskins(self, out)
     install_extMethods(self, out)
     install_types(self, out)
     install_css(self,out)
-    install_js(self,out)
+    install_profiles(self,out)
     install_configlet(self, out)
     install_content(self, out)
     install_tools(self, out)
@@ -682,5 +664,6 @@ def uninstall(self, site_id=SITE_NAME):
     portal_conf=getToolByName(self,'portal_controlpanel')
     portal_conf.unregisterConfiglet('dipp_configuration')
 
+    uninstall_profiles(self,out)
 
     return out.getvalue()

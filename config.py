@@ -11,32 +11,12 @@ from Permissions import VIEW_CONTENTS_PERMISSION
 view_permission = permissions.ManagePortal
 
 PROJECTNAME = 'DiPP'
-SKINS_DIR   = 'skins'
-
-SKIN_NAMES = [
-    'dipp_content',
-    'dipp_forms',
-    'dipp_form_scripts',
-    'dipp_styles',
-    'dipp_portlets',
-    'dipp_scripts',
-    'dipp_workflow',
-    'dipp_images',
-    'fedora_content'
-    ]
 
 STYLESHEETS = (
     {'id': "dipp.css", 'media': 'screen', 'rendering': 'import'},
     {'id': "tabber.css", 'media': 'screen', 'rendering': 'import'},
     {'id': "dipp_article.css", 'media': 'all', 'rendering': 'import'},
     {'id': "dipp_article_print.css", 'media': 'print', 'rendering': 'import'}
-)
-
-JAVASCRIPTS = (
-    {'id':'jquery.js','compression':'none'},
-    {'id':'references.js','compression':'none'},
-    {'id':'tooltip.js','compression':'none'},
-    {'id':'tabber.js','compression':'none'}
 )
 
 DEPENDENCIES = [
