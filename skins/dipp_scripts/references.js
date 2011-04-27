@@ -47,11 +47,13 @@ function inlineFootnotes() {
 				//fadeOutSpeed: 50,
 				//predelay: 400,
 				delay: 500,
-				position: "bottom right",
-				offset: [-50, -80]
+				position: "bottom center",
+				offset: [0, 0]
 			});
 		}
 	}
 }
 
-$(document).ready(inlineFootnotes);
+(function($) {
+	$(document).ready(inlineFootnotes);
+})(jQuery);
