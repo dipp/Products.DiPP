@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-# $Id$
+"""
+ $Id$
+
+"""
 
 from Globals import package_home
 from Products.Archetypes.public import process_types, listTypes
@@ -11,13 +14,13 @@ from config import *
 
 def initialize(context):
     ##Import Types to register them
-    import content.FedoraHierarchie
-    import content.Volume
-    import content.Issue
-    import content.FedoraArticle
-    import content.FedoraDocument
-    import content.FedoraXML
-    import content.FedoraMultimedia
+    import FedoraHierarchie
+    import Volume
+    import Issue
+    import FedoraArticle
+    import FedoraDocument
+    import FedoraXML
+    import FedoraMultimedia
     import EditorialToolboxTool
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
