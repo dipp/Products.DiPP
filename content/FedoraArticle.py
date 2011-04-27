@@ -7,9 +7,7 @@ except ImportError:
 
 from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from config import PROJECTNAME
 from AccessControl import ClassSecurityInfo
-import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 try:
@@ -22,6 +20,8 @@ from DateTime import DateTime
 from zope.interface import implements, Interface
 from textindexng.interfaces import IIndexableContent
 from textindexng.content import IndexContentCollector as ICC
+from Products.DiPP.config import PROJECTNAME
+from Products.DiPP import Permissions
 import logging
 
 logger = logging.getLogger("DiPP")

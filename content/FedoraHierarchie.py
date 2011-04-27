@@ -18,13 +18,13 @@ try:
     from Products.LinguaPlone.public import *
 except ImportError: 
     from Products.Archetypes.public import *
-from config import PROJECTNAME
 from AccessControl import ClassSecurityInfo
-import Permissions
+from Products.DiPP import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
+from Products.DiPP.config import PROJECTNAME
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View

@@ -2,16 +2,16 @@
 from Products.Archetypes.public import *
 from Products.CMFCore.utils import getToolByName
 
-from config import PROJECTNAME
 from Products.CMFCore.permissions import View
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
-import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from zope.interface import implements, Interface
 from textindexng.interfaces import IIndexableContent
 from textindexng.content import IndexContentCollector as ICC
+from Products.DiPP import Permissions
+from Products.DiPP.config import PROJECTNAME
 import logging
 
 logger = logging.getLogger("DiPP")

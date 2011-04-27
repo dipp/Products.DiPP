@@ -4,8 +4,8 @@ from Products.Archetypes.Marshall import PrimaryFieldMarshaller
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
-import Permissions
-from config import PROJECTNAME
+from Products.DiPP import Permissions
+from Products.DiPP.config import PROJECTNAME
 
 class FedoraDocument(BaseContent):
     """store text files in the repository"""
