@@ -217,6 +217,18 @@ class Fedora(UniqueObject, SimpleItem):
         DCMetadata._identifierURL = identifierURL
         cModel.setQualifiedDCMetadata(PID,DCMetadata)
         return DCMetadata
+        
+    def setModified(self, PID):
+        """change the modify date after editing the article
+           or any part of it
+        """
+        cModel = ContentModel.ContentModel()
+        DCMetadata = cModel.getQualifiedDCMetadata(PID)
+        today = DateTime().strftime("%Y-%m-%d")
+        modified = mktime(strptime(today, "%Y-%m-%d"))
+        DCMetadata._modified = modified
+        cModel.setQualifiedDCMetadata(PID,DCMetadata)
+        return DCMetadata
 
     def getDatastreams(self, PID):
         """
@@ -791,6 +803,7 @@ class Fedora(UniqueObject, SimpleItem):
                 valid = None
              
             
+            logger.info(response._dateSubmitted)
             try:
                 dateSubmitted = response._dateSubmitted
                 dateCopyrighted = response._dateCopyrighted
