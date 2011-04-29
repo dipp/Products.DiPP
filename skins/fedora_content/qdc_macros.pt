@@ -800,14 +800,14 @@
             </tal:block>
 
         </div>
+
         <!-- Daten -->
         <div metal:define-macro="dates"
              class="field"
              tal:define="error errors/dates|nothing;
-                         created python:qdc.get('created',None); 
-                         modified python:qdc.get('modified',None);
-                         valid python:qdc.get('valid',None);
-                         today python:DateTime().strftime('%Y-%m-%d')"
+                         accepted python:qdc.get('dateAccepted',None); 
+                         copyrighted python:qdc.get('dateCopyrighted',None);
+                         submitted python:qdc.get('dateSubmitted',None)"
             i18n:domain="qdc"
             tal:attributes="class python:test(error, 'field error', 'field')" >
             <label i18n:translate="label_dates">Daten</label>
@@ -820,15 +820,14 @@
             </div>
             <table class="listing">
                 <tr>
-                    <th i18n:translate="created">created</th>
-                    <th i18n:translate="modified">modified</th>
-                    <th i18n:translate="valid">valid</th>
+                    <th i18n:translate="label_submitted">submitted</th>
+                    <th i18n:translate="label_accepted">accepted</th>
+                    <th i18n:translate="label_copyrighted">copyrighted</th>
                 </tr>
                 <tr>
-                    <td tal:condition="created"><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value request/created|created|today" /></td>
-                    <td tal:condition="not:created"><input class="date" maxlength="10" type="text" name="created"  value="" tal:attributes="value today" /></td>
-                    <td><input class="date" maxlength="10" type="text" name="modified" value="" tal:attributes="value request/modified|modified|nothing" /></td>
-                    <td><input class="date" maxlength="10" type="text" name="valid"    value="" tal:attributes="value request/valid|valid|nothing"/></td>
+                    <td><input class="date" maxlength="10" type="date" name="dateSubmitted" value="" tal:attributes="value request/dateSubmitted|submitted|nothing" /></td>
+                    <td><input class="date" maxlength="10" type="date" name="dateAccepted" value="" tal:attributes="value request/dateAccepted|accepted|nothing" /></td>
+                    <td><input class="date" maxlength="10" type="date" name="dateCopyrighted" value="" tal:attributes="value request/dateCopyrighted|copyrighted|nothing"/></td>
                 </tr>
             </table>
             

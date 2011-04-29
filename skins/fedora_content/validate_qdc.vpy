@@ -11,9 +11,9 @@ bibliographicCitation   = context.REQUEST.get('bibliographicCitation', None)
 startpage               = context.REQUEST.get('startpage', None)
 endpage                 = context.REQUEST.get('endpage', None)
 rights                  = context.REQUEST.get('rights', None)
-created                 = context.REQUEST.get('created', None)
-modified                = context.REQUEST.get('modified', None)
-valid                   = context.REQUEST.get('valid', None)
+dateSubmitted           = context.REQUEST.get('dateSubmitted', None)
+dateAccepted            = context.REQUEST.get('dateAccepted', None)
+dateCopyrighted         = context.REQUEST.get('dateCopyrighted', None)
 
 from DateTime import DateTime
 
@@ -38,28 +38,14 @@ if storageType == "permanent":
 
     if str(subject) == '[]':
         state.setError('subject', 'Bitte geben Sie Schlagworte ein.', new_status='failure')
-
-    if  created == '' or modified == '' or valid == '':
-        state.setError('dates', 'Bitte Daten angeben', new_status='failure')
-
-    try:
-        if created != '':
-            date = DateTime(created)
-    except:
-        state.setError('dates', 'Falsches Format', new_status='failure')
+    
+    for date in (dateAccepted, dateCopyrighted, dateSubmitted):
+        try:
+            if date != '':
+                x = DateTime(date)
+        except:
+            state.setError('dates', 'Falsches Format', new_status='failure')
         
-    try:
-        if modified != '':
-            date = DateTime(modified)
-    except:
-        state.setError('dates', 'Falsches Format', new_status='failure')
-        
-    try:
-        if valid != '':
-            date = DateTime(valid)
-    except:
-        state.setError('dates', 'Falsches Format', new_status='failure')
-
         
     bc = bibliographicCitation[0]
     if str(bc['journalTitle']) == '':
