@@ -502,17 +502,16 @@ class Fedora(UniqueObject, SimpleItem):
             pass
 
         try:
-            #created
             created = params['created']
             DCMetadata._created = []
             x = mktime(strptime(created, "%Y-%m-%d"))
             DCMetadata._created = x
-            #created
+            
             modified = params['modified']
             DCMetadata._modified = []
             x = mktime(strptime(modified, "%Y-%m-%d"))
             DCMetadata._modified = x
-            #valid
+            
             valid = params['valid']
             DCMetadata._valid = []
             x = mktime(strptime(valid, "%Y-%m-%d"))
@@ -781,6 +780,8 @@ class Fedora(UniqueObject, SimpleItem):
                 })
 
             try:
+                # date ist stored as tuple given by mktime
+                # not sure why it is like that. Only date, not time ist saved
                 created = strftime("%Y-%m-%d",response._created[0:6] + (0,1,-1))
                 modified = strftime("%Y-%m-%d",response._modified[0:6] + (0,1,-1))
                 valid = strftime("%Y-%m-%d",response._valid[0:6] + (0,1,-1))
@@ -943,6 +944,10 @@ class Fedora(UniqueObject, SimpleItem):
         """creates a new article object for DiPP"""
     
         cModel = ContentModel.ContentModel()
+        today = DateTime().strftime("%Y-%m-%d")
+        params['created'] = today
+        params['modified'] = today
+        params['valid'] = today
         DCMetadata = self.makeDCMetadataObject(params)
         ContainerPIDs = []
         ContainerPIDs.append(ContainerPID)
@@ -952,6 +957,7 @@ class Fedora(UniqueObject, SimpleItem):
             targetFormat = []
         else:
             targetFormat = params['targetFormat']
+        
         response = cModel.createNewArticle(ContainerPIDs, JournalPID, DCMetadata, Location, StorageType, targetFormat)
         return response
     
