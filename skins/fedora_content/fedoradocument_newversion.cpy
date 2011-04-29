@@ -1,4 +1,4 @@
-## Script (Python) "content_edit"
+## Script (Python) "fedoradocument_newversion"
 ##title=Edit content
 ##bind container=container
 ##bind context=context
@@ -10,6 +10,8 @@
 from Products.CMFCore.utils import getToolByName
 REQUEST = context.REQUEST
 
+translate = context.translate
+articlePID = context.getParentNode().PID
 
 fedora = getToolByName(self, 'fedora')
 PID  = REQUEST.form['PID']
@@ -23,11 +25,11 @@ if Location.startswith('https'):
 DsState = "A"
 tempID = ""
 
-x = fedora.modifyDatastreamByReference(REQUEST,PID,DsID,Label,LogMessage,Location,DsState,MIMEType,tempID)
+fedora.modifyDatastreamByReference(REQUEST,PID,DsID,Label,LogMessage,Location,DsState,MIMEType,tempID)
+fedora.setModified(articlePID)
+context.plone_log("Modify " + articlePID)
 
-portal_status_message = REQUEST.get('portal_status_message', 'Neue Version in Fedora gespeichert! Es ist evtl. ein Reload nötig, um die neue Version in der Übersicht anzuzeigen!')
-#portal_status_message = REQUEST.get('portal_status_message', x)
-
-
-return state.set(status='success',\
-                 portal_status_message=portal_status_message)
+msg = "Neue Version in Fedora gespeichert! Es ist evtl. ein Reload nötig, um die neue Version in der Übersicht anzuzeigen!"
+# msg = context.safePortalMessage(translate('new-datastream-version', domain='dipp'))
+context.plone_utils.addPortalMessage(msg)
+return state.set(status='success')
