@@ -41,7 +41,7 @@ if storageType == "permanent":
     
     for date in (dateAccepted, dateCopyrighted, dateSubmitted):
         try:
-            if date != '':
+            if date.strip() != '':
                 x = DateTime(date)
         except:
             state.setError('dates', 'Falsches Format', new_status='failure')
