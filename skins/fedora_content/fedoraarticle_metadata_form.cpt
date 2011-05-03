@@ -5,22 +5,32 @@
 <body>
 
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
-        <h1  class="documentFirstHeading">
-          Qualified Dublin Core
-        </h1>
-        
+    <tal:main-macro metal:define-macro="main"
+         tal:define="qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
+                     URN python:qdc['identifierURN'];
+                     created python:qdc['created'];
+                     modified python:qdc['modified'];
+                     available_languages here/portal_properties/metadata_properties/available_languages|nothing;
+                     all_languages python:here.fedora.getLanguages()">
+    
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
+        
+        <h1  class="documentFirstHeading">
+          Qualified Dublin Core
+        </h1>
+
+        <span class="discreet">
+            URN: <span tal:replace="URN"></span><br />
+            created: <span class="" tal:content="created"></span><br />
+            modified: <span class="" tal:content="modified"></span>
+        </span>
 
         <form name="fedoradocument_edit_form"
               method="post"
               enctype="multipart/form-data"
-              tal:define="errors options/state/getErrors;
-                          qdc python:here.fedora.getQualifiedDCMetadata(here.PID);
-                          available_languages here/portal_properties/metadata_properties/available_languages|nothing;
-                          all_languages python:here.fedora.getLanguages()"
+              tal:define="errors options/state/getErrors"
               tal:attributes="action python:here.absolute_url()+'/'+template.id" >
 
             <input type="hidden" name="form.submitted" value="1" />
