@@ -150,3 +150,15 @@ msgstr ""
 
 msgid "field-added"
 msgstr ""
+
+msgid "label_publishingdates"
+msgstr ""
+
+msgid "label_submitted"
+msgstr ""
+
+msgid "label_accepted"
+msgstr ""
+
+msgid "label_copyrighted"
+msgstr ""
