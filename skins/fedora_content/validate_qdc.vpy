@@ -44,7 +44,7 @@ if storageType == "permanent":
             if date.strip() != '':
                 x = DateTime(date)
         except:
-            state.setError('dates', 'Falsches Format', new_status='failure')
+            state.setError('dates', 'Falsches Datumsformat, verwenden Sie JJJJ-MM-TT', new_status='failure')
         
         
     bc = bibliographicCitation[0]
