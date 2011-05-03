@@ -530,28 +530,29 @@ class Fedora(UniqueObject, SimpleItem):
             DCMetadata._valid = x
         except:
             pass
-
-        try:
-            #dataAccepted
-            dateAccepted = params['dateAccepted']
-            DCMetadata._dateAccepted = []
-            x = mktime(strptime(dateAccepted, "%Y-%m-%d"))
-            DCMetadata._dateAccepted = x
-
-            #dateCopyrighted
-            dateCopyrighted = params['dateCopyrighted']
-            DCMetadata._dateCopyrighted = []
-            x = mktime(strptime(dateCopyrighted, "%Y-%m-%d"))
-            DCMetadata._dateCopyrighted = x
-
-            #dateSubmitted 
-            dateSubmitted = params['dateSubmitted']
-            DCMetadata._dateSubmitted = []
-            x = mktime(strptime(dateSubmitted, "%Y-%m-%d"))
-            DCMetadata._dateSubmitted = x
-        except:
-            pass
-
+        
+        # Dates of Publishinghistory
+        
+        dateSubmitted = params['dateSubmitted'].strip()
+        if dateSubmitted != "":
+            try:
+                DCMetadata._dateSubmitted = mktime(strptime(dateSubmitted, "%Y-%m-%d"))
+            except:
+                pass
+                
+        dateAccepted = params['dateAccepted'].strip()
+        if dateAccepted != "":
+            try:
+                DCMetadata._dateAccepted = mktime(strptime(dateAccepted, "%Y-%m-%d"))
+            except:
+                pass
+        
+        dateCopyrighted = params['dateCopyrighted'].strip()
+        if dateCopyrighted != "":
+            try:
+                DCMetadata._dateCopyrighted = mktime(strptime(dateCopyrighted, "%Y-%m-%d"))
+            except:
+                pass
 
         #bibliographicCitation
         DCMetadata._bibliographicCitation = []
