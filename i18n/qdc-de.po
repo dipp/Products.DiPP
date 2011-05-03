@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-03-10 15:31+0100\n"
+"PO-Revision-Date: 2011-05-03 12:55+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -154,52 +154,82 @@ msgstr "Feld entfernt"
 msgid "field-added"
 msgstr "Feld ergänzt"
 
+msgid "label_publishingdates"
+msgstr "Daten der Veröffentlichungshistorie"
+
+msgid "label_submitted"
+msgstr "eingereicht"
+
+msgid "label_accepted"
+msgstr "akzeptiert"
+
+msgid "label_copyrighted"
+msgstr "urheberrechtlich geschützt"
+
 #~ msgid "label_language_ddc"
 #~ msgstr "Sprache und DDC des Dokuments"
-#~ msgid "label_publisher"
-#~ msgstr "Herausgeber"
+
 #~ msgid "label_keywords_subjects"
 #~ msgstr "Frei und Normierte Schlagworte"
+
 #~ msgid "label_pubType_docType"
 #~ msgstr "Publikations- und Dokumenttyp"
+
 #~ msgid "label_articleType"
 #~ msgstr "Artikeltyp"
+
 #~ msgid "help_articleType"
 #~ msgstr ""
 #~ "Wählen Sie den Typ des Artikels aus, damit die richtige Konvertierung "
 #~ "durchgeführt werden kann."
+
 #~ msgid "label_targetFormat"
 #~ msgstr "Zielformat(e)"
+
 #~ msgid "help_targetFormat"
 #~ msgstr "Wählen Sie die zu erstellenden Zielformate."
+
 #~ msgid "value_addTitle"
 #~ msgstr "Titel hinzufügen"
+
 #~ msgid "value_addAbstract"
 #~ msgstr "Zusammenfassung hinzufügen"
+
 #~ msgid "value_addAlternative"
 #~ msgstr "Altern. Titel hinzufügen"
+
 #~ msgid "value_addDDC"
 #~ msgstr "DDC hinzufügen"
+
 #~ msgid "academicTitle"
 #~ msgstr "akad. Titel"
+
 #~ msgid "firstName"
 #~ msgstr "Vorname"
+
 #~ msgid "lastName"
 #~ msgstr "Nachname"
+
 #~ msgid "postalAddress"
 #~ msgstr "Anschrift"
+
 #~ msgid "value_addAuthor"
 #~ msgstr "Autor hinzufügen"
+
 #~ msgid "value_add"
 #~ msgstr "hinzufügen"
+
 #~ msgid "keyword"
 #~ msgstr "Schlagwort"
+
 #~ msgid "identNo"
 #~ msgstr "Ident-Nr."
+
 #~ msgid "source"
 #~ msgstr "Klassifikationsschema"
+
 #~ msgid "role"
 #~ msgstr "Rolle"
+
 #~ msgid "select_licence"
 #~ msgstr "--- wählen Sie eine Lizenz ---"
-

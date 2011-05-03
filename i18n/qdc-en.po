@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-03-10 15:32+0100\n"
+"PO-Revision-Date: 2011-05-03 12:56+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -154,52 +154,82 @@ msgstr "Field removed"
 msgid "field-added"
 msgstr "Field added"
 
+msgid "label_publishingdates"
+msgstr "Dates of the publishing history"
+
+msgid "label_submitted"
+msgstr "submitted"
+
+msgid "label_accepted"
+msgstr "accepted"
+
+msgid "label_copyrighted"
+msgstr "copyrighted"
+
 #~ msgid "label_language_ddc"
 #~ msgstr "Language and DDC of the Document"
-#~ msgid "label_publisher"
-#~ msgstr "Publisher"
+
 #~ msgid "label_keywords_subjects"
 #~ msgstr "Keywords and classified Subjects"
+
 #~ msgid "label_pubType_docType"
 #~ msgstr "Publication Type and Document Type"
+
 #~ msgid "label_articleType"
 #~ msgstr "Type of article"
+
 #~ msgid "help_articleType"
 #~ msgstr ""
 #~ "Select the type of the article, so that the correct conversion can be "
 #~ "accomplished."
+
 #~ msgid "label_targetFormat"
 #~ msgstr "Target format(s)"
+
 #~ msgid "help_targetFormat"
 #~ msgstr "Select the required target formats."
+
 #~ msgid "value_addTitle"
 #~ msgstr "add Title"
+
 #~ msgid "value_addAbstract"
 #~ msgstr "add Abstract"
+
 #~ msgid "value_addAlternative"
 #~ msgstr "add Alternative"
+
 #~ msgid "value_addDDC"
 #~ msgstr "add DDC"
+
 #~ msgid "academicTitle"
 #~ msgstr "academic title"
+
 #~ msgid "firstName"
 #~ msgstr "first name"
+
 #~ msgid "lastName"
 #~ msgstr "last name"
+
 #~ msgid "postalAddress"
 #~ msgstr "Address"
+
 #~ msgid "value_addAuthor"
 #~ msgstr "add Author"
+
 #~ msgid "value_add"
 #~ msgstr "add"
+
 #~ msgid "keyword"
 #~ msgstr "Keyword"
+
 #~ msgid "identNo"
 #~ msgstr "Ident No."
+
 #~ msgid "source"
 #~ msgstr "Classification Scheme"
+
 #~ msgid "role"
 #~ msgstr "Role"
+
 #~ msgid "select_licence"
 #~ msgstr "--- Select a licence  ---"
-
