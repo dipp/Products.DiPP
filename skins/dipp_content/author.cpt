@@ -231,7 +231,7 @@
 	        
 	
 	    
-		    <div tal:define="publications python:here.portal_catalog.searchResults(portal_type='FedoraArticle',Contributors={'query':contributor}, review_state='published')">
+		    <div tal:define="publications python:here.portal_catalog.searchResults(portal_type='FedoraArticle',getAuthors={'query':contributor}, review_state='published', sort_on='getIssueDate', sort_order='reverse')">
 			    <ol tal:condition="publications">
 			        <tal:block tal:repeat="publication publications">
 			            <li tal:define="url publication/getURL;
