@@ -33,7 +33,7 @@ self.syncMetadata()
 
 
 if REQUEST:
-    msg = context.safePortalMessage(translate('metadata-updated', domain='qdc'))
+    msg = translate('metadata-updated', domain='qdc')
     context.plone_utils.addPortalMessage(msg)
     REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER)
     #REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER + "?portal_status_message=" + portal_status_message)

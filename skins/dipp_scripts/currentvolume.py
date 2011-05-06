@@ -27,6 +27,6 @@ issues = catalog(
 if issues:
     RESPONSE.redirect(issues[0].getURL())
 else:
-    msg = context.safePortalMessage(translate('no-published-volumes', domain='dipp'))
+    msg = translate('no-published-volumes', domain='dipp')
     context.plone_utils.addPortalMessage(msg)
     RESPONSE.redirect(portal_url())

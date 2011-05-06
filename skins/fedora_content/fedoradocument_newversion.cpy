@@ -30,6 +30,6 @@ fedora.setModified(articlePID)
 context.plone_log("Modify " + articlePID)
 
 msg = "Neue Version in Fedora gespeichert! Es ist evtl. ein Reload nötig, um die neue Version in der Übersicht anzuzeigen!"
-# msg = context.safePortalMessage(translate('new-datastream-version', domain='dipp'))
+# msg = translate('new-datastream-version', domain='dipp')
 context.plone_utils.addPortalMessage(msg)
 return state.set(status='success')
