@@ -533,21 +533,21 @@ class Fedora(UniqueObject, SimpleItem):
         
         # Dates of Publishinghistory
         
-        dateSubmitted = params['dateSubmitted'].strip()
+        dateSubmitted = params.get('dateSubmitted','').strip()
         if dateSubmitted != "":
             try:
                 DCMetadata._dateSubmitted = mktime(strptime(dateSubmitted, "%Y-%m-%d"))
             except:
                 pass
                 
-        dateAccepted = params['dateAccepted'].strip()
+        dateAccepted = params.get('dateAccepted','').strip()
         if dateAccepted != "":
             try:
                 DCMetadata._dateAccepted = mktime(strptime(dateAccepted, "%Y-%m-%d"))
             except:
                 pass
         
-        dateCopyrighted = params['dateCopyrighted'].strip()
+        dateCopyrighted = params.get('dateCopyrighted','').strip()
         if dateCopyrighted != "":
             try:
                 DCMetadata._dateCopyrighted = mktime(strptime(dateCopyrighted, "%Y-%m-%d"))
