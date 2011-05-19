@@ -3,6 +3,8 @@
 	<name>DiPP</name>
 	<comment></comment>
 	<projects>
+		<project>dippPython3</project>
+		<project>fedoraPython21</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
