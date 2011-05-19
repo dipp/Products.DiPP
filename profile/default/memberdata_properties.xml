@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_memberdata" meta_type="PlonePAS MemberData Tool">
+ <property name="academictitle" type="string"></property>
+ <property name="givenname" type="string"></property>
+ <property name="surname" type="string"></property>
+ <property name="organization" type="string"></property>
+ <property name="postaladdress" type="string"></property>
+ <property name="postalcode" type="string"></property>
+ <property name="phone" type="string"></property>
+ <property name="areas_of_expertise" type="lines"/>
+</object>

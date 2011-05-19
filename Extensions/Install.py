@@ -481,62 +481,6 @@ def install_metadataproperties(self,out):
         if not hasattr(props, prop_id):
             props.manage_addProperty(id=prop_id, value=prop_value, type=prop_type)
 
-def install_memberproperties(self,out):
-    """add some memberproperties"""
-
-    md = self.portal_memberdata
-    
-    member_props= (
-        ('academictitle','string',''),
-        ('givenname','string',''),
-        ('surname','string',''),
-        ('organization','string',''),
-        ('postaladdress','string',''),
-        ('postalcode','string',''),
-        ('phone','string',''),
-        ('areas_of_expertise','lines',''),
-    )
-    
-    for prop_id, prop_type, prop_value in member_props:
-        if not hasattr(md, prop_id):
-            md.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
-
-    
-    if not hasattr(self.portal_properties, 'member_properties'):
-        self.portal_properties.addPropertySheet('member_properties', 'Extended member properties')
-    #    print >> out, "added member_properties sheet with additional attributes"
-    #else:
-    #    print >> out, "found member_properties, leaving it untouched"
-        
-    props = self.portal_properties.member_properties
-
-    extended_member_props= (
-        ('academictitle_visible','boolean',True),
-        ('academictitle_required','boolean',False),
-        ('givenname_visible','boolean',True),
-        ('givenname_required','boolean',True),
-        ('surname_visible','boolean',True),
-        ('surname_required','boolean',True),
-        ('organization_visible','boolean',True),
-        ('organization_required','boolean',False),
-        ('postaladdress_visible','boolean',True),
-        ('postaladdress_required','boolean',False),
-        ('postalcode_visible','boolean',True),
-        ('postalcode_required','boolean',False),
-        ('phone_visible','boolean',True),
-        ('phone_required','boolean',False),
-        ('location_visible','boolean',True),
-        ('location_required','boolean',False),
-        ('mail_password_visible','boolean',True),
-        ('areas_of_expertise','lines','')
-    )
-
-
-    for prop_id, prop_type, prop_value in extended_member_props:
-        if not hasattr(props, prop_id):
-            props.manage_addProperty(id = prop_id, value = prop_value, type =  prop_type)
-
-
 def install_content(self, out, site_id=SITE_NAME):
     """install some default content"""
     site = getSite(self, site_id)
@@ -623,7 +567,6 @@ def install(self):
     
     install_dependencies(self,out)
     install_properties(self, out)
-    install_memberproperties(self, out)
     install_metadataproperties(self,out)
     install_extMethods(self, out)
     install_types(self, out)
