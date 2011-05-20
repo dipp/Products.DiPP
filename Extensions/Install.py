@@ -24,55 +24,6 @@ def install_properties(self, out, site_id=SITE_NAME):
     """ Installation eine Propertysheets für DiPP-spezifische Variablen """
 
     site = getSite(self, site_id)
-    if not hasattr(site.portal_properties, 'dipp_properties'):
-        site.portal_properties.addPropertySheet('dipp_properties', 'DiPP properties')
-
-    props = site.portal_properties.dipp_properties    
-    site.portal_properties.navtree_properties.manage_changeProperties({'idsNotToList':('Members','tmp','ext','fedora_tmp')})
-    site.portal_memberdata.manage_changeProperties({'wysiwyg_editor':WYSIWYG_EDITOR})
-
-
-    dipp_properties = (
-        ('deadline_red', 'int', DEADLINE_RED),
-        ('deadline_yellow', 'int', DEADLINE_YELLOW),
-        ('author_notice_de','text',AUTHOR_NOTICE_DE),
-        ('author_notice_en','text',AUTHOR_NOTICE_EN),
-        ('fedora_tmp', 'string', 'fedora'),
-        ('ISSN', 'string', ''),
-        ('articleTypes', 'lines', ''),
-        ('label', 'string', ''),
-        ('rssFeeds', 'lines', ''),
-        ('floatingtoc_enabled', 'boolean', ''),
-        ('floatingtoc_onload', 'boolean', ''),
-        ('alertEmailAddresses', 'lines', ALERT_EMAIL_ADDRESSES),
-        ('alertEmailText', 'text', ALERT_EMAIL_TEXT),
-        ('citation_format', 'text', CITATION_FORMAT),
-        ('default_article_view', 'string', ''),
-        ('short_citation_format', 'text', SHORT_CITATION_FORMAT),
-        ('show_recommended_citation', 'boolean', True),
-        ('initials_only', 'boolean', True),
-        ('initials_period', 'boolean', False),
-        ('comma_separated', 'boolean', False),
-        ('articles_in_portlet','boolean',True),
-        ('authors_in_portlet','boolean',True),
-        ('allow_persistent_discussion', 'boolean', False),
-        ('volume_show_covers', 'boolean', False),
-        ('issue_show_abstracts', 'boolean', False),
-        ('issue_show_pdf_link', 'boolean', False),
-        ('issue_show_full_abstracts', 'boolean', False),
-        ('issue_sort_on', 'string', 'getObjPositionInParent'),
-        ('issue_sort_order', 'string', 'ascending'),
-        ('discussion_time', 'int', 0),
-        ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ'),
-        ('issue_date_format', 'string',''),
-        ('recent_articles_range', 'int',30)
-    )
-
-    for prop_id, prop_type, prop_value in dipp_properties:
-        if not hasattr(props, prop_id):
-            props._setProperty(prop_id, prop_value, prop_type)
-    
-    print >> out, "DiPP-Properties installed"
 
     site_properties = (
         ('deadline_max',56,'int') ,
@@ -87,8 +38,6 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('deadline_yellow_email_de',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
         ('deadline_yellow_email_en',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
         ('defaultLanguage',"de",'string'),
-        ('author_notice_de',AUTHOR_NOTICE_DE,'text'),
-        ('author_notice_en',AUTHOR_NOTICE_EN,'text'),
         ('roles_not_to_list',('Manager', 'Owner', 'Reviewer', 'Member'),'lines'),
         ('actions_to_list',('Call Application', 'Self Assign', 'Assign', 'Unassign'),'lines'),
         ('workflow_actions',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'),'lines'),

@@ -21,4 +21,74 @@
   <property name="mail_password_visible" type="boolean">True</property>
   <property name="areas_of_expertise" type="lines"/>
  </object>
+ <object name="dipp_properties" meta_type="Plone Property Sheet">
+  <property name="title">DiPP properties</property>
+  <property name="deadline_red" type="int">3</property>
+  <property name="deadline_yellow" type="int">10</property>
+  <property name="author_notice_de" type="text">
+Sehr geehrte(r) %(fullname)s,
+
+sie haben einen Artikel mit dem Titel "%(title)s" bei %(journal)s eingereicht.
+Der Artikel ist nun zur Veröffentlichung vorbereitet und erfordert Ihr Imprimatur.  
+
+Bitte loggen sie sich unter %(next_step)s auf unserer Webseite ein, überprüfen
+den Artikel genau und geben anschließend ihr Urteil ab.
+  
+Frist: %(deadline)s
+Ihr Login-Name: %(login)s
+
+Mit freundichen Grüßen,
+%(from)s
+  </property>
+  <property name="author_notice_en" type="text">
+Dear %(fullname)s,
+
+you have submitted a paper with the title "%(title)s" to %(journal)s.
+The paper is now ready for publication and requires your imprimatur.
+
+Please log into our website under %(next_step)s carefully read the 
+article and let us know your judgement.
+
+Deadline: %(deadline)s
+Your login name: %(login)s
+
+Kind regards
+%(from)s
+  </property>
+  <property name="fedora_tmp" type="string">fedora</property>
+  <property name="ISSN" type="string"></property>
+  <property name="articleTypes" type="lines"></property>
+  <property name="label" type="string"></property>
+  <property name="rssFeeds" type="lines"></property>
+  <property name="floatingtoc_enabled" type="boolean"></property>
+  <property name="floatingtoc_onload" type="boolean"></property>
+  <property name="alertEmailAddresses" type="lines">dipp-tech@hbz-nrw.de</property>
+  <property name="alertEmailText" type="text">
+  Dear Ladies and Gentlemen,
+
+  The eJournal %(journal)s is pleased to inform you, that we have just published a new article.
+  The full text can be found here: %(url)s
+  
+  </property>
+  <property name="citation_format" type="text">%(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume)s. (%(urn)s)</property>
+  <property name="short_citation_format" type="text">%(journal)s, Vol. %(volume)s, Iss. %(issue)s</property>
+  <property name="default_article_view" type="string"></property>
+  <property name="show_recommended_citation" type="boolean">1</property>
+  <property name="initials_only" type="boolean">1</property>
+  <property name="initials_period" type="boolean">0</property>
+  <property name="comma_separated" type="boolean">0</property>
+  <property name="articles_in_portlet" type="boolean">1</property>
+  <property name="authors_in_portlet" type="boolean">1</property>
+  <property name="allow_persistent_discussion" type="boolean">0</property>
+  <property name="volume_show_covers" type="boolean">0</property>
+  <property name="issue_show_abstracts" type="boolean">0</property>
+  <property name="issue_show_pdf_link" type="boolean">0</property>
+  <property name="issue_show_full_abstracts" type="boolean">0</property>
+  <property name="issue_sort_on" type="string">getObjPositionInParent</property>
+  <property name="issue_sort_order" type="string">ascending</property>
+  <property name="discussion_time" type="int">0</property>
+  <property name="fedora_time_format" type="string">%Y-%m-%dT%H:%M:%SZ</property>
+  <property name="issue_date_format" type="string"></property>
+  <property name="recent_articles_range" type="int">30</property>
+ </object>
 </object>
