@@ -25,4 +25,5 @@
     <javascript  id="tooltip.js" compression="none" cookable="False" insert-after="jquery.js"/>
     <javascript  id="references.js" compression="none" cookable="False" insert-after="tooltip.js"/>
     <javascript  id="tabber.js" compression="none" cookable="False" insert-after="jquery.js"/>
+    <javascript  id="sectiondrilldown.js" compression="none"  insert-after="jquery.js"/>
 </object>
