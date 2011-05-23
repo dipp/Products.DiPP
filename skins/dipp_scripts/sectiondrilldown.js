@@ -1,10 +1,10 @@
 /*
  * drilldown for the recent_articles_by_section template
- * allws the submissions of the drilldown form without 
- * pressing the submit button. THe button is hidden, when
+ * allows the submissions of the drilldown form without 
+ * pressing the submit button. The button is hidden, when
  * javascript is enabled
  *   
- * $Id: references.js 3106 2011-04-27 20:19:40Z reimer $
+ * $Id$
  */
 
 
