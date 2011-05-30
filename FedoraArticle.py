@@ -112,6 +112,17 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             index="FieldIndex:brains",
             schemata='Bibliographic Data'
         ),
+        StringField('subject_areas',
+            widget=MultiSelectionWidget(
+                required=0,
+                label='Subject areas',
+                description='Select one ore more appropiate subject areas.'
+            ),
+            vocabulary=NamedVocabulary("subject-areas"),
+            searchable=1,
+            index="KeywordIndex:brains",
+            schemata='Bibliographic Data'
+        ),
         StringField('JournalTitle',
             required=0,
             widget=StringWidget(

@@ -25,6 +25,7 @@ DEPENDENCIES = [
 VOCABULARIES = (
     ( 'SimpleVocabulary','journal-sections','The sections of the journal, used to organize an issue. Do not delete the "no section" entry.', 'Journal Sections'),
     ( 'SimpleVocabulary','areas-of-expertise','Areas, in which the potentiel reviewer feels competend.', 'Areas of expertise'),
+    ( 'SimpleVocabulary','subject-areas','Areas, in which the potentiel reviewer feels competend.', 'Subject areas'),
 )
 
 LANGUAGES = {
