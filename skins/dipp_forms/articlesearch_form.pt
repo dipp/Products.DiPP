@@ -116,8 +116,38 @@
                   Match all
               </label>
           </div>
+          
+          <div class="field"
+               tal:condition="python:len(usedSubjectAreas) > 1"
+               tal:define="contentSubjects here/Subject;
+                           usedSubjectAreas python:here.portal_catalog.uniqueValuesFor('getSubject_areas');
+                           avtm python:here.portal_vocabularies;
+                           subjectareas python:avtm.getVocabularyByName('subject-areas');
+                           subject_dict python:subjectareas.getVocabularyDict(subjectareas);">
+              <label for="SubjectArea" i18n:translate="label_subject_area">Fachrichtung</label>
+
+              <div class="formHelp" i18n:translate="help_search_keywords">
+              Return items matching some or all of these keywords.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+              </div>
+              <tal:block tal:repeat="subjectarea usedSubjectAreas" >
+                <tal:item tal:condition="subjectarea">
+                <input tal:condition="subjectarea"
+                       type="checkbox" 
+                       class="noborder"
+                       name="getSubject_areas:list"
+                       tal:attributes="value subjectarea;
+                                       id string:subject-$subjectarea;">
+                <label for="" 
+                       tal:attributes="for string:subject-$subjectarea;"
+                       tal:content="python: subject_dict[subjectarea]"/><br/>
+                </tal:item>
+              </tal:block>
   
-  
+          </div>
+          
           <div class="field">
               <label for="created" i18n:translate="label_new_items_since">New items since</label>
 
