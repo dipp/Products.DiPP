@@ -147,6 +147,35 @@
               </tal:block>
   
           </div>
+               
+          <div class="field"
+               tal:condition="python:len(usedJournalsections) > 0"
+               tal:define="usedJournalsections python:here.portal_catalog.uniqueValuesFor('getJournal_section');
+                           avtm python:here.portal_vocabularies;
+                           journalsections python:avtm.getVocabularyByName('journal-sections');
+                           section_dict python:journalsections.getVocabularyDict(journalsections);">
+              <label for="SubjectArea" i18n:translate="label_journal_sections">Sektion</label>
+
+              <div class="formHelp" i18n:translate="help_search_keywords">
+              Return items matching some or all of these keywords.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+              </div>
+              <tal:block tal:repeat="section usedJournalsections">
+                <tal:item tal:condition="section">
+	                <input type="checkbox" 
+	                       class="noborder"
+	                       name="getJournal_section:list"
+	                       tal:attributes="value section;
+	                                       id string:section-$section;">
+	                <label for="" 
+	                       tal:attributes="for string:section-$section;"
+	                       tal:content="python: section_dict[section]"/><br/>
+                 </tal:item>
+              </tal:block>
+  
+          </div>
           
           <div class="field">
               <label for="created" i18n:translate="label_new_items_since">New items since</label>
