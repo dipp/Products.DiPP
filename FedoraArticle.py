@@ -290,10 +290,16 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         icc = ICC()
         fedora = getToolByName(self, 'fedora')
         PID = self.PID
-        authors = ", ".join(self.Contributors())
+        authors = ", ".join(self.getAuthors())
+        title = self.Title()
+        searchable = authors + title
+        language = self.language
         # indexing authors
-        logger.info("Fetching %s for indexing: %s" % (PID, authors))
-        icc.addContent('SearchableText',unicode(authors), self.language)
+        logger.info("#### Fetching %s for indexing (%s) ####" % (PID, language))
+        logger.info("## Authors: %s" % (authors))
+        icc.addContent('SearchableText',unicode(searchable), language)
+        icc.addContent('Title',unicode(title), language)
+        logger.info("## Title: %s" % title)
         # indexing pdf
         PDF_PID = self.getFulltextPdf().get('PID',None)
         PDF_DsID = self.getFulltextPdf().get('DsID', None)
@@ -301,12 +307,12 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         if PDF_PID and PDF_DsID: 
             data =  fedora.accessMultiMediaByFedoraURL(PDF_PID,PDF_DsID,None)
             stream = data['stream']
-            logger.info("Fetching PDF with %s/%s for indexing." % (PDF_PID, PDF_DsID))
+            logger.info("## PDF with %s/%s" % (PDF_PID, PDF_DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,
                           'iso-8859-15',
-                          self.language)
+                          language)
         return icc
 
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
@@ -379,7 +385,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         for item in result:
             obj = item.getObject()
             mimetype = obj.get_content_type()
-            if mimetype == 'application/pdf':
+            if mimetype in ('application/pdf', 'application/octet-stream'):
                 x.append(obj)
         if len(x) > 0:
             return {'PID':x[0].PID,'DsID':x[0].DsID,'URL':x[0].absolute_url()}
