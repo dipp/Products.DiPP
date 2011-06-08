@@ -21,13 +21,40 @@
   	<form action="articlesearch"
           method="get"
           name="articlesearch"
+          id="advanced_search"
           tal:define="DateTime python:modules['DateTime'].DateTime">
 
           <input type="hidden" name="portal_type:list" value="FedoraArticle">
+          
+          <div class="field">
+              <h2  i18n:translate="label_author">Author</h2>
+
+              <div class="formHelp" i18n:translate="help_search_author">
+              Return items created by a particular person.
+              </div>
+  
+              <tal:creators tal:define="authors python:portal.portal_catalog.uniqueValuesFor('getAuthors')">
+                  <select name="getAuthors"
+                          id="author"
+                          tabindex=""
+                          tal:attributes="tabindex tabindex/next;"
+                          tal:condition="python: len(authors) &lt;= 30">
+                      <option value="" i18n:translate="label_any_author">Any Author</option>
+                      <metal:block tal:repeat="author authors">
+                          <option value="" tal:attributes="value author" tal:content="author"> authorname </option>
+                      </metal:block>
+                  </select>
+  
+                  <input name="author"
+                         tabindex=""
+                         tal:attributes="tabindex tabindex/next;"
+                         tal:condition="python: len(authors) &gt; 30 " />
+              </tal:creators>
+          </div>
 
 
           <div class="field">
-              <label for="SearchableText" i18n:translate="label_search_text">Search Text</label>
+              <h2 i18n:translate="label_search_text">Search Text</h2>
 
               <div class="formHelp" i18n:translate="help_search_text">
               For a simple text search, enter your search term
@@ -47,7 +74,7 @@
           </div>
 
           <div class="field">
-              <label for="Title" i18n:translate="label_title">Title</label>
+              <h2 i18n:translate="label_title">Title</h2>
 
               <div class="formHelp" i18n:translate="help_search_title">
               Return items matching this title.
@@ -63,7 +90,7 @@
           </div>
 
           <div class="field">
-              <label for="Subject" i18n:translate="label_keywords">Keywords</label>
+              <h2 i18n:translate="label_keywords">Keywords</h2>
 
               <div class="formHelp" i18n:translate="help_search_keywords">
               Return items matching some or all of these keywords.
@@ -117,68 +144,8 @@
               </label>
           </div>
           
-          <div class="field"
-               tal:condition="python:len(usedSubjectAreas) > 1"
-               tal:define="contentSubjects here/Subject;
-                           usedSubjectAreas python:here.portal_catalog.uniqueValuesFor('getSubject_areas');
-                           avtm python:here.portal_vocabularies;
-                           subjectareas python:avtm.getVocabularyByName('subject-areas');
-                           subject_dict python:subjectareas.getVocabularyDict(subjectareas);">
-              <label for="SubjectArea" i18n:translate="label_subject_area">Fachrichtung</label>
-
-              <div class="formHelp" i18n:translate="help_search_keywords">
-              Return items matching some or all of these keywords.
-              Multiple words may be found by pressing <strong>Ctrl</strong>
-              (or <strong>Apple</strong> key on Mac) while clicking the
-              keywords.
-              </div>
-              <tal:block tal:repeat="subjectarea usedSubjectAreas" >
-                <tal:item tal:condition="subjectarea">
-                <input tal:condition="subjectarea"
-                       type="checkbox" 
-                       class="noborder"
-                       name="getSubject_areas:list"
-                       tal:attributes="value subjectarea;
-                                       id string:subject-$subjectarea;">
-                <label for="" 
-                       tal:attributes="for string:subject-$subjectarea;"
-                       tal:content="python: subject_dict[subjectarea]"/><br/>
-                </tal:item>
-              </tal:block>
-  
-          </div>
-               
-          <div class="field"
-               tal:condition="python:len(usedJournalsections) > 0"
-               tal:define="usedJournalsections python:here.portal_catalog.uniqueValuesFor('getJournal_section');
-                           avtm python:here.portal_vocabularies;
-                           journalsections python:avtm.getVocabularyByName('journal-sections');
-                           section_dict python:journalsections.getVocabularyDict(journalsections);">
-              <label for="SubjectArea" i18n:translate="label_journal_sections">Sektion</label>
-
-              <div class="formHelp" i18n:translate="help_search_keywords">
-              Return items matching some or all of these keywords.
-              Multiple words may be found by pressing <strong>Ctrl</strong>
-              (or <strong>Apple</strong> key on Mac) while clicking the
-              keywords.
-              </div>
-              <tal:block tal:repeat="section usedJournalsections">
-                <tal:item tal:condition="section">
-	                <input type="checkbox" 
-	                       class="noborder"
-	                       name="getJournal_section:list"
-	                       tal:attributes="value section;
-	                                       id string:section-$section;">
-	                <label for="" 
-	                       tal:attributes="for string:section-$section;"
-	                       tal:content="python: section_dict[section]"/><br/>
-                 </tal:item>
-              </tal:block>
-  
-          </div>
-          
           <div class="field">
-              <label for="created" i18n:translate="label_new_items_since">New items since</label>
+              <h2 i18n:translate="label_new_items_since">New items since</h2>
 
               <div class="formHelp" i18n:translate="help_search_new_items_since">
               Return items added since you were last logged on, the last week, etc.
@@ -207,34 +174,72 @@
               <input type="hidden" name="created_usage" value="range:min" />
           </div>
   
+          
+          <div class="field"
+               tal:condition="python:len(usedSubjectAreas) > 1"
+               tal:define="contentSubjects here/Subject;
+                           usedSubjectAreas python:here.portal_catalog.uniqueValuesFor('getSubject_areas');
+                           avtm python:here.portal_vocabularies;
+                           subjectareas python:avtm.getVocabularyByName('subject-areas');
+                           subject_dict python:subjectareas.getVocabularyDict(subjectareas);">
+              <h2 i18n:translate="label_subject_area">Category</h2>
 
-          <div class="visualClear" id="clear-space-before-author"><!-- --></div>
-          <br />
+              <div class="formHelp" i18n:translate="help_search_keywords">
+              Return items matching some or all of these keywords.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+              </div>
+              <tal:block tal:repeat="subjectarea usedSubjectAreas" >
+                <tal:item tal:condition="subjectarea">
+                <input tal:condition="subjectarea"
+                       type="checkbox" 
+                       class="noborder"
+                       name="getSubject_areas:list:ignore_empty"
+                       tal:attributes="value subjectarea;
+                                       id string:subject-$subjectarea;">
+                <label for="" 
+                       tal:attributes="for string:subject-$subjectarea;"
+                       tal:content="python: subject_dict[subjectarea]"/><br/>
+                </tal:item>
+              </tal:block>
+  
+          </div>
+
+          <div class="field"
+               tal:condition="python:len(usedJournalsections) > 0"
+               tal:define="usedJournalsections python:here.portal_catalog.uniqueValuesFor('getJournal_section');
+                           avtm python:here.portal_vocabularies;
+                           journalsections python:avtm.getVocabularyByName('journal-sections');
+                           section_dict python:journalsections.getVocabularyDict(journalsections);">
+              <h2 i18n:translate="label_journal_sections">Sektion</h2>
+
+              <div class="formHelp" i18n:translate="help_search_keywords">
+              Return items matching some or all of these keywords.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+              </div>
+              <tal:block tal:repeat="section usedJournalsections">
+                <tal:item tal:condition="python: section and section != 'no-section'">
+	                <input type="checkbox" 
+	                       class="noborder"
+	                       name="getJournal_section:list:ignore_empty"
+	                       tal:attributes="value section;
+	                                       id string:section-$section;">
+	                <label for="" 
+	                       tal:attributes="for string:section-$section;"
+	                       tal:content="python: section_dict[section]"/><br/>
+                 </tal:item>
+              </tal:block>
+  
+          </div>
 
           <div class="field">
-              <label for="Creator" i18n:translate="label_author">Author</label>
-
-              <div class="formHelp" i18n:translate="help_search_author">
-              Return items created by a particular person.
+              <h2 i18n:translate="label_sortorder">Sortorder</h2>
+              <div class="formHelp" i18n:translate="help_sortorder">
+              coming...
               </div>
-  
-              <tal:creators tal:define="authors python:portal.portal_catalog.uniqueValuesFor('getAuthors')">
-                  <select name="author"
-                          id="author"
-                          tabindex=""
-                          tal:attributes="tabindex tabindex/next;"
-                          tal:condition="python: len(authors) &lt;= 30">
-                      <option value="" i18n:translate="label_any_author">Any Author</option>
-                      <metal:block tal:repeat="author authors">
-                          <option value="" tal:attributes="value author" tal:content="author"> authorname </option>
-                      </metal:block>
-                  </select>
-  
-                  <input name="author"
-                         tabindex=""
-                         tal:attributes="tabindex tabindex/next;"
-                         tal:condition="python: len(authors) &gt; 30 " />
-              </tal:creators>
           </div>
   
 
