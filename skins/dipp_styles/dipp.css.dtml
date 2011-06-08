@@ -310,6 +310,15 @@ ul.list-of-feeds li a{
     border: none;
     text-decoration: none;
 }
+/* advanced search */
+#advanced_search h2 {
+    border: 0;
+    font-weight: bold;
+    font-size: 120%;
+}
+#advanced_search label {
+    font-weight: normal;
+}
 
 /* </dtml-with> */
 
