@@ -970,13 +970,13 @@
                 vorliegen haben.
             </div>
             <div>
-                <input type="radio" name="rights:list" value="DPPL" tal:attributes="checked python:'DPPL' in path('request/rights | rights | python:[]')"/>
+                <input type="radio" class="noborder" name="rights:list" value="DPPL" tal:attributes="checked python:'DPPL' in path('request/rights | rights | python:[]')"/>
                 <span i18n:translate="dppl">Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                <input type="radio" name="rights:list" value="mDPPL" tal:attributes="checked python:'mDPPL' in path('request/rights | rights | python:[]')"/>
+                <input type="radio" class="noborder" name="rights:list" value="mDPPL" tal:attributes="checked python:'mDPPL' in path('request/rights | rights | python:[]')"/>
                 <span i18n:translate="mdppl">modulare Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                <input type="radio" name="rights:list" value="fDPPL" tal:attributes="checked python:'fDPPL' in path('request/rights | rights | python:[]')"/>
+                <input type="radio" class="noborder" name="rights:list" value="fDPPL" tal:attributes="checked python:'fDPPL' in path('request/rights | rights | python:[]')"/>
                 <span i18n:translate="fdppl">freie Digital Peer Publishing Lizenz</span> <a href="http://www.dipp.nrw.de/">de</a><br />
-                <input type="radio" name="rights:list" value="authorcontract" tal:attributes="checked python:'authorcontract' in path('request/rights | rights | python:[]')"/>
+                <input type="radio" class="noborder" name="rights:list" value="authorcontract" tal:attributes="checked python:'authorcontract' in path('request/rights | rights | python:[]')"/>
                 <span i18n:translate="">No Licence is used. All rights are covered by an author contract</span><br />
             
             </div>
