@@ -320,6 +320,12 @@ ul.list-of-feeds li a{
     font-weight: normal;
 }
 
+#advanced_search ol.keywords {
+    border: 1px solid &dtml-globalBorderColor;;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+}
+
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
