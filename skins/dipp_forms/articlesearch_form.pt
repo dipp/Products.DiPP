@@ -98,25 +98,26 @@
               (or <strong>Apple</strong> key on Mac) while clicking the
               keywords.
               </div>
+              
+              <ol class="keywords"
+                  tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
+                  <tal:block tal:repeat="keyword allowedKeywords">
+                  <li>
+                      <input type="checkbox" 
+                             class="noborder"
+                             name="Subject:list"
+                             value=""
+                             id=""
+                             tal:attributes="value keyword;
+                                             id string: keyword_$keyword"/>
+                      <label tal:content="keyword"
+                             for=""
+                             tal:attributes="for string: keyword_$keyword;
+                                             value keyword">sdaf</label>
+                  </li>
+                  </tal:block>
+              </ol>
 
-              <select name="Subject:list"
-                      id="Subject"
-                      size="7"
-                      multiple="multiple"
-                      tabindex=""
-                      tal:attributes="tabindex tabindex/next;"
-                      tal:define="contentSubjects here/Subject;
-                                  usedSubjects python:here.portal_catalog.uniqueValuesFor('Subject');"
-                      >
-                  <option value="#"
-                          tal:repeat="subject usedSubjects"
-                          tal:content="subject"
-                          tal:attributes="value subject"
-                          i18n:domain="plone-metadata"
-                          i18n:translate=""
-                          >dummy</option>
-              </select>
-              <br />
 
               <input type="radio"
                      name="Subject_usage:ignore_empty"
@@ -220,8 +221,8 @@
               (or <strong>Apple</strong> key on Mac) while clicking the
               keywords.
               </div>
-              <tal:block tal:repeat="section usedJournalsections">
-                <tal:item tal:condition="python: section and section != 'no-section'">
+              <tal:block tal:repeat="section python:section_dict.keys()">
+                <tal:item tal:condition="python: section in usedJournalsections and section != 'no-section'">
 	                <input type="checkbox" 
 	                       class="noborder"
 	                       name="getJournal_section:list:ignore_empty"
