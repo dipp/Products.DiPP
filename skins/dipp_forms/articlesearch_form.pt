@@ -8,7 +8,7 @@
 
 <div metal:fill-slot="main">
 
-    <h1 i18n:translate="heading_advanced_articlesearch">Advanced search for articles</h1>
+    <h1 i18n:translate="heading_advanced_articlesearch" i18n:domain="dipp">Advanced search for articles</h1>
 
     <p i18n:translate="description_advanced_search">
     This search form enables you to find content on the site by
@@ -146,7 +146,7 @@
           </div>
           
           <div class="field">
-              <h2 i18n:translate="label_new_items_since">New items since</h2>
+              <h2 i18n:translate="label_timerange" i18n:domain="dipp">Zeitraum</h2>
 
               <div class="formHelp" i18n:translate="help_search_new_items_since">
               Return items added since you were last logged on, the last week, etc.
@@ -183,7 +183,7 @@
                            avtm python:here.portal_vocabularies;
                            subjectareas python:avtm.getVocabularyByName('subject-areas');
                            subject_dict python:subjectareas.getVocabularyDict(subjectareas);">
-              <h2 i18n:translate="label_subject_area">Category</h2>
+              <h2 i18n:translate="label_category" i18n:domain="dipp">Category</h2>
 
               <div class="formHelp" i18n:translate="help_search_keywords">
               Return items matching some or all of these keywords.
@@ -213,7 +213,7 @@
                            avtm python:here.portal_vocabularies;
                            journalsections python:avtm.getVocabularyByName('journal-sections');
                            section_dict python:journalsections.getVocabularyDict(journalsections);">
-              <h2 i18n:translate="label_journal_sections">Sektion</h2>
+              <h2 i18n:translate="label_journal_sections" i18n:domain="dipp">Sektion</h2>
 
               <div class="formHelp" i18n:translate="help_search_keywords">
               Return items matching some or all of these keywords.
@@ -237,10 +237,20 @@
           </div>
 
           <div class="field">
-              <h2 i18n:translate="label_sortorder">Sortorder</h2>
+              <h2 i18n:translate="label_sortorder" i18n:domain="dipp">Sortorder</h2>
               <div class="formHelp" i18n:translate="help_sortorder">
-              coming...
+                    Return items in this order. 
               </div>
+              <select name="sort_on:ignore_empty">
+                <option value="">Relevance</option>
+                <option value="getAuthors">Author</option>
+                <option value="sortable_title">Title</option>
+                <option value="getIssueDate">Date</option>
+              </select>
+              <select name="sort_order:ignore_empty">
+                <option value="ascending">ascending</option>
+                <option value="descending">descending</option>
+              </select>
           </div>
   
 
