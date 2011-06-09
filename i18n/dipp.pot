@@ -610,3 +610,18 @@ msgstr ""
 
 msgid "label_up_to_editorial_toolbox"
 msgstr ""
+
+msgid "heading_advanced_articlesearch"
+msgstr ""
+
+msgid "label_timerange"
+msgstr ""
+
+msgid "label_sortorder"
+msgstr ""
+
+msgid "label_category"
+msgstr ""
+
+msgid "label_journal_sections"
+msgstr ""
