@@ -611,7 +611,13 @@ msgstr ""
 msgid "heading_advanced_articlesearch"
 msgstr ""
 
+msgid "label_search_term"
+msgstr ""
+
 msgid "label_order_by"
+msgstr ""
+
+msgid "help_order_by"
 msgstr ""
 
 msgid "label_timerange"

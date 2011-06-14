@@ -54,7 +54,7 @@
 
 
           <div class="field">
-              <h2 i18n:translate="label_search_text">Search Text</h2>
+              <h2 i18n:translate="label_search_term" i18n:domain="dipp">Search term</h2>
 
               <div class="formHelp" i18n:translate="help_search_text">
               For a simple text search, enter your search term
@@ -237,8 +237,8 @@
           </div>
 
           <div class="field">
-              <h2 i18n:translate="label_sortorder" i18n:domain="dipp">Sortorder</h2>
-              <div class="formHelp" i18n:translate="help_sortorder">
+              <h2 i18n:translate="label_order_by" i18n:domain="dipp">Order by</h2>
+              <div class="formHelp" i18n:translate="help_order_by">
                     Return items in this order. 
               </div>
               <select name="sort_on:ignore_empty">
