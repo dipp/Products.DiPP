@@ -251,9 +251,6 @@ msgstr ""
 msgid "label_institutional_address"
 msgstr ""
 
-msgid "label_category"
-msgstr ""
-
 msgid "help_category"
 msgstr ""
 
@@ -614,11 +611,12 @@ msgstr ""
 msgid "heading_advanced_articlesearch"
 msgstr ""
 
+msgid "label_order_by"
+msgstr ""
+
 msgid "label_timerange"
 msgstr ""
 
-msgid "label_sortorder"
-msgstr ""
 
 msgid "label_category"
 msgstr ""
