@@ -617,7 +617,6 @@ msgstr ""
 msgid "label_timerange"
 msgstr ""
 
-
 msgid "label_category"
 msgstr ""
 

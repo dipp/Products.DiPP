@@ -605,10 +605,10 @@ msgid "read_article"
 msgstr "Read article"
 
 msgid "no-published-volumes"
-msgstr "There are no published Volumes."
+msgstr "There are no published volumes."
 
 msgid "no-published-issues"
-msgstr "There are no published Issues."
+msgstr "There are no published issues."
 
 msgid "label_up_to_editorial_toolbox"
 msgstr "Up to Editorial Toolbox"
