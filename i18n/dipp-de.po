@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-06-14 16:12+0100\n"
+"PO-Revision-Date: 2011-06-15 10:42+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "Language: \n"
@@ -616,11 +616,17 @@ msgstr "Zurück zur Editorial Toolbox"
 msgid "heading_advanced_articlesearch"
 msgstr "Fortgeschrittene Artikel Suche"
 
+msgid "label_search_term"
+msgstr "Suchbegriff"
+
 msgid "label_order_by"
 msgstr "Reihenfolge"
 
+msgid "help_order_by"
+msgstr "Gib die Artikel in dieser Reihenfolge zurück."
+
 msgid "label_timerange"
-msgstr "Zeitraum"
+msgstr "Datum"
 
 msgid "label_category"
 msgstr "Kategorie"
@@ -628,5 +634,3 @@ msgstr "Kategorie"
 msgid "label_journal_sections"
 msgstr "Sektion"
 
-#~ msgid "label_sortorder"
-#~ msgstr "SortKurzname (wird Teil der Webadresse)"
