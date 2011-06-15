@@ -45,7 +45,7 @@
                       </metal:block>
                   </select>
   
-                  <input name="author"
+                  <input name="getAuthors"
                          tabindex=""
                          tal:attributes="tabindex tabindex/next;"
                          tal:condition="python: len(authors) &gt; 30 " />
