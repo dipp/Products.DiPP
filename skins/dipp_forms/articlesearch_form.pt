@@ -37,18 +37,13 @@
                   <select name="getAuthors"
                           id="author"
                           tabindex=""
-                          tal:attributes="tabindex tabindex/next;"
-                          tal:condition="python: len(authors) &lt;= 30">
+                          tal:attributes="tabindex tabindex/next;">
                       <option value="" i18n:translate="label_any_author">Any Author</option>
                       <metal:block tal:repeat="author authors">
                           <option value="" tal:attributes="value author" tal:content="author"> authorname </option>
                       </metal:block>
                   </select>
   
-                  <input name="getAuthors"
-                         tabindex=""
-                         tal:attributes="tabindex tabindex/next;"
-                         tal:condition="python: len(authors) &gt; 30 " />
               </tal:creators>
           </div>
 
