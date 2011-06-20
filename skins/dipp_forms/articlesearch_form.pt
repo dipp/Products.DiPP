@@ -237,14 +237,14 @@
                     Return items in this order. 
               </div>
               <select name="sort_on:ignore_empty">
-                <option value="">Relevance</option>
-                <option value="getAuthors">Author</option>
-                <option value="sortable_title">Title</option>
-                <option value="getIssueDate">Date</option>
+                <option value="" i18n:translate="label_relevance" i18n:domain="dipp">Relevance</option>
+                <option value="getAuthors" i18n:translate="label_author" i18n:domain="dipp">Author</option>
+                <option value="sortable_title" i18n:translate="label_title" i18n:domain="dipp">Title</option>
+                <option value="getIssueDate" i18n:translate="label_date" i18n:domain="dipp">Date</option>
               </select>
               <select name="sort_order:ignore_empty">
-                <option value="ascending">ascending</option>
-                <option value="descending">descending</option>
+                <option value="ascending" i18n:translate="label_ascending" i18n:domain="dipp">ascending</option>
+                <option value="descending" i18n:translate="label_descending" i18n:domain="dipp">descending</option>
               </select>
           </div>
   

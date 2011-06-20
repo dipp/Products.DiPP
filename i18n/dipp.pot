@@ -628,3 +628,21 @@ msgstr ""
 
 msgid "label_journal_sections"
 msgstr ""
+
+msgid "label_relevance"
+msgstr ""
+
+msgid "label_author"
+msgstr ""
+
+msgid "label_title"
+msgstr ""
+
+msgid "label_date"
+msgstr ""
+
+msgid "label_ascending"
+msgstr ""
+
+msgid "label_descending"
+msgstr ""
