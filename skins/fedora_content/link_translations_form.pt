@@ -138,45 +138,50 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
                 </tal:item>
             </div>
            sdf 
+
+
+
+
+    </div>
             <div class="field"
                  tal:condition="content_lang">
                 <label>In translated parent folder</label>
-			
+            
 
                 <div tal:repeat="lang untranslated_languages"
                      tal:define="content_language context/Language;
-                     			 parent here/getParentNode;
+                                 parent here/getParentNode;
                                  thisfolder request/thisfolder|nothing ">
-                     			 
+                                 
                     <strong tal:content="python:'%s (%s)' % (lang[1], lang[0]) ">Deutsch (de)</strong>
                     
-                	<tal:item tal:define="pfolder python: test(thisfolder,parent,parent.getTranslation(lang[0]));
-                						  physicalPath pfolder/getPhysicalPath|nothing">
+                    <tal:item tal:define="pfolder python: test(thisfolder,parent,parent.getTranslation(lang[0]));
+                                          physicalPath pfolder/getPhysicalPath|nothing">
                 
                         <div class="formHelp"
-                		     tal:condition="not: physicalPath">
-                		     The parent folder is not yet translated in this language.
-                		</div>
-                						  
-                		<tal:block tal:condition="physicalPath">
+                             tal:condition="not: physicalPath">
+                             The parent folder is not yet translated in this language.
+                        </div>
+                                          
+                        <tal:block tal:condition="physicalPath">
                         
                             <input type="hidden"
                                value=""
                                id="link"
                                name="link_language"
-                               tal:attributes="value python:lang[0]"/>	
+                               tal:attributes="value python:lang[0]"/>  
                             <table class="listing">
                             <thead>
                                 <th></th>
                                 <th>Title</th>
-		                        <th>Date</th>
-		                        <th>Path</th>
+                                <th>Date</th>
+                                <th>Path</th>
                             </thead>
                             <tbody>
-	                		<tal:block tal:define="path python:'/'.join(physicalPath);
-	                							   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1}, sort_on='Date', sort_order='reverse')"
-	                		           tal:repeat="item items">
-	                		
+                            <tal:block tal:define="path python:'/'.join(physicalPath);
+                                                   items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language='all', path={'query':path,'depth':1}, sort_on='Date', sort_order='reverse')"
+                                       tal:repeat="item items">
+                            
                                 <tr  tal:define="obj                  item/getObject;
                                                  oddrow               repeat/item/odd;
                                                  uid                  obj/UID;
@@ -197,19 +202,19 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
                                                            checked python:content_language == lang[0]" />
                                      </td>
                                      <td>
-	                                     <a  tal:content="item/Title"
-				                          tal:attributes="href item/getURL;
-				                                          class string:$item_wf_state_class">view</a>
+                                         <a  tal:content="item/Title"
+                                          tal:attributes="href item/getURL;
+                                                          class string:$item_wf_state_class">view</a>
                                      </td>
-	                                 <td>
-	                                    <span tal:content="item/Date"/>
-	                                 </td>
-	                                 <td>
-	                                    <span tal:content="python:'/'.join(obj.getPhysicalPath()[3:])"/>
-	                                 </td>
-	                                 
-								</tr>
-							</tal:block>
+                                     <td>
+                                        <span tal:content="item/Date"/>
+                                     </td>
+                                     <td>
+                                        <span tal:content="python:'/'.join(obj.getPhysicalPath()[3:])"/>
+                                     </td>
+                                     
+                                </tr>
+                            </tal:block>
                             </tbody>
                             </table>
                 <input class="context"
@@ -218,16 +223,11 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
                        i18n:attributes="value label_link_translation;"
                        value="Link Translation"
                        />
-						</tal:block>
-	                </tal:item>
+                        </tal:block>
+                    </tal:item>
                 </div>
 
             </div>
-
-
-
-
-    </div>
 
 </div>
 </body>
