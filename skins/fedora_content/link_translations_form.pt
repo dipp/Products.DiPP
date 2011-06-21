@@ -8,6 +8,10 @@
 
    <div metal:fill-slot="main"
         tal:define="deletable_languages here/getDeletableLanguages;
+                    parent here/getParentNode;
+                    parent_lang parent/Language|nothing;
+                    parent_id parent/id;
+                    content_lang here/Language|nothing;
                     untranslated_languages here/getUntranslatedLanguages">
 
         <h1 i18n:translate="header_link_translations">
@@ -21,15 +25,16 @@
 
 
 
-        <h2 i18n:translate="header_link_translations">
-            Link translations
-        </h2>
         
 <pre>
 DEBUGGING
 sprachen: <tal:block tal:replace="python:len(context.languageSelectorData())"/>
 type: <tal:block tal:replace="here/portal_type"/>
 canonical: <tal:block tal:replace="here/getCanonical"/>
+content_lang: <tal:block tal:replace="content_lang"/>
+parent_lang: <tal:block tal:replace="parent_lang"/>
+parent_id: <tal:block tal:replace="parent_id"/>
+supported: <tal:block tal:replace="python: context.portal_languages.getSupportedLanguages()"/>
 </pre>
 
         <p tal:condition="untranslated_languages"
@@ -44,22 +49,99 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
             There is no untranslable language to link to.
         </p>
 
-        <form name="linkTranslation"
-              method="post"
-              action=""
-              class="group"
-              tal:condition="untranslated_languages"
-              tal:attributes="action here/absolute_url">
 			
+        <h3 i18n:translate="label_link_language">Language</h3>
+            
+        <div class="field"
+             tal:condition="python: content_lang and not parent_lang">
+            <label>In this folder</label>
+            <div class="formHelp" i18n:translate="help_link_language">
+                Select the language that the translation will be linked as.
+            </div>
+            
+            <div tal:repeat="lang untranslated_languages"
+                 tal:define="content_language context/Language;
+                             parent here/getParentNode;
+                             thisfolder request/thisfolder|nothing ">
+                             
+                <strong tal:content="python:'%s (%s)' % (lang[1], lang[0]) ">Deutsch (de)</strong>
+                
+                <tal:item>
+                <form name="linkTranslation"
+                      method="post"
+                      action=""
+                      class="group"
+                      tal:condition="untranslated_languages"
+                      tal:attributes="action here/absolute_url">
+                    
+                    <input type="hidden"
+                       value=""
+                       id="link"
+                       name="link_language"
+                       tal:attributes="value python:lang[0]"/>	
+                       
+                    <table class="listing">
+                        <thead>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Path</th>
+                        </thead>
+                        <tbody>
+                        <tal:block tal:define="path python:'/'.join(here.getParentNode().getPhysicalPath());
+                                               items python:here.portal_catalog.searchResults(portal_type=here.portal_type, Language=lang[0], path={'query':path,'depth':1}, sort_on='Date', sort_order='reverse')"
+                                   tal:repeat="item items">
+                        
+                            <tr  tal:define="obj                  item/getObject;
+                                             oddrow               repeat/item/odd;
+                                             uid                  obj/UID;
+                                             item_contributors    python:obj.Contributors();
+                                             item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                             item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                             authors              item_contributors;
+                                             has_uid python:hasattr(item.aq_explicit, 'UID')"
+                                   tal:attributes="class python:test(oddrow, 'even', 'odd')">
+
+                                <td>
+                                <input type="radio"
+                                       class="noborder"
+                                       name="link_content"
+                                       id="link_content"
+                                       tal:attributes="value uid;
+                                                       id  uid;
+                                                       checked python:content_language == lang[0]" />
+                                 </td>
+                                 <td>
+                                     <a  tal:content="item/Title"
+                                      tal:attributes="href item/getURL;
+                                                      class string:$item_wf_state_class">view</a>
+                                 </td>
+                                 <td>
+                                    <span tal:content="item/Date"/>
+                                 </td>
+                                 <td>
+                                    <span tal:content="python:'/'.join(obj.getPhysicalPath()[3:])"/>
+                                 </td>
+                                 
+                            </tr>
+                        </tal:block>
+                        </tbody>
+                    </table>
+                    
+                    <input class="context"
+                           type="submit"
+                           name="linkTranslation:method"
+                           i18n:attributes="value label_link_translation;"
+                           value="Link Translation"
+                           />
+                </form>
+                </tal:item>
+            </div>
+           sdf 
+            <div class="field"
+                 tal:condition="content_lang">
+                <label>In translated parent folder</label>
 			
-            <div class="field">
-			
-                <label for="link_language"
-                       i18n:translate="label_link_language">Language</label>
-			
-                <div class="formHelp" i18n:translate="help_link_language">
-                    Select the language that the translation will be linked as.
-                </div>
 
                 <div tal:repeat="lang untranslated_languages"
                      tal:define="content_language context/Language;
@@ -70,9 +152,10 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
                     
                 	<tal:item tal:define="pfolder python: test(thisfolder,parent,parent.getTranslation(lang[0]));
                 						  physicalPath pfolder/getPhysicalPath|nothing">
-                		<div class="formHelp"
+                
+                        <div class="formHelp"
                 		     tal:condition="not: physicalPath">
-                		     The parentfolder is not translated
+                		     The parent folder is not yet translated in this language.
                 		</div>
                 						  
                 		<tal:block tal:condition="physicalPath">
@@ -129,26 +212,23 @@ canonical: <tal:block tal:replace="here/getCanonical"/>
 							</tal:block>
                             </tbody>
                             </table>
-						</tal:block>
-	                </tal:item>
-                </div>
-
-            </div>
-
-            <div class="formControls">
                 <input class="context"
                        type="submit"
                        name="linkTranslation:method"
                        i18n:attributes="value label_link_translation;"
                        value="Link Translation"
                        />
+						</tal:block>
+	                </tal:item>
+                </div>
+
             </div>
 
-        </form>
 
 
 
     </div>
 
+</div>
 </body>
 </html>
