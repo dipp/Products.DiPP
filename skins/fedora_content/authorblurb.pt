@@ -57,8 +57,7 @@
                             tal:attributes="class python:test(islast,'last')">
                             <a tal:content="subject"
                                tal:attributes="href string: $portal_url/articlesearch?Subject=$subject&portal_type=FedoraArticle">
-                               key</a>
-                        </li>
+                               key</a></li>
                     </tal:items>
                 </ul>
             </tal:block>
@@ -75,7 +74,22 @@
                     <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
                 </li>
             </ul>
-                
+            
+            <div tal:define="translations context/getTranslatedLanguages;
+                             data context/languageSelectorData;
+                             content_lang here/Language"
+                 tal:condition="python: len(translations) > 1">
+                <h2 class="available-languages-label" i18n:translate="label_available_languages" i18n:domain="dipp">Also available in</h2>
+                <ul class="available-languages">
+                <tal:languages tal:repeat="lang data ">
+                    <li tal:condition="python: lang['available'] == True and lang['Language'] != content_lang">
+                        <a tal:attributes="href lang/change_url;
+                                           title lang/alt"
+                           tal:content="lang/Title">esperanto</a>
+                    </li>
+                </tal:languages>
+                </ul>
+            </div>
         </div>
 
 

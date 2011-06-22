@@ -49,7 +49,9 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
 	                 that the translation will be linked as.</div>
 	
 	            <div tal:repeat="lang untranslated_languages"
-                     tal:define="content_language context/Language; parent here/getParentNode; thisfolder request/thisfolder|nothing ">
+                     tal:define="content_language context/Language;
+                                 parent here/getParentNode;
+                                 thisfolder request/thisfolder|nothing ">
 	
 	                <strong tal:content="python:'%s (%s)' % (lang[1], lang[0]) ">
 	                Deutsch (de)</strong>

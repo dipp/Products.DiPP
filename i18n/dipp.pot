@@ -646,3 +646,6 @@ msgstr ""
 
 msgid "label_descending"
 msgstr ""
+
+msgid "label_available_languages"
+msgstr ""

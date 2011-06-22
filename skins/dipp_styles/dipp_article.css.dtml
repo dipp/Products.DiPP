@@ -45,13 +45,16 @@ div .inlineReference {
     font-size: 100%;
     font-weight: bold;
 }
+#authorblurb h2.available-languages-label,
 #authorblurb h2.keywords-label {
     display: inline;
 }
+#authorblurb ul.available-languages,
 #authorblurb ul.keywords {
     display: inline;
     margin: 0;
 }
+#authorblurb .available-languages li,
 #authorblurb .keywords li {
     display: inline;
 }
