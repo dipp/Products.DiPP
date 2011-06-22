@@ -4,6 +4,12 @@
     <body>
         <div metal:fill-slot="main"
              tal:define="deletable_languages here/getDeletableLanguages; parent here/getParentNode; parent_lang parent/Language|nothing; parent_id parent/id; content_lang here/Language|nothing; untranslated_languages here/getUntranslatedLanguages">
+            
+            <div tal:condition="not: content_lang"
+                 class="portalMessage">
+                This Item is language neutral. You must select a language for this item, before you can link to an
+                existing Translation
+            </div>
 
             <h1 i18n:translate="header_link_translations">Link  translations</h1>
 
@@ -13,23 +19,13 @@
 
 <pre>
 DEBUGGING
-sprachen:<tal:block
-tal:replace="python:len(context.languageSelectorData())" />
-type: 
-<tal:block tal:replace="here/portal_type" />
-canonical: 
-<tal:block tal:replace="here/getCanonical" />
-content_lang: 
-<tal:block tal:replace="content_lang" />
-parent_lang: 
-<tal:block tal:replace="parent_lang" />
-parent_id: 
-<tal:block tal:replace="parent_id" />
-supported: 
-<tal:block
-tal:replace="python: context.portal_languages.getSupportedLanguages()" />
-
-
+sprachen:<tal:block tal:replace="python:len(context.languageSelectorData())" />
+type: <tal:block tal:replace="here/portal_type" />
+canonical: <tal:block tal:replace="here/getCanonical" />
+content_lang: <tal:block tal:replace="content_lang" />
+parent_lang: <tal:block tal:replace="parent_lang" />
+parent_id: <tal:block tal:replace="parent_id" />
+supported: <tal:block tal:replace="python: context.portal_languages.getSupportedLanguages()" />
 </pre>
 
             <p tal:condition="untranslated_languages"
@@ -65,6 +61,7 @@ tal:replace="python: context.portal_languages.getSupportedLanguages()" />
 	                          class="group"
 	                          tal:condition="untranslated_languages"
 	                          tal:attributes="action here/absolute_url">
+
 	                        <input type="hidden" value="" id="link"
 	                        name="link_language"
 	                        tal:attributes="value python:lang[0]" />
@@ -119,7 +116,7 @@ tal:replace="python: context.portal_languages.getSupportedLanguages()" />
 	            </div>
             </div>
 
-            <div class="field" tal:condition="content_lang">
+            <div class="field" tal:condition="python: content_lang and parent_lang">
                 <label>In translated parent folder</label>
 
                 <div tal:repeat="lang untranslated_languages"
