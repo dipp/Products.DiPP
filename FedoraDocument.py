@@ -16,9 +16,9 @@ class FedoraDocument(BaseContent):
                 searchable=1,
                 required=0,
                 primary=1,
-                allowable_content_types=('text/plain',
+                allowable_content_types=('text/html',
                                    'text/structured',
-                                   'text/html',
+                                   'text/plain',
                                    'text/xml'),
                 widget=RichWidget(label='Body Content')
         ),
@@ -42,7 +42,12 @@ class FedoraDocument(BaseContent):
         ),
         StringField('MIMEType',
                 required=0,
-                widget=StringWidget(label='MIMEType',description='MIMEType of Object',size='25')
+                widget=StringWidget(
+                    label='MIMEType',
+                    description='MIMEType of Object',
+                    size='25',
+                    visible={'edit':'invisible','view':'visible'}
+                    )
         ),
     ),
     marshall=PrimaryFieldMarshaller(),
@@ -104,6 +109,8 @@ class FedoraDocument(BaseContent):
         MIMEType = "text/html"
         Label = self.id
         Location = article.absolute_url() + "/dummy.html"
+        if Location.startswith('https'):
+            Location = Location.replace('https','http',1)
 
         if self.DsID == '' and self.PID == '':
             DsID = fedora.addDatastream(None,PID,Label,MIMEType,Location,"M","","","A")
