@@ -53,7 +53,7 @@ if IP == fedoraIP:
         RESPONSE.setHeader('Content-Disposition', cd)
         return self.getFile()
 
-    if MIMEType in ['text/html']:
+    if MIMEType in ['text/html','text/plain', 'text/structured', 'text/xml']:
         return self.body
     else:
         print "Unsupported MIME Type"
