@@ -20,7 +20,7 @@ utils = context.plone_utils
 file         = request['file']
 JournalPID   = request['journalPID']
 
-tempFiles    = 'fedora_tmp'
+tempFiles    = 'fedora'
 
 try:
     tmp = getattr(container,tempFiles)

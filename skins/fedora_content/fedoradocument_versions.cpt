@@ -64,8 +64,7 @@
                 </fieldset>
                 <fieldset>
                     <legend>Compare datastream versions</legend>
-                    <table class="listing" 
-                        tal:define="ftool here/fedora;">
+                    <table class="listing">
                         <tr>
                             <th></th>
                             <th></th>
@@ -75,7 +74,7 @@
                             <th>MIME Type</th>
                             <th>create Date</th>
                         </tr>
-                        <tal:block tal:repeat="loop python:ftool.getDatastreamHistory(here.PID,here.DsID)">
+                        <tal:block tal:repeat="loop python:here.fedora.getDatastreamHistory(here.PID,here.DsID)">
                             <tr tal:attributes="class python:test(path('repeat/loop/even'), 'even', 'odd')">
                                 <td>
                                     <input type="radio" 

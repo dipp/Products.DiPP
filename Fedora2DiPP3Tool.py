@@ -42,9 +42,11 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import View
 
 
-class Fedora(UniqueObject, SimpleItem, BaseFolder):
+class Fedora(UniqueObject, BaseFolder):
     """ interact with the repository Fedora 2 und DiPP3 """
     
+    __implements__ = (getattr(UniqueObject,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
+
     meta_type = 'Fedora2DiPP3'
     id = 'fedora'
     title = 'Interact with the repository Fedora 2 und DiPP3'
