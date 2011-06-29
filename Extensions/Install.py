@@ -326,10 +326,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         if not hasattr(ext, id):
             ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
     
-    #if not hasattr(site, 'fedora_tmp'):
-    #    site.manage_addFolder('fedora_tmp','Temporäre Fedoraobjekte')
-    #if not hasattr(site, 'tmp'):
-    #    site.manage_addFolder('tmp','Temporäre Artikel')
 
 def install_types(self, out, site_id=SITE_NAME):
     """Registrierungen der neuen Objekte """
