@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # The FedoraTool for adding and manipulating objects in Fedora
-# File: FedoraTool.py
+# File: Fedora2DiPP3Tool.py
 #
 # German Free Software License (D-FSL)
 #
@@ -11,30 +11,10 @@
 # $Id$
 
 from OFS.SimpleItem import SimpleItem
+from OFS.Folder import Folder
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-#from Products.Archetypes.atapi import *
-from OFS.Folder import Folder
-from config import view_permission, LANGUAGES, DEFAULT_METADATA
-from backissues import import_backissues
-from DateTime import DateTime
-from time import mktime, strptime, strftime
-from fedora2 import FedoraAccess
-from fedora2 import FedoraManagement
-from dipp3 import ContentModel
-from dipp.tools import openurl
-from marshal import loads
-from zlib import decompress
-from urllib import unquote
-from threading import Timer
-import httplib
-import urlparse
-from htmldiff import htmldiff
-import logging
-
-logger = logging.getLogger("DiPP")
-
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
@@ -42,11 +22,31 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
 
+from DateTime import DateTime
+from time import mktime, strptime, strftime
+from marshal import loads
+from zlib import decompress
+from urllib import unquote
+from threading import Timer
+from htmldiff import htmldiff
+import httplib
+import urlparse
+import logging
+
+from fedora2 import FedoraAccess
+from fedora2 import FedoraManagement
+from dipp3 import ContentModel
+from dipp.tools import openurl
+
+from backissues import import_backissues
+from config import view_permission, LANGUAGES, DEFAULT_METADATA
+
+
+logger = logging.getLogger("DiPP")
+
 
 class Fedora(UniqueObject, Folder):
     """ interact with the repository Fedora 2 und DiPP3 """
-    
-    # __implements__ = (getattr(UniqueObject,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
 
     meta_type = 'Fedora2DiPP3'
     id = 'fedora'
@@ -77,8 +77,6 @@ class Fedora(UniqueObject, Folder):
     
     manage_metadata_form = PageTemplateFile('www/metadata_form.pt', globals())
     security.declareProtected(view_permission, 'manage_metadata_form')
-                
-                
     
     manage_options = ({'label':'Search',
                        'action':'manage_search_form',
