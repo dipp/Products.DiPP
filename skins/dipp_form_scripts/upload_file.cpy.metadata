@@ -1,9 +1,0 @@
-[default]
-title=Upload RTF-Datei
-
-
-[security]
-View=0:Herausgeber,Manager
-
-[actions]
-action.success = traverse_to:string:add_to_fedora
