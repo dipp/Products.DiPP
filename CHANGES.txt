@@ -1,5 +1,20 @@
 Changes
 
+    DiPP 2.7.2 (2011-06-29)
+    
+        * Fedora2DiPP3 tool folderish. Articles for storing in the repository
+          are temporarily kept here insteat in fedora_tmp folder
+        
+        * Enhanced translation of articles: i.e. english and german version can
+          be in the same folder, not necessarily the translated parent folder
+          
+        * advanced search even more enhanced
+        
+        * GND Connection included, but not activated
+        
+        * created, modified and valid dates replaced with published, submitted
+          (needs still some fix for reading back)
+
     DiPP 2.7.1 (2011-04-21)
     
         * articlesearch shows short bibligraphic citation
@@ -7,7 +22,8 @@ Changes
         * Licence defaults to englisch, when other language than en or de is
           selected
 
-	DiPP 2.7 (2011-04-18)
+
+    DiPP 2.7 (2011-04-18)
 	    
 	    * new dependency: python egg dipp.tools
 	
