@@ -19,7 +19,6 @@ site = portal_url.getPortalObject()
 # add two folder to keep temporary files
 folders = (
     ('tmp','Temporäre Artikel'),
-    ('fedora_tmp','Temporäre Fedoraobjekte')
 )
 
 for folder_id, folder_title in folders:
