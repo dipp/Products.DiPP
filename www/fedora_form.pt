@@ -59,13 +59,13 @@
          <select name="createDate">
              <tal:block tal:repeat="version python: here.fedora.getDatastreamHistory(here.PID,DsID)">
                  <option value=""
-                         tal:define="versionCreateDate python: version['createDate'].strftime(fformat)"
+                         tal:define="versionCreateDate python: DateTime(version['createDate']).strftime(fformat)"
                          tal:attributes="value versionCreateDate;
                                          selected python: versionCreateDate == createDate">
                      <span tal:replace="version/versionID">
                         DS1.1
                      </span> &ndash;
-                     <span tal:replace="python: version['createDate'].strftime(zformat)">
+                     <span tal:replace="python: DateTime(version['createDate']).strftime(zformat)">
                         2010-05-04
                      </span>
                  </option>
