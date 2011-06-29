@@ -46,10 +46,10 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     manage_migration_form = PageTemplateFile('www/migration_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_migration_form')
 
-    manage_options = ({'label':'Migrate',
+    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Migrate',
                        'action':'manage_migration_form',
                        'help':('DiPP', 'migrate.stx')},
-        ) + OrderedBaseFolder.manage_options
+        ) + OrderedBaseFolder.manage_options[2:]
 
     
     schema = BaseSchema + Schema((
