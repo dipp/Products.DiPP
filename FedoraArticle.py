@@ -36,10 +36,10 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_fedora_form')
 
-    manage_options = OrderedBaseFolder.manage_options + ({'label':'Fedora',
+    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Fedora',
                        'action':'manage_fedora_form',
                        'help':('DiPP', 'fedora.stx')},
-        )
+        ) + OrderedBaseFolder.manage_options[2:]
 
     schema = BaseSchema + Schema((
         StringField('PID',
