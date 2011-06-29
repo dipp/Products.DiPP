@@ -2,7 +2,7 @@
 # robots.txt for <dtml-var "REQUEST.SERVER_URL">
 #
 User-agent: *
-Disallow: /fedora_tmp/
+Disallow: /fedora/
 Disallow: /upload_folder/
 Disallow: /tmp/
 Disallow: /ext/
