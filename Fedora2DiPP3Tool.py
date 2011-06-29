@@ -14,7 +14,8 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.Archetypes.atapi import *
+#from Products.Archetypes.atapi import *
+from OFS.Folder import Folder
 from config import view_permission, LANGUAGES, DEFAULT_METADATA
 from backissues import import_backissues
 from DateTime import DateTime
@@ -42,10 +43,10 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import View
 
 
-class Fedora(UniqueObject, BaseFolder):
+class Fedora(UniqueObject, Folder):
     """ interact with the repository Fedora 2 und DiPP3 """
     
-    __implements__ = (getattr(UniqueObject,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
+    # __implements__ = (getattr(UniqueObject,'__implements__',()),) + (getattr(BaseFolder,'__implements__',()),)
 
     meta_type = 'Fedora2DiPP3'
     id = 'fedora'
@@ -79,7 +80,7 @@ class Fedora(UniqueObject, BaseFolder):
                 
                 
     
-    manage_options = BaseFolder.manage_options + ({'label':'Search',
+    manage_options = ({'label':'Search',
                        'action':'manage_search_form',
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Configure',
@@ -97,7 +98,7 @@ class Fedora(UniqueObject, BaseFolder):
                       {'label':'Backissues',
                        'action':'manage_backissues_form',
                        'help':('PloneFedora2', 'backissues.stx')},
-        ) 
+        ) + Folder.manage_options
 
     def __init__(self):
         self.PID = "" 
