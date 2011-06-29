@@ -1,4 +1,4 @@
-##script (Python) "content_edit"
+##script (Python) "upload_cms"
 ##title=Edit content
 ##bind container=container
 ##bind context=context
