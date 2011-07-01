@@ -52,7 +52,7 @@ DEFAULT_METADATA = (
 )
 
 TOOLS = (
-    ('Fedora2DiPP3','BibTool')
+    ('Fedora2DiPP3','BibTool','DiPP Sections Tool')
 )
 
 INDEXES = (

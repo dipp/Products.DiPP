@@ -26,6 +26,7 @@ def initialize(context):
     import Fedora2DiPP2Tool
     import DiPPManagementTool
     import BibTool
+    import SectionsTool
 
 
 
@@ -36,7 +37,8 @@ def initialize(context):
              Fedora2DiPP2Tool.Fedora,
              EditorialToolboxTool.toolbox,
              DiPPManagementTool.DiPPManagement,
-             BibTool.BibTool)
+             BibTool.BibTool,
+             SectionsTool.SectionsTool)
 
     utils.ToolInit(PROJECTNAME + ' Tools',
         tools = tools,
