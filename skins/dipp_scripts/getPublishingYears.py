@@ -7,8 +7,11 @@
 ##parameters=
 ##title=
 ##
-
 # -*- coding: utf-8 -*-
+"""
+return a list of years with published articles
+"""
+
 from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
@@ -26,6 +29,7 @@ articles = catalog(
             Language='all',
             sort_limit=1
             )
+            
 today = int(DateTime().earliestTime().strftime("%Y"))
 if len(articles) > 0:
     oldest = articles[0].getIssueDate
@@ -33,4 +37,4 @@ if len(articles) > 0:
 else:
     first = today
 
-return range(first, today+1)
+return range(today, first - 1, -1)
