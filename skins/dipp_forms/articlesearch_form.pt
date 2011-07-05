@@ -147,7 +147,8 @@
               Return items added since you were last logged on, the last week, etc.
               </div>
   
-              <tal:datetime define="today python:DateTime().earliestTime()">
+              <tal:datetime define="today python:DateTime().earliestTime();
+                                    dates python:list(here.portal_catalog.uniqueValuesFor('getIssueDate'))">
               <select name="created:list:date"
                       id="created"
                       tabindex=""
@@ -160,9 +161,11 @@
                           tal:condition="not: isAnon"
                           tal:attributes="value python:member is not None and member.getProperty('last_login_time') or today"
                           i18n:translate="last_login">Last log-in</option>
-                  <option value="#" tal:attributes="value yesterday" i18n:translate="time_yesterday"> Yesterday </option>
-                  <option value="#" tal:attributes="value lastweek" i18n:translate="time_last_week"> Last week </option>
-                  <option value="#" tal:attributes="value lastmonth" i18n:translate="time_last_month"> Last month </option>
+                  
+                  <tal:block tal:repeat="year here/getPublishingYears">
+                    <option tal:content="year" tal:attributes="value string:$year/01/01">1971</option>
+                  </tal:block>
+                  
                   <option value="#" tal:attributes="value ever" selected="selected" i18n:translate="time_ever"> Ever </option>
               </select>
               </tal:datetime>

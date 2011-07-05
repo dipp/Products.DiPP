@@ -4,21 +4,20 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self
+##parameters=
 ##title=
 ##
 
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-from StringIO import StringIO
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
-portal_url = getToolByName(self, 'portal_url')
+portal_url = getToolByName(context, 'portal_url')
 portal = portal_url.getPortalObject()
 
 
-catalog = getToolByName(self, 'portal_catalog')
+catalog = getToolByName(context, 'portal_catalog')
 
 articles = catalog(
             portal_type=('FedoraArticle'),
