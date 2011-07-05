@@ -1,5 +1,10 @@
 Changes
 
+    DiPP 2.8 (2011-)
+
+        * IssueDate al DateIndex. Remove getIssueDate before Installation  to force
+          recreation of index. reindex
+        
     DiPP 2.7.2 (2011-06-29)
     
         * Fedora2DiPP3 tool folderish. Articles for storing in the repository

@@ -95,7 +95,7 @@ class Issue(BrowserDefaultMixin, OrderedBaseFolder):
                 description_msgid='help_issuedate_field',
                 i18n_domain='dipp',
             ),
-            index='FieldIndex:brains',
+            index='DateIndex:brains',
             schemata='Bibliographic Data'
         ),
         FileField('CompleteIssue',

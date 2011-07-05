@@ -180,7 +180,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 description_msgid='help_issuedate_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='FieldIndex:brains',
+            index='DateIndex:brains',
             schemata='Bibliographic Data'
         ),
         IntegerField('startpage',
