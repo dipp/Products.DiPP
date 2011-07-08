@@ -1,0 +1,137 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>Sections Configuration</h3>
+
+<tal:sections tal:define="sections here/getSections;
+                          langdata context/languageSelectorData|nothing;
+                          gtool context/portal_groups;
+					      groupname string:sectioneditors;
+						  grouproles python:request.set('grouproles', []);
+						  group python:gtool.getGroupById(groupname);
+						  grouptitle group/getGroupTitleOrName|groupname;
+						  groupMembers group/getGroupMembers|nothing">
+
+
+<table>
+    <tbody>
+        <tr>
+            <th align='left'>Id</th>
+            <th align='left'>Position</th>
+            <th align='left'>allow</th>
+            <th align='left'>Title</th>
+            <th align='left'>Editor</th>
+        </tr>
+        
+		<tal:section tal:repeat="section python:sections.keys()">
+		<form action="." method="POST">
+		<input type="hidden" name="id" tal:attributes="value section"/>
+		<tr>
+		    <td valign="top" tal:content="python:section">
+		          section id
+		    </td>
+            <td valign="top">
+                    <input type="text"
+                           name="position:int"
+                           size="4"
+                           value=""
+                           tal:attributes="value python:sections[section]['position']" />
+            </td>
+            <td valign="top">
+                    <input type="checkbox"
+                           name="allow"
+                           tal:define="isallowed python:sections[section]['allow']"
+                           value=""
+                           tal:attributes="value isallowed;
+                                           checked python: isallowed" />
+            </td>
+            <td valign="top">
+                <tal:language tal:repeat=" lang langdata">
+                    <abbr tal:content="lang/Language"
+                          tal:attributes="title lang/Title">de</abbr>
+                    <input type="text"
+                           name=""
+                           tal:define="id lang/Language"
+                           tal:attributes="id id;
+                                           name string:title.$id:record;
+                                           value python:sections[section]['title'].get(id, None)"
+                           value="" /><br />
+                </tal:language>
+            </td>
+            <td valign="top">
+            <select name="editor"
+                    tal:define="thiseditor python:sections[section].get('editor',None)">
+                <option value="">None</option>
+	            <tal:block tal:repeat="editor groupMembers">
+	                <option tal:define="editorid editor/getId"
+	                        tal:attributes="value editorid;
+	                                        selected python:thiseditor == editorid"
+	                        tal:content="python:'%s (%s)'%(editor.getProperty('fullname'),editorid)"></option>
+	            </tal:block>
+            </select>
+            </td>
+            <td valign="top">
+                <input name="manage_delSection:method" type="submit" value="remove section" />
+                <input name="manage_updateSection:method" type="submit" value="update section" />
+            </td>
+        </tr>
+		</form>
+        </tal:section>
+	</tbody>
+</table>
+
+<h3 class="form-help">Add a section</h3>
+<form action="."
+      method="POST">
+    <table>
+        <tr>
+            <th align='left'>Id</th>
+            <th align='left'>Position</th>
+            <th align='left'>allow</th>
+            <th align='left'>Title</th>
+            <th align='left'>Editor</th>
+        </tr>
+    
+        <tr>
+            <td valign="top">
+                <input type="text" name="id" value="" />
+            </td>
+            <td valign="top">
+                <input type="text" 
+                       name="position:int"
+                       size="4"
+                       value="" />
+            </td>
+            <td valign="top">
+                <input type="checkbox" name="allow" value="1" />
+            </td>
+            <td valign="top">
+                <tal:language tal:repeat=" lang langdata">
+                    <abbr tal:content="lang/Language"
+                          tal:attributes="title lang/Title">de</abbr>
+                    <input type="text"
+                           name=""
+                           tal:define="id lang/Language"
+                           tal:attributes="id id;
+                                           name string:title.$id:record"
+                           value="" /><br />
+                </tal:language>
+            </td>
+            <td valign="top">
+	            <select name="editor">
+	                <option value="">None</option>
+	                <tal:block tal:repeat="editor groupMembers">
+	                    <option tal:define="editorid editor/getId"
+	                            tal:attributes="value editorid"
+	                            tal:content="python:'%s (%s)'%(editor.getProperty('fullname'),editorid)"></option>
+	                </tal:block>
+	            </select>
+            </td>
+            <td valign="top">
+                <input name="manage_addSection:method" type="submit" value="add section" />
+            </td>
+        </tr>
+	</table>
+</form>
+</tal:sections>
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
