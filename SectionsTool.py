@@ -14,6 +14,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from Products.Five.fiveconfigure import logger
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
@@ -21,6 +22,7 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
 import logging
+from operator import itemgetter
 
 logger = logging.getLogger("DiPP")
 
@@ -40,14 +42,15 @@ class SectionsTool(UniqueObject, SimpleItem):
     security.declareProtected(ManagePortal, 'manage_SectionsConfig')
 
     def __init__(self):
-        self.sections = {}
+        self.sections = []
 
     security.declareProtected(ManagePortal, 'updateSection')
     def updateSection(self, id, title, position, editor=None, allow=None):
         """Updates a section."""
         
         sections = self.sections
-        sections[id] = {'title': title, 'position':position, 'allow':allow, 'editor':editor}
+        i = self.findSectionIndex(sections, id)
+        sections[i] = (id, title, position, editor, allow)
         self.sections = sections
         
     security.declareProtected(ManagePortal, 'addSection')
@@ -55,7 +58,7 @@ class SectionsTool(UniqueObject, SimpleItem):
         """Adds a new section."""
         
         sections = self.sections
-        sections[id] = {'title': title, 'position':position, 'allow':allow, 'editor':editor}
+        sections.append((id, title, position, editor, allow))
         self.sections = sections
 
     security.declareProtected(ManagePortal, 'delSection')
@@ -63,8 +66,16 @@ class SectionsTool(UniqueObject, SimpleItem):
         """Deletes a section."""
         
         sections = self.sections
-        sections.pop(id)
+        i = self.findSectionIndex(sections, id)
+        sections.pop(i)
         self.sections = sections
+        
+    def findSectionIndex(self, sections, id):
+        """return the list index of a section according to its id"""
+        
+        for i, x in enumerate(sections):
+            if x[0] == id: 
+                return i
 
     security.declareProtected(ManagePortal, 'manage_updateSection')
     def manage_updateSection(self, id, title, position, editor=None, allow=None, REQUEST=None):
@@ -81,7 +92,7 @@ class SectionsTool(UniqueObject, SimpleItem):
     def manage_addSection(self, id, title, position, editor=None, allow=None, REQUEST=None):
         """Adds a new section via the ZMI."""
         
-        self.addSection(id, title, position, editor=None, allow=None)                        
+        self.addSection(id, title, position, editor, allow)                        
         manage_tabs_message = "Section '%s' added" % id
         REQUEST['RESPONSE'].redirect( '%s/manage_SectionsConfig?manage_tabs_message=%s'
                             % (self.absolute_url(), manage_tabs_message)
@@ -96,10 +107,20 @@ class SectionsTool(UniqueObject, SimpleItem):
         REQUEST['RESPONSE'].redirect( '%s/manage_SectionsConfig?manage_tabs_message=%s'
                             % (self.absolute_url(), manage_tabs_message)
                             )
-            
+        
     
     security.declarePublic('getSections')
-    def getSections(self):
+    def getSections(self, lang='all'):
         
-        return self.sections
-
+        logger.info(lang)
+        sections = self.sections
+        sections.sort(key = itemgetter(2))
+        sorted_sections = []
+        for id, title, position, editor, allow in sections:
+            if lang != 'all':
+                translated_title = title.get(lang,id)
+            else:
+                translated_title = title
+            sorted_sections.append({'id':id, 'title': translated_title, 'position':position, 'allow':allow, 'editor':editor})
+        return sorted_sections
+        

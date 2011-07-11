@@ -13,21 +13,23 @@
 						  groupMembers group/getGroupMembers|nothing">
 
 
-<table>
-    <tbody>
-        <tr>
+<table border="0" cellpadding="2" cellspacing="0">
+    <thead>
+        <tr class="list-header">
             <th align='left'>Id</th>
             <th align='left'>Position</th>
             <th align='left'>allow</th>
             <th align='left'>Title</th>
-            <th align='left'>Editor</th>
+            <th colspan='2' align='left'>Editor</th>
         </tr>
+    </thead>
+    <tbody>
         
-		<tal:section tal:repeat="section python:sections.keys()">
+		<tal:section tal:repeat="section sections">
 		<form action="." method="POST">
-		<input type="hidden" name="id" tal:attributes="value section"/>
-		<tr>
-		    <td valign="top" tal:content="python:section">
+		<input type="hidden" name="id" tal:attributes="value python:section['id']"/>
+		<tr tal:attributes="class python:test(path('repeat/section/even'), 'row-hilite', 'row-normal')">
+		    <td valign="top" tal:content="python:section['id']">
 		          section id
 		    </td>
             <td valign="top">
@@ -35,12 +37,12 @@
                            name="position:int"
                            size="4"
                            value=""
-                           tal:attributes="value python:sections[section]['position']" />
+                           tal:attributes="value python:section['position']" />
             </td>
             <td valign="top">
                     <input type="checkbox"
                            name="allow"
-                           tal:define="isallowed python:sections[section]['allow']"
+                           tal:define="isallowed python:section['allow']"
                            value=""
                            tal:attributes="value isallowed;
                                            checked python: isallowed" />
@@ -53,14 +55,14 @@
                            name=""
                            tal:define="id lang/Language"
                            tal:attributes="id id;
-                                           name string:title.$id:record;
-                                           value python:sections[section]['title'].get(id, None)"
+                                           name string:title.$id:record:ignore_empty;
+                                           value python:section['title'].get(id, None)"
                            value="" /><br />
                 </tal:language>
             </td>
             <td valign="top">
             <select name="editor"
-                    tal:define="thiseditor python:sections[section].get('editor',None)">
+                    tal:define="thiseditor python:section.get('editor',None)">
                 <option value="">None</option>
 	            <tal:block tal:repeat="editor groupMembers">
 	                <option tal:define="editorid editor/getId"
@@ -70,7 +72,7 @@
 	            </tal:block>
             </select>
             </td>
-            <td valign="top">
+            <td valign="bottom">
                 <input name="manage_delSection:method" type="submit" value="remove section" />
                 <input name="manage_updateSection:method" type="submit" value="update section" />
             </td>
@@ -113,7 +115,7 @@
                            name=""
                            tal:define="id lang/Language"
                            tal:attributes="id id;
-                                           name string:title.$id:record"
+                                           name string:title.$id:record:ignore_empty"
                            value="" /><br />
                 </tal:language>
             </td>
