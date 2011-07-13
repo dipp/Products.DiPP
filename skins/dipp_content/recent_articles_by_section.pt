@@ -10,7 +10,6 @@
               tal:attributes="href string:$portal_url/feed/articles"/>
     </metal:block>
 
-    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
 <body>
 
 <metal:main fill-slot="main">
