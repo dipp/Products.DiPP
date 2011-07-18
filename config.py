@@ -37,7 +37,8 @@ LANGUAGES = {
     'rus':'Русский',
     'chi':'中文',
     'cze':'Čeština',
-    'hun':'Magyar'
+    'hun':'Magyar',
+    'fin':'Finnish'
 }
 
 # format: medatata, visible, required, default
