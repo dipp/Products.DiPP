@@ -111,8 +111,8 @@ class SectionsTool(UniqueObject, SimpleItem):
     
     security.declarePublic('getSections')
     def getSections(self, lang='all'):
+        """return the list of sections sorted by position"""
         
-        logger.info(lang)
         sections = self.sections
         sections.sort(key = itemgetter(2))
         sorted_sections = []
@@ -123,4 +123,16 @@ class SectionsTool(UniqueObject, SimpleItem):
                 translated_title = title
             sorted_sections.append({'id':id, 'title': translated_title, 'position':position, 'allow':allow, 'editor':editor})
         return sorted_sections
+    
+    security.declarePublic('getSectionById')
+    def getSectionById(self, id, lang='all'):
+        """return a section of a given ID. If not found, return None"""
+
+        sectiondetails = None
+        for section in self.getSections(lang):
+            if section['id'] == id:
+                sectiondetails = section
         
+        return sectiondetails
+               
+                
