@@ -1,9 +1,15 @@
 Changes
 
-    DiPP 2.8 (2011-)
+    DiPP 2.8 (2011-07-18)
 
-        * IssueDate al DateIndex. Remove getIssueDate before Installation  to force
+        * IssueDate as DateIndex. Remove getIssueDate before Installation  to force
           recreation of index. reindex
+        
+        * jquery UI, used for DiPPReviews overlay effects
+        
+        * dipp_sections tool, will soon replace vocabularybased section, since
+          it integrates in LinguaPlone
+        
         
     DiPP 2.7.2 (2011-06-29)
     
