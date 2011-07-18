@@ -21,6 +21,7 @@
   <property name="mail_password_visible" type="boolean">True</property>
   <property name="areas_of_expertise" type="lines"/>
  </object>
+ <!--
  <object name="dipp_properties" meta_type="Plone Property Sheet">
   <property name="title">DiPP properties</property>
   <property name="deadline_red" type="int">3</property>
@@ -91,4 +92,5 @@ Kind regards
   <property name="issue_date_format" type="string"></property>
   <property name="recent_articles_range" type="int">30</property>
  </object>
+ -->
 </object>
