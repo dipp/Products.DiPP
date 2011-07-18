@@ -25,6 +25,7 @@
     <javascript  id="tooltip.js" compression="none" cookable="False" insert-after="jquery.js" enabled="false"/>
     <javascript  id="jquery.tools.min.js" compression="none" cookable="False" insert-after="jquery.js"/>
     <javascript  id="references.js" compression="none" cookable="False" insert-after="jquery.tools.min.js"/>
+    <javascript  id="dippreview.js" compression="none" cookable="False" insert-after="jquery.tools.min.js"/>
     <javascript  id="tabber.js" compression="none" cookable="False" insert-after="jquery.tools.min.js"/>
     <javascript  id="sectiondrilldown.js" compression="none"  insert-after="jquery.tools.min.js"/>
     <javascript  id="gndrequest.js" compression="none"  insert-after="jquery.tools.min.js" enabled="false"/>
