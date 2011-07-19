@@ -14,6 +14,7 @@ from Products.CMFCore.utils import getToolByName
 oftool = container.portal_openflow
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
+utils = context.plone_utils
 
 def newArticle(id,title,PID,subject,rights):
     """create a new Article container in a temporary folder """
@@ -50,22 +51,35 @@ def newInstance(PID,creator,title,cModel,isChildOf,isParentOf):
                                      title=id,
                                      activation=0)
     instance = oftool[instance_id]
-    instance.manage_addProperty(id='PID',           value=PID,          type='string')
-    instance.manage_addProperty(id='isChildOf',     value=isChildOf,    type='lines')
-    instance.manage_addProperty(id='isParentOf',    value=isParentOf,   type='lines')
-    instance.manage_addProperty(id='type',          value=cModel,       type='string') 
-    instance.manage_addProperty(id='url',           value="",           type='string')
-    instance.manage_addProperty(id='autor',         value=creator,      type='string')
-    instance.manage_addProperty(id='gastHrsg',      value="",           type='string')
-    # instance.manage_addProperty(id='titel',         value=title,        type='string')
-    instance.manage_addProperty(id='hierarchie',    value="n/a",        type='string')
-    instance.manage_addProperty(id='autorOK',       value=autorOK,      type='boolean')
-    instance.manage_addProperty(id='gastHrsgOK',    value=gastHrsgOK,   type='boolean')
-    instance.manage_addProperty(id='formalOK',      value=formalOK,     type='boolean')
-    instance.manage_addProperty(id='nachrichten',   value=comment,      type='text')
-    instance.manage_addProperty(id='deadline',      value=dl,           type='date')
-    instance.manage_addProperty(id='deadline_next', value=dl,           type='date')
-    instance.manage_addProperty(id='alert',         value="green",     type='string')
+
+    wi_props = ( 
+        ('PID', PID, 'string'),
+        ('isChildOf', isChildOf, 'lines'),
+        ('isParentOf', isParentOf, 'lines'),
+        ('type', cModel, 'string'),
+        ('url', '', 'string'),
+        ('autor', creator, 'string'),
+        ('gastHrsg', '', 'string'),
+        ('hierarchie', 'n/a', 'string'),
+        ('autorOK', autorOK, 'boolean'),
+        ('gastHrsgOK', gastHrsgOK, 'boolean'),
+        ('formalOK', formalOK, 'boolean'),
+        ('nachrichten', comment, 'text'),
+        ('deadline', dl, 'date'),
+        ('deadline_next', dl, 'date'),
+        ('alert', 'green', 'string')
+    )
+    
+    for prop_id, prop_value, prop_type in wi_props:
+        if not instance.hasProperty(prop_id):
+            try:
+                instance.manage_addProperty(id=prop_id, value=prop_value, type=prop_type)
+            except UnicodeEncodeError:
+                normalized = utils.normalizeString(prop_value)
+                instance.manage_addProperty(id=prop_id, value=normalized, type=prop_type)
+                msg = "could not add %s, added normalized version '%s'" % (prop_value, normalized)
+                self.plone_log(msg)
+    
     oftool.startInstance(instance_id=instance_id)
     return instance_id
 
