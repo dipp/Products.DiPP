@@ -810,23 +810,30 @@
                          submitted python:qdc.get('dateSubmitted',None)"
             i18n:domain="qdc"
             tal:attributes="class python:test(error, 'field error', 'field')" >
-            <label i18n:translate="label_publishingdates">Dates of the publishing history</label>
-            <div tal:content="error">Validation error output</div>
-            <div class="formHelp" i18n:translate="help_dates">
-                Format: JJJJ-MM-TT
-            </div>
-            <table class="listing">
-                <tr>
-                    <th i18n:translate="label_submitted">submitted</th>
-                    <th i18n:translate="label_accepted">accepted</th>
-                    <th i18n:translate="label_copyrighted">copyrighted</th>
-                </tr>
-                <tr>
-                    <td><input class="date" maxlength="10" type="date" name="dateSubmitted" value="" tal:attributes="value request/dateSubmitted|submitted|nothing" /></td>
-                    <td><input class="date" maxlength="10" type="date" name="dateAccepted" value="" tal:attributes="value request/dateAccepted|accepted|nothing" /></td>
-                    <td><input class="date" maxlength="10" type="date" name="dateCopyrighted" value="" tal:attributes="value request/dateCopyrighted|copyrighted|nothing"/></td>
-                </tr>
-            </table>
+            
+            <input class="date" maxlength="10" type="hidden" name="dateSubmitted" value="" tal:attributes="value request/dateSubmitted|submitted|nothing" />
+            <input class="date" maxlength="10" type="hidden" name="dateAccepted" value="" tal:attributes="value request/dateAccepted|accepted|nothing" />
+            <input class="date" maxlength="10" type="hidden" name="dateCopyrighted" value="" tal:attributes="value request/dateCopyrighted|copyrighted|nothing"/>
+            
+            <tal:comment tal:replace="nothing">
+                <label i18n:translate="label_publishingdates">Dates of the publishing history</label>
+                <div tal:content="error">Validation error output</div>
+                <div class="formHelp" i18n:translate="help_dates">
+                    Format: JJJJ-MM-TT
+                </div>
+                <table class="listing">
+                    <tr>
+                        <th i18n:translate="label_submitted">submitted</th>
+                        <th i18n:translate="label_accepted">accepted</th>
+                        <th i18n:translate="label_copyrighted">copyrighted</th>
+                    </tr>
+                    <tr>
+                        <td><input class="date" maxlength="10" type="date" name="dateSubmitted" value="" tal:attributes="value request/dateSubmitted|submitted|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="date" name="dateAccepted" value="" tal:attributes="value request/dateAccepted|accepted|nothing" /></td>
+                        <td><input class="date" maxlength="10" type="date" name="dateCopyrighted" value="" tal:attributes="value request/dateCopyrighted|copyrighted|nothing"/></td>
+                    </tr>
+                </table>
+            </tal:comment>
             
         </div>
 
