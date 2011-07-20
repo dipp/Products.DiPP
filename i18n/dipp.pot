@@ -476,6 +476,10 @@ msgstr ""
 msgid "label_finish"
 msgstr ""
 
+msgid "label_publish"
+msgstr ""
+
+
 msgid "label_proceed_with_metadata"
 msgstr ""
 
