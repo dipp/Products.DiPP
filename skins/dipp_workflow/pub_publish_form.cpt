@@ -53,6 +53,12 @@
                     Kommentarfelder
                 </div>
                 
+                <p>
+                    Durch Klicken des Knopfes "Veröffentlichen" wird der Artikel an der OAI- Schnittstellen verfügbar
+                    gemacht und Emails werden an obige Adressen versandt. Die hablbautomatische Registrierung der URNs
+                    bei der DNB wird ebenfalls initiert, DOIs müssen manuell registriert werden.
+                </p>
+                
                 <div class="wfbuttons">
                 
                     <input class="context"
@@ -68,9 +74,9 @@
                            tabindex=""
                            type="submit"
                            name="form.button.Save"
-                           value="Finish"
+                           value="Publish"
                            i18n:domain="dipp"
-                           i18n:attributes="value label_finish"
+                           i18n:attributes="value label_publish"
                            tal:attributes="tabindex tabindex/next;
                                            disabled python:test(isLocked, 'disabled', None);" />
                                            
