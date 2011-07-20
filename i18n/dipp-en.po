@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-06-22 18:54+0100\n"
+"PO-Revision-Date: 2011-07-20 14:20+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -480,6 +480,9 @@ msgstr "Continue"
 
 msgid "label_finish"
 msgstr "Finish"
+
+msgid "label_publish"
+msgstr "Publish"
 
 msgid "label_proceed_with_metadata"
 msgstr "Proceed with metadata"
