@@ -137,22 +137,16 @@
                       i18n:attributes="title"
                       i18n:translate="label_required">(Required)</span>
                <div tal:content="error">Validation error output</div>
-               <div class="formHelp">
-                 <span i18n:translate="help_assignment_1">
-                    Der Artikel bzw. das Hierarchieelement ist zu Zeit nur temporär
-                    zwischengespeichert. Wählen Sie eine bestehenden Hierarchieebene aus.
-                    Die Angabe aus Fedora bzw. GAP ist vorausgewählt.
-                 </span><br/>
-                 <span i18n:translate="help_assignment_2">
-                    Wenn nichts vorausgewählt ist, existiert die für diesen Artikel vorgesehene Hierarchieebene existiert noch nicht.
-                    Wählen sie eine andere ebene aus der Liste, oder brechen Sie diesen Schritt ab und 
-                    bearbeiten zunächst den entsprechenden Eintrag in der Worklist.
-                 </span>
+               <div class="formHelp"
+                    i18n:translate="help_assignment">
+                    Der Artikel ist noch nicht an seinem entgültigen Ort gespeichert. In der folgenden Übersicht
+                    finden Sie mögliche Speicherorte, in der Regel wählen Sie eine Ausgabe in der Sprache "neutral".
+                    Nur, wenn die gesamte Ausgabe übersetzt wird wählen Sie eine Ausgabe in der entsprechenden Sprache.
                </div>
                
 			   <div class='tabber'>
                <tal:block tal:define="data python:context.languageSelectorData();
-                                      dummy python:data.append({'Language':'neutral','Title':'Neutral'})"
+                                      dummy python:data.insert(0,{'Language':'neutral','Title':'Neutral'})"
                           tal:repeat="lang data">
                
                <div tal:define="allissues here/issueByLanguage;
