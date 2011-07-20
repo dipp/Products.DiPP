@@ -1,5 +1,13 @@
 Changes
 
+    DiPP 2.8.1 (2011-07-20)
+    
+        * neutral language first in first workflow step, help texts
+        
+        * fixed: paper does not appear in worklist, when authorname has strange
+          characters
+          
+        
     DiPP 2.8 (2011-07-18)
 
         * IssueDate as DateIndex. Remove getIssueDate before Installation  to force
