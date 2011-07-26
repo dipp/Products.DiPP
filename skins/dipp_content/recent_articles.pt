@@ -34,7 +34,7 @@
                          Batch                python:modules['Products.CMFPlone'].Batch;
                          desc_length          site_properties/search_results_description_length;
                          desc_ellipsis        site_properties/ellipsis;
-                         b_size               python:3;b_start python:0;b_start request/b_start | b_start;
+                         b_size               python:10;b_start python:0;b_start request/b_start | b_start;
                          authors_in_portlet   here/portal_properties/dipp_properties/authors_in_portlet|nothing; 
                          avtm                 python:here.portal_vocabularies;
                          journalsections      python:avtm.getVocabularyByName('journal-sections');
