@@ -30,9 +30,9 @@
 	   edit_macros python:path('here/%s/macros|here/edit_macros/macros' % edit_template);"
 	   tal:omit-tag="">
 
-	<h1 tal:content="here/title_or_id"
-	    metal:use-macro="edit_macros/header|default"/>
-
+	<h1>Fedora Multimedia Version</h1>
+        
+    <tal:comment replace="nothing">
     <form tal:define="errors options/state/getErrors"
           method="post"
           enctype="multipart/form-data"
@@ -96,8 +96,7 @@
 
         </fieldset>
     </form>
-    <!--
-    -->
+    </tal:comment>
     <table class="listing" 
         tal:define="ftool here/fedora;">
         <tr>
@@ -106,7 +105,6 @@
             <th>state</th>
             <th>MIME Type</th>
             <th>create Date</th>
-            <!--<th>&nbsp;</th>-->
         </tr>
         <tal:block tal:repeat="loop python:ftool.getDatastreamHistory(here.PID,here.DsID)">
             <tr tal:attributes="class python:test(path('repeat/loop/even'), 'even', 'odd')">
@@ -114,16 +112,7 @@
                 <td tal:content="loop/label">kurze Beschreibung</td>
                 <td tal:content="loop/state">A</td>
                 <td tal:content="loop/MIMEType">text/html</td>
-                <td tal:content="python: loop['createDate'].strftime(site_properties.localLongTimeFormat)">2004-06-08</td>
-                <!--<td tal:content="python: loop['createDate']">2004-06-08</td>-->
-                <!--
-                <td>
-                    <ul  class="actions">                                   
-                        <li><a tal:attributes="href string:${portal_url}/fedora/getItem_html?${loop/params}">View</a></li>
-                        <li><a tal:attributes="href string:${portal_url}/fedora/getDatastream?${loop/params}">Edit</a></li>
-                    </ul>
-                </td>
-                -->
+                <td tal:content="python: loop['createDate']">2004-06-08</td>
             </tr>
         </tal:block>
     </table>
