@@ -811,11 +811,12 @@
             i18n:domain="qdc"
             tal:attributes="class python:test(error, 'field error', 'field')" >
             
+            <tal:comment tal:replace="nothing">
             <input class="date" maxlength="10" type="hidden" name="dateSubmitted" value="" tal:attributes="value request/dateSubmitted|submitted|nothing" />
             <input class="date" maxlength="10" type="hidden" name="dateAccepted" value="" tal:attributes="value request/dateAccepted|accepted|nothing" />
             <input class="date" maxlength="10" type="hidden" name="dateCopyrighted" value="" tal:attributes="value request/dateCopyrighted|copyrighted|nothing"/>
             
-            <tal:comment tal:replace="nothing">
+            </tal:comment>
                 <label i18n:translate="label_publishingdates">Dates of the publishing history</label>
                 <div tal:content="error">Validation error output</div>
                 <div class="formHelp" i18n:translate="help_dates">
@@ -833,7 +834,6 @@
                         <td><input class="date" maxlength="10" type="date" name="dateCopyrighted" value="" tal:attributes="value request/dateCopyrighted|copyrighted|nothing"/></td>
                     </tr>
                 </table>
-            </tal:comment>
             
         </div>
 
