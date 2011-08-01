@@ -808,9 +808,9 @@ class Fedora(UniqueObject, Folder):
             
             logger.info(response._dateSubmitted)
             try:
-                dateSubmitted = response._dateSubmitted
-                dateCopyrighted = response._dateCopyrighted
-                dateAccepted = response._dateAccepted
+                dateSubmitted =  strftime("%Y-%m-%d",response._dateSubmitted[0:6] + (0,1,-1))
+                dateCopyrighted =  strftime("%Y-%m-%d",response._dateCopyrighted[0:6] + (0,1,-1))
+                dateAccepted=  strftime("%Y-%m-%d",response._dateAccepted[0:6] + (0,1,-1))
             except:
                 dateSubmitted = None
                 dateCopyrighted = None
