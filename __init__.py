@@ -13,7 +13,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from config import *
 
 def initialize(context):
-    ##Import Types to register them
+    # Content Types
     import FedoraHierarchie
     import Volume
     import Issue
@@ -21,13 +21,19 @@ def initialize(context):
     import FedoraDocument
     import FedoraXML
     import FedoraMultimedia
+    import SubmissionFolder
+    import Submission
+    import Manuscript
+    import Review
+    import Attachment
+    # Tools
     import EditorialToolboxTool
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
     import DiPPManagementTool
     import BibTool
     import SectionsTool
-
+    import PeerReviewTool
 
 
     content_types, constructors, ftis = process_types(
@@ -38,7 +44,8 @@ def initialize(context):
              EditorialToolboxTool.toolbox,
              DiPPManagementTool.DiPPManagement,
              BibTool.BibTool,
-             SectionsTool.SectionsTool)
+             SectionsTool.SectionsTool,
+             PeerReviewTool.PeerReviewTool)
 
     utils.ToolInit(PROJECTNAME + ' Tools',
         tools = tools,

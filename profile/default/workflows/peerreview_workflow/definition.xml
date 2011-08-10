@@ -1,0 +1,632 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="peerreview_workflow"
+             title="peerreview_workflow"
+             state_variable="review_state"
+             initial_state="preparing">
+ <permission>Modify portal content</permission>
+ <permission>View</permission>
+ <permission>Manage properties</permission>
+ <permission>DiPPReview: View reviewer details</permission>
+ <permission>DiPPReview: Add the anonymized manuscript</permission>
+ <permission>DiPPReview: View the original manuscript</permission>
+ <permission>DiPPReview: View the original attachment</permission>
+ <permission>Access contents information</permission>
+ <permission>DiPPReview: Add Review</permission>
+ <permission>Request review</permission>
+ <permission>DiPPReview: View the anonymized manuscript</permission>
+ <permission>Add portal content</permission>
+ <permission>DiPPReview: View author details</permission>
+ <state state_id="accepted"
+        title="The manuscript is accepted for publication.">
+  <exit-transition transition_id="retract"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View reviewer details"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="Manage properties" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="considered"
+        title="The manucript is considered for publication">
+  <description>Select more than the needed reviewers, in case one declines. All material has to be anonymized prior to inviting the reviewers.</description>
+  <exit-transition transition_id="start_review"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: Add the anonymized manuscript"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View reviewer details"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the original attachment"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Author</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the original manuscript"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Author</permission-role>
+  </permission-map>
+  <permission-map name="Manage properties" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="pending" title="Waiting for reviews">
+  <description>The reviewers are invited and the reviews are awaited. The Sectioneditor comes to a decision based on the Revies.</description>
+  <exit-transition transition_id="reject"/>
+  <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="select_reviewer"/>
+  <exit-transition transition_id="decline_invitation"/>
+  <exit-transition transition_id="invite_reviewer"/>
+  <exit-transition transition_id="accept_invitation"/>
+  <exit-transition transition_id="submit_review"/>
+  <exit-transition transition_id="request_revision"/>
+  <exit-transition transition_id="exclude_reviewer"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+   <permission-role>pr_ReviewerInvited</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="Add portal content" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: Add Review"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: Add the anonymized manuscript"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="DiPPReview: View author details"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="DiPPReview: View reviewer details"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the anonymized manuscript"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the original attachment"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="DiPPReview: View the original manuscript"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="Manage properties" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="Request review" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+   <permission-role>pr_Reviewer</permission-role>
+   <permission-role>pr_ReviewerInvited</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="preparing"
+        title="Preparing the submission">
+  <description>Add all the details, manuscript and supplemantary files before you submit.</description>
+  <exit-transition transition_id="bypass"/>
+  <exit-transition transition_id="resubmit"/>
+  <exit-transition transition_id="submit"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: Add the anonymized manuscript"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View author details"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View reviewer details"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the anonymized manuscript"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the original manuscript"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Manage properties" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="rejected"
+        title="The manuscript is rejected">
+  <description>The manuscript is either deskrejected or rejected after the peer review.</description>
+  <exit-transition transition_id="reconsider"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View reviewer details"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="Manage properties" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="submitted"
+        title="The manuscript is submitted">
+  <description>The Sectioneditor will decide if the submission is considered for publication.</description>
+  <exit-transition transition_id="consider"/>
+  <exit-transition transition_id="deskreject"/>
+  <exit-transition transition_id="request_technical_revision"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View reviewer details"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="Manage properties" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_GuestEditor</permission-role>
+  </permission-map>
+ </state>
+ <transition transition_id="accept"
+             title="Accept the manuscript for publication"
+             new_state="accepted" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Accept the manuscript for publication</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>python:here.hasSufficientReviews()</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="accept_invitation"
+             title="Accept to be a Reviewer" new_state=""
+             trigger="USER" before_script=""
+             after_script="accept_invitation">
+  <action url="" category="workflow">Accept to be a Reviewer</action>
+  <guard>
+   <guard-role>Manager</guard-role>
+   <guard-role>pr_ReviewerInvited</guard-role>
+   <guard-role>Anonymous</guard-role>
+   <guard-expression>python:'pr_Reviewer' not in user.getRolesInContext(here) and 'pr_ReviewerDeclined' not in user.getRolesInContext(here)</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="bypass" title="Bypass workflow"
+             new_state="pending" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Bypass workflow</action>
+  <guard>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="consider"
+             title="Submission is not deskrejected but considered for publication."
+             new_state="considered" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Submission is not deskrejected but considered for publication.</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="decline_invitation"
+             title="Refuse to be a reviewer" new_state=""
+             trigger="USER" before_script=""
+             after_script="decline_invitation">
+  <action url="" category="workflow">Refuse to be a reviewer</action>
+  <guard>
+   <guard-role>Manager</guard-role>
+   <guard-role>Anonymous</guard-role>
+   <guard-role>pr_ReviewerInvited</guard-role>
+   <guard-expression>python:'pr_Reviewer' not in user.getRolesInContext(here) and 'pr_ReviewerDeclined' not in user.getRolesInContext(here)</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="deskreject"
+             title="Desk reject the manuscript"
+             new_state="rejected" trigger="USER"
+             before_script="" after_script="deskreject">
+  <action url="" category="workflow">Desk reject the manuscript</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="exclude_reviewer"
+             title="exclude_reviewer" new_state=""
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">exclude_reviewer</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="invite_reviewer"
+             title="Send invitation to reviewer"
+             new_state="" trigger="USER" before_script=""
+             after_script="invite_reviewer">
+  <action url="" category="workflow">Send invitation to reviewer</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="reconsider" title="reconsider"
+             new_state="considered" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">reconsider</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="reject"
+             title="Reject the manuscript"
+             new_state="rejected" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Reject the manuscript</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="request_revision"
+             title="Request a Revision"
+             new_state="preparing" trigger="USER"
+             before_script=""
+             after_script="request_revision">
+  <action url="" category="workflow">Request a Revision</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>python:here.hasSufficientReviews()</guard-expression>
+  </guard>
+  <assignment name="revision">python:int(state_change.status.get('revision',0))+1</assignment>
+ </transition>
+ <transition transition_id="request_technical_revision"
+             title="Request technical revision"
+             new_state="preparing" trigger="USER"
+             before_script=""
+             after_script="request_technical_revision">
+  <action url="" category="workflow">Request technical revision</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="resubmit"
+             title="Resubmit a manuscript"
+             new_state="submitted" trigger="USER"
+             before_script="" after_script="resubmit">
+  <action url="" category="workflow">Resubmit a manuscript</action>
+  <guard>
+   <guard-role>Owner</guard-role>
+   <guard-role>pr_Author</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>python:int(state_change.status.get('revision',0))&gt;0</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="retract"
+             title="Retract an accepted manuscript"
+             new_state="pending" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Retract an accepted manuscript</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="select_reviewer"
+             title="Select a reviewer" new_state=""
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Select a reviewer</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="start_review"
+             title="Start the review process"
+             new_state="pending" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Start the review process</action>
+  <guard>
+   <guard-role>Manager</guard-role>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-expression>python:here.isAnonymized()</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="submit"
+             title="Submit a manuscript"
+             new_state="submitted" trigger="USER"
+             before_script="" after_script="submit">
+  <action url="" category="workflow">Submit a manuscript</action>
+  <guard>
+   <guard-role>Owner</guard-role>
+   <guard-role>pr_Author</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>python:int(state_change.status.get('revision',0))==0</guard-expression>
+  </guard>
+ </transition>
+ <transition transition_id="submit_review"
+             title="Submit a report" new_state=""
+             trigger="USER" before_script=""
+             after_script="submit_review">
+  <action url="" category="workflow">Submit a report</action>
+  <guard>
+   <guard-role>pr_Reviewer</guard-role>
+   <guard-role>Manager</guard-role>
+   <guard-expression>python:here.userHasUploaded(here,user,'Review')</guard-expression>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="revision" for_catalog="True"
+           for_status="True" update_always="False">
+  <description>The current revision number of a submission</description>
+  <default>
+   <value type="string">0</value>
+   
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <script script_id="accept_invitation"
+         type="External Method" filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="accept_invitation"/>
+ <script script_id="decline_invitation"
+         type="External Method" filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="decline_invitation"/>
+ <script script_id="deskreject" type="External Method"
+         filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="deskreject"/>
+ <script script_id="invite_reviewer" type="External Method"
+         filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="invite_reviewer"/>
+ <script script_id="request_revision" type="External Method"
+         filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="request_revision"/>
+ <script script_id="request_technical_revision"
+         type="External Method" filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="request_technical_revision"/>
+ <script script_id="resubmit" type="External Method"
+         filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="resubmit"/>
+ <script script_id="submit" type="External Method"
+         filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="submit"/>
+ <script script_id="submit_review" type="External Method"
+         filename=""
+         module="DiPP.peerreview_workflow_scripts"
+         function="submit_review"/>
+</dc-workflow>

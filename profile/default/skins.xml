@@ -32,8 +32,12 @@
  <object name="fedora_content"
          meta_type="Filesystem Directory View"
          directory="DiPP/skins/fedora_content"/>
+ <object name="dipp_review"
+         meta_type="Filesystem Directory View"
+         directory="DiPP/skins/dipp_review"/>
          
  <skin-path name="*">
+    <layer name="dipp_review" insert-after="custom" />
     <layer name="dipp_content" insert-after="custom" />
     <layer name="dipp_forms" insert-after="custom" />
     <layer name="dipp_form_scripts" insert-after="custom" />

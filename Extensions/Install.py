@@ -9,6 +9,7 @@ from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.DiPP import dippworkflow_globals
 from Products.DiPP.config import PROJECTNAME, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
 from Products.DiPP.defaults import *
+from Products.DiPP.mail_templates import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
 from Products.Archetypes.public import listTypes
@@ -97,6 +98,70 @@ def install_properties(self, out, site_id=SITE_NAME):
     for prop_id, prop_value, prop_type in site_properties:
         if not site.hasProperty(prop_id):
             site.manage_addProperty(id = prop_id, value = prop_value, type = prop_type)
+            
+    if not hasattr(self.portal_properties, 'dippreview_properties'):
+        self.portal_properties.addPropertySheet('dippreview_properties', 'DiPPReview properties')
+       
+    props = self.portal_properties.dippreview_properties
+    
+    dippreview_properties = (
+        ('submission_counter',                    'int',    0),
+        ('submission_prefix',                     'string', 'dipp'),
+        ('max_review_time',                       'float',  70),
+        ('review_time',                           'float',  42),
+        ('min_reviewers',                         'int',    2),
+        ('friendly_reminder_times',               'lines',  (3,7,14)),
+        ('deadline_reminder_times',               'lines',  (7,2)),
+        ('due_reminder_times',                    'lines',  (1,4,10)),
+        ('abstract_length',                       'int',    2000),
+        ('manuscript_mimetypes',                  'lines',  ('application/rtf','application/pdf')),
+        ('additional_manuscript_files',           'boolean', True),
+        ('supplementary_mimetypes',               'lines',  ('application/rtf','application/pdf')),
+        ('votes',                                 'lines',  ('accept', 'accept with remarks', 'reject')),
+        ('email_header','text', EMAIL_HEADER),
+        ('email_footer','text', EMAIL_FOOTER),
+        ('submit_pr_sectioneditor_subject','string', SUBMIT_PR_SECTIONEDITOR_SUBJECT),
+        ('submit_pr_sectioneditor_mail','text', SUBMIT_PR_SECTIONEDITOR_MAIL),
+        ('submit_pr_author_subject','string', SUBMIT_PR_AUTHOR_SUBJECT),
+        ('submit_pr_author_mail','text', SUBMIT_PR_AUTHOR_MAIL),
+        ('submitreview_pr_sectioneditor_subject','string', SUBMITREVIEW_PR_SECTIONEDITOR_SUBJECT),
+        ('submitreview_pr_sectioneditor_mail','text', SUBMITREVIEW_PR_SECTIONEDITOR_MAIL),
+        ('submitreview_pr_reviewer_subject','string', SUBMITREVIEW_PR_REVIEWER_SUBJECT),
+        ('submitreview_pr_reviewer_mail','text', SUBMITREVIEW_PR_REVIEWER_MAIL),
+        ('requestrevision_pr_author_subject','string', REQUESTREVISION_PR_AUTHOR_SUBJECT),
+        ('requestrevision_pr_author_mail','text', REQUESTREVISION_PR_AUTHOR_MAIL),
+        ('reject_pr_reviewer_subject','string', REJECT_PR_REVIEWER_SUBJECT),
+        ('reject_pr_reviewer_mail','text', REJECT_PR_REVIEWER_MAIL),
+        ('reject_pr_author_subject','string', REJECT_PR_AUTHOR_SUBJECT),
+        ('reject_pr_author_mail','text', REJECT_PR_AUTHOR_MAIL),
+        ('invite_pr_reviewer_subject','string', INVITE_PR_REVIEWER_SUBJECT),
+        ('invite_pr_reviewer_mail','text', INVITE_PR_REVIEWER_MAIL),
+        ('friendly_reminder_pr_reviewer_subject','string', FRIENDLY_REMINDER_PR_REVIEWER_SUBJECT),
+        ('friendly_reminder_pr_reviewer_mail','text', FRIENDLY_REMINDER_PR_REVIEWER_MAIL),
+        ('due_reminder_pr_sectioneditor_subject','string', DUE_REMINDER_PR_SECTIONEDITOR_SUBJECT),
+        ('due_reminder_pr_sectioneditor_mail','text', DUE_REMINDER_PR_SECTIONEDITOR_MAIL),
+        ('due_reminder_pr_reviewer_subject','string', DUE_REMINDER_PR_REVIEWER_SUBJECT),
+        ('due_reminder_pr_reviewer_mail','text', DUE_REMINDER_PR_REVIEWER_MAIL),
+        ('deskreject_pr_author_subject','string', DESKREJECT_PR_AUTHOR_SUBJECT),
+        ('deskreject_pr_author_mail','text', DESKREJECT_PR_AUTHOR_MAIL),
+        ('decline_pr_sectioneditor_subject','string', DECLINE_PR_SECTIONEDITOR_SUBJECT),
+        ('decline_pr_sectioneditor_mail','text', DECLINE_PR_SECTIONEDITOR_MAIL),
+        ('deadline_reminder_pr_sectioneditor_subject','string', DEADLINE_REMINDER_PR_SECTIONEDITOR_SUBJECT),
+        ('deadline_reminder_pr_sectioneditor_mail','text', DEADLINE_REMINDER_PR_SECTIONEDITOR_MAIL),
+        ('deadline_reminder_pr_reviewer_subject','string', DEADLINE_REMINDER_PR_REVIEWER_SUBJECT),
+        ('deadline_reminder_pr_reviewer_mail','text', DEADLINE_REMINDER_PR_REVIEWER_MAIL),
+        ('accept_pr_sectioneditor_subject','string', ACCEPT_PR_SECTIONEDITOR_SUBJECT),
+        ('accept_pr_sectioneditor_mail','text', ACCEPT_PR_SECTIONEDITOR_MAIL),
+        ('accept_pr_reviewer_subject','string', ACCEPT_PR_REVIEWER_SUBJECT),
+        ('accept_pr_reviewer_mail','text', ACCEPT_PR_REVIEWER_MAIL),
+        ('accept_pr_author_subject','string', ACCEPT_PR_AUTHOR_SUBJECT),
+        ('accept_pr_author_mail','text', ACCEPT_PR_AUTHOR_MAIL)
+    )
+    
+    for prop_id, prop_type, prop_value in dippreview_properties:
+        if not hasattr(props, prop_id):
+            props._setProperty(prop_id, prop_value, prop_type)
+
 
 
 def configure_workflow(self, out, site_id=SITE_NAME):
@@ -310,14 +375,6 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     reftool.manage_role('Autor', ('Manage properties',))
     reftool.manage_role('Gastherausgeber', ('Manage properties',))
     
-    groups = ('Herausgeber', 'Redakteure', 'Gastherausgeber', 'Autoren', 'Manager', 'peerreviewer', 'sectioneditors')
-    
-    for group in groups:
-        site.portal_groups.addGroup(group,(),())
-        
-    print >> out, "Set roles to groups"
-    
-
     portal_actions = getToolByName(site, 'portal_actions')
 
     portal_actions.addAction(
@@ -346,6 +403,18 @@ def configure_workflow(self, out, site_id=SITE_NAME):
                 permission = '',
                 category = 'portal_tabs',
                 visible = 1)
+
+def install_groups(self, out, site_id=SITE_NAME):
+    
+    print >> out, "Configuring groups"
+    site = getSite(self, site_id)
+    groups = ('Herausgeber', 'Redakteure', 'Gastherausgeber', 'Autoren', 'Manager', 'peerreviewer', 'sectioneditors')
+    
+    for group in groups:
+        site.portal_groups.addGroup(group,(),())
+        
+    print >> out, "Set roles to groups"
+
 
 
 def getSite(self, site_id):
@@ -556,6 +625,7 @@ def uninstall_profiles(self, out, site_id=SITE_NAME):
     setup_tool.setImportContext('profile-CMFPlone:plone')
     print >> out, "Ran all uninstall steps."
 
+
 def install(self):
     """ install a dipp instance"""
     out = StringIO()
@@ -568,6 +638,7 @@ def install(self):
     install_profiles(self,out)
     install_configlet(self, out)
     install_content(self, out)
+    install_groups(self, out)
     install_tools(self, out)
     create_vocabularies(self, out)
     create_indexes(self, out)

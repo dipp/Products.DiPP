@@ -1,7 +1,8 @@
-#Fri Jul 01 11:12:52 CEST 2011
+#Wed Aug 10 14:32:07 CEST 2011
 eclipse.preferences.version=1
 encoding//Extensions/Install.py=utf-8
 encoding//Extensions/cleanupTemp.py=utf-8
+encoding/Attachment.py=utf-8
 encoding/BibTool.py=utf-8
 encoding/EditorialToolboxTool.py=utf-8
 encoding/Fedora2DiPP2Tool.py=utf-8
@@ -11,6 +12,11 @@ encoding/FedoraDocument.py=utf-8
 encoding/FedoraHierarchie.py=utf-8
 encoding/FedoraMultimedia.py=utf-8
 encoding/Issue.py=utf-8
+encoding/Manuscript.py=utf-8
+encoding/PeerReviewTool.py=utf-8
+encoding/Review.py=utf-8
 encoding/SectionsTool.py=utf-8
+encoding/Submission.py=utf-8
+encoding/SubmissionFolder.py=utf-8
 encoding/__init__.py=utf-8
 encoding/defaults.py=utf-8

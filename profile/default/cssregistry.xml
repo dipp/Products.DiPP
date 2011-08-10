@@ -19,14 +19,10 @@
   See registerStylesheet() arguments in
   ResourceRegistries/tools/CSSRegistry.py for the latest list of all available
   keys and default values.
-  STYLESHEETS = (
-    {'id': "dipp.css", 'media': 'screen', 'rendering': 'import'},
-    {'id': "tabber.css", 'media': 'screen', 'rendering': 'import'},
-    {'id': "dipp_article.css", 'media': 'all', 'rendering': 'import'},
-    {'id': "dipp_article_print.css", 'media': 'print', 'rendering': 'import'}
-)
+
    -->
  <stylesheet id="dipp.css"  media="screen" rendering="import"/>
+ <stylesheet id="dippreview.css"  media="screen" rendering="import"/>
  <stylesheet id="tabber.css"  media="screen" rendering="import"/>
  <stylesheet id="dipp_article.css"  media="all" rendering="import"/>
  <stylesheet id="dipp_article_print.css"  media="print" rendering="import"/>

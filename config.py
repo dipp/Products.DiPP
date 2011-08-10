@@ -52,8 +52,10 @@ DEFAULT_METADATA = (
     ('contributor', True, False, '') 
 )
 
+SUBMISSION_FILENAME_FORMAT = "rev"
+
 TOOLS = (
-    ('Fedora2DiPP3','BibTool','DiPP Sections Tool')
+    ('Fedora2DiPP3','BibTool','DiPP Sections Tool', 'DiPP Peerreview Tool')
 )
 
 INDEXES = (

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <property
+    name="title">Contains workflow definitions for your portal</property>
+ <object name="peerreview_workflow" meta_type="Workflow"/>
+ <object name="review_workflow" meta_type="Workflow"/>
+ <bindings>
+  <type type_id="Attachment">
+   <bound-workflow workflow_id="peerreview_workflow"/>
+  </type>
+  <type type_id="Manuscript">
+   <bound-workflow workflow_id="peerreview_workflow"/>
+  </type>
+  <type type_id="Review">
+   <bound-workflow workflow_id="review_workflow"/>
+  </type>
+  <type type_id="Submission">
+   <bound-workflow workflow_id="peerreview_workflow"/>
+  </type>
+ </bindings>
+</object>

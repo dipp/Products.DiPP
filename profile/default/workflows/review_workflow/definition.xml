@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="review_workflow"
+             title="review_workflow"
+             state_variable="review_state"
+             initial_state="submitted">
+ <permission>DiPPReview: View the reviewers report for the author</permission>
+ <permission>DiPPReview: View the reviewers report for the editor</permission>
+ <permission>Modify portal content</permission>
+ <state state_id="approved" title="approved">
+  <exit-transition transition_id="retract"/>
+  <permission-map name="DiPPReview: View the reviewers report for the author"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>pr_Author</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the reviewers report for the editor"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="submitted" title="submitted">
+  <exit-transition transition_id="approve"/>
+  <permission-map name="DiPPReview: View the reviewers report for the author"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="DiPPReview: View the reviewers report for the editor"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>pr_SectionEditor</permission-role>
+   <permission-role>pr_EditorInChief</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+  </permission-map>
+ </state>
+ <transition transition_id="approve" title="approve"
+             new_state="approved" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">approve</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="retract" title="retract"
+             new_state="submitted" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">retract</action>
+  <guard>
+   <guard-role>pr_SectionEditor</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+</dc-workflow>
