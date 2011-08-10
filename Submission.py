@@ -20,10 +20,8 @@ from AccessControl import ClassSecurityInfo
 from Products.Archetypes.atapi import *
 from Products.DiPP.config import *
 import Permissions
-##code-section module-header #fill in your manual code here
 from Products.CMFCore.permissions import ManagePortal, ManageProperties
 from StringIO import StringIO
-##/code-section module-header
 
 schema = Schema((
 
