@@ -310,7 +310,7 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     reftool.manage_role('Autor', ('Manage properties',))
     reftool.manage_role('Gastherausgeber', ('Manage properties',))
     
-    groups = ('Herausgeber', 'Redakteure', 'Gastherausgeber', 'Autoren','Manager')
+    groups = ('Herausgeber', 'Redakteure', 'Gastherausgeber', 'Autoren', 'Manager', 'peerreviewer', 'sectioneditors')
     
     for group in groups:
         site.portal_groups.addGroup(group,(),())
