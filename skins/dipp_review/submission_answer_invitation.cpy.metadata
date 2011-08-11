@@ -1,0 +1,8 @@
+[default]
+title=Submit a manuscript
+#proxy=pr_ReviewerInvited 
+proxy=Manager
+
+[actions]
+#action.success=redirect_to:request/submission_view|string:view
+action.success=redirect_to:string:${portal_url}/confirm

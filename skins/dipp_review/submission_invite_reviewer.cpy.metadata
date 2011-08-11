@@ -1,0 +1,9 @@
+[default]
+title=Submit a manuscript
+#proxy=Manager
+
+[validators]
+validators = validate_invite
+
+[actions]
+action.success=redirect_to:request/submission_view|string:view

@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="DiPPReview">
+    <body>
+
+        <div metal:fill-slot="main">
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
+
+            <h1  class="documentFirstHeading" i18n:translate="heading_sections">
+              Departments
+            </h1>
+            
+            <p class="documentDescription" i18n:translate="description_sections">
+                Manage the available departments
+            </p>
+  
+            <div tal:define="path python:'/'.join(here.getPhysicalPath()); 
+                             sections python:here.portal_catalog(portal_type='Section', path=path)">
+                <dl>
+                    <tal:block tal:repeat="section sections">
+                        <tal:block tal:define="editors python: here.getSectionEditors(here,section.getId)">
+                            <dt tal:content="section/Title"></dt>
+                            <tal:block tal:repeat="editor editors">
+                            <dd tal:content="editor/fullname"></dd>
+                            </tal:block>
+                        </tal:block>
+                    </tal:block>
+                </dl>
+            </div>
+
+        </div>
+
+    </body>
+</html>

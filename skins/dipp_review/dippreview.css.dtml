@@ -1,0 +1,167 @@
+/*
+ *  This is the file where you put your CSS changes. 
+ *  You should preferrably use this and override the 
+ *  relevant properties you want to change here instead 
+ *  of customizing plone.css to survive upgrades. Writing
+ *  your own plone.css only makes sense for very heavy 
+ *  customizations. Useful variables from Plone are 
+ *  documented at the bottom of this file.
+ */
+ 
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+/* Submission overview */
+
+tbody.preparing tr.odd,
+tbody.preparing tr.even
+{
+    background-color: #ffffff;
+}
+
+tbody.preparing {
+    border-bottom: double &dtml-globalBorderColor;;
+}
+
+.pending {color: orange }
+.accepted {color: green }
+.declined {color: red }
+.notinvited {color: black }
+
+table.fields th,
+table.fields td {
+    padding: 0 0.5em 0 0.5em;
+}
+table.fields th {
+    text-align: left;
+}
+a.invite-button {
+    background: transparent url(&dtml-portal_url;/edit.gif) 2px 1px no-repeat;
+    border: 1px solid black;
+    border-color: &dtml-globalBorderColor;;
+    padding: 2px 2px 2px 18px;
+}
+textarea .mail_template {
+    height: 150px;
+}
+
+#review_messages {
+    background-color: #ffff90;
+    border: &dtml-borderWidth; &dtml-borderStyle; #ffff0e;
+    color: &dtml-fontColor;;
+    margin: 1em 0em;
+    padding: 0.5em 1em 0.5em 3em;
+    vertical-align: middle;
+    background-image: url(&dtml-portal_url;/info_icon.gif);
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+}
+
+/* the overlayed element */
+.modalInput {
+    display: none;
+}
+div.modal div.field {
+    padding: 1em 1em 0 1em;
+    border: 1px solid &dtml-globalBorderColor;;
+    margin: 0;
+}
+div.modal div.formControls {
+    background-color: &dtml-globalBackgroundColor;;
+    margin: 0 -1em 0 -1em;
+    padding: 1em;
+    text-align: right;
+}
+div.modal {
+        background-color:#fff;
+        display:block;
+        /*width:600px;
+        padding:15px;
+        text-align:left;
+        border:2px solid #333;
+        opacity:1;
+        -moz-border-radius:6px;
+        -webkit-border-radius:6px;
+        -moz-box-shadow: 0 0 50px #ccc;
+        -webkit-box-shadow: 0 0 50px #ccc;*/
+    }
+
+
+/* </dtml-with> */
+
+/* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
+
+ /* You can insert colors and other variables from Plone's 
+    base_properties by doing:
+    
+    & dtml-variableName ; (without the spaces, excluded here to not make it render)
+    
+    Example:
+    
+    myLink {
+        color: & dtml-fontColor ;   (again, without the spaces)
+    }
+ 
+   This means you can generate your own elements that use Plone's defaults,
+   and respect any customizations people have done. See base_properties for
+   the default values.
+ 
+   These are the available properties:
+   
+   logoName - the file name of the portal logo
+   
+   fontFamily - the font family used for all text that is not headers
+   
+   fontBaseSize - the base font size that everything is calculated from
+   
+   fontColor - the main font color
+   
+   fontSmallSize - used for various elements like buttons and discreet text
+   
+   discreetColor - the font color of discreet text
+
+   backgroundColor - the background color 
+   
+   linkColor - the color used on normal links
+
+   linkActiveColor - color used on active links
+
+   linkVisitedColor - color used on visited links
+   
+   borderWidth - the width of most borders in Plone
+   
+   borderStyle - the style of the border lines, normally solid
+   
+   borderStyleAnnotations - style of border lines on comments etc
+   
+   globalBorderColor - the border color used on the main tabs, the portlets etc
+   
+   globalBackgroundColor - background color for the selected tabs, portlet headings etc
+   
+   globalFontColor - the color of the font in the tabs and in portlet headings
+   
+   headingFontFamily - font family for h1/h2/h3/h4/h5/h6 headlines
+   
+   contentViewBorderColor - the content view tabs border color
+   
+   contentViewBackgroundColor - the content view tabs background color
+   
+   contentViewFontColor - the font color used in the content view tabs
+   
+   inputFontColor - the font color used for input elements
+   
+   textTransform - whether to lowercase text in portlets, tabs etc.
+   
+   evenRowBackgroundColor - the background color of even rows in listings
+   
+   oddRowBackgroundColor - the background color of even rows in listings
+   
+   notifyBorderColor - border color of notification elements like the status message, the calendar focus
+   
+   notifyBackgroundColor - background color of notification elements like the status message, the calendar focus
+   
+   helpBackgroundColor - background color of information pop-ups (currently not used)
+          
+ */
+
+

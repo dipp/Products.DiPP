@@ -1,0 +1,5 @@
+[default]
+title=Submissons overview
+
+[security]
+View=0:Authenticated

@@ -1,0 +1,12 @@
+[default]
+title=Submit manuscript
+
+[security]
+View=0:Authenticated
+
+[validators]
+validators = validate_submission, validate_manuscript_mimetype
+#validators = validate_submission
+
+[actions]
+action.success = traverse_to:string:manuscript_submit

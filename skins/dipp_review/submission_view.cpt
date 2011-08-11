@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="DiPPReview">
+
+
+  <body>
+  
+    <metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+    <metal:override fill-slot="column_two_slot" />
+    <!--
+      NOTE: This form is used in two different ways - from folder_contents,
+      allowing you to publish several things at once, and from the state
+      drop-down. In the first case, the 'paths' request parameter is set;
+      in the second case, giving the relative paths to the content object
+      to manipulate; in the second case, this parameter is omitted and the
+      path of the context is used.
+    -->
+
+    <div metal:fill-slot="main"
+         tal:define="errors options/state/getErrors;
+                     revision here/current_revision|nothing;
+                     review_state wf_state;
+                     paths python:request.get('paths', ['/'.join(here.getPhysicalPath())]);
+                     batch python:here.getObjectsFromPathList(paths,batch=True);
+                     folders_in_publishing python:[o.getId for o in batch if o.isPrincipiaFolderish];
+                     came_from python:request.get('HTTP_REFERER', here.absolute_url()).split('?')[0];
+                     dummy python:request.set('orig_template', template_id);
+                     wf_state item/review_state|python: wtool.getInfoFor(here, 'review_state', '');
+                     state_title python:wtool.getTitleForStateOnType(wf_state, here.portal_type)
+                     ">
+
+      <metal:block tal:condition="python: paths and not batch"
+                   tal:replace="python:here.redirectToReferrer('The item(s) you selected are no longer available.')"/>
+
+    <div metal:use-macro="here/document_actions/macros/document_actions">
+	    Document actions (print, sendto etc)
+	</div>
+	
+	<h1 tal:condition="python: wf_state == 'preparing'" 
+        class="documentFirstHeading">
+	    Submission: Step 2 of 2
+	</h1>
+
+	<h1 tal:condition="python: wf_state != 'preparing'" 
+        class="documentFirstHeading" 
+        tal:content="state_title">
+	    Artikeltitel
+	</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:define="parent python:here.getParentNode();
+                   parent_url python:parent.absolute_url()"
+       tal:condition="parent_url"
+       tal:attributes="href string:${parent_url}/submissions_overview"
+       i18n:translate="label_back_to_submissions_overview">
+        Back to submission overview
+    </a>
+    <div tal:condition="not: request/paths|nothing">
+
+      <div metal:use-macro="here/document_byline/macros/byline">
+        Get the byline - contains details about author and modification date.
+      </div>
+      
+      <div class="discret">
+      		Revision (wf): <tal:block tal:replace="python:wtool.getInfoFor(here, 'revision', '')" />
+      </div>
+      <div class="discret">
+            Revision (obj): <tal:block tal:replace="here/getCurrent_revision" />
+      </div>
+
+    </div>
+	
+
+    <div  metal:use-macro="context/submission_view_info/macros/manuscript_info">
+      Show some Info about the submitted manuscript
+    </div>
+
+    <div  metal:use-macro="context/author_macros/macros/author_preparing">
+        Things the Author can do when manuscript is state "preparing"
+    </div>
+
+    <div  metal:use-macro="context/sectioneditor_macros/macros/sectioneditor_submitted">
+        Things the sectioneditor can do when manuscript is state "submitter"
+    </div>
+
+    <div  metal:use-macro="context/sectioneditor_macros/macros/sectioneditor_considered">
+        Things the Sectioneditor can do when manuscript is state "considered"
+    </div>
+
+    <div  metal:use-macro="context/sectioneditor_macros/macros/sectioneditor_inviting">
+        Things the Sectioneditor can do when manuscript is state "inviting"
+    </div>
+
+    <div  metal:use-macro="context/reviewerinvited_macros/macros/reviewerinvited_inviting">
+        Things an invited reviewer can do when manuscript is state "inviting"
+    </div>
+
+    <div  metal:use-macro="context/sectioneditor_macros/macros/sectioneditor_pending">
+        Things the Sectioneditor can do when manuscript is state "pending"
+    </div>
+
+    <div  metal:use-macro="context/reviewer_macros/macros/reviewer_pending">
+        Things the reviewer can do when manuscript is state "pending"
+    </div>
+
+    <div  metal:use-macro="context/review_messages/macros/messages">
+        Hints and messages during the workflow
+    </div>
+
+
+
+    </div>
+
+  </body>
+</html>

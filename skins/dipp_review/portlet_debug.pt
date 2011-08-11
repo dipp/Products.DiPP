@@ -1,0 +1,35 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="DiPPReview">
+
+<body>
+
+<div metal:define-macro="portlet"  
+    tal:omit-tag="">
+
+	<dl class="portlet" id="portlet-debug">
+
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span>debug infos</span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem">
+    <div style="background-color: #eeff7d; padding: 1em; border: 1px solid red;">
+        user: <tal:block tal:replace="user" /><br />
+        creator: <tal:block tal:replace="here/Creator" /><br />
+        state: <tal:block tal:replace="wf_state" /><br />
+        local roles: <tal:block tal:replace="python:user.getRolesInContext(here)" /><br />
+        global roles: <tal:block tal:replace="python:user.getRoles()" /><br />
+        transitions: <tal:block tal:replace="python:here.availableWorkflowTransitions(here)" />
+    </div>
+
+            
+        </dd>
+	</dl>
+
+</div>
+
+</body>
+
+</html>

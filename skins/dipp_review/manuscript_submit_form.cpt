@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="DiPPReview">
+
+    <metal:block fill-slot="top_slot">
+        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0');" />
+    </metal:block>
+
+
+    <body>
+    
+        <div metal:fill-slot="main">
+  
+            <div metal:use-macro="here/document_actions/macros/document_actions">
+                Document actions (print, sendto etc)
+            </div>
+
+            <h1  class="documentFirstHeading" i18n:translate="heading_submission_step_one">
+              Submission step 1 of 2: Enter submission details and upload manuscript
+            </h1>
+                        
+            <div tal:define="journalTitle portal_properties/title">
+                   <div class="formHelp" i18n:translate="info_article_submit" style="padding-bottom:1em;padding-top:1em;">
+                       Please use this form to submit your article to <span i18n:name="journal_title"><em tal:replace="journalTitle"></em></span>. The required fields are marked with a red dot
+                       <span class="fieldRequired" title="Required"
+                                  i18n:attributes="title"
+                                  i18n:domain="plone"
+                                  i18n:translate="label_required">(Required)</span>
+                    </div>
+            </div>
+
+            <form method="post"
+                  enctype="multipart/form-data"
+                  tal:define="errors options/state/getErrors;
+                              academictitle python:member.getProperty('academictitle','');
+                              givenname python:member.getProperty('givenname','');
+                              surname python:member.getProperty('surname','');
+                              fullname string:$givenname $surname;
+                              organization python:member.getProperty('organization','');
+                              postaladdress python:member.getProperty('postaladdress','');
+                              postalcode python:member.getProperty('postalcode','');
+                              location python:member.getProperty('location','');
+                              phone python:member.getProperty('phone','');
+                              email python:member.getProperty('email','');"
+                  tal:attributes="action string:${here/absolute_url}/${template/id};">
+
+                <input type="hidden" name="form.submitted" value="1" />
+
+                <div id="archetypes-fieldname-title" class="field ArchetypesStringWidget"
+                    tal:define="error errors/title|nothing;
+                                title request/title|nothing"
+                    tal:attributes="class python:test(error, 'field error', 'field')">
+                    <label for="title" i18n:translate="DiPPReview_label_manuscript_title">Manuscript title</label>
+                    <span class="fieldRequired" title="Required"
+                           i18n:attributes="title"
+                           i18n:domain="plone"
+                           i18n:translate="label_required">(Required)</span>
+                    <div tal:content="error">Validation error output</div>
+                    <div class="formHelp" i18n:translate="DiPPReview_help_manuscript_title">
+                        The full title of your manuscript.
+                    </div>
+                    <input type="text" name="title" id="title" value="" tal:attributes="value title" />
+                </div>
+                
+                <div class="field"
+                    tal:define="error errors/manuscript_authors|nothing;
+                                corresponding_author string:$givenname $surname, $organization;
+                                empty_list python:[];
+                                default_list python: empty_list.append(corresponding_author); 
+                                list_of_authors request/manuscript_authors|empty_list;
+                                request_authors python:'\n'.join(list_of_authors);
+                                manuscript_authors request_authors|corresponding_author|nothing"
+                    tal:attributes="class python:test(error, 'field error', 'field')">
+                    <label for="manuscript_authors" i18n:translate="DiPPReview_label_manuscripts_authors">Authors</label>
+                    <span class="fieldRequired" title="Required"
+                           i18n:attributes="title"
+                           i18n:domain="plone"
+                           i18n:translate="label_required">(Required)</span>
+                    <div tal:content="error">Validation error output</div>
+                    <div class="formHelp" i18n:translate="DiPPReview_help_manuscripts_authors">
+                    The names and affiliations of all authors in the form first name, last name, affiliation.
+                    </div>
+                    <textarea tal:content="manuscript_authors" id="manuscript_authors" name="manuscript_authors:lines" cols="40" rows="5">
+                    </textarea>
+                </div>
+                
+                <div class="field"
+                    tal:define="error errors/manuscript_abstract|nothing;
+                                default_length python:1500;
+                                manuscript_abstract request/manuscript_abstract|nothing;
+                                abstract_length here/portal_properties/dippreview_properties/abstract_length|default_length"
+                    tal:attributes="class python:test(error, 'field error', 'field')">
+                    <label for="manuscript_abstract" i18n:translate="DiPPReview_label_manuscript_abstract">Abstract</label>
+                    <span class="fieldRequired" title="Required"
+                           i18n:attributes="title"
+                           i18n:domain="plone"
+                           i18n:translate="label_required">(Required)</span>
+                    <div tal:content="error">Validation error output</div>
+                    <div class="formHelp" i18n:translate="DiPPReview_help_manuscript_abstract">
+                        The abstract of your manuscript. Use only plain text and a maximum of <span tal:replace="abstract_length">25</span> letters.
+
+                    </div>
+                    <textarea id="manuscript_abstract" name="manuscript_abstract" tal:content="manuscript_abstract" cols="40" rows="5"></textarea>
+                </div>
+
+                <div class="field"
+                    tal:define="error errors/manuscript_file|nothing;
+                                mimetypes here/portal_properties/dippreview_properties/manuscript_mimetypes|nothing"
+                    tal:attributes="class python:test(error, 'field error', 'field')">
+
+                    <label for="manuscript_file" i18n:translate="DiPPReview_label_manuscript_file">Manuscript file</label>
+                    <span class="fieldRequired" title="Required"
+                           i18n:attributes="title"
+                           i18n:domain="plone"
+                           i18n:translate="label_required">(Required)</span>
+                    <div tal:content="error">Validation error output</div>
+                    <div class="formHelp">
+                        <span i18n:translate="DiPPReview_help_manuscript_file">
+                            Browse your local harddisk to upload the main manuscript file. Any supplementary 
+                            material can be added in the second step of the submission process.
+                            The fileformat of your article should be one of the following:
+                        </span>
+                        <ul style="display: inline">
+                            <li style="display: inline" tal:repeat="mimetype mimetypes">
+                                <span tal:content="python: mimetype.split('/')[-1]">application/rtf</span><span>,</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="file" id="manuscript_file" name="manuscript_file" value="" />
+                </div>
+                
+                <div class="field"
+                     tal:define="error errors/section|nothing;
+                                 lang request/LANGUAGE|nothing;
+                                 section request/section|nothing;
+                                 sections python: here.dipp_sections.getSections(lang=request.LANGUAGE)"
+                      tal:attributes="class python:test(error, 'field error', 'field')">
+
+                    <label for="section" i18n:translate="DiPPReview_label_section">Department</label>
+                    <span class="fieldRequired" title="Required"
+                           i18n:attributes="title"
+                           i18n:domain="plone"
+                           i18n:translate="label_required">(Required)</span>
+                    <div tal:content="error">Validation error output</div>
+                    <div class="formHelp" i18n:translate="DiPPReview_help_section">
+                            Choose the department in which your submission should appear.
+                    </div>
+                    <select name="section" id="section" size="5">
+                        <option value="">--- Please select a department ---</option>
+                        <tal:block tal:repeat="asection sections">
+	                        <option tal:condition="python: asection['allow'] and asection['editor']"
+	                                tal:attributes="value asection/id;
+	                                                selected python:asection['id'] == section"
+	                                tal:content="asection/title">
+	                        Accounting
+	                        </option>
+	                    </tal:block>
+                    </select>
+                
+                </div>
+
+                <div class="field"
+                    tal:define="error errors/agb|nothing;"
+                    tal:attributes="class python:test(error, 'field error', 'field')">
+
+                    <label i18n:translate="DiPPReview_label_agb">Term and Conditions</label>
+                    <span class="fieldRequired" title="Required"
+                           i18n:attributes="title"
+                           i18n:domain="plone"
+                           i18n:translate="label_required">(Required)</span>
+                    <div tal:content="error">Validation error output</div>
+                    <div class="formHelp" i18n:translate="DiPPReview_help_agb">
+                            I agree to the <a href="" tal:attributes="href string:$portal_url/copyright">Terms and Conditions</a>.
+                    </div>
+                    <input type="checkbox" name="agb" checked="" tal:attributes="checked python:path('request/agb | nothing') == 'on'" />
+                </div>
+                
+                
+                <input type="submit" 
+                       name="submit" 
+                       value="Check details and upload additional material" 
+                       i18n:domain="plone"
+                       i18n:attributes="value"/>
+
+            </form>            
+        </div>
+
+    </body>
+</html>

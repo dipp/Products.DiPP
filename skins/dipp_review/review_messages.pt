@@ -1,0 +1,19 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="DiPPReview">
+    <body>
+        <div metal:define-macro="messages"
+             tal:define="is_sectioneditor python:user.has_role(['pr_SectionEditor'],context);
+                         is_author python:user.has_role(['pr_Author'],context)">
+             
+            <div id="review_messages" tal:condition="python: wf_state=='submitted' and is_author">
+                You will be notified of the outcome of the review process via email.
+             </div>
+            <div id="review_messages" tal:condition="python: wf_state=='considered' and is_sectioneditor and not here.isAnonymized()">
+                Before the actual review can start we have to anonymize all files.
+                <!--<tal:block tal:replace="here/hasSufficientReviews"/> -->    
+             </div>
+
+         </div>
+    </body>
+</html>

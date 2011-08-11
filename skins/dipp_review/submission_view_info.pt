@@ -1,0 +1,152 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPPReview">
+    <body>
+        <div metal:define-macro="manuscript_info"
+             tal:define="path python:'/'.join(here.getPhysicalPath())">
+            
+            <h2>Metadata</h2>
+
+            <table class="listing"
+                   summary="Submission details"
+                   tal:define="submission_date here/getDate_submitted|nothing;
+                               today           python: DateTime();
+                               diff            python: today - DateTime(submission_date)">
+                <tr>
+                    <th>Submission ID</th>
+                    <td tal:content="here/id"></td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>
+                        <span tal:condition="submission_date" tal:content="python: toLocalizedTime(submission_date,long_format=True)">2008-04-01</span>,
+                        <span tal:content="python: '(%.0f days ago)' % diff"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td tal:content="here/title_or_id"></td>
+                </tr>
+                <tr tal:define="section here/section|nothing">
+                    <th>Section</th>
+                    <td tal:content="python:here.dipp_sections.getSectionById(section, request.get('LANGUAGE', 'all'))['title']"></td>
+                </tr>
+                <tr tal:define="authors here/getManuscript_authors|nothing"
+                    tal:condition="authors">
+                    <th>Authors</th>
+                    <td>
+                        <ul>
+                            <li tal:repeat="author authors">
+                                <span tal:replace="author" />
+                            </li>
+                        </ul>
+                    </td>
+                 </tr>
+                 <tr>
+                    <th>Abstract</th>
+                    <td tal:content="here/manuscript_abstract"></td>
+                </tr>
+            </table>
+
+            <h2>Files</h2>
+            <table class="listing"
+                   tal:define="manuscripts python:here.portal_catalog(Type='Manuscript', path=path, sort_on='getRevision', sort_order='reverse');
+                               attachments python:here.portal_catalog(Type='Attachment', path=path, sort_on='getRevision', sort_order='reverse');
+                               viewanonymmanuscript python: user.has_permission('DiPPReview: View the anonymized manuscript', here);
+                               vieworiginalmanuscript python: user.has_permission('DiPPReview: View the original manuscript', here);
+                               addanonymmanuscript python: user.has_permission('DiPPReview: Add the anonymized manuscript', here)">
+                <tr>
+                    <th>Manuscript ID</th>
+                    <th>Revision</th>
+                    <th tal:condition="vieworiginalmanuscript">Original</th>
+                    <th>Anonymized</th>
+                </tr>
+                <tr tal:condition="manuscripts"
+                    tal:repeat="manuscript manuscripts">
+                    <tal:block tal:define="obj           python:manuscript.getObject();
+                                           url           manuscript/getURL;
+                                           revision      manuscript/getRevision|nothing;
+                                           original      obj/original;
+                                           anonym        obj/anonym;
+                                           original_name original/filename;
+                                           anonym_name   anonym/filename;
+                                           original_size python:here.getObjSize(original);
+                                           anonym_size   python:here.getObjSize(anonym)">
+                        <td tal:content="manuscript/getId">man-123</td>
+                        <td tal:content="revision">0</td>
+                        <td tal:condition="vieworiginalmanuscript">
+                            <a tal:attributes="href string:$url/at_download/original"
+                               tal:content="string: $original_name ($original_size)">origial.pdf (1.4 MB)</a>
+                        </td>
+                        <td>
+                            <a tal:attributes="href string:$url/at_download/anonym"
+                               tal:condition="python: anonym_size != '0 kB'"
+                               tal:content="string: $anonym_name ($anonym_size)">anonym.pdf (1.4 MB)</a>
+                            <form tal:condition="python: anonym_size == '0 kB' and addanonymmanuscript" 
+                                  enctype="multipart/form-data"
+                                  method="post"
+                                  tal:attributes="action string:$here_url/$template_id">
+                                <input type="hidden" name="form.submitted" value="1" />
+                                <input type="hidden" name="fileid" value="" tal:attributes="value manuscript/id" />
+                                <input type="file" name="file"/>
+                                <input type="submit"
+                                       value="Add anonymized file"
+                                       name="form.button.AnonymizeFile"/>
+                            </form>
+                    </tal:block>
+                </tr>
+                <tr>
+                    <td align="center" colspan="4" tal:condition="not:manuscripts">
+                        <em>no manuscripts</em>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Attachment ID</th>
+                    <th>Revision</th>
+                    <th tal:condition="vieworiginalmanuscript">Original</th>
+                    <th>Anonymized</th>
+                </tr>
+                <tr tal:condition="attachments"
+                    tal:repeat="attachment attachments">
+                    <tal:block tal:define="obj           python:attachment.getObject();
+                                           url           attachment/getURL;
+                                           revision      attachment/getRevision|nothing;
+                                           original      obj/original;
+                                           anonym        obj/anonym;
+                                           original_name original/filename;
+                                           anonym_name   anonym/filename;
+                                           original_size python:here.getObjSize(original);
+                                           anonym_size   python:here.getObjSize(anonym)">
+                        <td tal:content="attachment/getId">man-123</td>
+                        <td tal:content="revision">0</td>
+                        <td tal:condition="vieworiginalmanuscript">
+                            <a tal:attributes="href string:$url/at_download/original"
+                               tal:content="string: $original_name ($original_size)">origial.pdf (1.4 MB)</a>
+                        </td>
+                        <td>
+                            <a tal:attributes="href string:$url/at_download/anonym"
+                               tal:condition="python: anonym_size != '0 kB'"
+                               tal:content="string: $anonym_name ($anonym_size)">anonym.pdf (1.4 MB)</a>
+                            <form tal:condition="python: anonym_size == '0 kB' and addanonymmanuscript" 
+                                  enctype="multipart/form-data"
+                                  method="post"
+                                  tal:attributes="action string:$here_url/$template_id">
+                                <input type="hidden" name="form.submitted" value="1" />
+                                <input type="hidden" name="fileid" value="" tal:attributes="value attachment/id" />
+                                <input type="file" name="file"/>
+                                <input type="submit"
+                                       value="Add anonymized file"
+                                       name="form.button.AnonymizeFile"/>
+                            </form>
+                        </td>
+                    </tal:block>
+                </tr>
+                <tr>
+                    <td align="center" colspan="4" tal:condition="not:attachments">
+                        <em>no attachments</em>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

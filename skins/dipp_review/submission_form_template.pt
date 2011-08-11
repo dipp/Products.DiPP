@@ -1,0 +1,32 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    i18n:domain="DiPPReview">
+    <body>
+
+        <div metal:define-macro="form_template">
+          <form enctype="multipart/form-data"
+                tal:define="errors options/state/getErrors"
+                id="edit_form"
+                name="edit_form"
+                method="post"
+                action="content_status_modify"
+                tal:attributes="action string:$here_url/$template_id"
+                tal:condition="not:python:paths and not batch">
+
+                <input type="hidden" name="form.submitted" value="1" />
+                <input type="hidden" id="include_children" name="include_children" value="1" />
+                <input type="hidden" value="" tal:attributes="value python:'/'.join(here.getPhysicalPath())" name="paths:list"/>
+                <input type="hidden" name="orig_template"
+                       tal:condition="request/orig_template|nothing"
+                       tal:attributes="value request/orig_template"/>
+
+                
+                    <div metal:define-slot="transition_actions">
+                        Space for comment fields, button, etc
+                    </div>
+
+            </form>
+        </div>
+
+    </body>
+</html>
