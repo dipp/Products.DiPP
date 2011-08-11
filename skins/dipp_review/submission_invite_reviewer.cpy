@@ -11,11 +11,10 @@
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
  
-#context.plone_log("reviewer_id:" + reviewer_id)
-context.plone_log(reviewer_id)
+context.plone_log("reviewer_id:" + reviewer_id)
+
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
-
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 
