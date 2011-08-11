@@ -312,10 +312,6 @@ def configure_workflow(self, out, site_id=SITE_NAME):
 
     print >> out,'DiPP Workflow Setup Done\n Finished\n'
 
-    site._addRole('Redakteur')
-    site._addRole('Herausgeber')
-    site._addRole('Autor')
-    site._addRole('Gastherausgeber')
 
     print >> out, "    Assigning Permissions..."
     #Rollen und ihre Rechte
@@ -404,7 +400,7 @@ def configure_workflow(self, out, site_id=SITE_NAME):
                 category = 'portal_tabs',
                 visible = 1)
 
-def install_groups(self, out, site_id=SITE_NAME):
+def install_groups_and_roles(self, out, site_id=SITE_NAME):
     
     print >> out, "Configuring groups"
     site = getSite(self, site_id)
@@ -412,6 +408,12 @@ def install_groups(self, out, site_id=SITE_NAME):
     
     for group in groups:
         site.portal_groups.addGroup(group,(),())
+    
+    roles =('Redakteur','Herausgeber','Autor','Gastherausgeber','pr_Author',
+            'pr_EditorInChief', 'pr_GuestEditor', 'pr_Reviewer', 'pr_ReviewerInvited', 'pr_SectionEditor')
+    
+    for role in roles:
+        site._addRole(role)
         
     print >> out, "Set roles to groups"
 
@@ -638,7 +640,7 @@ def install(self):
     install_profiles(self,out)
     install_configlet(self, out)
     install_content(self, out)
-    install_groups(self, out)
+    install_groups_and_roles(self, out)
     install_tools(self, out)
     create_vocabularies(self, out)
     create_indexes(self, out)
