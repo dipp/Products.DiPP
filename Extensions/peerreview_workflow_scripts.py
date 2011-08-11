@@ -43,7 +43,7 @@ def send_mail(self, state_change, recipient="", subject="", body="", **kwargs):
         props = self.portal_properties.dippreview_properties
         actor = wf_tool.getInfoFor(object, 'actor')
         to_email = mship.getMemberById(recipient).getProperty('email')
-        to_email = "reimer@localhost"
+        #to_email = "reimer@localhost"
         to_name = mship.getMemberById(recipient).getProperty('fullname')
         from_email = portal.email_from_address
         from_name = portal.email_from_name
