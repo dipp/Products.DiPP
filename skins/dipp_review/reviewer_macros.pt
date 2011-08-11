@@ -68,8 +68,8 @@
                                 Help on votes
                             </div>
 
-                            <input type="text"
-                                   tal:attributes="value here/current_revision"
+                            <input type="hidden"
+                                   tal:attributes="value python:wtool.getInfoFor(here, 'revision', '')"
                                    name="current_revision"
                                    value="">
                             <tal:item tal:repeat="vote votes">
