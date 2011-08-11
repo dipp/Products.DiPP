@@ -248,9 +248,7 @@
 
                                                 <span class="notinvited"
                                                       tal:condition="not: python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited')">
-                                                    <button class="modalInput"
-                                                            tal:attributes="rel string:#mail_$reviewer_id">
-                                                        invite</button>
+                                                      <!--<button class="modalInput" tal:attributes="rel string:#mail_$reviewer_id"> invite</button>-->
                                   
                                                     <a class="invite-button"
                                                        href="" 
@@ -282,19 +280,18 @@
                             <input class="context" type="submit" name="form.button.RemoveReviewer" value="Remove selected Reviewer" />
                             </form>
                         </div>
-                        <tal:block tal:replace="reviewers"/>
-                        <tal:block tal:repeat="reviewer_id reviewers">
-                        <div class="modal"
-                             tal:attributes="id string:mail_$reviewer_id">
-	                        tal:define="reviewer_id request/reviewer_id|nothing"                                         
+                        
+                        <div id="invitation">
+	                                                                 
                              <div class="field"
-	                             tal:define="default string:dippadm;
+	                              tal:define="default string:dippadm;
+	                                         reviewer_id request/reviewer_id|nothing;
 	                                         links here/dipp_peerreview/createuniqueids|nothing;
 	                                         link_agree python:'%s/submission_answer_invitation?r=%s&c=%s' % (here.absolute_url(),  reviewer_id, links['agree']);
 	                                         link_decline python:'%s/submission_answer_invitation?r=%s&c=%s' % (here.absolute_url(),  reviewer_id, links['decline']);
 	                                         link_not_available python:'%s/submission_answer_invitation?r=%s&c=%s' % (here.absolute_url(),  reviewer_id, links['unavailable'])"
-	                             >tal:condition="reviewer_id"
-		                        <a name="invitation"></a>
+	                              tal:condition="reviewer_id">
+		                        
 		                        <label for="reviewer_id" i18n:translate="label_invite_reviewer">Write Invitation</label>
 		                        
 		                        <div class="formHelp" i18n:translate="help_select_reviewer">
@@ -318,14 +315,19 @@
 		                        
 		                        <div class="formControls">
 		                            <input class="context"
+                                           type="submit" 
+                                           name="form.button.Cancel" 
+                                           value="Cancel" 
+                                           tal:attributes="tabindex tabindex/next" />
+		                        
+		                            <input class="context"
 		                                   type="submit" 
 		                                   name="form.button.InviteReviewer" 
 		                                   value="Invite Reviewer" 
-		                                   tal:attributes="tabindex tabindex/next;" />
+		                                   tal:attributes="tabindex tabindex/next" />
 		                        </div>
 		                    </div>
 	                    </div>
-                    </tal:block>
                 </div>
             </div>
         </div>
