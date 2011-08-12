@@ -176,6 +176,11 @@
                     <input type="checkbox" name="agb" checked="" tal:attributes="checked python:path('request/agb | nothing') == 'on'" />
                 </div>
                 
+                <input type="submit" 
+                       name="form.button.Cancel" 
+                       value="Cancel" 
+                       i18n:domain="plone"
+                       i18n:attributes="value"/>
                 
                 <input type="submit" 
                        name="submit" 
