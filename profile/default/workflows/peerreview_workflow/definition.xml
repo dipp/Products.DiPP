@@ -3,19 +3,19 @@
              title="peerreview_workflow"
              state_variable="review_state"
              initial_state="preparing">
- <permission>Modify portal content</permission>
- <permission>View</permission>
- <permission>Manage properties</permission>
- <permission>DiPPReview: View reviewer details</permission>
- <permission>DiPPReview: Add the anonymized manuscript</permission>
- <permission>DiPPReview: View the original manuscript</permission>
- <permission>DiPPReview: View the original attachment</permission>
  <permission>Access contents information</permission>
- <permission>DiPPReview: Add Review</permission>
- <permission>Request review</permission>
- <permission>DiPPReview: View the anonymized manuscript</permission>
  <permission>Add portal content</permission>
+ <permission>DiPPReview: Add Review</permission>
+ <permission>DiPPReview: Add the anonymized manuscript</permission>
  <permission>DiPPReview: View author details</permission>
+ <permission>DiPPReview: View reviewer details</permission>
+ <permission>DiPPReview: View the anonymized manuscript</permission>
+ <permission>DiPPReview: View the original attachment</permission>
+ <permission>DiPPReview: View the original manuscript</permission>
+ <permission>Manage properties</permission>
+ <permission>Modify portal content</permission>
+ <permission>Request review</permission>
+ <permission>View</permission>
  <state state_id="accepted"
         title="The manuscript is accepted for publication.">
   <exit-transition transition_id="retract"/>
@@ -528,7 +528,7 @@
   <guard>
    <guard-role>pr_Reviewer</guard-role>
    <guard-role>Manager</guard-role>
-   <guard-expression>python:here.userHasUploaded(here,user,'Review')</guard-expression>
+   <guard-expression>python:here.userHasUploaded(here,user,revision,'Review')</guard-expression>
   </guard>
  </transition>
  <variable variable_id="action" for_catalog="False"
