@@ -16,9 +16,11 @@ RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
-#mhost = context.MailHost
+wtool = getToolByName(self, 'portal_workflow')
 
-revision = self.current_revision
+revision = wtool.getInfoFor(self, 'revision', 0)
+context.plone_log(revision)
+
 if type == 'Manuscript':
     manuscript_counter = self.manuscript_counter + 1
     manuscript_id = "man-%drev%d" % (manuscript_counter, revision)

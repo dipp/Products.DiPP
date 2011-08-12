@@ -16,7 +16,7 @@ RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
-
+wtool = getToolByName(self, 'portal_workflow')
 id = context.getId()
 new_context = context.portal_factory.doCreate(context, id)
 
@@ -29,7 +29,7 @@ Comment for the Editor
 comment = formatted_comment % (comment_for_author, comment_for_editor)
 context.portal_workflow.doActionFor(new_context,'submit_review', comment=comment)
 
-current_revision = self.current_revision
+current_revision = revision = wtool.getInfoFor(self, 'revision', 0)
 
 review_counter = self.review_counter + 1
 review_id = "review-%drev%d" % (review_counter, int(current_revision))

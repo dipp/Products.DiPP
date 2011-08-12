@@ -107,10 +107,11 @@ def submit_review(self, state_change, **kw):
     p = self.portal_properties.dippreview_properties
     mship = self.portal_membership
     object = getattr(state_change, 'object')
+    revision = wf_tool.getInfoFor(object, 'revision')
     actor = wf_tool.getInfoFor(object, 'actor')
     sectioneditors = self.getSectionEditors(self, object.section)
     reviewer_id = state_change.kwargs.get('reviewer_id', actor)
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='date_submitted', value = DateTime())
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='date_submitted', value = DateTime())
 
     # mails to section editors
     for sectioneditor in sectioneditors:
@@ -195,7 +196,9 @@ def submit(self, state_change, **kw):
 
 def invite_reviewer(self, state_change, **kw):
     """invite reviewer"""
+    portal = state_change.getPortal()
     object = getattr(state_change, 'object')
+    wf_tool = portal.portal_workflow
     p = self.portal_properties.dippreview_properties
     comment          = state_change.kwargs.get('comment', '')
     code_accept      = state_change.kwargs.get('code_accept', '')
@@ -204,12 +207,13 @@ def invite_reviewer(self, state_change, **kw):
     reviewer_id      = state_change.kwargs.get('reviewer_id', '')
     roles = ['pr_ReviewerInvited']
     object.manage_addLocalRoles(reviewer_id, roles)
+    revision = wf_tool.getInfoFor(object, 'revision')
     msg = "Role %s assigned to user %s for submission %s" % (roles[0], reviewer_id, object.id)
     self.plone_log("DiPPReview: " + msg)
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='date_invited', value=DateTime())
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='code_accept', value=code_accept)
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='code_decline', value=code_decline)
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='code_unavailable', value=code_unavailable)
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='date_invited', value=DateTime())
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='code_accept', value=code_accept)
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='code_decline', value=code_decline)
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='code_unavailable', value=code_unavailable)
     creator = object.Creator()
     send_mail(self, state_change,
         recipient = creator,
@@ -222,7 +226,6 @@ def request_revision(self, state_change, **kw):
     """request a revision
     """
     portal = state_change.getPortal()
-    wf_tool = portal.portal_workflow
     p = self.portal_properties.dippreview_properties
     mship = self.portal_membership
     object = getattr(state_change, 'object')
@@ -244,7 +247,12 @@ def request_revision(self, state_change, **kw):
 
 
 def resubmit(self, state_change, **kw):
-    pass
+    portal = state_change.getPortal()
+    wf_tool = portal.portal_workflow
+    object = getattr(state_change, 'object')
+    revision = wf_tool.getInfoFor(object, 'revision')
+    self.addReviewerInfo(revision=revision)
+    
 
 
 
@@ -257,12 +265,13 @@ def accept_invitation(self, state_change, **kw):
     object = getattr(state_change, 'object')
     comment = state_change.kwargs.get('comment', '')
     actor = wf_tool.getInfoFor(object, 'actor')
+    revision = wf_tool.getInfoFor(object, 'revision')
     reviewer_id = state_change.kwargs.get('reviewer_id', actor)
     roles = ['pr_Reviewer']
     object.manage_addLocalRoles(reviewer_id, roles)
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='date_accepted', value = DateTime())
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='date_accepted', value = DateTime())
     deadline =  DateTime() + float(p.review_time)
-    object.setReviewerProperty(revision = object.current_revision, reviewer=reviewer_id, property='deadline', value=deadline)
+    object.setReviewerProperty(revision = revision, reviewer=reviewer_id, property='deadline', value=deadline)
     msg = "Role %s assigned to user %s for submission %s" % (roles[0], reviewer_id, object.id)
     #self.plone_log("DiPPReview: " + msg)
     section = object.section
@@ -296,6 +305,7 @@ def request_technical_revision(self, state_change, **kw):
     mship = self.portal_membership
     object = getattr(state_change, 'object')
     creator = object.Creator()
+    revision = wf_tool.getInfoFor(object, 'revision')
     actor = wf_tool.getInfoFor(object, 'actor')
     comment = state_change.kwargs.get('comment', '')
 

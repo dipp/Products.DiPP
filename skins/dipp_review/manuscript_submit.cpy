@@ -15,6 +15,7 @@ request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
+wtool = getToolByName(self, 'portal_workflow')
 portal = portal_url.getPortalObject()
 #mhost = context.MailHost
 
@@ -25,10 +26,10 @@ SUBMISSION_PREFIX = dp.submission_prefix
 SUBMISSION_COUNTER = dp.submission_counter + 1
 
 submission_id = "%s-%d" % (SUBMISSION_PREFIX, SUBMISSION_COUNTER)  
-
+revision = wtool.getInfoFor(self, 'revision', 0)
+context.plone_log(revision)
 # submissions = getattr(portal, SUBMISSIONS_FOLDER)
 submissions = self
-revision = 0
 submissions.invokeFactory(id=submission_id, 
     type_name='Submission',
     title=title,
