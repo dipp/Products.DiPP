@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self, user, content_type
+##parameters=self, user, content_type, revision
 ##title=
 ##
 
@@ -19,10 +19,7 @@ mtool = getToolByName(self, 'portal_membership')
 portal     = portal_url.getPortalObject()
 path = '/'.join(self.getPhysicalPath())
 Creator = str(user)
-results = container.portal_catalog(portal_type=content_type, path=path,Creator=Creator)
-context.plone_log("userHasUploaded")
-context.plone_log(path)
-context.plone_log(Creator)
+results = container.portal_catalog(portal_type=content_type, getCurrent_revision=revision,path=path,Creator=Creator)
 for x in results:
     context.plone_log(x.getURL())
 
