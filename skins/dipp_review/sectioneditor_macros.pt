@@ -175,7 +175,7 @@
 
                             <table class="listing"
                                    tal:define="info here/getReviewerInfo;
-                                               revisions python:range(0,here.current_revision + 1)">
+                                               revisions python:range(0,wtool.getInfoFor(here, 'revision', 0) + 1)">
                                 <thead>
                                     <tr>
                                         <th rowspan="2" class="nosort"></th>
@@ -219,8 +219,9 @@
                                                                      path                python:'/'.join(here.getPhysicalPath()); 
                                                                      reviews             python:here.portal_catalog(Type='Review', path=path, getCurrent_revision=revision, Creator=reviewer_id)">
                                                 <td>
-                                                <b tal:content="python:len(reviews)"></b>
-                                                <span tal:condition="python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited') and info" >
+                                                <!--<b tal:content="python:len(reviews)"></b>-->
+                                                <!--<span tal:condition="python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited') and info" >-->
+                                                <span tal:condition="info" >
                                                     <span class="accepted"
                                                           tal:condition="python:here.userHasLocalRole(here, reviewer, 'pr_Reviewer')" >
                                                         accepted
@@ -247,7 +248,11 @@
                                                 
 
                                                 <span class="notinvited"
-                                                      tal:condition="not: python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited')">
+                                                      tal:define="iscur python: wtool.getInfoFor(here, 'revision') == revision;
+                                                                  isinvited python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited')"
+                                                      tal:condition="python: iscur and not isinvited">
+                                                      <i tal:content="iscur"></i><i tal:content="isinvited"></i>
+
                                                       <!--<button class="modalInput" tal:attributes="rel string:#mail_$reviewer_id"> invite</button>-->
                                   
                                                     <a class="invite-button"
@@ -444,7 +449,7 @@
 	                                      rows="5" 
 	                                      tabindex="" 
 	                                      tal:attributes="tabindex tabindex/next;" 
-	                                      tal:content="python:here.fillMailTemplate(here,mail_template_id='requestrevision_pr_author_mail',recipient=creator)"></textarea>
+	                                      tal:content="python:here.fillMailTemplate(here,mail_template_id='accept_pr_author_mail',recipient=creator)"></textarea>
 	                        </div>
 	                        <div class="formControls">
 	                            <input class="context"
@@ -452,7 +457,12 @@
 	                                   name="form.button.FolderPublish" 
 	                                   value="Save" 
 	                                   tal:attributes="tabindex tabindex/next; value transition_title" />
-	                            <input class="standalone" type="submit" name="form.button.Cancel" value="Cancel" i18n:attributes="value label_cancel;" tal:attributes="tabindex tabindex/next;" />
+	                            <input class="standalone"
+	                                   type="submit"
+	                                   name="form.button.Cancel"
+	                                   value="Cancel"
+	                                   i18n:attributes="value label_cancel;"
+	                                   tal:attributes="tabindex tabindex/next;" />
 	                        </div>
                         </div>
                     </div>
