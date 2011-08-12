@@ -223,6 +223,11 @@ class Submission(OrderedBaseFolder):
 
     # Manually created methods
 
+    def __init__(self):
+    
+        self.reviewer_info = {}
+        
+
     def isAnonymized(self):
         """check if all manuscripts and attachmends are anonymized
         """
@@ -257,7 +262,9 @@ class Submission(OrderedBaseFolder):
     def addReviewerInfo(self, revision):
         """
         """
-        self.reviewer_info = {revision:{}}
+        info = self.reviewer_info
+        info[revision] = {}
+        self.reviewer_info = info
 
     security.declareProtected(ManageProperties, 'getReviewerInfo')
     def getReviewerInfo(self):
