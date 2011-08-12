@@ -1,0 +1,2 @@
+* bei request revision Rollen der bisherigen Reviewer zurücksetzen
+* transition submit_review, revsion aus variable
