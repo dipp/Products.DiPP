@@ -300,6 +300,8 @@ class Submission(OrderedBaseFolder):
     def setReviewerProperty(self,revision, reviewer, property, value):
         """
         """
+        if not self.reviewer_info[revision].has_key(reviewer):
+            self.setReviewerInfo(revision, reviewer)   
         self.reviewer_info[revision][reviewer][property] = value
         self.reindexObject()
 
