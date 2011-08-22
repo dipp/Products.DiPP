@@ -279,6 +279,12 @@ class Submission(OrderedBaseFolder):
     def setReviewerInfo(self,revision, reviewer):
         """
         """
+        info = self.reviewer_info
+
+        if not info.has_key(revision):
+            info[revision] = {}
+            self.reviewer_info = info
+
         revision = revision
         reviewer = reviewer
         info = {
