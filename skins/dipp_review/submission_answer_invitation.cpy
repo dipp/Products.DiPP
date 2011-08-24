@@ -23,7 +23,7 @@ id = context.getId()
 reviewer_id = r
 code = c
 context.plone_log(code)
-revision = wtool.getInfoFor(self, 'revision', 0)
+revision = int(wtool.getInfoFor(self, 'revision', 0))
 
 code_accept = self.getReviewerInfo()[revision][reviewer_id]['code_accept']
 code_decline = self.getReviewerInfo()[revision][reviewer_id]['code_decline']

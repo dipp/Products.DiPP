@@ -109,7 +109,7 @@
 	                                    submission_state_title python:wtool.getTitleForStateOnType(submission_wf_state, 'Submission')"
 	                        tal:attributes="class python:test(oddrow, 'even', 'odd')">
 	                        <td style="white-space:nowrap"><a href="" tal:attributes="href submission/getURL" tal:content="submission/getId">man-123</a></td>
-	                        <td tal:content="python:submission.getObject().current_revision">1</td>
+	                        <td tal:content="python:wtool.getInfoFor(submission.getObject(), 'revision', '-')">1</td>
 	                        <td tal:content="submission/Title">man-123</td>
 	                        <td tal:define="authors submission/getManuscript_authors|nothing">
 	                            <ol>
@@ -133,8 +133,8 @@
 	                                    submission_state_title python:wtool.getTitleForStateOnType(submission_wf_state, 'Submission')"
 	                        tal:attributes="class python:test(oddrow, 'even', 'odd')">
 	                        <td style="white-space:nowrap"><a href="" tal:attributes="href submission/getURL" tal:content="submission/getId">man-123</a></td>
-	                        <td tal:content="python:submission.getObject().current_revision">1</td>
-	                        <td tal:content="submission/Title">man-123</td>
+	                        <td tal:content="python:wtool.getInfoFor(submission.getObject(), 'revision', '-')">1</td>
+                            <td tal:content="submission/Title">man-123</td>
 	                        <td tal:define="authors submission/getManuscript_authors|nothing">
 	                            <ol>
 	                                <li tal:repeat="author authors"><span tal:replace="author">Max Muster</span></li>

@@ -64,11 +64,11 @@
       </div>
       
       <div class="discret">
-      		Revision (wf): <tal:block tal:replace="python:wtool.getInfoFor(here, 'revision', '')" />
+      		Revision: <tal:block tal:replace="python:wtool.getInfoFor(here, 'revision', '')" />
       </div>
-      <div class="discret">
+      <!-- <div class="discret">
             Revision (obj): <tal:block tal:replace="here/getCurrent_revision" />
-      </div>
+      </div>-->
 
     </div>
 	

@@ -22,6 +22,9 @@ from Products.DiPP.config import *
 import Permissions
 from Products.CMFCore.permissions import ManagePortal, ManageProperties
 from StringIO import StringIO
+import logging
+
+logger = logging.getLogger("DiPP")
 
 schema = Schema((
 
@@ -152,14 +155,10 @@ schema = Schema((
 ),
 )
 
-##code-section after-local-schema #fill in your manual code here
-##/code-section after-local-schema
 
 Submission_schema = OrderedBaseFolderSchema.copy() + \
     schema.copy()
 
-##code-section after-schema #fill in your manual code here
-##/code-section after-schema
 
 class Submission(OrderedBaseFolder):
     """
@@ -210,23 +209,19 @@ class Submission(OrderedBaseFolder):
 
     schema = Submission_schema
 
-    ##code-section class-header #fill in your manual code here
     aliases = {
         '(Default)'  : 'submission_view',
         'view'       : 'submission_view',
         'edit'       : 'atct_edit',
         'properties' : 'base_metadata',
         }
-    ##/code-section class-header
 
-    # Methods
 
-    # Manually created methods
-
-    def __init__(self):
-    
-        self.reviewer_info = {}
-        
+#    def __init__(self, id):
+#        """default and empty reviewer info dictionary
+#        """
+#        logger.info(id)
+#        self.reviewer_info = {}
 
     def isAnonymized(self):
         """check if all manuscripts and attachmends are anonymized
@@ -262,9 +257,14 @@ class Submission(OrderedBaseFolder):
     def addReviewerInfo(self, revision):
         """
         """
-        info = self.reviewer_info
+        #if not self.hasattr('reviewer_info'):
+        #    self.reviewer_info = {}
+        
+        #info = self.reviewer_info
+        info = {}
         info[revision] = {}
         self.reviewer_info = info
+        
 
     security.declareProtected(ManageProperties, 'getReviewerInfo')
     def getReviewerInfo(self):

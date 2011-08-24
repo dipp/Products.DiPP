@@ -175,7 +175,7 @@
 
                             <table class="listing"
                                    tal:define="info here/getReviewerInfo;
-                                               revisions python:range(0,wtool.getInfoFor(here, 'revision', 0) + 1)">
+                                               revisions python:range(0,int(wtool.getInfoFor(here, 'revision', 0)) + 1)">
                                 <thead>
                                     <tr>
                                         <th rowspan="2" class="nosort"></th>
@@ -207,17 +207,17 @@
                                         </td>
                                         <tal:block tal:repeat="revision revisions">
                                             <tal:block tal:define="rev                 python:info.get(revision,{});
-                                                                     info                python:rev.get(reviewer,{});
-                                                                     deadline            info/deadline|nothing;
-                                                                     date_invited        info/date_invited|nothing;
-                                                                     date_accepted       info/date_accepted|nothing;
-                                                                     date_submitted      info/date_submitted|nothing;
-                                                                     friendly_reminders  python:len(info.get('friendly_reminders',[]));
-                                                                     deadline_reminders  python:len(info.get('deadline_reminders',[]));
-                                                                     due_reminders       python:len(info.get('due_reminders',[]));
-                                                                     paths               python:request.get('paths', ['/'.join(here.getPhysicalPath())]);
-                                                                     path                python:'/'.join(here.getPhysicalPath()); 
-                                                                     reviews             python:here.portal_catalog(Type='Review', path=path, getCurrent_revision=revision, Creator=reviewer_id)">
+                                                                   info                python:rev.get(reviewer,{});
+                                                                   deadline            info/deadline|nothing;
+                                                                   date_invited        info/date_invited|nothing;
+                                                                   date_accepted       info/date_accepted|nothing;
+                                                                   date_submitted      info/date_submitted|nothing;
+                                                                   friendly_reminders  python:len(info.get('friendly_reminders',[]));
+                                                                   deadline_reminders  python:len(info.get('deadline_reminders',[]));
+                                                                   due_reminders       python:len(info.get('due_reminders',[]));
+                                                                   paths               python:request.get('paths', ['/'.join(here.getPhysicalPath())]);
+                                                                   path                python:'/'.join(here.getPhysicalPath()); 
+                                                                   reviews             python:here.portal_catalog(Type='Review', path=path, getCurrent_revision=revision, Creator=reviewer_id)">
                                                 <td>
                                                 <!--<b tal:content="python:len(reviews)"></b>-->
                                                 <!--<span tal:condition="python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited') and info" >-->
@@ -246,12 +246,11 @@
                                                     </dl>
                                                 </span>
                                                 
-
                                                 <span class="notinvited"
-                                                      tal:define="iscur python: wtool.getInfoFor(here, 'revision') == revision;
+                                                      tal:define="iscur python: int(wtool.getInfoFor(here, 'revision')) == revision;
                                                                   isinvited python:here.userHasLocalRole(here, reviewer, 'pr_ReviewerInvited')"
                                                       tal:condition="python: iscur and not isinvited">
-                                                      <i tal:content="iscur"></i><i tal:content="isinvited"></i>
+                                                      <!--  <i tal:content="iscur"></i><i tal:content="isinvited"></i>-->
 
                                                       <!--<button class="modalInput" tal:attributes="rel string:#mail_$reviewer_id"> invite</button>-->
                                   

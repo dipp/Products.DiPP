@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=self, user, content_type, revision
+##parameters=self, user, content_type
 ##title=
 ##
 
@@ -16,9 +16,12 @@ RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
 mtool = getToolByName(self, 'portal_membership')
+wtool = getToolByName(self, 'portal_workflow')
 portal     = portal_url.getPortalObject()
 path = '/'.join(self.getPhysicalPath())
 Creator = str(user)
+revision = int(wtool.getInfoFor(self, 'revision', 0))
+
 results = container.portal_catalog(portal_type=content_type, getCurrent_revision=revision,path=path,Creator=Creator)
 for x in results:
     context.plone_log(x.getURL())

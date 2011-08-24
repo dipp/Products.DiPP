@@ -20,6 +20,6 @@ wtool = getToolByName(self, 'portal_workflow')
 
 reviewer_list = self.reviewer_considered
 self.setReviewer_considered(reviewer_list +(selected_reviewer_id,))
-revision = wtool.getInfoFor(self, 'revision', 0)
+revision = int(wtool.getInfoFor(self, 'revision', 0))
 self.setReviewerInfo(revision=revision, reviewer=selected_reviewer_id)
 return state
