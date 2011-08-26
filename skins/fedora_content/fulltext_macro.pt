@@ -2,6 +2,17 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     i18n:domain="Plone">
     <body>
+    
+        <div metal:define-macro="metis"
+             i18n:domain="dipp"
+             tal:condition="python: pixel_domain and pixel_id"
+             tal:define="pixel_domain here/pixel_domain|nothing;
+                         pixel_id here/pixel_id|nothing;">
+             
+                   <img tal:define="vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id"
+                        tal:attributes="src vgwort_url"
+                        width="1" height="1" alt="" />
+        </div>
 
         <div metal:define-macro="fulltext"
              i18n:domain="dipp"

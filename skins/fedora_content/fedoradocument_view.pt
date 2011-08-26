@@ -68,6 +68,14 @@
             <div metal:use-macro="here/citation_macro/macros/recommended_citation">
                 Show a custom formatted recommended citation
             </div>
+
+            <div metal:use-macro="here/fulltext_macro/macros/fulltext">
+                Fulltext in alternative formats (pdf) with Zählpixel, if any.
+            </div>
+            
+            <div metal:use-macro="here/fulltext_macro/macros/metis">
+                naked zählpixel
+            </div>
             
             <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
                 A list of supplementary materials.
