@@ -376,19 +376,40 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
 
     def getFulltextPdf(self):
-        """return the first listed pdf file which is declared als alternative format
-        if not found, return none. this is used by the document action for the pdf icon
+        """
+        return the first listed pdf file which is declared als alternative format
+        if not found, return none. If Metis data are given, the according link is generated
+        this is used by the document action for the pdf icon.
         """
         path = '/'.join(self.getPhysicalPath())
+        pixel_domain =self.pixel_domain
+        pixel_id = self.pixel_id
         result = self.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='alternative_format', sort_on='getObjPositionInParent')
-        x = []
+        
+        pdfs = []
         for item in result:
             obj = item.getObject()
             mimetype = obj.get_content_type()
             if mimetype in ('application/pdf', 'application/octet-stream'):
-                x.append(obj)
-        if len(x) > 0:
-            return {'PID':x[0].PID,'DsID':x[0].DsID,'URL':x[0].absolute_url()}
+                pdfs.append(obj)
+        
+        if len(pdfs) > 0:
+            haspdf = True
+        else:
+            haspdf = False
+            
+        if haspdf:
+            PID = pdfs[0].PID
+            DsID = pdfs[0].DsID
+            directURL = pdfs[0].absolute_url()
+        
+        if pixel_domain and pixel_id and haspdf:
+            URL = "http://%s.met.vgwort.de/na/%s?l=%s" % (pixel_domain, pixel_id, directURL)
+        elif haspdf:
+            URL = directURL
+            
+        if haspdf:
+            return {'PID':PID,'DsID':DsID,'URL':URL}
         else:
             return {}
     
