@@ -37,8 +37,7 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
         <tr tal:define="PID article/getPID;
                         title article/Title;
                         URL article/getURL;
-                        URN article/getURN;
-                        urn_status python:bibtool.urnstatus(URN,URL)"
+                        URN article/getURN|nothing"
             tal:condition="not: python:PID.startswith('temp')"
             tal:attributes="class python:test(path('repeat/article/even'), 'row-hilite', 'row-normal')">
             <td width="16">
@@ -50,8 +49,11 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
                 <abbr tal:attributes="title title"
                       tal:content="python:title[0:40] + '...'"></abbr>
             </td>
-            <td tal:content="urn_status/registered"> </td>
-            <td tal:content="urn_status/valid"> </td>
+            <colspan tal:define="urn_status python:bibtool.urnstatus(URN,URL)"
+                     tal:condition="URN">
+                <td tal:content="urn_status/registered"> </td>
+                <td tal:content="urn_status/valid"> </td>
+            </colspan>
         </tr>
     </tal:block>
 </table>
