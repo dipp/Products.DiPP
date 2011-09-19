@@ -174,10 +174,28 @@ ol.keywords label {
 .inline li{
     display: inline;
 }
-.metadata td {
+.metadata td,
+.metadata th {
     padding: 0.25em;
     vertical-align: top;
+    text-align: left;
 }
+.subjectsClassified  {
+    margin: 0;
+}
+
+.subjectsClassified dt {
+    text-transform: uppercase;
+    display: inline;
+}
+.subjectsClassified dd {
+    margin-left: 0;
+}
+.subjectsClassified li{
+    margin: 0;
+}
+
+
 
 /* personalize form  */
 label.plain {

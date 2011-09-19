@@ -141,12 +141,13 @@
                         </tal:block>
                     </td>
                 </tr>
-                <tr>
+                <tr tal:define="subjects python:here.sortedSubjectsClassified(subjectClassified)"
+                    tal:condition="python: len(subjects) > 0">
+               
                     <th i18n:translate="label_subjectClassified">subjectClassified</th>
                     <td>
-                        <dl class="subjectsClassified"
-                            tal:define="subjects python:here.sortedSubjectsClassified(subjectClassified)">
-                            <tal:block tal:repeat="subject subjects ">
+                        <dl class="subjectsClassified">
+                            <tal:block tal:repeat="subject subjects">
                                 <dt tal:content="subject"></dt>
                                 <dd tal:define="idents python:subjects[subject]">
                                     <ul tal:repeat="ident idents">
@@ -155,18 +156,6 @@
                                 </dd>
                             </tal:block>
                         </dl>
-                        <!--
-                        <tal:block tal:repeat="subject subjectClassified">
-                            <acronym class="normdatei"
-                                  title=""
-                                  tal:define="sys python: subject['classificationSystem'];
-                                              system python: here.getNormdatei(sys)"
-                                  tal:attributes="title system"
-                                  tal:content="sys">SWD</acronym>:
-                            <span  tal:replace="python: subject['subjectClassified']"></span>
-                            (<span  tal:replace="python: subject['classificationIdent']"></span>)
-                        </tal:block>
-                        -->
                     </td>
                 </tr>
                 <tr>
