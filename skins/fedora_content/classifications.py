@@ -8,7 +8,7 @@
 ##title=
 ##
 
-classifactions = [
+classifications = [
     {'id':'swd', 'title':"Schlagwort Normdatei", 'url':'http://www.bsz-bw.de/cgi-bin/oswd-suche.pl'},
     {'id':'lcsh', 'title':"Library of Congress Subject Headings",'url':'http://authorities.loc.gov'},
     {'id':'mesh', 'title':"Medical Subject Headings", 'url':'http://www.nlm.nih.gov/mesh/meshhome.html'},
@@ -21,4 +21,4 @@ classifactions = [
     {'id':'msc','title':"2000 Mathematics Subject Classification", 'url':'http://www.ams.org/msc/'},
     {'id':'jel','title':"Journal of Economic Literature", 'url':'http://www.aeaweb.org/jel/jel_class_system.php'}
 ]
-return classifactions
+return classifications
