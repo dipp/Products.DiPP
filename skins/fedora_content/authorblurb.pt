@@ -4,10 +4,11 @@
     <body>
 
         <div id="authorblurb" metal:define-macro="authorblurb"
-             tal:define="urn         python:qdc['identifierURN'];
-                         doi         python:qdc['identifierDOI'];
-                         authors     python:qdc['creatorPerson'];
-                         subjects    python:qdc['subject']"
+             tal:define="urn python:qdc['identifierURN'];
+                         doi python:qdc['identifierDOI'];
+                         authors python:qdc['creatorPerson'];
+                         subjectClassified python:qdc['subjectClassified'];
+                         subjects python:qdc['subject']"
              i18n:domain="dipp">
             <h1 tal:content="python:qdc['title'][0]['value']"></h1>
             
@@ -64,7 +65,8 @@
                 </ul>
             </tal:block>
 
-            <ul class="identifier"> 
+            <ul class="identifier"
+                tal:define="subjects python:here.sortedSubjectsClassified(subjectClassified)">
                 <li tal:condition="doi" 
                     class="doi">
                     <abbr title="Digital Object Identifier">DOI</abbr>:
@@ -75,6 +77,19 @@
                     <abbr title="Uniform Resource Name">URN</abbr>:
                     <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
                 </li>
+                <tal:block tal:repeat="subject subjects"
+                           tal:condition="subjects">
+                    <li class="subjects">
+                        <abbr tal:content="subject"></abbr>:
+                        <ul tal:define="idents python:subjects[subject]"
+                            class="keywords">
+                        <tal:block tal:repeat="ident idents">
+                            <li tal:define="islast repeat/ident/end"
+                                tal:content="python: ident[0]"></li>
+                        </tal:block>
+                        </ul>
+                    </li>
+                </tal:block>
             </ul>
             
             <div tal:define="translations context/getTranslatedLanguages;
