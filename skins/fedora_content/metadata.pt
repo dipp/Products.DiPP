@@ -144,6 +144,18 @@
                 <tr>
                     <th i18n:translate="label_subjectClassified">subjectClassified</th>
                     <td>
+                        <dl class="subjectsClassified"
+                            tal:define="subjects python:here.sortedSubjectsClassified(subjectClassified)">
+                            <tal:block tal:repeat="subject subjects ">
+                                <dt tal:content="subject"></dt>
+                                <dd tal:define="idents python:subjects[subject]">
+                                    <ul tal:repeat="ident idents">
+                                        <li tal:content="python: '%s, %s' % (ident[0], ident[1])"></li>
+                                    </ul>
+                                </dd>
+                            </tal:block>
+                        </dl>
+                        <!--
                         <tal:block tal:repeat="subject subjectClassified">
                             <acronym class="normdatei"
                                   title=""
@@ -154,6 +166,7 @@
                             <span  tal:replace="python: subject['subjectClassified']"></span>
                             (<span  tal:replace="python: subject['classificationIdent']"></span>)
                         </tal:block>
+                        -->
                     </td>
                 </tr>
                 <tr>
@@ -166,19 +179,22 @@
                     <th i18n:translate="label_rights">Rechte</th>
                         <td tal:content="rights">123</td>
                 </tr>
-                <tr>
-                    <th i18n:translate="label_URN">URN</th>
-                        <td>
-                            <a href=""
-                               tal:attributes="href string:http://nbn-resolving.org/urn/resolver.pl?urn=$urn" 
-                               tal:content="urn">urn:nbn:de:0009-1-1234</a></td>
+                <tr condition="urn"
+                    class="urn">
+                    <th>
+                        <abbr title="Uniform Resource Name">URN</abbr>:
+                    </th>
+                    <td>
+                        <a href=""
+                           tal:attributes="href string:http://nbn-resolving.de/$urn" 
+                           tal:content="urn">urn:nbn:de:0009-1-1234</a>
+                    </td>
                 </tr>
-                <tr>
-                    <th i18n:translate="label_DOI">DOI</th>
+                <tr tal:condition="doi"
+                    class="doi">
+                    <th><abbr title="Digital Object Identifier">DOI</abbr></th>
                         <td>
-                            <a href=""
-                               tal:attributes="href string:http://nbn-resolving.org/urn/resolver.pl?urn=$urn" 
-                               tal:content="doi">urn:nbn:de:0009-1-1234</a></td>
+                            <a tal:content="doi" tal:attributes="href string:http://dx.doi.org/$doi">10.120234-ff983</a>
                 </tr>
             </table>
        
