@@ -74,6 +74,10 @@ div .inlineReference {
    padding: 0;
 }
 
+#authorblurb ul.identifier li.subjects abbr {
+    text-transform: uppercase;
+}
+
 div.mixed {
     margin-top: 2em;
 }
