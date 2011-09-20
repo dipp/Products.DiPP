@@ -78,9 +78,11 @@
                     <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
                 </li>
                 <tal:block tal:repeat="subject subjects"
-                           tal:condition="subjects">
+                           tal:condition="subjects"
+                           tal:define="cls here/classifications">
                     <li class="subjects">
-                        <abbr tal:content="subject"></abbr>:
+                        <abbr tal:content="subject"
+                              tal:attributes="title python:cls[subject]['title']">PACS</abbr>:
                         <ul tal:define="idents python:subjects[subject]"
                             class="keywords">
                         <tal:block tal:repeat="ident idents">

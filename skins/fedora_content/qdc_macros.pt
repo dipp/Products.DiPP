@@ -663,7 +663,8 @@
              class="field"
              tal:define="error errors/subjectClassified|nothing;
                          default python: {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''};
-                         subjectClassified request/subjectClassified|qdc/subjectClassified|default"
+                         subjectClassified request/subjectClassified|qdc/subjectClassified|default;
+                         classifications here/classifications"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
 
@@ -672,14 +673,15 @@
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" >
             <p i18n:translate="help_subjectClassified">Add classified keywords according to the following schemes:
-                <span i18n:name="classifications"> 
-                    <tal:block tal:repeat="classification here/classifications">
-                        <a tal:attributes="href classification/url; title classification/title" tal:content="classification/id">abc</a>
+                <span i18n:name="classifications">
+                    <tal:block tal:repeat="cls python:classifications.keys()">
+                        <a tal:attributes="href python:classifications[cls]['url']" tal:content="cls">abc</a>
                     </tal:block>
                 </span>
             </p>
             
             </div>
+            
             <table class="listing nosort metadata">
             
                 <thead>
@@ -719,11 +721,10 @@
                         <td>
                             <select name="subjectClassified.classificationSystem:records">
                                 <option value="">--- wählen Sie eine Normdatei ---</option>
-                                <tal:block tal:repeat="classification here/classifications">
-                                    <option tal:define="cid classification/id"
-                                            tal:attributes="value cid;
-                                                            selected python: cid == keyword['classificationSystem']"
-                                            tal:content="string: ${classification/id} - (${classification/title})">abc</option>
+                                <tal:block tal:repeat="cls python:classifications.keys()">
+                                    <option tal:attributes="value cls;
+                                                            selected python: cls == keyword['classificationSystem']"
+                                            tal:content="python: '%s - (%s)' % (cls, classifications[cls]['title'])">abc</option>
                                 </tal:block>
                             </select>
                         </td>
@@ -731,6 +732,7 @@
                 </tal:items>
                 </tbody>
             </table>
+            
             <input class="context"
                tabindex=""
                type="submit"
