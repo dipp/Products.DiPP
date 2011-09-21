@@ -7,6 +7,8 @@
              tal:define="urn python:qdc['identifierURN'];
                          doi python:qdc['identifierDOI'];
                          authors python:qdc['creatorPerson'];
+                         initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
+                         show_classified_subjects here/show_classified_subjects|here/portal_properties/dipp_properties/show_classified_subjects|nothing;
                          subjectClassified python:qdc['subjectClassified'];
                          subjects python:qdc['subject']"
              i18n:domain="dipp">
@@ -49,7 +51,6 @@
                      </tal:block>
                 </div>
             </tal:block>
-            
             <tal:block tal:condition="subjects">
                 <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
                 
@@ -78,7 +79,7 @@
                     <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
                 </li>
                 <tal:block tal:repeat="subject subjects"
-                           tal:condition="subjects"
+                           tal:condition="python:subjects and show_classified_subjects"
                            tal:define="cls here/classifications">
                     <li class="subjects">
                         <abbr tal:content="subject"
