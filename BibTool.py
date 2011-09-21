@@ -22,6 +22,9 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator
 from config import view_permission, LANGUAGES
+import logging
+
+logger = logging.getLogger("DiPP")
 
 class BibTool(UniqueObject, SimpleItem):
     """ Wrapper for Bibutils """
@@ -164,7 +167,11 @@ class BibTool(UniqueObject, SimpleItem):
         # Metadata from the Journal
         fedora = getToolByName(self, "fedora")
         jqdc = fedora.getQualifiedDCMetadata(fedora.PID)
-        ISSN = jqdc['identifierISSN']
+        try:
+            ISSN = getattr(self,'ISSN')
+        except:
+            ISSN = jqdc['identifierISSN']
+            
         # Metadata stored only in Plone
         try:
             startpage = self.startpage
@@ -255,7 +262,7 @@ class BibTool(UniqueObject, SimpleItem):
             doi = SubElement(mods, "identifier", type="doi")
             doi.text = qdc['identifierDOI']
         uri = SubElement(mods, "identifier", type="uri")
-        uri.text = "http://nbn-resolving.org/urn/resolver.pl?" + qdc['identifierURN']
+        uri.text = "http://nbn-resolving.de/" + qdc['identifierURN']
         citekey = SubElement(mods, "identifier", type="citekey")
         citekey.text = id
         return mods
