@@ -1,5 +1,16 @@
 Changes
 
+    DiPP 2.9 (2011-09-28)
+        
+        * Merged with DiPPReview
+        
+        * more than one ISSN possible
+        
+        * Better support for classified subjects, JEL added
+        
+        * Zählpixel in HTML and in PDF-Icon (document_actions)
+         
+
     DiPP 2.8.1 (2011-07-20)
     
         * neutral language first in first workflow step, help texts
