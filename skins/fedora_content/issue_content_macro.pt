@@ -16,6 +16,8 @@
                          sort_on                   here/issue_sort_on|here/portal_properties/dipp_properties/issue_sort_on|default_sort_on;
                          default_sort_order        string:ascending;
                          sort_order                here/issue_sort_order|here/portal_properties/dipp_properties/issue_sort_order|default_sort_order;
+                         date_format               here/issue_date_format|here/portal_properties/dipp_properties/issue_date_format|nothing;
+                         issue_show_pdf_link       here/issue_show_pdf_link|here/portal_properties/dipp_properties/issue_show_pdf_link|nothing;
                          issue_show_abstracts      here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing;
                          issue_show_full_abstracts here/issue_show_full_abstracts|here/portal_properties/dipp_properties/issue_show_full_abstracts|nothing"
              i18n:domain="dipp">
@@ -52,14 +54,14 @@
                                        item_abstract        obj/getAbstract;
                                        item_contributors    python:obj.Contributors();
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
-                                       item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                       item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
                                        authors              item_contributors" >
+                                       
                             
-                            <p tal:define="format here/issue_date_format|here/portal_properties/dipp_properties/issue_date_format|nothing"
-                               tal:condition="item_date"
-                               tal:content="python: item_date.strftime(format)">
+                            <p tal:condition="item_date"
+                               tal:content="python: item_date.strftime(date_format)">
                                 2004-06-08</p>
-                            <p tal:condition="not:item_date"><em>not to be published</em></p>
+                            <p tal:condition="not:item_date"><em>no issue date given</em></p>
                             
                             <strong>    
                                 <a href="#"
@@ -68,9 +70,15 @@
                                            class string:$item_wf_state_class">
                                  Article title</a>
                             </strong>
+                            
+                            <div metal:use-macro="here/article_authors/macros/article_authors">
+                                A nicely formatted list of authors
+                            </div>
+
                             <p tal:condition="issue_show_full_abstracts"
                                tal:content="item_abstract">
                             </p>
+                            
                             <div class="abstracts"
                                 tal:define="lang_dict   python:here.fedora.getLanguages()"
                                 tal:condition="python: issue_show_abstracts and len(item_abstracts())>0">
@@ -83,13 +91,18 @@
                                        tal:content="title"></a><span tal:condition="not: repeat/abstract/end">,</span>
                                 </tal:block>
                             </div>
-                            <div metal:use-macro="here/article_authors/macros/article_authors">
-                                A nicely formatted list of authors
-                            </div>
                             <span class="more_link">
                                 <a tal:attributes="href item_url"
                                    i18n:domain="plone"
                                    i18n:translate="box_morelink">More...</a>
+                            </span>
+                            <span tal:condition="issue_show_pdf_link"
+                                  tal:define="pdf python: obj.getFulltextPdf()">
+                                <a href=""
+                                   tal:attributes="href python:pdf['URL']"
+                                   tal:condition="pdf">
+                                    Download <abbr title="Portable Document Format">PDF</abbr>
+                                </a>
                             </span>
                         </li>
                      </tal:items>
