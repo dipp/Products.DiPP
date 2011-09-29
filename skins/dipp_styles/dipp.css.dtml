@@ -37,6 +37,17 @@ h1 a, h2 a, h3 a, h4 a, h5 a {
 .issue-content .more_link {
     display: none;
 }
+.article_actions {
+    text-align: right;
+    list-style: none;
+}
+.article_actions li {
+    display: inline;
+}
+.article_actions .link-external {
+    background: none;
+    padding: 0;
+}
 ol.section-content {
     clear: both;
     list-style: none;

@@ -91,19 +91,23 @@
                                        tal:content="title"></a><span tal:condition="not: repeat/abstract/end">,</span>
                                 </tal:block>
                             </div>
-                            <span class="more_link">
-                                <a tal:attributes="href item_url"
-                                   i18n:domain="plone"
-                                   i18n:translate="box_morelink">More...</a>
-                            </span>
-                            <span tal:condition="issue_show_pdf_link"
-                                  tal:define="pdf python: obj.getFulltextPdf()">
-                                <a href=""
-                                   tal:attributes="href python:pdf['URL']"
-                                   tal:condition="pdf">
-                                    Download <abbr title="Portable Document Format">PDF</abbr>
-                                </a>
-                            </span>
+                            <ul class="article_actions">
+                                <li class="read_link">
+                                    <a tal:attributes="href item_url"
+                                       i18n:domain="dipp"
+                                       i18n:translate="read article">read article</a>
+                                </li>
+                                
+                                <li class="pdf_link"
+                                    tal:condition="issue_show_pdf_link"
+                                    tal:define="pdf python: obj.getFulltextPdf()">
+                                    <a href=""
+                                       tal:attributes="href python:pdf['URL']"
+                                       tal:condition="pdf">
+                                        Download <abbr title="Portable Document Format">PDF</abbr>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                      </tal:items>
                 </ol>
