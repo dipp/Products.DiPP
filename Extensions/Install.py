@@ -438,7 +438,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         ext = getattr(site,'ext')
 
     methods = (
-        ('listDir', 'list directory content', 'DiPP.listDir', 'listDir'),
         ('deadline_date', '', 'DiPP.deadlines', 'deadline_date'),
         ('deadline_delay', '', 'DiPP.deadlines', 'deadline_delay'),
         ('deadline_time', '', 'DiPP.deadlines', 'deadline_time'),
