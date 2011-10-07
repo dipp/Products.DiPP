@@ -16,7 +16,6 @@ DEPENDENCIES = [
     'Archetypes',
     'ATVocabularyManager',
     'CMFOpenflow',
-    'DiPPContent',
     'LinguaPlone',
     'PloneLanguageTool',
     'TextIndexNG3'
