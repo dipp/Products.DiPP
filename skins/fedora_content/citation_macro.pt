@@ -4,16 +4,17 @@
     <body>
 
         <div metal:define-macro="recommended_citation"
+             id="recommended_citation"
+             tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
+                         citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
+                         issn here/portal_properties/dipp_properties/ISSN|nothing;
+                         journalname_abbr here/portal_properties/metadata_properties/journalname_abbr|nothing;
+                         initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
+                         comma_separated here/comma_separated|here/portal_properties/dipp_properties/comma_separated|nothing;
+                         initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing"
+             tal:condition="show_recommended_citation"
              i18n:domain="dipp">
              
-            <div tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
-                             citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
-                             issn here/portal_properties/dipp_properties/ISSN|nothing;
-                             journalname_abbr here/portal_properties/metadata_properties/journalname_abbr|nothing;
-                             initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
-                             comma_separated here/comma_separated|here/portal_properties/dipp_properties/comma_separated|nothing;
-                             initials_period here/initials_period|here/portal_properties/dipp_properties/initials_period|nothing"
-                 tal:condition="show_recommended_citation">
                 <h2 i18n:translate="heading_recommended_citation">Recommended Citation</h2>
                 <p>
                     <span tal:content="structure python: here.bibtool.recommended_citation(articlePID, qdc)"></span>
@@ -23,7 +24,6 @@
                     Bitte geben Sie beim Zitieren dieses Artikels die exakte URL und das Datum Ihres
                     letzten Besuchs bei dieser Online-Adresse an.
                 </p>
-            </div>
         </div>
 
         <div metal:define-macro="google_scholar"

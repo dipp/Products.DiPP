@@ -4,12 +4,13 @@
     <body>
 
         <div metal:define-macro="rights"
+             id="licence" 
              i18n:domain="dipp"
              tal:define="rights python: qdc.get('rights',[]);
                          language request/other/LANGUAGE|en;
                          lang python:test(language in ('en','de'),language, 'en')">
 
-                <h2 id="licence" i18n:translate="licence" i18n:domain="dipp">Lizenz</h2>
+                <h2 i18n:translate="licence" i18n:domain="dipp">Lizenz</h2>
                 <p i18n:translate="licence_text" i18n:domain="dipp"
                    tal:define="dppl python:here.dppl(rights[0],lang)">
                     Jedermann darf dieses Werk unter den Bedingungen der
