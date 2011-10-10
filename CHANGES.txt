@@ -1,5 +1,14 @@
 Changes
 
+    DiPP 2.9.1 (2011-10-10)
+    
+        * SpecialIssue from DiPPContent included, Dependency from DiPPContent
+          removed. Should be deinstalled before reinstalling DIPP
+        
+        * pdf link on issue index page
+         
+        
+        
     DiPP 2.9 (2011-09-28)
         
         * Merged with DiPPReview

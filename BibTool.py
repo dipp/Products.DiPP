@@ -8,7 +8,7 @@
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
-# $Id: FedoraTool.py 2132 2010-06-04 07:08:42Z reimer $
+# $Id$
 
 from  elementtree.ElementTree import Element, SubElement
 import elementtree.ElementTree as ET    
