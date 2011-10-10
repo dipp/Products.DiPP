@@ -40,6 +40,10 @@
             A list of supplementary materials.
         </div>
         
+        <div metal:use-macro="here/rights_macro/macros/rights">
+           some explanation about the rights and link to the licence 
+        </div>
+            
         <div metal:use-macro="here/citation_macro/macros/recommended_citation">
             Show a custom formatted recommended citation
         </div>
