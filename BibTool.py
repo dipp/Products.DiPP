@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# ...
-# File: BibUtils.py
 #
 # German Free Software License (D-FSL)
 #
@@ -128,6 +126,7 @@ class BibTool(UniqueObject, SimpleItem):
         if comma_separated:
             comma = ','
 
+        author_count = len(authors)
         for idx, author in enumerate(authors):
             firstnames = author['firstName'].split()
             firstnames_initials = ""
@@ -138,7 +137,7 @@ class BibTool(UniqueObject, SimpleItem):
             else:
                 firstname = ' '.join(firstnames)
             lastname = author['lastName']
-            if idx == (len(authors) -1):
+            if idx == (author_count - 1) and author_count > 1:
                 prefix = last_author_suffix
                 suffix = ""
             else:
