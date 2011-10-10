@@ -55,6 +55,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('initials_only', 'boolean', True),
         ('initials_period', 'boolean', False),
         ('comma_separated', 'boolean', False),
+        ('last_author_suffix', 'string', ''),
         ('articles_in_portlet','boolean',True),
         ('authors_in_portlet','boolean',True),
         ('allow_persistent_discussion', 'boolean', False),

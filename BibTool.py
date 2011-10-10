@@ -88,6 +88,7 @@ class BibTool(UniqueObject, SimpleItem):
         initials_only = dp.initials_only
         comma_separated = dp.comma_separated
         initials_period = dp.initials_period
+        last_author_suffix = dp.last_author_suffix
 
         # Metadata stored only in Plone
         try:
@@ -122,25 +123,28 @@ class BibTool(UniqueObject, SimpleItem):
         comma = ""
         
         if initials_period:
-            period = "."
+            period = ". "
 
         if comma_separated:
             comma = ','
 
-        for author in authors:
-            author_number = authors.index(author) + 1
+        for idx, author in enumerate(authors):
             firstnames = author['firstName'].split()
             firstnames_initials = ""
             for firstname in firstnames:
                 firstnames_initials += firstname[0] + period
-            lastname = author['lastName']
-            if author_number == len(authors):
-                glue = ""
-            else:
-                glue = ", "
             if initials_only:
-                firstname = firstnames_initials
-            authors_list += "%s%s %s%s" % (lastname, comma, firstname, glue)
+                firstname = firstnames_initials.strip()
+            else:
+                firstname = ' '.join(firstnames)
+            lastname = author['lastName']
+            if idx == (len(authors) -1):
+                prefix = last_author_suffix
+                suffix = ""
+            else:
+                prefix = ""
+                suffix = ", "
+            authors_list += "%s %s%s %s%s" % (prefix, lastname, comma, firstname, suffix)
 
 
         cite = citation_format % {
