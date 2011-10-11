@@ -19,6 +19,7 @@
                          date_format               here/issue_date_format|here/portal_properties/dipp_properties/issue_date_format|nothing;
                          issue_show_pdf_link       here/issue_show_pdf_link|here/portal_properties/dipp_properties/issue_show_pdf_link|nothing;
                          issue_show_abstracts      here/issue_show_abstracts|here/portal_properties/dipp_properties/issue_show_abstracts|nothing;
+                         issue_show_short_citation here/issue_show_short_citation|here/portal_properties/dipp_properties/issue_show_short_citation|nothing;
                          issue_show_full_abstracts here/issue_show_full_abstracts|here/portal_properties/dipp_properties/issue_show_full_abstracts|nothing"
              i18n:domain="dipp">
             
@@ -90,6 +91,12 @@
                                        tal:content="title"></a><span tal:condition="not: repeat/abstract/end">,</span>
                                 </tal:block>
                             </div>
+                            
+                            <p tal:condition="issue_show_short_citation"
+                               tal:content="structure python: here.bibtool.short_citation(obj)">
+                                DevJour 3, 2 (2009)
+                            </p>
+                            
                             <ul class="article_actions">
                                 <li class="read_link">
                                     <a tal:attributes="href item_url"

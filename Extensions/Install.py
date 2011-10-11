@@ -64,6 +64,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('issue_show_abstracts', 'boolean', False),
         ('issue_show_pdf_link', 'boolean', False),
         ('issue_show_full_abstracts', 'boolean', False),
+        ('issue_show_short_citation', 'boolean', False),
         ('issue_sort_on', 'string', 'getObjPositionInParent'),
         ('issue_sort_order', 'string', 'ascending'),
         ('discussion_time', 'int', 0),
