@@ -1,5 +1,12 @@
 Changes
 
+    DiPP 2.9.2 (2011-10-11)
+
+        * more flexible bibliographic citation (APA style possible)
+        
+        * short bibl. citation on issue index page
+        
+
     DiPP 2.9.1 (2011-10-10)
     
         * SpecialIssue from DiPPContent included, Dependency from DiPPContent
