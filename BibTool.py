@@ -67,14 +67,22 @@ class BibTool(UniqueObject, SimpleItem):
     def short_citation(self,article):
         
         dp = self.portal_properties.dipp_properties
+        mp = self.portal_properties.metadata_properties
         citation_format = dp.short_citation_format
+        journal_shortname = mp.journalname_abbr
+        issuedate = article.IssueDate
+        year = issuedate.strftime('%Y')
         
         cite = citation_format % {
             'journal':article.JournalTitle,
+            'journal_shortname':journal_shortname,
             'volume':article.Volume,
             'issue':article.Issue,
             'startpage':article.startpage,
             'endpage':article.endpage,
+            'urn':article.URN,
+            'issuedate':issuedate,
+            'year':year,
             }
         return cite
         
