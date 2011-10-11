@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language-code: en\n"
 "Language-name: English\n"
-"Domain: plone\n"
+"Domain: qdc\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-encodings: latin1 utf-8\n"
 
