@@ -137,7 +137,10 @@ class BibTool(UniqueObject, SimpleItem):
             else:
                 firstname = ' '.join(firstnames)
             lastname = author['lastName']
-            if idx == (author_count - 1) and author_count > 1:
+            if author_count == 1:
+                prefix = ""
+                suffix = ""
+            elif idx == (author_count - 1) and author_count > 1:
                 prefix = last_author_suffix
                 suffix = ""
             else:
