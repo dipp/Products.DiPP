@@ -77,6 +77,15 @@ div .inlineReference {
 #authorblurb ul.identifier li.subjects abbr {
     text-transform: uppercase;
 }
+#authorblurb ol.review-history {
+    font-style: italic;
+    text-transform: capitalize;
+    list-style: none;
+    margin: 0 0 .75em 0;
+}
+#authorblurb ol.review-history li {
+    display: inline;
+}
 
 div.mixed {
     margin-top: 2em;

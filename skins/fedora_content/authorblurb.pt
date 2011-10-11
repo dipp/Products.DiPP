@@ -58,10 +58,11 @@
             </tal:block>
 
             <ol tal:condition="show_review_history"
-                class="review-history">
-                <li tal:condition="submitted"><span i18n:translate="label_submitted">submitted</span>: <span tal:replace="python:toLocalizedTime(submitted)"></span></li>
-                <li tal:condition="accepted"><span i18n:translate="label_accepted">accepted</span>: <span tal:replace="python:toLocalizedTime(accepted)"></span></li>
-                <li tal:condition="published"><span i18n:translate="label_published">published</span>: <span tal:replace=" python:toLocalizedTime(published)"></span></li>
+                class="review-history"
+                i18n:domain="qdc">
+                <li tal:condition="submitted"><span i18n:translate="label_submitted">Submitted</span>: <span tal:replace="python:toLocalizedTime(submitted)"></span>,</li>
+                <li tal:condition="accepted"><span i18n:translate="label_accepted">Accepted</span>: <span tal:replace="python:toLocalizedTime(accepted)"></span>,</li>
+                <li tal:condition="published"><span i18n:translate="label_published">Published</span>: <span tal:replace=" python:toLocalizedTime(published)"></span></li>
             </ol>
             
             <tal:block tal:condition="subjects">
