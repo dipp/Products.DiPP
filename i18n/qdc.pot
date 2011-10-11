@@ -160,5 +160,8 @@ msgstr ""
 msgid "label_accepted"
 msgstr ""
 
+msgid "label_published"
+msgstr ""
+
 msgid "label_copyrighted"
 msgstr ""
