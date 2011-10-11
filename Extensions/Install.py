@@ -52,6 +52,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('short_citation_format', 'text', SHORT_CITATION_FORMAT),
         ('show_recommended_citation', 'boolean', True),
         ('show_classified_subjects', 'boolean', False),
+        ('show_review_history', 'boolean', False),
         ('initials_only', 'boolean', True),
         ('initials_period', 'boolean', False),
         ('comma_separated', 'boolean', False),

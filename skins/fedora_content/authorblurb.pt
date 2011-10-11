@@ -6,8 +6,13 @@
         <div id="authorblurb" metal:define-macro="authorblurb"
              tal:define="urn python:qdc['identifierURN'];
                          doi python:qdc['identifierDOI'];
+                         accepted python:qdc.get('dateAccepted',None); 
+                         copyrighted python:qdc.get('dateCopyrighted',None);
+                         submitted python:qdc.get('dateSubmitted',None);
+                         published here/getIssueDate|nothing;
                          authors python:qdc['creatorPerson'];
                          initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
+                         show_review_history here/show_review_history|here/portal_properties/dipp_properties/show_review_history|nothing;
                          show_classified_subjects here/show_classified_subjects|here/portal_properties/dipp_properties/show_classified_subjects|nothing;
                          subjectClassified python:qdc['subjectClassified'];
                          subjects python:qdc['subject']"
@@ -51,6 +56,14 @@
                      </tal:block>
                 </div>
             </tal:block>
+
+            <ol tal:condition="show_review_history"
+                class="review-history">
+                <li tal:condition="submitted"><span i18n:translate="label_submitted">submitted</span>: <span tal:replace="python:toLocalizedTime(submitted)"></span></li>
+                <li tal:condition="accepted"><span i18n:translate="label_accepted">accepted</span>: <span tal:replace="python:toLocalizedTime(accepted)"></span></li>
+                <li tal:condition="published"><span i18n:translate="label_published">published</span>: <span tal:replace=" python:toLocalizedTime(published)"></span></li>
+            </ol>
+            
             <tal:block tal:condition="subjects">
                 <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
                 
