@@ -18,8 +18,8 @@ portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 wtool = getToolByName(self, 'portal_workflow')
 
-revision = wtool.getInfoFor(self, 'revision', 0)
-context.plone_log(revision)
+revision = int(wtool.getInfoFor(self, 'revision', 0))
+context.plone_log("Revision %d" % revision)
 
 if type == 'Manuscript':
     manuscript_counter = self.manuscript_counter + 1
