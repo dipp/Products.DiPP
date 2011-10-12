@@ -4,7 +4,8 @@
       i18n:domain="DiPPReview">
 
     <metal:block fill-slot="top_slot">
-        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0');" />
+        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0');
+                                 dummy python:request.set('disable_border',1)" />
     </metal:block>
 
 
