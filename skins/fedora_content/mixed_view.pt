@@ -56,6 +56,10 @@
             </pre>
 
         </div>
+        
+        <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
+            A list of supplementary materials.
+        </div>
 
         <tal:block tal:define="show_recommended_citation here/portal_properties/dipp_properties/show_recommended_citation|nothing;
                          citation_format here/citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
@@ -72,10 +76,6 @@
                 Show a custom formatted recommended citation
             </div>
            
-            <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
-                A list of supplementary materials.
-            </div>
-            
             <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
                 Comments which are treated like peer reviewed articles
             </div>
