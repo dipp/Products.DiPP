@@ -1,13 +1,26 @@
 # -*- coding: utf-8 -*-
+##script (Python) "upload_repository"
+##title=Ingest article to the fedora repository
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 request  = context.REQUEST
+
+translate = context.translate
 
 fedora = getToolByName(context, 'fedora')
 portal_url = getToolByName(context, 'portal_url')
 portal     = portal_url.getPortalObject()
 Location   = request.get('Location')
 storageType = request.get('storageType')
+targetFormat = request.get('targetFormat')
+
 
 if Location.startswith('https'):
     Location = Location.replace('https','http',1)
@@ -20,11 +33,10 @@ subject = params.get('subject',[])
 subjects = subject + new_subjects
 params['subject'] = subjects
 
-context.plone_log(subjects)
-
-journalTitle = portal.Title()
 now = DateTime().strftime("%Y-%m-%d")
 if storageType == 'temporary':
+    params['storageType'] = storageType
+    params['targetFormat'] = targetFormat
     params['alternative'] = [{'value':'','lang':''}]
     params['DCTermsAbstract'] = []
     params['creatorPerson'] = [{'firstName':'John','lastName':'Doe'}]
@@ -34,13 +46,15 @@ if storageType == 'temporary':
     params['subjectClassified'] = []
     params['pubType'] = ['']
     params['docType'] = ['']
-    params['bibliographicCitation'] = [{'journalIssueDate':now,'journalIssueNumber':'n/a','journalTitle':journalTitle,'journalVolume':'n/a'}]
+    params['bibliographicCitation'] = [{'journalIssueDate':now,'journalIssueNumber':'n/a','journalTitle':'n/a','journalVolume':'n/a'}]
     params['rights'] = ['DPPL']
 
 
 newPID = fedora.createNewArticle(JournalPID, JournalPID, params, Location)
-context.plone_log('neuer Artikel: %s' % Location)
+context.plone_log('new article created: %s' % newPID)
 
 state.set(status='success')
-state.set(portal_status_message='Datei wurde hochgeladen und wird konvertiert!')
+msg = translate('file_uploaded_and_being_converted', domain='dipp')
+context.plone_utils.addPortalMessage(msg)
+
 return state
