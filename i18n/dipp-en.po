@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-07-20 14:20+0100\n"
+"PO-Revision-Date: 2011-10-17 21:32+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -657,4 +657,7 @@ msgstr "descending"
 
 msgid "label_available_languages"
 msgstr "Also available in"
+
+msgid "file_uploaded_and_being_converted"
+msgstr "The file was uploaded and is now being converted. Depending on the size of the manuscript that can take several minutes."
 
