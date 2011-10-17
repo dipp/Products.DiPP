@@ -128,21 +128,6 @@
           </fieldset>
 
 
-<!--            
-            <div class="field" i18n:domain="qdc">
-                <label for="targetFormat" i18n:translate="label_targetFormat">Zielformate</label>
-                <div class="formHelp" i18n:translate="help_targetFormat">
-                    WŠhlen Sie die zu erstellenden Zielformate.
-                </div>
-
-                <input type="checkbox" 
-                       name="targetFormat:list" 
-                       value="html" checked />
-                html<br />
-            </div>
--->            
-            
-
                     <input class="context"
                            tabindex=""
                            type="submit"
