@@ -8,7 +8,6 @@
 ##parameters=self
 
 from Products.CMFCore.utils import getToolByName
-from zLOG import LOG, INFO
 
 request  = context.REQUEST
 
@@ -49,7 +48,8 @@ Location = obj.absolute_url()
 if Location.startswith('https'):
     Location = Location.replace('https','http',1)
 
-LOG('DiPP File Location', INFO, Location )
+#context.plone_log
+#LOG('DiPP File Location', INFO, Location )
 
 MIMEType = obj.content_type
 size     = obj.size
@@ -59,27 +59,28 @@ convertible = ('application/rtf',
     'text/rtf',
     'text/xml')
     
-targetFormat = ['']
+targetFormat = []
 
-if MIMEType in  convertible:
+if MIMEType in convertible:
     targetFormat.append("html")
+else:
+    targetFormat.append("")
+
 
 formButton = request.get('form.button.testconvert', None)
+
 if formButton != None :
     storageType = 'temporary'
 else:
     storageType = 'permanent'
 
-#state.set(form.submitted='1')
-
 state.set(status=storageType,
-    bc_journalTitle=request['bc_journalTitle'],
     journalPID=JournalPID,
     title_value=request['title_value'],
     title_lang=request['title_lang'],
     storageType=storageType,
     targetFormat=targetFormat,
     Location=Location)
-
+    
 # Always make sure to return the ControllerState object
 return state
