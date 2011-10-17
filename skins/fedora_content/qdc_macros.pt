@@ -318,6 +318,7 @@
         <!-- AUTOREN -->             
         <div metal:define-macro="creatorPerson"
              class="field"
+             id="creatorPerson"
              tal:define="error errors/creatorPerson|nothing;
                          default python:[];
                          creatorPerson request/creatorPerson|python:qdc['creatorPerson']"
@@ -378,22 +379,22 @@
             </table>
 
             <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.delAuthor"
-               value="delete selected"
-               i18n:attributes="value remove-selected"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delAuthor"
+                   value="delete selected"
+                   i18n:attributes="value remove-selected"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
             
             <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.addAuthor"
-               value="add field"
-               i18n:attributes="value add-field"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addAuthor"
+                   value="add field"
+                   i18n:attributes="value add-field"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
         </div>
 
         
