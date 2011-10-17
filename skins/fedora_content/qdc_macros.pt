@@ -387,7 +387,7 @@
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
             
-            <input class="context"
+            <input class="context addfield"
                    tabindex=""
                    type="submit"
                    name="form.button.addAuthor"
