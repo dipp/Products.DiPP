@@ -1,9 +1,8 @@
 [default]
 title = Edit content
 
-[validators]
-#asdasda 
-
 [actions]
+# anscheinend klappt hier nur redirect_to (GET) da traverse_to schon loslegt
+# bevor die Datei auf dem Server ist
 action.permanent = redirect_to:string:upload_metadata_form
 action.temporary = redirect_to:string:upload_repository
