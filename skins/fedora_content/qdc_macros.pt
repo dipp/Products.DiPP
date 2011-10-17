@@ -844,6 +844,7 @@
         <div metal:define-macro="bibliographicCitation"
             class="field"
             tal:define="error errors/bibliographicCitation|nothing;
+                        defaultJournalTitle portal_properties/title|nothing;    
                         bibliographicCitation  request/bibliographicCitation|python:qdc['bibliographicCitation'];
                         startpage request/startpage|here/startpage|nothing;
                         endpage request/endpage|here/endpage|nothing"
@@ -870,8 +871,9 @@
                         <input class="journalTitle"
                                type="text"
                                name="bibliographicCitation.journalTitle:records"
+                               tal:define="journalTitle python:bibliographicCitation[0]['journalTitle']"
                                value =""
-                               tal:attributes="value python:bibliographicCitation[0]['journalTitle']" />
+                               tal:attributes="value python:test(journalTitle.strip()!='', journalTitle, defaultJournalTitle)" />
                     </td>
                     <td>
                         <input class="journalVolume"
