@@ -8,7 +8,9 @@
 <div metal:define-macro="portlet">
                  
 
-    <dl class="portlet" id="portlet-dippnav" tal:condition="not: isAnon">
+    <dl class="portlet" 
+        id="portlet-dippnav"
+        tal:condition="python: user.has_permission('Use OpenFlow', here)">
         
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
