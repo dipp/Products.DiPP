@@ -63,17 +63,43 @@
           Continue</a>
       </p>
 
-      <p tal:condition="python:not came_from">
-        <a href=""
-           tal:attributes="href portal_url"
-           i18n:translate="label_login_continue_to_home_page">
-          Continue to the
-          <span tal:content="portal/title" i18n:name="portal_title">
-              portal title
-          </span>
-          home page
-          </a>
-      </p>
+      <ul tal:condition="python:not came_from"
+          tal:define="results python:here.portal_catalog(portal_type='SubmissionFolder')">
+        <li>
+            <a href=""
+               tal:attributes="href portal_url"
+               i18n:translate="label_login_continue_to_home_page">
+              Continue to the
+              <span tal:content="portal/title" i18n:name="portal_title">
+                  portal title
+              </span>
+              home page
+              </a>
+          </li>
+        <tal:block tal:repeat="result results" >
+            <li>
+                <a href=""
+                   tal:attributes="href result/getURL"
+                   i18n:translate="label_login_continue_to_my_submissions"
+                   i18n:domain="dipp">
+                   Artikelstatus</a>
+            </li>
+            <li>
+                <a href=""
+                   tal:attributes="href string:${result/getURL}/manuscript_submit_form"
+                   i18n:translate="label_login_continue_to_new_submission"
+                   i18n:domain="dipp">
+                   Neue Einreichung</a>
+            </li>
+        </tal:block>
+          <li tal:condition="python: user.has_role('Manager')">
+              <a href=""
+                 tal:attributes="href string:$portal_url/editorial_toolbox"
+                 i18n:attributes="title description_editorial_toolbox"
+                 i18n:translate="">
+                    Upload an accepted and finalized paper.</a>
+          </li>
+      </ul>
 
       <div tal:condition="not:js_enabled">
          <p i18n:translate="description_javascript_advantage">
