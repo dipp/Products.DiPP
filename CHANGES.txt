@@ -1,5 +1,16 @@
 Changes
 
+    DiPP 2.9.3 (2011-10-20)
+
+        * fixed type error when adding files to submission
+
+        * default title in metadata
+
+        * new login_succes page with rolebased links
+
+        * pdf automatically declared as fulltext when pdf only publishing
+
+
     DiPP 2.9.2 (2011-10-11)
 
         * more flexible bibliographic citation (APA style possible)
