@@ -656,3 +656,12 @@ msgstr ""
 
 msgid "file_uploaded_and_being_converted"
 msgstr ""
+
+msgid "label_login_continue_to_my_submissions"
+msgstr ""
+
+msgid "label_login_continue_to_new_submission"
+msgstr ""
+
+msgid "label_login_editorial_toolbox"
+msgstr ""

@@ -95,8 +95,8 @@
           <li tal:condition="python: user.has_role('Manager')">
               <a href=""
                  tal:attributes="href string:$portal_url/editorial_toolbox"
-                 i18n:attributes="title description_editorial_toolbox"
-                 i18n:translate="">
+                 i18n:translate="label_login_editorial_toolbox"
+                 i18n:domain="dipp">
                     Upload an accepted and finalized paper.</a>
           </li>
       </ul>
