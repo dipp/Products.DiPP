@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-10-17 21:31+0100\n"
+"PO-Revision-Date: 2011-10-20 11:32+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "Language: \n"
@@ -660,4 +660,13 @@ msgstr "Auch verfügbar in"
 
 msgid "file_uploaded_and_being_converted"
 msgstr "Datei wurde hochgeladen und wird nun konvertiert. Je nach Umfang des Artikels kann das einige Minuten in Anspruch nehmen."
+
+msgid "label_login_continue_to_my_submissions"
+msgstr "Den Status meiner Einreichungen einsehen."
+
+msgid "label_login_continue_to_new_submission"
+msgstr "Einen Artikel zur Begutachtung einreichen."
+
+msgid "label_login_editorial_toolbox"
+msgstr "Eine akzeptierten und finalisierten Artikel mit der Editorial Toolbox veröffentlichen."
 
