@@ -179,12 +179,14 @@ class BibTool(UniqueObject, SimpleItem):
         mods = Element("mods")
 
         # Metadata from the Journal
-        fedora = getToolByName(self, "fedora")
-        jqdc = fedora.getQualifiedDCMetadata(fedora.PID)
         try:
             ISSN = getattr(self,'ISSN')
         except:
-            ISSN = jqdc['identifierISSN']
+            ISSN = self.portal_properties.dipp_properties.ISSN.strip()
+            if ISSN == "":
+                fedora = getToolByName(self, "fedora")
+                jqdc = fedora.getQualifiedDCMetadata(fedora.PID)
+                ISSN = jqdc['identifierISSN']
             
         # Metadata stored only in Plone
         try:
