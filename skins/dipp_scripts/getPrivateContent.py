@@ -46,14 +46,15 @@ context.plone_log ("private Id: %s" % (self.id))
 if IP == fedoraIP:
 
     MIMEType = self.content_type
+    MIMETypeCategory = MIMEType.split('/')[0] 
     
     RESPONSE.setHeader('Content-Type', MIMEType)
-    if MIMEType in ['application/pdf','image/jpg']:
+    if MIMETypeCategory in ['application','image']:
         cd = 'attachment; filename=%s' % (id)
         RESPONSE.setHeader('Content-Disposition', cd)
         return self.getFile()
 
-    if MIMEType in ['text/html','text/plain', 'text/structured', 'text/xml']:
+    if MIMETypeCategory == 'text':
         return self.body
     else:
         print "Unsupported MIME Type"
