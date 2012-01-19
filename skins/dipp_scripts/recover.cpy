@@ -18,7 +18,7 @@ oftool = container.portal_openflow
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
-label = self.portal_properties.gap_container
+label = fedora.label
 
 out = StringIO()
 
