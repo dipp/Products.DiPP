@@ -1,5 +1,12 @@
 Changes
 
+    DiPP 2.9.4 (2012-01-19)
+    
+        * fileupload not limited to pdf or jpg, not so strict check of MIME Type
+        
+        * ISSN search via aquisition, thus more flexible with multiple ISSNs 
+        
+        
     DiPP 2.9.3 (2011-10-20)
 
         * fixed type error when adding files to submission
