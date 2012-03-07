@@ -41,7 +41,7 @@
                 <th>
                     <span i18n:translate="uploaded">Hochgeladen</span>(<span i18n:translate="deadline">Frist</span>)
                 </th>
-                <th i18n:translate="author">Autor</th>
+                <th i18n:translate="imprimatur_by">Imprimatur von</th>
                 <th i18n:translate="title">Titel des Artikels</th>
                 <th i18n:translate="issue">Ausgabe</th>
                 <th i18n:translate="next_step">nächster Schritt</th>
@@ -132,7 +132,7 @@
                 <th>
                     <span i18n:translate="uploaded">Hochgeladen</span>(<span i18n:translate="deadline">Frist</span>)
                 </th>
-                <th i18n:translate="author">Autor</th>
+                <th i18n:translate="imprimatur_by">Imprimatur von</th>
                 <th i18n:translate="title">Titel des Artikels</th>
                 <th i18n:translate="issue">Ausgabe</th>
                 <th i18n:translate="next_step">nächster Schritt</th>
