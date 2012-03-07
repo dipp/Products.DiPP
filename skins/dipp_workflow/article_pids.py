@@ -16,9 +16,9 @@ portal = getToolByName(context, 'portal_url').getPortalObject()
 
 catalog = getToolByName(portal, 'portal_catalog')
 if PID:
-    results = catalog.searchResults(portal_type='FedoraArticle', getPID=PID)
+    results = catalog.searchResults(portal_type='FedoraArticle', Language='all', getPID=PID)
 else:
-    results = catalog.searchResults(portal_type='FedoraArticle')
+    results = catalog.searchResults(portal_type='FedoraArticle', Language='all')
 articles = {}
 
 for result in results:
