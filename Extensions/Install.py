@@ -315,61 +315,7 @@ def configure_workflow(self, out, site_id=SITE_NAME):
     print >> out, 'Set Pull or Push permissions\n'
 
     print >> out,'DiPP Workflow Setup Done\n Finished\n'
-
-
-    print >> out, "    Assigning Permissions..."
-    #Rollen und ihre Rechte
-    redakteur = (
-        'Use OpenFlow',
-        'Manage properties',
-        'Add portal content',
-        'Access future portal content',
-        'Access inactive portal content',
-        'Add Documents, Images, and Files',
-        'Change Images, and Files',
-        'Add Folders',
-        'Add portal folders',
-        'Copy or Move',
-        'Fedora: Add Content',
-        'Fedora: Edit Content',
-        'List folder contents',
-    )
-
-    herausgeber = (
-        'Use OpenFlow',
-        'Manage OpenFlow',
-        'Manage properties',
-        'Add portal content',
-        'Access future portal content',
-        'Access inactive portal content',
-        'Add Documents, Images, and Files',
-        'Change Images, and Files',
-        'Add Folders',
-        'Add portal folders',
-        'Copy or Move'
-        'Fedora: Add Content',
-        'Fedora: Edit Content',
-        'List folder contents',
-    )
-
-    autor = (
-        'Use OpenFlow',
-        'List folder contents',
-    )
-
-    gastherausgeber = (
-        'Use OpenFlow',
-    )
     
-    anonymous = (
-        'Fedora: View Content',
-    ) 
-    site.manage_role('Redakteur', redakteur)
-    site.manage_role('Herausgeber', herausgeber)
-    site.manage_role('Autor', autor)
-    site.manage_role('Gastherausgeber', gastherausgeber)
-    site.manage_role('Anonymous', anonymous)
-
     reftool.manage_role('Redakteur', ('Manage properties',))
     reftool.manage_role('Herausgeber', ('Manage properties',))
     reftool.manage_role('Autor', ('Manage properties',))
@@ -413,8 +359,7 @@ def install_groups_and_roles(self, out, site_id=SITE_NAME):
     for group in groups:
         site.portal_groups.addGroup(group,(),())
     
-    roles =('Redakteur','Herausgeber','Autor','Gastherausgeber','pr_Author',
-            'pr_EditorInChief', 'pr_GuestEditor', 'pr_Reviewer', 'pr_ReviewerInvited', 'pr_SectionEditor')
+    roles =('pr_Author', 'pr_EditorInChief', 'pr_GuestEditor', 'pr_Reviewer', 'pr_ReviewerInvited', 'pr_SectionEditor')
     
     for role in roles:
         site._addRole(role)
