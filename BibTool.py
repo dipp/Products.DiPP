@@ -95,6 +95,7 @@ class BibTool(UniqueObject, SimpleItem):
         comma_separated = dp.comma_separated
         initials_period = dp.initials_period
         last_author_suffix = dp.last_author_suffix
+        firstnamefirst = dp.firstnamefirst
 
         # Metadata stored only in Plone
         try:
@@ -154,8 +155,11 @@ class BibTool(UniqueObject, SimpleItem):
             else:
                 prefix = ""
                 suffix = ", "
-            authors_list += "%s %s%s %s%s" % (prefix, lastname, comma, firstname, suffix)
 
+            if firstnamefirst == True:
+                authors_list += "%s %s %s%s" % (prefix, firstname, lastname, suffix)
+            else:
+                authors_list += "%s %s%s %s%s" % (prefix, lastname, comma, firstname, suffix)
 
         cite = citation_format % {
         'authors':authors_list, 

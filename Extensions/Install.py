@@ -54,6 +54,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('show_classified_subjects', 'boolean', False),
         ('show_review_history', 'boolean', False),
         ('initials_only', 'boolean', True),
+        ('firstnamefirst', 'boolean', False),
         ('initials_period', 'boolean', False),
         ('comma_separated', 'boolean', False),
         ('last_author_suffix', 'string', ''),
