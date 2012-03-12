@@ -38,8 +38,10 @@ else:
 
 
 results = context.portal_catalog.searchResults(
-    getPID = PID
+    getPID = PID,
+    Language='all'
 )
+
 if results:
     title = results[0].Title
 else:
