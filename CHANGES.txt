@@ -1,5 +1,19 @@
 Changes
+    
+    DiPP 2.9.5 (2012-03-12)
 
+        * Publishing (openflow) workflow: fixed permission problems and error
+          in imprimatur mail
+        
+        * recommendet citation: order first and lastname
+        
+        * roles and persmissions as generic setup
+        
+
+    DiPP 2.9.5 (2012-03-13)
+        
+        [forgot description]
+    
     DiPP 2.9.4 (2012-01-19)
     
         * fileupload not limited to pdf or jpg, not so strict check of MIME Type
