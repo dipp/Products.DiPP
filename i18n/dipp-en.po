@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2011-10-20 11:34+0100\n"
+"PO-Revision-Date: 2012-03-13 15:24+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -171,6 +171,9 @@ msgstr "publish"
 
 msgid "imprimatur"
 msgstr "author's consent"
+
+msgid "imprimatur_by"
+msgstr "Imprimatur by"
 
 msgid "anschreiben"
 msgstr "request imprimatur"

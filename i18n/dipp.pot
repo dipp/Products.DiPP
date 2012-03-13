@@ -167,6 +167,9 @@ msgstr ""
 msgid "imprimatur"
 msgstr ""
 
+msgid "imprimatur_by"
+msgstr ""
+
 msgid "anschreiben"
 msgstr ""
 
