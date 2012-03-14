@@ -13,10 +13,10 @@ import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 try:
-    from Products.CMFCore.permissions import ManagePortal
+    from Products.CMFCore.permissions import ManagePortal, ManageProperties
     from Products.CMFCore.permissions import View
 except ImportError:
-    from Products.CMFCore.CMFCorePermissions import ManagePortal
+    from Products.CMFCore.CMFCorePermissions import ManagePortal, ManageProperties
     from Products.CMFCore.CMFCorePermissions import View
 from DateTime import DateTime
 from zope.interface import implements, Interface
@@ -259,6 +259,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "name": "Link translations",
           "action": "string:${folder_url}/link_translations_form",
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
+          "category":"folder",
+          },
+
+        { "id": "local_roles",
+          "name": "Sharing",
+          "action": "string:${folder_url}/sharing",
+          "permissions": (ManageProperties,),
           "category":"folder",
           },
           
