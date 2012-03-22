@@ -12,11 +12,8 @@ class FedoraXML(BaseContent):
                 searchable=1,
                 required=0,
                 primary=1,
-                allowable_content_types=('text/plain',
-                                   'text/structured',
-                                   'text/html',
-                                   'text/xml'),
-                widget=RichWidget(label='Body Content')
+                allowable_content_types=('text/xml'),
+                widget=TextAreaWidget(label='Body Content')
         ),
         StringField('PID',
                 required=1,
@@ -46,11 +43,6 @@ class FedoraXML(BaseContent):
     content_icon = "fedoraxml_icon.gif"
 
     actions = (
-        { "id": "edit",
-          "name": "Edit",
-          "action": "string:${object_url}/fedoraxml_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          },
           
         { "id": "view",
           "name": "View",
@@ -72,7 +64,7 @@ class FedoraXML(BaseContent):
           
         { "id": "versions",
           "name": "Versions",
-          "action": "string:${object_url}/fedoraxml_versions",
+          "action": "string:${object_url}/fedoradocument_versions",
           "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
           },
  
