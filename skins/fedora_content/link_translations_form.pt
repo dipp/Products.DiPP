@@ -3,7 +3,12 @@
       i18n:domain="linguaplone">
     <body>
         <div metal:fill-slot="main"
-             tal:define="deletable_languages here/getDeletableLanguages; parent here/getParentNode; parent_lang parent/Language|nothing; parent_id parent/id; content_lang here/Language|nothing; untranslated_languages here/getUntranslatedLanguages">
+             tal:define="deletable_languages here/getDeletableLanguages;
+                         parent here/getParentNode; 
+                         parent_lang parent/Language|nothing; 
+                         parent_id parent/id; 
+                         content_lang here/Language|nothing; 
+                         untranslated_languages here/getUntranslatedLanguages">
             
             <div tal:condition="not: content_lang"
                  class="portalMessage">
@@ -28,7 +33,8 @@ parent_id: <tal:block tal:replace="parent_id" />
 supported: <tal:block tal:replace="python: context.portal_languages.getSupportedLanguages()" />
 </pre>
 
-            <p tal:condition="untranslated_languages"
+            <p class="documentDescription"
+               tal:condition="untranslated_languages"
                i18n:translate="description_link_translations">Link
             another existing content as a translation for the
             current one in the selected language.</p>
@@ -186,11 +192,14 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
                                     </tal:block>
                                 </tbody>
                             </table>
-
-                            <input class="context" type="submit"
-                            name="linkTranslation:method"
-                            i18n:attributes="value label_link_translation;"
-                             value="Link Translation" />
+                            <div class="formControls">
+                                <input class="context"
+                                       type="submit"
+                                       name="linkTranslation:method"
+                                       i18n:attributes="value label_link_translation;"
+                                       value="Link Translation" />
+                            </div>
+                                   
                         </tal:block>
                     </tal:item>
                 </div>
