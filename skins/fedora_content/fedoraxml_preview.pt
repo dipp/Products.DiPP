@@ -6,13 +6,12 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
+        
         <fieldset>
-            <p>
-                <b>container:</b> <span tal:content="container/id">PID</span><br />
-                <b>PID:</b> <span tal:content="python: here.PID">PID</span><br />
-                <b>DsID:</b> <span tal:content="here/DsID">DsID</span>
-            </p>
+            <b>PID:</b> <span tal:content="here/PID">PID</span><br />
+            <b>DsID:</b> <span tal:content="here/DsID">DsID</span>
         </fieldset>
+            
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
@@ -20,14 +19,9 @@
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-		
     
-    	<div class="stx" tal:content="structure here/body">body</div>
+    	<pre tal:content="here/body">body</pre>
         
-        <!--
-        <hr />
-        <tal:block tal:replace="structure request" />
-        -->
         
         <div metal:use-macro="here/document_byline/macros/byline">
           Get the byline - contains details about author and modification date.
