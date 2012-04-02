@@ -1,5 +1,14 @@
 Changes
     
+    DiPP 2.9.7 (2012-04-02)
+    
+        * Fixed some problem with versioning of XML streams
+        
+
+    DiPP 2.9.7 (2012-04-02)
+        
+        * unreleased    
+    
     DiPP 2.9.5 (2012-03-12)
 
         * Publishing (openflow) workflow: fixed permission problems and error
