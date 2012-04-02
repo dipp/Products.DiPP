@@ -1,8 +1,0 @@
-[default]
-title = Fedoradocument versions
-
-[validators]
-validators = validate_fedoradocument_newversion
-
-[actions]
-action.success..NewVersion = traverse_to:string:fedoraxml_newversion
