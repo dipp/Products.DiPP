@@ -134,6 +134,12 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
                     Deutsch (de)</strong>
 
                     <tal:item tal:define="pfolder python: test(thisfolder,parent,parent.getTranslation(lang[0])); physicalPath pfolder/getPhysicalPath|nothing">
+	                    <form name="linkTranslation"
+	                          method="post"
+	                          action=""
+	                          class="group"
+	                          tal:condition="untranslated_languages"
+	                          tal:attributes="action here/absolute_url">
 
                         <div class="formHelp"
                              tal:condition="not: physicalPath">The
@@ -201,6 +207,7 @@ supported: <tal:block tal:replace="python: context.portal_languages.getSupported
                             </div>
                                    
                         </tal:block>
+                        </form>
                     </tal:item>
                 </div>
             </div>
