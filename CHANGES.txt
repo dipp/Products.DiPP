@@ -1,5 +1,10 @@
 Changes
     
+    DiPP 2.9.8 (2012-04-04)
+    
+        * fixed problems with link_translations_form
+        
+        
     DiPP 2.9.7 (2012-04-02)
     
         * Fixed some problem with versioning of XML streams
