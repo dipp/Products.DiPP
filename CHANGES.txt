@@ -1,5 +1,9 @@
 Changes
     
+    DiPP 2.9.9 (2012-04-19)
+    
+        * added PID resolver
+    
     DiPP 2.9.8 (2012-04-04)
     
         * fixed problems with link_translations_form
