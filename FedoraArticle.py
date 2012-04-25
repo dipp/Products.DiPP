@@ -237,7 +237,8 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     immediate_view = 'base_view'
     default_view = 'base_view'
     suppl_views = ('base_view', 'metadata_view', 'mixed_view', 'splash_screen')
-    filter_content_types= 1
+    filter_content_types = 1
+    global_allow = 0
     content_icon = 'fedoraarticle_icon.gif'
     actions = (
           
