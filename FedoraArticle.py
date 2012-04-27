@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+# The FedoraTool for adding and manipulating objects in Fedora
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+# $Id: Fedora2DiPP3Tool.py 3443 2011-08-01 19:45:53Z reimer $
+
 import logging
 from DateTime import DateTime
 from textindexng.interfaces import IIndexableContent
@@ -25,16 +35,21 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import View
 
 from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IFedoraArticle
 from Products.DiPP import Permissions
 
 logger = logging.getLogger("DiPP")
+
+def dummy(obj, event):
+    logger.info("edit event. not used yet")
+        
 
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
-    implements(IIndexableContent)
+    implements(IIndexableContent, IFedoraArticle)
 
     manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_fedora_form')
@@ -288,9 +303,6 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
           "category":"document_actions",
           },
     )
-    
-    def at_post_edit_script(self):
-        logger.info("ARTICLE POST EDIT")
     
     
     def indexableContent(self, fields):
