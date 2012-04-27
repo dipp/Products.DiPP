@@ -7,7 +7,7 @@
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
-# $Id: Fedora2DiPP3Tool.py 3443 2011-08-01 19:45:53Z reimer $
+# $Id$
 
 import logging
 from DateTime import DateTime
