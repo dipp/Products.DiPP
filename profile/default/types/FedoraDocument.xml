@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<object name="FedoraDocument" meta_type="Factory-based Type Information"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title">Fedora Document</property>
+ <property name="description">store text files in the repository</property>
+ <property name="content_icon">fedoradocument_icon.gif</property>
+ <property name="content_meta_type">FedoraDocument</property>
+ <property name="product">DiPP</property>
+ <property name="factory">addFedoraDocument</property>
+ <property name="immediate_view">base_edit</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <alias from="edit" to="base_edit"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${object_url}/fedoradocument_view" visible="True">
+  <permission value="Fedora: View Content"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/base_edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="Properties" action_id="metadata" category="object"
+    condition_expr="" url_expr="string:${object_url}/base_metadata"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="References" action_id="references" category="object"
+    condition_expr="object/archetype_tool/has_graphviz"
+    url_expr="string:${object_url}/reference_graph" visible="False">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+ <action title="Preview" action_id="preview" category="object"
+    condition_expr="" url_expr="string:${object_url}/fedoradocument_preview"
+    visible="True">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+ <action title="Versions" action_id="versions" category="object"
+    condition_expr="" url_expr="string:${object_url}/fedoradocument_versions"
+    visible="True">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+ <action title="Citation and Metadata" action_id="citation"
+    category="document_actions" condition_expr=""
+    url_expr="string:${folder_url}/metadata" visible="True">
+  <permission value="Fedora: View Content"/>
+ </action>
+ <action title="Get the fulltext as pdf." action_id="fulltextpdf"
+    category="document_actions"
+    condition_expr="python:folder.getFulltextPdf().get('URL',None)"
+    url_expr="python:folder.getFulltextPdf().get('URL',None)" visible="True">
+  <permission value="Fedora: View Content"/>
+ </action>
+</object>

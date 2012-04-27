@@ -1,4 +1,15 @@
+<?xml version="1.0"?>
 <object name="portal_types" meta_type="Plone Types Tool">
-    <object name="FedoraArticle"
-            meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="FedoraArticle"
+    meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="FedoraDocument" meta_type="Factory-based Type Information"/>
+ <object name="FedoraHierarchie"
+    meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="FedoraMultimedia"
+    meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="FedoraXML" meta_type="Factory-based Type Information"/>
+ <object name="Issue"
+    meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="Volume"
+    meta_type="Factory-based Type Information with dynamic views"/>
 </object>

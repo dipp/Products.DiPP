@@ -14,14 +14,7 @@ from config import *
 
 def initialize(context):
     # Content Types
-    import FedoraHierarchie
-    import Volume
-    import Issue
     import SpecialIssue
-    #import FedoraArticle
-    import FedoraDocument
-    import FedoraXML
-    import FedoraMultimedia
     import SubmissionFolder
     import Submission
     import Manuscript

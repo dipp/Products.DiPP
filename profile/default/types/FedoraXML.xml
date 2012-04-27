@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<object name="FedoraXML" meta_type="Factory-based Type Information"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title">Fedora XML</property>
+ <property name="description">stores the DocBOOK XML Files</property>
+ <property name="content_icon">fedoraxml_icon.gif</property>
+ <property name="content_meta_type">FedoraXML</property>
+ <property name="product">DiPP</property>
+ <property name="factory">addFedoraXML</property>
+ <property name="immediate_view">base_edit</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <alias from="edit" to="base_edit"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${object_url}/fedoraxml_view" visible="True">
+  <permission value="Fedora: View Content"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/base_edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="Properties" action_id="metadata" category="object"
+    condition_expr="" url_expr="string:${object_url}/base_metadata"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="References" action_id="references" category="object"
+    condition_expr="object/archetype_tool/has_graphviz"
+    url_expr="string:${object_url}/reference_graph" visible="False">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+ <action title="Preview" action_id="preview" category="object"
+    condition_expr="" url_expr="string:${object_url}/fedoraxml_preview"
+    visible="True">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+ <action title="Versions" action_id="versions" category="object"
+    condition_expr="" url_expr="string:${object_url}/fedoradocument_versions"
+    visible="True">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+</object>
