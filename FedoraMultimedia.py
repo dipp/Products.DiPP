@@ -27,15 +27,7 @@ from Products.DiPP import Permissions
 
 logger = logging.getLogger("DiPP")
 
-
-class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
-    """Multimedia files (Images, PDF, Movies) for storing in Fedora"""
-    
-    security = ClassSecurityInfo()
-    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
-    implements(IIndexableContent, IFedoraMultimedia)
-    
-    schema = BaseSchema + Schema((
+FedoraMultimediaSchema = BaseSchema + Schema((
         FileField('File',
                 required=0,
                 primary=1,
@@ -75,8 +67,17 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                 vocabulary = "getTypeOfList"
         )
     ),
-    marshall=PrimaryFieldMarshaller(),
-    )
+    marshall = PrimaryFieldMarshaller()
+)
+
+class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
+    """Multimedia files (Images, PDF, Movies) for storing in Fedora"""
+    
+    security = ClassSecurityInfo()
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
+    implements(IIndexableContent, IFedoraMultimedia)
+    
+    schema = FedoraMultimediaSchema
     immediate_view = 'file_view'
     default_view = 'file_view'
     suppl_views = ('base_view', 'mmmp3_view', 'mmimage_view', 'mmfile_view', 'mmflv_view')

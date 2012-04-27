@@ -18,7 +18,7 @@ def initialize(context):
     import Volume
     import Issue
     import SpecialIssue
-    import FedoraArticle
+    #import FedoraArticle
     import FedoraDocument
     import FedoraXML
     import FedoraMultimedia
