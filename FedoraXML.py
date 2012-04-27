@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from Products.Archetypes.public import *
 from Products.Archetypes.Marshall import PrimaryFieldMarshaller
-from config import PROJECTNAME
-import Permissions
+from Products.DiPP.config import PROJECTNAME
+from Products.DiPP import Permissions
 
 class FedoraXML(BaseContent):
     """stores the DocBOOK XML Files"""

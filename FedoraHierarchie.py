@@ -14,17 +14,15 @@
 __author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
 __docformat__ = 'plaintext'
 
+import logging
+from AccessControl import ClassSecurityInfo
 try:
     from Products.LinguaPlone.public import *
 except ImportError: 
     from Products.Archetypes.public import *
-from config import PROJECTNAME
-from AccessControl import ClassSecurityInfo
-import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
@@ -32,7 +30,9 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
 
-import logging
+from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
+from Products.DiPP import Permissions
 
 logger = logging.getLogger("DiPP")
 

@@ -1,28 +1,31 @@
 # -*- coding: utf-8 -*-
+import logging
+from DateTime import DateTime
+from textindexng.interfaces import IIndexableContent
+from textindexng.content import IndexContentCollector as ICC
+from zope.interface import implements, Interface
+from AccessControl import ClassSecurityInfo
+
+from Products.CMFCore.utils import getToolByName
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
+from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
+
 try:
     from Products.LinguaPlone.public import *
     from Products.LinguaPlone import utils
 except ImportError:
     from Products.Archetypes.public import *
 
-from Products.ATVocabularyManager.namedvocabulary import NamedVocabulary
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from config import PROJECTNAME
-from AccessControl import ClassSecurityInfo
-import Permissions
-from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
-from Products.CMFCore.utils import getToolByName
 try:
     from Products.CMFCore.permissions import ManagePortal, ManageProperties
     from Products.CMFCore.permissions import View
 except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal, ManageProperties
     from Products.CMFCore.CMFCorePermissions import View
-from DateTime import DateTime
-from zope.interface import implements, Interface
-from textindexng.interfaces import IIndexableContent
-from textindexng.content import IndexContentCollector as ICC
-import logging
+
+from Products.DiPP.config import PROJECTNAME
+from Products.DiPP import Permissions
 
 logger = logging.getLogger("DiPP")
 

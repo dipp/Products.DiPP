@@ -13,18 +13,18 @@
 
 __author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
 __docformat__ = 'plaintext'
+from zLOG import LOG, ERROR, INFO
 try:
     from Products.LinguaPlone.public import *
     from Products.LinguaPlone import utils
 except ImportError:
     from Products.Archetypes.public import *
 
-from config import PROJECTNAME
-import Permissions
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 
-from zLOG import LOG, ERROR, INFO
+from Products.DiPP.config import PROJECTNAME
+from Products.DiPP import Permissions
 
 class Volume(BrowserDefaultMixin, OrderedBaseFolder):
     """Hierarchical Object representing a Volume."""

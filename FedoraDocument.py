@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from AccessControl import ClassSecurityInfo
 from Products.Archetypes.public import *
 from Products.Archetypes.Marshall import PrimaryFieldMarshaller
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
-from AccessControl import ClassSecurityInfo
-import Permissions
-from config import PROJECTNAME
+from Products.DiPP.config import PROJECTNAME
+from Products.DiPP import Permissions
 
 class FedoraDocument(BaseContent):
     """store text files in the repository"""
