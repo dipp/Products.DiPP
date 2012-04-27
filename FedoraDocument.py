@@ -1,16 +1,32 @@
 # -*- coding: utf-8 -*-
+# The Fedoradocument ContentType
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+# $Id$
+
 from AccessControl import ClassSecurityInfo
+from zope.interface import implements, Interface
+
 from Products.Archetypes.public import *
 from Products.Archetypes.Marshall import PrimaryFieldMarshaller
 from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import getToolByName
+
 from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IFedoraDocument
 from Products.DiPP import Permissions
 
 class FedoraDocument(BaseContent):
     """store text files in the repository"""
 
     security = ClassSecurityInfo()
+    implements(IFedoraDocument)
+    
     schema = BaseSchema + Schema((
         TextField('body',
                 searchable=1,

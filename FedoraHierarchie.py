@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
-#
-# File: FedoraHierarchie.py
-#
-# Copyright (c) 2009 by DiPP, hbz
+# The FedoraArticle ContentType
 #
 # German Free Software License (D-FSL)
 #
-# This Program may be used by anyone in accordance with the terms of the 
+# This Program may be used by anyone in accordance with the terms of the
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
+# $Id$
 
-__author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
-__docformat__ = 'plaintext'
 
 import logging
+from zope.interface import implements, Interface
 from AccessControl import ClassSecurityInfo
 try:
     from Products.LinguaPlone.public import *
@@ -31,6 +28,7 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import View
 
 from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IFedoraHierarchie
 from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
 from Products.DiPP import Permissions
 
@@ -42,6 +40,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IFedoraHierarchie)
     
     manage_migration_form = PageTemplateFile('www/migration_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_migration_form')

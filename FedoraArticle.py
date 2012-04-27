@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# The FedoraTool for adding and manipulating objects in Fedora
+# The FedoraArticle ContentType
 #
 # German Free Software License (D-FSL)
 #

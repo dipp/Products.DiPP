@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+# The FedoraMultemedia ContentType
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+# $Id$
+
 import logging
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements, Interface
@@ -10,7 +20,9 @@ from Products.CMFCore.permissions import View
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
+
 from Products. DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IFedoraMultimedia
 from Products.DiPP import Permissions
 
 logger = logging.getLogger("DiPP")
@@ -21,7 +33,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(BaseContent,'__implements__',()),)
-    implements(IIndexableContent)
+    implements(IIndexableContent, IFedoraMultimedia)
     
     schema = BaseSchema + Schema((
         FileField('File',

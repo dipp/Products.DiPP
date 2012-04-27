@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
+# The FedoraXML ContentType
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+# $Id$
+
+from zope.interface import implements, Interface
 from Products.Archetypes.public import *
 from Products.Archetypes.Marshall import PrimaryFieldMarshaller
 from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IFedoraXML
 from Products.DiPP import Permissions
 
 class FedoraXML(BaseContent):
     """stores the DocBOOK XML Files"""
+    
+    implements(IFedoraXML)
     
     schema = BaseSchema + Schema((
         TextField('body',
