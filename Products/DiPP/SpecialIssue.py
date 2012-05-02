@@ -53,14 +53,6 @@ schema = Schema((
         sizes={'small':(100,100),'medium':(200,200),'large':(600,600)}
     ),
 
-    StringField(
-        name='Description',
-        widget=StringWidget(
-            label="Description",
-            label_msgid='DiPPContent_label_Description',
-            i18n_domain='DiPPContent',
-        )
-    ),
 
     TextField(
         name='Details',
