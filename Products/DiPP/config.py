@@ -1,12 +1,13 @@
+# -*- coding: utf-8 -*-
 """
 $Id$
 """
 from Products.Archetypes.public import DisplayList
 from Products.CMFCore import permissions
 
-from Permissions import ADD_CONTENTS_PERMISSION
-from Permissions import EDIT_CONTENTS_PERMISSION
-from Permissions import VIEW_CONTENTS_PERMISSION
+from Products.DiPP.Permissions import ADD_CONTENTS_PERMISSION
+from Products.DiPP.Permissions import EDIT_CONTENTS_PERMISSION
+from Products.DiPP.Permissions import VIEW_CONTENTS_PERMISSION
 
 view_permission = permissions.ManagePortal
 
