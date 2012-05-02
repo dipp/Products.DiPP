@@ -43,23 +43,7 @@ logger = logging.getLogger("DiPP")
 def dummy(obj, event):
     logger.info("edit event. not used yet")
         
-
-class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
-    """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
-    
-    security = ClassSecurityInfo()
-    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
-    implements(IIndexableContent, IFedoraArticle)
-
-    manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
-    security.declareProtected(ManagePortal, 'manage_fedora_form')
-
-    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Fedora',
-                       'action':'manage_fedora_form',
-                       'help':('DiPP', 'fedora.stx')},
-        ) + OrderedBaseFolder.manage_options[2:]
-
-    schema = BaseSchema + Schema((
+FedoraArticleSchema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
                 widget=StringWidget(
@@ -249,62 +233,25 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         ),
     ))
 
-    #archetype_name = "Peer reviewed article"
-    archetype_description = "An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"
-    allowed_content_types = ('FedoraDocument','FedoraMultimedia','FedoraXML')
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ('base_view', 'metadata_view', 'mixed_view', 'splash_screen')
-    filter_content_types = 1
-    global_allow = 0
-    content_icon = 'fedoraarticle_icon.gif'
-    actions = (
-          
-        { "id": "view",
-          "name": "View",
-          "action": "string:${folder_url}/",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-        
-        { "id": "qdc",
-          "name": "Metadata",
-          "action": "string:${folder_url}/fedoraarticle_metadata_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-          
-        { "id": "link_translations",
-          "name": "Link translations",
-          "action": "string:${folder_url}/link_translations_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
 
-        { "id": "local_roles",
-          "name": "Sharing",
-          "action": "string:${folder_url}/sharing",
-          "permissions": (ManageProperties,),
-          "category":"folder",
-          },
-          
-        { "id": "citation",
-          "name": "Citation and Metadata",
-          "action": "string:${object_url}/metadata",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"document_actions",
-          },
-          
-        { "id": "fulltextpdf",
-          "name": "Get the fulltext as pdf.",
-          "action": "python:object.getFulltextPdf().get('URL',None)",
-          "condition": "python:object.getFulltextPdf().get('URL',None)",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"document_actions",
-          },
-    )
+class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
+    """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
     
+    security = ClassSecurityInfo()
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IIndexableContent, IFedoraArticle)
+
+    security.declareProtected(ManagePortal, 'manage_fedora_form')
     
+    schema = FedoraArticleSchema
+    
+    manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
+    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Fedora',
+                       'action':'manage_fedora_form',
+                       'help':('DiPP', 'fedora.stx')},
+        ) + OrderedBaseFolder.manage_options[2:]
+
+   
     def indexableContent(self, fields):
         """get the binary datastream from fedora and return in to TextIndexNG
            Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
