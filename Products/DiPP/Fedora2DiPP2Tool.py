@@ -20,9 +20,7 @@ from DateTime import DateTime
 from time import mktime, strptime, strftime
 from fedora2 import FedoraAccess
 from fedora2 import FedoraManagement
-#from dipp2.ContentModel import *
-#import dipp2.ContentModel
-from dipp2 import ContentModel
+from dipp.dipp2 import ContentModel
 from zLOG import LOG, INFO
 from marshal import loads
 from zlib import decompress
