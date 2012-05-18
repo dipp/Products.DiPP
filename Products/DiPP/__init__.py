@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
-"""
- $Id$
-
-"""
+# Initializing ContentTypes etc
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+# $Id$
 
 from Globals import package_home
 from Products.Archetypes.public import process_types, listTypes
@@ -14,7 +19,14 @@ from config import *
 
 def initialize(context):
     # Content Types
+    import FedoraHierarchie
+    import Volume
+    import Issue
     import SpecialIssue
+    import FedoraArticle
+    import FedoraDocument
+    import FedoraXML
+    import FedoraMultimedia
     import SubmissionFolder
     import Submission
     import Manuscript
