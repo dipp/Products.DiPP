@@ -29,8 +29,8 @@ except ImportError:
 
 from Products.DiPP.config import PROJECTNAME
 from Products.DiPP.interfaces import IFedoraHierarchie
-from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
 from Products.DiPP import Permissions
+from Products.PressRoom import HAS_PLONE30
 
 logger = logging.getLogger("DiPP")
 
@@ -196,10 +196,15 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
         msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
         logger.info(msg)
 
+    
     def migrate(self,target):
         """Migrate from FedoraHierarchie to Volume or Issue"""
         
-        return FHMig.migrate(self,target)
+        if not HAS_PLONE30:
+            from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
+            return FHMig.migrate(self,target)
+        else:
+            pass
         
     
 registerType(FedoraHierarchie,PROJECTNAME)

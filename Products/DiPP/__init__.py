@@ -104,3 +104,24 @@ profile_registry.registerProfile(
                     'DiPP',
                     EXTENSION,
                     for_=IPloneSiteRoot)
+
+# Parts of the installation process depend on the version of Plone.
+# Code taken from PressRoom product
+try:
+    from Products.CMFPlone.migrations import v3_0
+except ImportError:
+    HAS_PLONE30 = False
+else:
+    HAS_PLONE30 = True
+
+try:
+    # The folder Products.CMFPlone.migrations does not exist in Plone 4
+    # anymore, see plone.app.upgrade
+    from plone.app.upgrade import v40
+except ImportError:
+    HAS_PLONE40 = False
+else:
+    HAS_PLONE30 = True
+    HAS_PLONE40 = True
+
+
