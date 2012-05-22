@@ -397,66 +397,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
             ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
     
 
-def install_types(self, out, site_id=SITE_NAME):
-    """Registrierungen der neuen Objekte """
-
-    site = getSite(self, SITE_NAME)
-    installTypes(site, out,
-                 listTypes(PROJECTNAME),
-                 PROJECTNAME)
-
-    # Register FedoraFolder
-    props = site.portal_properties.site_properties
-    tabs = getattr(props, 'use_folder_tabs')
-    contents = getattr(props, 'use_folder_contents')
-    types = getattr(props, 'default_page_types')
-    typesUseViewActionInListings = getattr(props, 'typesUseViewActionInListings')
-
-    if 'FedoraMultimedia' not in typesUseViewActionInListings:
-        newviewtypes = list(typesUseViewActionInListings)
-        newviewtypes.append('FedoraMultimedia')
-        props._updateProperty('typesUseViewActionInListings',newviewtypes)
-           
-    if 'FedoraDocument' not in types:
-        newtypes = list(types)
-        newtypes.append('FedoraDocument')
-        props._updateProperty('default_page_types', newtypes)
-    
-    if 'FedoraHierarchie' not in tabs:
-        newtabs = list(tabs)
-        newtabs.append('FedoraHierarchie')
-        props._updateProperty('use_folder_tabs', newtabs)
-        
-    if 'FedoraHierarchie' not in contents:
-        newcontents = list(contents)
-        newcontents.append('FedoraHierarchie')
-        props._updateProperty('use_folder_contents', newcontents)
-
-    if 'FedoraArticle' not in tabs:
-        newtabs = list(tabs)
-        newtabs.append('FedoraArticle')
-        props._updateProperty('use_folder_tabs', newtabs)
-        
-    if 'FedoraArticle' not in contents:
-        newcontents = list(contents)
-        newcontents.append('FedoraArticle')
-        props._updateProperty('use_folder_contents', newcontents)
-
-    pai = getToolByName(site, 'portal_actionicons')
-    
-    action_icons = (
-        ('plone', 'citation', 'citation_icon.gif', 'Citation and Metadata', 0),
-        ('plone', 'fulltextpdf', 'pdf_icon.gif', 'Fulltext PDF', 0),
-    )
-    for category, action_id, icon_url, title, priority in action_icons:
-        try:
-            pai.addActionIcon(category, action_id, icon_url, title, priority)
-        except:
-            print >> out, "Action icon for %s already exists" % action_id
-    
-        
-    # pai.manage_addActionIcon('plone', 'citation', 'citation_icon.gif', 'Citation and Metadata', 0, None)
-    # pai.manage_addActionIcon('plone', 'fulltextpdf', 'pdf_icon.png', 'Get Fulltext as PDF', 0, None)
 
 
 def install_configlet(self,out):
@@ -581,11 +521,10 @@ def install(self):
     """ install a dipp instance"""
     out = StringIO()
     
-    #install_dependencies(self,out)
+    install_dependencies(self,out)
     install_properties(self, out)
     install_metadataproperties(self,out)
     install_extMethods(self, out)
-    #install_types(self, out)
     install_profiles(self,out)
     install_configlet(self, out)
     install_content(self, out)
