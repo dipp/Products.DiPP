@@ -4,12 +4,31 @@
  <object name="site_properties" meta_type="Plone Property Sheet" >
   <property name="use_folder_tabs" type="lines" purge="false" >
   	<element value="FedoraArticle" />
-  	<element value="FedoraHierachie" />
+  	<element value="FedoraHierarchie" />
   	<element value="Issue" />
   	<element value="Volume" />
+  </property>
+  <property name="typesUseViewActionInListings" type="lines" purge="false" >
+  	<element value="FedoraMultimedia" />
+  </property>
+  <property name="default_page_types" type="lines" purge="false" >
+  	<element value="FedoraDocument" />
+  </property>
+  <property name="use_folder_contents" type="lines" purge="false" >
+  	<element value="FedoraHierarchie" />
   	<element value="Issue" />
+  	<element value="Volume" />
   </property>
  </object>
+
+ <object name="navtree_properties">
+   <property name="metaTypesNotToList" type="lines" purge="false">
+     <element value="FedoraDocument" />
+     <element value="FedoraXML" />
+     <element value="FedoraMultimedia" />
+   </property>
+  </object>
+
 
  <object name="member_properties" meta_type="Plone Property Sheet">
   <property name="title">Extended member properties</property>
