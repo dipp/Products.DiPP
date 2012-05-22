@@ -8,16 +8,17 @@
   	<element value="Issue" />
   	<element value="Volume" />
   </property>
+  <property name="use_folder_contents" type="lines" purge="false" >
+  	<element value="FedoraArticle" />
+  	<element value="FedoraHierarchie" />
+  	<element value="Issue" />
+  	<element value="Volume" />
+  </property>
   <property name="typesUseViewActionInListings" type="lines" purge="false" >
   	<element value="FedoraMultimedia" />
   </property>
   <property name="default_page_types" type="lines" purge="false" >
   	<element value="FedoraDocument" />
-  </property>
-  <property name="use_folder_contents" type="lines" purge="false" >
-  	<element value="FedoraHierarchie" />
-  	<element value="Issue" />
-  	<element value="Volume" />
   </property>
  </object>
 
