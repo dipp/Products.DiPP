@@ -198,7 +198,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
 
     
     def migrate(self,target):
-        """Migrate from FedoraHierarchie to Volume or Issue"""
+        """Migrate from FedoraHierarchie to Volume or Issue only for Plone 2.5.5"""
         
         if not HAS_PLONE30:
             from Products.DiPP.migration import FedoraHierarchieMigrator as FHMig
