@@ -128,22 +128,7 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
         )
     ))
     _at_rename_after_creation = True
-    archetype_name = "Volume"
-    archetype_description = "Hierarchical Object representing a volume"
-    allowed_content_types = ('FedoraArticle', 'Issue', 'FedoraHierarchie')
-    immediate_view = 'base_view'
-    default_view = 'volume_contents_view'
     suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
-    content_icon = 'fedorahierarchie_icon.gif'
-    actions = (
-          
-        { "id": "view",
-          "name": "View",
-          "action": "string:${folder_url}/",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-    )
 
     def at_post_create_script(self):
         """add a hierarchical object to fedora and write the PID back to the Plone object
