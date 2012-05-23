@@ -397,23 +397,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         if not hasattr(ext, id):
             ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
     
-def install_configlet(self,out):
-    """register the configlet"""
-    portal_conf=getToolByName(self,'portal_controlpanel')
-    portal_conf.registerConfiglet( 'dipp_configuration'
-           , 'DiPP Configuration'      
-           , 'string:${portal_url}/prefs_mailtemplates_form' 
-           , ''                 # a condition   
-           , 'Manage portal'    # access permission
-           , 'Products'         # section to which the configlet should be added: 
-                                #(Plone,Products,Members) 
-           , 1                  # visibility
-           , PROJECTNAME                                        
-           , 'dipp_icon.gif'    # icon in control_panel  
-           , 'Configuration of the DiPP Publicationsystem'
-           , None
-                                 )
-
 
 def install_metadataproperties(self,out):
     """available metadata and default values"""
@@ -526,18 +509,6 @@ def install(self):
     """ install a dipp instance"""
     out = StringIO()
     
-    
-    install_properties(self, out)
-    install_metadataproperties(self,out)
-    install_extMethods(self, out)
-    install_profiles(self,out)
-    #install_configlet(self, out)
-    install_content(self, out)
-    install_groups_and_roles(self, out)
-    install_tools(self, out)
-    create_vocabularies(self, out)
-    create_indexes(self, out)
-    
     if not HAS_PLONE30:
         install_dependencies(self,out)
         reftool = getToolByName(self, 'portal_openflow')
@@ -546,6 +517,17 @@ def install(self):
             configure_workflow(self, out)
         else:
             print >> out, "Keeping existingworkflow"
+    
+    install_properties(self, out)
+    install_metadataproperties(self,out)
+    install_extMethods(self, out)
+    install_profiles(self,out)
+    install_content(self, out)
+    install_groups_and_roles(self, out)
+    install_tools(self, out)
+    create_vocabularies(self, out)
+    create_indexes(self, out)
+    
         
 
     
