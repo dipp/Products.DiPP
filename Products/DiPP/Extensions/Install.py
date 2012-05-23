@@ -397,9 +397,6 @@ def install_extMethods(self, out, site_id=SITE_NAME):
         if not hasattr(ext, id):
             ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
     
-
-
-
 def install_configlet(self,out):
     """register the configlet"""
     portal_conf=getToolByName(self,'portal_controlpanel')
@@ -534,7 +531,7 @@ def install(self):
     install_metadataproperties(self,out)
     install_extMethods(self, out)
     install_profiles(self,out)
-    install_configlet(self, out)
+    #install_configlet(self, out)
     install_content(self, out)
     install_groups_and_roles(self, out)
     install_tools(self, out)
