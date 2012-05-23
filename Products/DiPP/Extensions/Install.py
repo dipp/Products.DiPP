@@ -6,16 +6,17 @@
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
+from Products.Archetypes.public import listTypes
+from Products.Archetypes.Extensions.utils import installTypes
+from zExceptions import NotFound, BadRequest
+from StringIO import StringIO
 from Products.DiPP import dippworkflow_globals
 from Products.DiPP.config import PROJECTNAME, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
 from Products.DiPP.defaults import *
 from Products.DiPP.mail_templates import *
 from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
-from Products.Archetypes.public import listTypes
-from Products.Archetypes.Extensions.utils import installTypes
-from zExceptions import NotFound, BadRequest
-from StringIO import StringIO
+from Products.DiPP import HAS_PLONE30
 
 
 SITE_NAME = PROJECTNAME
@@ -502,18 +503,25 @@ def install_profiles(self, out, site_id=SITE_NAME):
     
     site = getSite(self, site_id)
     setup_tool = getToolByName(site, 'portal_setup')
-    setup_tool.setImportContext('profile-DiPP:install')
-    setup_tool.runAllImportSteps()
-    setup_tool.setImportContext('profile-CMFPlone:plone')
+    if HAS_PLONE30:
+        setup_tool.runAllImportStepsFromProfile('profile-DiPP:install')
+    else:
+        setup_tool.setImportContext('profile-DiPP:install')
+        setup_tool.runAllImportSteps()
+        setup_tool.setImportContext('profile-CMFPlone:plone')
     print >> out, "Ran all import steps."
+
 
 def uninstall_profiles(self, out, site_id=SITE_NAME):
     
     site = getSite(self, site_id)
     setup_tool = getToolByName(site, 'portal_setup')
-    setup_tool.setImportContext('profile-DiPP:uninstall')
-    setup_tool.runAllImportSteps()
-    setup_tool.setImportContext('profile-CMFPlone:plone')
+    if HAS_PLONE30:
+        pass
+    else:
+        setup_tool.setImportContext('profile-DiPP:uninstall')
+        setup_tool.runAllImportSteps()
+        setup_tool.setImportContext('profile-CMFPlone:plone')
     print >> out, "Ran all uninstall steps."
 
 
@@ -521,7 +529,7 @@ def install(self):
     """ install a dipp instance"""
     out = StringIO()
     
-    #install_dependencies(self,out)
+    
     install_properties(self, out)
     install_metadataproperties(self,out)
     install_extMethods(self, out)
@@ -533,12 +541,14 @@ def install(self):
     create_vocabularies(self, out)
     create_indexes(self, out)
     
-    reftool = getToolByName(self, 'portal_openflow')
-    process_id = 'Publishing'
-    if not hasattr(reftool, process_id):
-        configure_workflow(self, out)
-    else:
-        print >> out, "Keeping existingworkflow"
+    if not HAS_PLONE30:
+        install_dependencies(self,out)
+        reftool = getToolByName(self, 'portal_openflow')
+        process_id = 'Publishing'
+        if not hasattr(reftool, process_id):
+            configure_workflow(self, out)
+        else:
+            print >> out, "Keeping existingworkflow"
         
 
     
@@ -557,6 +567,6 @@ def uninstall(self, site_id=SITE_NAME):
     portal_conf=getToolByName(self,'portal_controlpanel')
     portal_conf.unregisterConfiglet('dipp_configuration')
 
-    uninstall_profiles(self,out)
+    #uninstall_profiles(self,out)
 
     return out.getvalue()
