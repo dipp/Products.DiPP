@@ -4,7 +4,7 @@
     xmlns:five="http://namespaces.zope.org/five">
    
     <subscriber for="Products.DiPP.interfaces.IFedoraArticle
-                    zope.app.event.interfaces.IObjectModifiedEvent"
+                     Products.DiPP.event.IObjectModifiedEvent"
                handler="Products.DiPP.FedoraArticle.dummy" /> 
 
 </configure>

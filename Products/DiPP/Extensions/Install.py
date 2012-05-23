@@ -521,7 +521,7 @@ def install(self):
     """ install a dipp instance"""
     out = StringIO()
     
-    install_dependencies(self,out)
+    #install_dependencies(self,out)
     install_properties(self, out)
     install_metadataproperties(self,out)
     install_extMethods(self, out)
