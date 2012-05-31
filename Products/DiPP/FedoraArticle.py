@@ -52,7 +52,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                     size='15',
                     visible={'edit':'invisible','view':'visible'}
                     ),
-                index='FieldIndex:brains:schema'
         ),
         TextField('abstract',
                 widget=TextAreaWidget(
@@ -66,7 +65,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 widget=StringWidget(
                     label='Textsorte',
                     description='Welche Textsorte läßt sich der Artikel zuordnen?'),
-                index='FieldIndex:brains'
         ),
         StringField('pixel_domain',
                 required=0,
@@ -89,7 +87,6 @@ FedoraArticleSchema = BaseSchema + Schema((
             storage=AttributeStorage(),
             default=0,
             required=1,
-            index="FieldIndex:brains"
         ),
         StringField(
             name='comment_to',
@@ -98,7 +95,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description="This Article is a comment to another article",
             ),
             searchable=1,
-            index="FieldIndex:brains",
             multiValued=0,
             vocabulary="getPublishedArticles"
         ),
@@ -111,7 +107,6 @@ FedoraArticleSchema = BaseSchema + Schema((
             vocabulary=NamedVocabulary("journal-sections"),
             default='no-section',
             searchable=1,
-            index="FieldIndex:brains",
             schemata='Bibliographic Data'
         ),
         StringField('subject_areas',
@@ -122,7 +117,6 @@ FedoraArticleSchema = BaseSchema + Schema((
             ),
             vocabulary=NamedVocabulary("subject-areas"),
             searchable=1,
-            index="KeywordIndex:brains",
             schemata='Bibliographic Data'
         ),
         StringField('JournalTitle',
@@ -134,7 +128,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_journaltitle_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         StringField('Volume',
@@ -146,7 +139,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_volume_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         StringField('URN',
@@ -158,7 +150,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_urn_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         StringField('Issue',
@@ -170,7 +161,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_issue_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         DateTimeField('IssueDate',
@@ -182,7 +172,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_issuedate_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='DateIndex:brains',
             schemata='Bibliographic Data'
         ),
         IntegerField('startpage',
@@ -216,7 +205,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_issue_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         LinesField('Authors',
@@ -228,7 +216,6 @@ FedoraArticleSchema = BaseSchema + Schema((
                 description_msgid='help_author_field',
                 visible={'edit':'invisible','view':'visible'}
             ),
-            index='KeywordIndex:brains',
             schemata='Bibliographic Data'
         ),
     ))
