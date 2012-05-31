@@ -40,7 +40,6 @@ FedoraDocumentSchema = BaseSchema + Schema((
                     size='15',
                     visible=-1
                     ),
-                index='FieldIndex:brains:schema'
         ),
         StringField('DsID',
                 required=0,

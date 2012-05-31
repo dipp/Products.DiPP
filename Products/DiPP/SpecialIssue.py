@@ -69,7 +69,6 @@ schema = Schema((
 
     IntegerField(
         name='position',
-        index="FieldIndex",
         widget=IntegerField._properties['widget'](
             label="Position",
             description="Add a number for sorting",

@@ -54,7 +54,6 @@ schema = Schema((
 
     IntegerField(
         name='current_revision',
-        index="FieldIndex:brains",
         widget=IntegerField._properties['widget'](
             label='Current_revision',
             label_msgid='DiPPReview_label_current_revision',

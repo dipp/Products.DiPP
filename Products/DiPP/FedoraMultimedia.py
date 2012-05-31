@@ -44,7 +44,6 @@ FedoraMultimediaSchema = BaseSchema + Schema((
                     size='15',
                     visible={'edit':'invisible','view':'visible'}
                 ),
-                index='FieldIndex:brains'
         ),
         StringField('DsID',
                 required=0,
@@ -63,7 +62,6 @@ FedoraMultimediaSchema = BaseSchema + Schema((
                 ),
                 multiValued=0,
                 default = "",
-                index="FieldIndex:brains",
                 vocabulary = "getTypeOfList"
         )
     ),

@@ -37,7 +37,6 @@ class FedoraXML(BaseContent):
                     size='15',
                     visible=-1
                 ),
-                index='FieldIndex:brains'
         ),
         StringField('DsID',
                 required=1,

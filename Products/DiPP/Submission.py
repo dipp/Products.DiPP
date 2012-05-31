@@ -30,7 +30,6 @@ schema = Schema((
 
     LinesField(
         name='manuscript_authors',
-        index="FieldIndex:brains",
         widget=LinesField._properties['widget'](
             label="Authors",
             description="The names and affiliations of all authors in the form first name, last name, affiliation",
@@ -54,7 +53,6 @@ schema = Schema((
 
     DateTimeField(
         name='date_submitted',
-        index="DateIndex:brains",
         widget=CalendarWidget(
             label='Date_submitted',
             label_msgid='DiPPReview_label_date_submitted',
@@ -106,7 +104,6 @@ schema = Schema((
 
     StringField(
         name='section',
-        index="FieldIndex:brains",
         widget=StringWidget(
             label="Section",
             description="Choose the section in which your submission should appear.",
@@ -141,7 +138,6 @@ schema = Schema((
 
     IntegerField(
         name='current_revision',
-        index="FieldIndex:brains",
         widget=IntegerField._properties['widget'](
             label="Current Revision",
             description="Counter for the revisons of the submissions. Gets updated in the workflow.",

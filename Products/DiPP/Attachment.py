@@ -50,7 +50,6 @@ schema = Schema((
 
     IntegerField(
         name='revision',
-        index="FieldIndex:brains",
         widget=IntegerField._properties['widget'](
             label='Revision',
             label_msgid='DiPPReview_label_revision',

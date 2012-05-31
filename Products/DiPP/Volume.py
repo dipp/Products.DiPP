@@ -43,7 +43,6 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
                     size='15',
                     visible={'edit':'invisible','view':'visible'}
                 ),
-                index='FieldIndex:brains'
         ),
 
         TextField('description',
@@ -71,7 +70,6 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
                 description_msgid='help_volume_field',
                 i18n_domain='dipp',
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         StringField('Issue',
@@ -83,7 +81,6 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
                 description_msgid='help_issue_field',
                 i18n_domain='dipp',
             ),
-            index='FieldIndex:brains',
             schemata='Bibliographic Data'
         ),
         DateTimeField('IssueDate',
@@ -95,7 +92,6 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
                 description_msgid='help_issuedate_field',
                 i18n_domain='dipp',
             ),
-            index='DateIndex:brains',
             schemata='Bibliographic Data'
         ),
         FileField('CompleteIssue',
