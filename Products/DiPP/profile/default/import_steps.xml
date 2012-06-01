@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="dipp-final"
+               version="20120601"
+               handler="Products.DiPP.setuphandlers.import_various"
+               title="Final DiPP Config, adding indexes">
+   <dependency step="types"/>
+    Final configuration
+  </import-step>
+</import-steps>
+
