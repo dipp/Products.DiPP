@@ -9,6 +9,7 @@
 #
 # $Id$
 
+import sys
 from Globals import package_home
 from Products.Archetypes.public import process_types, listTypes
 from Products.CMFCore import utils
@@ -17,12 +18,13 @@ from Products.GenericSetup import EXTENSION, profile_registry
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from config import *
 
+
 def initialize(context):
     # Content Types
     import FedoraHierarchie
     import Volume
     import Issue
-    import SpecialIssue
+    import content.specialissue
     import FedoraArticle
     import FedoraDocument
     import FedoraXML
@@ -40,6 +42,8 @@ def initialize(context):
     import BibTool
     import SectionsTool
     import PeerReviewTool
+
+    sys.modules['Products.DiPP.SpecialIssue'] = content.specialissue
 
 
     content_types, constructors, ftis = process_types(
