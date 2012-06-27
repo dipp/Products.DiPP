@@ -6,7 +6,7 @@
 
 <div metal:define-macro="portlet"  
     tal:omit-tag=""
-    tal:condition="python:here.get_toc()!='no toc'">
+    tal:condition="here/get_toc">
 
 	<dl class="portlet" id="portlet-toc">
 
