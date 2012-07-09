@@ -36,8 +36,8 @@
                         <a href=""
                            tal:attributes="href python:test(pixel_id,vgwort_url,url)">
                             <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />
-                            <tal:block i18n:domain="plone" i18n:translate="label_click_to_get_file">
-                            Click here to get the file
+                            <tal:block i18n:domain="dipp" i18n:translate="label_get_fulltext_as_pdf">
+                            Volltext als <span i18n:name="pdf"><abbr i18n:domain="dipp" title="Portable Document Format">PDF</abbr></span>.
                             </tal:block>
                         </a>
 
