@@ -39,6 +39,11 @@ div .inlineReference {
     border: 0;
     font-size: 200%;
 }
+#authorblurb h1.subtitle {
+    text-decoration: none;
+    border: 0;
+    font-size: 140%;
+}
 #authorblurb h2 {
     text-decoration: none;
     border: 0;
