@@ -10,6 +10,7 @@
                          copyrighted python:qdc.get('dateCopyrighted',None);
                          submitted python:qdc.get('dateSubmitted',None);
                          published here/getIssueDate|nothing;
+                         subtitle python:qdc['alternative'][0]['value'];
                          authors python:qdc['creatorPerson'];
                          initials_only here/initials_only|here/portal_properties/dipp_properties/initials_only|nothing;
                          show_review_history here/show_review_history|here/portal_properties/dipp_properties/show_review_history|nothing;
@@ -17,7 +18,8 @@
                          subjectClassified python:qdc['subjectClassified'];
                          subjects python:qdc['subject']"
              i18n:domain="dipp">
-            <h1 tal:content="python:qdc['title'][0]['value']"></h1>
+            <h1 tal:content="python:qdc['title'][0]['value']">The title of the article</h1>
+            <h1 tal:content="subtitle" class="subtitle" tal:condition="subtitle">a subtitle, if present</h1>
             
             <ol class="authors">
             <tal:block tal:repeat="author authors" >
