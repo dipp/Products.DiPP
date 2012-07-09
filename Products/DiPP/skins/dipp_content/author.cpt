@@ -231,7 +231,7 @@
 	        
 	
 	    
-		    <div tal:define="publications python:here.portal_catalog.searchResults(portal_type='FedoraArticle',getAuthors={'query':contributor}, review_state='published', sort_on='getIssueDate', sort_order='reverse')">
+		    <div tal:define="publications python:here.portal_catalog.searchResults(portal_type='FedoraArticle',getAuthors={'query':contributor}, sort_on='getIssueDate', sort_order='reverse')">
 			    <ol tal:condition="publications">
 			        <tal:block tal:repeat="publication publications">
 			            <li tal:define="url publication/getURL;
@@ -245,9 +245,9 @@
 			                <a href=""
 			                   tal:attributes="href url " 
 			                   tal:content="title">The title of the article</a></h2>
-			                    <div i18n:translate="details_published_in">
-			                        <em i18n:name="journal" tal:content="journal">DiPP Journal</em>
-			                        <span i18n:name="volume" tal:replace="volume">2009</span>-<span i18n:name="issue" tal:replace="issue">5</span>.
+			                    <div i18n:translate="details_published_in"
+                                     tal:content="structure python: here.bibtool.short_citation(publication.getObject())">
+                                    Muster, M. Dev Journal, 2005
 			                    </div>
 			            </li>
 			        </tal:block>
