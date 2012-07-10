@@ -267,6 +267,12 @@ div.portletContent {
 .portletHeaderIcon {
     float: right;
 }
+
+.portletItem ol.issue_content  {
+    list-style: none;
+    margin-left: 0;
+}
+
 /* worklist */
 .worklist th {
     white-space: nowrap;
