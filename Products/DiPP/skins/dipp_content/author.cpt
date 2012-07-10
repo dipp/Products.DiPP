@@ -234,21 +234,26 @@
 		    <div tal:define="publications python:here.portal_catalog.searchResults(portal_type='FedoraArticle',getAuthors={'query':contributor}, sort_on='getIssueDate', sort_order='reverse')">
 			    <ol tal:condition="publications">
 			        <tal:block tal:repeat="publication publications">
-			            <li tal:define="url publication/getURL;
-			                            title publication/Title;
-			                            published publication/getIssueDate;
-			                            journal publication/getJournalTitle | nothing;
-			                            volume publication/getVolume | nothing;
-			                            issue publication/getIssue | nothing">
+			            <li tal:define="url                  publication/getURL;
+			                            title                publication/Title;
+                                        item_wf_state        publication/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                        item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+			                            published            publication/getIssueDate;
+			                            journal              publication/getJournalTitle | nothing;
+			                            volume               publication/getVolume | nothing;
+			                            issue                publication/getIssue | nothing">
 			                <span class="discreet"  tal:content="python:toLocalizedTime(published, long_format=0)">2.3.1971</span>
 			                <h2 class="tileHeadline">
-			                <a href=""
-			                   tal:attributes="href url " 
-			                   tal:content="title">The title of the article</a></h2>
-			                    <div i18n:translate="details_published_in"
-                                     tal:content="structure python: here.bibtool.short_citation(publication.getObject())">
-                                    Muster, M. Dev Journal, 2005
-			                    </div>
+                                <a href=""
+                                   tal:attributes="href url;
+                                                   class string:$item_wf_state_class"
+                                   tal:content="title">
+                                   The title of the article</a>
+                            </h2>
+                            <div i18n:translate="details_published_in"
+                                 tal:content="structure python: here.bibtool.short_citation(publication.getObject())">
+                                Muster, M. Dev Journal, 2005
+                            </div>
 			            </li>
 			        </tal:block>
 			    </ol>
