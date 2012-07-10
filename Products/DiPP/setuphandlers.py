@@ -1,8 +1,44 @@
 import logging
 from Products.CMFCore.utils import getToolByName
+from Products.DiPP import HAS_PLONE30
+PROFILE_ID = 'profile-DiPP:install'
 
-def add_catalog_indexes(context, logger=None):
-    logger.info("Test setuphandler")
+def  add_catalog_indexes(context, logger=None):
+    if logger is None:
+        # Called as upgrade step: define our own logger.
+        logger = logging.getLogger('DiPP')
+
+    # Run the catalog.xml step as that may have defined new metadata
+    # columns.  We could instead add <depends name="catalog"/> to
+    # the registration of our import step in zcml, but doing it in
+    # code makes this method usable as upgrade step as well.  Note that
+    # this silently does nothing when there is no catalog.xml, so it                                                                                  
+    # is quite safe.
+    setup = getToolByName(context, 'portal_setup')
+    if HAS_PLONE30:
+        setup.runImportStepFromProfile(PROFILE_ID, 'catalog')
+    else:
+        setup.setImportContext(PROFILE_ID)
+        setup.runImportStep('catalog')
+        setup.setImportContext('profile-CMFPlone:plone')
+
+    catalog = getToolByName(context, 'portal_catalog')
+    indexes = catalog.indexes()
+    # Specify the indexes you want, with ('index_name', 'index_type')
+    wanted = (('getPID', 'FieldIndex'),
+              ('Contributors', 'KeywordIndex'),
+              )
+    indexables = []
+    for name, meta_type in wanted:
+        if name not in indexes:
+            catalog.addIndex(name, meta_type)
+            indexables.append(name)
+            logger.info("Added %s for field %s.", meta_type, name)
+    if len(indexables) > 0:
+        logger.info("Indexing new indexes %s.", ', '.join(indexables))
+        catalog.manage_reindexIndex(ids=indexables)
+
+ 
 
 def import_various(context):
     """Import step for configuration that is not handled in xml files.
@@ -10,6 +46,6 @@ def import_various(context):
     # Only run step if a flag file is present
     if context.readDataFile('is_dipp.txt') is None:
         return
-    logger = context.getLogger('your.package')
+    logger = context.getLogger('DiPP')
     site = context.getSite()
     add_catalog_indexes(site, logger)
