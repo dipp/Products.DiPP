@@ -60,8 +60,15 @@ TOOLS = (
 
 INDEXES = (
     ('Contributors', 'KeywordIndex'),
-    ('getPID', 'FieldIndex'),
     ('getAuthors', 'KeywordIndex'),
+    ('getComment_to', 'FieldIndex'),
+    ('getIssue', 'FieldIndex'),
+    ('getJournal_section', 'FieldIndex'),
+    ('getMMType', 'FieldIndex'),
+    ('getPID', 'FieldIndex'),
+    ('getSubject_areas', 'KeywordIndex'),
+    ('getURN', 'FieldIndex'),
+    ('getVolume', 'FieldIndex'),
 )
 GLOBALS = globals()
 
