@@ -63,6 +63,7 @@ INDEXES = (
     ('getAuthors', 'KeywordIndex'),
     ('getComment_to', 'FieldIndex'),
     ('getIssue', 'FieldIndex'),
+    ('getIssueDate', 'DateIndex'),
     ('getJournal_section', 'FieldIndex'),
     ('getMMType', 'FieldIndex'),
     ('getPID', 'FieldIndex'),
