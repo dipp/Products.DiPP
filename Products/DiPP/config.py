@@ -59,7 +59,9 @@ TOOLS = (
 )
 
 INDEXES = (
-    ('Contributors','KeywordIndex'),
+    ('Contributors', 'KeywordIndex'),
+    ('getPID', 'FieldIndex'),
+    ('getAuthors', 'KeywordIndex'),
 )
 GLOBALS = globals()
 

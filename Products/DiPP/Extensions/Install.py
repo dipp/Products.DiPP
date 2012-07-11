@@ -11,7 +11,7 @@ from Products.Archetypes.Extensions.utils import installTypes
 from zExceptions import NotFound, BadRequest
 from StringIO import StringIO
 from Products.DiPP import dippworkflow_globals
-from Products.DiPP.config import PROJECTNAME, DEPENDENCIES, VOCABULARIES, INDEXES, TOOLS
+from Products.DiPP.config import PROJECTNAME, DEPENDENCIES, VOCABULARIES, TOOLS
 from Products.DiPP.defaults import *
 from Products.DiPP.mail_templates import *
 from Products.DiPP.welcome import *
@@ -434,17 +434,6 @@ def install_dependencies(self,out,site_id=SITE_NAME):
         quickinstaller.installProduct(dependency) 
         get_transaction().commit(1)
 
-def create_indexes(self,out,site_id=SITE_NAME):
-    """create and reindex custom indexes"""
-    
-    pcat = getToolByName(self, 'portal_catalog')
-    for name, type in INDEXES:
-        if name not in pcat.indexes():
-            pcat.manage_addIndex(name,type)
-            pcat.manage_reindexIndex([name])
-            print >> out, "Adding and indexing %s:" % name
-        
-    
 def create_vocabularies(self,out,site_id=SITE_NAME):
     """create required vocabularies"""
     
@@ -526,9 +515,6 @@ def install(self):
     install_groups_and_roles(self, out)
     install_tools(self, out)
     create_vocabularies(self, out)
-    create_indexes(self, out)
-    
-        
 
     
     print >> out, "Successfully installed %s." % PROJECTNAME

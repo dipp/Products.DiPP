@@ -1,6 +1,7 @@
 import logging
 from Products.CMFCore.utils import getToolByName
 from Products.DiPP import HAS_PLONE30
+from Products.DiPP.config import INDEXES as NEW_INDEXES
 PROFILE_ID = 'profile-DiPP:install'
 
 def  add_catalog_indexes(context, logger=None):
@@ -24,12 +25,9 @@ def  add_catalog_indexes(context, logger=None):
 
     catalog = getToolByName(context, 'portal_catalog')
     indexes = catalog.indexes()
-    # Specify the indexes you want, with ('index_name', 'index_type')
-    wanted = (('getPID', 'FieldIndex'),
-              ('Contributors', 'KeywordIndex'),
-              )
+    
     indexables = []
-    for name, meta_type in wanted:
+    for name, meta_type in NEW_INDEXES:
         if name not in indexes:
             catalog.addIndex(name, meta_type)
             indexables.append(name)
