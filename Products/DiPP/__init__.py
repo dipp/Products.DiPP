@@ -21,14 +21,14 @@ from config import *
 
 def initialize(context):
     # Content Types
-    import FedoraHierarchie
-    import Volume
-    import Issue
+    import content.fedorahierarchie
+    import content.volume
+    import content.issue
     import content.specialissue
-    import FedoraArticle
-    import FedoraDocument
-    import FedoraXML
-    import FedoraMultimedia
+    import content.fedoraarticle
+    import content.fedoradocument
+    import content.fedoraxml
+    import content.fedoramultimedia
     import SubmissionFolder
     import Submission
     import Manuscript
@@ -44,6 +44,13 @@ def initialize(context):
     import PeerReviewTool
 
     sys.modules['Products.DiPP.SpecialIssue'] = content.specialissue
+    sys.modules['Products.DiPP.FedoraHierarchie'] = content.fedorahierarchie
+    sys.modules['Products.DiPP.FedoraArticle'] = content.fedoraarticle
+    sys.modules['Products.DiPP.FedoraDocument'] = content.fedoradocument
+    sys.modules['Products.DiPP.FedoraMultimedia'] = content.fedoramultimedia
+    sys.modules['Products.DiPP.FedoraXML'] = content.fedoraxml
+    sys.modules['Products.DiPP.Volume'] = content.volume
+    sys.modules['Products.DiPP.Issue'] = content.issue
 
 
     content_types, constructors, ftis = process_types(
