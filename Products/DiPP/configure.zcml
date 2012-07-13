@@ -6,5 +6,9 @@
     <subscriber for="Products.DiPP.interfaces.IFedoraArticle
                      Products.DiPP.event.IObjectModifiedEvent"
                handler="Products.DiPP.FedoraArticle.dummy" /> 
+    
+    <subscriber for="Products.DiPP.interfaces.IFedoraHierarchie
+                     Products.DiPP.event.IObjectModifiedEvent"
+               handler="Products.DiPP.content.fedorahierarchie.createFedoraContainer" /> 
 
 </configure>
