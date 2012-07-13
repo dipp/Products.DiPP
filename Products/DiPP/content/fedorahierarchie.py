@@ -34,24 +34,28 @@ from Products.DiPP import HAS_PLONE30
 
 logger = logging.getLogger("DiPP")
 
+def createFedoraContainer(obj, event):
+    """add a hierarchical object to fedora and write the PID back to the Plone object
+    """
 
-class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
-    """Hierarchical Object representing an issue or volume."""
-    
-    security = ClassSecurityInfo()
-    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
-    implements(IFedoraHierarchie)
-    
-    manage_migration_form = PageTemplateFile('www/migration_form.pt', globals())
-    security.declareProtected(ManagePortal, 'manage_migration_form')
+    fedora = getToolByName(obj, 'fedora')
+    portal = getToolByName(obj, 'portal_url').getPortalObject()
+    parent = obj.getParentNode()
+    if parent == portal:
+        isChildOf = fedora.PID
+    else:
+        isChildOf = parent.PID
+    MetaType = obj.MetaType
+    title = obj.title
+    id = obj.id
+    AbsoluteURL = obj.absolute_url()
+    PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
+    msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
+    logger.info(msg)
+    obj.setPID(PID)
+    obj.reindexObject()
 
-    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Migrate',
-                       'action':'manage_migration_form',
-                       'help':('DiPP', 'migrate.stx')},
-        ) + OrderedBaseFolder.manage_options[2:]
-
-    
-    schema = BaseSchema + Schema((
+FedoraHierarchieSchema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
                 widget=StringWidget(
@@ -143,54 +147,25 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
             schemata='Advanced'
         )
     ))
+
+class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
+    """Hierarchical Object representing an issue or volume."""
+    
+    security = ClassSecurityInfo()
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IFedoraHierarchie)
+    
+    manage_migration_form = PageTemplateFile('www/migration_form.pt', globals())
+    security.declareProtected(ManagePortal, 'manage_migration_form')
+
+    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Migrate',
+                       'action':'manage_migration_form',
+                       'help':('DiPP', 'migrate.stx')},
+        ) + OrderedBaseFolder.manage_options[2:]
+    
+    schema = FedoraHierarchieSchema
+    
     _at_rename_after_creation = True
-    #archetype_name = "Volume/Issue"
-    archetype_description = "Hierarchical Object representing an issue or volume"
-    allowed_content_types = ('FedoraHierarchie','FedoraArticle','Volume','Issue')
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
-    content_icon = 'fedorahierarchie_icon.gif'
-    actions = (
-          
-        { "id": "view",
-          "name": "View",
-          "action": "string:${folder_url}/",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-    )
-
-    def at_post_create_script(self):
-        """add a hierarchical object to fedora and write the PID back to the Plone object
-        """
-
-        fedora = getToolByName(self, 'fedora')
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        parent = self.getParentNode()
-        if parent == portal:
-            isChildOf = fedora.PID
-        else:
-            isChildOf = parent.PID
-        MetaType = self.MetaType
-        title = self.title
-        id = self.id
-        AbsoluteURL = self.absolute_url()
-        PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
-        msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
-        logger.info(msg)
-        self.setPID(PID)
-        self.reindexObject()
-
-    def at_post_edit_script(self):
-        """ keep metadata in sync
-        """
-
-        fedora = getToolByName(self, 'fedora')
-        id = self.id
-        AbsoluteURL = self.absolute_url()
-        msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
-        logger.info(msg)
 
     
     def migrate(self,target):
