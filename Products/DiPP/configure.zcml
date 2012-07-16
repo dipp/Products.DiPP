@@ -3,12 +3,12 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five">
    
-    <subscriber for="Products.DiPP.interfaces.IFedoraArticle
-                     Products.DiPP.event.IObjectModifiedEvent"
-               handler="Products.DiPP.FedoraArticle.dummy" /> 
+    <subscriber for="Products.DiPP.interfaces.IFedoraDocument
+                     zope.app.container.interfaces.IObjectModifiedEvent"
+               handler=".utils.createFedoraDatastream" /> 
     
     <subscriber for="Products.DiPP.interfaces.IFedoraHierarchie
-                     Products.DiPP.event.IObjectModifiedEvent"
+                     zope.app.event.interfaces.IObjectCreatedEvent"
                handler="Products.DiPP.content.fedorahierarchie.createFedoraContainer" /> 
 
 </configure>
