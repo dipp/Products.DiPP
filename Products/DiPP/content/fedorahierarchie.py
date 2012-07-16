@@ -34,27 +34,6 @@ from Products.DiPP import HAS_PLONE30
 
 logger = logging.getLogger("DiPP")
 
-def createFedoraContainer(obj, event):
-    """add a hierarchical object to fedora and write the PID back to the Plone object
-    """
-
-    fedora = getToolByName(obj, 'fedora')
-    portal = getToolByName(obj, 'portal_url').getPortalObject()
-    parent = obj.getParentNode()
-    if parent == portal:
-        isChildOf = fedora.PID
-    else:
-        isChildOf = parent.PID
-    MetaType = obj.MetaType
-    title = obj.title
-    id = obj.id
-    AbsoluteURL = obj.absolute_url()
-    PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
-    msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
-    logger.info(msg)
-    obj.setPID(PID)
-    obj.reindexObject()
-
 FedoraHierarchieSchema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
