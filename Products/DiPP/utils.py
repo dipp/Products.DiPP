@@ -45,8 +45,10 @@ def createFedoraContainer(obj, event):
         isChildOf = fedora.PID
     else:
         isChildOf = parent.PID
-    MetaType = obj.MetaType
-    title = obj.title
+    #MetaType = obj.MetaType
+    MetaType = "volume"
+    #title = obj.title
+    title = "Vol Titel"
     id = obj.id
     AbsoluteURL = obj.absolute_url()
     
