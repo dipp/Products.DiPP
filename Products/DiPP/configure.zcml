@@ -5,10 +5,11 @@
    
     <subscriber for="Products.DiPP.interfaces.IFedoraDocument
                      zope.app.container.interfaces.IObjectModifiedEvent"
-               handler=".utils.createFedoraDatastream" /> 
+               handler=".event_utils.createFedoraDatastream" /> 
     
+    <!--IObjectCreatedEvent not supported in Plone 2.5--> <!--
     <subscriber for="Products.DiPP.interfaces.IFedoraHierarchie
-                     zope.app.container.interfaces.IObjectModifiedEvent"
-               handler=".utils.createFedoraContainer" /> 
-
+                     zope.app.event.interfaces.IObjectCreatedEvent"
+               handler=".event_utils.createFedoraContainer" /> 
+    -->
 </configure>
