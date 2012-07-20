@@ -13,7 +13,7 @@
 
 __author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
 __docformat__ = 'plaintext'
-from zLOG import LOG, ERROR, INFO
+from zope.interface import implements, Interface
 try:
     from Products.LinguaPlone.public import *
     from Products.LinguaPlone import utils
@@ -23,16 +23,11 @@ except ImportError:
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IIssue
 from Products.DiPP import Permissions
 from Products.DiPP import event_utils
 
-
-class Issue(BrowserDefaultMixin, OrderedBaseFolder):
-    """Hierarchical Object representing an issue."""
-    
-    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
-    
-    schema = BaseSchema + Schema((
+IssueSchema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
                 widget=StringWidget(
@@ -124,6 +119,14 @@ class Issue(BrowserDefaultMixin, OrderedBaseFolder):
             schemata='Advanced'
         )
     ))
+
+class Issue(BrowserDefaultMixin, OrderedBaseFolder):
+    """Hierarchical Object representing an issue."""
+    
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IIssue)
+    
+    schema = IssueSchema
     _at_rename_after_creation = True
     archetype_name = "Issue"
     archetype_description = "Hierarchical Object representing an issue"

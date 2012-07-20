@@ -15,8 +15,8 @@ class IFedoraMultimedia(Interface):
 class IFedoraHierarchie(Interface):
     """For organising the Articles, Superseeded by Volumes and Issues"""
     
-class IFedoraVolume(Interface):
+class IVolume(Interface):
     """Journal volumes, contains the issus of one year"""
     
-class IFedoraIssue(Interface):
+class IIssue(Interface):
     """Issues with articles"""
