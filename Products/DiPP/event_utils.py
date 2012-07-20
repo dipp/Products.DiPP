@@ -45,12 +45,11 @@ def createFedoraContainer(obj, event):
         isChildOf = fedora.PID
     else:
         isChildOf = parent.PID
-    #MetaType = obj.MetaType
-    MetaType = "volume"
-    #title = obj.title
-    title = "Vol Titel"
+    MetaType = obj.MetaType
+    title = obj.title
     id = obj.id
     AbsoluteURL = obj.absolute_url()
+    logger.info("#### ADDED EVENT ###")
     
     if not obj.PID:
         PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
@@ -58,4 +57,5 @@ def createFedoraContainer(obj, event):
         logger.info(msg)
         obj.setPID(PID)
     obj.reindexObject()
+    
 
