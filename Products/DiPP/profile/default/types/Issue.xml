@@ -17,7 +17,7 @@
   <element value="FedoraHierarchie"/>
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">base_view</property>
+ <property name="default_view">issue_contents_view</property>
  <property name="view_methods">
   <element value="base_view"/>
   <element value="issue_contents_view"/>
