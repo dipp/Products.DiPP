@@ -147,16 +147,6 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
         self.setPID(PID)
         self.reindexObject()
 
-    def at_post_edit_script(self):
-        """ keep metadata in sync
-        """
-
-        fedora = getToolByName(self, 'fedora')
-        id = self.id
-        AbsoluteURL = self.absolute_url()
-        msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
-        LOG ('DIPP', INFO, msg)
-        
     def linkTranslations(self,PID):
         articles = self.portal_catalog(Type='Volume', getPID=PID)
         LOG ('DIPP', INFO, PID)
