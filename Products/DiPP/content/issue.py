@@ -129,21 +129,6 @@ class Issue(BrowserDefaultMixin, OrderedBaseFolder):
     schema = IssueSchema
     _at_rename_after_creation = True
     archetype_name = "Issue"
-    archetype_description = "Hierarchical Object representing an issue"
-    allowed_content_types = ('FedoraArticle','FedoraHierarchie')
-    immediate_view = 'base_view'
-    default_view = 'base_view'
-    suppl_views = ('base_view', 'issue_contents_view')
-    content_icon = 'fedorahierarchie_icon.gif'
-    actions = (
-          
-        { "id": "view",
-          "name": "View",
-          "action": "string:${folder_url}/",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-          "category":"folder",
-          },
-    )
 
     def at_post_create_script(self):
 
