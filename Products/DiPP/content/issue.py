@@ -24,6 +24,7 @@ from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 from Products.DiPP.config import PROJECTNAME
 from Products.DiPP import Permissions
+from Products.DiPP import event_utils
 
 
 class Issue(BrowserDefaultMixin, OrderedBaseFolder):
@@ -142,35 +143,10 @@ class Issue(BrowserDefaultMixin, OrderedBaseFolder):
     )
 
     def at_post_create_script(self):
+
         """add a hierarchical object to fedora and write the PID back to the Plone object
         """
-
-        fedora = getToolByName(self, 'fedora')
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        parent = self.getParentNode()
-        if parent == portal:
-            isChildOf = fedora.PID
-        else:
-            isChildOf = parent.PID
-        MetaType = self.MetaType
-        title = self.title
-        id = self.id
-        AbsoluteURL = self.absolute_url()
-        PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
-        msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
-        LOG ('DIPP', INFO, msg)
-        self.setPID(PID)
-        self.reindexObject()
-
-    def at_post_edit_script(self):
-        """ keep metadata in sync
-        """
-
-        fedora = getToolByName(self, 'fedora')
-        id = self.id
-        AbsoluteURL = self.absolute_url()
-        msg = "new id: %s, new url: %s" % (id, AbsoluteURL)
-        LOG ('DIPP', INFO, msg)
+        event_utils.createFedoraContainer(self, None)
         
     
 registerType(Issue,PROJECTNAME)
