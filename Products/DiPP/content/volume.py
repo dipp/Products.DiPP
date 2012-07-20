@@ -13,7 +13,7 @@
 
 __author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
 __docformat__ = 'plaintext'
-from zLOG import LOG, ERROR, INFO
+from zope.interface import implements, Interface
 try:
     from Products.LinguaPlone.public import *
     from Products.LinguaPlone import utils
@@ -24,14 +24,11 @@ from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
 
 from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.interfaces import IVolume
 from Products.DiPP import Permissions
+from Products.DiPP import event_utils
 
-class Volume(BrowserDefaultMixin, OrderedBaseFolder):
-    """Hierarchical Object representing a Volume."""
-    
-    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
-    
-    schema = BaseSchema + Schema((
+VolumeSchema = BaseSchema + Schema((
         StringField('PID',
                 required=0,
                 widget=StringWidget(
@@ -123,6 +120,14 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
             schemata='Advanced'
         )
     ))
+
+class Volume(BrowserDefaultMixin, OrderedBaseFolder):
+    """Hierarchical Object representing a Volume."""
+    
+    __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
+    implements(IVolume)
+
+    schema = VolumeSchema
     _at_rename_after_creation = True
     suppl_views = ('base_view', 'issue_contents_view', 'volume_contents_view')
 
@@ -130,22 +135,8 @@ class Volume(BrowserDefaultMixin, OrderedBaseFolder):
         """add a hierarchical object to fedora and write the PID back to the Plone object
         """
 
-        fedora = getToolByName(self, 'fedora')
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        parent = self.getParentNode()
-        if parent == portal:
-            isChildOf = fedora.PID
-        else:
-            isChildOf = parent.PID
-        MetaType = self.MetaType
-        title = self.title
-        id = self.id
-        AbsoluteURL = self.absolute_url()
-        PID = fedora.createNewContainer(isChildOf, MetaType, title, id, AbsoluteURL)
-        msg = "isChildOf %s, MetaType %s, title %s, id %s, AbsoluteURL %s" % (isChildOf, MetaType, title, id, AbsoluteURL)
-        LOG ('DIPP', INFO, msg)
-        self.setPID(PID)
-        self.reindexObject()
+        event_utils.createFedoraContainer(self, None)
+
 
     def linkTranslations(self,PID):
         articles = self.portal_catalog(Type='Volume', getPID=PID)
