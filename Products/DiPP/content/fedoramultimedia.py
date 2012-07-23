@@ -76,10 +76,6 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     implements(IIndexableContent, IFedoraMultimedia)
     
     schema = FedoraMultimediaSchema
-    immediate_view = 'file_view'
-    default_view = 'file_view'
-    suppl_views = ('base_view', 'mmmp3_view', 'mmimage_view', 'mmfile_view', 'mmflv_view')
-    content_icon = "fedoramultimedia_icon.gif"
     
     inlineMimetypes= ('application/msword',
                       'application/vnd.ms-excel',
@@ -87,31 +83,6 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
                       'application/rtf',
                       'application/pdf')
 
-    actions = (
-        { "id": "view",
-          "name": "View",
-          "action": "string:${object_url}/view",
-          "permissions": (Permissions.VIEW_CONTENTS_PERMISSION,),
-        },
-          
-        { "id": "edit",
-          "name": "Edit",
-          "action": "string:${object_url}/fedoramultimedia_edit_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-        },
-          
-        { "id": "references",
-          "name": "References",
-          "visible": 0,
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          },
-          
-        { "id": "versions",
-          "name": "Versions",
-          "action": "string:${object_url}/fedoramultimedia_versions_form",
-          "permissions": (Permissions.EDIT_CONTENTS_PERMISSION,),
-          },
-    )
 
     security = ClassSecurityInfo()
 
