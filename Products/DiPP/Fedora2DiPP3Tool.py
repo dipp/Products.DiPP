@@ -275,7 +275,7 @@ class Fedora(UniqueObject, Folder):
         netloc = ':'.join((SERVER,PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
-        logger.debug(URL)
+        logger.debug("fetch %s from repository" % URL)
         conn.request("GET", URL)
         r = conn.getresponse()
         data = {'MIMEType':r.getheader('content-type'),
@@ -804,9 +804,7 @@ class Fedora(UniqueObject, Folder):
                 created = None
                 modified = None
                 valid = None
-             
             
-            logger.info(response._dateSubmitted)
             try:
                 dateSubmitted =  strftime("%Y-%m-%d",response._dateSubmitted[0:6] + (0,1,-1))
                 dateCopyrighted =  strftime("%Y-%m-%d",response._dateCopyrighted[0:6] + (0,1,-1))
@@ -1036,7 +1034,7 @@ class Fedora(UniqueObject, Folder):
     
     def addDatastream(self,REQUEST,PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState):
         DSID =  self.fedoramanagement.addDatastream(PID,Label,MIMEType,Location,ControlGroup,MDClass,MDType,DsState)
-        logger.info(DSID)
+        logger.info("added Datastrem %s to object %s" % (DSID, PID))
         return DSID
     
     def getDatastreamHistory(self,PID,DsID):
