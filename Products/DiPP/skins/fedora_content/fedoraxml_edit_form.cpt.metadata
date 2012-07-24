@@ -5,5 +5,6 @@ title = Edit
 validators = validate_fedoradocument
 
 [actions]
+action.success         = traverse_to:string:fedoraxml_edit
 action.success..Save   = traverse_to:string:fedoraxml_edit
 action.success..Cancel = traverse_to:string:fedoraxml_view

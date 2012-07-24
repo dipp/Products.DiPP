@@ -2,8 +2,10 @@
 title = Fedoradocument versions
 
 [validators]
+validators = validate_fedoradocument_newversion
 validators..NewVersion = validate_fedoradocument_newversion
 
 [actions]
+action.success = traverse_to:string:fedoradocument_newversion
 action.success..NewVersion = traverse_to:string:fedoradocument_newversion
 action.success..DiffVersions = traverse_to:string:fedoradocument_versions
