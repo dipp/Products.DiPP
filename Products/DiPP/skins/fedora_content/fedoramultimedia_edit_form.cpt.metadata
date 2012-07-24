@@ -3,8 +3,8 @@
 [validators]
 validators = validate_file_edit
 validators..Save = validate_file_edit
-validators..Cancel =
 
 [actions]
+action.success   = traverse_to:string:fedoramultimedia_edit
 action.success..Save   = traverse_to:string:fedoramultimedia_edit
 action.success..Cancel   = traverse_to:string:view
