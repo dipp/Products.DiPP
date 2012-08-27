@@ -146,6 +146,12 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     
     _at_rename_after_creation = True
 
+    def at_post_create_script(self):
+        """add a hierarchical object to fedora and write the PID back to the Plone object
+        """
+
+        event_utils.createFedoraContainer(self, None)
+
     
     def migrate(self,target):
         """Migrate from FedoraHierarchie to Volume or Issue only for Plone 2.5.5"""
