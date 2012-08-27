@@ -18,8 +18,8 @@ from config import view_permission, LANGUAGES
 
 from DateTime import DateTime
 from time import mktime, strptime, strftime
-from fedora2 import FedoraAccess
-from fedora2 import FedoraManagement
+from dipp.fedora2 import FedoraAccess
+from dipp.fedora2 import FedoraManagement
 from dipp.dipp2 import ContentModel
 from zLOG import LOG, INFO
 from marshal import loads

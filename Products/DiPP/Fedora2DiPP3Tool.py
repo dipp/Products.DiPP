@@ -33,9 +33,9 @@ import httplib
 import urlparse
 import logging
 
-from fedora2 import FedoraAccess
-from fedora2 import FedoraManagement
-from dipp3 import ContentModel
+from dipp.fedora2 import FedoraAccess
+from dipp.fedora2 import FedoraManagement
+from dipp.dipp3 import ContentModel
 from dipp.tools import openurl
 
 from backissues import import_backissues

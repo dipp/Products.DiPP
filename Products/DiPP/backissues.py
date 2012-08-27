@@ -1,9 +1,9 @@
 import csv
 import time
 from StringIO import StringIO
-import dipp3.ContentModel
-from dipp3.ContentModelService_services import *
-from fedora2.FedoraManagement import *
+import dipp.dipp3.ContentModel
+from dipp.dipp3.ContentModelService_services import *
+from dipp.fedora2.FedoraManagement import *
 from zLOG import LOG, ERROR, INFO
 
 def import_backissues(self,request, file, journal, target, dryrun):
