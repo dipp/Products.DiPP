@@ -30,6 +30,7 @@ except ImportError:
 from Products.DiPP.config import PROJECTNAME
 from Products.DiPP.interfaces import IFedoraHierarchie
 from Products.DiPP import Permissions
+from Products.DiPP import event_utils
 from Products.DiPP import HAS_PLONE30
 
 logger = logging.getLogger("DiPP")
