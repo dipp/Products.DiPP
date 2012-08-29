@@ -35,6 +35,7 @@ import logging
 
 from dipp.fedora2 import FedoraAccess
 from dipp.fedora2 import FedoraManagement
+from dipp.fedora2.config import ADDRESS, PORT
 from dipp.dipp3 import ContentModel
 from dipp.tools import openurl
 
@@ -263,8 +264,7 @@ class Fedora(UniqueObject, Folder):
         Repository. It uses the FedoraURL directly insteht the Wbservice
         via ZSI, which fails with larger Objects
         """
-        SERVER = self.address
-        PORT = self.port
+
         parts = ['fedora','get']
         parts.append(PID)
         parts.append(DsID)
@@ -272,10 +272,10 @@ class Fedora(UniqueObject, Folder):
             parts.append(Date)
 
         path = '/'.join(parts)
-        netloc = ':'.join((SERVER,PORT))
+        netloc = ':'.join((ADDRESS,PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
-        logger.debug("fetch %s from repository" % URL)
+        logger.info("fetch %s from repository" % URL)
         conn.request("GET", URL)
         r = conn.getresponse()
         data = {'MIMEType':r.getheader('content-type'),
@@ -298,8 +298,6 @@ class Fedora(UniqueObject, Folder):
         Repository. It uses the FedoraURL directly insteht the Wbservice
         via ZSI, which fails with larger Objects
         """
-        SERVER = self.address
-        PORT = self.port
         parts = ['fedora','get']
         parts.append(PID)
         parts.append(DsID)
@@ -307,7 +305,7 @@ class Fedora(UniqueObject, Folder):
             parts.append(Date)
 
         path = '/'.join(parts)
-        netloc = ':'.join((SERVER,PORT))
+        netloc = ':'.join((ADDRESS, PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
         logger.debug(URL)
