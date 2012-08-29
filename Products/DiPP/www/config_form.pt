@@ -4,6 +4,12 @@
 
 <h3>Configuration</h3>
 
+<p>
+    
+</p>
+<p>
+IP Address and port of the server running the Fedora repository is specified in the configuration file <code>/files/etc/fedora2.cfg</code>.
+</p>
 <form action="manage_setFedoraSettings" tal:attributes="action python:here.absolute_url()+'/manage_setFedoraSettings'" method="POST">
     <table cellspacing="0">
         <tr class="list-header">
@@ -14,22 +20,12 @@
         <tr>
             <th>label</th>
             <td><input name="label" type="text" value="" tal:attributes="value here/label"/></td>
-            <td>label of all Datastreams.</td>
+            <td>The label common to all Datastreams of this journal. It also defines wich plist (Upcast) and thus which document transformation ist applied.</td>
         </tr>
         <tr>
             <th>PID</th>
             <td><input name="PID" type="text"  value="" tal:attributes="value here/PID"/></td>
-            <td>PID of the Journal</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td><input name="address" type="text"  value="" tal:attributes="value here/address"/></td>
-            <td>IP-Address of the server</td>
-        </tr>
-        <tr>
-            <th>Port</th>
-            <td><input name="port" type="text"  value="" tal:attributes="value here/port"/></td>
-            <td>Port number</td>
+            <td>PID of the Journalobject in fedora, content model "DiPP:eJournal"</td>
         </tr>
     </table>
     <input type="submit" value="Save" />

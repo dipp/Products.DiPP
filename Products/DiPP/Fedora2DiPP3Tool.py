@@ -102,8 +102,6 @@ class Fedora(UniqueObject, Folder):
     def __init__(self):
         self.PID = "" 
         self.label = "" 
-        self.address = "127.0.0.1"
-        self.port = "9280"
         self.metadata = {}
         for metadata in self.getQualifiedDCMetadata(PID=None).keys():
             self.metadata[metadata] = {'required':True,'visible':True,'default':''}
@@ -114,12 +112,10 @@ class Fedora(UniqueObject, Folder):
             self.metadata[metadate]['default'] = default
         
     security.declareProtected(ManagePortal, 'manage_setFedoraSettings')
-    def manage_setFedoraSettings(self, PID, label, address, port, REQUEST):
+    def manage_setFedoraSettings(self, PID, label, REQUEST):
         """store the settings of the fedora tool"""
         self.PID = PID
         self.label = label
-        self.address = address
-        self.port = port
         manage_tabs_message = "Saved"
         logger.info("saved Fedora Configuration")
         return self.manage_config_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
