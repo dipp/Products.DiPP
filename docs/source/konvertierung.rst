@@ -1,6 +1,12 @@
 Artikelkonvertierung
 ====================
 
+.. figure:: images/editorial-toolbox.png
+    :alt: Editorial Toolbox
+
+    Die Editorial Toolbox
+
+
 Formatvorlage
 -------------
 
