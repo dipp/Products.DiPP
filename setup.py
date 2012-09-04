@@ -44,9 +44,8 @@ setup(name='Products.DiPP',
         'Products.LinguaPlone',
         'dipp.tools',
         'dipp.dipp2',
-        'dipp3',
         'bibliograph.core',
-        'fedora2'
+        'dipp.fedora2 >= 2.2'
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
