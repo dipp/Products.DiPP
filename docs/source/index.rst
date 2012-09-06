@@ -19,11 +19,6 @@ Inhalt:
    ausgaben
    konfiguration
 
-Andere Formate
-==============
-
-:download:`auch als pdf <DiPP.pdf>`
-
 Index
 =====
 

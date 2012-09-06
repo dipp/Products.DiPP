@@ -18,7 +18,7 @@ member_properties (Extended member properties):
     erforderlich bzw. sollen überhaupt angezeigt werde.
 
 metadata_properties (QDC Metadata properties): 
-    einige Standardwerte für di Qualifizierten Dublin Core Metadaten.
+    einige Standardwerte für die Qualifizierten Dublin Core Metadaten.
 
  
 
@@ -31,7 +31,7 @@ dipp_properties (DiPP properties)
 alertEmailAddresses
 ^^^^^^^^^^^^^^^^^^^
 
-Eine Liste mit E-Mail Adressen, die bei VerÃ¶ffentlichung eines Artikel
+Eine Liste mit E-Mail Adressen, die bei Veröffentlichung eines Artikel
 benachrichtigt werden.
 
 .. _prop_alertEmailText:
@@ -47,13 +47,82 @@ Text dieser Email::
     a new article.
     The full text can be found here: %(url)s
 
+Zur Verfügung stehende Platzhalter
+
+======== =================
+Name     Bedeutung
+======== =================
+journal  Name des journals
+url      URL des Artikels
+======== =================
 
 
+citation_format
+^^^^^^^^^^^^^^^
 
+Default::
+
+    %(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume)s. (%(urn)s)
+
+
+short_citation_format
+^^^^^^^^^^^^^^^^^^^^^
+
+Default::
+
+    %(journal)s, Vol. %(volume)s, Iss. %(issue)s
+
+show_recommended_citation
+^^^^^^^^^^^^^^^^^^^^^^^^^
+show_classified_subjects
+^^^^^^^^^^^^^^^^^^^^^^^^
+show_review_history
+^^^^^^^^^^^^^^^^^^^
+initials_only
+^^^^^^^^^^^^^
+firstnamefirst
+^^^^^^^^^^^^^^
+initials_period
+^^^^^^^^^^^^^^^
+comma_separated
+^^^^^^^^^^^^^^^
+last_author_suffix
+^^^^^^^^^^^^^^^^^^
+articles_in_portlet
+^^^^^^^^^^^^^^^^^^^
+authors_in_portlet
+^^^^^^^^^^^^^^^^^^
+allow_persistent_discussion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+volume_show_covers
+^^^^^^^^^^^^^^^^^^
+issue_show_abstracts
+^^^^^^^^^^^^^^^^^^^^
+issue_show_pdf_link
+^^^^^^^^^^^^^^^^^^^
+issue_show_full_abstracts
+^^^^^^^^^^^^^^^^^^^^^^^^^
+issue_show_short_citation
+^^^^^^^^^^^^^^^^^^^^^^^^^
+issue_sort_on
+^^^^^^^^^^^^^
+issue_sort_order
+^^^^^^^^^^^^^^^^
+discussion_time
+^^^^^^^^^^^^^^^
+fedora_time_format
+^^^^^^^^^^^^^^^^^^
+issue_date_format
+^^^^^^^^^^^^^^^^^
+recent_articles_range 
+^^^^^^^^^^^^^^^^^^^^^
 
 dippreview_properties (DiPPReview properties)
 ---------------------------------------------
+
+
 member_properties (Extended member properties)
 ----------------------------------------------
+
 metadata_properties (QDC Metadata properties)
 ---------------------------------------------
