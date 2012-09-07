@@ -34,6 +34,10 @@ alertEmailAddresses
 Eine Liste mit E-Mail Adressen, die bei Veröffentlichung eines Artikel
 benachrichtigt werden.
 
+Default::
+
+    dipp@hbz-nrw.de
+
 .. _prop_alertEmailText:
 
 alertEmailText
@@ -60,38 +64,156 @@ url      URL des Artikels
 citation_format
 ^^^^^^^^^^^^^^^
 
+String, der zum Formatieren der empfolenen Zitierweise verwendet wird, wie sie
+unter dem Artikel bzw. auf der Seite mit den Metadaten zu dinen ist.
+
 Default::
 
     %(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume)s. (%(urn)s)
+
+Zur Verfügung stehende Platzhalter:
+
+========== ============================================================
+Name       Bedeutung
+========== ============================================================
+authors    Liste der Autoren, kann durch weitere Parameter detailierter
+           formatiert werden
+title      Titel des Artikels
+journal    Name des Journals
+volume     Jahrgang
+issue      Ausgabe
+startpage  erste Seite (bei PDF)
+endpage    letzte Seite (bei PDF)
+year       Jahreszahl, wird aus den Datum der Veröffentlich extrahiert
+date       Datum der Veröffentlichung
+id         die PID ohne des Prefix 'dipp:'
+urn        Der URN
+========== ============================================================
 
 
 short_citation_format
 ^^^^^^^^^^^^^^^^^^^^^
 
+String, der zum Formatieren der verkürzten Zitierweise verwendet wird. Wird aus
+den Metadaten erzeugt, die auch im Plone Katalog indexiert sind und keinen
+Aufruf von Fedora erfordern. Kann z.B. auf den Inhaltsverzeichnissen oder den
+Feeds verwendet werden.
+
 Default::
 
     %(journal)s, Vol. %(volume)s, Iss. %(issue)s
 
+Zur Verfügung stehende Platzhalter:
+
+================== ============================================================
+Name               Bedeutung
+================== ============================================================
+journal            Name des Journals
+journal_shortname  Abkürzung des Journals
+volume             Jahrgang
+issue              Ausgabe
+startpage          erste Seite (bei PDF)
+endpage            letzte Seite (bei PDF)
+year               Jahreszahl, wird aus den Datum der Veröffentlich extrahiert
+issuedate          Datum der Veröffentlichung
+urn                Der URN
+================== ============================================================
+
 show_recommended_citation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Soll unterhalb des Artikels das bibliographische Zitat angezeigt werden?
+
+Default::
+
+    True
+
 show_classified_subjects
 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sollen im Artikelkopf die normierten Schlagworte angezeigt werden?
+
+Default::
+
+    False
+
 show_review_history
 ^^^^^^^^^^^^^^^^^^^
+
+Sollen im Artikelkopf die Daten für Einreichung und Annahme angezeigt werden?
+
+Default::
+
+    False
+    
 initials_only
 ^^^^^^^^^^^^^
+
+Im bibliographischen Zitat: Sollen bei den Autoren nur die Initialen angezeigt werden
+statt des ausgeschriebenen Vornamens:
+
+Default::
+
+    False
+
 firstnamefirst
 ^^^^^^^^^^^^^^
+
+Im bibliographischen Zitat: Sollen erst die Vornamen angezeigt werden?
+
+Default::
+
+    False
+
 initials_period
 ^^^^^^^^^^^^^^^
+
+Im bibl. Zitat: Sollen ein Punkt hinter die Initialen?
+
+Default::
+
+    False
+
 comma_separated
 ^^^^^^^^^^^^^^^
+
+Im bibl. Zitat: wenn der Vorname nach dem Nachnamen kommt (firstnamefirst =
+false), sollen sie durch ein Komma getrennt werden:
+
+Default::
+
+    False
+
 last_author_suffix
 ^^^^^^^^^^^^^^^^^^
+
+Im  bibl. Zitat: wenn der letzte Autor z.B. durch ein 'und' abgetrennt werden
+soll.
+
+Default::
+
+    <leer>
+
 articles_in_portlet
 ^^^^^^^^^^^^^^^^^^^
+
+Im Portlet "Current Issue": Sollen die Artikel aufgelistet werden? Sonst
+escheint nur ein Link auf die Ausgabe, evtl. mit Bild.
+
+Default::
+
+    True
+
 authors_in_portlet
 ^^^^^^^^^^^^^^^^^^
+
+Im Portlet "Current Issue": Sollen auch die Autoren gelistet werden?
+
+Default::
+
+    True
+
+
 allow_persistent_discussion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 volume_show_covers
