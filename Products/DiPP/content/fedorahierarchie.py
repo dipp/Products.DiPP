@@ -135,7 +135,7 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
     implements(IFedoraHierarchie)
     
-    manage_migration_form = PageTemplateFile('www/migration_form.pt', globals())
+    manage_migration_form = PageTemplateFile('../www/migration_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_migration_form')
 
     manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Migrate',

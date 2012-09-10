@@ -231,7 +231,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     schema = FedoraArticleSchema
     
     security.declareProtected(ManagePortal, 'manage_fedora_form')
-    manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
+    manage_fedora_form = PageTemplateFile('../www/fedora_form.pt', globals())
     
     manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Fedora',
                        'action':'manage_fedora_form',
