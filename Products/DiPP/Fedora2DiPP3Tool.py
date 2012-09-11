@@ -42,12 +42,10 @@ from dipp.tools import openurl
 from backissues import import_backissues
 from config import view_permission, LANGUAGES, DEFAULT_METADATA
 
-
 logger = logging.getLogger("DiPP")
 
-
 class Fedora(UniqueObject, Folder):
-    """ interact with the repository Fedora 2 und DiPP3 """
+    """Tool to add and modify Data in the Fedora Repository """
 
     meta_type = 'Fedora2DiPP3'
     id = 'fedora'
@@ -113,7 +111,7 @@ class Fedora(UniqueObject, Folder):
         
     security.declareProtected(ManagePortal, 'manage_setFedoraSettings')
     def manage_setFedoraSettings(self, PID, label, REQUEST):
-        """store the settings of the fedora tool"""
+        """ZMI method to store the configuration of the fedora tool."""
         self.PID = PID
         self.label = label
         manage_tabs_message = "Saved"
@@ -122,7 +120,7 @@ class Fedora(UniqueObject, Folder):
     
     security.declareProtected(ManagePortal, 'manage_save_metadata')
     def manage_save_metadata(self, REQUEST):
-        """save default metadata as attributes of the fedora tool"""
+        """Save default metadata as attributes of the fedora tool."""
         md = self.metadata
         for metadata in self.getQualifiedDCMetadata(PID=None).keys():
             metadata_form_dict = REQUEST.form.get(metadata, None)
@@ -139,8 +137,7 @@ class Fedora(UniqueObject, Folder):
     
         
     def getFedoraArticles(self):
-        """find all FedoraArticles in Plone and return a list of PIDs
-        """
+        """find all FedoraArticles in Plone and return a list of PIDs."""
         portal_url = getToolByName(self, 'portal_url')
         portal = portal_url.getPortalObject()
         PIDs = []
