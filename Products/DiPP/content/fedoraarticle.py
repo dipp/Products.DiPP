@@ -222,8 +222,11 @@ FedoraArticleSchema = BaseSchema + Schema((
 
 
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
-    """An article, which has gone through a peer review. Please add through the EDITORIAL TOOLBOX"""
+    """Folderish Content Object containing all parts of an scholarly article.
     
+    An article, which has gone through a peer review. Please add through the :ref:`editorial_toolbox`
+    
+    """
     security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
     implements(IIndexableContent, IFedoraArticle)
@@ -240,9 +243,11 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
    
     def indexableContent(self, fields):
-        """get the binary datastream from fedora and return in to TextIndexNG
-           Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
-           to keep the burdon of fedora when reindexing the portal_catalog
+        """Get the binary datastream from fedora and return in to TextIndexNG.
+        
+        Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
+        to keep the burdon of fedora when reindexing the portal_catalog.
+        
         """
         icc = ICC()
         fedora = getToolByName(self, 'fedora')
@@ -274,7 +279,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'syncMetadata')
     def syncMetadata(self):
-        """keep Metadata of Plone and Fedora synchron"""
+        """Sync the Metadata stored in Plone and Fedora.
+        
+        Most Metadata are kept only in Fedora but some are also stored in Plones
+        catalog in order to have tkhem available in searches. This method should
+        be called each time the metadata are modified
+        
+        """
         fedora = getToolByName(self, 'fedora')
         if not self.PID.startswith('temp:'):
             qdc = fedora.getQualifiedDCMetadata(self.PID)
@@ -315,9 +326,12 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         self.reindexObject()
     
     def getPublishedArticles(self):
-        """build a Vocabulary with PIDs and Title of all FedoraArticles of the journal
-           temporary articles are excluded""" 
-
+        """Return a tuple of published articles
+        
+        The catalog is searched for all FedoraArticles except the temporary ones.
+        A List of PID, title tupels is returned.
+        
+        """ 
         results = self.portal_catalog.searchResults(Type='Fedora Article')
         articles = (('','None'),)
         for result in results:
@@ -333,10 +347,12 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
 
     def getFulltextPdf(self):
-        """
-        return the first listed pdf file which is declared als alternative format
+        """Return the URL, PID and DsID  of the articles fulltext pdf
+         
+        The first listed pdf file which is declared al alternative format is taken. 
         if not found, return none. If Metis data are given, the according link is generated
         this is used by the document action for the pdf icon.
+        
         """
         path = '/'.join(self.getPhysicalPath())
         pixel_domain =self.pixel_domain
@@ -371,6 +387,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             return {}
     
     def linkTranslations(self,PID):
+        """not sure, if this is still in use"""
         articles = self.portal_catalog(Type='Fedora Article', getPID=PID)
         logger.info(PID)
         logger.info(len(articles))
