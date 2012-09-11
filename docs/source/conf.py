@@ -17,13 +17,16 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 __version__ = read('..','..','Products','DiPP','version.txt').strip()
-
+PRODUCTS_DIR = "/files/var/zeo-cluster/dipp0"
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('.'))
-
+sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath(PRODUCTS_DIR))
+sys.path.insert(0, os.path.abspath(PRODUCTS_DIR + '/Products/TextIndexNG3/src'))
+sys.path.insert(0, os.path.abspath('/files/lib/zope-2.9.10/lib/python'))
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -31,7 +34,12 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage']
+extensions = ['sphinx.ext.autodoc',
+              'sphinx.ext.doctest', 
+              'sphinx.ext.intersphinx',
+              'sphinx.ext.todo', 
+              'sphinx.ext.coverage'
+              ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

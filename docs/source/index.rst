@@ -14,14 +14,14 @@ Inhalt:
 
 .. toctree::
    :maxdepth: 2
-   :numbered:
 
    einleitung
    konvertierung
    workflow
    ausgaben
    konfiguration
-   
+   api
+   changelog
    
 Index
 =====
