@@ -20,8 +20,7 @@ Inhalt:
    workflow
    ausgaben
    konfiguration
-   api
-   changelog
+   anhang
    
 Index
 =====

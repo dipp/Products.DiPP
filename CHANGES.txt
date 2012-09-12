@@ -1,5 +1,5 @@
-Changes
-=======
+Changelog
+=========
     
 DiPP 2.9.9 (2012-04-19)
     * added PID resolver

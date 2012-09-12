@@ -224,7 +224,8 @@ FedoraArticleSchema = BaseSchema + Schema((
 class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
     """Folderish Content Object containing all parts of an scholarly article.
     
-    An article, which has gone through a peer review. Please add through the :ref:`editorial_toolbox`
+    An article, which has gone through a peer review. Has to be added through the
+    :ref:`editorial toolbox <editorial_toolbox>`
     
     """
     security = ClassSecurityInfo()

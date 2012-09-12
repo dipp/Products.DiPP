@@ -17,12 +17,13 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 __version__ = read('..','..','Products','DiPP','version.txt').strip()
-PRODUCTS_DIR = "/files/var/zeo-cluster/dipp0"
+#PRODUCTS_DIR = "/files/var/zeo-cluster/dipp0"
+PRODUCTS_DIR = "/files/var/zope-instances/dev"
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath(PRODUCTS_DIR))
 sys.path.insert(0, os.path.abspath(PRODUCTS_DIR + '/Products/TextIndexNG3/src'))
