@@ -65,7 +65,10 @@ class BibTool(UniqueObject, SimpleItem):
                 elem.tail = i
     
     def short_citation(self,article):
+        """Short version of the bibligraphic citation. Calls only plones own
+        catalog and does not wake up Fedora. Used in feeds and search results
         
+        """
         dp = self.portal_properties.dipp_properties
         mp = self.portal_properties.metadata_properties
         citation_format = dp.short_citation_format
@@ -86,9 +89,11 @@ class BibTool(UniqueObject, SimpleItem):
             }
         return cite
         
-    def recommended_citation(self,PID,qdc):
-
-        # citation_format = self.citation_format|here/portal_properties/dipp_properties/citation_format|nothing;
+    def recommended_citation(self, PID, qdc):
+        """ The full bibliographic citation. Used below the article an on the
+        metadata page. Calls Fedora.  
+        
+        """
         dp = self.portal_properties.dipp_properties
         citation_format = dp.citation_format
         initials_only = dp.initials_only
@@ -288,7 +293,10 @@ class BibTool(UniqueObject, SimpleItem):
         return mods
     
     def convert(self, qdc, PID, target_format):
+        """ Convert the QDC Metadata from Fedora to any format supported by
+        bibutils. Uses MODS as an intermediate format.
         
+        """
         mods = self._make_mods(qdc, PID)
         if target_format == 'xml':
             self.indent(mods)
@@ -311,8 +319,6 @@ class BibTool(UniqueObject, SimpleItem):
         return result
 
     def urnstatus(self, urn, url):
-        """ check status of an urn with the dnb resolver
-        """
-        
+        """ check status of an urn with the dnb resolver"""
         u = urnvalidator.URN(urn, url)
         return {'valid':u.is_valid(),'registered':u.is_registered(),'url':u.registered_url()}
