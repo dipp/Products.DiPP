@@ -6,3 +6,6 @@ Tools
 
 .. automodule:: Products.DiPP.BibTool
     :members:
+
+.. automodule:: Products.DiPP.event_utils
+    :members:
