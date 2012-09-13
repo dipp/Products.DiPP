@@ -1,14 +1,27 @@
+# -*- coding: utf-8 -*-
+# some methods which are meant to be called by a event subscriber. For the
+# current Plone 2.5 implementation they are just imported by the content type
+# and called from the at_post_create_script method
+#
+# German Free Software License (D-FSL)
+#
+# This Program may be used by anyone in accordance with the terms of the
+# German Free Software License
+# The License may be obtained under <http://www.d-fsl.org>.
+#
+# $Id$
+
 import logging
 from Products.CMFCore.utils import getToolByName
 
 logger = logging.getLogger("DiPP")
 
 def createFedoraDatastream(obj, event):
-    """ when a document is not converted but added manually via the "add article"
-        menu, it does not have PID and DsID. This method takes care of creating a
-        a digital object for the page.
+    """ When a document is not converted but added manually via the "add article"
+    menu, it does not have PID and DsID. This method takes care of creating a
+    a digital object for the page.
+    
     """
-
     fedora = getToolByName(obj, 'fedora')
     article = obj.getParentNode()
     PID = fedora.getContentModel(PID=article.PID, Type='HTML')
@@ -35,9 +48,10 @@ def createFedoraDatastream(obj, event):
     obj.reindexObject()
 
 def createFedoraContainer(obj, event):
-    """add a hierarchical object to fedora and write the PID back to the Plone object
-    """
+    """Add a hierarchical object to fedora and write the PID back to the Plone
+    object.
 
+    """
     fedora = getToolByName(obj, 'fedora')
     portal = getToolByName(obj, 'portal_url').getPortalObject()
     parent = obj.getParentNode()
