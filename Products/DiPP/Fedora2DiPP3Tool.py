@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # The FedoraTool for adding and manipulating objects in Fedora
-# File: Fedora2DiPP3Tool.py
 #
 # German Free Software License (D-FSL)
 #
