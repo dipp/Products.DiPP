@@ -17,17 +17,17 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 __version__ = read('..','..','Products','DiPP','version.txt').strip()
-#PRODUCTS_DIR = "/files/var/zeo-cluster/dipp0"
-PRODUCTS_DIR = "/files/var/zope-instances/dev"
+
+ZOPE_INSTANCE_DIR = "/files/var/zope-instances/dev"
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath('../..'))
-sys.path.insert(0, os.path.abspath(PRODUCTS_DIR))
-sys.path.insert(0, os.path.abspath(PRODUCTS_DIR + '/Products/TextIndexNG3/src'))
-sys.path.insert(0, os.path.abspath('/files/lib/zope-2.9.10/lib/python'))
+sys.path.insert(0, os.path.abspath(ZOPE_INSTANCE_DIR))
+sys.path.insert(0, os.path.abspath(ZOPE_INSTANCE_DIR + '/Products/TextIndexNG3/src'))
+sys.path.insert(0, os.path.abspath('/files/lib/zope-2.9.10-dev/lib/python'))
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'DiPP'
+project = u'DiPP Handbuch'
 copyright = u'2012, Peter Reimer'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -125,7 +125,7 @@ html_theme = 'default'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = "dipp-logo.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -193,13 +193,13 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'DiPP.tex', u'DiPP Documentation',
+  ('index', 'DiPP-Handbuch.tex', u'DiPP Documentation',
    u'Peter Reimer', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = None
+latex_logo = "dipp-logo.pdf"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -234,7 +234,7 @@ man_pages = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'DiPP'
+epub_title = u'DiPP Handbuch'
 epub_author = u'Peter Reimer'
 epub_publisher = u'Peter Reimer'
 epub_copyright = u'2012, Peter Reimer'
