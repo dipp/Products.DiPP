@@ -23,3 +23,8 @@ Index
 * :ref:`modindex`
 * :ref:`search`
 
+Andere Formate
+==============
+
+* :download:`PDF <../build/latex/DiPP-Handbuch.pdf>`.
+* :download:`EPUB <../build/epub/DiPPHandbuch.epub>`.
