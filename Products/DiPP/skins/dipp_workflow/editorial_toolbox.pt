@@ -12,15 +12,21 @@
     <body>
 
 
-        <div metal:fill-slot="main">
+        <div metal:fill-slot="main"
+             tal:define="QI python:context.portal_url.getPortalObject().portal_quickinstaller">
+            
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
             </div>
             <h1 class="documentFirstheading" i18n:translate="">Editorial Toolbox</h1>
+            <p class="discreet">
+                Version <span tal:replace="python:QI.getProductVersion('DiPP')"> 1.2</span>
+            </p>
             
             <div class="documentDescription" i18n:translate="description_editorial_toolbox">
               for advanced publication features
             </div>
+            
             
             <p i18n:translate="explanation_editorial_toolbox" i18n:domain="dipp">
                 On the left you find the Editorial Toolbox which allows you to manage and edit
