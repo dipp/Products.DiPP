@@ -13,6 +13,7 @@ DiPP Handbuch
    einleitung
    publizieren
    ausgaben
+   portlets
    konfiguration
    anhang
    

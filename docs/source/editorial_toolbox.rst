@@ -1,3 +1,5 @@
+.. _editorial_toolbox:
+
 Editorial Toolbox
 =================
 

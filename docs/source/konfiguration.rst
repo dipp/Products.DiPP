@@ -27,6 +27,15 @@ metadata_properties (QDC Metadata properties):
 dipp_properties (DiPP properties)
 ---------------------------------
 
+
+.. _prop_issn:
+
+ISSN
+^^^^
+
+Die *International Standard Serial Number*. Kann mit erscheinen der ersten Artikel
+bei der Deutschen Nationalbibliothek beantragt werden.
+
 .. _prop_alertEmailAddresses:
 
 alertEmailAddresses
@@ -184,6 +193,8 @@ Default::
 
     <leer>
 
+.. _prop_articles_in_portlet:
+
 articles_in_portlet
 ^^^^^^^^^^^^^^^^^^^
 Im Portlet "Current Issue": Sollen die Artikel aufgelistet werden? Sonst
@@ -192,6 +203,8 @@ escheint nur ein Link auf die Ausgabe, evtl. mit Bild.
 Default::
 
     True
+
+.. _prop_authors_in_portlet:
 
 authors_in_portlet
 ^^^^^^^^^^^^^^^^^^

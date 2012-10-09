@@ -45,3 +45,9 @@ Glossar
         Ein XML Format, das ursprünglich für technische Documentation
         entwickelt wurde. Es dient hier als nicht-proprietäres Speicherformat
         und als Basis für die Artikelkonvertierung
+        
+    RSS
+        Really Simple Syndication
+        
+    ISSN
+        International Standard Serial Number    
