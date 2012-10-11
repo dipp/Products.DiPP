@@ -14,6 +14,6 @@ dann über das :term:`DocBook` XML Format zu :term:`HTML` konvertiert.
    :maxdepth: 2
 
    editorial_toolbox
-   konvertierung
+   formatieren
    zusatzmaterial
    workflow
