@@ -1,6 +1,17 @@
 Changelog
 =========
-    
+
+DiPP 2.10 (2012-10-12)
+    * added Sphinx based documentation
+    * proper use of interfaces
+    * ContentTypes moved to content folder
+    * generic profiles  for most installations
+    * event subscriber
+    * use of Products.DiPP nested namespace for propper "eggification"
+    * Fedora server configuration taken from dipp.fedora2 module, no 
+      extra configuration in Plone
+    * lots of code cleanup and docstrings
+
 DiPP 2.9.9 (2012-04-19)
     * added PID resolver
     
