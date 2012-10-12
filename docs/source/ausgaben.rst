@@ -6,3 +6,18 @@ Ausgaben und Jahrgänge
 
 Sektionen
 ---------
+
+.. _volumes:
+
+Jahrgänge
+---------
+
+.. _issues:
+
+Ausgaben
+--------
+
+.. _sonderausgaben:
+
+Sonderausgaben
+--------------

@@ -1,6 +1,8 @@
 Publikationsworkflow
 ====================
 
+:guilabel:`Test Online Transformation` oder :guilabel:`weiter mit Metadaten`  
+
 Initialize Article
 ------------------
 
