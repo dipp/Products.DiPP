@@ -9,6 +9,8 @@
 #
 # $Id$
 
+__docformat__ = "restructuredtext"
+
 from OFS.SimpleItem import SimpleItem
 from OFS.Folder import Folder
 from AccessControl import ClassSecurityInfo
