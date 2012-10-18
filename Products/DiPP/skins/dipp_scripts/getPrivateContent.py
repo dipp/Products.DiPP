@@ -1,4 +1,4 @@
-## Script (Python) "checkForNewPIDs"
+## Script (Python) "getPrivateContent"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
@@ -18,6 +18,9 @@ RESPONSE = request.RESPONSE
 """Allow fedora to fetch private content without authentication. This script runs with proxyrole Manager
    but can only be called from the machine where fedora is installed.
 """
+
+ALLOWED_IPS = ( "193.30.112.23", "193.30.112.98", "193.30.112.184", "193.30.112.185")
+
 
 def get_ip(request):
     """  Extract the client IP address from the HTTP request in proxy compatible way.
@@ -40,16 +43,16 @@ IP = get_ip(request)
 fedora = getToolByName(self,'fedora')
 fedoraIP = fedora.address
 
-
 context.plone_log ("private Id: %s" % (self.id))
 
-if IP == fedoraIP:
+#if IP == fedoraIP:
+if IP in ALLOWED_IPS:
 
     MIMEType = self.content_type
     MIMETypeCategory = MIMEType.split('/')[0] 
     
     RESPONSE.setHeader('Content-Type', MIMEType)
-    if MIMETypeCategory in ['application','image']:
+    if MIMETypeCategory in ['application', 'image', 'audio', 'video']:
         cd = 'attachment; filename=%s' % (id)
         RESPONSE.setHeader('Content-Disposition', cd)
         return self.getFile()
