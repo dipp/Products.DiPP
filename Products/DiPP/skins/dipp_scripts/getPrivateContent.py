@@ -19,7 +19,6 @@ RESPONSE = request.RESPONSE
    but can only be called from the machine where fedora is installed.
 """
 
-ALLOWED_IPS = ( "193.30.112.23", "193.30.112.98", "193.30.112.184", "193.30.112.185")
 
 
 def get_ip(request):
@@ -41,13 +40,13 @@ def get_ip(request):
 
 IP = get_ip(request) 
 fedora = getToolByName(self,'fedora')
-fedoraIP = fedora.address
 
-context.plone_log ("private Id: %s" % (self.id))
+FEDORA_IP, FEDORA_PORT = fedora.getServerConfiguration()
+context.plone_log((FEDORA_IP, FEDORA_PORT))
 
-#if IP == fedoraIP:
-if IP in ALLOWED_IPS:
+if IP == FEDORA_IP:
 
+    context.plone_log ("getPrivateContent: trying to fetch  '%s' (%s)" % (self.id, IP))
     MIMEType = self.content_type
     MIMETypeCategory = MIMEType.split('/')[0] 
     
@@ -63,6 +62,8 @@ if IP in ALLOWED_IPS:
         print "Unsupported MIME Type"
         return printed
 else:
-    print "Your IP %s is not allowed to access this content!" % (IP)
+    msg = "Your IP %s is not allowed to access this content!" % (IP)
+    print msg
+    context.plone_log (msg)
     return printed
 
