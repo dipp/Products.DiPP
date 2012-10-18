@@ -118,7 +118,12 @@ class Fedora(UniqueObject, Folder):
         manage_tabs_message = "Saved"
         logger.info("saved Fedora Configuration")
         return self.manage_config_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
-    
+
+    def getServerConfiguration(self):
+        """return server ip an port of the configured fedora repository"""
+        return (ADDRESS, PORT)        
+
+
     security.declareProtected(ManagePortal, 'manage_save_metadata')
     def manage_save_metadata(self, REQUEST):
         """Save default metadata as attributes of the fedora tool."""
