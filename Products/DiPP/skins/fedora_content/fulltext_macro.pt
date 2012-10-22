@@ -23,18 +23,21 @@
              
             <h2 i18n:translate="heading_fulltext" i18n:domain="dipp" id="fulltext" name="fulltext">Fulltext</h2>
             
-            <tal:block tal:repeat="result results">
-                <tal:block tal:condition="python: result.id.endswith('pdf') and not result.id.startswith('srcdoc')"
-                   tal:define="pixel_domain here/pixel_domain|nothing;
-                               pixel_id here/pixel_id|nothing;
-                               url python:result.getObject().absolute_url();
-                               vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url;
-                               obj result/getObject;
-                               size python:here.getObjSize(obj);
-                               content_type obj/get_content_type|result/Format">
+            <tal:block tal:repeat="item results">
+                <tal:block tal:condition="python: item.id.endswith('pdf') and not item.id.startswith('srcdoc')"
+                   tal:define="pixel_domain         here/pixel_domain|nothing;
+                               pixel_id             here/pixel_id|nothing;
+                               url                  python:item.getObject().absolute_url();
+                               vgwort_url           string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url;
+                               obj                  item/getObject;
+                               item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                               item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+                               size                 python:here.getObjSize(obj);
+                               content_type         obj/get_content_type|item/Format">
                     <p>
                         <a href=""
-                           tal:attributes="href python:test(pixel_id,vgwort_url,url)">
+                           tal:attributes="href python:test(pixel_id,vgwort_url,url);
+                                           class string:$item_wf_state_class">
                             <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />
                             <tal:block i18n:domain="dipp" i18n:translate="label_get_fulltext_as_pdf">
                             Volltext als <span i18n:name="pdf"><abbr i18n:domain="dipp" title="Portable Document Format">PDF</abbr></span>.
