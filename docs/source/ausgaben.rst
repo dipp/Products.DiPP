@@ -1,6 +1,7 @@
-Ausgaben und Jahrgänge
+Jahrgänge und Ausgaben 
 ======================
 
+Jahrgänge und Ausgaben dienen dazu, die Artikel hierarchisch einzuordnen. 
 
 .. _sektionen:
 

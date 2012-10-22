@@ -16,4 +16,5 @@ dann über das :term:`DocBook` XML Format zu :term:`HTML` konvertiert.
    editorial_toolbox
    formatieren
    zusatzmaterial
+   kommentare
    workflow
