@@ -11,20 +11,29 @@
              tal:condition="results">
              
             <h2 i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</h2>
+            
             <ul tal:condition="results"
                 class="supplementary-material">
-                <li tal:repeat="result results">
-                    <div tal:define="description result/Description"
-                       tal:condition="description"
-                       tal:content="description">
-                        Beschreibungstext des Attachments
-                    </div>
-                    <span tal:replace="result/Title">Primärdaten zum Artikel</span>
-                    [ <a tal:define="url result/getURL"
-                       tal:attributes="href string:$url/view">view</a> |
-                    <a tal:define="url result/getURL"
-                       tal:attributes="href string:$url/at_download/File">download</a> ]
+
+                <li tal:repeat="item results">
+
+                    <tal:item tal:define="description          item/Description;
+                                          item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                          item_wf_state_class  python:'state-' + normalizeString(item_wf_state)">
+                        <div tal:condition="description"
+                             tal:content="description">
+                             Beschreibungstext des Attachments
+                        </div>
+                        <span tal:replace="item/Title">Primärdaten zum Artikel</span>
+                        [ <a tal:define="url item/getURL"
+                           tal:attributes="href  string:$url/view;
+                                           class string:$item_wf_state_class">view</a> |
+                        <a tal:define="url item/getURL"
+                           tal:attributes="href string:$url/at_download/File;
+                                           class string:$item_wf_state_class">download</a> ]
+                        </tal:item>
                 </li>
+
             </ul>
         </div>
 
