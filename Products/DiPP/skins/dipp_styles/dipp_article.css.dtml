@@ -181,4 +181,15 @@ ul.authors li a.last:after {
     font-style: italic; 
 }
 
+/* Audio */
+a span.audiolink {
+    padding-left: 18px;
+	background-image: url(&dtml-portal_url;/play_icon.png); 
+    background-repeat: no-repeat; 
+    background-position: 0% 0%;
+}
+a span.audiolink:hover {
+	background-image: url(&dtml-portal_url;/play_icon_hover.png); 
+}
+
 /* </dtml-with> */
