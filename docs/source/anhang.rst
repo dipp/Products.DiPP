@@ -6,4 +6,5 @@ Anhang
   
    api
    changelog
+   readme
    glossar
