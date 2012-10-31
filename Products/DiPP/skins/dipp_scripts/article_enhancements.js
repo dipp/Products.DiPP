@@ -54,6 +54,12 @@ function inlineFootnotes() {
 	}
 }
 
+function dummy() {
+    alert("Hallo Welt");
+}
+
+
 (function($) {
 	$(document).ready(inlineFootnotes);
+	$(document).ready(dummy);
 })(jQuery);
