@@ -25,6 +25,7 @@
  <stylesheet id="dippreview.css"  media="screen" rendering="import"/>
  <stylesheet id="tabber.css"  media="screen" rendering="import"/>
  <stylesheet id="dipp_article.css"  media="all" rendering="import"/>
+ <stylesheet id="jplayer.blue.monday.css"  media="all" rendering="import"/>
  <stylesheet id="dipp_article_print.css"  media="print" rendering="import"/>
  
 </object>

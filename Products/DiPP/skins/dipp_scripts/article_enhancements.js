@@ -54,12 +54,26 @@ function inlineFootnotes() {
 	}
 }
 
-function dummy() {
-    alert("Hallo Welt");
-}
+/*
+ * embed the jPlayer <http://www.jplayer.org/> in the webpage.
+ * the url of the audiofile is dynamically taken from the provided 
+ * download link
+ */
 
+function embedJPlayer() {
+  var audio_url = $("#audio_url").attr('href');
+  $("#jquery_jplayer_1").jPlayer({
+    ready: function () {
+      $(this).jPlayer("setMedia", {
+        mp3: audio_url,
+      });
+    },
+    swfPath: "..",
+    supplied: "mp3"
+  });
+};
 
 (function($) {
 	$(document).ready(inlineFootnotes);
-	$(document).ready(dummy);
+	$(document).ready(embedJPlayer);
 })(jQuery);
