@@ -4,21 +4,21 @@
 
 <body>
 
-<div metal:define-macro="portlet">
+<div metal:define-macro="portlet"
+     tal:define="issue here/getIssue|nothing;
+                 volume here/getVolume|nothing"
+     tal:condition="python:issue and volume">
                  
 
-    <dl class="portlet" id="portlet-issn"
-        tal:define="issn here/portal_properties/dipp_properties/ISSN|nothing"
-        tal:condition="issn">
+    <dl class="portlet" id="portlet-issuedetails" >
         
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-            <span><abbr title="International Standard Serial Number ">ISSN</abbr></span>
+            <span i18n:translate="volume">Volume</span> <span tal:content="issue">issue</span>,
+            <span i18n:translate="issue">Issue</span> <span tal:content="volume">volume</span>
             <span class="portletTopRight"></span>
         </dt>
         <dd class="portletItem">
-                         <abbr title="International Standard Serial Number">ISSN</abbr>
-                         <span tal:content="issn">0123456789</span>
         </dd>
     </dl>
 
