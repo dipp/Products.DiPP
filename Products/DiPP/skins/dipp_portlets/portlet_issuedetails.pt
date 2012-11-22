@@ -10,7 +10,11 @@
      tal:condition="python:issue and volume">
                  
 
-    <dl class="portlet" id="portlet-issuedetails" >
+    <dl class="portlet"
+        id="portlet-issuedetails"
+        tal:condition="issues"
+        tal:define="issues python:here.portal_catalog(portal_type='Issue',
+                    review_state='published', getIssue=issue, getVolume=volume)">
         
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
@@ -18,8 +22,41 @@
             <span i18n:translate="issue">Issue</span> <span tal:content="volume">volume</span>
             <span class="portletTopRight"></span>
         </dt>
-        <dd class="portletItem">
-        </dd>
+
+        <tal:block tal:repeat="issue issues">
+
+            <dd class="portletItem"
+                tal:define="obj issue/getObject;
+                            TitleImage issue/TitleImage|nothing;
+                            CompleteIssue obj/CompleteIssue|nothing">
+
+                <a tal:condition="TitleImage"
+                   href="" 
+                   tal:attributes="href issue/getURL">
+                    <img class="coverpicture" tal:replace="structure obj/TitleImage_medium" />
+                </a>
+
+                <a tal:condition="not: TitleImage"
+                   href="" 
+                   tal:attributes="href issue/getURL;
+                                   title obj/title_or_id"
+                   i18n:translate="contents">Inhalt</a>
+                
+                <p tal:condition="CompleteIssue/filename">
+                   <span i18n:translate="get_the_complete_issue" i18n:domain="dipp">Get the complete issue</span> 
+                   <a tal:define="size python:here.getObjSize(CompleteIssue);
+                                  icon CompleteIssue/getBestIcon|nothing;
+                                  filename CompleteIssue/filename|nothing"
+                      href=""
+                      tal:attributes="href string:${obj/absolute_url}/at_download/CompleteIssue">
+                      <img tal:condition="icon" src=""
+                           tal:attributes="src string:${here/portal_url}/$icon"/>
+                      <span tal:replace="filename">full.pdf</span> (<span tal:replace="size">1GB</span>)</a>
+                </p>
+            </dd>
+
+        </tal:block>
+
     </dl>
 
 </div>
