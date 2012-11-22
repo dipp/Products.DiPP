@@ -567,6 +567,9 @@ msgstr "Fulltext"
 msgid "text_fulltext"
 msgstr "Get the ${fulltext} as pdf."
 
+msgid "get_the_complete_issue"
+msgstr "Get the complete issue"
+
 msgid "label_get_fulltext_as_pdf"
 msgstr "Fulltext as ${pdf}."
 
