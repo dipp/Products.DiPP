@@ -49,7 +49,7 @@
         
         <p tal:define="CompleteIssue here/CompleteIssue|nothing"
            tal:condition="CompleteIssue/filename">
-           Get the entire issue 
+           <span i18n:translate="get_the_complete_issue" i18n:domain="dipp">Get the complete issue</span> 
            <a tal:define="size python:here.getObjSize(CompleteIssue);
                           icon CompleteIssue/getBestIcon | nothing;
                           filename CompleteIssue/filename | nothing"
