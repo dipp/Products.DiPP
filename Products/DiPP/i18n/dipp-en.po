@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2012-11-21 22:36+0100\n"
+"PO-Revision-Date: 2012-11-22 11:41+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -570,6 +570,9 @@ msgstr "Fulltext"
 
 msgid "text_fulltext"
 msgstr "Get the ${fulltext} as pdf."
+
+msgid "get_the_complete_issue"
+msgstr "Get the complete issue"
 
 msgid "label_get_fulltext_as_pdf"
 msgstr "Fulltext as ${pdf}."
