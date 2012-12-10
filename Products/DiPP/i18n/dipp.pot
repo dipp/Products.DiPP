@@ -681,7 +681,7 @@ msgstr ""
 msgid "label_login_editorial_toolbox"
 msgstr ""
 
-msgid "label_compare_version"
+msgid "label_compare_versions"
 msgstr ""
 
 msgid "label_new_version"

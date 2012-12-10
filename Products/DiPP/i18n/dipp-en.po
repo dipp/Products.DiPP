@@ -685,7 +685,7 @@ msgstr "Submit a new manuscript."
 msgid "label_login_editorial_toolbox"
 msgstr "Publish an accepted and finalized article with the Editorial Toolbox."
 
-msgid "label_compare_version"
+msgid "label_compare_versions"
 msgstr "Compare versions"
 
 msgid "label_new_version"

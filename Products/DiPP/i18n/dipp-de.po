@@ -685,7 +685,7 @@ msgstr "Einen Artikel zur Begutachtung einreichen."
 msgid "label_login_editorial_toolbox"
 msgstr "Eine akzeptierten und finalisierten Artikel mit der Editorial Toolbox veröffentlichen."
 
-msgid "label_compare_version"
+msgid "label_compare_versions"
 msgstr "Vergleiche Versionen"
 
 msgid "label_new_version"

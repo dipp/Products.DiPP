@@ -292,6 +292,7 @@ div.portletContent {
 }
 .worklist ul.actions  li {
     white-space: nowrap;
+    display:  inline;
 }
 /* workflow */
 pre.wfcomments {
@@ -319,6 +320,10 @@ ul.list-of-feeds li a{
 .tagInsert { background-color: #007700; color: #ffffff }
 .tagDelete { background-color: #770000; color: #ffffff }
 
+tr.highlighted {
+    background-color: #FFFFAA;
+    font-weight: bold;
+}
 
 /* Article rearch results */
 #article-search-results .section {
