@@ -383,6 +383,9 @@ msgstr ""
 msgid "heading_metadata_submit"
 msgstr ""
 
+msgid "heading_versions"
+msgstr ""
+
 msgid "label_file"
 msgstr ""
 
@@ -676,4 +679,13 @@ msgid "label_login_continue_to_new_submission"
 msgstr ""
 
 msgid "label_login_editorial_toolbox"
+msgstr ""
+
+msgid "label_compare_version"
+msgstr ""
+
+msgid "label_new_version"
+msgstr ""
+
+msgid "label_compare_selected_versions"
 msgstr ""
