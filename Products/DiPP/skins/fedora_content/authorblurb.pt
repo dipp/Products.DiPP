@@ -113,6 +113,7 @@
                             class="keywords">
                         <tal:block tal:repeat="ident idents">
                             <li tal:define="islast repeat/ident/end"
+                                tal:attributes="class python:test(islast,'last')"
                                 tal:content="python: ident[0]"></li>
                         </tal:block>
                         </ul>
