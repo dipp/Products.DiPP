@@ -63,6 +63,7 @@
     </permission>
     <permission name="Use OpenFlow" acquire="True">
       <role name="Autor"/>
+      <role name="Peer"/>
       <role name="Gastherausgeber"/>
       <role name="Herausgeber"/>
       <role name="Redakteur"/>
