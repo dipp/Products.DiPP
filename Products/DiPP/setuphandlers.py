@@ -4,7 +4,7 @@ from Products.DiPP import HAS_PLONE30
 from Products.DiPP.config import INDEXES as NEW_INDEXES
 PROFILE_ID = 'profile-DiPP:install'
 
-def  add_catalog_indexes(context, logger=None):
+def add_catalog_indexes(context, logger=None):
     if logger is None:
         # Called as upgrade step: define our own logger.
         logger = logging.getLogger('DiPP')
@@ -36,6 +36,25 @@ def  add_catalog_indexes(context, logger=None):
         logger.info("Indexing new indexes %s.", ', '.join(indexables))
         catalog.manage_reindexIndex(ids=indexables)
 
+def add_RolesToPlugIn(context, logger=None):
+    """
+    From Products/CMFPlone/setuphandlers.py 
+    XXX This is horrible.. need to switch PlonePAS to a GenericSetup
+    based install so this doesn't need to happen.
+
+    Have to manually register the roles from the 'rolemap' step
+    with the roles plug-in.
+    """
+    uf = getToolByName(context, 'acl_users')
+    rmanager = uf.portal_role_manager
+    roles = ('Autor', 'Gastherausgeber', 'Herausgeber', 'Redakteur', 'Peer')
+    existing = rmanager.listRoleIds()
+    for role in roles:
+        if role not in existing:
+            rmanager.addRole(role)
+            logger.info("Added role %s.", role)
+        else:
+            logger.info("Role %s exists. Skipping step.", role)
  
 
 def import_various(context):
@@ -47,3 +66,4 @@ def import_various(context):
     logger = context.getLogger('DiPP')
     site = context.getSite()
     add_catalog_indexes(site, logger)
+    add_RolesToPlugIn(site, logger)
