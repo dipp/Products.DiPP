@@ -20,19 +20,19 @@
                             
 
         <dd class="portletItem" i18n:domain="dipp">
-
-
-                
+            <tal:block tal:condition="python: user.has_role(['Manager', 'Redakteur', 'Herausgeber'])">
                 <strong i18n:translate="new_articles">Neue Artikel</strong>
                 <ul class="configlets">
                     <li>
                         <a href="" 
                            tal:attributes="href string:$portal_url/upload_file_form" 
-                           i18n:attributes="title help_internal_workflow"
-                        >
-                               <span i18n:translate="internal_workflow">Einreichen ohne Peer Review</span></a>
+                           i18n:attributes="title help_internal_workflow">
+
+                            <span i18n:translate="internal_workflow">Einreichen ohne Peer Review</span>
+                        </a>
                    </li>
                </ul>
+            </tal:block>
                
                 <strong i18n:translate="articles_in_process">Artikel in Bearbeitung</strong>
                 <ul class="configlets">
