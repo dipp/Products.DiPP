@@ -72,5 +72,17 @@ class FedoraDocument(BaseContent):
     schema = FedoraDocumentSchema
     
     _at_rename_after_creation = True
+    
+    security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'make_working_copy')
+    def make_working_copy(self, Date):
+        """ take the datastream version of the given date and make it the working copy
+        """
+        fedora = getToolByName(self, 'fedora')
+        content = fedora.access(self.PID, self.DsID, Date=Date)['stream']
+        if content:
+            self.setBody(content)
+            return True
+        else:
+            return False
 
 registerType(FedoraDocument,PROJECTNAME)

@@ -103,11 +103,16 @@
                                         <li>
                                             <a tal:define="format here/portal_properties/dipp_properties/fedora_time_format;
                                                            fdate  python: loop['createDate']"
-                                               i18n:translate=""
+                                               i18n:translate="view"
                                                tal:attributes="href string:${here/absolute_url}/fedoradocument_versions?Date=${fdate}">view</a>
                                         </li>
-                                        <li
-                                        tal:condition="python:loop['createDate']==Date">sdf</li>
+                                        <li tal:condition="python:loop['createDate']==Date">
+                                            <a tal:define="format here/portal_properties/dipp_properties/fedora_time_format;
+                                                           fdate  python: loop['createDate']"
+                                               i18n:translate="make_working_copy"
+                                               tal:attributes="href string:${here/absolute_url}/makeWorkingCopy?Date=${fdate}">make working copy</a>
+                                        
+                                        </li>
                                     </ul>
                                 </td>
                             </tr>

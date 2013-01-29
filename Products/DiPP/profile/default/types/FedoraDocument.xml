@@ -13,6 +13,8 @@
  <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>
  <alias from="edit" to="base_edit"/>
+ <alias from="preview" to="fedoradocument_preview"/>
+ <alias from="versions" to="fedoradocument_versions"/>
  <action title="View" action_id="view" category="object" condition_expr=""
     url_expr="string:${object_url}/fedoradocument_view" visible="True">
   <permission value="Fedora: View Content"/>
@@ -32,12 +34,12 @@
   <permission value="Fedora: Edit Content"/>
  </action>
  <action title="Preview" action_id="preview" category="object"
-    condition_expr="" url_expr="string:${object_url}/fedoradocument_preview"
+    condition_expr="" url_expr="string:${object_url}/preview"
     visible="True">
   <permission value="Fedora: Edit Content"/>
  </action>
  <action title="Versions" action_id="versions" category="object"
-    condition_expr="" url_expr="string:${object_url}/fedoradocument_versions"
+    condition_expr="" url_expr="string:${object_url}/versions"
     visible="True">
   <permission value="Fedora: Edit Content"/>
  </action>
