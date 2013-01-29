@@ -356,7 +356,9 @@ def install_groups_and_roles(self, out, site_id=SITE_NAME):
     
     for group in groups:
         site.portal_groups.addGroup(group,(),())
-    
+
+    site.portal_groups.editGroup('Autoren', ['Peer']) 
+
     roles =('pr_Author', 'pr_EditorInChief', 'pr_GuestEditor', 'pr_Reviewer', 'pr_ReviewerInvited', 'pr_SectionEditor')
     
     for role in roles:

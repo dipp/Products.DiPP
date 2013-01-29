@@ -181,7 +181,7 @@ elif activity_id == 'anschreiben':
     results = container.portal_catalog(portal_type='FedoraArticle', Language='all', getPID=PID)
     if len(results) == 1:
         article = results[0].getObject()
-        roles = ['Peer']
+        roles = ['Autor']
         article.manage_addLocalRoles(autor, roles)
         context.plone_log("Role '%s' assigned to '%s' for %s at %s" % ( ' '.join(roles), autor, PID, article.absolute_url()))
         
