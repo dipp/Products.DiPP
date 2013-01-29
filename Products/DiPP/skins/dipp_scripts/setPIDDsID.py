@@ -17,7 +17,7 @@ RESPONSE = request.RESPONSE
 # by jensens
 
 PID = traverse_subpath[0]
-#DsID = traverse_subpath[1]
+DsID = traverse_subpath[1]
 
 if len(PID.split(':')) < 2:
     return "PID widthout colon"
@@ -25,7 +25,9 @@ if len(PID.split(':')) < 2:
 # return printed
 
 context.setPID(PID)
+return "PID on '%s' successfully set to %s." % (context.title_or_id(), PID)
+context.setDsID(DsID)
+return "DsID on '%s' successfully set to %s." % (context.title_or_id(), DsID)
 
 context.reindexObject()
-return "PID on '%s' successfully set to %s." % (context.title_or_id(), PID)
 
