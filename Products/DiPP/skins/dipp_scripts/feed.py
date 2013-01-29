@@ -29,6 +29,8 @@ journalsections = avtm.getVocabularyByName('journal-sections')
 section_dict = journalsections.getVocabularyDict(journalsections)
 types = ('articles','events')
 
+charset = ptool.getProperty('default_charset', None)
+
 try:
     type = request.traverse_subpath[0]
 except IndexError:
@@ -84,7 +86,7 @@ elif type == "articles":
         else:
             category = None
         citation = bibtool.short_citation(item)
-        abstract = item.getAbstract()
+        abstract = item.getAbstract().decode('utf-8')
         description = "%s: %s" % (citation, abstract)
         items.append( { 'date':item.effective().HTML4(),
                         'listCreators': item.Contributors(),
@@ -96,7 +98,6 @@ elif type == "articles":
                         'url': item.absolute_url() } )
 
     options['listItemInfos'] = tuple(items)
-
-    options = toUnicode( options, ptool.getProperty('default_charset', None) )
+    options = toUnicode(options, charset)
     return context.feed_template(**options)
 
