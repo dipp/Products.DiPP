@@ -318,10 +318,6 @@ def configure_workflow(self, out, site_id=SITE_NAME):
 
     print >> out,'DiPP Workflow Setup Done\n Finished\n'
     
-    reftool.manage_role('Redakteur', ('Manage properties',))
-    reftool.manage_role('Herausgeber', ('Manage properties',))
-    reftool.manage_role('Autor', ('Manage properties',))
-    reftool.manage_role('Gastherausgeber', ('Manage properties',))
     
     portal_actions = getToolByName(site, 'portal_actions')
 
@@ -365,7 +361,13 @@ def install_groups_and_roles(self, out, site_id=SITE_NAME):
     
     for role in roles:
         site._addRole(role)
-        
+    
+    # permissions in OpenFlow
+    reftool = getToolByName(site, 'portal_openflow')
+    for role in ['Redakteur','Herausgeber', 'Autor', 'Gastherausgeber', 'Peer']:
+        reftool.manage_role(role, ('Manage properties',))
+    
+    
     print >> out, "Set roles to groups"
 
 
