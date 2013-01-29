@@ -8,7 +8,7 @@
             condition_expr=""
             url_expr="string:${portal_url}/editorial_toolbox"
             visible="True">
-        <permission>Manage portal</permission>
+        <permission>Use OpenFlow</permission>
     </action>
     
     <action title="Feeds"
