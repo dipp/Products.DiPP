@@ -153,6 +153,7 @@
           category="workflow">Make visible</action>
   <guard>
    <guard-role>Owner</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
  <transition transition_id="submit"
