@@ -77,7 +77,8 @@
                 <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
                 <tal:block tal:repeat="member groupMembers">
                     <option tal:condition="member"
-                            tal:content="string: ${member/fullname} ($member)"
+                            tal:define="fullname python:member.getProperty('fullname', 'Fullname missing')"
+                            tal:content="string: $fullname ($member)"
                             tal:attributes="value member">Autor</option>
                 </tal:block>
                 </select>
@@ -96,8 +97,9 @@
                 <option value="0" selected="selected" i18n:translate="not_necessary">nicht erforderlich</option>
                 <tal:block tal:repeat="member groupMembers">
                     <option tal:condition="member"
-                            tal:content="string: ${member/fullname} ($member)"
-                            tal:attributes="value member">Autor</option>
+                            tal:define="fullname python:member.getProperty('fullname', 'Fullname missing')"
+                            tal:content="string: $fullname ($member)"
+                            tal:attributes="value member">Gast Hrsg</option>
                 </tal:block>
                 </select>
                 </div>
