@@ -16,6 +16,9 @@ portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 utils = context.plone_utils
 
+"""
+This script is called via XMLRPC de.nrw.dipp.dippCore.task.TaskPloneRegister
+"""
 def newArticle(id,title,PID,subject,rights):
     """create a new Article container in a temporary folder """
     
@@ -58,7 +61,7 @@ def newInstance(PID,creator,title,cModel,isChildOf,isParentOf):
         ('isParentOf', isParentOf, 'lines'),
         ('type', cModel, 'string'),
         ('url', '', 'string'),
-        ('autor', creator, 'string'),
+        ('autor', '', 'string'),
         ('gastHrsg', '', 'string'),
         ('hierarchie', 'n/a', 'string'),
         ('autorOK', autorOK, 'boolean'),
