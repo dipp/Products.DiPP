@@ -81,7 +81,7 @@ def install_properties(self, out, site_id=SITE_NAME):
     
     print >> out, "DiPP-Properties installed"
 
-
+    """
     site_properties = (
         ('deadline_max',56,'int') ,
         ('deadline_default',14,'int'), 
@@ -104,7 +104,7 @@ def install_properties(self, out, site_id=SITE_NAME):
     for prop_id, prop_value, prop_type in site_properties:
         if not site.hasProperty(prop_id):
             site.manage_addProperty(id = prop_id, value = prop_value, type = prop_type)
-            
+    """        
     if not hasattr(self.portal_properties, 'dippreview_properties'):
         self.portal_properties.addPropertySheet('dippreview_properties', 'DiPPReview properties')
        
@@ -380,26 +380,6 @@ def getSite(self, site_id):
     #return getattr(self, site_id)
     return self
     
-def install_extMethods(self, out, site_id=SITE_NAME):
-    """ Installation von externen Methoden, sollte durch ein Tool ersetzt werden"""
-
-    site = getSite(self, site_id)
-    folders = ()
-    try:
-        ext = getattr(site,'ext')
-    except:
-        site.manage_addFolder('ext','Externe Methoden')
-        ext = getattr(site,'ext')
-
-    methods = (
-        ('deadline_date', '', 'DiPP.deadlines', 'deadline_date'),
-        ('deadline_delay', '', 'DiPP.deadlines', 'deadline_delay'),
-        ('deadline_time', '', 'DiPP.deadlines', 'deadline_time'),
-        ('reminder', '', 'DiPP.reminder', 'reminder'),
-    )
-    for id, title, module, function in methods:
-        if not hasattr(ext, id):
-            ext.manage_addProduct['ExternalMethod'].manage_addExternalMethod(id, title, module, function)
     
 
 def install_metadataproperties(self,out):
@@ -513,7 +493,6 @@ def install(self):
     
     install_properties(self, out)
     install_metadataproperties(self,out)
-    install_extMethods(self, out)
     install_profiles(self,out)
     install_content(self, out)
     install_groups_and_roles(self, out)

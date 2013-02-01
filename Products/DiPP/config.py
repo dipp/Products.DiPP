@@ -54,8 +54,13 @@ DEFAULT_METADATA = (
 
 SUBMISSION_FILENAME_FORMAT = "rev"
 
-TOOLS = (
-    ('Fedora2DiPP3','BibTool','DiPP Sections Tool', 'DiPP Peerreview Tool')
+TOOLS = ((
+    'Fedora2DiPP3',
+    'BibTool',
+    'Deadlines',
+    'DiPP Sections Tool', 
+    'DiPP Peerreview Tool'
+    )
 )
 
 INDEXES = (
