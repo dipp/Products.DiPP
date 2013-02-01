@@ -49,9 +49,9 @@
 <!-- KOMMENTARE -->
 		<div metal:define-macro="comments" id="pub_comment-field">
 
-			<tal:block tal:condition="python: user.has_role('Herausgeber') or user.has_role('Redakteur') or user.has_role('Manager')">
-			<h3 i18n:translate="existing_comments" i18n:domain="dipp">Vorhandene Kommentare</h3>
-		    <pre class="wfcomments" tal:content="w/nachrichten">nachrichten</pre>
+            <tal:block tal:condition="python: user.has_role(['Manager', 'Redakteur', 'Herausgeber'])">
+                <h3 i18n:translate="existing_comments" i18n:domain="dipp">Vorhandene Kommentare</h3>
+                <pre class="wfcomments" tal:content="w/nachrichten">nachrichten</pre>
 			</tal:block>
 			
 			<h3 i18n:translate="your_comment" i18n:domain="dipp">Ihr Kommentar</h3>
@@ -62,7 +62,7 @@
 <!-- INFOS ZUR INSTANZ -->
 		<div metal:define-macro="infos" id="pub_instance_info">
 
-			<tal:block tal:condition="python: user.has_role('Herausgeber') or user.has_role('Redakteur') or user.has_role('Manager')">
+            <tal:block tal:condition="python: user.has_role(['Manager', 'Redakteur', 'Herausgeber'])">
 	
 				<h3>Artikelinfo</h3>
 				<table class="listing">
@@ -85,30 +85,30 @@
 		
 <!-- DEADLINES -->		
 		<div metal:define-macro="deadline" id="pub_instance_deadline">
-			
 
 			<h3 i18n:translate="deadlines" i18n:domain="dipp">Deadlines</h3>
+
 			<table class="listing" i18n:domain="dipp">
 				<tr>
 					<td i18n:translate="deadline_this_step">für diesen Schritt:</td>
 					<td>
-						<span tal:condition="python: w.deadline_next != site_properties.deadline_no"
+						<span tal:condition="python: w.deadline_next != portal_properties.dipp_properties.deadline_no"
 							  tal:content="python: w.deadline_next.strftime(site_properties.localLongTimeFormat)">2004-06-03</span>
-						<span tal:condition="python: w.deadline_next == site_properties.deadline_no">no deadline</span>
-						<span tal:condition="python: w.deadline_next != site_properties.deadline_no"
-							  tal:define="delay python: here.ext.deadline_delay(w.deadline_next,here)"
+						<span tal:condition="python: w.deadline_next == portal_properties.dipp_properties.deadline_no">no deadline</span>
+						<span tal:condition="python: w.deadline_next != portal_properties.dipp_properties.deadline_no"
+							  tal:define="delay python: here.deadlines.deadline_delay(w.deadline_next)"
 							  tal:attributes="class delay/class"
 							  tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
 					</td>
 				</tr>
 	    		<tr>
 					<td i18n:translate="deadline_entire_article">für den gesamten Artikel</td>
-                 <td tal:condition="python: here.rolesInRoles(roles=portal_properties.deadline_change) == 'True'">
+                 <td tal:condition="python: here.rolesInRoles(roles=portal_properties.dipp_properties.deadline_change) == 'True'">
                      <select name="deadline_date">
-                         <option tal:attributes="value python: site_properties.deadline_no.strftime('%Y-%m-%d')" value="">no deadline</option>
+                         <option tal:attributes="value python: portal_properties.dipp_properties.deadline_no.strftime('%Y-%m-%d')" value="">no deadline</option>
                          <tal:block tal:define="default portal_properties/deadline_default;
                                                  max portal_properties/deadline_no"
-                                     tal:repeat="loop python: here.ext.deadline_date(max,here)">
+                                     tal:repeat="loop python: here.deadlines.deadline_date(max,here)">
                              <option tal:attributes="class loop/class; value python: loop['value'].strftime('%Y-%m-%d')"
                                      tal:content="python: loop['value'].strftime('%d.%b.%Y')">06-07-2004</option>
                          </tal:block>
@@ -116,7 +116,7 @@
                      </select>
 
                      <select name="deadline_time">
-                         <tal:block tal:repeat="loop python: here.ext.deadline_time(12)">
+                         <tal:block tal:repeat="loop python: here.deadlines.deadline_time(12)">
                              <option tal:attributes="value string: ${loop/H}:${loop/M}; selected loop/selected"
                                      tal:content="string: ${loop/H}:${loop/M}">12:00</option>
 
@@ -125,24 +125,24 @@
                      </select>
 
                  </td>
-                 <td tal:condition="python: here.rolesInRoles(roles=portal_properties.deadline_change) != 'True'">
-						<span tal:condition="python: w.deadline != site_properties.deadline_no"
+                 <td tal:condition="python: here.rolesInRoles(roles=portal_properties.dipp_properties.deadline_change) != 'True'">
+						<span tal:condition="python: w.deadline != portal_properties.dipp_properties.deadline_no"
 							  tal:content="python: w.deadline.strftime(site_properties.localLongTimeFormat)">2004-06-03</span>
-						<span tal:condition="python: w.deadline == site_properties.deadline_no">no deadline</span>
-						<span tal:condition="python: w.deadline != site_properties.deadline_no"
-							  tal:define="delay python: here.ext.deadline_delay(w.deadline,here)"
+						<span tal:condition="python: w.deadline == portal_properties.dipp_properties.deadline_no">no deadline</span>
+						<span tal:condition="python: w.deadline != portal_properties.dipp_properties.deadline_no"
+							  tal:define="delay python: here.deadlines.deadline_delay(w.deadline)"
 							  tal:attributes="class delay/class"
 							  tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>
 					</td>
 				</tr>
-				<tr tal:condition="python: here.rolesInRoles(roles=portal_properties.deadline_next_change) == 'True'">
+				<tr tal:condition="python: here.rolesInRoles(roles=portal_properties.dipp_properties.deadline_next_change) == 'True'">
 					<td i18n:translate="deadline_next_step">für den nächsten Schritt:</td>
 					<td>
 						<select name="deadline_next_date">
-							<option tal:attributes="value python: site_properties.deadline_no.strftime('%Y-%m-%d')" value="">no deadline</option>
+							<option tal:attributes="value python: portal_properties.dipp_properties.deadline_no.strftime('%Y-%m-%d')" value="">no deadline</option>
 							<tal:block tal:define="default portal_properties/deadline_default;
 													max portal_properties/deadline_max"
-										tal:repeat="loop python: here.ext.deadline_date(w.deadline,here)">
+										tal:repeat="loop python: here.deadlines.deadline_date(w.deadline,here)">
 								<option tal:attributes="class loop/class; value python: loop['value'].strftime('%Y-%m-%d')"
 										tal:content="python: loop['value'].strftime('%d.%b.%Y')">06-07-2004</option>
 							</tal:block>
@@ -150,7 +150,7 @@
 						</select>
 						
 						<select name="deadline_next_time">
-							<tal:block tal:repeat="loop python: here.ext.deadline_time(12)">
+							<tal:block tal:repeat="loop python: here.deadlines.deadline_time(12)">
 								<option tal:attributes="value string: ${loop/H}:${loop/M}; selected loop/selected"
 										tal:content="string: ${loop/H}:${loop/M}">12:00</option>
 										

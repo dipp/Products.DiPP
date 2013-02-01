@@ -68,9 +68,9 @@
             </td>
             <td>
 			    <span tal:content="python: time.strftime(site_properties.localLongTimeFormat)">2008-01-01</span><br />
-                (<span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
-                    <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
-                                  tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
+                (<span tal:condition="python: wi.deadline_next == portal_properties.dipp_properties.deadline_no">--</span>
+                    <span tal:condition="python: wi.deadline_next != portal_properties.dipp_properties.deadline_no"
+                                  tal:define="delay python: here.deadlines.deadline_delay(wi.deadline_next)"
                                   tal:attributes="class delay/class"
                                   tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>)
             </td>
@@ -159,9 +159,9 @@
             </td>
             <td>
 			    <span tal:content="python: time.strftime(site_properties.localLongTimeFormat)">2008-01-01</span><br />
-                (<span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
-                    <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
-                                  tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
+                (<span tal:condition="python: wi.deadline_next == portal_properties.dipp_properties.deadline_no">--</span>
+                    <span tal:condition="python: wi.deadline_next != portal_properties.dipp_properties.deadline_no"
+                                  tal:define="delay python: here.deadlines.deadline_delay(wi.deadline_next)"
                                   tal:attributes="class delay/class"
                                   tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>)
             </td>

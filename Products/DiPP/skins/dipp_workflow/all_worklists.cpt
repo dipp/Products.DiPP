@@ -102,7 +102,9 @@
                            article python:article_pids.get(PID,None);
                            action python:openflow.getUserActionsOnWorkitem(wi.instance_id,wi.id,request)"
                            condition="action">
-        <tr>
+        <tr tal:define="actor wi/actor;
+                        autor_id wi/autor;
+                        autor python:mtool.getMemberById(autor_id)">
             <td>
                 <a href='' 
                    tal:attributes="href string:$portal_url/history?instance_id=${wi/instance_id};
@@ -112,14 +114,17 @@
             </td>
             <td>
 			    <span tal:content="python: time.strftime(site_properties.localLongTimeFormat)">2008-01-01</span><br />
-                (<span tal:condition="python: wi.deadline_next == site_properties.deadline_no">--</span>
-                    <span tal:condition="python: wi.deadline_next != site_properties.deadline_no"
-                                  tal:define="delay python: here.ext.deadline_delay(wi.deadline_next,here)"
+                (<span tal:condition="python: wi.deadline_next == portal_properties.dipp_properties.deadline_no">--</span>
+                    <span tal:condition="python: wi.deadline_next != portal_properties.dipp_properties.deadline_no"
+                                  tal:define="delay python: here.deadlines.deadline_delay(wi.deadline_next)"
                                   tal:attributes="class delay/class"
                                   tal:content="python: delay['days'] + ' Tage ' + delay['hours'].strftime('%H:%M') + 'h' ">-1 Tage</span>)
             </td>
-            <td tal:content="string: ${wi/actor}">Actor</td>
-            <td tal:content="string: ${wi/autor}">JRR Tolkien</td>
+            <td tal:content="actor">Bearbeiter</td>
+            <td>
+                <span tal:condition="autor"
+                    tal:content="python:'%s (%s)' % (autor.getProperty('fullname', 'Fullname missing'), autor_id)">Autor</span>
+            </td>
             <td tal:condition="not:article"
                 colspan="2">
                 <em tal:condition="not:article" 
