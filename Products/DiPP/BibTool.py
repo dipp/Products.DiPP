@@ -29,7 +29,7 @@ class BibTool(UniqueObject, SimpleItem):
     
     meta_type = 'BibTool'
     id = 'bibtool'
-    title = 'convert metadaformats'
+    title = 'Conversion of  metadata formats'
     toolicon = 'skins/dipp_images/fedora.png'
     security = ClassSecurityInfo()
 
