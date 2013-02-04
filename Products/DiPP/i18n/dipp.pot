@@ -696,6 +696,6 @@ msgstr ""
 msgid "previous_version_as_workingcopy"
 msgstr ""
 
-msgid "changes_saved"
+msgid "settings_saved"
 msgstr ""
 
