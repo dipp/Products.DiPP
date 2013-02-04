@@ -689,3 +689,13 @@ msgstr ""
 
 msgid "label_compare_selected_versions"
 msgstr ""
+
+msgid "could_not_create_new_workingcopy"
+msgstr ""
+
+msgid "previous_version_as_workingcopy"
+msgstr ""
+
+msgid "changes_saved"
+msgstr ""
+
