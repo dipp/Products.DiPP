@@ -1,9 +1,12 @@
 from time import *
 import smtplib
+import logging
 from DateTime import DateTime
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
+
+logger = logging.getLogger("DiPP")
 
 class Deadlines(UniqueObject, SimpleItem):
     """ Deadline calculations """
@@ -71,8 +74,12 @@ class Deadlines(UniqueObject, SimpleItem):
         delay['class'] = alert
         return delay
 
-    """
+    
     def reminder(self):
+        """ send reminder emails during the publishing workflow
+        """
+
+        logger.info("Sending reminder emails")
         portal_url = getToolByName(self, 'portal_url')
         portal = portal_url.getPortalObject()
         dprops = portal.portal_properties.dipp_properties
@@ -82,7 +89,6 @@ class Deadlines(UniqueObject, SimpleItem):
 
         red    = dprops.deadline_red
         yellow = dprops.deadline_yellow
-
 
 
         try:
@@ -171,22 +177,6 @@ class Deadlines(UniqueObject, SimpleItem):
                     # save the email in the workflow instance
                     instance.manage_changeProperties({'nachrichten':nachrichten,
                                                       'alert':alert})
-                    # save in MySQL database
-                    self.ext.history_insert(instance_id=instance_id,
-                            workitem_id=workitem_id,
-                            process_id=wi.process_id,
-                            #activity_id=wi.activity_id,
-                            activity_id='reminder',
-                            message=message,
-                            formalOK=str(wi.formalOK),
-                            autorOK=str(wi.autorOK),
-                            gastHrsgOK=str(wi.gastHrsgOK),
-                            deadline=wi.deadline.strftime("%Y-%m-%d %H:%M:%S"),
-                            deadline_next=wi.deadline_next.strftime("%Y-%m-%d %H:%M:%S"),
-                            autor=wi.autor,
-                            titel=wi.titel,
-                            #ausgabe=wi.ausgabe,
-                            actor=wi.actor)
 
                 else:
                     pass
@@ -221,4 +211,4 @@ class Deadlines(UniqueObject, SimpleItem):
                 return "no template found"
         else:
             return "no template found"
-    """
+    
