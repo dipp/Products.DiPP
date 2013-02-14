@@ -1,6 +1,10 @@
 Changelog
 =========
 
+DiPP 2.11 (not yet released)
+    * moved all DiPP relavant properties from the ZMI root to 
+      dipp_properties. Running moveProps.py script is required
+
 DiPP 2.10 (2012-10-12)
     * added Sphinx based documentation
     * proper use of interfaces
