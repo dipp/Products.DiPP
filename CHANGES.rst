@@ -4,6 +4,11 @@ Changelog
 DiPP 2.11 (not yet released)
     * moved all DiPP relavant properties from the ZMI root to 
       dipp_properties. Running moveProps.py script is required
+    * deadline code moved to a tool, ext-Folder with external methods 
+      is now obsolete and can be deleted
+    * some permission fixed for CMFOpenflow
+    * easier to go back to a previous version of a datastream
+    * fixed abstract encoding in rss feed
 
 DiPP 2.10 (2012-10-12)
     * added Sphinx based documentation
