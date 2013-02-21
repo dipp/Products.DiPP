@@ -36,8 +36,22 @@ def install_properties(self, out, site_id=SITE_NAME):
 
 
     dipp_properties = (
+        ('deadline_max','int',DEADLINE_MAX) ,
+        ('deadline_default','int',DEADLINE_DEFAULT), 
         ('deadline_red', 'int', DEADLINE_RED),
         ('deadline_yellow', 'int', DEADLINE_YELLOW),
+        ('deadline_no','date','1970/01/01 12:00:00 GMT+1'),
+        ('deadline_change','lines',('Herausgeber',)),
+        ('deadline_next_change','lines',('Herausgeber', 'Redakteur')),
+        ('deadline_red_email_de','text',"Bitte umgehend den Artikel bearbeiten\n\nmfg"),
+        ('deadline_red_email_en','text',"Bitte umgehend den Artikel bearbeiten\n\nmfg"),
+        ('deadline_yellow_email_de','text',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg"),
+        ('deadline_yellow_email_en','text',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg"),
+        ('defaultLanguage','string',"de"),
+        ('roles_not_to_list','lines',('Manager', 'Owner', 'Reviewer', 'Member')),
+        ('actions_to_list','lines',('Call Application', 'Self Assign', 'Assign', 'Unassign')),
+        ('workflow_actions','lines',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward')),
+        ('copy_of_reminder','lines',('',)),
         ('author_notice_de','text',AUTHOR_NOTICE_DE),
         ('author_notice_en','text',AUTHOR_NOTICE_EN),
         ('ISSN', 'string', ''),
@@ -83,22 +97,6 @@ def install_properties(self, out, site_id=SITE_NAME):
 
     """
     site_properties = (
-        ('deadline_max',56,'int') ,
-        ('deadline_default',14,'int'), 
-        ('deadline_red',3,'int'),
-        ('deadline_yellow',10,'int'), 
-        ('deadline_no','1970/01/01 12:00:00 GMT+1','date'),
-        ('deadline_change',('Herausgeber',),'lines'),
-        ('deadline_next_change',('Herausgeber', 'Redakteur'),'lines'),
-        ('deadline_red_email_de',"Bitte umgehend den Artikel bearbeiten\n\nmfg",'text'),
-        ('deadline_red_email_en',"Bitte umgehend den Artikel bearbeiten\n\nmfg",'text'),
-        ('deadline_yellow_email_de',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
-        ('deadline_yellow_email_en',"Bitte an die Bearbeitung des Artikels denken!\n\nmfg",'text'),
-        ('defaultLanguage',"de",'string'),
-        ('roles_not_to_list',('Manager', 'Owner', 'Reviewer', 'Member'),'lines'),
-        ('actions_to_list',('Call Application', 'Self Assign', 'Assign', 'Unassign'),'lines'),
-        ('workflow_actions',('Call Application', 'Self Assign', 'Assign', 'Unassign', 'Suspend', 'Resume', 'Fallout', 'Fallin', 'End Fallin', 'Activate', 'Inactive', 'Complete', 'Forward'),'lines'),
-        ('copy_of_reminder',('',),'lines')
     )
     
     for prop_id, prop_value, prop_type in site_properties:
