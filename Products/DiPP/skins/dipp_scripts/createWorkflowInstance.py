@@ -45,7 +45,7 @@ def newInstance(PID,creator,title,cModel,isChildOf,isParentOf):
     gastHrsgOK = False    
     formalOK = False  
 
-    dl = self.portal_properties.deadline_no
+    dl = self.portal_properties.dipp_properties.deadline_no
     comment = "New digital object found in Fedora!"
     instance_id = oftool.addInstance(process_id='Publishing',
                                      customer='auto',
