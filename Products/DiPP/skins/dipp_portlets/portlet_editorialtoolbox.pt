@@ -40,12 +40,14 @@
 
                         <a href=""
                            tal:attributes="href string:$portal_url/worklist"
+                           tal:condition="python: user.has_permission('Use OpenFlow', here)"
                            i18n:attributes="title help_myworklist">
                             <span  i18n:translate="title_myworklist">myworklist</span></a>
                    </li>
                    <li>
                         <a href=""
                            tal:attributes="href string:$portal_url/all_worklists"
+                           tal:condition="python: user.has_permission('Manage OpenFlow', here)"
                            i18n:attributes="title help_allworklists">
                             <span  i18n:translate="title_allworklists">allworklists</span></a>
                    </li>
