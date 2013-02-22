@@ -107,7 +107,8 @@
                      <select name="deadline_date">
                          <option tal:attributes="value python: portal_properties.dipp_properties.deadline_no.strftime('%Y-%m-%d')" value="">no deadline</option>
                          <tal:block tal:define="default portal_properties/deadline_default;
-                                                 max portal_properties/deadline_no"
+                                                 max
+                                                 portal_properties/dipp_properties/deadline_no"
                                      tal:repeat="loop python: here.deadlines.deadline_date(max,here)">
                              <option tal:attributes="class loop/class; value python: loop['value'].strftime('%Y-%m-%d')"
                                      tal:content="python: loop['value'].strftime('%d.%b.%Y')">06-07-2004</option>

@@ -13,21 +13,38 @@ from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
+# code inspired by:
 # set creationDate and effectiveDate to a given date.
 # by jensens
 
-PID = traverse_subpath[0]
-DsID = traverse_subpath[1]
+sub_path = traverse_subpath
 
-if len(PID.split(':')) < 2:
-    return "PID widthout colon"
+msg = ""
 
-# return printed
+if len(sub_path) == 1:
+    PID = traverse_subpath[0]
+    context.setPID(PID)
+    context.reindexObject()
+    msg += "PID on '%s' successfully set to %s." % (context.title_or_id(), PID)
+        
 
-context.setPID(PID)
-return "PID on '%s' successfully set to %s." % (context.title_or_id(), PID)
-context.setDsID(DsID)
-return "DsID on '%s' successfully set to %s." % (context.title_or_id(), DsID)
+elif len(sub_path) == 2:
+    PID = traverse_subpath[0]
+    DsID = traverse_subpath[1]
+    context.setPID(PID)
+    msg += "PID on '%s' successfully set to %s." % (context.title_or_id(), PID)
+    try:
+        context.setDsID(DsID)
+        msg += "DsID on '%s' successfully set to %s." % (context.title_or_id(), DsID)
+    except:
+        msg += "DsID could not be set"
+    context.reindexObject()
 
-context.reindexObject()
+else:
+    msg += "done nothing"
+
+context.plone_utils.addPortalMessage(msg)
+RESPONSE.redirect('%s/base_view' % context.absolute_url())
+
+
 
