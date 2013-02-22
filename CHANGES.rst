@@ -1,7 +1,7 @@
 Changelog
 =========
 
-DiPP 2.11 (not yet released)
+DiPP 2.11 (2013-02-22)
     * moved all DiPP relavant properties from the ZMI root to 
       dipp_properties. Running moveProps.py script is required
     * deadline code moved to a tool, ext-Folder with external methods 
