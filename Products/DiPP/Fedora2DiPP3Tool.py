@@ -274,7 +274,7 @@ class Fedora(UniqueObject, Folder):
         netloc = ':'.join((ADDRESS,PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
-        logger.info("fetch %s from repository" % URL)
+        logger.info("Fedora2DiPP3Tool: fetch %s from repository" % URL)
         conn.request("GET", URL)
         r = conn.getresponse()
         data = {'MIMEType':r.getheader('content-type'),

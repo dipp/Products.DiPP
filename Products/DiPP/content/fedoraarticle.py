@@ -258,11 +258,9 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         searchable = authors + title
         language = self.language
         # indexing authors
-        logger.info("#### Fetching %s for indexing (%s) ####" % (PID, language))
-        logger.info("## Authors: %s" % (authors))
+        logger.info("fedoraarticle: fetching %s for indexing (%s)" % (PID, language))
         icc.addContent('SearchableText',unicode(searchable), language)
         icc.addContent('Title',unicode(title), language)
-        logger.info("## Title: %s" % title)
         # indexing pdf
         PDF_PID = self.getFulltextPdf().get('PID',None)
         PDF_DsID = self.getFulltextPdf().get('DsID', None)
@@ -270,7 +268,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         if PDF_PID and PDF_DsID: 
             data =  fedora.accessMultiMediaByFedoraURL(PDF_PID,PDF_DsID,None)
             stream = data['stream']
-            logger.info("## PDF with %s/%s" % (PDF_PID, PDF_DsID))
+            logger.info("fedoraarticle: PDF with %s/%s" % (PDF_PID, PDF_DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,

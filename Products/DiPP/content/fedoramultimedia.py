@@ -93,17 +93,19 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         if self.MMType == "alternative_format":
             article = self.getParentNode()
             article.reindexObject()
-            logger.info("Reindexed %s" % article.PID)
+            logger.info("fedoramultimedia: reindexed %s" % article.PID)
             
 
     def at_post_create_script(self):
-        """ reindex article folder when pdf flltext is added
+        """ reindex article folder when pdf fulltext is added
         """
+        logger.info("fedoramultimedia: post_create, %s" % self.id)
         self.reindex_article()
     
     def at_post_edit_script(self):
-        """ reindex article folder when pdf flltext is modified
+        """ reindex article folder when pdf fulltext is modified
         """
+        logger.info("fedoramultimedia: post_edit.")
         self.reindex_article()
     
     def indexableContent(self, fields):
@@ -119,7 +121,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         if PID and DsID and MIMEType == "application/pdf": 
             data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
             stream = data['stream']
-            logger.info("Fetching %s/%s for indexing." % (PID, DsID))
+            logger.info("fedoramultimedia: Fetching %s/%s for indexing." % (PID, DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,
