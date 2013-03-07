@@ -99,7 +99,7 @@
                                    item_wf_state_class  python:'state-' + normalizeString(item_wf_state)">
                                        
                         <span class="publishing-date">
-                              <span class="discreet" tal:content="python:here.toLocalizedTime(item_published)">
+                              <span class="discreet" tal:content="python:toLocalizedTime(item_published)">
                                   14.12.2004
                                </span>
                                <tal:block tal:condition="python: item_section !='no-section'">

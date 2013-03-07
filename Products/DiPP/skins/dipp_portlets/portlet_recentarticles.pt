@@ -72,7 +72,7 @@
                             A nicely formatted list of authors
                         </div>
                         <span class="portletItemDetails"
-                              tal:content="python:here.toLocalizedTime(item_published)"
+                              tal:content="python:toLocalizedTime(item_published)"
                               >May 5</span>
 
 

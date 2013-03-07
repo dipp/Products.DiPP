@@ -64,15 +64,15 @@
                 i18n:domain="qdc">
                 <li tal:condition="submitted">
                     <span i18n:translate="label_submitted">Submitted</span>:
-                    <span tal:replace="python:here.toLocalizedTime(submitted)"></span>,
+                    <span tal:replace="python:toLocalizedTime(submitted)"></span>,
                 </li>
                 <li tal:condition="accepted">
                     <span i18n:translate="label_accepted">Accepted</span>:
-                    <span tal:replace="python:here.toLocalizedTime(accepted)"></span>,
+                    <span tal:replace="python:toLocalizedTime(accepted)"></span>,
                 </li>
                 <li tal:condition="published">
                     <span i18n:translate="label_published">Published</span>:
-                    <span tal:replace=" python:here.toLocalizedTime(published)"></span>
+                    <span tal:replace=" python:toLocalizedTime(published)"></span>
                 </li>
             </ol>
             
