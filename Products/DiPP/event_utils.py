@@ -16,6 +16,11 @@ from Products.CMFCore.utils import getToolByName
 
 logger = logging.getLogger("DiPP")
 
+def createFedoraMultimedia(obj, event):
+    logger.info("event: article id %s, pid %s, dsid %s" % (obj.id, obj.PID, obj.DsID) )
+    logger.info("event: article id %s, size %s" % (obj.id, obj.File.size) )
+    logger.info("event: %s" % (dir(obj.REQUEST.form)) )
+    
 def createFedoraDatastream(obj, event):
     """ When a document is not converted but added manually via the "add article"
     menu, it does not have PID and DsID. This method takes care of creating a

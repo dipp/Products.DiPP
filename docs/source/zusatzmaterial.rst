@@ -30,7 +30,9 @@ Do not list:
 Alternative Format of the main text:
     Für die PDF Version des volltextes. Die Datei wird über ein kleines Icon am
     rechten oberen Rand verlinkt. Zusätzlich erscheint ein Textlink unterhalb
-    des Artikel, der zusätzlich eine Größenangabe enthält.
+    des Artikel, der zusätzlich eine Größenangabe enthält. Wenn dem Artikel mehrere
+    PDF Dateien beigefügt werden, wird die im Artikelordner zu oberst stehende Datei 
+    verlinkt
 
 Supplementary Material:
     Die Datei wird unterhalb des Artikeltextes in einem separaten Block

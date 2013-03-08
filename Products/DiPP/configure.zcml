@@ -11,5 +11,12 @@
     <subscriber for="Products.DiPP.interfaces.IFedoraHierarchie
                      zope.app.event.interfaces.IObjectCreatedEvent"
                handler=".event_utils.createFedoraContainer" /> 
+    
+    <subscriber for="Products.DiPP.interfaces.IFedoraMultimedia
+                     zope.app.container.interfaces.IObjectAddedEvent"
+               handler=".event_utils.createFedoraMultimedia" /> 
     -->
+    <subscriber for="Products.DiPP.interfaces.IFedoraMultimedia
+                     zope.app.event.interfaces.IObjectModifiedEvent"
+               handler=".event_utils.createFedoraMultimedia" /> 
 </configure>
