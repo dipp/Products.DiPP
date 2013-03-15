@@ -27,7 +27,6 @@ tempID = ""
 
 fedora.modifyDatastreamByReference(REQUEST,PID,DsID,Label,LogMessage,Location,DsState,MIMEType,tempID)
 fedora.setModified(articlePID)
-context.plone_log("Modify " + articlePID)
 
 msg = "Neue Version in Fedora gespeichert! Es ist evtl. ein Reload nötig, um die neue Version in der Übersicht anzuzeigen!"
 # msg = translate('new-datastream-version', domain='dipp')
