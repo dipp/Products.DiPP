@@ -2,60 +2,99 @@
 <h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
 tal:replace="structure here/manage_tabs">Tabs</h2>
 
-<div tal:condition="not: here/label" class="system-msg">You must configure alabel first
-</div>
 
-<h3>URN Maintenance</h3>
+<h3>URN Management</h3>
 <p>
-    Only Object with the Content Model DiPP:Article are shown.
+    Diese Seite muss über die korrekte Domain aufgerufen werden, also in der Regel über die den
+    vorgeschaltete Apache. Bei Aufruf direkt über den Zope-Port würden ungültige URLs verglichen
+    werden und er Status wäre immer "2", bzw. "1". Mögliche Stati:
 </p>
+<ul>
+    <li>
+        <img tal:attributes="src string:status0.png;
+                             alt string:Status 0;
+                             title string:Status 0" />
+         0: nicht registriert
+    </li>
+    <li>
+        <img tal:attributes="src string:status1.png;
+                             alt string:Status 1;
+                             title string:Status 1" />
+        1: registriert und gültige URL
+    </li>
+    <li>
+        <img tal:attributes="src string:status2.png;
+                             alt string:Status 2;
+                             title string:Status 2" />
+        2: registriert, aber ungültige URL
+    </li>
+</ul>
+<p>
+    Der Resolver der DNB löst immer nach der zuerst gelisteten URL auf. Wenn diese nicht identisch ist 
+    mit der aktuellen URL in Plone (mit <span style="color: red">*</span> markiert) funktionert das Resolving nicht.
+</p>
+<h4>Neues Frontend der DNB (beta)</h4>
+<p>
+    <a href="https://nbn-resolving.org/admin/index.htm" target="_blank">https://nbn-resolving.org/admin/index.htm</a>
+</p> 
 
 <table border="0" cellpadding="2" cellspacing="0" width="98%"
        tal:define="bibtool context/bibtool;
-                   articles  python:here.portal_catalog(portal_type='FedoraArticle', sort_on='getPID', sort_order='reverse')">
+                   folderpath python:'/'.join(here.getPhysicalPath());
+                   articles  python:here.portal_catalog(portal_type='FedoraArticle', path=folderpath, sort_on='getObjPositionInParent')">
+    <thead>
     <tr class="list-header">
-        <th width="16">&nbsp;</th>
         <th>URN</th>
-        <th>URL</th>
-        <th>Title</th>
-        <th>registered</th>
-        <th>valid</th>
+        <th>Titel</th>
+        <th>Registrierte URLs</th>
+        <th>Status</th>
     </tr>
-    
-    <tr tal:define="URN string:urn:nbn:de:0009-11-29231;
-                    URL string:http://www.socwork.net/2011/1/salisbury;
-                    urn_status python:bibtool.urnstatus(URN,URL)">
-        <td>&nbsp;</td>
-        <td tal:content="URN"></td>
-        <td tal:content="URL"></td>
-        <td>Dummy Title</td>
-        <td tal:content="urn_status/registered"> </td>
-        <td tal:content="urn_status/valid"> </td>
-    </tr>
-
-    <tal:block tal:repeat="article articles">
-        <tr tal:define="PID article/getPID;
-                        title article/Title;
-                        URL article/getURL;
-                        URN article/getURN|nothing"
-            tal:condition="not: python:PID.startswith('temp')"
-            tal:attributes="class python:test(path('repeat/article/even'), 'row-hilite', 'row-normal')">
-            <td width="16">
-                <input type="checkbox" name="PIDs:list" value="" tal:attributes="value article/PID">
-            </td>
-            <td tal:content="URN"></td>
-            <td tal:content="URL"></td>
-            <td>
-                <abbr tal:attributes="title title"
-                      tal:content="python:title[0:40] + '...'"></abbr>
-            </td>
-            <colspan tal:define="urn_status python:bibtool.urnstatus(URN,URL)"
-                     tal:condition="URN">
-                <td tal:content="urn_status/registered"> </td>
-                <td tal:content="urn_status/valid"> </td>
-            </colspan>
+    </thead>
+    <tbody tal:condition="not: articles">
+        <tr>
+            <td colspan="4" style="text-align: center"><em>Keine Artikel in diesem Ordner gefunden...</em></td>
         </tr>
-    </tal:block>
-</table>
+    </tbody>
+    <tbody tal:condition="articles">
+        <tal:block tal:repeat="article articles">
+            <tr tal:define="PID article/getPID;
+                            URL article/getURL;
+                            URN article/getURN|nothing;
+                            urn_info python:bibtool.urnstatus(URN,URL);
+                            header python:urn_info['header'];
+                            valid python:urn_info['valid'];
+                            data python:urn_info['data'];
+                            title article/Title"
+                 tal:attributes="class python:test(path('repeat/article/even'), 'row-hilite', 'row-normal')">
+                <td>
+                    <span tal:content="URN"></span>
+                </td>
+                <td>
+                    <a tal:attributes="href URL"
+                       tal:content="title">Der Titel des Artikels</a>
+                </td>
+                <td>
+                    <ol tal:condition="python:len(data) > 0">
+                    <tal:block tal:repeat="url_info data">
+                        <li tal:define="created python:DateTime(url_info['created']);
+                                        last_modified python:DateTime(url_info['last_modified'])">
+                            <a tal:content="url_info/url" tal:attributes="href url_info/url"></a>
+                            <span tal:condition="url_info/current"  style="color: red">*</span>
+                            <br />
+                            <small tal:content="python:'created: %s, modified %s' % (created, last_modified)"></small>
+                        </li>
+                    </tal:block>
+                    </ol>
+                    <em tal:condition="python:len(data) == 0">no registered URLs found</em>
+                </td>
+                <td tal:attributes="class string:status$valid">
+                    <img tal:attributes="src string:status$valid.png;
+                                         alt string:Status $valid;
+                                         title string:Status $valid" />
+                </td>
+            </tr>
+        </tal:block>
+        </tbody>
+    </table>
 
 <p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
