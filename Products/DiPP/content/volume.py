@@ -20,8 +20,16 @@ try:
 except ImportError:
     from Products.Archetypes.public import *
 
+from AccessControl import ClassSecurityInfo
+try:
+    from Products.CMFCore.permissions import ManagePortal
+    from Products.CMFCore.permissions import View
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import ManagePortal
+    from Products.CMFCore.CMFCorePermissions import View
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFCore.utils import getToolByName
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 from Products.DiPP.config import PROJECTNAME
 from Products.DiPP.interfaces import IVolume
@@ -124,8 +132,17 @@ VolumeSchema = BaseSchema + Schema((
 class Volume(BrowserDefaultMixin, OrderedBaseFolder):
     """Hierarchical Object representing a Volume."""
     
+    security = ClassSecurityInfo()
     __implements__ = (getattr(BrowserDefaultMixin,'__implements__',()),) + (getattr(OrderedBaseFolder,'__implements__',()),)
     implements(IVolume)
+
+    manage_urn_form = PageTemplateFile('../www/urn_form.pt', globals())
+    security.declareProtected(ManagePortal, 'manage_urn_form')
+
+    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'URN Management',
+                       'action':'manage_urn_form',
+                       'help':('DiPP', 'urn.stx')},
+        ) + OrderedBaseFolder.manage_options[2:]
 
     schema = VolumeSchema
     _at_rename_after_creation = True
