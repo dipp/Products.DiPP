@@ -320,5 +320,5 @@ class BibTool(UniqueObject, SimpleItem):
 
     def urnstatus(self, urn, url):
         """ check status of an urn with the dnb resolver"""
-        u = urnvalidator.URN(urn, url)
-        return {'valid':u.is_valid(),'registered':u.is_registered(),'url':u.registered_url()}
+        status = urnvalidator.URN(urn, url)
+        return status.parse_dnb_response()
