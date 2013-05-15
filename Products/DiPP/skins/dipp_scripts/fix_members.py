@@ -28,6 +28,7 @@ for author in authors:
 fullnames = tuple(fullnames)
 
 keep_members = []
+delete_members = []
 members = mtool.listMembers()
 for member in members:
     keep = " "
@@ -38,11 +39,15 @@ for member in members:
     
     if fullname in fullnames or len(roles) > 0:
         keep = "*"
-        keep_members.append(user_id)
-
+        keep_members.append((user_id, fullname))
+    else:
+        delete_members.append(user_id)
     print keep, member.id, member.getRoles(), roles,  fullname 
 
-print "\nNumber of Members: %s" % len(members)
-print "Keep: ", keep_members
+print "\nDelete %s of total of %s Members" % (len(delete_members), len(members))
+for id, name in  keep_members:
+    print "Keep: %s (%s) " % (name, id)
+
+print delete_members
 return printed
 
