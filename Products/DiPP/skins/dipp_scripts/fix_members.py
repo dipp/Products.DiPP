@@ -49,5 +49,10 @@ for id, name in  keep_members:
     print "Keep: %s (%s) " % (name, id)
 
 print delete_members
+
+# delete the users
+acl_users = self.acl_users
+acl_users.userFolderDelUsers(delete_members)
+
 return printed
 
