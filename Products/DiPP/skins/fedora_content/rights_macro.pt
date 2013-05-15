@@ -6,17 +6,31 @@
         <div metal:define-macro="rights"
              id="licence" 
              i18n:domain="dipp"
-             tal:define="rights python: qdc.get('rights',[]);
-                         language request/other/LANGUAGE|en;
-                         lang python:test(language in ('en','de'),language, 'en')">
+             tal:condition="rights"
+             tal:define="rights python: qdc.get('rights', None);
+                         default_lang string:en;
+                         language request/other/LANGUAGE|default_lang;
+                         licence_lang python:test(language in ('en','de'),language, 'en')">
 
                 <h2 i18n:translate="licence" i18n:domain="dipp">Lizenz</h2>
-                <p i18n:translate="licence_text" i18n:domain="dipp"
-                   tal:define="dppl python:here.dppl(rights[0],lang)">
-                    Jedermann darf dieses Werk unter den Bedingungen der
-                    <span tal:content="python: dppl[lang]" i18n:name="rights">DPPL</span> elektronisch übermitteln
-                    und zum Download bereitstellen. Der Lizenztext ist im Internet abrufbar
-                    unter der Adresse <a href="" tal:attributes="href python: dppl['url'][lang]" tal:content="python: dppl['url'][lang]" i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>.
+                
+                <p i18n:domain="dipp"
+                   tal:define="dppl python:here.dppl(rights[0],licence_lang);
+                               licence python: dppl[licence_lang];
+                               url python: dppl['url'][licence_lang]">
+                    <span i18n:translate="licence_text">
+                        Jedermann darf dieses Werk unter den Bedingungen der
+                        <span tal:content="licence" i18n:name="rights">DPPL</span> elektronisch übermitteln
+                        und zum Download bereitstellen.
+                    </span>
+                    <span tal:condition="python: licence != 'authorcontract'"
+                          i18n:translate="licence_download">
+                        Der Lizenztext ist unter der Adresse
+                        <a href="" tal:attributes="href url"
+                           tal:content="url"
+                           i18n:name="url">http://www.dipp.nrw.de/lizenzen/dppl/mdppl/</a>
+                        abrufbar.
+                    </span>
                 </p>
         </div>
 
