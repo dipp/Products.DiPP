@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-de\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2012-12-10 20:41+0100\n"
+"PO-Revision-Date: 2013-05-15 11:43+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: Deutsch <reimer@hbz-nrw.de>\n"
 "Language: \n"
@@ -206,7 +206,10 @@ msgid "licence"
 msgstr "Lizenz"
 
 msgid "licence_text"
-msgstr "Jedermann darf dieses Werk unter den Bedingungen der ${rights} elektronisch über­mitteln und zum Download bereit­stellen. Der Lizenztext ist im Internet abrufbar unter der Adresse ${url}"
+msgstr "Jedermann darf dieses Werk unter den Bedingungen der ${rights} elektronisch über­mitteln und zum Download bereit­stellen."
+
+msgid "licence_download"
+msgstr "Der Lizenztext ist im Internet  unter der Adresse  ${url} abrufbar."
 
 msgid "licence_agreement"
 msgstr "Ich bin damit einverstanden, dass der Artikel unter die Lizenz ${licence} gestellt wird."
@@ -693,4 +696,13 @@ msgstr "Neue Version"
 
 msgid "label_compare_selected_versions"
 msgstr "Vergleiche ausgewählte Versionen"
+
+msgid "could_not_create_new_workingcopy"
+msgstr ""
+
+msgid "previous_version_as_workingcopy"
+msgstr ""
+
+msgid "settings_saved"
+msgstr ""
 

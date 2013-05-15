@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
 "PO-Revision-Date: 2010-04-23 16:20+0100\n"
-"Last-Translator: Hermann Kronenberg <kronenberg@hbz-nrw.de>\n"
+"Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,6 +201,9 @@ msgid "licence"
 msgstr ""
 
 msgid "licence_text"
+msgstr ""
+
+msgid "licence_download"
 msgstr ""
 
 msgid "licence_agreement"
