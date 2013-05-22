@@ -19,7 +19,8 @@ DEPENDENCIES = [
     'CMFOpenflow',
     'LinguaPlone',
     'PloneLanguageTool',
-    'TextIndexNG3'
+    'TextIndexNG3',
+    'qPloneCaptchas'
     ]
 
 VOCABULARIES = (
