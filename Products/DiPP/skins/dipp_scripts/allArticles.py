@@ -15,7 +15,7 @@ response = request.RESPONSE
 
 portal_url = getToolByName(context, 'portal_url')
 portal     = portal_url.getPortalObject()
-articles   = container.portal_catalog(portal_type='FedoraArticle', sort_on='getPID')
+articles   = container.portal_catalog(portal_type='FedoraArticle', Language='all', sort_on='getPID')
 # articles   = container.portal_catalog(portal_type='FedoraArticle')
 
 
@@ -44,15 +44,20 @@ for PID in multiPIDs.keys():
     multiPIDs[PID].append(uniquePIDs[PID])
 
 
-print "PIDs", len(PIDs)
-print "unique PIDs:", len(uniquePIDs)
-print "doubles"
+print "# nur sichtbare und veröffentlichte Artikel werden angezeigt."
+print "# Private Artikel erscheinen nur für authentifizierte Manager."
+print "# PIDs:", len(PIDs)
+print "# unique PIDs:", len(uniquePIDs)
+print "# doubles"
 for PID in multiPIDs.keys():
     print PID
     for url in multiPIDs[PID]:
         print "    " + url
-print "all articles"
+print "# all articles"
 for PID, state, url, title in PIDs:
-    print PID, state, title, url
+    print "; ".join((PID, state, title, url))
+
+response.headers['Content-disposition'] = 'attachment; filename=alle-artikel.csv'
+
 return printed
 
