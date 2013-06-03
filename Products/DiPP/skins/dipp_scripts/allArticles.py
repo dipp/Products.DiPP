@@ -57,7 +57,7 @@ print "# all articles"
 for PID, state, url, title in PIDs:
     print "; ".join((PID, state, title, url))
 
-response.headers['Content-disposition'] = 'attachment; filename=alle-artikel.csv'
-
+response.headers['Content-disposition'] = 'attachment; filename=alle-artikel.txt'
+response.headers['Content-type'] = 'text/plain; charset="utf-8'
 return printed
 
