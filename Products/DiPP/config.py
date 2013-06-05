@@ -58,6 +58,7 @@ SUBMISSION_FILENAME_FORMAT = "rev"
 TOOLS = ((
     'Fedora2DiPP3',
     'BibTool',
+    'Utils',
     'Deadlines',
     'DiPP Sections Tool', 
     'DiPP Peerreview Tool'
@@ -78,6 +79,12 @@ INDEXES = (
     ('getVolume', 'FieldIndex'),
 )
 GLOBALS = globals()
+
+
+# reCAPTCHA
+PRIVATE_KEY   = "6Lf2WOISAAAAAE1enAqHSxX4Y6LIgD6LaRpiCCyZ"
+PUBLIC_KEY    = "6Lf2WOISAAAAABFXeiCcDPfiznOzCgymL5KC54cY"
+VERIFY_SERVER = "www.google.com"
 
 # Configuration for the testrunner
 

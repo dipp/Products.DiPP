@@ -40,6 +40,7 @@ def initialize(context):
     import Fedora2DiPP2Tool
     import DiPPManagementTool
     import BibTool
+    import Utils
     import Deadlines
     import SectionsTool
     import PeerReviewTool
@@ -62,6 +63,7 @@ def initialize(context):
              EditorialToolboxTool.toolbox,
              DiPPManagementTool.DiPPManagement,
              BibTool.BibTool,
+             Utils.Utils,
              Deadlines.Deadlines,
              SectionsTool.SectionsTool,
              PeerReviewTool.PeerReviewTool)
