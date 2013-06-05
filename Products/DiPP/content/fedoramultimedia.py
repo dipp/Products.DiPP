@@ -94,7 +94,17 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
             article = self.getParentNode()
             article.reindexObject()
             logger.info("fedoramultimedia: reindexed %s" % article.PID)
-            
+    
+
+    def at_post_create_script(self):
+        """ reindex article folder when pdf flltext is added
+        """
+        self.reindex_article()
+    
+    def at_post_edit_script(self):
+        """ reindex article folder when pdf flltext is modified
+        """
+        self.reindex_article()
     
     def indexableContent(self, fields):
         """get the binary datastream from fedora and return in to TextIndexNG
