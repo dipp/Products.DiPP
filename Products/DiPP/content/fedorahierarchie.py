@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-# The FedoraArticle ContentType
+# 
+# File: fedorahierarchie.py
+#
+# Copyright (c) 2013 by DiPP, hbz
 #
 # German Free Software License (D-FSL)
 #
@@ -7,33 +10,32 @@
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
-# $Id$
 
-
-import logging
+__author__ = """Peter Reimer <reimer@hbz-nrw.de>"""
+__docformat__ = 'plaintext'
 from zope.interface import implements, Interface
-from AccessControl import ClassSecurityInfo
 try:
     from Products.LinguaPlone.public import *
+    from Products.LinguaPlone import utils
 except ImportError: 
     from Products.Archetypes.public import *
-from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
-from Products.CMFCore.utils import getToolByName
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+
+from AccessControl import ClassSecurityInfo
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
 except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal
     from Products.CMFCore.CMFCorePermissions import View
+from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
+from Products.CMFCore.utils import getToolByName
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 from Products.DiPP.config import PROJECTNAME
 from Products.DiPP.interfaces import IFedoraHierarchie
 from Products.DiPP import Permissions
 from Products.DiPP import event_utils
 from Products.DiPP import HAS_PLONE30
-
-logger = logging.getLogger("DiPP")
 
 FedoraHierarchieSchema = BaseSchema + Schema((
         StringField('PID',
@@ -137,10 +139,16 @@ class FedoraHierarchie(BrowserDefaultMixin, OrderedBaseFolder):
     
     manage_migration_form = PageTemplateFile('../www/migration_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_migration_form')
+    
+    manage_urn_form = PageTemplateFile('../www/urn_form.pt', globals())
+    security.declareProtected(ManagePortal, 'manage_urn_form')
 
     manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'Migrate',
                        'action':'manage_migration_form',
                        'help':('DiPP', 'migrate.stx')},
+                       {'label':'URN Management',
+                       'action':'manage_urn_form',
+                       'help':('DiPP', 'urn.stx')}
         ) + OrderedBaseFolder.manage_options[2:]
     
     schema = FedoraHierarchieSchema
