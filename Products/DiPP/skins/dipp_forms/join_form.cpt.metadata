@@ -3,7 +3,7 @@ title=Please sign in
 border=None
 
 [validators]
-validators = validate_emailaddr, validate_memberdata, join_form_validate
+validators = validate_emailaddr, validate_memberdata, validate_recaptcha, join_form_validate
 
 [actions]
 action.success = traverse_to:string:register

@@ -27,7 +27,14 @@
               i18n:attributes="title title_required;"
               i18n:translate="label_required">(required)</span>
   </p>
-  
+
+  <tal:comment tal:replace="nothing">
+  <script type="text/javascript">
+     var RecaptchaOptions = {
+        theme : 'clean'
+     };
+  </script>
+  </tal:comment>
   <form action=""
         method="post"
         class="enableUnloadProtection"
@@ -531,6 +538,40 @@
           A password will be generated and
           e-mailed to you to complete the registration process.
         </div>
+      </div>
+
+      <div class="field"
+           tal:define="error errors/recaptcha|nothing;
+                       public_captcha_key python:here.Utils.get_recaptcha_keys()['public']"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+          <em tal:content="public_captcha_key" /> 
+          <label for="recaptcha_response_field"
+                 i18n:translate="label_recaptcha">Bitte geben Sie die beiden Worte ein</label>
+       
+          <span class="fieldRequired" title="Required"
+                i18n:attributes="title title_required;"
+                i18n:translate="label_required">(required)</span>
+          
+          <div tal:content="error">Validation error output</div>
+          
+          <div i18n:translate="help_recaptcha"
+               class="formHelp">
+               Diese Sicherheitsabfrage soll Spammer daran hindern, dieses Formular zu verwenden.
+          </div>
+         
+          <script type="text/javascript"
+                  src=""
+                  tal:attributes="src string:http://www.google.com/recaptcha/api/challenge?k=$public_captcha_key">
+          </script>
+          <noscript>
+             <iframe src=""
+                     tal:attributes="src string:http://www.google.com/recaptcha/api/noscript?k=$public_captcha_key"
+                     height="300" width="500" frameborder="0"></iframe><br>
+             <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+             </textarea>
+             <input type="hidden" name="recaptcha_response_field"
+                 value="manual_challenge">
+          </noscript>
       </div>
 
       <div class="formControls">
