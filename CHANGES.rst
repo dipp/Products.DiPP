@@ -1,6 +1,15 @@
 Changelog
 =========
 
+DiPP 2.12 (2013-06-05)
+    * reCAPTCHA for join_form to prevent Spam. Remove qPloneCaptcha
+      if installed
+    * fix_member script to delete spam accounts
+    * allArticles script created dowloadable alle-artikel.txt CSV file
+      with PIDs, URL, Title
+    * URN Management in ZMI for Issues, Volumes and FedorHierarchien
+    * depends on dipp.tools >= 0.3 and dipp.fedora2 >= 2.2
+
 DiPP 2.11 (2013-02-22)
     * moved all DiPP relavant properties from the ZMI root to 
       dipp_properties. Running moveProps.py script is required
