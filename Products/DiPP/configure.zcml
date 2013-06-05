@@ -16,7 +16,9 @@
                      zope.app.container.interfaces.IObjectAddedEvent"
                handler=".event_utils.createFedoraMultimedia" /> 
     -->
+    <!--
     <subscriber for="Products.DiPP.interfaces.IFedoraMultimedia
                      zope.app.event.interfaces.IObjectModifiedEvent"
                handler=".event_utils.createFedoraMultimedia" /> 
+    -->
 </configure>
