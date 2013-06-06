@@ -544,7 +544,6 @@
            tal:define="error errors/recaptcha|nothing;
                        public_captcha_key python:here.Utils.get_recaptcha_keys()['public']"
            tal:attributes="class python:test(error, 'field error', 'field')">
-          <em tal:content="public_captcha_key" /> 
           <label for="recaptcha_response_field"
                  i18n:translate="label_recaptcha">Bitte geben Sie die beiden Worte ein</label>
        
