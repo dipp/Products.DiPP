@@ -25,14 +25,14 @@ for article in articles:
         PID = article.getObject().PID
     except:
         PID = "dipp:XXXX"
-    PIDs.append((PID, article.review_state, article.getURL(), article.Title))
+    PIDs.append((PID, article.getURN, article.review_state, article.getURL(), article.Title))
 
 
 uniquePIDs = {}
 multiPIDs = {}
 
 urls = {}
-for PID, state, url, title in PIDs:
+for PID, URN, state, url, title in PIDs:
     if not PID in uniquePIDs:
         uniquePIDs[PID] = url
     elif PID in multiPIDs:
@@ -54,8 +54,8 @@ for PID in multiPIDs.keys():
     for url in multiPIDs[PID]:
         print "    " + url
 print "# all articles"
-for PID, state, url, title in PIDs:
-    print "; ".join((PID, state, title, url))
+for PID, URN, state, url, title in PIDs:
+    print "; ".join((PID, URN, state, title, url))
 
 response.headers['Content-disposition'] = 'attachment; filename=alle-artikel.txt'
 response.headers['Content-type'] = 'text/plain; charset="utf-8'
