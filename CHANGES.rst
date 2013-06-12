@@ -2,8 +2,8 @@ Changelog
 =========
 
 DiPP 2.12 (2013-06-05)
-    * reCAPTCHA for join_form to prevent Spam. Remove qPloneCaptcha
-      if installed
+    * Using `reCAPTCHA <http://www.google.com/recaptcha>`_  for join_form to prevent Spam. 
+      Remove qPloneCaptcha if installed
     * fix_member script to delete spam accounts
     * allArticles script created dowloadable alle-artikel.txt CSV file
       with PIDs, URL, Title
