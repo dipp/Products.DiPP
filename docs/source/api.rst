@@ -5,4 +5,4 @@ API/Interfaces
    :maxdepth: 2
   
    tools
-   content
+   contenttypen
