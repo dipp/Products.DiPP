@@ -17,4 +17,5 @@ dann über das :term:`DocBook` XML Format zu :term:`HTML` konvertiert.
    formatieren
    zusatzmaterial
    kommentare
+   metis
    workflow
