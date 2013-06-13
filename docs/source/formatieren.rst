@@ -67,7 +67,7 @@ In der Regel sollten die Funktionen der Textverarbeitung genutzt werden:
 
 
 Abbildungen
-===========
+***********
 
 Es sind nur pixelbasierte Dateiformat (jpeg, gif, png) möglich, vektorbasierte
 Formate wie z.B. wmf oder mit Wordart erstellte Graphiken werden nicht
@@ -80,7 +80,7 @@ höherauflösenden Versionen versehen werden, die im Publikationssystem
 nachträglich hochgeladen werden können, siehe :ref:`zusatzmaterial`. 
 
 Tabellen
-========
+********
 
 Tabellen sollten nicht zu komplex gestaltet werden, d. h. sie sollten nicht 
 verschachtelt werden und die Größe einzelner Zellen sollten nicht durch Ziehen

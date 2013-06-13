@@ -1,7 +1,7 @@
 .. _editorial_toolbox:
 
 Editorial Toolbox
-=================
+#################
 
 
 Einstiegspunkt für das Konvertieren der Artikel ist immer die Editoral Toolbox,

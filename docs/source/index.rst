@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 DiPP Handbuch
-=============
+#############
 
 
 .. toctree::
@@ -18,14 +18,14 @@ DiPP Handbuch
    anhang
    
 Index
-=====
+#####
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
 
 Andere Formate
-==============
+##############
 
 * :download:`PDF <../build/latex/DiPP-Handbuch.pdf>`
 

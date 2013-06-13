@@ -1,10 +1,10 @@
 Content Types
-=============
+#############
 
 Alle Inhaltstypen basieren auf dem Archetype Framework.
 
 Artikel
--------
+*******
 
 Ein Artikel ist ein Ordner vom Typ FedoraArtikel, der die einzelnen Bestandteile
 wie Texte, Bilder und Zusatzmaterialien aufnimmt.
@@ -23,7 +23,7 @@ wie Texte, Bilder und Zusatzmaterialien aufnimmt.
 
 
 Hierarchische Objekte
----------------------
+*********************
 
 .. autoclass:: Products.DiPP.content.fedorahierarchie.FedoraHierarchie
    :members: at_post_create_script, migrate

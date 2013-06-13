@@ -1,5 +1,5 @@
 Tools
-^^^^^
+#####
 
 .. automodule:: Products.DiPP.Fedora2DiPP3Tool
     :members:

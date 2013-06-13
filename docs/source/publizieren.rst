@@ -1,5 +1,5 @@
 Publikation wissenschaftlicher Artikel
-======================================
+######################################
 
 Das Publizieren von wissenschaftlichen Artikel unterscheidet sich erheblich vom
 Erstellen einfacher :term:`HTML` Seiten, die mit :term:`Plone` eigenen Bordmitteln

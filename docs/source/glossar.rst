@@ -1,5 +1,5 @@
 Glossar
-=======
+#######
 
 .. glossary::
     :sorted:

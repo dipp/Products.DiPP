@@ -1,5 +1,5 @@
 Einleitung
-==========
+##########
 
 
 Das DiPP-Publikationssystem ist eine Webapplikation, die es erlaubt unter einer
