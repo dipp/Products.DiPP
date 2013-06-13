@@ -14,8 +14,10 @@ wie Texte, Bilder und Zusatzmaterialien aufnimmt.
               getFulltextPdf, linkTranslations
 
 .. autoclass:: Products.DiPP.content.fedoradocument.FedoraDocument
+    :members: make_working_copy 
 
 .. autoclass:: Products.DiPP.content.fedoramultimedia.FedoraMultimedia
+    :members: reindex_article, at_post_create_script, at_post_edit_script, indexableContent, index_html, preview, getTypeOfList
 
 .. autoclass:: Products.DiPP.content.fedoraxml.FedoraXML
 
@@ -24,7 +26,7 @@ Hierarchische Objekte
 ---------------------
 
 .. autoclass:: Products.DiPP.content.fedorahierarchie.FedoraHierarchie
-   :members: at_post_create_script
+   :members: at_post_create_script, migrate
 
 .. autoclass:: Products.DiPP.content.volume.Volume
    :members: at_post_create_script
