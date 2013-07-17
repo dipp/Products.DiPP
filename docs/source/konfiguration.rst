@@ -226,6 +226,8 @@ Default::
    False
 
  
+.. _prop_volume_show_covers:
+
 volume_show_covers
 ==================
 Wenn True, werden auf der Inhaltsseite der Jahrgänge die Titelseiten der
