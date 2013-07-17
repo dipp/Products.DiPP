@@ -1,0 +1,6 @@
+.figure {
+    margin: 0 2em; 
+}
+.figure .caption {
+    font-style: italic;
+}
