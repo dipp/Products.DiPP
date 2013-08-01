@@ -702,3 +702,9 @@ msgstr ""
 msgid "settings_saved"
 msgstr ""
 
+msgid "description_no_visible_issues"
+msgstr ""
+
+msgid "description_no_visible_articles"
+msgstr ""
+
