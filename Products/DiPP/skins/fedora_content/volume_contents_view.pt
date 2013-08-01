@@ -39,13 +39,15 @@
 
 
         <p class="discreet"
-             tal:condition="not:issues">
+           tal:condition="not:issues"
+           i18n:translate="description_no_visible_issues"
+           i18n:domain="dipp">
              This Volume does not contain any issues.
         </p>
         
         <p tal:condition="here/Body"
            tal:content="structure here/Body">
-             This Volume does not contain any issues.
+             Here goes everything from the advanced --> body field.
         </p>
         
         <div tal:condition="issues">

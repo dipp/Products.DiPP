@@ -24,9 +24,12 @@
              i18n:domain="dipp">
             
             <p class="discreet"
-                 tal:condition="not:articles">
+               tal:condition="not:articles"
+               i18n:translate="description_no_visible_articles"
+               i18n:domain="dipp">
                  This Issue does not contain any articles.
             </p>
+
             <dl class="issue-content">
             <tal:section tal:repeat="section python: section_dict.keys()">
                 <tal:block tal:define="articles python: here.portal_catalog(path = {'query':issue_path, 'depth':2},portal_type='FedoraArticle',getJournal_section=section, sort_on=sort_on, sort_order=sort_order)"
