@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2013-05-15 11:45+0100\n"
+"PO-Revision-Date: 2013-08-01 15:19+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -698,11 +698,17 @@ msgid "label_compare_selected_versions"
 msgstr "Compare selected versions"
 
 msgid "could_not_create_new_workingcopy"
-msgstr ""
+msgstr "Could not create new working copy."
 
 msgid "previous_version_as_workingcopy"
-msgstr ""
+msgstr "Previous version taken as working copy."
 
 msgid "settings_saved"
-msgstr ""
+msgstr "Settings saved."
+
+msgid "description_no_visible_issues"
+msgstr "This volume does not contain any visible issues."
+
+msgid "description_no_visible_articles"
+msgstr "This issue does not contain any visible articles."
 
