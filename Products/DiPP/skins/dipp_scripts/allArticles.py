@@ -25,7 +25,13 @@ for article in articles:
         PID = article.getObject().PID
     except:
         PID = "dipp:XXXX"
-    PIDs.append((PID, article.getURN, article.review_state, article.getURL(), article.Title))
+    
+    try:
+        URN = article.getURN
+    except:
+        URN = "URN not indexed"
+
+    PIDs.append((PID, URN, article.review_state, article.getURL(), article.Title))
 
 
 uniquePIDs = {}
