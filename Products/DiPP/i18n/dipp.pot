@@ -588,6 +588,12 @@ msgstr "Abstract"
 msgid "abstracts"
 msgstr "Abstracts"
 
+msgid "label_comment_to_field"
+msgstr ""
+
+msgid "help_comment_to_field"
+msgstr ""
+
 msgid "label_startpage_field"
 msgstr ""
 

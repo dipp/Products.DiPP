@@ -34,7 +34,7 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal, ManageProperties
     from Products.CMFCore.CMFCorePermissions import View
 
-from Products.DiPP.config import PROJECTNAME
+from Products.DiPP.config import PROJECTNAME, COMMENT_SELECTION_TITLE_LENGTH
 from Products.DiPP.interfaces import IFedoraArticle
 from Products.DiPP import Permissions
 
@@ -91,8 +91,10 @@ FedoraArticleSchema = BaseSchema + Schema((
         StringField(
             name='comment_to',
             widget=SelectionWidget(
-                label="Comment to",
-                description="This Article is a comment to another article",
+                label='The commented article',
+                label_msgid='label_comment_to_field',
+                description='If this Article was submitted as a comment to an existing publication you can select it here to create a connection between the two.',
+                description_msgid='help_comment_to_field',
             ),
             searchable=1,
             multiValued=0,
@@ -331,18 +333,28 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         A List of PID, title tupels is returned.
         
         """ 
-        results = self.portal_catalog.searchResults(Type='Fedora Article')
+        results = self.portal_catalog.searchResults(Type='Fedora Article', sort_on='getPID', sort_order="reverse")
         articles = (('','None'),)
+        words = COMMENT_SELECTION_TITLE_LENGTH
+        
         for result in results:
             try:
                 PID = result.getPID
                 title = result.Title
-                if not PID.startswith('temp'):
-                    articles += ((PID,title),)
             except:
-                pass
+                logger.info("fedoraarticle: articles should have Title and PID. We should never see this...")
+                continue
+            
+            chopped_title = title.split()
+            if len(chopped_title) > words:
+                title = " ".join(chopped_title[0:words]) + "..."
+            
+            if not PID.startswith('temp') and not PID == self.PID:
+                articles += ((PID,"%s | %s" % (PID, title)),)
+            pass
         
         return articles
+
 
 
     def getFulltextPdf(self):
