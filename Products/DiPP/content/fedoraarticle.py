@@ -90,6 +90,7 @@ FedoraArticleSchema = BaseSchema + Schema((
         ),
         StringField(
             name='comment_to',
+            i18n_domain='dipp',
             widget=SelectionWidget(
                 label='The commented article',
                 label_msgid='label_comment_to_field',
