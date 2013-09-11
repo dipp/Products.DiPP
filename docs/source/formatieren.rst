@@ -1,3 +1,5 @@
+.. _artikel-formatieren:
+
 Artikel formatieren
 ###################
 

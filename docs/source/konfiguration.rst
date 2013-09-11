@@ -215,6 +215,8 @@ Default::
     True
 
 
+.. _allow_persistent_discussion:
+
 allow_persistent_discussion
 ===========================
 Wenn True, wird unterhalb eines Artikels eine Liste mit Kommentaren und ein Link
