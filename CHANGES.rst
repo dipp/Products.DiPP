@@ -1,6 +1,13 @@
 Changelog
 =========
 
+DiPP 2.13 (2012-09-18)
+    * improved documentation
+    * fix error when calling authorpage with of existing author
+    * allArticles script improved: include URNs, download as csv
+    * verbose list for selection of commented article
+    * a few translations
+
 DiPP 2.12 (2013-06-05)
     * Using `reCAPTCHA <http://www.google.com/recaptcha>`_  for join_form to prevent Spam. 
       Remove qPloneCaptcha if installed
