@@ -13,8 +13,9 @@ from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 mtool = getToolByName(self, 'portal_membership')
+self.plone_log("user_id: %s, contributor: %s" % (user_id, contributor))
 
-# try to find a memberid for a given contributor
+# try to find a memberid for a given contributor (Lastname, Firstname)
 # if none is found, return none. in rare cases, were more than one 
 # members match the Contributors name, return all as a list
 author = [None]
@@ -33,15 +34,18 @@ if contributor:
         author = [user_id]
 
 if user_id:
+    self.plone_log("ID:" + user_id)
     authorinfo = mtool.getMemberInfo(user_id)
-    fullname = authorinfo['fullname']
-    name = fullname.split(' ')
-    if len(name) > 0:
-        last = name[-1]
-        firstnames = name[0:len(name) - 1]
-        first = ' '.join(firstnames) 
-        contributor = last + ', '+ first
-    author = [user_id]
+    if authorinfo:
+        self.plone_log(authorinfo)
+        fullname = authorinfo['fullname']
+        name = fullname.split(' ')
+        if len(name) > 0:
+            last = name[-1]
+            firstnames = name[0:len(name) - 1]
+            first = ' '.join(firstnames) 
+            contributor = last + ', '+ first
+        author = [user_id]
         
 
 return {'author':author, 'contributor': contributor}
