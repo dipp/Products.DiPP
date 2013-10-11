@@ -52,4 +52,10 @@
     url_expr="string:${folder_url}/view" visible="False">
   <permission value="View"/>
  </action>
+
+ <action title="DOAJ" action_id="doaj" category="folder" condition_expr=""
+    url_expr="string:${folder_url}/doaj_metadata"
+    visible="True">
+  <permission value="Fedora: Edit Content"/>
+ </action>
 </object>
