@@ -18,7 +18,7 @@ from DateTime import DateTime
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
-from dipp.tools import urnvalidator
+from dipp.tools import urnvalidator, indent
 from config import view_permission, LANGUAGES
 import logging
 
@@ -47,22 +47,6 @@ class BibTool(UniqueObject, SimpleItem):
         )
         return formats
    
-    def indent(self, elem, level=0):
-        """Pretty printing of the mods xml format"""
-
-        i = "\n" + level*"  "
-        if len(elem):
-            if not elem.text or not elem.text.strip():
-                elem.text = i + "  "
-            if not elem.tail or not elem.tail.strip():
-                elem.tail = i
-            for elem in elem:
-                self.indent(elem, level+1)
-            if not elem.tail or not elem.tail.strip():
-                elem.tail = i
-        else:
-            if level and (not elem.tail or not elem.tail.strip()):
-                elem.tail = i
     
     def short_citation(self,article):
         """Short version of the bibligraphic citation. Calls only plones own
@@ -299,7 +283,7 @@ class BibTool(UniqueObject, SimpleItem):
         """
         mods = self._make_mods(qdc, PID)
         if target_format == 'xml':
-            self.indent(mods)
+            indent(mods)
             xml = ET.tostring(mods,encoding='utf-8')
             result = xml
         else:

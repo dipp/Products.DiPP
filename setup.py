@@ -42,7 +42,7 @@ setup(name='Products.DiPP',
         'Products.TextIndexNG3',
         'Products.ATVocabularyManager',
         'Products.LinguaPlone',
-        'dipp.tools >= 0.3',
+        'dipp.tools >= 0.4',
         'dipp.dipp2',
         'bibliograph.core',
         'dipp.fedora2 >= 2.2'
