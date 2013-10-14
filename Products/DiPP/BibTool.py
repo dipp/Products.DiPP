@@ -283,7 +283,7 @@ class BibTool(UniqueObject, SimpleItem):
         """
         mods = self._make_mods(qdc, PID)
         if target_format == 'xml':
-            indent(mods)
+            indent.indent(mods)
             xml = ET.tostring(mods,encoding='utf-8')
             result = xml
         else:
