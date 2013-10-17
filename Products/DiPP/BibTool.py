@@ -19,6 +19,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator, indent
+from dipp.dipp3 import dippDOAJ 
 from config import view_permission, LANGUAGES
 import logging
 
@@ -301,8 +302,11 @@ class BibTool(UniqueObject, SimpleItem):
             fe.close()
 
         return result
-
+    
     def urnstatus(self, urn, url):
         """ check status of an urn with the dnb resolver"""
         status = urnvalidator.URN(urn, url)
         return status.parse_dnb_response()
+
+    def doaj_xml(self,pids):
+        return dippDOAJ.make_doaj_xml(pids)
