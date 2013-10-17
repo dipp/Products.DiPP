@@ -5,8 +5,10 @@
 <body>
 
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="main"
+                    tal:define="doaj python:here.doaj(here)">
 
+        
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
@@ -15,12 +17,14 @@
           DOAJ
         </h1>
 
+
         <p class="discreet">
             XML File for registration an Issue with the <a href="http://www.doaj.org">Directory of Open Access
             Journals</a>
         </p>
         
-
+        <textarea rows="15" cols="100" tal:content="doaj"></textarea>
+        <a href="doaj/download">Download</a>
  
     </tal:main-macro>
 </metal:main>
