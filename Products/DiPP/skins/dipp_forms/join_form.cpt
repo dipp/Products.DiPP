@@ -560,11 +560,11 @@
          
           <script type="text/javascript"
                   src=""
-                  tal:attributes="src string:http://www.google.com/recaptcha/api/challenge?k=$public_captcha_key">
+                  tal:attributes="src string:https://www.google.com/recaptcha/api/challenge?k=$public_captcha_key">
           </script>
           <noscript>
              <iframe src=""
-                     tal:attributes="src string:http://www.google.com/recaptcha/api/noscript?k=$public_captcha_key"
+                     tal:attributes="src string:https://www.google.com/recaptcha/api/noscript?k=$public_captcha_key"
                      height="300" width="500" frameborder="0"></iframe><br>
              <textarea name="recaptcha_challenge_field" rows="3" cols="40">
              </textarea>

@@ -68,7 +68,7 @@ class Utils(UniqueObject, SimpleItem):
                 })
 
         request = urllib2.Request (
-            url = "http://%s/recaptcha/api/verify" % VERIFY_SERVER,
+            url = "https://%s/recaptcha/api/verify" % VERIFY_SERVER,
             data = params,
             headers = {
                 "Content-type": "application/x-www-form-urlencoded",
