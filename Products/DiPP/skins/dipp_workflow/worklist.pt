@@ -86,7 +86,9 @@
             </td>
             <td tal:condition="article">
                 <a href=''
-                   tal:attributes="href article/url"
+                   tal:define="state_class python:'state-' + normalizeString(article['state'])"
+                   tal:attributes="href article/url;
+                                   class state_class"
                    tal:content="string: ${wi/hierarchie}">2010/7</a>
             
             </td>
@@ -177,7 +179,9 @@
             </td>
             <td tal:condition="article">
                 <a href=''
-                   tal:attributes="href article/url"
+                   tal:define="state_class python:'state-' + normalizeString(article['state'])"
+                   tal:attributes="href article/url;
+                                   class state_class"
                    tal:content="string: ${wi/hierarchie}">2010/7</a>
             
             </td>
