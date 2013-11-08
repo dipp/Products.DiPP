@@ -146,15 +146,11 @@ class Fedora(UniqueObject, Folder):
         """find all FedoraArticles in Plone and return a list of PIDs."""
         portal_url = getToolByName(self, 'portal_url')
         portal = portal_url.getPortalObject()
-        PIDs = []
-        results = portal.portal_catalog.searchResults(portal_type='FedoraArticle')
+        articles = {}
+        results = portal.portal_catalog.searchResults(portal_type='FedoraArticle',  Language='all')
         for article in results:
-            try:
-                obj = article.getObject()
-                PIDs.append(obj.PID)
-            except:
-                pass
-        return PIDs
+            articles[article.getPID] = article.getURL()
+        return articles
         
     def manage_search(self, field, comparison, value, REQUEST=None):
         """search the repository"""

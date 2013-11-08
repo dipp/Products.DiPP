@@ -66,27 +66,39 @@
                     </tr>
                     <tal:block tal:repeat="result results">
                         <tr tal:define="PID result/PID;
-                                        cModel result/cModel"
+                                        cModel result/cModel;
+                                        title_words python:result['title'].split(' ');
+                                        max_words python:10;
+                                        checkbox_id python:'box_' + PID.replace(':','_');
+                                        in_plone python:test(PID in PIDs.keys(), True, False)"
                             tal:attributes="class python:test(path('repeat/result/even'), 'row-hilite', 'row-normal')">
                             <td width="16">
-                                <input tal:condition="python: cModel == 'DiPP:article'" type="checkbox" name="PIDs:list" value="" tal:attributes="value result/PID">
+                                <input tal:condition="python: cModel == 'DiPP:article'"
+                                       type="checkbox"
+                                       name="PIDs:list" 
+                                       value="" 
+                                       id=""
+                                       tal:attributes="value result/PID;id checkbox_id">
                             </td>
-                            <td tal:content="PID"></td>
+                            <td>
+                                <label for=""
+                                       tal:content="PID"
+                                       tal:attributes="for checkbox_id">dipp:1234</label></td>
                             <td tal:content="result/state"></td>
                             <td tal:content="python:result['publisher'][0]"></td>
                             <td>
-                                <span tal:condition="python: PID in PIDs">
-                                yes
-                                </span>
-                                <span tal:condition="python: PID not in PIDs">
-                                no
-                                </span>
+                               <span tal:condition="not: in_plone" tal:replace="in_plone">true or false</span> 
+                               <a tal:condition=" in_plone"
+                                  tal:content="in_plone"
+                                  tal:attributes="href python:PIDs[PID]">true or false</a> 
                             </td>
                             <td tal:content="python: result['cDate']"></td>
                             <td tal:content="cModel"></td>
                             <td>
-                                <abbr tal:attributes="title string: ${result/creator}: ${result/title}"
-                                      tal:content="python:result['title'][0:40] + '...'"></abbr>
+                                <abbr tal:attributes="title python: '%s - %s' % (result['creator'],result['title'])">
+                                      <span tal:replace="python:' '.join(title_words[0:max_words])">der abgekürzte titel</span>
+                                      <span tal:condition="python:len(title_words) > max_words">...</span>
+                                </abbr>
                             </td>
                         </tr>
                     </tal:block>
