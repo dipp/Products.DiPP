@@ -1,4 +1,4 @@
-## Script (Python) "findPID"
+## Script (Python) "read"
 ## taken from kupu resolveuid (thx ...)
 ##bind container=container
 ##bind context=context
