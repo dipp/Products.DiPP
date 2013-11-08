@@ -4,18 +4,22 @@
 
 <h3>Configuration</h3>
 
-<p>
     
-</p>
 <p>
 IP Address and port of the server running the Fedora repository is specified in the configuration file <code>/files/etc/fedora2.cfg</code>.
 </p>
-<form action="manage_setFedoraSettings" tal:attributes="action python:here.absolute_url()+'/manage_setFedoraSettings'" method="POST">
+<form action="manage_setFedoraSettings" tal:attributes="action python:here.absolute_url()+'/manage_setFedoraSettings'" method="POST"
+      tal:define="server python:here.fedora.getServerConfiguration()">
     <table cellspacing="0">
         <tr class="list-header">
             <th>Field</th>
             <th>Value</th>
             <th>Description</th>
+        </tr>
+        <tr>
+            <th>server</th>
+            <td><input type="text" value="" tal:attributes="value python:'%s:%s' % server" disabled="disabled" /></td>
+            <td>address:port from <code>/files/etc/fedora2.cfg</code></td>
         </tr>
         <tr>
             <th>label</th>
