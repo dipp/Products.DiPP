@@ -20,19 +20,19 @@
                  tal:attributes="href string:$portal_url/prefs_journalmetadata_form"
                  i18n:translate="journal_metadata">Journal Metadaten</a>
             </li>
-            <li>
+            <li class="plain">
               <a href="" 
                  tal:attributes="href string:$portal_url/prefs_deadlines_form"
                  i18n:translate="deadlines">Deadlines </a>
             </li>
 
-            <li>
+            <li class="plain">
               <a href=""
                  tal:attributes="href string:$portal_url/prefs_mailtemplates_form"
                  i18n:translate="mailtemplates">Mailtemplates</a>
             </li>
 
-            <li>
+            <li class="plain">
               <a href=""
                  tal:attributes="href string:$portal_url/prefs_workflowrights_form"
                  i18n:translate="workflowrights">Workflow rights</a>
@@ -70,25 +70,7 @@
             <input type="hidden" name="form.submitted" value="1" />
             <input type="hidden" name="PID" value="" tal:attributes="value journalPID" />
             
-            <div id="qdc-fields">
-                <input type="hidden" name="pubType:list" value="journal" />
-
-                
-                <div metal:use-macro="here/qdc_macros/macros/title"> Title </div>
-                <div metal:use-macro="here/qdc_macros/macros/url"> URL </div>
-                <div metal:use-macro="here/qdc_macros/macros/issn"> ISSN </div>
-                <div metal:use-macro="here/qdc_macros/macros/language"> Language </div>
-                <div metal:use-macro="here/qdc_macros/macros/ddc"> DDC </div>
-                <!--<div metal:use-macro="here/qdc_macros/macros/alternative"> alternative </div>-->
-                <!--<div metal:use-macro="here/qdc_macros/macros/creatorPerson"> authors </div>-->
-                <div metal:use-macro="here/qdc_macros/macros/contributor"> contributors </div>
-                <div metal:use-macro="here/qdc_macros/macros/subject"> subject </div>
-                <div metal:use-macro="here/qdc_macros/macros/subjectClassified"> subject classified </div>
-                <div metal:use-macro="here/qdc_macros/macros/rights"> docType </div>
-            </div>
-
-            
-            <!-- TITLE -->
+            <!-- TITLE--> 
             <div class="field"
                  tal:define="error errors/title|nothing;
                              titles python:qdc['title'];
@@ -166,6 +148,25 @@
 
             </div>
 
+            <div id="qdc-fields">
+                <input type="hidden" name="pubType:list" value="journal" />
+
+                
+                <!--<div metal:use-macro="here/qdc_macros/macros/title"> Title </div>-->
+                <div metal:use-macro="here/qdc_macros/macros/url"> URL </div>
+                <div metal:use-macro="here/qdc_macros/macros/issn"> ISSN </div>
+                <div metal:use-macro="here/qdc_macros/macros/language"> Language </div>
+                <div metal:use-macro="here/qdc_macros/macros/ddc"> DDC </div>
+                <!--<div metal:use-macro="here/qdc_macros/macros/alternative"> alternative </div>-->
+                <!--<div metal:use-macro="here/qdc_macros/macros/creatorPerson"> authors </div>-->
+                <div metal:use-macro="here/qdc_macros/macros/contributor"> contributors </div>
+                <div metal:use-macro="here/qdc_macros/macros/subject"> subject </div>
+                <div metal:use-macro="here/qdc_macros/macros/subjectClassified"> subject classified </div>
+                <div metal:use-macro="here/qdc_macros/macros/rights"> docType </div>
+            </div>
+
+            
+
 
             <!-- publisher --> 
             <div class="field"
@@ -173,7 +174,6 @@
                              publishers python:qdc['publisher']"
                  tal:attributes="class python:test(error, 'field error', 'field')"
                  i18n:domain="qdc">
-
                 <label for="publisher" i18n:translate="label_short_name">publisher</label>
                 <span class="fieldRequired" title="Required"
                        i18n:attributes="title"
