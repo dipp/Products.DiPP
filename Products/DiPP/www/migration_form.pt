@@ -7,31 +7,53 @@
 <form action=""
       tal:attributes="action python:here.absolute_url()+'/migrate'"
       method="POST">
-    <dl>
-        <dt>PID</dt>
-        <dd tal:content="here/PID"></dd>
-        <dt>* descripton</dt>
-        <dd tal:content="here/description"></dd>
-        <dt>MetaType</dt>
-        <dd tal:content="here/MetaType"></dd>
-        <dt>Volume</dt>
-        <dd tal:content="here/Volume"></dd>
-        <dt>Issue</dt>
-        <dd tal:content="here/Issue"></dd>
-        <dt>IssueDate</dt>
-        <dd tal:content="here/IssueDate"></dd>
-        <dt>* CompleteIssue</dt>
-        <dd tal:content="here/CompleteIssue"></dd>
-        <dt>* Body</dt>
-        <dd tal:content="here/Body"></dd>
-        <dt>* TitleImage</dt>
-        <dd tal:define="has_cover here/TitleImage|nothing">
-            <img tal:condition="has_cover"  tal:replace="structure here/TitleImage_small" /></dd>
-     </dl>
+    <table cellspacing="0" cellpadding="2" border="0">
+       <tr class="list-header">
+        <th>Field</th>
+        <th>Value</th>
+       </tr>
+       <tr class="row-hilite">
+            <td>PID</td>
+            <td tal:content="here/PID"></td>
+        </tr>
+        <tr class="row-normal">
+            <td>descripton</td>
+            <td tal:content="here/description"></td>
+        </tr>
+        <tr class="row-hilite">
+            <td>MetaType</td>
+            <td tal:content="here/MetaType"></td>
+        </tr>
+        <tr class="row-normal">
+            <td>Volume</td>
+            <td tal:content="here/Volume"></td>
+        </tr>
+        <tr class="row-hilite">
+            <td>Issue</td>
+            <td tal:content="here/Issue"></td>
+        </tr>
+        <tr class="row-normal">
+            <td>IssueDate</td>
+            <td tal:content="here/IssueDate"></td>
+        </tr>
+        <tr class="row-hilite">
+            <td>CompleteIssue</td>
+            <td tal:content="here/CompleteIssue"></td>
+        </tr>
+        <tr class="row-normal">
+            <td>Body</td>
+            <td tal:content="here/Body"></td>
+        </tr>
+        <tr class="row-hilite">
+            <td>TitleImage</td>
+            <td tal:define="has_cover here/TitleImage|nothing">
+                <img tal:condition="has_cover"  tal:replace="structure here/TitleImage_small" /></td>
+        </tr>
+     </table>
      <hr />
     <input type="radio" name="target" value="Issue" id="issue"> <label for="issue">Issue</label><br />
     <input type="radio" name="target" value="Volume" id="volume"> <label for="volume">Volume</label><br />
-    <input type="submit"/>
+    <input type="submit" value="Migrate"/>
 </form>
 
 <p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
