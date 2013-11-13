@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+             tal:define="path           python:'/'.join(here.getPhysicalPath());
+                         show_covers    here/volume_show_covers|here/portal_properties/dipp_properties/volume_show_covers|nothing;
+                         issues python: here.portal_catalog(portal_type='Issue')">
+        
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1 class="documentFirstHeading">
+          Issues/Ausgaben
+        </h1>
+    
+        <a href=""
+           class="link-parent"
+           tal:define="parent_url python:here.navigationParent(here, template_id)"
+           tal:condition="parent_url"
+           tal:attributes="href parent_url"
+           i18n:translate="go_to_parent_url">
+            Up one level
+        </a>
+
+
+
+        <p class="discreet"
+           tal:condition="not:issues"
+           i18n:translate="description_no_visible_issues"
+           i18n:domain="dipp">
+             This Volume does not contain any issues.
+        </p>
+        
+        
+        <div tal:condition="issues">
+            <ol class="volume_content">
+                <tal:items tal:repeat="item issues">
+                   <li tal:define="obj                  python: item.getObject();
+                                   item_url             item/getURL|item/absolute_url;
+                                   item_id              item/getId;
+                                   item_pid             item/getPID;
+                                   item_date            item/getIssueDate;
+                                   item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                   item_title_or_id     item/pretty_title_or_id;
+                                   item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                   item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                   item_description     item/Description;
+                                   item_has_cover       obj/TitleImage|nothing">
+                       
+                       <div class=""
+                            tal:attributes="class python:test(show_covers,'issueinfo showcover','issueinfo')"> 
+                           <div class="issuecontent">
+                               <em tal:content="item_date">gestern</em>
+                               <h2>    
+                                    <a href="#"
+                                       tal:attributes="href item_url; 
+                                                       class string:$item_wf_state_class"
+                                       tal:content="item_title_or_id">
+                                     Issue title</a>   
+
+                                </h2>
+                                <p tal:content="item_description">
+                                     some words about the issue
+                                </p>
+                            </div>
+                        </div>
+                       <div tal:condition="show_covers"
+                            class="issuepicture">
+                            <a tal:condition="item_has_cover"
+                               href=""
+                               tal:attributes="href item_url">
+                                <img tal:replace="structure obj/TitleImage_small" />
+                            </a>
+                       </div>
+                       <div class="visualClear"></div>
+                    </li>
+                 </tal:items>
+            </ol>
+        </div>
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+
