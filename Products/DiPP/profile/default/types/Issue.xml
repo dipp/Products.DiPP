@@ -58,4 +58,14 @@
     visible="True">
   <permission value="Fedora: Edit Content"/>
  </action>
+
+ <action title="PDF" 
+         action_id="issuepdf" 
+         category="document_actions" 
+         condition_expr="object/CompleteIssue/filename"
+         url_expr="string:${folder_url}/at_download/CompleteIssue"
+         visible="True">
+  <permission value="View"/>
+ </action>
+
 </object>
