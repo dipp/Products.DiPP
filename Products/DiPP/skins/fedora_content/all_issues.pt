@@ -11,14 +11,16 @@
                          journal               here/portal_properties/metadata_properties/journalname_abbr|nothing;
                          issue_date_format     here/portal_properties/dipp_properties/issue_date_format|nothing;
                          short_citation_format here/portal_properties/dipp_properties/short_citation_format|nothing;
-                         issues                python: here.portal_catalog(portal_type='Issue', sort_on='getIssueDate')">
+                         hide_current_issue    here/portal_properties/dipp_properties/hide_current_issue|nothing;
+                         start_issue           python:test(hide_current_issue,1,0);
+                         issues                python: here.portal_catalog(portal_type='Issue', sort_on='getIssueDate', sort_order='reverse')[start_issue:]">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
         
-        <h1 class="documentFirstHeading">
-          Issues/Ausgaben
+        <h1 class="documentFirstHeading" i18n:translate="archive" i18n:domain="dipp">
+          Ausgaben
         </h1>
     
         <a href=""
@@ -30,8 +32,10 @@
             Up one level
         </a>
 
-
-
+        <div class="documentDescription" i18n:translate="description_archive" i18n:domain="dipp">
+            Ein  chronologisches Verzeichnis aller erschienenen Ausgaben.
+        </div>
+        
         <p class="discreet"
            tal:condition="not:issues"
            i18n:translate="description_no_visible_issues"
