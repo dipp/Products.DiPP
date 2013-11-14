@@ -714,3 +714,9 @@ msgstr ""
 msgid "description_no_visible_articles"
 msgstr ""
 
+msgid "label_archive"
+msgstr ""
+
+msgid "description_archive"
+msgstr ""
+
