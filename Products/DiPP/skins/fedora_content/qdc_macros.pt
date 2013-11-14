@@ -956,7 +956,9 @@
             <label i18n:translate="label_identifierDOI" id="doi">DOI</label>
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_identifierDOI">
-                Digital Object Identifier 
+                DOI steht für Digital Object Identifier und dient ähnlich der URN als persistenter Identifier einer Resource.
+                DOIs bestehen aus einem internen Suffix und einem von einem Provider wie CrossRef oder der TIB vergebenen Prefix
+                das üblicherweise die Form "10.xxxx" hat.
             </div>
             <input type="text" name="identifierDOI"   value ="" tal:attributes="value request/identifierDOI|identifierDOI|nothing" />
             
