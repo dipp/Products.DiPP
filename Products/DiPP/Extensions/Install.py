@@ -14,7 +14,6 @@ from Products.DiPP import dippworkflow_globals
 from Products.DiPP.config import PROJECTNAME, DEPENDENCIES, VOCABULARIES, TOOLS
 from Products.DiPP.defaults import *
 from Products.DiPP.mail_templates import *
-from Products.DiPP.welcome import *
 from Products.DiPP.Extensions.utils import *
 from Products.DiPP import HAS_PLONE30
 
@@ -399,11 +398,6 @@ def install_metadataproperties(self,out):
         if not hasattr(props, prop_id):
             props.manage_addProperty(id=prop_id, value=prop_value, type=prop_type)
 
-def install_content(self, out, site_id=SITE_NAME):
-    """install some default content"""
-    site = getSite(self, site_id)
-    if not hasattr(site, DEFAULT_PAGE):
-        site.invokeFactory('Document',id=DEFAULT_PAGE,title=WELCOME_TITLE,description=WELCOME_DESCRIPTION,text=WELCOME_TEXT,text_format="html")
 
 def install_dependencies(self,out,site_id=SITE_NAME):
     """Try to install dependencies to other products"""
@@ -492,7 +486,6 @@ def install(self):
     install_properties(self, out)
     install_metadataproperties(self,out)
     install_profiles(self,out)
-    install_content(self, out)
     install_groups_and_roles(self, out)
     install_tools(self, out)
     create_vocabularies(self, out)
