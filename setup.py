@@ -12,7 +12,7 @@ def read(*rnames):
 __version__ = read('Products','DiPP','version.txt').strip()
 
 long_description = (
-    read('README.txt')
+    read('README.rst')
     )
 
 tests_require = ['zope.testing']
@@ -39,9 +39,9 @@ setup(name='Products.DiPP',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'Products.TextIndexNG3',
+        'Products.TextIndexNG3 == 3.3.4',
         'Products.ATVocabularyManager',
-        'Products.LinguaPlone',
+        'Products.LinguaPlone == 3.2',
         'dipp.tools >= 0.4',
         'dipp.dipp2',
         'bibliograph.core',
