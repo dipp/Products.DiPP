@@ -6,9 +6,12 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-             tal:define="path           python:'/'.join(here.getPhysicalPath());
-                         show_covers    here/volume_show_covers|here/portal_properties/dipp_properties/volume_show_covers|nothing;
-                         issues python: here.portal_catalog(portal_type='Issue')">
+             tal:define="path                  python:'/'.join(here.getPhysicalPath());
+                         show_covers           here/volume_show_covers|here/portal_properties/dipp_properties/volume_show_covers|nothing;
+                         journal               here/portal_properties/metadata_properties/journalname_abbr|nothing;
+                         issue_date_format     here/portal_properties/dipp_properties/issue_date_format|nothing;
+                         short_citation_format here/portal_properties/dipp_properties/short_citation_format|nothing;
+                         issues                python: here.portal_catalog(portal_type='Issue', sort_on='getIssueDate')">
         
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
@@ -44,6 +47,8 @@
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
                                    item_pid             item/getPID;
+                                   item_issue           item/getIssue;
+                                   item_volume          item/getVolume;
                                    item_date            item/getIssueDate;
                                    item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
                                    item_title_or_id     item/pretty_title_or_id;
@@ -55,7 +60,16 @@
                        <div class=""
                             tal:attributes="class python:test(show_covers,'issueinfo showcover','issueinfo')"> 
                            <div class="issuecontent">
-                               <em tal:content="item_date">gestern</em>
+
+                               <em>
+                                    <span tal:condition="python: issue_date_format and item_date" 
+                                          tal:content="python: short_citation_format % {'issue':item_issue,'volume':item_volume,'journal':journal}">Dez 2004</span>
+                                    
+                                    <span tal:condition="python: issue_date_format and item_date" 
+                                          tal:define="date python: item_date.strftime(issue_date_format)"
+                                          tal:content="date">Dez 2004</span>
+                               </em>
+                               
                                <h2>    
                                     <a href="#"
                                        tal:attributes="href item_url; 
