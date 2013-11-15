@@ -16,6 +16,9 @@
                    i18n:attributes="title"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
+            <div class="formHelp" i18n:translate="help_language">
+                In welcher Sprache ist der Artikel verfasst?
+            </div>
             <select name="language:list">
                 <option i18n:translate="" value="">---Sprache---</option>
                 <tal:block tal:repeat="language available_languages">
@@ -39,6 +42,9 @@
                    i18n:attributes="title"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
+            <div class="formHelp" i18n:translate="help_issn">
+                International Standard Serial Number
+            </div>
             <input type="text" name="identifierISSN" tal:attributes="value identifierISSN" />
         </div>
 
@@ -72,6 +78,10 @@
                    i18n:attributes="title"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
+            
+            <div class="formHelp" i18n:translate="help_ddc">
+                Die ersten drei Ebenen der <span i18n:name="ddc-link"><a i18n:translate="dewey_decimal_classification" href="http://dewey.info/">Dewey Decimal Classification</a></span> sind online verfügbar. 
+            </div>
             
             <table class="listing nosort metadata">
             <thead>
@@ -263,6 +273,9 @@
              i18n:domain="qdc">
             <label i18n:domain="qdc" i18n:translate="label_abstract">Abstract</label>
             <div tal:content="error">Validation error output</div>
+            <div class="formHelp" i18n:translate="help_abstract">
+                Es ist nur reiner Text erlaubt, keine HTML tags verwenden.
+            </div>
             <table class="listing nosort metadata">
             <thead>
                 <tr>
@@ -632,21 +645,38 @@
                         <ol class="keywords"
                             tal:define="allowedKeywords python:here.portal_catalog.uniqueValuesFor('Subject')">
                             <tal:block tal:repeat="keyword allowedKeywords">
-                            <li>
-                                <input type="checkbox" 
-                                       class="noborder"
-                                       name="subject:list"
-                                       value=""
-                                       id=""
-                                       tal:attributes="value keyword;
-                                                       id string: keyword_$keyword;
-                                                       checked python: keyword in subject"/>
-                                <label tal:content="keyword"
-                                       for=""
-                                       tal:attributes="selected python: keyword in subject;
-                                                       for string: keyword_$keyword;
-                                                       value keyword">sdaf</label>
-                            </li>
+                                <li tal:condition="python: keyword in subject">
+                                    <input type="checkbox" 
+                                           class="noborder"
+                                           name="subject:list"
+                                           value=""
+                                           id=""
+                                           tal:attributes="value keyword;
+                                                           id string: keyword_$keyword;
+                                                           checked python: keyword in subject"/>
+                                    <label tal:content="keyword"
+                                           for=""
+                                           tal:attributes="selected python: keyword in subject;
+                                                           for string: keyword_$keyword;
+                                                           value keyword">sdaf</label>
+                                </li>
+                            </tal:block>
+                            <tal:block tal:repeat="keyword allowedKeywords">
+                                <li tal:condition="python: keyword not in subject">
+                                    <input type="checkbox" 
+                                           class="noborder"
+                                           name="subject:list"
+                                           value=""
+                                           id=""
+                                           tal:attributes="value keyword;
+                                                           id string: keyword_$keyword;
+                                                           checked python: keyword in subject"/>
+                                    <label tal:content="keyword"
+                                           for=""
+                                           tal:attributes="selected python: keyword in subject;
+                                                           for string: keyword_$keyword;
+                                                           value keyword">sdaf</label>
+                                </li>
                             </tal:block>
                         </ol>
                     </td>
