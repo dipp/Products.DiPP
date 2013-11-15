@@ -25,8 +25,17 @@ msgstr ""
 msgid "label_language"
 msgstr ""
 
+msgid "help_language"
+msgstr "In welcher Sprache ist der Artikel verfasst?"
+
 msgid "label_ddc"
 msgstr ""
+
+msgid "help_ddc"
+msgstr "Die ersten drei Ebenen der ${ddc-link} sind online verfügbar"
+
+msgid "dewey_decimal_classification"
+msgstr "Dewey-Dezimalklassifikation"
 
 msgid "label_title"
 msgstr ""

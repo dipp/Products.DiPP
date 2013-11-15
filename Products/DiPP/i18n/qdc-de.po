@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2011-10-11 10:28+0100\n"
+"PO-Revision-Date: 2013-11-15 10:47+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -28,8 +28,17 @@ msgstr "Kurze Version des Titels, verwendet in der Kopfzeile des pdf."
 msgid "label_language"
 msgstr "Sprache"
 
+msgid "help_language"
+msgstr "In welcher Sprache ist der Artikel verfasst?"
+
 msgid "label_ddc"
 msgstr "DDC"
+
+msgid "help_ddc"
+msgstr "Die ersten drei Ebenen der ${ddc-link} sind online verfügbar."
+
+msgid "dewey_decimal_classification"
+msgstr "Dewey-Dezimalklassifikation"
 
 msgid "label_title"
 msgstr "Titel"
