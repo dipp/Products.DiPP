@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2013-11-15 10:49+0100\n"
+"PO-Revision-Date: 2013-11-15 11:11+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -48,6 +48,9 @@ msgstr "Alternative Title"
 
 msgid "label_abstract"
 msgstr "Abstract"
+
+msgid "help_abstract"
+msgstr "Only plain text is allowed, do not use HTML tags."
 
 msgid "label_creatorPerson"
 msgstr "Author"

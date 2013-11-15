@@ -46,6 +46,9 @@ msgstr ""
 msgid "label_abstract"
 msgstr ""
 
+msgid "help_abstract"
+msgstr ""
+
 msgid "label_creatorPerson"
 msgstr ""
 
