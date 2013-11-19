@@ -20,7 +20,8 @@ dp.manage_changeProperties({'deadline_change':request.form['deadline_change'],
                                 'actions_to_list':request.form['actions_to_list'],
                                 'deadline_next_change':request.form['deadline_next_change']})
 
-portal_status_message = "Änderungen wurden gespeichert"
+msg = "Änderungen an den Workflowrechten wurden gespeichert"
 
 if request:
-     request.RESPONSE.redirect(request.HTTP_REFERER + "?portal_status_message=" + portal_status_message)
+    context.plone_utils.addPortalMessage(msg)
+    request.RESPONSE.redirect(request.HTTP_REFERER)
