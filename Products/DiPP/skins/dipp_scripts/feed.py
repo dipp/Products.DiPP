@@ -21,7 +21,8 @@ stool = getToolByName(self, 'portal_syndication')
 bibtool = getToolByName(self, 'bibtool')
 catalog = getToolByName(self, 'portal_catalog')
 avtm = getToolByName(self, 'portal_vocabularies')
-portal     = portal_url.getPortalObject()
+portal = portal_url.getPortalObject()
+translate = context.translate
 
 limit = stool.getMaxItems()
 
@@ -44,8 +45,8 @@ except IndexError:
 section_name = section_dict.get(section,"All articles")
 
 if len(request.traverse_subpath) == 0 or type not in types:
-    msg = "No valid Feed"
-    RESPONSE.redirect('%s/feeds' % context.absolute_url() + '?portal_status_message=' + msg)
+    context.plone_utils.addPortalMessage(translate('no_valid_feed', domain='dipp'))
+    RESPONSE.redirect('%s/feeds' % context.absolute_url())
 
 elif type == "articles":
 
