@@ -14,6 +14,7 @@
             <label for="language" i18n:domain="qdc"  i18n:translate="label_language">sprache</label>
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_language">
@@ -40,6 +41,7 @@
             <label for="identifierISSN" i18n:translate="label_ISSN">ISSN</label>
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_issn">
@@ -59,6 +61,7 @@
             <label for="language" i18n:translate="label_URL">URL</label>
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             <input type="text" name="identifierURL" tal:attributes="value identifierURL" />
@@ -76,6 +79,7 @@
             <label for="DDC" i18n:translate="label_ddc">DDC</label>
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             
@@ -137,11 +141,19 @@
              class="field"
              tal:define="error errors/title|nothing;
                          languages here/portal_properties/metadata_properties/available_languages|nothing;
-                         titles request/title|python:qdc['title']"
+                         upload request/upload|nothing;
+                         title_value request/title_value|nothing;
+                         title_lang request/title_lang|nothing;
+                         form_titles python:test(upload, [{'value':title_value,'lang':title_lang}], qdc['title']);
+                         titles request/title|form_titles"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
             <label i18n:domain="qdc" i18n:translate="label_title">title</label>
             
+            <span class="fieldRequired" title="Required"
+                   i18n:attributes="title"
+                   i18n:domain="plone"
+                   i18n:translate="label_required">(Required)</span>
             
             <div tal:content="error">Validation error output</div>
             
@@ -170,10 +182,11 @@
                     </td>
                     <td>
                         <select name="title.lang:records">
-                            <tal:block tal:repeat="language languages">
+                            <option i18n:translate="" value="">---Sprache---</option>
+                            <tal:block tal:repeat="language available_languages">
                                 <option tal:attributes="value language;
                                                         selected python: language == title['lang']"
-                                        tal:content="language">ger</option> 
+                                        tal:content="python:all_languages[language]">ger</option> 
                             </tal:block>
                         </select>
                     </td>
@@ -185,18 +198,18 @@
                    tabindex=""
                    type="submit"
                    name="form.button.delTitle"
-                   value="delete selected"
+                   value="remove selected"
+                   i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
             <input class="context"
                    tabindex=""
                    type="submit"
                    name="form.button.addTitle"
-                   value="value_addTitle"
-                   i18n:attributes="value"
+                   value="add field"
+                   i18n:attributes="value add-field"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
-
         </div>
 
         <!-- ALTERNATIVER TITEL -->
@@ -207,7 +220,6 @@
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
             <label i18n:domain="qdc" i18n:translate="label_alternative">alternative</label>
-            
             
             <div tal:content="error">Validation error output</div>
             
@@ -341,6 +353,7 @@
          
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             
@@ -787,21 +800,25 @@
         <div metal:define-macro="pubType"
              class="field"
              tal:define="error errors/pubType|nothing;
-                         pubTypes python:qdc['pubType']"
+                         pubTypes request/pubType|python:qdc['pubType']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
             <label for="pubType" i18n:translate="label_pubType">pubType</label>
 
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
+
             <div tal:content="error">Validation error output</div>
+            
             <div class="formHelp" i18n:translate="help_pubType">
                 Geben Sie Art der Publikation an.
             </div>
+            
             <tal:block tal:repeat="pubType pubTypes">
                 <tal:block tal:define="i repeat/pubType/index">
-                    <div tal:content="structure python:here.pubTypeList('pubType:list',here.test('pubType',pubType, i))">
+                    <div tal:content="structure python:here.pubTypeList('pubType:list',pubType)">
                     </div>
                 </tal:block>
             </tal:block>
@@ -813,21 +830,26 @@
              class="field"
              tal:define="error errors/docType|nothing;
                          default string:text;
-                         docTypes python:qdc['docType']"
+                         docTypes request/docType|python:qdc['docType']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
 
             <label for="docType" i18n:translate="label_docType">docType</label>
+            
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
+            
             <div tal:content="error">Validation error output</div>
+            
             <div class="formHelp" i18n:translate="help_docType">
                 Geben Sie den Dokumententyp an.
             </div>
+            
             <tal:block tal:repeat="docType docTypes">
                 <tal:block tal:define="i repeat/docType/index">
-                    <div tal:content="structure python:here.docTypeList('docType:list',here.test('docType',docType, i))">
+                    <div tal:content="structure python:here.docTypeList('docType:list',docType)">
                     </div>
                 </tal:block>
             </tal:block>
@@ -884,6 +906,7 @@
             <label i18n:translate="label_bibliographicCitation" id="bc">Bibliographic Citation</label>
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_bibliographicCitation">
@@ -1006,6 +1029,7 @@
 
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
+                   i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_rights">

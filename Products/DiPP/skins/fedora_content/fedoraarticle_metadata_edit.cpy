@@ -34,11 +34,18 @@ if REQUEST.form.has_key('form.button.delDDC'):
     portal_status_message = translate('field-removed', domain='qdc')
 
 #add Title
+default = {'value':'','lang':''}
+title = REQUEST.get('title',None)
 if REQUEST.form.has_key('form.button.addTitle'):
-    newTitleNumber =int(REQUEST.get('newTitleNumber',None)) + 1
+    title.append(default)
     portal_status_message = translate('field-added', domain='qdc')
-else:
-    newTitleNumber =int(REQUEST.get('newTitleNumber',None))
+
+if REQUEST.form.has_key('form.button.delTitle'):
+    title_index = REQUEST.get('title_index',[])
+    title = del_from_list(title,title_index)
+    if len(title) == 0:
+        title.append(default) 
+    portal_status_message = translate('field-removed', domain='qdc')
 
 #add Alternative
 default = {'value':'','lang':''}
@@ -136,14 +143,12 @@ subject = [subject]
 
 context.plone_utils.addPortalMessage(portal_status_message)
 return state.set(status='success',\
-    newTitleNumber=newTitleNumber,
     storageType                = REQUEST.get('storageType',None),
     DDC                        = DDC,
     language                   = REQUEST.get('language',None),
     targetFormat               = REQUEST.get('targetFormat',None),
-    title_value                = REQUEST.get('title_value',None),
-    title_lang                 = REQUEST.get('title_lang',None),
     alternative                = alternative,
+    title                      = title,
     DCTermsAbstract            = DCTermsAbstract,
     subjects                   = REQUEST.get('subjects',None),
     creatorPerson              = creatorPerson,

@@ -1,19 +1,34 @@
-file                    = context.REQUEST.get('file', None)
-storageType             = context.REQUEST.get('storageType', None)
-language                = context.REQUEST.get('language', None)
-DDC                     = context.REQUEST.get('DDC', None)
-title_value             = context.REQUEST.get('title_value', None)
-title_lang              = context.REQUEST.get('title_lang', None)
-creatorPerson           = context.REQUEST.get('creatorPerson', None)
-subject                 = context.REQUEST.get('subject', None)
-subjectClassified       = context.REQUEST.get('subjectClassifield', None)
-bibliographicCitation   = context.REQUEST.get('bibliographicCitation', None)
-startpage               = context.REQUEST.get('startpage', None)
-endpage                 = context.REQUEST.get('endpage', None)
-rights                  = context.REQUEST.get('rights', None)
-dateSubmitted           = context.REQUEST.get('dateSubmitted', None)
-dateAccepted            = context.REQUEST.get('dateAccepted', None)
-dateCopyrighted         = context.REQUEST.get('dateCopyrighted', None)
+## Controlled Python Script "validate_qdc"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind state=state
+##bind subpath=traverse_subpath
+##parameters=self
+##title=Validates qualified Dublin Core metadata
+##
+
+request  = container.REQUEST
+RESPONSE = request.RESPONSE
+
+translate = context.translate
+
+file                    = request.get('file', None)
+storageType             = request.get('storageType', None)
+language                = request.get('language', None)
+DDC                     = request.get('DDC', None)
+title                   = request.get('title', None)
+creatorPerson           = request.get('creatorPerson', None)
+subject                 = request.get('subject', None)
+subjectClassified       = request.get('subjectClassifield', None)
+bibliographicCitation   = request.get('bibliographicCitation', None)
+startpage               = request.get('startpage', None)
+endpage                 = request.get('endpage', None)
+rights                  = request.get('rights', None)
+dateSubmitted           = request.get('dateSubmitted', None)
+dateAccepted            = request.get('dateAccepted', None)
+dateCopyrighted         = request.get('dateCopyrighted', None)
 
 from DateTime import DateTime
 
@@ -27,14 +42,17 @@ def is_integer(pagenumber):
 
 if storageType == "permanent":
 
-    if DDC[0] == "":
-        state.setError('DDC', 'Es muß eine DDC-Sachgruppe angegeben werden', new_status='failure')
+    for aDDC in DDC:
+        if aDDC == "":
+            state.setError('DDC', translate('error_ddc', domain='qdc'), new_status='failure')
 
-    if language[0] == "":
-        state.setError('language', 'Es muß eine Sprache angegeben werden', new_status='failure')
-
-    if creatorPerson[0]['firstName'] == "" or creatorPerson[0]['lastName'] == "":
-        state.setError('creatorPerson', 'Es muß mindestens ein Autor mit Vor- und Nachnamen angegeben werden.', new_status='failure')
+    for aLanguage in language:
+        if aLanguage == "":
+            state.setError('language', translate('error_language_required', domain='qdc'), new_status='failure')
+    
+    for author in creatorPerson:
+        if author['lastName'] == '' and author['firstName'] == '':
+            state.setError('creatorPerson', translate('error_creatorperson', domain='qdc'), new_status='failure')
 
     if str(subject) == '[]':
         state.setError('subject', 'Bitte geben Sie Schlagworte ein.', new_status='failure')
@@ -44,44 +62,41 @@ if storageType == "permanent":
             if date.strip() != '':
                 x = DateTime(date)
         except:
-            state.setError('dates', 'Falsches Datumsformat, verwenden Sie JJJJ-MM-TT', new_status='failure')
+            state.setError('dates', translate('error_dateformat', domain='qdc'), new_status='failure')
         
-        
-    bc = bibliographicCitation[0]
-    if str(bc['journalTitle']) == '':
-        state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-    if str(bc['journalVolume']) == '':
-        state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-    if str(bc['journalIssueDate']) == '':
-        state.setError('bibliographicCitation', 'Bitte füllen Sie das bibliographische Zitat vollständig aus.', new_status='failure')
-    else:
-        try:
-            date = DateTime(bc['journalIssueDate'])
-        except:
-            state.setError('bibliographicCitation', 'Falsches Datumsformat.', new_status='failure')
+    # citation   
+    citation = bibliographicCitation[0]
+    
+    for x in citation.keys():
+        if citation[x] == '':
+            state.setError('bibliographicCitation', translate('error_citation_required', domain='qdc'), new_status='failure')
+    try:
+        date = DateTime(citation['journalIssueDate'])
+    except:
+        state.setError('bibliographicCitation', translate('error_dateformat', domain='qdc'), new_status='failure')
+        #context.plone_log(e)
     
     # pagenumbers
-    if startpage and not is_integer(startpage):
-        state.setError('bibliographicCitation', 'Seitenzahlen sind ganze Zahlen.', new_status='failure')
-    if endpage and not is_integer(endpage):
-        state.setError('bibliographicCitation', 'Seitenzahlen sind ganze Zahlen.', new_status='failure')
+    for page in (startpage, endpage):
+        if page and not is_integer(page):
+            state.setError('bibliographicCitation', translate('error_pagenumber_integer', domain='qdc'), new_status='failure')
     
     if is_integer(startpage) and is_integer(endpage):
         if int(startpage) > int(endpage):
-            state.setError('bibliographicCitation', 'Erste Seite ist grüßer als zweite seite.', new_status='failure')
+            state.setError('bibliographicCitation', translate('error_pagenumber_order', domain='qdc'), new_status='failure')
             
     
     #if rights[0] == '':
     if not rights:
-        state.setError('rights', 'Bitte wählen Sie eine Lizenz.', new_status='failure')
+        state.setError('rights', translate('error_licence_required', domain='qdc'), new_status='failure')
 
-if title_value[0] == "" or title_lang[0] == "":
-    state.setError('title', 'Es muß ein Titel und eine Sprache  angegeben werden', new_status='failure')
+for aTitle in title:
+    if aTitle['value'] == '' or aTitle['lang'] == '':
+        state.setError('title', translate('error_title_required', domain='qdc'), new_status='failure')
 
 
 if state.getErrors():
-    state.set(portal_status_message='Bitte die angezeigten Fehler korrigieren!')
-    #state.set(portal_status_message=convert_only)
+    state.set(portal_status_message=translate('error_fix_indicated_errors', domain='qdc'))
      
 return state
 

@@ -1,26 +1,39 @@
-import string
-file          = context.REQUEST.get('file', None)
-title_value   = context.REQUEST.get('title_value', None)
-title_lang    = context.REQUEST.get('title_lang', None)
-LANGUAGE      = context.REQUEST.get('LANGUAGE', None)
+## Controlled Python Script "validate_upload_RTF"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind state=state
+##bind subpath=traverse_subpath
+##parameters=self
+##title=Validates the rtf upload
+##
+
+request  = container.REQUEST
+RESPONSE = request.RESPONSE
+
+translate = context.translate
+
+available_languages = self.portal_properties.metadata_properties.available_languages
+
+file             = request.get('file', None)
+article_title    = request.get('article_title', None)
+article_language = request.get('article_language', None)
+
 if not file:
-    if LANGUAGE == 'de':
-        state.setError('file', 'Bitte eine Datei auswählen', new_status='failure')
-    else:
-        state.setError('file', 'Please select a file', new_status='failure')
+    state.setError('file', translate('error_file_required', domain='qdc'), new_status='failure')
 else:
     extension = file.filename.lower().split('.')[-1]
     if extension not in ['rtf', 'pdf', 'xml']:
-        state.setError('file', 'This seems not to be a RTF, PDF or XML file', new_status='failure')
+        state.setError('file', translate('error_wrong_fileformat', domain='qdc'), new_status='failure')
+    #'This seems not to be a RTF, PDF or XML file'
+if article_title == "":
+    state.setError('article_title', translate('error_title_required', domain='qdc'), new_status='failure')
 
-if title_value[0] == "" or title_lang[0] == "":
-    if LANGUAGE == 'de':
-        state.setError('title', 'Es muß ein Titel und eine Sprache  angegeben werden', new_status='failure')
-    else:
-        state.setError('title', 'Please enter title and language', new_status='failure')
+if article_language not in available_languages:
+    state.setError('article_language', translate('error_language_required', domain='qdc'), new_status='failure')
+
 if state.getErrors():
-    if LANGUAGE == 'de':
-        state.set(portal_status_message='Bitte die angezeigten Fehler korrigieren!')
-    else:
-        state.set(portal_status_message='Please correct the indicated errors!')
+    state.set(portal_status_message=translate('error_fix_indicated_errors', domain='qdc'))
+
 return state

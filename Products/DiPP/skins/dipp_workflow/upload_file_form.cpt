@@ -18,20 +18,16 @@
                 <a href="#" i18n:name="fedora_tool_url" tal:attributes="href string:portal_url/fedora/manage_config_form">Configuration page</a> to fix this.
             </div>
         
-            <div metal:use-macro="here/document_actions/macros/document_actions">
-                Document actions (print, sendto etc)
-            </div>
-        
             <h1 i18n:translate="heading_file_submit">
                 Dokument - Dateiformular
             </h1>
 
-    <a href=""
-       class="link-parent"
-       tal:attributes="href string: $portal_url/editorial_toolbox"
-       i18n:translate="label_up_to_editorial_toolbox">
-    Up to Editorial Toolbox
-    </a>
+            <a href=""
+               class="link-parent"
+               tal:attributes="href string: $portal_url/editorial_toolbox"
+               i18n:translate="label_up_to_editorial_toolbox">
+                 Up to Editorial Toolbox
+            </a>
 
             
                 <form tal:condition="journalPID"
@@ -49,70 +45,75 @@
                     <input type="hidden" name="journalPID"      value="" tal:attributes="value journalPID" />
                     <input type="hidden" name="bc_journalTitle" value="" tal:attributes="value portal_properties/title|nothing" />
                     
-          <fieldset>
-            <legend i18n:translate="title">Titel</legend>
-            <!-- TITLE -->
-            <div class="field"
-                 tal:define="error errors/title|nothing;
-                             titles python:qdc['title'];
-                             titleNumber python:len(titles);
-                             newTitleNumber request/newTitleNumber|titleNumber"
-                 tal:attributes="class python:test(error, 'field error', 'field')"
-                 i18n:domain="qdc">
+                    <!-- TITLE -->
+                    <div class="field"
+                         tal:define="error errors/article_title|nothing;
+                                     article_title request/article_title|nothing;"
+                         tal:attributes="class python:test(error, 'field error', 'field')"
+                         i18n:domain="qdc">
 
-                <input type="hidden" name="newTitleNumber" value="" tal:attributes="value newTitleNumber"/>
-                <input type="hidden" name="titleNumber" value="" tal:attributes="value titleNumber"/>
+                        <label i18n:domain="qdc" i18n:translate="label_title">title</label>
 
-                <span class="fieldRequired" title="Required"
-                       i18n:attributes="title"
-                       i18n:translate="label_required">(Required)</span>
-                <div tal:content="error">Validation error output</div>
-                <table class="listing">
-                    <tr>
-                        <th i18n:translate="label_title">Titel</th>
-                        <th i18n:translate="label_language">Sprache</th>
-                    </tr>
-                    <tr tal:repeat="title titles">
-                        <td>
-                            <input type="text"
-                                   name="title_value:list"
-                                   class="title"
-                                   tal:define="i repeat/title/index;
-                                               value python:title['value']"
-                                   tal:attributes="value python: here.test('title_value',value,i)" />
-                        </td>
-                        <td tal:define="i repeat/title/index;
-                                        lang python:title['lang']" 
-                            tal:content="structure python:here.langList('title_lang:list',here.test('title_lang',lang,i))">
-                            Sprachauswahlliste
-                            <input type="text"
-                                   class="language"
-                                   name="title_lang:list"
-                                   tal:define="i repeat/title/index;
-                                               value python:title['lang']"
-                                   tal:attributes="value python: here.test('title_lang',value,i)" />
-                        </td>
-                    </tr>
-                </table>
+                        <span class="fieldRequired" title="Required"
+                               i18n:attributes="title"
+                               i18n:domain="plone"
+                               i18n:translate="label_required">(Required)</span>
 
-            </div>
+                        <div tal:content="error">Validation error output</div>
+                        
+                        <input type="text"
+                               name="article_title"
+                               class="title"
+                               tal:attributes="value article_title" />
 
-          </fieldset>
+                    </div>
 
-          <fieldset>
-            <legend i18n:translate="label_file">Dokument-Datei</legend>
+                    <!-- LANGUAGE-->
+                    <div class="field"
+                         tal:define="error errors/article_language|nothing;
+                                     article_language request/article_language|nothing;
+                                     all_languages python:here.fedora.getLanguages();
+                                     available_languages here/portal_properties/metadata_properties/available_languages|nothing"
+                         tal:attributes="class python:test(error, 'field error', 'field')"
+                         i18n:domain="qdc">
+                        
+                        <label for="language" i18n:domain="qdc"  i18n:translate="label_language">sprache</label>
+                        
+                        <span class="fieldRequired" title="Required"
+                               i18n:attributes="title"
+                               i18n:domain="plone"
+                               i18n:translate="label_required">(Required)</span>
+                        
+                        <div tal:content="error">Validation error output</div>
+                        
+                        <div class="formHelp" i18n:translate="help_language">
+                            In welcher Sprache ist der Artikel verfasst?
+                        </div>
+                        <select name="article_language">
+                            <option i18n:translate="" value="">---Sprache---</option>
+                            <tal:block tal:repeat="language available_languages">
+                                <option tal:attributes="value language;
+                                                        selected python: language == article_language"
+                                        tal:content="python:all_languages[language]">ger</option> 
+                            </tal:block>
+                        </select>
+                    </div>
+
                     
                     <div class="field"
                         tal:define="error errors/file|nothing;
                                     file request/file|nothing"
-                        tal:attributes="class python:test(error, 'field error', 'field')"
-                        >
-
+                        tal:attributes="class python:test(error, 'field error', 'field')" >
+                        
+                        <label i18n:translate="label_file">file</label>
 
                         <span class="fieldRequired" title="Required"
                                i18n:attributes="title"
+                               i18n:domain="plone"
                                i18n:translate="label_required">(Required)</span>
+                        
                         <div tal:content="error">Validation error output</div>
+
                         <div class="formHelp" i18n:domain="dipp" i18n:translate="help_file">
                             Wählen Sie  den Artikel im RTF, PDF oder XML (docbook) Format aus.
                         </div>
@@ -120,13 +121,7 @@
                         <!-- Dateivorauswahl aus SicherheitsgrŸnden nicht mšglich, vgl. http://de.selfhtml.org/html/formulare/datei_upload.htm  -->
                         <input type="file" class="file" id="file" name="file"  size="50"/>
 
-
-
-
                     </div>
-
-          </fieldset>
-
 
                     <input class="context"
                            tabindex=""
@@ -138,6 +133,7 @@
                                             title help_testUpload;"
                            tal:attributes="tabindex tabindex/next;
                                            disabled python:test(isLocked, 'disabled', None);" />
+                    
                     <input class="context"
                            tabindex=""
                            type="submit"

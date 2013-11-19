@@ -74,10 +74,12 @@ if formButton != None :
 else:
     storageType = 'permanent'
 
+
 state.set(status=storageType,
     journalPID=JournalPID,
-    title_value=request['title_value'],
-    title_lang=request['title_lang'],
+    title_value=request['article_title'],
+    title_lang=request['article_language'],
+    upload = True,
     storageType=storageType,
     targetFormat=targetFormat,
     Location=Location)

@@ -35,11 +35,11 @@ if REQUEST.form.has_key('form.button.delDDC'):
 context.plone_log(DDC)
 
 #add Title
+default = {'value':'','lang':''}
+title = REQUEST.get('title',None)
 if REQUEST.form.has_key('form.button.addTitle'):
-    newTitleNumber =int(REQUEST.get('newTitleNumber',None)) + 1
-    portal_status_message = REQUEST.get('portal_status_message', 'Neues Titel-Feld wurde hinzugefügt')
-else:
-    newTitleNumber =int(REQUEST.get('newTitleNumber',None))
+    title.append(default)
+    portal_status_message = REQUEST.get('portal_status_message', 'Neues Titelfeld wurde hinzugefügt')
 
 #add Alternative
 default = {'value':'','lang':''}
@@ -138,13 +138,11 @@ subject = [subject]
 
 return state.set(status='success',\
     portal_status_message=portal_status_message,\
-    newTitleNumber=newTitleNumber,
     storageType                = REQUEST.get('storageType',None),
     DDC                        = DDC,
     language                   = REQUEST.get('language',None),
     targetFormat               = REQUEST.get('targetFormat',None),
-    title_value                = REQUEST.get('title_value',None),
-    title_lang                 = REQUEST.get('title_lang',None),
+    title                      = title,
     alternative                = alternative,
     DCTermsAbstract            = DCTermsAbstract,
     subjects                   = REQUEST.get('subjects',None),

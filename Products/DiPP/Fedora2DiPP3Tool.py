@@ -403,11 +403,16 @@ class Fedora(UniqueObject, Folder):
 
         # Titel   
         DCMetadata._title = []
-        for i in range(len(params['title_value'])):
+        for title in params['title']:
             x = DCMetadata.new_title()
-            x._value =  params['title_value'][i]
-            x._lang =  params['title_lang'][i]
+            x._value =  title['value']
+            x._lang  =  title['lang']
             DCMetadata._title.append(x)
+        #for i in range(len(params['title_value'])):
+        #    x = DCMetadata.new_title()
+        #    x._value =  params['title_value'][i]
+        #    x._lang =  params['title_lang'][i]
+        #    DCMetadata._title.append(x)
 
         # alternativer Titel
         DCMetadata._alternative = []
@@ -469,7 +474,7 @@ class Fedora(UniqueObject, Folder):
         for DDC in DDCs:
             DCMetadata._DDC.append(DDC)
 
-        #subject
+        # subject
         subject = []
         try:
             subjects = params['subject']
@@ -480,7 +485,7 @@ class Fedora(UniqueObject, Folder):
             pass 
         DCMetadata._subject=subject
 
-        #subjectClassified
+        # subjectClassified
         DCMetadata._subjectClassified = []
         for subjectClassified in params['subjectClassified']:
             x = DCMetadata.new_subjectClassified()
@@ -490,7 +495,7 @@ class Fedora(UniqueObject, Folder):
             DCMetadata._subjectClassified.append(x)
         
      
-        #language
+        # language
         DCMetadata._language = []
         try:
             languages = params['language']
@@ -499,7 +504,7 @@ class Fedora(UniqueObject, Folder):
         except:
             DCMetadata._language.append("")
         
-        #publisher
+        # publisher
         try:
             publishers = params['publisher']
             DCMetadata._publisher = []
@@ -549,7 +554,7 @@ class Fedora(UniqueObject, Folder):
             except:
                 pass
 
-        #bibliographicCitation
+        # bibliographicCitation
         DCMetadata._bibliographicCitation = []
         bc = params['bibliographicCitation'][0]
         x = DCMetadata.new_bibliographicCitation()
@@ -559,7 +564,7 @@ class Fedora(UniqueObject, Folder):
         x._journalVolume = bc['journalVolume']
         DCMetadata._bibliographicCitation.append(x)
      
-        #rights
+        # rights
         DCMetadata._rights=[]
         try:
             rights = params['rights']
@@ -569,24 +574,24 @@ class Fedora(UniqueObject, Folder):
         except:
             pass
         
-        #ISSN
+        # ISSN
         try:
             DCMetadata._identifierISSN = params['identifierISSN']
         except:
             pass
-        #URL
+        # URL
         try:
             DCMetadata._identifierURL = params['identifierURL']
         except:
             pass
 
-        #DOI
+        # DOI
         try:
             DCMetadata._identifierDOI = params['identifierDOI']
         except:
             pass
 
-        #pubType
+        # pubType
         try:
             DCMetadata._pubType = []
             pubType = params['pubType'][0]
@@ -594,7 +599,7 @@ class Fedora(UniqueObject, Folder):
         except:
             pass
 
-        #docType
+        # docType
         try:
             DCMetadata._docType =[]
             docType = params['docType'][0]
@@ -602,7 +607,7 @@ class Fedora(UniqueObject, Folder):
         except:
             pass
 
-        #articleType
+        # articleType
         DCMetadata._articleType = []
         try:
             articleType = params['articleType']

@@ -20,6 +20,8 @@ portal     = portal_url.getPortalObject()
 Location   = request.get('Location')
 storageType = request.get('storageType')
 targetFormat = request.get('targetFormat')
+article_title = request.get('title_value')
+article_language = request.get('title_lang')
 
 
 if Location.startswith('https'):
@@ -37,6 +39,7 @@ now = DateTime().strftime("%Y-%m-%d")
 if storageType == 'temporary':
     params['storageType'] = storageType
     params['targetFormat'] = targetFormat
+    params['title'] = [{'value':article_title,'lang':article_language}]
     params['alternative'] = [{'value':'','lang':''}]
     params['DCTermsAbstract'] = []
     params['creatorPerson'] = [{'firstName':'John','lastName':'Doe'}]
@@ -49,6 +52,7 @@ if storageType == 'temporary':
     params['bibliographicCitation'] = [{'journalIssueDate':now,'journalIssueNumber':'n/a','journalTitle':'n/a','journalVolume':'n/a'}]
     params['rights'] = ['DPPL']
 
+context.plone_log(params['title'])
 
 newPID = fedora.createNewArticle(JournalPID, JournalPID, params, Location)
 context.plone_log('new article created: %s' % newPID)

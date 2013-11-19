@@ -36,86 +36,8 @@
             <input type="hidden" name="form.submitted" value="1" />
             <input type="hidden" name="PID" tal:attributes="value here/PID" />
                 
-            <!-- TITLE -->
-            <div class="field"
-                 tal:define="error errors/title|nothing;
-                             titles python:qdc['title'];
-                             titleNumber python:len(titles);
-                             newTitleNumber request/newTitleNumber|titleNumber"
-                 tal:attributes="class python:test(error, 'field error', 'field')"
-                 i18n:domain="qdc">
-
-                <input type="hidden" name="newTitleNumber" value="" tal:attributes="value newTitleNumber"/>
-                <input type="hidden" name="titleNumber" value="" tal:attributes="value titleNumber"/>
-
-                <label for="title" i18n:translate="label_title">title</label>
-                <span class="fieldRequired" title="Required"
-                       i18n:attributes="title"
-                       i18n:translate="label_required">(Required)</span>
-                <div tal:content="error">Validation error output</div>
-                <table class="listing">
-                    <tr>
-                        <th>#</th>
-                        <th>Titel</th>
-                        <th>Sprache</th>
-                    </tr>
-                    <tr tal:repeat="title titles">
-                        <td tal:content="repeat/title/number">#</td>
-                        <td>
-                            <input type="text"
-                                   name="title_value:list"
-                                   tal:define="i repeat/title/index;
-                                               value python:title['value']"
-                                   tal:attributes="value python: here.test('title_value',value,i)" />
-                        </td>
-                        <td>
-                            <select name="title_lang:list">
-                                <option i18n:translate="">---Sprache---</option>
-                                <tal:block tal:repeat="language available_languages">
-                                    <option tal:attributes="value language;
-                                                            selected python: language == title['lang']"
-                                            tal:content="python:all_languages[language]">ger</option> 
-                                </tal:block>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr tal:condition="python: newTitleNumber > titleNumber"
-                        tal:repeat="title python:range(int(titleNumber),int(newTitleNumber))">
-                        <tal:block tal:define="number repeat/title/number;
-                                               index  repeat/title/index;
-                                               no     python:number + titleNumber;
-                                               i      python:index + titleNumber">
-                            <td tal:content="no">#</td>
-                            <td>
-                                <input type="text"
-                                       name="title_value:list"
-                                       tal:attributes="value python: here.test('title_value',None,i)" />
-                            </td>
-                            <td>
-                                <select name="title_lang:list">
-                                    <option i18n:translate="">---Sprache---</option>
-                                    <tal:block tal:repeat="language available_languages">
-                                        <option tal:attributes="value language"
-                                                tal:content="python:all_languages[language]">ger</option> 
-                                    </tal:block>
-                                </select>
-                            </td>
-                        </tal:block>    
-                    </tr>
-                </table>
-                <input class="context"
-                       tabindex=""
-                       type="submit"
-                       name="form.button.addTitle"
-                       value="add Title"
-                       i18n:attributes="value"
-                       tal:attributes="tabindex tabindex/next;
-                                       disabled python:test(isLocked, 'disabled', None);" />
-
-
-            </div>
-            
             <div id="qdc-fields">
+                <div metal:use-macro="here/qdc_macros/macros/title"> Language </div>
                 <div metal:use-macro="here/qdc_macros/macros/language"> Language </div>
                 <div metal:use-macro="here/qdc_macros/macros/ddc"> DDC </div>
                 <div metal:use-macro="here/qdc_macros/macros/alternative"> alternative </div>
@@ -154,7 +76,6 @@
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
         </form>
-            		
     </tal:main-macro>
 </metal:main>
 
