@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2013-11-15 11:10+0100\n"
+"PO-Revision-Date: 2013-11-19 09:40+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -180,6 +180,21 @@ msgstr "veröffentlicht"
 
 msgid "label_copyrighted"
 msgstr "urheberrechtlich geschützt"
+
+msgid "error_file_required"
+msgstr "Bitte wählen Sie eine Datei aus."
+
+msgid "error_wrong_fileformat"
+msgstr "Die Datei hat das falsche Format. Nur RTF, PDF, oder DocBook XML sind erlaubt."
+
+msgid "error_title_required"
+msgstr "Bitte geben Sie einen Artikeltitel ein."
+
+msgid "error_language_required"
+msgstr "Bitte wählen Sie Sprache aus, in der der Artikel verfasst ist."
+
+msgid "error_fix_indicated_errors"
+msgstr "Bitte korrigieren Sie die angezeigten Fehler."
 
 #~ msgid "label_language_ddc"
 #~ msgstr "Sprache und DDC des Dokuments"

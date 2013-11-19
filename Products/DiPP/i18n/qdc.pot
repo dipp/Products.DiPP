@@ -177,3 +177,19 @@ msgstr ""
 
 msgid "label_copyrighted"
 msgstr ""
+
+msgid "error_file_required"
+msgstr ""
+
+msgid "error_wrong_fileformat"
+msgstr ""
+
+msgid "error_title_required"
+msgstr ""
+
+msgid "error_language_required"
+msgstr ""
+
+msgid "error_fix_indicated_errors"
+msgstr ""
+
