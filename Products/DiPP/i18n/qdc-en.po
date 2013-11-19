@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-en\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2013-11-19 09:44+0100\n"
+"PO-Revision-Date: 2013-11-19 14:58+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -195,6 +195,24 @@ msgstr "Please choose the language the article is written in."
 
 msgid "error_fix_indicated_errors"
 msgstr "Please fix the indicated errors."
+
+msgid "error_creatorperson"
+msgstr "At least one author with first and lastname is required."
+
+msgid "error_ddc"
+msgstr "A minimium of one DDC ist required."
+
+msgid "error_dateformat"
+msgstr "The date must have the format YYYY-MM-DD"
+
+msgid "error_citation_required"
+msgstr "Please provide the full bibliographic citation. Pagenumbers are optional."
+
+msgid "error_pagenumber_integer"
+msgstr "Page numbers must be integers."
+
+msgid "error_pagenumber_order"
+msgstr "The last page can not be larger than the first page."
 
 #~ msgid "label_language_ddc"
 #~ msgstr "Language and DDC of the Document"

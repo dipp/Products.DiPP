@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2013-11-19 09:40+0100\n"
+"PO-Revision-Date: 2013-11-19 14:55+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -195,6 +195,24 @@ msgstr "Bitte wählen Sie Sprache aus, in der der Artikel verfasst ist."
 
 msgid "error_fix_indicated_errors"
 msgstr "Bitte korrigieren Sie die angezeigten Fehler."
+
+msgid "error_creatorperson"
+msgstr "Geben Sie mindestens einen Autor mit Vor- und Nachnamen an."
+
+msgid "error_ddc"
+msgstr "Mindestens ein DDC Wert ist erforderlich."
+
+msgid "error_dateformat"
+msgstr "Geben Sie das Datum im Format JJJJ-MM-TT an."
+
+msgid "error_citation_required"
+msgstr "Geben Sie das bibliographische Zitat vollständig an. Seitenzahlen sind optional."
+
+msgid "error_pagenumber_integer"
+msgstr "Seitenzahlen können nur ganze Zahlen sein."
+
+msgid "error_pagenumber_order"
+msgstr "Die erste Seite muss kleiner sein als die letzte."
 
 #~ msgid "label_language_ddc"
 #~ msgstr "Sprache und DDC des Dokuments"

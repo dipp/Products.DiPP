@@ -193,3 +193,24 @@ msgstr ""
 msgid "error_fix_indicated_errors"
 msgstr ""
 
+msgid "error_creatorperson"
+msgstr ""
+
+msgid "error_ddc"
+msgstr ""
+
+msgid "error_dateformat"
+msgstr ""
+
+msgid "error_citation_required"
+msgstr ""
+
+msgid "error_pagenumber_integer"
+msgstr ""
+
+msgid "error_pagenumber_order"
+msgstr ""
+
+msgid "error_licence_required"
+msgstr
+
