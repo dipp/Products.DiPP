@@ -36,4 +36,3 @@ if REQUEST:
     msg = translate('metadata-updated', domain='qdc')
     context.plone_utils.addPortalMessage(msg)
     REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER)
-    #REQUEST.RESPONSE.redirect(REQUEST.HTTP_REFERER + "?portal_status_message=" + portal_status_message)
