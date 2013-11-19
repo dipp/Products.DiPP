@@ -615,6 +615,9 @@ msgstr ""
 msgid "feed-all-articles"
 msgstr ""
 
+msgid "no_valid_feed"
+msgstr ""
+
 msgid "recent_articles"
 msgstr ""
 
