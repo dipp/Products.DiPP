@@ -41,6 +41,21 @@ LANGUAGES = {
     'fin':'Finnish'
 }
 
+PUBTYPES = {
+    'article':'Zeitschriftenartikel',
+    'report':'Bericht',
+    'paper':'Paper',
+    'conf-proceeding':'Tagungs- und Konferenzbeitrag',
+    'lecture':'Vorlesung'
+}
+
+DOCTYPES = {
+    'text':'Text',
+    'image':'Bilder',
+    'multimedia':'Multimediadateien',
+    'data':'Daten'
+}
+
 # format: medatata, visible, required, default
 # all not listed metadata are True, True, ""
 DEFAULT_METADATA = (

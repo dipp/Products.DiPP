@@ -16,6 +16,8 @@ portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
 utils = context.plone_utils
 
+mprops = self.portal_properties.metadata_properties
+
 file         = request['file']
 JournalPID   = request['journalPID']
 
@@ -48,9 +50,6 @@ Location = obj.absolute_url()
 if Location.startswith('https'):
     Location = Location.replace('https','http',1)
 
-#context.plone_log
-#LOG('DiPP File Location', INFO, Location )
-
 MIMEType = obj.content_type
 size     = obj.size
 
@@ -74,12 +73,19 @@ if formButton != None :
 else:
     storageType = 'permanent'
 
+default_pubType = mprops.default_pubType
+default_docType = mprops.default_docType
+journalname = mprops.journalname
+
 
 state.set(status=storageType,
     journalPID=JournalPID,
     title_value=request['article_title'],
     title_lang=request['article_language'],
     upload = True,
+    pubType = [default_pubType],
+    docType = [default_docType],
+    journalname = journalname,
     storageType=storageType,
     targetFormat=targetFormat,
     Location=Location)

@@ -13,10 +13,10 @@ from DateTime import DateTime
 request  = context.REQUEST
 
 translate = context.translate
-
 fedora = getToolByName(context, 'fedora')
 portal_url = getToolByName(context, 'portal_url')
 portal     = portal_url.getPortalObject()
+
 Location   = request.get('Location')
 storageType = request.get('storageType')
 targetFormat = request.get('targetFormat')
@@ -47,8 +47,6 @@ if storageType == 'temporary':
     params['contributor'] = []
     params['DDC'] = ['']
     params['subjectClassified'] = []
-    params['pubType'] = ['']
-    params['docType'] = ['']
     params['bibliographicCitation'] = [{'journalIssueDate':now,'journalIssueNumber':'n/a','journalTitle':'n/a','journalVolume':'n/a'}]
     params['rights'] = ['DPPL']
 

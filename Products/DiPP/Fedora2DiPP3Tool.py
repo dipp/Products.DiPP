@@ -41,7 +41,7 @@ from dipp.dipp3 import ContentModel
 from dipp.tools import openurl
 
 from backissues import import_backissues
-from config import view_permission, LANGUAGES, DEFAULT_METADATA
+from config import view_permission, LANGUAGES, PUBTYPES, DOCTYPES, DEFAULT_METADATA
 
 logger = logging.getLogger("DiPP")
 
@@ -1117,6 +1117,14 @@ class Fedora(UniqueObject, Folder):
     def getLanguages(self):
         """return a dictionary with languages codes"""
         return LANGUAGES
+    
+    def getPubtypes(self):
+        """return a dictionary with possible pubtypes"""
+        return PUBTYPES
+    
+    def getDoctypes(self):
+        """return a dictionary with possible doctypes"""
+        return DOCTYPES
 
     def diffDatastreamVersions(self, PID, DsID, version1date, version2date):
         """return the difference between two versions of a datastream"""

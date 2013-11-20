@@ -800,11 +800,13 @@
         <div metal:define-macro="pubType"
              class="field"
              tal:define="error errors/pubType|nothing;
-                         pubTypes request/pubType|python:qdc['pubType']"
+                         pubTypes python:here.fedora.getPubtypes();
+                         pubType request/pubType|python:qdc['pubType']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
-            <label for="pubType" i18n:translate="label_pubType">pubType</label>
 
+            <label for="pubType" i18n:translate="label_pubType">pubType</label>
+            
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
                    i18n:domain="plone"
@@ -815,13 +817,15 @@
             <div class="formHelp" i18n:translate="help_pubType">
                 Geben Sie Art der Publikation an.
             </div>
-            
-            <tal:block tal:repeat="pubType pubTypes">
-                <tal:block tal:define="i repeat/pubType/index">
-                    <div tal:content="structure python:here.pubTypeList('pubType:list',pubType)">
-                    </div>
+
+            <select name="pubType:list">
+                <tal:block tal:repeat="aPubType pubTypes">
+                    <option tal:attributes="value aPubType;
+                                            selected python:aPubType in pubType"
+                            tal:content="python:pubTypes[aPubType]">
+                    article</option>
                 </tal:block>
-            </tal:block>
+            </select>
 
         </div>
 
@@ -829,8 +833,8 @@
         <div metal:define-macro="docType"
              class="field"
              tal:define="error errors/docType|nothing;
-                         default string:text;
-                         docTypes request/docType|python:qdc['docType']"
+                         docTypes python:here.fedora.getDoctypes();
+                         docType request/docType|python:qdc['docType']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
 
@@ -847,12 +851,14 @@
                 Geben Sie den Dokumententyp an.
             </div>
             
-            <tal:block tal:repeat="docType docTypes">
-                <tal:block tal:define="i repeat/docType/index">
-                    <div tal:content="structure python:here.docTypeList('docType:list',docType)">
-                    </div>
+            <select name="docType:list">
+                <tal:block tal:repeat="aDocType docTypes">
+                    <option tal:attributes="value aDocType;
+                                            selected python:aDocType in docType"
+                            tal:content="python:docTypes[aDocType]">
+                    text</option>
                 </tal:block>
-            </tal:block>
+            </select>
 
         </div>
 
