@@ -30,6 +30,8 @@ if Location.startswith('https'):
 JournalPID = request.get('journalPID')
 params     = request.form
 
+context.plone_log(params)
+
 new_subjects = params.get('new_subjects', [])
 subject = params.get('subject',[])
 subjects = subject + new_subjects
@@ -50,7 +52,6 @@ if storageType == 'temporary':
     params['bibliographicCitation'] = [{'journalIssueDate':now,'journalIssueNumber':'n/a','journalTitle':'n/a','journalVolume':'n/a'}]
     params['rights'] = ['DPPL']
 
-context.plone_log(params['title'])
 
 newPID = fedora.createNewArticle(JournalPID, JournalPID, params, Location)
 context.plone_log('new article created: %s' % newPID)
