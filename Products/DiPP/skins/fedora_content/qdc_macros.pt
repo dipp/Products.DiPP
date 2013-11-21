@@ -141,7 +141,6 @@
              class="field"
              tal:define="error errors/title|nothing;
                          languages here/portal_properties/metadata_properties/available_languages|nothing;
-                         upload request/upload|nothing;
                          title_value request/title_value|nothing;
                          title_lang request/title_lang|nothing;
                          form_titles python:test(upload, [{'value':title_value,'lang':title_lang}], qdc['title']);
@@ -903,7 +902,7 @@
         <div metal:define-macro="bibliographicCitation"
             class="field"
             tal:define="error errors/bibliographicCitation|nothing;
-                        defaultJournalTitle portal_properties/title|nothing;    
+                        defaultJournalTitle here/portal_properties/metadata_properties/journalname|nothing;    
                         bibliographicCitation  request/bibliographicCitation|python:qdc['bibliographicCitation'];
                         startpage request/startpage|here/startpage|nothing;
                         endpage request/endpage|here/endpage|nothing"
@@ -954,18 +953,20 @@
                                 type="text"
                                 name="startpage"
                                 value=""
-                                tal:attributes="value startpage" />
+                                tal:attributes="value startpage;
+                                                disabled python: upload" />
                     </td>
                     <td>
                         <input class="pagenumber"
                                type="text" 
                                name="endpage"
                                value=""
-                               tal:attributes="value endpage" />
+                               tal:attributes="value endpage;
+                                               disabled python: upload" />
                     </td>
                     <td>
                         <input class="journalIssueDate" 
-                               type="text" 
+                               type="date" 
                                maxlength="10"
                                name="bibliographicCitation.journalIssueDate:records"   
                                value =""

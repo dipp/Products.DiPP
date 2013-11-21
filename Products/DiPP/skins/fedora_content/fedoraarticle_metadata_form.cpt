@@ -30,11 +30,13 @@
         <form name="fedoradocument_edit_form"
               method="post"
               enctype="multipart/form-data"
-              tal:define="errors options/state/getErrors"
+              tal:define="errors options/state/getErrors;
+                          upload request/upload|nothing"
               tal:attributes="action python:here.absolute_url()+'/'+template.id" >
 
             <input type="hidden" name="form.submitted" value="1" />
             <input type="hidden" name="PID" tal:attributes="value here/PID" />
+            <input type="hidden" name="upload"            value="upload" />
                 
             <div id="qdc-fields">
                 <div metal:use-macro="here/qdc_macros/macros/title"> Language </div>

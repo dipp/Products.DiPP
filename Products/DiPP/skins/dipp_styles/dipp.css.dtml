@@ -166,7 +166,9 @@ input.journalVolume { width: 5em; }
 input.journalIssueNumber { width: 5em; }
 input.pagenumber { width: 5em; }
 input.journalIssueDate { width: 10em; }
-
+input:disabled {
+    background:#dddddd;
+}
 ol.keywords {
     list-style: None;
     margin:0;

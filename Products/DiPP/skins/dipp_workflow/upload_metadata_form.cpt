@@ -22,6 +22,7 @@
                                   storageType string:permanent;
                                   Location request/Location|nothing;
                                   targetFormats request/targetFormat;
+                                  upload request/upload|nothing;
                                   storage request/form/storageType|storageType;
                                   available_languages here/portal_properties/metadata_properties/available_languages|nothing;
                                   all_languages python:here.fedora.getLanguages()"
@@ -35,6 +36,7 @@
                     <input type="hidden" name="journalPID"        value="" tal:attributes="value here/fedora/PID" />
                     <input type="hidden" name="Location"          value="" tal:attributes="value python:Location" />
                     <input type="hidden" name="storageType"       value="permanent" />
+                    <input type="hidden" name="upload"            value="upload" />
                     <tal:block tal:repeat="targetFormat targetFormats">
                         <input type="hidden" name="targetFormat:list"      
                                value="" tal:attributes="value python:targetFormat" />

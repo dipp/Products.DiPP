@@ -61,6 +61,7 @@
               tal:attributes="action string:${here/absolute_url}/${template/id};"
               tal:define="errors options/state/getErrors;
                           qdc python:here.fedora.getQualifiedDCMetadata(journalPID);
+                          upload request/upload|nothing;
                           available_languages here/portal_properties/metadata_properties/available_languages|nothing;
                           all_languages python:here.fedora.getLanguages()"
               method="post"
@@ -69,6 +70,7 @@
 
             <input type="hidden" name="form.submitted" value="1" />
             <input type="hidden" name="PID" value="" tal:attributes="value journalPID" />
+            <input type="hidden" name="upload" value="upload" />
             
             <div id="qdc-fields">
                 <input type="hidden" name="pubType:list" value="journal" />
