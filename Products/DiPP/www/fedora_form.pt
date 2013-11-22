@@ -48,16 +48,20 @@
     <h3>Selected Datastream: <tal:block tal:replace="DsID"/></h3>
 
     <form tal:define="createDate request/createDate|nothing;
+                      versions python:here.fedora.getDatastreamHistory(here.PID,DsID);
                       zformat here/portal_properties/site_properties/localLongTimeFormat;
                       fformat here/portal_properties/dipp_properties/fedora_time_format"
           tal:attributes="action python:here.absolute_url()+'/manage_fedora_form'"
           method="post">
+         <p>
+            Versions: <em tal:content="python:len(versions)">123</em>
+         </p>
          <input name="DsID"
                 type="hidden" 
                 value=""
                 tal:attributes="value DsID"/>
          <select name="createDate">
-             <tal:block tal:repeat="version python: here.fedora.getDatastreamHistory(here.PID,DsID)">
+             <tal:block tal:repeat="version versions">
                  <option value=""
                          tal:define="versionCreateDate python: DateTime(version['createDate']).strftime(fformat)"
                          tal:attributes="value versionCreateDate;

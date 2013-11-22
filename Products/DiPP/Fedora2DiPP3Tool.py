@@ -72,13 +72,13 @@ class Fedora(UniqueObject, Folder):
     manage_maintenance_form = PageTemplateFile('www/maintenance_form.pt', globals())
     security.declareProtected(view_permission, 'manage_maintenance_form')
     
-    manage_urn_form = PageTemplateFile('www/urn_form.pt', globals())
-    security.declareProtected(view_permission, 'manage_urn_form')
+    manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
+    security.declareProtected(ManagePortal, 'manage_fedora_form')
     
     manage_metadata_form = PageTemplateFile('www/metadata_form.pt', globals())
     security.declareProtected(view_permission, 'manage_metadata_form')
     
-    manage_options = ({'label':'Search',
+    manage_options = Folder.manage_options[0:1] + ({'label':'Search',
                        'action':'manage_search_form',
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Configure',
@@ -90,13 +90,13 @@ class Fedora(UniqueObject, Folder):
                       {'label':'Maintenance',
                        'action':'manage_maintenance_form',
                        'help':('PloneFedora2', 'search.stx')},
-                      {'label':'URN',
-                       'action':'manage_urn_form',
+                      {'label':'Datastreams',
+                       'action':'manage_fedora_form',
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Backissues',
                        'action':'manage_backissues_form',
                        'help':('PloneFedora2', 'backissues.stx')},
-        ) + Folder.manage_options
+        ) + Folder.manage_options[2:]
 
     def __init__(self):
         self.PID = "" 
