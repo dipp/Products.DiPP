@@ -388,7 +388,7 @@
                         <input type="text" class="firstName" value="" name="creatorPerson.firstName:records" tal:attributes="value person/firstName">    
                     </td>
                     <td>
-                        <input type="text" class="emailAddress" value="" name="creatorPerson.emailAddress:records" tal:attributes="value person/emailAddress">    
+                        <input type="email" class="emailAddress" value="" name="creatorPerson.emailAddress:records" tal:attributes="value person/emailAddress">    
                     </td>
                     <td>
                         <input type="text" class="PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">    
@@ -460,7 +460,7 @@
                                tal:attributes="value creator/institutionelAuthor">    
                     </td>
                     <td>
-                        <input type="text"
+                        <input type="email"
                                class="emailAddress"
                                value="" 
                                name="creatorCorporated.emailAddress:records" 
@@ -565,7 +565,7 @@
                                tal:attributes="value person/firstName">    
                     </td>
                     <td>
-                        <input type="text"
+                        <input type="email"
                                class="emailAddress"
                                value="" 
                                name="contributor.emailAddress:records"
