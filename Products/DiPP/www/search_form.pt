@@ -48,6 +48,8 @@
 
     <tal:block tal:condition="python: field!=None and comparison!=None and value!=None">
         <tal:block  tal:define="results python:here.manage_search(field=field,comparison=comparison,value=value);
+                                zformat here/portal_properties/site_properties/localLongTimeFormat;
+                                fformat here/portal_properties/dipp_properties/fedora_time_format;
                                 PIDs python:here.getFedoraArticles()">
             <form action="manage_deleteObjectForm"
                   tal:attributes="action python:here.absolute_url()+'/manage_deleteObjectForm'"
@@ -92,8 +94,8 @@
                                   tal:content="in_plone"
                                   tal:attributes="href python:PIDs[PID]">true or false</a> 
                             </td>
-                            <td tal:content="python: result['cDate']"></td>
-                            <td tal:content="cModel"></td>
+                            <td tal:content="python: DateTime(result['cDate']).strftime(zformat)"> 2010-05-04 </td>
+                            <td tal:content="cModel">dipp:something</td>
                             <td>
                                 <abbr tal:attributes="title python: '%s - %s' % (result['creator'],result['title'])">
                                       <span tal:replace="python:' '.join(title_words[0:max_words])">der abgekürzte titel</span>
