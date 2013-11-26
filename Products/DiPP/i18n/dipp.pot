@@ -723,3 +723,6 @@ msgstr ""
 msgid "description_archive"
 msgstr ""
 
+msgid "workflow-cancel-step"
+msgstr ""
+

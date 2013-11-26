@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2013-11-14 16:17+0100\n"
+"PO-Revision-Date: 2013-11-26 15:11+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -617,6 +617,9 @@ msgstr "Articles of an individual section"
 msgid "feed-all-articles"
 msgstr "All articles"
 
+msgid "no_valid_feed"
+msgstr "Invalid Feed"
+
 msgid "recent_articles"
 msgstr "Recent articles"
 
@@ -721,4 +724,7 @@ msgstr "Archive"
 
 msgid "description_archive"
 msgstr "A chronological index of all published issues."
+
+msgid "workflow-cancel-step"
+msgstr "Workflow step canceled"
 
