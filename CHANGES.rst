@@ -1,7 +1,15 @@
 Changelog
 =========
 
-DiPP 2.13 (2012-09-18)
+DiPP 2.14 (2013-11-26)
+    * general code cleanup, removing deprecated files
+    * pubtype and doctype code in metadataform improved, configurable defaults
+    * getting rid of ugly test.py script. No special treatment of
+      "title" and "lang" metadata
+    * added and fixed som translations
+    * more verbose help in metadataform 
+
+DiPP 2.13 (2013-09-18)
     * improved documentation
     * fix error when calling authorpage with of existing author
     * allArticles script improved: include URNs, download as csv
