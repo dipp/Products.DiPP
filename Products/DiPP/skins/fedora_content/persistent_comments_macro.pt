@@ -3,15 +3,23 @@
     i18n:domain="DiPP">
     <body>
         <tal:comment>
-            articlePID is defined inthecalling template
+            articlePID is defined in the calling template
         </tal:comment>
         <div metal:define-macro="persistent_comments"
-             i18n:domain="dipp"
+             id="comments" 
+             name="comments"
              tal:define="allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
                          results python: here.portal_catalog.searchResults(Type='Fedora Article', getComment_to=articlePID, sort_on='getIssueDate', sort_order='reverse')"
-             tal:condition="allow_persistent_discussion">
+             tal:condition="allow_persistent_discussion"
+             i18n:domain="dipp">
              
-            <h2 i18n:translate="heading_comments" id="comments" name="comments">Comments</h2>
+            <h2>
+                <span i18n:translate="heading_comments">Comments</span>
+                <a class="permalink" 
+                   href="#comments" 
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </h2>
             
             <ol tal:condition="results">
             <tal:block tal:repeat="item results">

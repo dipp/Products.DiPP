@@ -166,7 +166,19 @@ ul.authors li a.last:after {
     padding: 1em 0 0.5em 0;
 }
 
+a.permalink {
+    display: none;
+    margin: 0 0 0 0.3em;
+    padding: 0 0.2em;
+}
 
+h2:hover a.permalink {
+    display: inline;
+}
+a.permalink:hover {
+    background-color: #CCCCCC;
+    color: #FFFFFF !important;
+}
 
 /* Abbildungen */
 

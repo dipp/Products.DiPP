@@ -12,7 +12,13 @@
                          language request/other/LANGUAGE|default_lang;
                          licence_lang python:test(language in ('en','de'),language, 'en')">
 
-                <h2 i18n:translate="licence" i18n:domain="dipp">Lizenz</h2>
+            <h2>
+                <span i18n:translate="licence" i18n:domain="dipp">Lizenz</span>
+                <a class="permalink" 
+                   href="#licence" 
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </h2>
                 
                 <p i18n:domain="dipp"
                    tal:define="dppl python:here.dppl(rights[0],licence_lang);

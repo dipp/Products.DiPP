@@ -4,13 +4,21 @@
     <body>
 
         <div metal:define-macro="supplementary_material"
-             i18n:domain="dipp"
+             id="supplements"
+             name="supplements"
              tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
                          path python:'/'.join(articleFolder.getPhysicalPath()); 
                          results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='supplementary_material', sort_on='getObjPositionInParent')"
-             tal:condition="results">
+             tal:condition="results"
+             i18n:domain="dipp">
              
-            <h2 i18n:translate="heading_supplementary_material" id="supplements" name="supplements">Supplementary material</h2>
+            <h2>
+                <span i18n:translate="heading_supplementary_material">Supplementary material</span>
+                <a class="permalink" 
+                   href="#supplements" 
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </h2>
             
             <ul tal:condition="results"
                 class="supplementary-material">

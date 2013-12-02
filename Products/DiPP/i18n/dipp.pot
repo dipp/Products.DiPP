@@ -726,3 +726,5 @@ msgstr ""
 msgid "workflow-cancel-step"
 msgstr ""
 
+msgid "title_permalink"
+msgstr ""
