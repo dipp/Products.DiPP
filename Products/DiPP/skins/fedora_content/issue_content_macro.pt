@@ -61,12 +61,13 @@
                                        item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
                                        authors              item_contributors" >
                                        
-                            <p tal:condition="python: item_date and date_format != ''"
+                            <p class="publication-date"
+                               tal:condition="python: item_date and date_format != ''"
                                tal:content="python: item_date.strftime(date_format)">
                                 2004-06-08</p>
                             <p tal:condition="not:item_date"><em>no issue date given</em></p>
                             
-                            <strong>    
+                            <strong class="article-title">    
                                 <a href="#"
                                    tal:content="item_title_or_id"
                                    tal:attributes="href item_url;
