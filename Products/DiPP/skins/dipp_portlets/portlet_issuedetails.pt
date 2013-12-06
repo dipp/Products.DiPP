@@ -1,61 +1,81 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      i18n:domain="dipp">
+      i18n:domain="plone">
 
 <body>
 
-<div metal:define-macro="portlet"
-     tal:define="issue here/getIssue|nothing;
-                 volume here/getVolume|nothing"
-     tal:condition="python:issue and volume">
-                 
+
+<div metal:define-macro="portlet">
 
     <dl class="portlet"
-        id="portlet-issuedetails"
-        tal:condition="issues"
-        tal:define="issues python:here.portal_catalog(portal_type='Issue',
-                    review_state='published', getIssue=issue, getVolume=volume)">
+        i18n:domain="dipp"
+        tal:condition="python: issue is not None"
+        tal:define="infos here/articlepath;
+                    article python:infos['article'];
+                    issue python:infos['issue'];
+                    issueNumber issue/getIssue|nothing;
+                    volumeNumber here/getVolume|nothing"
+        id="portlet-issuedetails">
         
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-            <span i18n:translate="volume">Volume</span> <span tal:content="issue">issue</span>,
-            <span i18n:translate="issue">Issue</span> <span tal:content="volume">volume</span>
+            <span i18n:translate="volume">Volume</span> <span tal:content="issueNumber">issue</span>,
+            <span i18n:translate="issue">Issue</span> <span tal:content="volumeNumber">volume</span>
             <span class="portletTopRight"></span>
         </dt>
 
-        <tal:block tal:repeat="issue issues">
+        <dd class="portletItem"
+            tal:define="TitleImage issue/TitleImage|nothing">
+            <a tal:attributes="href issue/absolute_url"
+               title="zum Inhalt der Ausgabe">
+                <img tal:condition="TitleImage"
+                     class="coverpicture" tal:replace="structure issue/TitleImage_medium" />
+                <span tal:condition="not:TitleImage">zum Inhalt der Ausgabe</span>
+            </a>
+        </dd>
 
-            <dd class="portletItem"
-                tal:define="obj issue/getObject;
-                            TitleImage issue/TitleImage|nothing;
-                            CompleteIssue obj/CompleteIssue|nothing">
+        <dd class="portletItem">
+            <ul>
+                <tal:block tal:condition="python: article is not None">
+                    
+                    <li tal:define="contributors article/Contributors">
+                        <a tal:condition="python: len(contributors) > 0"
+                           tal:attributes="href python: portal_url + '/author?contributor=' + contributors[0]">
+                           zum Autor
+                        </a>
+                    </li>
+                    
+                    <li class="pdf_link"
+                        tal:condition="pdf"
+                        tal:define="pdf python: article.getFulltextPdf()">
+                        <a href=""
+                           tal:attributes="href python:pdf['URL']"
+                           tal:condition="pdf">
+                            <img src="" alt="" tal:attributes="src string:$portal_url/pdf.png" /> 
+                            <span i18n:domain="dipp" i18n:translate="label_get_fulltext_as_pdf">
+                            Volltext als <span i18n:name="pdf"><abbr i18n:domain="dipp" title="Portable Document Format">PDF</abbr></span>.
+                            </span>
+                        </a>
+                    </li>
 
-                <a tal:condition="TitleImage"
-                   href="" 
-                   tal:attributes="href issue/getURL">
-                    <img class="coverpicture" tal:replace="structure obj/TitleImage_medium" />
-                </a>
+                </tal:block>
+                <tal:block tal:condition="python: issue is not None">
+                    
+                    <li tal:condition="issue/CompleteIssue/filename">
+                        <a tal:define="size python:issue.getObjSize(issue.CompleteIssue);
+                                       filename issue/CompleteIssue/filename|nothing"
+                           tal:attributes="href string:${issue/absolute_url}/at_download/CompleteIssue;
+                                           title string:${filename} (${size})">
+                            <img tal:define=" icon issue/CompleteIssue/getBestIcon|nothing"
+                                 tal:condition="icon" alt=""
+                                 tal:attributes="src string:${issue/portal_url}/$icon" />
+                            <span i18n:translate="get_the_complete_issue">Get the complete issue as PDF</span>
+                        </a>
+                    </li>
+                </tal:block>
+            </ul>
 
-                <a tal:condition="not: TitleImage"
-                   href="" 
-                   tal:attributes="href issue/getURL;
-                                   title obj/title_or_id"
-                   i18n:translate="contents">Inhalt</a>
-                
-                <p tal:condition="CompleteIssue/filename">
-                   <span i18n:translate="get_the_complete_issue" i18n:domain="dipp">Get the complete issue</span> 
-                   <a tal:define="size python:here.getObjSize(CompleteIssue);
-                                  icon CompleteIssue/getBestIcon|nothing;
-                                  filename CompleteIssue/filename|nothing"
-                      href=""
-                      tal:attributes="href string:${obj/absolute_url}/at_download/CompleteIssue">
-                      <img tal:condition="icon" src=""
-                           tal:attributes="src string:${here/portal_url}/$icon"/>
-                      <span tal:replace="filename">full.pdf</span> (<span tal:replace="size">1GB</span>)</a>
-                </p>
-            </dd>
-
-        </tal:block>
+        </dd>
 
     </dl>
 

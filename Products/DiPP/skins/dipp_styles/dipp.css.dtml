@@ -275,6 +275,11 @@ div.portletContent {
     list-style: none;
     margin-left: 0;
 }
+#portlet-issuedetails dd ul {
+    list-style: none;
+    margin-left: 0;
+
+} 
 
 /* worklist */
 .worklist th {
