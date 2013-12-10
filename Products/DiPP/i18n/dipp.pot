@@ -513,6 +513,9 @@ msgstr ""
 msgid "label_surname"
 msgstr ""
 
+msgid "citation_and_metadata"
+msgstr ""
+
 msgid "heading_recommended_citation"
 msgstr ""
 
