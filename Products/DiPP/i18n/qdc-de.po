@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: qdc-de\n"
 "POT-Creation-Date: 2005-10-04 11:30+0000\n"
-"PO-Revision-Date: 2013-11-26 15:12+0100\n"
+"PO-Revision-Date: 2013-12-13 12:13+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: DiPP i18n <dipp-tech@hbz-nrw.de>\n"
 "Language: \n"
@@ -84,6 +84,12 @@ msgstr "Rechte"
 
 msgid "help_rights"
 msgstr "Sollten Sie nicht der Autor sein, stellen Sie sicher, dass sie das Einverständnis des Autors zur Wahl der Lizenz vorliegen haben."
+
+msgid "label_publisher"
+msgstr "Herausgeber"
+
+msgid "help_publisher"
+msgstr "Zitat von DataCite: \"The name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource. This property will be used to formulate the citation, so consider the prominence of the role. \""
 
 msgid "label_bibliographicCitation"
 msgstr "Bibliographisches Zitat"

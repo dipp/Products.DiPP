@@ -82,6 +82,12 @@ msgstr ""
 msgid "help_rights"
 msgstr ""
 
+msgid "label_publisher"
+msgstr ""
+
+msgid "help_publisher"
+msgstr ""
+
 msgid "label_bibliographicCitation"
 msgstr ""
 
