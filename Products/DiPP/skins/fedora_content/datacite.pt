@@ -14,7 +14,7 @@
         <h1 class="documentFirstHeading"
             i18n:translate=""
             i18n:domain="dipp">
-          DOI
+          DataCite DOI
         </h1>
         
         <div class="documentByLine">
@@ -24,12 +24,18 @@
                tal:attributes="href string:${here/absolute_url};">
                back to the article</a>
         </div>
+        <div class="documentDescription">
+            Metadata in <a href="http://schema.datacite.org/">DataCite Metadata Schema</a> for registering DOIs.
+        </div>
 
 
         <tal:block tal:define="articlePID here/PID;
-                               xml python:here.bibtool.doi_xml(articlePID)">
+                               issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
+                               publisher here/portal_properties/metadata_properties/publisher|nothing;
+                               xml python:here.bibtool.doi_xml(articlePID,issn=issn,publisher=publisher)">
 
             <pre tal:content="xml"> </pre> 
+            <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
         </tal:block>
     </tal:main-macro>
 </metal:main>
