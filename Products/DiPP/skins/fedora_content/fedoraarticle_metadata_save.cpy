@@ -21,8 +21,8 @@ subject = params.get('subject',[])
 params['subject'] = subject + new_subjects
 
 #  pagenumbers and section are only kept in plone
-startpage = params.get('startpage',[])
-endpage = params.get('endpage',[])
+startpage = params.get('startpage',"")
+endpage = params.get('endpage',"")
 journal_section = params.get('journal_section','no-section')
 self.setStartpage(startpage)
 self.setEndpage(endpage)

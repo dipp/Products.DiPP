@@ -77,6 +77,7 @@
 
                 
                 <div metal:use-macro="here/qdc_macros/macros/title"> Title </div>
+                <div metal:use-macro="here/qdc_macros/macros/publisher"> Publisher </div>
                 <div metal:use-macro="here/qdc_macros/macros/url"> URL </div>
                 <div metal:use-macro="here/qdc_macros/macros/issn"> ISSN </div>
                 <div metal:use-macro="here/qdc_macros/macros/language"> Language </div>
@@ -88,28 +89,6 @@
                 <div metal:use-macro="here/qdc_macros/macros/subjectClassified"> subject classified </div>
                 <div metal:use-macro="here/qdc_macros/macros/rights"> docType </div>
             </div>
-
-            
-
-
-            <!-- publisher --> 
-            <div class="field"
-                 tal:define="error errors/publisher|nothing;
-                             publishers python:qdc['publisher']"
-                 tal:attributes="class python:test(error, 'field error', 'field')"
-                 i18n:domain="qdc">
-                <label for="publisher" i18n:translate="label_short_name">publisher</label>
-                <span class="fieldRequired" title="Required"
-                       i18n:attributes="title"
-                       i18n:translate="label_required">(Required)</span>
-                <div tal:content="error">Validation error output</div>
-                <tal:block tal:repeat="publisher publishers">
-                        <input type="text" name="publisher:list" value="" tal:attributes="value publisher " >
-                </tal:block>
-
-
-            </div>
-
  
             <input class="context"
                    tabindex=""

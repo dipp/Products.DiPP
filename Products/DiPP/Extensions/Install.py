@@ -392,6 +392,9 @@ def install_metadataproperties(self,out):
     metadata_props= (
         ('journalname', 'string', ''),
         ('journalname_abbr', 'string', ''),
+        ('publisher', 'string', ''),
+        ('issn', 'string', ''),
+        ('doi_prefix', 'string', ''),
         ('default_pubType', 'string', 'article'),
         ('default_docType', 'string', 'text'),
         ('default_language', 'string', DEFAULT_LANGUAGE),

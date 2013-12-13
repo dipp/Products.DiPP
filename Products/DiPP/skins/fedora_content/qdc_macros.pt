@@ -39,15 +39,42 @@
              i18n:domain="qdc">
 
             <label for="identifierISSN" i18n:translate="label_ISSN">ISSN</label>
+            
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
                    i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
+            
             <div tal:content="error">Validation error output</div>
+            
             <div class="formHelp" i18n:translate="help_issn">
                 International Standard Serial Number
             </div>
+            
             <input type="text" name="identifierISSN" tal:attributes="value identifierISSN" />
+        
+        </div>
+
+        <!-- Publisher -->
+        <div metal:define-macro="publisher"
+             class="field"
+             tal:define="error errors/publisher|nothing;
+                         publishers request/publisher|python:qdc['publisher']"
+             tal:attributes="class python:test(error, 'field error', 'field')"
+             i18n:domain="qdc">
+
+            <label for="publisher" i18n:translate="label_publisher">Publisher</label>
+            
+            <div tal:content="error">Validation error output</div>
+            
+            <div class="formHelp" i18n:translate="help_publisher">
+                Zitat ais Datasite manual
+            </div>
+            
+            <tal:block tal:repeat="publisher publishers">
+                <input class="publisher" type="text" name="publisher:list" value="" tal:attributes="value publisher " >
+            </tal:block>
+
         </div>
 
         <!-- URL -->
@@ -64,7 +91,7 @@
                    i18n:domain="plone"
                    i18n:translate="label_required">(Required)</span>
             <div tal:content="error">Validation error output</div>
-            <input type="text" name="identifierURL" tal:attributes="value identifierURL" />
+            <input class="identifierURL" type="text" name="identifierURL" tal:attributes="value identifierURL" />
         </div>
     
         <!-- DDC --> 

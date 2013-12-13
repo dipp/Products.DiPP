@@ -149,6 +149,8 @@ ul.allauthors li {
 
 textarea.abstract { width: 100%; }
 input.title { width: 40em; }
+input.publisher { width: 40em; }
+input.identifierURL { width: 40em; }
 input.academicTitle { width: 50px; }
 input.lastName { width: 120px; }
 input.firstName { width: 120px; }

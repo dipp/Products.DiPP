@@ -38,14 +38,22 @@ params['bibliographicCitation'] = [
 fedora.setQualifiedDCMetadata(params)
 
 # a few fields are also saved to plone for faster access
+titles = params.get('title', None)
+ISSN = params.get('identifierISSN', None)
+publishers = params.get('publisher', [])
+
 dp = portal.portal_properties.dipp_properties
 mp = portal.portal_properties.metadata_properties
 
-journalname = params.get('title_value',None)[0]
-ISSN = params.get('identifierISSN',None)
-context.plone_log(journalname)
-mp.manage_changeProperties({'journalname':journalname})
+if len(titles) > 0:
+    journalname = titles[0]['value']
+    mp.manage_changeProperties({'journalname':journalname})
+
+if len(publishers) > 0:
+    mp.manage_changeProperties({'publisher':publishers[0]})
+
 dp.manage_changeProperties({'ISSN':ISSN})
+mp.manage_changeProperties({'issn':ISSN})
 # TODO: issn should also go to metadata_properties
 
 msg = translate('settings_saved', domain='dipp')

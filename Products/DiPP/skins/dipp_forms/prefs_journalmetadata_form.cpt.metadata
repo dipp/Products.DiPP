@@ -2,7 +2,7 @@
 title=Journal Metadata
 
 [validators]
-#validators..Save = validate_qdc
+validators..Save = validate_qdc_title
 
 [actions]
 action.success..Save   = traverse_to:string:prefs_journalmetadata_set
