@@ -311,7 +311,5 @@ class BibTool(UniqueObject, SimpleItem):
     def doaj_xml(self,pids):
         return dippDOAJ.make_doaj_xml(pids)
 
-    def doi_xml(self, pid, **kwargs):
-        issn = "0-1234-5678-9"
-        publisher = "DiPP, hbz"
+    def doi_xml(self, pid, issn, publisher):
         return dippDOI.make_datacite_xml(pid, issn=issn, publisher=publisher)
