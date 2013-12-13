@@ -87,12 +87,14 @@
                 </tr>
                 <tr>
                     <th i18n:translate="label_title">Title</th>
-                    <tal:block tal:repeat="title titles" >
-                        <td tal:define="value title/value; lang title/lang"
-                            tal:content="string: $value ($lang)">
+                    <td>
+                        <tal:block tal:repeat="title titles" >
+                            <p tal:define="value title/value; lang title/lang"
+                                tal:content="string: $value ($lang)">
 
-                        </td>
-                    </tal:block>
+                            </p>
+                        </tal:block>
+                    </td>
                 </tr>
                 <tr>
                     <th i18n:translate="label_creatorPerson">Authors</th>
@@ -181,9 +183,12 @@
                 </tr>
                 <tr tal:condition="doi"
                     class="doi">
-                    <th><abbr title="Digital Object Identifier">DOI</abbr></th>
-                        <td>
-                            <a tal:content="doi" tal:attributes="href string:http://dx.doi.org/$doi">10.120234-ff983</a>
+                    <th>
+                        <abbr title="Digital Object Identifier">DOI</abbr>
+                    </th>
+                    <td>
+                            <a tal:content="string:doi:$doi" tal:attributes="href string:http://dx.doi.org/$doi">10.120234-ff983</a>
+                    </td>
                 </tr>
             </table>
        
