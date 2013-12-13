@@ -404,31 +404,29 @@ class Fedora(UniqueObject, Folder):
         # Titel   
         DCMetadata._title = []
         for title in params['title']:
-            x = DCMetadata.new_title()
-            x._value =  title['value']
-            x._lang  =  title['lang']
-            DCMetadata._title.append(x)
-        #for i in range(len(params['title_value'])):
-        #    x = DCMetadata.new_title()
-        #    x._value =  params['title_value'][i]
-        #    x._lang =  params['title_lang'][i]
-        #    DCMetadata._title.append(x)
+            if title['value'].strip():
+                x = DCMetadata.new_title()
+                x._value =  title['value']
+                x._lang  =  title['lang']
+                DCMetadata._title.append(x)
 
         # alternativer Titel
         DCMetadata._alternative = []
         for alternative in params['alternative']:
-            x = DCMetadata.new_alternative()
-            x._value =  alternative['value']
-            x._lang  =  alternative['lang']
-            DCMetadata._alternative.append(x)
+            if alternative['value'].strip():
+                x = DCMetadata.new_alternative()
+                x._value =  alternative['value']
+                x._lang  =  alternative['lang']
+                DCMetadata._alternative.append(x)
         
         # abstract
         DCMetadata._DCTermsAbstract = []
         for abstract in params['DCTermsAbstract']:
-            x = DCMetadata.new_DCTermsAbstract()
-            x._value =  abstract['value']
-            x._lang  =  abstract['lang']
-            DCMetadata._DCTermsAbstract.append(x)
+            if abstract['value'].strip():
+                x = DCMetadata.new_DCTermsAbstract()
+                x._value =  abstract['value']
+                x._lang  =  abstract['lang']
+                DCMetadata._DCTermsAbstract.append(x)
 
         # creatorPerson
         DCMetadata._creatorPerson = []
