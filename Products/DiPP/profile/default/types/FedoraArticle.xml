@@ -67,6 +67,15 @@
   <permission value="Fedora: Edit Content"/>
  </action>
  
+ <action title="DOI"
+         action_id="doi" 
+         category="folder" 
+         condition_expr="python:portal.portal_properties.metadata_properties.doi_prefix != ''"
+         url_expr="string:${folder_url}/doi_form"
+          visible="True">
+  <permission value="Fedora: Edit Content"/>
+ </action>
+ 
  <action title="Link translations" action_id="link_translations"
     category="folder" condition_expr=""
     url_expr="string:${folder_url}/link_translations_form" visible="True">

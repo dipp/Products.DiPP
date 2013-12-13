@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="dipp">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+        
+        <h1 class="documentFirstHeading"
+            i18n:translate=""
+            i18n:domain="dipp">
+          DOI
+        </h1>
+        
+        <div class="documentByLine">
+            <a href="#"
+               i18n:translate="back_to_article"
+               i18n:domain="dipp"
+               tal:attributes="href string:${here/absolute_url};">
+               back to the article</a>
+        </div>
+
+
+        <tal:block tal:define="articlePID here/PID;
+                               xml python:here.bibtool.doi_xml(articlePID)">
+
+            <pre tal:content="xml"> </pre> 
+        </tal:block>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

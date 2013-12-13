@@ -19,7 +19,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator, indent
-from dipp.dipp3 import dippDOAJ 
+from dipp.dipp3 import dippDOAJ, dippDOI
 from config import view_permission, LANGUAGES
 import logging
 
@@ -310,3 +310,8 @@ class BibTool(UniqueObject, SimpleItem):
 
     def doaj_xml(self,pids):
         return dippDOAJ.make_doaj_xml(pids)
+
+    def doi_xml(self, pid, **kwargs):
+        issn = "0-1234-5678-9"
+        publisher = "DiPP, hbz"
+        return dippDOI.make_datacite_xml(pid, issn=issn, publisher=publisher)
