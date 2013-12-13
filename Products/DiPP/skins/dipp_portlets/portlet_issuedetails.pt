@@ -57,11 +57,19 @@
                             </span>
                         </a>
                     </li>
+                    <li>
+                        <a tal:attributes="href string:${here/absolute_url}/metadata">
+                            <img tal:attributes="src string:$portal_url/citation_icon.gif" alt="" />
+                            <span i18n:translate="citation_and_metadata"
+                                  i18n:domain="dipp" >Zitierweise</span>
+                        </a>
+                    </li>
 
                 </tal:block>
                 <tal:block tal:condition="python: issue is not None">
                     
-                    <li tal:condition="issue/CompleteIssue/filename">
+                    <li class="issue_pdf_link"
+                        tal:condition="issue/CompleteIssue/filename">
                         <a tal:define="size python:issue.getObjSize(issue.CompleteIssue);
                                        filename issue/CompleteIssue/filename|nothing"
                            tal:attributes="href string:${issue/absolute_url}/at_download/CompleteIssue;
