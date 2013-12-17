@@ -19,7 +19,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator, indent
-from dipp.dipp3 import dippDOAJ, dippDOI
+from dipp.dipp3 import dippDOAJ, qdc2metadata
 from config import view_permission, LANGUAGES
 import logging
 
@@ -311,5 +311,6 @@ class BibTool(UniqueObject, SimpleItem):
     def doaj_xml(self,pids):
         return dippDOAJ.make_doaj_xml(pids)
 
-    def doi_xml(self, pid, issn, publisher):
-        return dippDOI.make_datacite_xml(pid, issn=issn, publisher=publisher)
+    def datacite_xml(self, pid, issn, publisher, pdf):
+        metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
+        return metadata.make_datacite_xml()
