@@ -32,7 +32,7 @@
         <tal:block tal:define="articlePID here/PID;
                                issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                                publisher here/portal_properties/metadata_properties/publisher|nothing;
-                               xml python:here.bibtool.doi_xml(articlePID,issn=issn,publisher=publisher)">
+                               xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
 
             <pre tal:content="xml"> </pre> 
             <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
