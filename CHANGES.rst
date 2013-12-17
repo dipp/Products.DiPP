@@ -1,12 +1,19 @@
 Changelog
 =========
 
+DiPP 2.15 (2013-12-27)
+    * DataCite XML for DOI registration
+    * improved metadata handling (mainly internal code cleanup)
+    * portlet with article and issue details (archimaera and zeitenblicke style)
+    * hidden/hover permalinks on splash pages
+    * moved son code to dipp.dipp3 module, depends now on version 3.3
+
 DiPP 2.14 (2013-11-26)
     * general code cleanup, removing deprecated files
     * pubtype and doctype code in metadataform improved, configurable defaults
     * getting rid of ugly test.py script. No special treatment of
       "title" and "lang" metadata
-    * added and fixed som translations
+    * added and fixed some translations
     * more verbose help in metadataform 
 
 DiPP 2.13 (2013-09-18)
