@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title tal:content="template/title">The title</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body tal:define="use_folder_tabs here/portal_properties/site_properties/use_folder_tabs|python:();
+                    articles python: here.portal_catalog(portal_type='FedoraArticle', review_state='published', Language='all', sort_on='getIssueDate')">
+    
+    <h1>DataCite</h1> 
+    <tal:block tal:repeat="article articles">
+        <a tal:attributes="href python:article.getURL() + '/doi'" tal:content="article/getDOI">doi:10.5072/abc/def</a>
+        <span tal:content="article/getURL"></span><br />
+    </tal:block>
+    <pre tal:content="python: 'wget --content-disposition -r -l 1 -nd %s/doi_listing' % here.portal_url()" />
+  </body>
+</html>
+
