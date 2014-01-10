@@ -91,6 +91,7 @@ INDEXES = (
     ('getPID', 'FieldIndex'),
     ('getSubject_areas', 'KeywordIndex'),
     ('getURN', 'FieldIndex'),
+    ('getDOI', 'FieldIndex'),
     ('getVolume', 'FieldIndex'),
 )
 GLOBALS = globals()
