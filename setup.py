@@ -44,7 +44,7 @@ setup(name='Products.DiPP',
         'Products.LinguaPlone == 3.2',
         'dipp.tools >= 0.4',
         'dipp.dipp2',
-        'dipp.dipp3 >= 3.3',
+        'dipp.dipp3 >= 3.3.1',
         'bibliograph.core',
         'dipp.fedora2 >= 2.2'
       ],
