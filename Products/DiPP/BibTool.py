@@ -20,6 +20,7 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator, indent
 from dipp.dipp3 import dippDOAJ, qdc2metadata
+from dipp.dipp3 import defaults
 from config import view_permission, LANGUAGES
 import logging
 
@@ -38,15 +39,7 @@ class BibTool(UniqueObject, SimpleItem):
         """return a list of available Citation formats. Bibutils support more,
            but not the bibliograph.core Python module. 
         """
-        formats = (
-            ("Endnote","end"),
-            ("Bibtex","bib"),
-            ("RIS","ris"),
-            ("Wordbib","wordbib"),
-            ("ISI","isi"),
-            ("Mods","xml")
-        )
-        return formats
+        return defaults.SUPPORTED_BIBUTIL_FORMATS
    
     
     def short_citation(self,article):
@@ -308,9 +301,10 @@ class BibTool(UniqueObject, SimpleItem):
         status = urnvalidator.URN(urn, url)
         return status.parse_dnb_response()
 
-    def doaj_xml(self,pids):
-        return dippDOAJ.make_doaj_xml(pids)
-
     def datacite_xml(self, pid, issn, publisher, pdf):
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_datacite_xml()
+    
+    def doaj_xml(self, pid, issn, publisher, pdf):
+        metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
+        return metadata.make_doaj_xml()
