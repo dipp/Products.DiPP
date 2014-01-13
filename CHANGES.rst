@@ -1,6 +1,9 @@
 Changelog
 =========
 
+DiPP 2.16 (2014-01-13)
+    * added DOI to portal_catalog. run synchronize script after installation 
+
 DiPP 2.15 (2013-12-27)
     * DataCite XML for DOI registration
     * improved metadata handling (mainly internal code cleanup)
