@@ -155,6 +155,17 @@ FedoraArticleSchema = BaseSchema + Schema((
             ),
             schemata='Bibliographic Data'
         ),
+        StringField('DOI',
+            required=0,
+            widget=StringWidget(
+                label='DOI',
+                label_msgid='label_doi_field',
+                description='The Digital Object Identifier of this article',
+                description_msgid='help_doi_field',
+                visible={'edit':'invisible','view':'visible'}
+            ),
+            schemata='Bibliographic Data'
+        ),
         StringField('Issue',
             required=0,
             widget=StringWidget(
@@ -312,6 +323,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             self.setEffectiveDate(date)
             self.setIssueDate(date)
             self.setURN(qdc['identifierURN'])
+            self.setDOI(qdc['identifierDOI'])
            
             # list with available abstract languages ist stored on article object. The calculation
             # on the fly would be to expensive, since for issue pages each single Article would
