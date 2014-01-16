@@ -17,6 +17,7 @@ from Products.CMFCore.utils import getToolByName
 bibtool = getToolByName(self, 'bibtool')
 
 pid = self.PID
+doi = self.DOI
 main_issn = self.portal_properties.metadata_properties.issn
 
 try:
@@ -27,6 +28,6 @@ except:
 publisher = self.portal_properties.metadata_properties.publisher
 pdf = self.getFulltextPdf()
 xml = bibtool.datacite_xml(pid,issn=issn,publisher=publisher,pdf=pdf)
-RESPONSE.headers['Content-disposition'] = 'attachment; filename=%s.xml' % pid.replace(':','_')
+RESPONSE.headers['Content-disposition'] = 'attachment; filename=%s.xml' % doi.replace('/','_')
 RESPONSE.headers['Content-type'] = 'text/xml; charset="utf-8'
 return xml
