@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
+    
     <configlet title="DiPP Configuration" action_id="dipp_configuration"
                appId="DiPP" category="Products" condition_expr=""
                url_expr="string:${portal_url}/prefs_mailtemplates_form" visible="True">
-    <permission>Manage portal</permission>
+        <permission>Manage portal</permission>
     </configlet>
+
+    <configlet title="DOI/DataCite Configuration" action_id="datacite_configuration"
+               appId="DataCite" category="Products" condition_expr=""
+               url_expr="string:${portal_url}/prefs_datacite_form" visible="True">
+        <permission>Manage journal</permission>
+    </configlet>
+    
 </object>
