@@ -80,6 +80,7 @@
                 <div metal:use-macro="here/qdc_macros/macros/publisher"> Publisher </div>
                 <div metal:use-macro="here/qdc_macros/macros/url"> URL </div>
                 <div metal:use-macro="here/qdc_macros/macros/issn"> ISSN </div>
+                <div metal:use-macro="here/qdc_macros/macros/doi"> DOI </div>
                 <div metal:use-macro="here/qdc_macros/macros/language"> Language </div>
                 <div metal:use-macro="here/qdc_macros/macros/ddc"> DDC </div>
                 <!--<div metal:use-macro="here/qdc_macros/macros/alternative"> alternative </div>-->
