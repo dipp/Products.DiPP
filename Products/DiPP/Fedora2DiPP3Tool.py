@@ -208,25 +208,13 @@ class Fedora(UniqueObject, Folder):
         return articles
         
     def setURL(self, PID, identifierURL):
-        """modify the URL in the qdc after moving in Plone
-        """
-        cModel = ContentModel.ContentModel()
-        DCMetadata = cModel.getQualifiedDCMetadata(PID)
-        DCMetadata._identifierURL = identifierURL
-        cModel.setQualifiedDCMetadata(PID,DCMetadata)
-        return DCMetadata
+        return qdc.setURL(PID,identifierURL)
         
     def setModified(self, PID):
-        """change the modify date after editing the article
-           or any part of it
-        """
-        cModel = ContentModel.ContentModel()
-        DCMetadata = cModel.getQualifiedDCMetadata(PID)
-        today = DateTime().strftime("%Y-%m-%d")
-        modified = mktime(strptime(today, "%Y-%m-%d"))
-        DCMetadata._modified = modified
-        cModel.setQualifiedDCMetadata(PID,DCMetadata)
-        return DCMetadata
+        return qdc.setModified(PID)
+
+    def setJournalIssueDate(self, PID, issueDate):
+        return qdc.setJournalIssueDate(PID, issueDate)
 
     def getDatastreams(self, PID):
         """
@@ -617,7 +605,6 @@ class Fedora(UniqueObject, Folder):
 
 
     def getQualifiedDCMetadata(self,PID):
-
         return qdc.getQualifiedDCMetadata(PID)
 
     def setQualifiedDCMetadata(self, params):
