@@ -1,6 +1,10 @@
 Changelog
 =========
 
+DiPP 2.17 (2014-01-23)
+    * Datacite DOI control panel added (just skeleton)
+    * script to fix wrong formatted journalIssueDate in qdc metadata
+
 DiPP 2.16 (2014-01-13)
     * added DOI to portal_catalog. run synchronize script after installation 
 
