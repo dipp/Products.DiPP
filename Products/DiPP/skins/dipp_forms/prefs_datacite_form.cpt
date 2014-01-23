@@ -1,0 +1,31 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	metal:use-macro="here/prefs_main_template/macros/master"
+    i18n:domain="dipp">
+	<metal:block fill-slot="base">
+		<base href="" tal:attributes="href python: here.absolute_url() + '/'">
+	</metal:block>
+
+	<metal:block fill-slot="top_slot" tal:define="dummy python:request.set('disable_border',1)" />
+
+	<body>
+
+
+	<div metal:fill-slot="prefs_configlet_main">
+
+        <h5 class="hiddenStructure">Views</h5>
+
+            <h1>DataCite/DOI Configuration</h1>
+
+            <a href=""
+               class="link-parent"
+               tal:attributes="href string: $portal_url/plone_control_panel"
+               i18n:translate="label_up_to_plone_setup">
+              Up to Site Setup
+            </a>
+            <em>not yet implemented...</em>
+
+	</div>
+
+</body>
+</html>
