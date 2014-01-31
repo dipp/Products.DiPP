@@ -371,6 +371,7 @@
              class="field"
              id="creatorPerson"
              tal:define="error errors/creatorPerson|nothing;
+                         author_identifier here/bibtool/get_author_identifier|nothing;
                          default python:[];
                          creatorPerson request/creatorPerson|python:qdc['creatorPerson']"
              tal:attributes="class python:test(error, 'field error', 'field')"
@@ -394,6 +395,9 @@
                     <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
                     <th i18n:translate="organization">Organisation</th>
                     <th i18n:translate="postalAddress">Anschrift</th>
+                    <tal:block tal:repeat="identifier python:author_identifier.keys()">
+                        <th tal:content="python: author_identifier[identifier]"></th>
+                    </tal:block>
                 </tr>
             </thead>
             <tbody>
@@ -404,6 +408,7 @@
                                name="author_index:int:list" 
                                value=""
                                tal:attributes="value repeat/person/index"/>
+                        <input type="hidden" class="dippIdentNumber" value="" name="creatorPerson.dippIdentNumber:records" tal:attributes="value person/dippIdentNumber" />    
                     </td>
                     <td>
                         <input type="text" class="academicTitle" value="" name="creatorPerson.academicTitle:records" tal:attributes="value person/academicTitle">    
@@ -426,6 +431,14 @@
                     <td>
                         <input type="text" class="postalAddress" value="" name="creatorPerson.postalAddress:records" tal:attributes="value person/postalAddress">    
                     </td>
+                    <tal:block tal:repeat="identifier python:author_identifier.keys()">
+                        <td>
+                            <input type="text" class="" value="" name="" 
+                                   tal:attributes="class string:$identifier;
+                                                   name string:creatorPerson.ident_$identifier:records;
+                                                   value python:person['ident_%s' % identifier]">    
+                        </td>
+                    </tal:block>
                 </tr>
             </tbody>
             </table>
@@ -541,6 +554,7 @@
         <div metal:define-macro="contributor"
              class="field"
              tal:define="error errors/contributor|nothing;
+                         author_identifier here/bibtool/get_author_identifier|nothing;
                          contributor request/contributor|python:qdc['contributor']"
              tal:attributes="class python:test(error, 'field error', 'field')"
              i18n:domain="qdc">
@@ -559,6 +573,9 @@
                     <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
                     <th i18n:translate="organization">Organisation</th>
                     <th i18n:translate="postalAddress">Anschrift</th>
+                    <tal:block tal:repeat="identifier python:author_identifier.keys()">
+                        <th tal:content="python: author_identifier[identifier]"></th>
+                    </tal:block>
                 </tr>
             </thead>
             <tbody>
@@ -569,6 +586,7 @@
                                name="contributor_index:int:list" 
                                value=""
                                tal:attributes="value repeat/person/index"/>
+                        <input type="hidden" class="dippIdentNumber" value="" name="contributor.dippIdentNumber:records" tal:attributes="value person/dippIdentNumber" />    
                     </td>
                     <td>
                         <input type="text"
@@ -626,6 +644,14 @@
                                name="contributor.postalAddress:records" 
                                tal:attributes="value person/postalAddress">    
                     </td>
+                    <tal:block tal:repeat="identifier python:author_identifier.keys()">
+                        <td>
+                            <input type="text" class="" value="" name="" 
+                                   tal:attributes="class string:$identifier;
+                                                   name string:contributor.ident_$identifier:records;
+                                                   value python:person['ident_%s' % identifier]">    
+                        </td>
+                    </tal:block>
                 </tr>
             </tbody>
             </table>

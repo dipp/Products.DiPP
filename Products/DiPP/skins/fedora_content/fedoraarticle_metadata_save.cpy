@@ -27,7 +27,7 @@ journal_section = params.get('journal_section','no-section')
 self.setStartpage(startpage)
 self.setEndpage(endpage)
 self.setJournal_section(journal_section)
-
+context.plone_log(params['creatorPerson'])
 fedora.setQualifiedDCMetadata(params)
 self.syncMetadata()
 

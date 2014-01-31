@@ -37,7 +37,7 @@ import logging
 from dipp.fedora2 import FedoraAccess
 from dipp.fedora2 import FedoraManagement
 from dipp.fedora2.config import ADDRESS, PORT
-from dipp.dipp3 import ContentModel, qdc
+from dipp.dipp3 import ContentModel, qdc, makeQDC
 from dipp.tools import openurl
 
 from backissues import import_backissues
@@ -377,233 +377,7 @@ class Fedora(UniqueObject, Folder):
     def modifyDatastreamByReference(self, REQUEST, PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType, tempID):
         self.fedoramanagement.modifyDatastreamByReference(PID, DsID, DsLabel, LogMessage, Location, DsState, MIMEType)
         return Location
-
-
-    def makeDCMetadataObject(self, params):
-        """return a Metadata object"""
-        
-        if params.has_key('PID'):
-            PID = params['PID']
-            cModel = ContentModel.ContentModel()
-            DCMetadata = cModel.getQualifiedDCMetadata(PID)
-        else:  
-            DCMetadata = ContentModel.setQualifiedDublinCoreRequest().new_in1()
-
-        # Titel   
-        DCMetadata._title = []
-        for title in params['title']:
-            if title['value'].strip():
-                x = DCMetadata.new_title()
-                x._value =  title['value']
-                x._lang  =  title['lang']
-                DCMetadata._title.append(x)
-
-        # alternativer Titel
-        DCMetadata._alternative = []
-        for alternative in params['alternative']:
-            if alternative['value'].strip():
-                x = DCMetadata.new_alternative()
-                x._value =  alternative['value']
-                x._lang  =  alternative['lang']
-                DCMetadata._alternative.append(x)
-        
-        # abstract
-        DCMetadata._DCTermsAbstract = []
-        for abstract in params['DCTermsAbstract']:
-            if abstract['value'].strip():
-                x = DCMetadata.new_DCTermsAbstract()
-                x._value =  abstract['value']
-                x._lang  =  abstract['lang']
-                DCMetadata._DCTermsAbstract.append(x)
-
-        # creatorPerson
-        DCMetadata._creatorPerson = []
-        for author in params['creatorPerson']:
-            x = DCMetadata.new_creatorPerson()
-            x._PNDIdentNumber      = author.get('PNDIdentNumber','')
-            x._academicTitle       = author.get('academicTitle','')
-            x._emailAddress        = author.get('emailAddress','')
-            x._firstName           = author.get('firstName','')
-            x._lastName            = author.get('lastName','')
-            x._organization        = author.get('organization','')
-            x._postalAddress       = author.get('postalAddress','')
-            DCMetadata._creatorPerson.append(x)
-
-        # creatorCorporated
-        DCMetadata._creatorCorporated = []
-        for corp in params['creatorCorporated']:
-            x = DCMetadata.new_creatorCorporated()
-            x._GKDIdentNumber      = corp['GKDIdentNumber']
-            x._emailAddress        = corp['emailAddress']
-            x._institutionelAuthor = corp['institutionelAuthor']
-            x._organization        = corp['organization']
-            x._postalAddress       = corp['postalAddress']
-            DCMetadata._creatorCorporated.append(x)
-
-        # contributor
-        DCMetadata._contributor = []
-        for contrib in params['contributor']:
-            x = DCMetadata.new_contributor()
-            x._PNDIdentNumber      = contrib['PNDIdentNumber']
-            x._academicTitle       = contrib['academicTitle']
-            x._emailAddress        = contrib['emailAddress']
-            x._firstName           = contrib['firstName']
-            x._lastName            = contrib['lastName']
-            x._organization        = contrib['organization']
-            x._postalAddress       = contrib['postalAddress']
-            x._role                = contrib['role']
-            DCMetadata._contributor.append(x)
-
-        # DDC Sachgruppen
-        DCMetadata._DDC = []
-        DDCs = params['DDC']
-        for DDC in DDCs:
-            DCMetadata._DDC.append(DDC)
-
-        # subject
-        subject = []
-        try:
-            subjects = params['subject']
-            for aSubject in subjects:
-                if aSubject != "":
-                    subject.append(aSubject)
-        except:
-            pass 
-        DCMetadata._subject=subject
-
-        # subjectClassified
-        DCMetadata._subjectClassified = []
-        for subjectClassified in params['subjectClassified']:
-            x = DCMetadata.new_subjectClassified()
-            x._classificationIdent = subjectClassified.get('classificationIdent','')
-            x._classificationSystem = subjectClassified.get('classificationSystem','')
-            x._subjectClassified = subjectClassified.get('subjectClassified','')
-            DCMetadata._subjectClassified.append(x)
-        
-     
-        # language
-        DCMetadata._language = []
-        try:
-            languages = params['language']
-            for language in languages:
-                DCMetadata._language.append(language)
-        except:
-            DCMetadata._language.append("")
-        
-        # publisher
-        try:
-            publishers = params['publisher']
-            DCMetadata._publisher = []
-            for publisher in publishers:
-                DCMetadata._publisher.append(publisher)
-        except:
-            pass
-
-        try:
-            created = params['created']
-            DCMetadata._created = []
-            x = mktime(strptime(created, "%Y-%m-%d"))
-            DCMetadata._created = x
-            
-            modified = params['modified']
-            DCMetadata._modified = []
-            x = mktime(strptime(modified, "%Y-%m-%d"))
-            DCMetadata._modified = x
-            
-            valid = params['valid']
-            DCMetadata._valid = []
-            x = mktime(strptime(valid, "%Y-%m-%d"))
-            DCMetadata._valid = x
-        except:
-            pass
-        
-        # Dates of Publishinghistory
-        
-        dateSubmitted = params.get('dateSubmitted','').strip()
-        if dateSubmitted != "":
-            try:
-                DCMetadata._dateSubmitted = mktime(strptime(dateSubmitted, "%Y-%m-%d"))
-            except:
-                pass
-                
-        dateAccepted = params.get('dateAccepted','').strip()
-        if dateAccepted != "":
-            try:
-                DCMetadata._dateAccepted = mktime(strptime(dateAccepted, "%Y-%m-%d"))
-            except:
-                pass
-        
-        dateCopyrighted = params.get('dateCopyrighted','').strip()
-        if dateCopyrighted != "":
-            try:
-                DCMetadata._dateCopyrighted = mktime(strptime(dateCopyrighted, "%Y-%m-%d"))
-            except:
-                pass
-
-        # bibliographicCitation
-        DCMetadata._bibliographicCitation = []
-        bc = params['bibliographicCitation'][0]
-        x = DCMetadata.new_bibliographicCitation()
-        x._journalIssueDate = bc['journalIssueDate']
-        x._journalIssueNumber = bc['journalIssueNumber']
-        x._journalTitle = bc['journalTitle'] 
-        x._journalVolume = bc['journalVolume']
-        DCMetadata._bibliographicCitation.append(x)
-     
-        # rights
-        DCMetadata._rights=[]
-        try:
-            rights = params['rights']
-            for x in rights:
-                DCMetadata._rights.append(x)
-                
-        except:
-            pass
-        
-        # ISSN
-        try:
-            DCMetadata._identifierISSN = params['identifierISSN']
-        except:
-            pass
-        # URL
-        try:
-            DCMetadata._identifierURL = params['identifierURL']
-        except:
-            pass
-
-        # DOI
-        try:
-            DCMetadata._identifierDOI = params['identifierDOI']
-        except:
-            pass
-
-        # pubType
-        try:
-            DCMetadata._pubType = []
-            pubType = params['pubType'][0]
-            DCMetadata._pubType.append(pubType)
-        except:
-            pass
-
-        # docType
-        try:
-            DCMetadata._docType =[]
-            docType = params['docType'][0]
-            DCMetadata._docType.append(docType)
-        except:
-            pass
-
-        # articleType
-        DCMetadata._articleType = []
-        try:
-            articleType = params['articleType']
-            DCMetadata._articleType.append(articleType)
-        except:
-            pass
-        
-        return DCMetadata
-
-
+    
     def getQualifiedDCMetadata(self,PID):
         return qdc.getQualifiedDCMetadata(PID)
 
@@ -613,36 +387,20 @@ class Fedora(UniqueObject, Folder):
         cModel = ContentModel.ContentModel()
         DCMetadata = ContentModel.setQualifiedDublinCoreRequest().new_in1()
         PID = params['PID']
-        DCMetadata = self.makeDCMetadataObject(params)
+        DCMetadata = makeQDC.makeDCMetadataObject(params)
         cModel.setQualifiedDCMetadata(PID,DCMetadata)
         return DCMetadata
 
     def createNewArticle(self, ContainerPID, JournalPID, params, Location):
         """creates a new article object for DiPP"""
     
-        cModel = ContentModel.ContentModel()
-        today = DateTime().strftime("%Y-%m-%d")
-        params['created'] = today
-        params['modified'] = today
-        params['valid'] = today
-        DCMetadata = self.makeDCMetadataObject(params)
-        ContainerPIDs = []
-        ContainerPIDs.append(ContainerPID)
-        StorageType  = params['storageType']
-        #Location = Location + "/getPrivateContent"
-        if params['targetFormat'] == ['']:
-            targetFormat = []
-        else:
-            targetFormat = params['targetFormat']
-        
-        response = cModel.createNewArticle(ContainerPIDs, JournalPID, DCMetadata, Location, StorageType, targetFormat)
-        return response
+        return makeQDC.createNewArticle(ContainerPID, JournalPID, params, Location)
     
     def createNewEntry(self, ContainerPID, JournalPID, params, Location):
         """creates a new entry object for DiPA"""
     
         cModel = ContentModel.ContentModel()
-        DCMetadata = self.makeDCMetadataObject(params)
+        DCMetadata = makeQDC.makeDCMetadataObject(params)
         ContainerPIDs = []
         ContainerPIDs.append(ContainerPID)
         StorageType  = "permanent"

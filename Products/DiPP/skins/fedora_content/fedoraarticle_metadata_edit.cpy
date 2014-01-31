@@ -5,11 +5,15 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=id=''
+##parameters=self
+
+from Products.CMFCore.utils import getToolByName
 
 REQUEST = context.REQUEST
 translate = context.translate
 portal_status_message = ""
+
+bibtool = getToolByName(self, 'bibtool')
 
 def del_from_list(old_list, selection):
     """the item with numbers from selection are deletet from list"""
@@ -77,7 +81,7 @@ if REQUEST.form.has_key('form.button.delAbstract'):
 
 # add Author
 creatorPerson = REQUEST.get('creatorPerson',None)
-default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
+default = bibtool.get_creator_defaults()
 if REQUEST.form.has_key('form.button.addAuthor'):
     creatorPerson.append(default)
     portal_status_message =translate('field-added', domain='qdc')
@@ -107,7 +111,7 @@ if REQUEST.form.has_key('form.button.delCorp'):
 
 # add Contrbutor
 contributor = REQUEST.get('contributor',None)
-default = {'organization': '', 'firstName': '', 'GKDIdentNumber': '', 'lastName': '', 'emailAddress': '', 'PNDIdentNumber': '', 'academicTitle': '', 'postalAddress': '', 'role': '', 'institutionelAuthor':'' }
+default = bibtool.get_creator_defaults()
 if REQUEST.form.has_key('form.button.addContributor'):
     contributor.append(default)
     portal_status_message = translate('field-added', domain='qdc')

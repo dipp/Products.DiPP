@@ -20,11 +20,12 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator, indent
 from dipp.dipp3 import dippDOAJ, qdc2metadata
-from dipp.dipp3 import defaults
+from dipp.dipp3 import defaults, qdc
 from config import view_permission, LANGUAGES
 import logging
 
 logger = logging.getLogger("DiPP")
+
 
 class BibTool(UniqueObject, SimpleItem):
     """ Wrapper for Bibutils """
@@ -40,7 +41,13 @@ class BibTool(UniqueObject, SimpleItem):
            but not the bibliograph.core Python module. 
         """
         return defaults.SUPPORTED_BIBUTIL_FORMATS
-   
+
+    def get_creator_defaults(self):
+        """an empty dictionary of the default creator metadata"""
+        return qdc.get_creator_defaults()
+
+    def get_author_identifier(self):
+        return dict(defaults.AUTHOR_IDENTIFIER)
     
     def short_citation(self,article):
         """Short version of the bibligraphic citation. Calls only plones own
