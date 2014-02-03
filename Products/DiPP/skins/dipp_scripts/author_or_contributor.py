@@ -12,6 +12,10 @@
 from Products.CMFCore.utils import getToolByName
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
+
+self.plone_log("AUTHORSEARCH DEACTIVATED! user_id: %s, contributor: %s" % (user_id, contributor))
+return {'author':[None], 'contributor': contributor}
+
 mtool = getToolByName(self, 'portal_membership')
 self.plone_log("user_id: %s, contributor: %s" % (user_id, contributor))
 
