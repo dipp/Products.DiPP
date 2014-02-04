@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <script type="text/javascript" metal:fill-slot="javascript_head_slot">
+    </script>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+    <metal:block fill-slot="column_one_slot" />
+    <metal:block fill-slot="column_two_slot" />
+</head>
+
+<body>
+
+<div metal:fill-slot="main"
+     tal:define="auth nocall:here/acl_users/credentials_cookie_auth|here/cookie_authentication|nothing;
+                 came_from request/came_from|request/HTTP_REFERER|nothing;
+                 came_from python:test(utool.isURLInPortal(came_from), came_from, None);
+                 errors options/state/getErrors;
+                 ac_name auth/name_cookie|string:__ac_name;
+                 ac_password auth/pw_cookie|string:__ac_password;
+                 ac_persist auth/persist_cookie|nothing;
+                 login_name python:request.get('login_name', request.get(ac_name, ''));">
+
+<h1 i18n:translate="heading_maintanance">Wartungsarbeiten/ Maintenance</h1>
+
+<p i18n:translate="">
+Wegen Wartungsarbeiten ist derzeit keine Anmeldung möglich.
+</p>
+<p i18n:translate="">
+Login is currently not possible due to maintenance.
+</p>
+
+
+</div>
+
+</body>
+</html>
