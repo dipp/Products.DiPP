@@ -25,7 +25,7 @@ from Products. DiPP.config import PROJECTNAME
 from Products.DiPP.interfaces import IFedoraMultimedia
 from Products.DiPP import Permissions
 
-logger = logging.getLogger("DiPP")
+logger = logging.getLogger(__name__)
 
 FedoraMultimediaSchema = BaseSchema + Schema((
         FileField('File',
@@ -93,7 +93,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         if self.MMType == "alternative_format":
             article = self.getParentNode()
             article.reindexObject()
-            logger.info("fedoramultimedia: reindexed %s" % article.PID)
+            logger.info("reindexed %s" % article.PID)
     
 
     def at_post_create_script(self):
@@ -119,7 +119,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         if PID and DsID and MIMEType == "application/pdf": 
             data =  fedora.accessMultiMediaByFedoraURL(PID,DsID,None)
             stream = data['stream']
-            logger.info("fedoramultimedia: Fetching %s/%s for indexing." % (PID, DsID))
+            logger.info("Fetching %s/%s for indexing." % (PID, DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,

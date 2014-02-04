@@ -22,10 +22,6 @@ from dipp.tools import urnvalidator, indent
 from dipp.dipp3 import dippDOAJ, qdc2metadata
 from dipp.dipp3 import defaults, qdc
 from config import view_permission, LANGUAGES
-import logging
-
-logger = logging.getLogger("DiPP")
-
 
 class BibTool(UniqueObject, SimpleItem):
     """ Wrapper for Bibutils """

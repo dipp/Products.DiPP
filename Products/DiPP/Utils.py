@@ -17,7 +17,7 @@ import urllib
 
 import logging
 
-logger = logging.getLogger("DiPP")
+logger = logging.getLogger(__name__)
 
 VERIFY_SERVER="www.google.com"
 

@@ -43,7 +43,7 @@ from dipp.tools import openurl
 from backissues import import_backissues
 from config import view_permission, LANGUAGES, PUBTYPES, DOCTYPES, DEFAULT_METADATA
 
-logger = logging.getLogger("DiPP")
+logger = logging.getLogger(__name__)
 
 class Fedora(UniqueObject, Folder):
     """Tool to add and modify Data in the Fedora Repository """
@@ -258,7 +258,7 @@ class Fedora(UniqueObject, Folder):
         netloc = ':'.join((ADDRESS,PORT))
         conn = httplib.HTTPConnection(netloc)
         URL = urlparse.urlunparse(('http',netloc,path,'','',''))
-        logger.info("Fedora2DiPP3Tool: fetch %s from repository" % URL)
+        logger.info("fetch %s from repository" % URL)
         conn.request("GET", URL)
         r = conn.getresponse()
         data = {'MIMEType':r.getheader('content-type'),

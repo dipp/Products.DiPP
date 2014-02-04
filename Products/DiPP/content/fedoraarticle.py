@@ -38,7 +38,7 @@ from Products.DiPP.config import PROJECTNAME, COMMENT_SELECTION_TITLE_LENGTH
 from Products.DiPP.interfaces import IFedoraArticle
 from Products.DiPP import Permissions
 
-logger = logging.getLogger("DiPP")
+logger = logging.getLogger(__name__)
 
 def dummy(obj, event):
     logger.info("edit event. not used yet")
@@ -272,7 +272,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         searchable = authors + title
         language = self.language
         # indexing authors
-        logger.info("fedoraarticle: fetching %s for indexing (%s)" % (PID, language))
+        logger.info("fetching %s for indexing (%s)" % (PID, language))
         icc.addContent('SearchableText',unicode(searchable), language)
         icc.addContent('Title',unicode(title), language)
         # indexing pdf
@@ -282,7 +282,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         if PDF_PID and PDF_DsID: 
             data =  fedora.accessMultiMediaByFedoraURL(PDF_PID,PDF_DsID,None)
             stream = data['stream']
-            logger.info("fedoraarticle: PDF with %s/%s" % (PDF_PID, PDF_DsID))
+            logger.info("PDF with %s/%s" % (PDF_PID, PDF_DsID))
             icc.addBinary('SearchableText', 
                           stream,
                           MIMEType,
@@ -355,7 +355,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                 PID = result.getPID
                 title = result.Title
             except:
-                logger.info("fedoraarticle: articles should have Title and PID. We should never see this...")
+                logger.info("articles should have Title and PID. We should never see this...")
                 continue
             
             chopped_title = title.split()
