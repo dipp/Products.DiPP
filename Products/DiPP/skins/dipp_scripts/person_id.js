@@ -17,7 +17,7 @@ function addForms(){
 
 // add Search-Button to each PNDdentnumber Field
 function addPndForm(){
-	var suchImage = "<div class=\"pnd\" style=\"float:left;\"><img src=\"persIdSearch\" alt=\"PND nach Person durchsuchen\" /></div>";
+	var suchImage = "<div class=\"pnd\" style=\"float:left;\"><img src=\"persIdSearch.jpg\" alt=\"PND nach Person durchsuchen\" /></div>";
 	var imageDiv = $(".PNDIdentNumber").parent().append(suchImage);
 	//$(".lastName").blur(requestPersonIdBlur);
 	$("div .pnd img").click(requestPersonId);
@@ -28,7 +28,7 @@ function addPndForm(){
 
 //add Search-Button to each orchid Field
 function addOrcidForm(){
-	var suchImage = "<div class=\"orcid\" style=\"float:left;\"><img src=\"persIdSearch\" alt=\"Orcid nach Person durchsuchen\" /></div>";
+	var suchImage = "<div class=\"orcid\" style=\"float:left;\"><img src=\"persIdSearch.jpg\" alt=\"Orcid nach Person durchsuchen\" /></div>";
 	var imageDiv = $(".orcid").parent().append(suchImage);
 	//$(".lastName").blur(requestPersonIdBlur);
 	$("div .orcid img").click(requestPersonId);
