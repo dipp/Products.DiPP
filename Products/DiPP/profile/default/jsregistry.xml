@@ -31,5 +31,5 @@
     <javascript  id="dippreview.js" compression="none" cookable="False" insert-after="jquery.tools.min.js" />
     <javascript  id="tabber.js" compression="none" cookable="False" insert-after="jquery.tools.min.js" />
     <javascript  id="sectiondrilldown.js" compression="none"  insert-after="jquery.tools.min.js" />
-    <javascript  id="gndrequest.js" compression="none"  insert-after="jquery.tools.min.js" enabled="false" />
+    <javascript  id="person_id.js" compression="none"  insert-after="jquery.js" />
 </object>

@@ -1,0 +1,48 @@
+table {
+	z-index:0;
+}
+
+.formarea{
+	background-color: #ddd;
+	box-shadow: 3px 3px 7px #6666ff;
+	border-radius: 10px;
+	padding: 30px;
+	margin: 10px;
+	z-index:0;
+}
+	
+.resultbox{
+	background-color: #ffeb6c;
+	box-shadow: 3px 3px 3px #666666;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+div.search_icon{
+	float: left;
+}
+
+div.resultalert{
+	float:left;
+	cursor: pointer;
+	background-color: #ffeb6c;
+	box-shadow:  1px 1px 4px #6666ff;
+	border-radius: 3px;
+	padding: 3px;
+	z-index:50;
+	overflow:visible;
+}
+
+div.result{
+	font-size: 1.0em;
+	z-index:10;
+	position:absolute;
+	top:600px;
+	right: 50px; 
+	width:30%;
+	background-color: #fffcad;
+	box-shadow:  3px 3px 7px #6666ff;
+	border-radius: 10px;
+	padding: 30px;
+	overflow:auto;
+}
