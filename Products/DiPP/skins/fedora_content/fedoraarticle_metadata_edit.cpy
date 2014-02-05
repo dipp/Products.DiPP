@@ -11,7 +11,6 @@ from Products.CMFCore.utils import getToolByName
 
 REQUEST = context.REQUEST
 translate = context.translate
-portal_status_message = ""
 
 bibtool = getToolByName(self, 'bibtool')
 
@@ -151,8 +150,8 @@ return state.set(status='success',\
     DDC                        = DDC,
     language                   = REQUEST.get('language',None),
     targetFormat               = REQUEST.get('targetFormat',None),
-    alternative                = alternative,
     title                      = title,
+    alternative                = alternative,
     DCTermsAbstract            = DCTermsAbstract,
     subjects                   = REQUEST.get('subjects',None),
     creatorPerson              = creatorPerson,
