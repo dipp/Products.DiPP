@@ -392,9 +392,9 @@
                     <th i18n:translate="lastName">Nachname</th>
                     <th i18n:translate="firstName">Vorname</th>
                     <th i18n:translate="emailAddress">E-Mail</th>
-                    <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
                     <th i18n:translate="organization">Organisation</th>
                     <th i18n:translate="postalAddress">Anschrift</th>
+                    <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
                     <tal:block tal:repeat="identifier python:author_identifier.keys()">
                         <th tal:content="python: author_identifier[identifier]"></th>
                     </tal:block>
@@ -423,13 +423,13 @@
                         <input type="email" class="emailAddress" value="" name="creatorPerson.emailAddress:records" tal:attributes="value person/emailAddress">    
                     </td>
                     <td>
-                        <input type="text" class="PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">    
-                    </td>
-                    <td>
                         <input type="text" class="organization" value="" name="creatorPerson.organization:records" tal:attributes="value person/organization">    
                     </td>
                     <td>
                         <input type="text" class="postalAddress" value="" name="creatorPerson.postalAddress:records" tal:attributes="value person/postalAddress">    
+                    </td>
+                    <td>
+                        <input type="text" class="PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">    
                     </td>
                     <tal:block tal:repeat="identifier python:author_identifier.keys()">
                         <td>
@@ -570,9 +570,9 @@
                     <th i18n:translate="firstName">Vorname</th>
                     <th i18n:translate="emailAddress">E-Mail</th>
                     <th i18n:translate="role">Rolle</th>
-                    <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
                     <th i18n:translate="organization">Organisation</th>
                     <th i18n:translate="postalAddress">Anschrift</th>
+                    <th i18n:translate="PNDIdentNumber">PNDIdentNummer</th>
                     <tal:block tal:repeat="identifier python:author_identifier.keys()">
                         <th tal:content="python: author_identifier[identifier]"></th>
                     </tal:block>
@@ -625,13 +625,6 @@
                     </td>
                     <td>
                         <input type="text"
-                               class="PNDIdentNumber"
-                               value="" 
-                               name="contributor.PNDIdentNumber:records"
-                               tal:attributes="value person/PNDIdentNumber">    
-                    </td>
-                    <td>
-                        <input type="text"
                                class="organization" 
                                value=""
                                name="contributor.organization:records"
@@ -643,6 +636,13 @@
                                value="" 
                                name="contributor.postalAddress:records" 
                                tal:attributes="value person/postalAddress">    
+                    </td>
+                    <td>
+                        <input type="text"
+                               class="PNDIdentNumber"
+                               value="" 
+                               name="contributor.PNDIdentNumber:records"
+                               tal:attributes="value person/PNDIdentNumber">    
                     </td>
                     <tal:block tal:repeat="identifier python:author_identifier.keys()">
                         <td>
