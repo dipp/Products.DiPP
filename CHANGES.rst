@@ -1,6 +1,12 @@
 Changelog
 =========
 
+DiPP 2.18 (2014-02-06)
+    * requires dipp.dipp3 3.4 and works only with java package dippCore-1.3.02
+    * Support for ORCID ID
+    * DataCite and DOAJ xml export on one page
+    * removed authordetails on authorpage. just article listing for the time being
+    
 DiPP 2.17 (2014-01-23)
     * Datacite DOI control panel added (just skeleton)
     * script to fix wrong formatted journalIssueDate in qdc metadata
