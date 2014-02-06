@@ -18,4 +18,5 @@ dann über das :term:`DocBook` XML Format zu :term:`HTML` konvertiert.
    zusatzmaterial
    kommentare
    metis
+   doaj
    workflow

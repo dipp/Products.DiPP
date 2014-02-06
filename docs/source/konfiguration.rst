@@ -126,6 +126,32 @@ issuedate          Datum der Veröffentlichung
 urn                Der URN
 ================== ============================================================
 
+
+.. _prop_issue_date_format:
+
+issue_date_format
+=================
+
+Formatierung des Ausgabendatums in Listen aller Ausgaben. http://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
+
+Default::
+
+    %b %Y
+
+
+.. _hide_current_issue:
+
+hide_current_issue
+==================
+
+Bestimmt, ob die aktuelle Ausgabe im all_issues Template angezeigt werden soll. Bei Verwendung eines currentissue 
+Links kann das evtl. sinnvoll sein.
+
+Default::
+
+    False
+
+
 show_recommended_citation
 =========================
 Soll unterhalb des Artikels das bibliographische Zitat angezeigt werden?
