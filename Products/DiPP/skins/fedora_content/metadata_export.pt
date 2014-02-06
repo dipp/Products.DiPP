@@ -14,7 +14,7 @@
         <h1 class="documentFirstHeading"
             i18n:translate=""
             i18n:domain="dipp">
-          DOAJ
+          Metadata Export
         </h1>
         
         <div class="documentByLine">
@@ -24,17 +24,22 @@
                tal:attributes="href string:${here/absolute_url};">
                back to the article</a>
         </div>
-        <div class="documentDescription">
-            Metadata  for registering articles at DOAJ.
-        </div>
 
 
         <tal:block tal:define="articlePID here/PID;
                                issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                                publisher here/portal_properties/metadata_properties/publisher|nothing;
-                               xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
-
-            <pre tal:content="xml"> </pre> 
+                               datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf());
+                               doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
+            <h2>DataCite</h2>
+            <div class="portalMessage" tal:condition="not: here/getDOI">
+                <strong>Warning!</strong> The metadata of this article to not contains a DOI. You can no submit this article to datacite. </div>
+            <pre tal:content="datacite_xml"> </pre> 
+            <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
+            
+            <h2>DOAJ</h2>
+            <pre tal:content="doaj_xml"> </pre> 
+            <a tal:attributes="href string:${here/absolute_url}/doaj">Download</a>
         </tal:block>
     </tal:main-macro>
 </metal:main>

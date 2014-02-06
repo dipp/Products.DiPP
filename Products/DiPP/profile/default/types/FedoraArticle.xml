@@ -67,11 +67,11 @@
   <permission value="Fedora: Edit Content"/>
  </action>
  
- <action title="DataCite DOI"
-         action_id="doi" 
+ <action title="Metadata Export"
+         action_id="metadata_export" 
          category="folder" 
-         condition_expr="python:portal.portal_properties.metadata_properties.doi_prefix != ''"
-         url_expr="string:${folder_url}/datacite"
+         condition_expr=""
+         url_expr="string:${folder_url}/metadata_export"
          visible="True">
   <permission value="Fedora: Edit Content"/>
  </action>
