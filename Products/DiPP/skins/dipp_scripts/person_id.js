@@ -257,7 +257,7 @@ function responseParser(xml){
 		resultField = resultField + "<div class=\"item\" ><a href=\"#\" class=\"item\" ><strong>" + prefferedName + "</strong></a>" 
 			+ "<ul><li><strong>PND-ID: </strong>" +  pndId + "</li>"
 			+ "<li><strong>Geburtsjahr: </strong>" + birth + "</li>"
-			+ "<li><strong>Bibliographische Daten: </strong>" + biogr  + "</li></ul></div>";
+			+ "<li><strong>Biographische Daten: </strong>" + biogr  + "</li></ul></div>";
 	});
 	return resultField;
 }
@@ -273,7 +273,7 @@ function responseParserOrcid(xml){
 		
 		resultField = resultField + "<div class=\"item\" ><a href=\"#\" class=\"item\" ><strong>" + prefferedName + "</strong></a>" 
 			+ "<ul><li><strong>ID: </strong>" +  orcidId + "</li>"
-			+ "<li><strong>Bibliographische Daten: </strong>" + biogr  + "</li></ul></div>";
+			+ "<li><strong>Biographische Daten: </strong>" + biogr  + "</li></ul></div>";
 	});
 	return resultField;
 }
