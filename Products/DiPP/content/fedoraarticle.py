@@ -300,42 +300,39 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         
         """
         fedora = getToolByName(self, 'fedora')
-        if not self.PID.startswith('temp:'):
-            qdc = fedora.getQualifiedDCMetadata(self.PID)
-            logger.info("Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
-            
-            creatorPersons = qdc['creatorPerson']
-            contributors = []
-            for creatorPerson in creatorPersons:
-                firstName = creatorPerson['firstName'] 
-                lastName = creatorPerson['lastName'] 
-                author = "%s, %s" % (lastName, firstName)
-                contributors.append(author)
-            self.setContributors(contributors)
-            self.setAuthors(contributors)
-            
-            self.setSubject(qdc['subject'])
-            self.setRights(qdc['rights'][0])
-            self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
-            self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
-            self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
-            date = qdc['bibliographicCitation'][0]['journalIssueDate']
-            self.setEffectiveDate(date)
-            self.setIssueDate(date)
-            self.setURN(qdc['identifierURN'])
-            self.setDOI(qdc['identifierDOI'])
-           
-            # list with available abstract languages ist stored on article object. The calculation
-            # on the fly would be to expensive, since for issue pages each single Article would
-            # have to be fetched from fedora. Bad for the performance
-            available_abstracts = []
-            for abstract in qdc['DCTermsAbstract']:
-                if abstract['value'].strip() != '':
-                    available_abstracts.append(abstract['lang'])
-            self.setAvailableAbstracts(available_abstracts)
-            self.setAbstract(qdc['DCTermsAbstract'][0]['value'].strip())
-        else:
-            logger.info("Skipping synchronization of Metadata for temp. article %s at %s" % (self.PID, self.absolute_url() ))
+        qdc = fedora.getQualifiedDCMetadata(self.PID)
+        logger.info("Synchronizing Metadata of article %s at %s" % (self.PID, self.absolute_url() ))
+        
+        creatorPersons = qdc['creatorPerson']
+        contributors = []
+        for creatorPerson in creatorPersons:
+            firstName = creatorPerson['firstName'] 
+            lastName = creatorPerson['lastName'] 
+            author = "%s, %s" % (lastName, firstName)
+            contributors.append(author)
+        self.setContributors(contributors)
+        self.setAuthors(contributors)
+        
+        self.setSubject(qdc['subject'])
+        self.setRights(qdc['rights'][0])
+        self.setIssue(qdc['bibliographicCitation'][0]['journalIssueNumber'])
+        self.setVolume(qdc['bibliographicCitation'][0]['journalVolume'])
+        self.setJournalTitle(qdc['bibliographicCitation'][0]['journalTitle'])
+        date = qdc['bibliographicCitation'][0]['journalIssueDate']
+        self.setEffectiveDate(date)
+        self.setIssueDate(date)
+        self.setURN(qdc['identifierURN'])
+        self.setDOI(qdc['identifierDOI'])
+       
+        # list with available abstract languages ist stored on article object. The calculation
+        # on the fly would be to expensive, since for issue pages each single Article would
+        # have to be fetched from fedora. Bad for the performance
+        available_abstracts = []
+        for abstract in qdc['DCTermsAbstract']:
+            if abstract['value'].strip() != '':
+                available_abstracts.append(abstract['lang'])
+        self.setAvailableAbstracts(available_abstracts)
+        self.setAbstract(qdc['DCTermsAbstract'][0]['value'].strip())
             
         self.reindexObject()
     
