@@ -24,7 +24,7 @@ def import_backissues(self,request, file, journal, target, dryrun):
     for article in articles:
         
         print >> out, "\n*** Processing Article ***"        
-        cModel = dipp3.ContentModel.ContentModel()
+        cModel = dipp.dipp3.ContentModel.ContentModel()
         request = setNewArticleRequest()          
         DCMetadata = request.new_in2()
 
