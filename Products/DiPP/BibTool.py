@@ -10,7 +10,6 @@
 
 from  elementtree.ElementTree import Element, SubElement
 import elementtree.ElementTree as ET    
-import datetime
 from bibliograph.core.bibutils import _getCommand
 from bibliograph.core.utils import _encode
 from subprocess import Popen, PIPE
@@ -19,9 +18,9 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from dipp.tools import urnvalidator, indent
-from dipp.dipp3 import dippDOAJ, qdc2metadata
+from dipp.dipp3 import qdc2metadata
 from dipp.dipp3 import defaults, qdc
-from config import view_permission, LANGUAGES
+
 
 class BibTool(UniqueObject, SimpleItem):
     """ Wrapper for Bibutils """
