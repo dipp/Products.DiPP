@@ -42,6 +42,7 @@ from dipp.tools import openurl
 
 from backissues import import_backissues
 from config import view_permission, LANGUAGES, PUBTYPES, DOCTYPES, DEFAULT_METADATA
+import Permissions
 
 logger = logging.getLogger(__name__)
 
@@ -161,7 +162,8 @@ class Fedora(UniqueObject, Folder):
                 query.append((field[i],comparison[i], value[i]))
         query = tuple(query)
         return self.search(query)
-        
+    
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'manage_deleteObjects')    
     def manage_deleteObjects(self, REQUEST, LogMessage, PIDs = []):
         """delete Objects in Fedora"""
         #manage_tabs_message = "%d Objects deleted" % len(PIDs)
@@ -192,7 +194,7 @@ class Fedora(UniqueObject, Folder):
             response._objectOther)
         return PIDs
 
-
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'purgeObjects')    
     def purgeObject(self, PID, LogMessage):
         """purge object
         """

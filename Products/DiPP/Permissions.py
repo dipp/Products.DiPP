@@ -4,10 +4,10 @@ from Products.CMFCore.permissions import setDefaultRoles
 
 security = ModuleSecurityInfo('DiPP')
 
-security.declarePublic('MANAGE_JOURNAL_PERMISSON')
-MANAGE_JOURNAL_PERMISSON = 'DiPP: Manage Journal'
+security.declarePublic('MANAGE_JOURNAL')
+MANAGE_JOURNAL = 'DiPP: Manage Journal'
 
-setDefaultRoles(MANAGE_JOURNAL_PERMISSON, ())
+setDefaultRoles(MANAGE_JOURNAL, ())
 
 # Publishing Permission
 ADD_CONTENTS_PERMISSION  = 'Fedora: Add Content'

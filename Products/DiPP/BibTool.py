@@ -304,12 +304,12 @@ class BibTool(UniqueObject, SimpleItem):
         status = urnvalidator.URN(urn, url)
         return status.parse_dnb_response()
 
-    security.declareProtected(Permissions.MANAGE_JOURNAL_PERMISSON, 'datacite_xml')
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
     def datacite_xml(self, pid, issn, publisher, pdf):
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_datacite_xml()
     
-    security.declareProtected(Permissions.MANAGE_JOURNAL_PERMISSON, 'doaj_xml')
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'doaj_xml')
     def doaj_xml(self, pid, issn, publisher, pdf):
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
