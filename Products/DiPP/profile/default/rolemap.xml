@@ -8,6 +8,11 @@
     <role name="Peer"/>
   </roles>
   <permissions>
+    <permission name="DiPP: Manage Journal"
+                acquire="True">
+      <role name="Herausgeber"/>
+      <role name="Manager"/>
+    </permission>
     <permission name="Access future portal content"
                 acquire="True">
       <role name="Herausgeber"/>

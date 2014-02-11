@@ -16,7 +16,9 @@ from Products.CMFCore import utils
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.GenericSetup import EXTENSION, profile_registry
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+import Permissions
 from config import *
+
 
 
 def initialize(context):
