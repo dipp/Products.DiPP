@@ -38,7 +38,6 @@ def initialize(context):
     import EditorialToolboxTool
     import Fedora2DiPP3Tool
     import Fedora2DiPP2Tool
-    import DiPPManagementTool
     import BibTool
     import Utils
     import Deadlines
@@ -61,7 +60,6 @@ def initialize(context):
     tools = (Fedora2DiPP3Tool.Fedora,
              Fedora2DiPP2Tool.Fedora,
              EditorialToolboxTool.toolbox,
-             DiPPManagementTool.DiPPManagement,
              BibTool.BibTool,
              Utils.Utils,
              Deadlines.Deadlines,
