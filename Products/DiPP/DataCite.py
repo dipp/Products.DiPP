@@ -58,5 +58,5 @@ class DataCite(UniqueObject, SimpleItem):
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_url')
     def get_url(self, doi):
         x = datacite.Client(self.user, self.password, self.endpoint, doi)
-        x.get_url()
-        return "eine url"
+        return x.get_url()
+
