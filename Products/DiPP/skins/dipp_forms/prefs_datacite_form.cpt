@@ -29,7 +29,8 @@
             	<dt>user</dt>
             	<dd tal:content="here/portal_doiregistry/user"></dd>
             	<dt>password</dt>
-            	<dd>****</dd>
+            	<dd tal:condition="here/portal_doiregistry/password">*******</dd>
+            	<dd tal:condition="not: here/portal_doiregistry/password">not set</dd>
             	<dt>prefix</dt>
             	<dd tal:content="here/portal_doiregistry/prefix"></dd>
             	<dt>Reserved DOIs (<span tal:replace="python:len(dois)" />)</dt>
