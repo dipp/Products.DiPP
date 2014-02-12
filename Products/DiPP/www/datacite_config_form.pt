@@ -1,0 +1,47 @@
+<p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+<h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
+    tal:replace="structure here/manage_tabs">Tabs</h2>
+
+<h3>DataCite Configuration</h3>
+
+ 
+<form action="manage_setFedoraSettings" tal:attributes="action python:here.absolute_url()+'/set_datacite_settings'" method="POST">
+    <table cellspacing="0">
+        <tr class="list-header">
+            <th>Field</th>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <th>endpoint</th>
+            <td><input name="endpoint" type="text" value="" tal:attributes="value here/endpoint|nothing" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>User</th>
+            <td><input name="user" type="text" value="" tal:attributes="value here/user|nothing"/></td>
+            <td>Username.</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td><input name="password" type="text"  value="" tal:attributes="value here/password|nothing"/></td>
+            <td>Password</td>
+        </tr>
+        <tr>
+            <th>Prefix</th>
+            <td><input name="prefix" type="text"  value="" tal:attributes="value here/prefix|nothing"/></td>
+            <td>Prefix</td>
+        </tr>
+        <tr>
+            <th>reserved DOIs</th>
+            <td>
+            	<textarea name="reserved_dois:lines" tal:content="python:'\n'.join(here.reserved_dois)">
+            	</textarea>
+            </td>
+            <td>Reserved</td>
+        </tr>
+    </table>
+    <input type="submit" value="Save" />
+</form>
+
+<p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>

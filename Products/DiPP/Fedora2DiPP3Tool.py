@@ -194,7 +194,7 @@ class Fedora(UniqueObject, Folder):
             response._objectOther)
         return PIDs
 
-    security.declareProtected(Permissions.MANAGE_JOURNAL, 'purgeObjects')    
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'purgeObject')    
     def purgeObject(self, PID, LogMessage):
         """purge object
         """

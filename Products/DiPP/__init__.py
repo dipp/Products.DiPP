@@ -44,6 +44,7 @@ def initialize(context):
     import Deadlines
     import SectionsTool
     import PeerReviewTool
+    import DataCite
 
     sys.modules['Products.DiPP.SpecialIssue'] = content.specialissue
     sys.modules['Products.DiPP.FedoraHierarchie'] = content.fedorahierarchie
@@ -62,6 +63,7 @@ def initialize(context):
              EditorialToolboxTool.toolbox,
              BibTool.BibTool,
              Utils.Utils,
+             DataCite.DataCite,
              Deadlines.Deadlines,
              SectionsTool.SectionsTool,
              PeerReviewTool.PeerReviewTool)

@@ -23,7 +23,25 @@
                i18n:translate="label_up_to_plone_setup">
               Up to Site Setup
             </a>
-            <em>not yet implemented...</em>
+            <dl tal:define="dois here/portal_doiregistry/reserved_dois">
+            	<dt>endpoint</dt>
+            	<dd tal:content="here/portal_doiregistry/endpoint"></dd>
+            	<dt>user</dt>
+            	<dd tal:content="here/portal_doiregistry/user"></dd>
+            	<dt>password</dt>
+            	<dd>****</dd>
+            	<dt>prefix</dt>
+            	<dd tal:content="here/portal_doiregistry/prefix"></dd>
+            	<dt>Reserved DOIs (<span tal:replace="python:len(dois)" />)</dt>
+            	<dd>
+            	<ul>
+            		<tal:dois tal:repeat="doi dois">
+            		<li tal:content="doi"></li>
+            		</tal:dois>
+            	</ul>
+                </dd>
+            	
+            </dl>
 
 	</div>
 

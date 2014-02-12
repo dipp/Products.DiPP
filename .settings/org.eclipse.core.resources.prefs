@@ -1,12 +1,15 @@
 eclipse.preferences.version=1
 encoding//Products/DiPP/BibTool.py=utf-8
+encoding//Products/DiPP/DataCite.py=utf-8
 encoding//Products/DiPP/EditorialToolboxTool.py=utf-8
 encoding//Products/DiPP/Extensions/Install.py=utf-8
 encoding//Products/DiPP/Fedora2DiPP3Tool.py=utf-8
 encoding//Products/DiPP/Manuscript.py=utf-8
+encoding//Products/DiPP/SectionsTool.py=utf-8
 encoding//Products/DiPP/__init__.py=utf-8
 encoding//Products/DiPP/config.py=utf-8
 encoding//Products/DiPP/content/fedoraarticle.py=utf-8
+encoding//Products/DiPP/content/fedorahierarchie.py=utf-8
 encoding//Products/DiPP/content/volume.py=utf-8
 encoding//docs/source/conf.py=utf-8
 encoding/setup.py=utf-8

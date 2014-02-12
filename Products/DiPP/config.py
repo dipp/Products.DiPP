@@ -76,7 +76,8 @@ TOOLS = ((
     'Utils',
     'Deadlines',
     'DiPP Sections Tool', 
-    'DiPP Peerreview Tool'
+    'DiPP Peerreview Tool',
+    'DataCite'
     )
 )
 
