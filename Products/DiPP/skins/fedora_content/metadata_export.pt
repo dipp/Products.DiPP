@@ -29,9 +29,17 @@
         <tal:block tal:define="articlePID here/PID;
                                issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                                publisher here/portal_properties/metadata_properties/publisher|nothing;
+                               dc_tool here/portal_doiregistry;
                                datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf());
                                doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
             <h2>DataCite</h2>
+			<form action=""
+			      tal:attributes="action python:dc_tool.absolute_url()+'/post_metadata'"
+			      method="POST">
+			      <textarea name=metadata tal:content="datacite_xml" />
+			     <input type="submit" />      
+            </form>
+            
             <div class="portalMessage" tal:condition="not: here/getDOI">
                 <strong>Warning!</strong> The metadata of this article to not contains a DOI. You can no submit this article to datacite. </div>
             <pre tal:content="datacite_xml"> </pre> 

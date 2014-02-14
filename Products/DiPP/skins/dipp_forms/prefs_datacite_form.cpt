@@ -33,6 +33,8 @@
             	<dd tal:condition="not: here/portal_doiregistry/password">not set</dd>
             	<dt>prefix</dt>
             	<dd tal:content="here/portal_doiregistry/prefix"></dd>
+                <dt>testMode</dt>
+                <dd tal:content="here/portal_doiregistry/testMode|nothing"></dd>
             	<dt>Reserved DOIs (<span tal:replace="python:len(dois)" />)</dt>
             	<dd>
             	<ul>

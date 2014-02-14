@@ -5,7 +5,10 @@
 <h3>DataCite Configuration</h3>
 
  
-<form action="manage_setFedoraSettings" tal:attributes="action python:here.absolute_url()+'/set_datacite_settings'" method="POST">
+<form action="set_datacite_settings"
+      tal:attributes="action python:here.absolute_url()+'/set_datacite_settings'"
+      tal:define="endpoints here/get_endpoints"
+      method="POST">
     <table cellspacing="0">
         <tr class="list-header">
             <th>Field</th>
@@ -14,7 +17,16 @@
         </tr>
         <tr>
             <th>endpoint</th>
-            <td><input name="endpoint" type="text" value="" tal:attributes="value here/endpoint|nothing" /></td>
+            
+            <td>
+                <select name="endpoint">
+                    <option value="">Select an endpoint</option>
+                    <option tal:repeat="endpoint endpoints"
+                            tal:attributes="value python:endpoints[endpoint];
+                                            selected python:test(here.endpoint == endpoints[endpoint],'selected','')"
+                            tal:content="python:'%s (%s)' % (endpoints[endpoint], endpoint)">rest.api.datacite</option>
+                </select>
+            </td>
             <td></td>
         </tr>
         <tr>
@@ -24,13 +36,18 @@
         </tr>
         <tr>
             <th>Password</th>
-            <td><input name="password" type="text"  value="" tal:attributes="value here/password|nothing"/></td>
+            <td><input name="password" type="password"  value="" tal:attributes="value here/password|nothing"/></td>
             <td>Password</td>
         </tr>
         <tr>
             <th>Prefix</th>
             <td><input name="prefix" type="text"  value="" tal:attributes="value here/prefix|nothing"/></td>
             <td>Prefix</td>
+        </tr>
+        <tr>
+            <th>testMode</th>
+            <td><input name="testMode" type="checkbox" tal:attributes="checked python:test(here.testMode,'checked','')" /></td>
+            <td>Test run, do nothing</td>
         </tr>
         <tr>
             <th>reserved DOIs</th>

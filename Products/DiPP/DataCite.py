@@ -13,6 +13,7 @@ from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from dipp.datacite import datacite
+from dipp.datacite.endpoints import ENDPOINTS
 import Permissions
 import logging
 
@@ -42,21 +43,35 @@ class DataCite(UniqueObject, SimpleItem):
         self.password = ""
         self.endpoint = ""
         self.reserved_dois = []
+        self.testMode = False
 
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'set_datacite_settings')
-    def set_datacite_settings(self, prefix, user, password, endpoint, reserved_dois, REQUEST):
+    def set_datacite_settings(self, REQUEST, prefix, user, password, endpoint, reserved_dois, testMode=False):
         """ZMI method to store the datacite configuration."""
         self.prefix = prefix
         self.user = user
         self.password = password
         self.endpoint = endpoint
-        self.reserved_dois = reserved_dois 
+        self.reserved_dois = reserved_dois
+        if testMode:
+            self.testMode = True
+        else: 
+            self.testMode = False
         manage_tabs_message = "Saved"
         logger.info("Saved DataCite configuration")
         return self.datacite_config_form(REQUEST, management_view='Configuration', manage_tabs_message=manage_tabs_message)
+
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_endpoints')
+    def get_endpoints(self):
+        return ENDPOINTS
         
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_url')
     def get_url(self, doi):
-        x = datacite.Client(self.user, self.password, self.endpoint, doi)
-        return x.get_url()
+        client = datacite.Client(self.user, self.password, self.endpoint)
+        return client.get_url(doi)
+
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'post_metadata')
+    def post_metadata(self, metadata):
+        client = datacite.Client(self.user, self.password, self.endpoint)
+        return client.post_metadata(metadata)
 
