@@ -1,0 +1,11 @@
+[default]
+title = Export Metadata
+
+[security]
+View=0:Redakteur,Herausgeber,Manager
+
+[validators]
+#validators..Save = validate_qdc
+
+[actions]
+action.success                  = traverse_to:string:metadata_export

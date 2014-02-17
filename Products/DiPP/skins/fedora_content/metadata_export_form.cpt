@@ -5,7 +5,8 @@
 <body>
 
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="main"
+                    tal:define="errors options/state/getErrors;">
 
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
@@ -33,10 +34,14 @@
                                datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf());
                                doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
             <h2>DataCite</h2>
-			<form action=""
-			      tal:attributes="action python:dc_tool.absolute_url()+'/post_metadata'"
-			      method="POST">
-			      <textarea name=metadata tal:content="datacite_xml" />
+              <form name="metadata_export_form"
+                    action="metadata_export_form"
+                    method="post"
+                    enctype="multipart/form-data"
+                    tal:attributes="action string:$here_url/$template_id">
+              <input type="hidden" name="form.submitted" value="1" />
+
+              <textarea name=metadata tal:content="datacite_xml" />
 			     <input type="submit" />      
             </form>
             
