@@ -61,9 +61,12 @@
   <permission value="View"/>
  </action>
  
- <action title="Metadata" action_id="qdc" category="folder" condition_expr=""
-    url_expr="string:${folder_url}/fedoraarticle_metadata_form"
-    visible="True">
+ <action title="Metadata"
+         action_id="qdc" 
+         category="folder"
+         condition_expr=""
+         url_expr="string:${folder_url}/fedoraarticle_metadata_form"
+         visible="True">
   <permission value="Fedora: Edit Content"/>
  </action>
  
@@ -71,9 +74,9 @@
          action_id="metadata_export" 
          category="folder" 
          condition_expr=""
-         url_expr="string:${folder_url}/metadata_export"
+         url_expr="string:${folder_url}/metadata_export_form"
          visible="True">
-  <permission value="Fedora: Edit Content"/>
+   <permission value="DiPP: Manage Journal"/>
  </action>
  
  <action title="Link translations" action_id="link_translations"

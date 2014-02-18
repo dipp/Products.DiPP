@@ -28,26 +28,50 @@
 
 
         <tal:block tal:define="articlePID here/PID;
+                               DOI here/getDOI;
                                issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                                publisher here/portal_properties/metadata_properties/publisher|nothing;
                                dc_tool here/portal_doiregistry;
                                datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf());
                                doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
             <h2>DataCite</h2>
-              <form name="metadata_export_form"
-                    action="metadata_export_form"
-                    method="post"
-                    enctype="multipart/form-data"
-                    tal:attributes="action string:$here_url/$template_id">
-              <input type="hidden" name="form.submitted" value="1" />
+            <em tal:content="python: dc_tool.get_url(DOI)" />
+            <form name="metadata_export_form"
+                  action="metadata_export_form"
+                  method="post"
+                  enctype="multipart/form-data"
+                  tal:attributes="action string:$here_url/$template_id">
+                  
+                <input type="hidden" name="form.submitted" value="1" />
+                <input type="hidden" name="DOI" value="" tal:attributes="value DOI" />
+                <input type="hidden" name="URL" value="" tal:attributes="value here/absolute_url" />
 
-              <textarea name=metadata tal:content="datacite_xml" />
-			     <input type="submit" />      
+                <textarea name="metadata" 
+                          readonly="readonly"
+                          rows="10"
+                          tal:content="datacite_xml" />
+                        
+                <input type="submit"
+			           class="context"
+                       name="form.button.post_metadata"
+			           value="Post metadata" />
+
+                <input type="submit"
+                       class="context"
+                       name="form.button.create_or_modify_doi"
+                       value="Register DOI or Update URL" />
+			     
+			    <input type="submit"
+                       class="destructive"
+                       name="form.button.deactivate_doi"
+                       value="Deactivate DOI" />  
+			       
             </form>
             
-            <div class="portalMessage" tal:condition="not: here/getDOI">
+            
+            <div class="portalMessage" tal:condition="not: DOI">
                 <strong>Warning!</strong> The metadata of this article to not contains a DOI. You can no submit this article to datacite. </div>
-            <pre tal:content="datacite_xml"> </pre> 
+             
             <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
             
             <h2>DOAJ</h2>

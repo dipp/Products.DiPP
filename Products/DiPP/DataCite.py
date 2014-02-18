@@ -61,17 +61,26 @@ class DataCite(UniqueObject, SimpleItem):
         logger.info("Saved DataCite configuration")
         return self.datacite_config_form(REQUEST, management_view='Configuration', manage_tabs_message=manage_tabs_message)
 
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'make_datacite_client')
+    def _make_datacite_client(self):
+        return datacite.Client(self.user, self.password, self.endpoint, self.testMode)
+
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_endpoints')
     def get_endpoints(self):
         return ENDPOINTS
         
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_url')
     def get_url(self, doi):
-        client = datacite.Client(self.user, self.password, self.endpoint)
+        client = self._make_datacite_client()
         return client.get_url(doi)
 
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'post_metadata')
     def post_metadata(self, metadata):
-        client = datacite.Client(self.user, self.password, self.endpoint)
+        client = self._make_datacite_client()
         return client.post_metadata(metadata)
 
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'create_or_modify_doi')
+    def create_or_modify_doi(self, doi, url):
+        client = self._make_datacite_client()
+        return client.create_or_modify_doi(doi, url)
+        
