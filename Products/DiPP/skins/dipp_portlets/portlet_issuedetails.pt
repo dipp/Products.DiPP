@@ -46,11 +46,11 @@
                     </li>
                     
                     <li class="pdf_link"
-                        tal:condition="pdf"
-                        tal:define="pdf python: article.getFulltextPdf()">
+                        tal:condition="pdfs"
+                        tal:define="pdfs python: article.getFulltextPdf().get('fulltext',None)">
                         <a href=""
-                           tal:attributes="href python:pdf['URL']"
-                           tal:condition="pdf">
+                           tal:attributes="href python:pdfs['pdf']['url']"
+                           tal:condition="pdfs">
                             <img src="" alt="" tal:attributes="src string:$portal_url/pdf.png" /> 
                             <span i18n:domain="dipp" i18n:translate="label_get_fulltext_as_pdf">
                             Volltext als <span i18n:name="pdf"><abbr i18n:domain="dipp" title="Portable Document Format">PDF</abbr></span>.
