@@ -14,54 +14,83 @@
                         width="1" height="1" alt="" />
         </div>
 
+        
         <div metal:define-macro="fulltext"
              i18n:domain="dipp"
              tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
                          path python:'/'.join(articleFolder.getPhysicalPath()); 
-                         results python:here.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='alternative_format', sort_on='getObjPositionInParent')"
-             tal:condition="results">
-             
-            <h2 i18n:translate="heading_fulltext" i18n:domain="dipp" id="fulltext" name="fulltext">Fulltext</h2>
+                         all_pdfs here/getFulltextPdf"
+             tal:condition="all_pdfs">
+
+            <h2>
+                <span i18n:translate="heading_fulltext" i18n:domain="dipp" id="fulltext" name="fulltext">Fulltext</span>
+                <a class="permalink" 
+                   href="#fulltext" 
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </h2>
             
-            <tal:block tal:repeat="item results">
-                <tal:block tal:condition="python: item.id.endswith('pdf') and not item.id.startswith('srcdoc')"
-                   tal:define="pixel_domain         here/pixel_domain|nothing;
-                               pixel_id             here/pixel_id|nothing;
-                               url                  python:item.getObject().absolute_url();
-                               vgwort_url           string:http://$pixel_domain.met.vgwort.de/na/$pixel_id?l=$url;
-                               obj                  item/getObject;
-                               item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
-                               item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
-                               size                 python:here.getObjSize(obj);
-                               content_type         obj/get_content_type|item/Format">
-                    <p>
-                        <a href=""
-                           tal:attributes="href python:test(pixel_id,vgwort_url,url);
-                                           class string:$item_wf_state_class">
-                            <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />
-                            <tal:block i18n:domain="dipp" i18n:translate="label_get_fulltext_as_pdf">
-                            Volltext als <span i18n:name="pdf"><abbr i18n:domain="dipp" title="Portable Document Format">PDF</abbr></span>.
-                            </tal:block>
-                        </a>
-
-                        <span class="discreet" i18n:domain="plone" >
-                           (
-                            <span i18n:translate="label_size">
-                            Size
-                            </span>
-
-                            <span tal:condition="size"
-                                tal:content="size">
-                            257 KB
-                            </span>
-
-                            <span tal:condition="python:test(size,0,1)" i18n:translate="no_file_uploaded">
-                              (No file has been uploaded yet)
-                            </span>
-                            )
+            <tal:block tal:repeat="key all_pdfs">
+                <p tal:define="pdfs python:all_pdfs[key];
+                               pdf python:pdfs.get('pdf',None);
+                               pdfa python:pdfs.get('pdfa',None)">
+                <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />Volltext als
+                <tal:block tal:condition="pdf">
+	               <a tal:define ="state python:pdf['state'];
+                                   url python:pdf['url'];
+                                   state_class python:'state-' + normalizeString(state)"
+	                  tal:attributes="href url;
+                                      class state_class"
+                      title="Standard PDF">PDF
+	               </a>
+                    <span class="discreet" i18n:domain="plone"
+                          tal:define="size python:pdf['size'];">
+                       (
+                        <span i18n:translate="label_size">
+                        Size
                         </span>
-                    </p>
-                </tal:block>
+
+                        <span tal:condition="size"
+                            tal:content="size">
+                        257 KB
+                        </span>
+
+                        <span tal:condition="python:test(size,0,1)" i18n:translate="no_file_uploaded">
+                          (No file has been uploaded yet)
+                        </span>
+                        )
+                    </span>
+                    </tal:block>
+                    <tal:block tal:condition="pdfa">
+                    /
+	               <a tal:define="state python:pdfa['state'];
+                                  url python:pdfa['url'];
+                                  size python:pdfa['size'];
+                                   state_class python:'state-' + normalizeString(state)"
+	                  tal:attributes="href url;
+                                      class state_class"
+                      title="PDF für die Langzeitarchivierung">PDF/A
+	               </a>
+                    <span class="discreet" i18n:domain="plone"
+                          tal:define="size python:pdfa['size'];">
+                       (
+                        <span i18n:translate="label_size">
+                        Size
+                        </span>
+
+                        <span tal:condition="size"
+                            tal:content="size">
+                        257 KB
+                        </span>
+
+                        <span tal:condition="python:test(size,0,1)" i18n:translate="no_file_uploaded">
+                          (No file has been uploaded yet)
+                        </span>
+                        )
+                    </span>
+                   </tal:block>  
+                
+                </p>
             </tal:block>
         </div>
      </body>

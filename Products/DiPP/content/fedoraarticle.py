@@ -34,7 +34,7 @@ except ImportError:
     from Products.CMFCore.CMFCorePermissions import ManagePortal, ManageProperties
     from Products.CMFCore.CMFCorePermissions import View
 
-from Products.DiPP.config import PROJECTNAME, COMMENT_SELECTION_TITLE_LENGTH
+from Products.DiPP.config import PROJECTNAME, COMMENT_SELECTION_TITLE_LENGTH, PDFA_PREFIX
 from Products.DiPP.interfaces import IFedoraArticle
 from Products.DiPP import Permissions
 
@@ -380,32 +380,37 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         pixel_id = self.pixel_id
         result = self.portal_catalog(Type='Fedora Multimedia', path=path, getMMType='alternative_format', sort_on='getObjPositionInParent')
         
-        pdfs = []
-        for item in result:
+        pdfs = {}
+        fulltext = None
+        for pos, item in enumerate(result):
             obj = item.getObject()
             mimetype = obj.get_content_type()
+            id = obj.getId()
             if mimetype in ('application/pdf', 'application/octet-stream'):
-                pdfs.append(obj)
-        
-        if len(pdfs) > 0:
-            haspdf = True
-        else:
-            haspdf = False
-            
-        if haspdf:
-            PID = pdfs[0].PID
-            DsID = pdfs[0].DsID
-            directURL = pdfs[0].absolute_url()
-        
-        if pixel_domain and pixel_id and haspdf:
-            URL = "http://%s.met.vgwort.de/na/%s?l=%s" % (pixel_domain, pixel_id, directURL)
-        elif haspdf:
-            URL = directURL
-            
-        if haspdf:
-            return {'PID':PID,'DsID':DsID,'URL':URL}
-        else:
-            return {}
+                if id.startswith(PDFA_PREFIX):
+                    base_id = id[len(PDFA_PREFIX):]
+                    type = 'pdfa'
+                else:
+                    base_id = id
+                    type = 'pdf'
+                    if not fulltext:
+                        fulltext = id
+                    
+
+                size = self.getObjSize(obj)
+                directURL = obj.absolute_url()
+                state = item.review_state
+                if pixel_domain and pixel_id:
+                    url = "http://%s.met.vgwort.de/na/%s?l=%s" % (pixel_domain, pixel_id, directURL)
+                else:
+                    url = directURL
+                    
+                if not pdfs.has_key(base_id):
+                    pdfs[base_id] = {'pdf':None,'pdfa':None}
+                pdfs[base_id][type] = {'url':url, 'size':size, 'state':state}
+        if fulltext:
+            pdfs['fulltext'] = pdfs.pop(fulltext)     
+        return pdfs
     
     def linkTranslations(self,PID):
         """not sure, if this is still in use"""

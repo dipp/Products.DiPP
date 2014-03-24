@@ -50,8 +50,8 @@
  </action>
  <action title="Get the fulltext as pdf." action_id="fulltextpdf"
     category="document_actions"
-    condition_expr="python:folder.getFulltextPdf().get('URL',None)"
-    url_expr="python:folder.getFulltextPdf().get('URL',None)" visible="True">
+    condition_expr="python:folder.getFulltextPdf().get('fulltext',None)"
+    url_expr="python:folder.getFulltextPdf()['fulltext']['pdf']['url']" visible="True">
   <permission value="Fedora: View Content"/>
  </action>
 </object>
