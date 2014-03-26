@@ -367,7 +367,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
 
 
-    def getFulltextPdf(self):
+    def getFulltextPdfs(self):
         """Return the URL, PID and DsID  of the articles fulltext pdf
          
         The first listed pdf file which is declared al alternative format is taken. 
@@ -411,6 +411,15 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         if fulltext:
             pdfs['fulltext'] = pdfs.pop(fulltext)     
         return pdfs
+
+    def getFulltextPdf(self):
+        """return the URL of the fulltext pdf or none"""
+
+        fulltext = self.getFulltextPdfs().get('fulltext',None)
+        if fulltext:
+            return fulltext['pdf']
+        else:
+            return None
     
     def linkTranslations(self,PID):
         """not sure, if this is still in use"""

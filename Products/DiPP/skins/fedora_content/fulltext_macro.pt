@@ -19,7 +19,7 @@
              i18n:domain="dipp"
              tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
                          path python:'/'.join(articleFolder.getPhysicalPath()); 
-                         all_pdfs here/getFulltextPdf"
+                         all_pdfs here/getFulltextPdfs"
              tal:condition="all_pdfs">
 
             <h2>
