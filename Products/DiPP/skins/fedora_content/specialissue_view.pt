@@ -104,7 +104,7 @@
                         tal:condition="issue_show_pdf_link"
                         tal:define="pdf python: obj.getFulltextPdf()">
                         <a href=""
-                           tal:attributes="href python:pdf['URL']"
+                           tal:attributes="href python:pdf['url']"
                            tal:condition="pdf">
                             Download <abbr title="Portable Document Format">PDF</abbr>
                         </a>

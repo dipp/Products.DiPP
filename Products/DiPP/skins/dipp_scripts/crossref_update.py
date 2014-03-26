@@ -37,7 +37,7 @@ for article in articles:
     published = article.getIssueDate
     pdf = obj.getFulltextPdf()
     if pdf:
-        URL = pdf['URL']
+        URL = pdf['url']
     else:
         URL = ""
     if int(metadata) == 1:

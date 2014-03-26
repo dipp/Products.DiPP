@@ -97,8 +97,8 @@
  
  <action title="Get the fulltext as pdf." action_id="fulltextpdf"
     category="document_actions"
-    condition_expr="python:object.getFulltextPdf().get('fulltext',None)"
-    url_expr="python:object.getFulltextPdf()['fulltext']['pdf']['url']" visible="True">
+    condition_expr="python:object.getFulltextPdf()"
+    url_expr="python:object.getFulltextPdf().get('url',None)" visible="True">
   <permission value="Fedora: View Content"/>
  </action>
 </object>

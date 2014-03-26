@@ -32,8 +32,9 @@
                                issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                                publisher here/portal_properties/metadata_properties/publisher|nothing;
                                dc_tool here/portal_doiregistry;
-                               datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf());
-                               doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=here.getFulltextPdf())">
+                               pdf python:here.getFulltextPdf().get('url',None);
+                               datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf);
+                               doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf)">
             <h2>DataCite</h2>
             <em tal:content="python: dc_tool.get_url(DOI)" />
             <form name="metadata_export_form"
