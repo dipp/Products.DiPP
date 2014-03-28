@@ -78,6 +78,11 @@ class DataCite(UniqueObject, SimpleItem):
     def post_metadata(self, metadata):
         client = self._make_datacite_client()
         return client.post_metadata(metadata)
+    
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_metadata')
+    def get_metadata(self, doi):
+        client = self._make_datacite_client()
+        return client.get_metadata(doi)
 
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'create_or_modify_doi')
     def create_or_modify_doi(self, doi, url):

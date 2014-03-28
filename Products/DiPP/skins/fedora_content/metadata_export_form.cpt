@@ -37,6 +37,7 @@
                                doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf)">
             <h2>DataCite</h2>
             <em tal:content="python: dc_tool.get_url(DOI)" />
+            <em tal:content="python: dc_tool.get_metadata(DOI)[0]" />
             <form name="metadata_export_form"
                   action="metadata_export_form"
                   method="post"
@@ -44,14 +45,18 @@
                   tal:attributes="action string:$here_url/$template_id">
                   
                 <input type="hidden" name="form.submitted" value="1" />
-                <input type="hidden" name="DOI" value="" tal:attributes="value DOI" />
-                <input type="hidden" name="URL" value="" tal:attributes="value here/absolute_url" />
+                DOI: <input type="text" name="DOI" value="" readonly="readonly" tal:attributes="value DOI" />
 
                 <textarea name="metadata" 
                           readonly="readonly"
                           rows="10"
                           tal:content="datacite_xml" />
                         
+                <input type="submit"
+			           class="context"
+                       name="form.button.register"
+			           value="Register DOI" />
+                
                 <input type="submit"
 			           class="context"
                        name="form.button.post_metadata"

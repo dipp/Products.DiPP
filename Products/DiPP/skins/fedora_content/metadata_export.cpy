@@ -18,15 +18,25 @@ doi_tool = getToolByName(self, 'portal_doiregistry')
 
 metadata = REQUEST.metadata
 doi = REQUEST.get('DOI', None)
-url = REQUEST.get('URL', None)
 
-if REQUEST.has_key('form.button.post_metadata'):
+url = self.absolute_url()
+
+if REQUEST.has_key('form.button.register'):
     status_code, content = doi_tool.post_metadata(metadata)
+    if status_code == '201':
+        status_code, content = doi_tool.create_or_modify_doi(doi,url)
     portal_status_message = "Antwort von DataCite: %s, %s" % (status_code, content)
     status = 'success'
 
-if REQUEST.has_key('form.button.create_or_modify_doi'):
+elif REQUEST.has_key('form.button.post_metadata'):
+    status_code, content = doi_tool.post_metadata(metadata)
+    #status_code, content = (123, "dum di dum")
+    portal_status_message = "Antwort von DataCite: %s, %s" % (status_code, content)
+    status = 'success'
+
+elif REQUEST.has_key('form.button.create_or_modify_doi'):
     status_code, content = doi_tool.create_or_modify_doi(doi,url)
+    context.plone_log('new url: %s' % url)
     portal_status_message = "Antwort von DataCite: %s, %s" % (status_code, content)
     status = 'success'
     

@@ -8,4 +8,4 @@ View=0:Redakteur,Herausgeber,Manager
 #validators..Save = validate_qdc
 
 [actions]
-action.success                  = traverse_to:string:metadata_export
+action.success = traverse_to:string:metadata_export

@@ -1,2 +1,6 @@
+[default]
+title = DOI export
+
 [actions]
-action.success = redirect_to_action:string:metadata_export
+action.success = traverse_to_action:string:metadata_export_form
+action.failure = traverse_to_action:string:metadata_export_form
