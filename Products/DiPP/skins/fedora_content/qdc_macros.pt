@@ -1064,16 +1064,39 @@
             class="field" 
             i18n:domain="qdc" 
             tal:define="error errors/identifierDOI|nothing;
-                        identifierDOI  python:qdc['identifierDOI']"
+                        dc_tool here/portal_doiregistry;
+                        identifierDOI  python:qdc['identifierDOI'];
+                        datacite_status python:dc_tool.get_metadata(identifierDOI)[0]"
             tal:attributes="class python:test(error, 'field error', 'field')">
-            <label i18n:translate="label_identifierDOI" id="doi">DOI</label>
+
+            <label id="doi">
+                <span i18n:translate="label_identifierDOI">DOI</span>
+                <a class="permalink" 
+                   tal:attributes="href string:$here_url/$template_id#doi"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
+            
+            <span tal:condition="python: datacite_status=='200'"
+                   class="fieldLocked" title="Locked"
+                   i18n:attributes="title"
+                   i18n:domain="qdc"
+                   i18n:translate="label_locked">(Locked)</span>
+            
             <div tal:content="error">Validation error output</div>
+            
             <div class="formHelp" i18n:translate="help_identifierDOI">
                 DOI steht für Digital Object Identifier und dient ähnlich der URN als persistenter Identifier einer Resource.
                 DOIs bestehen aus einem internen Suffix und einem von einem Provider wie CrossRef oder der TIB vergebenen Prefix
-                das üblicherweise die Form "10.xxxx" hat.
+                das üblicherweise die Form "10.xxxx" hat. Sobald die Metadaten und damit die DOI registriert sind, läßt sich der
+                Wert nicht mehr ändern.
             </div>
-            <input type="text" name="identifierDOI"   value ="" tal:attributes="value request/identifierDOI|identifierDOI|nothing" />
+            
+            <input type="text" 
+                   name="identifierDOI"   
+                   value =""
+                   tal:attributes="value request/identifierDOI|identifierDOI|nothing;
+                                   readonly python:test(datacite_status != '404','readonly','')" />
             
         </div>
 
