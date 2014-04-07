@@ -28,57 +28,85 @@
 
 
         <tal:block tal:define="articlePID here/PID;
-                               DOI here/getDOI;
+                               DOI here/getDOI|nothing;
                                issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                                publisher here/portal_properties/metadata_properties/publisher|nothing;
                                dc_tool here/portal_doiregistry;
+                               endpoint dc_tool/endpoint;
                                pdf python:here.getFulltextPdf().get('url',None);
                                datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf);
                                doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf)">
+            
             <h2>DataCite</h2>
-            <em tal:content="python: dc_tool.get_url(DOI)" />
-            <em tal:content="python: dc_tool.get_metadata(DOI)[0]" />
+
             <form name="metadata_export_form"
+                  tal:condition="DOI"
+                  tal:define="current_url here/absolute_url;
+                              datacite python: dc_tool.get_url(DOI);
+                              datacite_status python:datacite[0];
+                              datacite_url python:datacite[1];
+                              doi_registered python:test(datacite_status!='404',True,False);
+                              metadata_status python: dc_tool.get_metadata(DOI)[0]"
                   action="metadata_export_form"
                   method="post"
                   enctype="multipart/form-data"
                   tal:attributes="action string:$here_url/$template_id">
                   
                 <input type="hidden" name="form.submitted" value="1" />
-                DOI: <input type="text" name="DOI" value="" readonly="readonly" tal:attributes="value DOI" />
-
-                <textarea name="metadata" 
-                          readonly="readonly"
-                          rows="10"
-                          tal:content="datacite_xml" />
-                        
-                <input type="submit"
-			           class="context"
-                       name="form.button.register"
-			           value="Register DOI" />
+                <input type="hidden" name="metadata" readonly="readonly" tal:attributes="value datacite_xml" />
                 
-                <input type="submit"
-			           class="context"
-                       name="form.button.post_metadata"
-			           value="Post metadata" />
-
-                <input type="submit"
-                       class="context"
-                       name="form.button.create_or_modify_doi"
-                       value="Register DOI or Update URL" />
-			     
-			    <input type="submit"
-                       class="destructive"
-                       name="form.button.deactivate_doi"
-                       value="Deactivate DOI" />  
+                <p>
+                    DataCite Metadata Store: <a href="" tal:attributes="href string:https:$endpoint/login">Login</a>
+                </p>
+                
+                <table class='listing horizontal'>
+                    <tr>
+                        <th scope="row">DOI</th>
+                        <td tal:content="DOI">10.5072/dipp-example</td>
+                        <td>
+                            <input type="submit"
+                                   class="context"
+                                   name="form.button.register"
+                                   value="DOI registrieren" 
+                                   tal:attributes="disabled python:test(doi_registered,'disabled','');
+                                                   title python:test(doi_registered,'DOI ist bereits registriert','') "/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Registrierte URL</th> 
+                        <td tal:content="datacite_url"></td>
+                        <td>
+                            <input type="submit"
+                                   class="context"
+                                   name="form.button.create_or_modify_doi"
+                                   value="URL aktualisieren"
+                                   tal:attributes="disabled python:test(current_url!=datacite_url and doi_registered,'','disabled');
+                                                   title python:test(current_url==datacite_url,'URLs stimmen überein, keine aktualisierung notwendig','')" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Metadata</th>
+                        <td>
+                            <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
+                        </td>
+                        <td>
+                            <input type="submit"
+                                   class="context"
+                                   name="form.button.post_metadata"
+                                   value="Metadaten aktualisieren"
+                                   tal:attributes="disabled python:test(doi_registered,'','disabled');
+                                                   title python:test(doi_registered,'','DOI ist noch nicht registriert') "/>
+                        </td>
+                </table>
+                        
+                
 			       
             </form>
             
-            
-            <div class="portalMessage" tal:condition="not: DOI">
-                <strong>Warning!</strong> The metadata of this article to not contains a DOI. You can no submit this article to datacite. </div>
+            <div tal:condition="not: DOI">
+                <strong>Warning!</strong> The metadata of this article to not contains a DOI. You can no submit this article to datacite. 
+            </div>
              
-            <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
             
             <h2>DOAJ</h2>
             <pre tal:content="doaj_xml"> </pre> 

@@ -17,28 +17,48 @@ translate = context.translate
 doi_tool = getToolByName(self, 'portal_doiregistry')
 
 metadata = REQUEST.metadata
-doi = REQUEST.get('DOI', None)
+# doi = REQUEST.get('DOI', None)
 
 url = self.absolute_url()
+doi = self.getDOI()
 
 if REQUEST.has_key('form.button.register'):
+    # registering an article with DataCite is a two-step-process:
+    # 1. uploading the metadata and thus minting an doi
+    # 2. registering an url with the doi
     status_code, content = doi_tool.post_metadata(metadata)
     if status_code == '201':
         status_code, content = doi_tool.create_or_modify_doi(doi,url)
-    portal_status_message = "Antwort von DataCite: %s, %s" % (status_code, content)
-    status = 'success'
+        if status_code == '201':
+            status = 'success'
+            msg = "DOI erfolgreich registriert"
+        else:
+            status = 'failure'
+            msg = "DOI konnte nicht registriert werden!"
+    portal_status_message = "%s (DataCite: %s, %s)" % (msg, status_code, content)
+
 
 elif REQUEST.has_key('form.button.post_metadata'):
     status_code, content = doi_tool.post_metadata(metadata)
-    #status_code, content = (123, "dum di dum")
-    portal_status_message = "Antwort von DataCite: %s, %s" % (status_code, content)
-    status = 'success'
+    if status_code == '201':
+        status = 'success'
+        msg = 'Metadata erfolgreich aktualisiert'
+    else:
+        status = 'failure'
+        msg = 'Metadata nicht aktualisiert'
+    portal_status_message = "%s (DataCite: %s, %s)" % (msg, status_code, content)
 
 elif REQUEST.has_key('form.button.create_or_modify_doi'):
     status_code, content = doi_tool.create_or_modify_doi(doi,url)
     context.plone_log('new url: %s' % url)
-    portal_status_message = "Antwort von DataCite: %s, %s" % (status_code, content)
-    status = 'success'
+    if status_code == '201':
+        status = 'success'
+        msg = 'URL erfolgreich aktualisiert'
+    else:
+        status = 'failure'
+        msg = 'URL nicht aktualisiert'
+    portal_status_message = "%s (DataCite: %s, %s)" % (msg, status_code, content)
+        
     
 else:
     portal_status_message = "nix passiert"

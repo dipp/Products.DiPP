@@ -413,13 +413,13 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
         return pdfs
 
     def getFulltextPdf(self):
-        """return the URL of the fulltext pdf or none"""
+        """return the URL of the fulltext pdf or empty dictionary"""
 
         fulltext = self.getFulltextPdfs().get('fulltext',None)
         if fulltext:
             return fulltext['pdf']
         else:
-            return None
+            return {}
     
     def linkTranslations(self,PID):
         """not sure, if this is still in use"""

@@ -71,7 +71,7 @@
  </action>
  
  <action title="Metadata Export"
-         action_id="metadata_export" 
+         action_id="metadata_export_form" 
          category="folder" 
          condition_expr=""
          url_expr="string:${folder_url}/metadata_export_form"

@@ -1066,7 +1066,8 @@
             tal:define="error errors/identifierDOI|nothing;
                         dc_tool here/portal_doiregistry;
                         identifierDOI  python:qdc['identifierDOI'];
-                        datacite_status python:dc_tool.get_metadata(identifierDOI)[0]"
+                        datacite_status python:dc_tool.get_url(identifierDOI)[0];
+                        doi_editable python:test(datacite_status=='404' or not identifierDOI,True,False)"
             tal:attributes="class python:test(error, 'field error', 'field')">
 
             <label id="doi">
@@ -1077,11 +1078,12 @@
                    title="Permalink für diese Überschrift">¶</a>
             </label>
             
-            <span tal:condition="python: datacite_status=='200'"
-                   class="fieldLocked" title="Locked"
-                   i18n:attributes="title"
-                   i18n:domain="qdc"
-                   i18n:translate="label_locked">(Locked)</span>
+            <span tal:condition="not: doi_editable"
+                  class="fieldLocked" 
+                  title="Locked"
+                  i18n:attributes="title"
+                  i18n:domain="qdc"
+                  i18n:translate="label_locked">(Locked)</span>
             
             <div tal:content="error">Validation error output</div>
             
@@ -1096,7 +1098,7 @@
                    name="identifierDOI"   
                    value =""
                    tal:attributes="value request/identifierDOI|identifierDOI|nothing;
-                                   readonly python:test(datacite_status != '404','readonly','')" />
+                                   readonly python:test(doi_editable,'','readonly')" />
             
         </div>
 
