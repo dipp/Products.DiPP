@@ -63,7 +63,7 @@ class DataCite(UniqueObject, SimpleItem):
 
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'make_datacite_client')
     def _make_datacite_client(self):
-        return datacite.Client(self.user, self.password, self.endpoint, self.testMode)
+        return datacite.Client(self.user, self.password, self.prefix, self.endpoint, self.testMode)
 
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_endpoints')
     def get_endpoints(self):
