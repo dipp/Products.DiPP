@@ -9,6 +9,12 @@
 ##title=Validates qualified Dublin Core metadata
 ##
 
+from DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
+
+doi_tool = getToolByName(self, 'portal_doiregistry')
+catalog = getToolByName(self, 'portal_catalog')
+
 request  = container.REQUEST
 RESPONSE = request.RESPONSE
 
@@ -29,8 +35,8 @@ rights                  = request.get('rights', None)
 dateSubmitted           = request.get('dateSubmitted', None)
 dateAccepted            = request.get('dateAccepted', None)
 dateCopyrighted         = request.get('dateCopyrighted', None)
+identifierDOI           = request.get('identifierDOI', None)
 
-from DateTime import DateTime
 
 def is_integer(pagenumber):
     try: 
@@ -84,7 +90,25 @@ if storageType == "permanent":
     if is_integer(startpage) and is_integer(endpage):
         if int(startpage) > int(endpage):
             state.setError('bibliographicCitation', translate('error_pagenumber_order', domain='qdc'), new_status='failure')
+
+    # DOI
+    if identifierDOI:
+        # check for correct prefix and allowed characters 
+        if not doi_tool.validate_doi(identifierDOI):
+            state.setError('identifierDOI', translate('error_doi_invalid', domain='qdc'), new_status='failure')
+        
+        # is the doi already in use
+        elif identifierDOI.lower() in [d.lower() for d in catalog.uniqueValuesFor('getDOI') if d]:# lowercase doi, discard '' and None entries
             
+            results = catalog(portal_type='FedoraArticle',getDOI=identifierDOI)
+            urls = [article.getURL() for article in results]
+            if self.absolute_url() not in urls:
+                state.setError('identifierDOI', translate('error_doi_assigned', domain='qdc'), new_status='failure')
+        else:
+            datacite_status = doi_tool.get_url(identifierDOI)[0]
+            if not datacite_status=='404':
+                state.setError('identifierDOI', translate('error_doi_registered', domain='qdc'), new_status='failure')
+
     
     #if rights[0] == '':
     if not rights:

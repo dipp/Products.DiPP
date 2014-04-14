@@ -69,6 +69,11 @@ class DataCite(UniqueObject, SimpleItem):
     def get_endpoints(self):
         return ENDPOINTS
         
+    security.declareProtected(Permissions.MANAGE_JOURNAL, 'validate_doi')
+    def validate_doi(self, doi):
+        client = self._make_datacite_client()
+        return client.validate_doi(doi)
+
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_url')
     def get_url(self, doi):
         client = self._make_datacite_client()

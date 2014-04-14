@@ -1069,7 +1069,6 @@
                         datacite_status python:dc_tool.get_url(identifierDOI)[0];
                         doi_editable python:test(datacite_status=='404' or not identifierDOI,True,False)"
             tal:attributes="class python:test(error, 'field error', 'field')">
-
             <label id="doi">
                 <span i18n:translate="label_identifierDOI">DOI</span>
                 <a class="permalink" 
