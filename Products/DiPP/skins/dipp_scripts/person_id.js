@@ -88,7 +88,7 @@ function personFormCheck(firstName, lastName){
 
 function requestGndService(firstName, lastName){
     //return $("<p>" + lastName + ", " + firstName + "</p>");
-    var requestUrl = "http://nyx.hbz-nrw.de/loddiggr/api/personInfo?firstName=" 
+    var requestUrl = "https://nyx.hbz-nrw.de/loddiggr/api/personInfo?firstName=" 
     + firstName + "&lastName=" + lastName;
             
     var options = {
@@ -159,7 +159,7 @@ function requestGndService(firstName, lastName){
 
 function requestOrcidService(firstName, lastName){
     //return $("<p>" + lastName + ", " + firstName + "</p>");
-    var requestUrl = "http://pub.orcid.org/search/orcid-bio?q=" 
+    var requestUrl = "https://pub.orcid.org/search/orcid-bio?q=" 
     + "given-names:" + firstName + "+AND+" + "family-name:" + lastName;
     var options = {
             
