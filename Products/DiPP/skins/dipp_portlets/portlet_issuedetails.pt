@@ -5,18 +5,20 @@
 <body>
 
 
-<div metal:define-macro="portlet">
+<div metal:define-macro="portlet"
+     tal:condition="can_view_issue"
+     tal:define="can_view_issue python: checkPermission('View', here.getParentNode())">
 
     <dl class="portlet"
         i18n:domain="dipp"
-        tal:condition="python: issue is not None"
         tal:define="infos here/articlepath;
                     article python:infos['article'];
                     issue python:infos['issue'];
                     issueNumber issue/getIssue|nothing;
                     volumeNumber here/getVolume|nothing"
+        tal:condition="python: issue is not None"
         id="portlet-issuedetails">
-        
+
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
             <span i18n:translate="volume">Volume</span> <span tal:content="issueNumber">issue</span>,
