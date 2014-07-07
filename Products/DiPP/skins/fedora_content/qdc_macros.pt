@@ -401,10 +401,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="person creatorPerson" tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd')">
+                <tr tal:repeat="person creatorPerson" 
+                    tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd');
+                                    id string:createrPerson_${repeat/person/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="author_index:int:list" 
                                value=""
                                tal:attributes="value repeat/person/index"/>
@@ -429,20 +431,21 @@
                         <input type="text" class="postalAddress" value="" name="creatorPerson.postalAddress:records" tal:attributes="value person/postalAddress">    
                     </td>
                     <td>
-                        <input type="text" class="PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">    
+                        <input type="text" class="PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">
                     </td>
-                    <tal:block tal:repeat="identifier python:author_identifier.keys()">
+                    <tal:block tal:repeat="identifier python:author_identifier.keys()" >
                         <td>
                             <input type="text" class="" value="" name="" 
                                    tal:attributes="class string:$identifier;
                                                    name string:creatorPerson.ident_$identifier:records;
                                                    value python:person['ident_%s' % identifier]">    
+                        <div class="person-id-result"></div>
                         </td>
                     </tal:block>
                 </tr>
             </tbody>
             </table>
-
+            
             <input class="context"
                    tabindex=""
                    type="submit"

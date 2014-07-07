@@ -28,6 +28,7 @@
 
         <form name="fedoradocument_edit_form"
               method="post"
+              id="metadata_form"
               enctype="multipart/form-data"
               tal:define="errors options/state/getErrors;
                           upload request/upload|nothing"
