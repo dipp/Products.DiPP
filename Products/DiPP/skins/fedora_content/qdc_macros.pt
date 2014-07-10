@@ -306,10 +306,19 @@
         <div metal:define-macro="abstract"
              class="field"
              tal:define="error errors/abstract|nothing;
+                         meta_id string:abstract;
                          abstracts request/DCTermsAbstract|python:qdc['DCTermsAbstract']"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
-            <label i18n:domain="qdc" i18n:translate="label_abstract">Abstract</label>
+            <label>
+                <span i18n:domain="qdc" i18n:translate="label_abstract">Abstract</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_abstract">
                 Es ist nur reiner Text erlaubt, keine HTML tags verwenden.
@@ -323,10 +332,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="abstract abstracts" tal:attributes="class python:test(path('repeat/abstract/even'), 'even', 'odd')">
+                <tr tal:repeat="abstract abstracts"
+                    tal:attributes="class python:test(path('repeat/abstract/even'), 'even', 'odd');
+                                    id string:${meta_id}_${repeat/abstract/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="abstract_index:int:list" 
                                value=""
                                tal:attributes="value repeat/abstract/index"/>
@@ -348,7 +359,7 @@
             </tbody>
             </table>
             
-            <input class="context"
+            <input class="context removefield"
                    tabindex=""
                    type="submit"
                    name="form.button.delAbstract"
@@ -357,7 +368,7 @@
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
             
-            <input class="context"
+            <input class="context addfield"
                    tabindex=""
                    type="submit"
                    name="form.button.addAbstract"
@@ -369,14 +380,22 @@
         <!-- AUTOREN -->             
         <div metal:define-macro="creatorPerson"
              class="field"
-             id="creatorPerson"
              tal:define="error errors/creatorPerson|nothing;
+                         meta_id string:creatorPerson;
                          author_identifier here/bibtool/get_author_identifier|nothing;
                          default python:[];
                          creatorPerson request/creatorPerson|python:qdc['creatorPerson']"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
-            <label i18n:translate="label_creatorPerson">creatorPerson</label>
+            <label>
+                <span i18n:translate="label_creatorPerson">creatorPerson</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
          
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
@@ -403,7 +422,7 @@
             <tbody>
                 <tr tal:repeat="person creatorPerson" 
                     tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd');
-                                    id string:createrPerson_${repeat/person/index}">
+                                    id string:${meta_id}_${repeat/person/index}">
                     <td>
                         <input type="checkbox" 
                                class="noborder counter"
@@ -446,7 +465,7 @@
             </tbody>
             </table>
             
-            <input class="context"
+            <input class="context removefield"
                    tabindex=""
                    type="submit"
                    name="form.button.delAuthor"
