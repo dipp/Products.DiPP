@@ -377,6 +377,7 @@
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
         </div>
+        
         <!-- AUTOREN -->             
         <div metal:define-macro="creatorPerson"
              class="field"
@@ -450,12 +451,12 @@
                         <input type="text" class="postalAddress" value="" name="creatorPerson.postalAddress:records" tal:attributes="value person/postalAddress">    
                     </td>
                     <td>
-                        <input type="text" class="PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">
+                        <input type="text" class="personId PNDIdentNumber" value="" name="creatorPerson.PNDIdentNumber:records" tal:attributes="value person/PNDIdentNumber">
                     </td>
                     <tal:block tal:repeat="identifier python:author_identifier.keys()" >
                         <td>
                             <input type="text" class="" value="" name="" 
-                                   tal:attributes="class string:$identifier;
+                                   tal:attributes="class string:personId $identifier;
                                                    name string:creatorPerson.ident_$identifier:records;
                                                    value python:person['ident_%s' % identifier]">    
                         <div class="person-id-result"></div>
@@ -544,7 +545,7 @@
                     </td>
                     <td>
                         <input type="text" 
-                               class="GKDIdentNumber"
+                               class="GKDIdentNumber personId"
                                value=""
                                name="creatorCorporated.GKDIdentNumber:records"
                                tal:attributes="value creator/GKDIdentNumber">    
@@ -661,7 +662,7 @@
                     </td>
                     <td>
                         <input type="text"
-                               class="PNDIdentNumber"
+                               class="personId PNDIdentNumber"
                                value="" 
                                name="contributor.PNDIdentNumber:records"
                                tal:attributes="value person/PNDIdentNumber">    
@@ -669,7 +670,7 @@
                     <tal:block tal:repeat="identifier python:author_identifier.keys()">
                         <td>
                             <input type="text" class="" value="" name="" 
-                                   tal:attributes="class string:$identifier;
+                                   tal:attributes="class string:personId $identifier;
                                                    name string:contributor.ident_$identifier:records;
                                                    value python:person['ident_%s' % identifier]">    
                         </td>
@@ -1082,19 +1083,24 @@
         </div>
         
         <!-- DOI-->
-        <div metal:define-macro="doi"  
+        <div metal:define-macro="doi"
+            tal:condition="here/portal_doiregistry/endpoint"
             class="field" 
-            i18n:domain="qdc" 
+            i18n:domain="qdc"
             tal:define="error errors/identifierDOI|nothing;
+                        meta_id string:doi;   
                         dc_tool here/portal_doiregistry;
                         identifierDOI  python:qdc['identifierDOI'];
                         datacite_status python:dc_tool.get_url(identifierDOI)[0];
                         doi_editable python:test(datacite_status=='404' or not identifierDOI,True,False)"
-            tal:attributes="class python:test(error, 'field error', 'field')">
-            <label id="doi">
+            tal:attributes="class python:test(error, 'field error', 'field');
+                            id meta_id">
+                            
+            <label>
                 <span i18n:translate="label_identifierDOI">DOI</span>
                 <a class="permalink" 
-                   tal:attributes="href string:$here_url/$template_id#doi"
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
                    i18n:attributes="title title_permalink"
                    title="Permalink für diese Überschrift">¶</a>
             </label>

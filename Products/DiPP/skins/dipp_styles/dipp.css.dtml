@@ -163,7 +163,7 @@ input.academicTitle { width: 50px; }
 input.lastName { width: 120px; }
 input.firstName { width: 120px; }
 input.emailAddress { width: 120px; }
-input.PNDIdentNumber, input.GKDIdentNumber { width: 100px; }
+input.personId { width: 150px; }
 input.organization { width: 120px; }
 input.role { width: 120px; }
 input.postalAddress { width: 120px; }
