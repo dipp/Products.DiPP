@@ -14,6 +14,7 @@ request  = context.REQUEST
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
+dipp_tool = getToolByName(self, 'Utils')
 utils = context.plone_utils
 
 mprops = self.portal_properties.metadata_properties
@@ -46,9 +47,8 @@ obj=getattr(folder,normalized)
 # make sure tempID is visible and thus reachable for the converter
 new_context = context.portal_factory.doCreate(context)
 
-Location = obj.absolute_url()                                                              
-if Location.startswith('https'):
-    Location = Location.replace('https','http',1)
+path = obj.getPhysicalPath()
+Location = dipp_tool.get_location(path, request)
 
 MIMEType = obj.content_type
 size     = obj.size

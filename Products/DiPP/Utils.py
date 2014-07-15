@@ -14,12 +14,14 @@ from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.DiPP.config import PRIVATE_KEY, PUBLIC_KEY, VERIFY_SERVER
 import urllib2
 import urllib
+import urlparse
+import socket
 
 import logging
 
 logger = logging.getLogger(__name__)
 
-VERIFY_SERVER="www.google.com"
+#VERIFY_SERVER="www.google.com"
 
 class Utils(UniqueObject, SimpleItem):
     """ Utilities for e.g. reCAPTCHA """
@@ -45,6 +47,17 @@ class Utils(UniqueObject, SimpleItem):
             ip = None
 
         return ip
+
+    def get_location(self, path, request):
+        """return the URL of an uploaded file based on ip and port, not rewritten
+        by VHM/Apache and without https. Requires a FQDN of the server running zope"""
+        
+        address = socket.gethostbyname(socket.getfqdn())
+        port = request.environ["SERVER_PORT"]
+        netloc = ':'.join((address, port))
+        url = urlparse.urlunparse(('http',netloc,'/'.join(path),'','',''))
+        logger.info(url)
+        return url
 
     def encode_if_necessary(self, s):
         if isinstance(s, unicode):

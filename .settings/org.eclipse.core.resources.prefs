@@ -8,6 +8,7 @@ encoding//Products/DiPP/Extensions/ldap2zodb.py=utf-8
 encoding//Products/DiPP/Fedora2DiPP3Tool.py=utf-8
 encoding//Products/DiPP/Manuscript.py=utf-8
 encoding//Products/DiPP/SectionsTool.py=utf-8
+encoding//Products/DiPP/Utils.py=utf-8
 encoding//Products/DiPP/__init__.py=utf-8
 encoding//Products/DiPP/config.py=utf-8
 encoding//Products/DiPP/content/fedoraarticle.py=utf-8
