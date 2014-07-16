@@ -14,14 +14,16 @@ translate = context.translate
 articlePID = context.getParentNode().PID
 
 fedora = getToolByName(self, 'fedora')
+dipp_tool = getToolByName(self, 'Utils')
+
 PID  = REQUEST.form['PID']
 DsID = REQUEST.form['DsID']
 MIMEType = REQUEST.form['MIMEType']
 LogMessage = REQUEST.form['LogMessage']
 Label = REQUEST.form['Label']
-Location =  context.absolute_url() + "/getPrivateContent"
-if Location.startswith('https'):
-    Location = Location.replace('https','http',1)
+path = context.getPhysicalPath() + ('getPrivateContent',)
+Location = dipp_tool.get_location(path, REQUEST)
+
 DsState = "A"
 tempID = ""
 

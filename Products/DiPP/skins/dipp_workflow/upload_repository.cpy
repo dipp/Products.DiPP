@@ -22,15 +22,9 @@ storageType = request.get('storageType')
 targetFormat = request.get('targetFormat')
 article_title = request.get('title_value')
 article_language = request.get('title_lang')
-
-
-if Location.startswith('https'):
-    Location = Location.replace('https','http',1)
-
 JournalPID = request.get('journalPID')
-params     = request.form
+params = request.form
 
-context.plone_log(params)
 
 new_subjects = params.get('new_subjects', [])
 subject = params.get('subject',[])
