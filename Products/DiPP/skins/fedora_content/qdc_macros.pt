@@ -167,14 +167,24 @@
         <div metal:define-macro="title"
              class="field"
              tal:define="error errors/title|nothing;
+                         meta_id string:title;
                          languages here/portal_properties/metadata_properties/available_languages|nothing;
                          title_value request/title_value|nothing;
                          title_lang request/title_lang|nothing;
                          form_titles python:test(upload, [{'value':title_value,'lang':title_lang}], qdc['title']);
                          titles request/title|form_titles"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
-            <label i18n:domain="qdc" i18n:translate="label_title">title</label>
+
+            <label>
+                <span i18n:domain="qdc" i18n:translate="label_title">title</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
             
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
@@ -192,10 +202,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="title titles" tal:attributes="class python:test(path('repeat/title/even'), 'even', 'odd')">
+                <tr tal:repeat="title titles" tal:attributes="class python:test(path('repeat/title/even'), 'even', 'odd');
+                                id string:${meta_id}_${repeat/title/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="title_index:int:list" 
                                value=""
                                tal:attributes="value repeat/title/index"/>
@@ -220,7 +231,7 @@
             </tbody>
             </table>
             
-            <input class="context"
+            <input class="context removefield"
                    tabindex=""
                    type="submit"
                    name="form.button.delTitle"
@@ -228,7 +239,8 @@
                    i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
-            <input class="context"
+            
+            <input class="context addfield"
                    tabindex=""
                    type="submit"
                    name="form.button.addTitle"
@@ -319,6 +331,7 @@
                    i18n:attributes="title title_permalink"
                    title="Permalink für diese Überschrift">¶</a>
             </label>
+
             <div tal:content="error">Validation error output</div>
             <div class="formHelp" i18n:translate="help_abstract">
                 Es ist nur reiner Text erlaubt, keine HTML tags verwenden.
