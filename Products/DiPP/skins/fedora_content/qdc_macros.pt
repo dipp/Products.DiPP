@@ -98,12 +98,22 @@
         <div metal:define-macro="ddc"
              class="field"
              tal:define="error errors/DDC|nothing;
+                         meta_id string:ddc;
                          DDCs request/DDC|python:qdc['DDC'];
                          DDCList python:here.DDCList"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
 
-            <label for="DDC" i18n:translate="label_ddc">DDC</label>
+            <label for="DDC">
+                <span i18n:translate="label_ddc">DDC</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
+
             <span class="fieldRequired" title="Required"
                    i18n:attributes="title"
                    i18n:domain="plone"
@@ -122,10 +132,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="DDC DDCs" tal:attributes="class python:test(path('repeat/DDC/even'), 'even', 'odd')">
+                <tr tal:repeat="DDC DDCs" 
+                    tal:attributes="class python:test(path('repeat/DDC/even'), 'even', 'odd');
+                                    id string:${meta_id}_${repeat/DDC/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="ddc_index:int:list" 
                                value=""
                                tal:attributes="value repeat/DDC/index"/>
@@ -144,7 +156,7 @@
             </tbody>
             </table>
 
-            <input class="context"
+            <input class="context removefield"
                    tabindex=""
                    type="submit"
                    name="form.button.delDDC"
@@ -152,7 +164,7 @@
                    i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
-            <input class="context"
+            <input class="context addfield"
                    tabindex=""
                    type="submit"
                    name="form.button.addDDC"
@@ -254,10 +266,20 @@
         <div metal:define-macro="alternative"
              class="field"
              tal:define="error errors/alternative|nothing;
+                         meta_id string:alternative;
                          alternatives request/alternative|python:qdc['alternative']"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
-            <label i18n:domain="qdc" i18n:translate="label_alternative">alternative</label>
+
+            <label>
+                <span i18n:domain="qdc" i18n:translate="label_alternative">alternative</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
             
             <div tal:content="error">Validation error output</div>
             
@@ -270,10 +292,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="alternative alternatives" tal:attributes="class python:test(path('repeat/alternative/even'), 'even', 'odd')">
+                <tr tal:repeat="alternative alternatives"
+                    tal:attributes="class python:test(path('repeat/alternative/even'), 'even', 'odd');
+                                    id string:${meta_id}_${repeat/alternative/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="alternative_index:int:list" 
                                value=""
                                tal:attributes="value repeat/alternative/index"/>
@@ -295,7 +319,7 @@
             </tbody>
             </table>
             
-            <input class="context"
+            <input class="context removefield"
                    tabindex=""
                    type="submit"
                    name="form.button.delAlternative"
@@ -303,7 +327,7 @@
                    i18n:attributes="value remove-selected"
                    tal:attributes="tabindex tabindex/next;
                                    disabled python:test(isLocked, 'disabled', None);" />
-            <input class="context"
+            <input class="context addfield"
                    tabindex=""
                    type="submit"
                    name="form.button.addAlternative"
@@ -402,6 +426,7 @@
              tal:attributes="class python:test(error, 'field error', 'field');
                              id meta_id"
              i18n:domain="qdc">
+
             <label>
                 <span i18n:translate="label_creatorPerson">creatorPerson</span>
                 <a class="permalink" 
@@ -503,13 +528,25 @@
         <div metal:define-macro="creatorCorporated"
              class="field"
              tal:define="error errors/creatorCorporated|nothing;
+                         meta_id string:creatorCorporated;
                          creatorCorporated request/creatorCorporated|python:qdc['creatorCorporated']"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
-             <label i18n:translate="label_creatorCorporate">korporative Autoren</label>
+
+             <label>
+                <span i18n:translate="label_creatorCorporate">korporative Autoren</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+             </label>
+
              <div tal:content="error">Validation error output</div>
-            <table class="listing nosort metadata">
-            <thead>
+            
+             <table class="listing nosort metadata">
+             <thead>
                 <tr>
                     <th></th>
                     <th i18n:translate="">Name</th>
@@ -520,10 +557,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="creator creatorCorporated" tal:attributes="class python:test(path('repeat/creator/even'), 'even', 'odd')">
+                <tr tal:repeat="creator creatorCorporated"
+                    tal:attributes="class python:test(path('repeat/creator/even'), 'even', 'odd');
+                    id string:${meta_id}_${repeat/creator/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="corp_index:int:list" 
                                value=""
                                tal:attributes="value repeat/creator/index"/>
@@ -567,16 +606,16 @@
             </tbody>
             </table>
             
-            <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.delCorp"
-               value="delete selected"
-               i18n:attributes="value remove-selected"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
+            <input class="context removefield"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delCorp"
+                   value="delete selected"
+                   i18n:attributes="value remove-selected"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
             
-            <input class="context"
+            <input class="context addfield"
                tabindex=""
                type="submit"
                name="form.button.addCorp"
@@ -590,11 +629,21 @@
         <div metal:define-macro="contributor"
              class="field"
              tal:define="error errors/contributor|nothing;
+                         meta_id string:contributor;
                          author_identifier here/bibtool/get_author_identifier|nothing;
                          contributor request/contributor|python:qdc['contributor']"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
-             <label i18n:translate="label_contributor">Mitwirkende</label>
+
+             <label>
+                <span i18n:translate="label_contributor">Mitwirkende</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+             </label>
         
              <div tal:content="error">Validation error output</div>
             <table class="listing nosort metadata">
@@ -615,10 +664,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr tal:repeat="person contributor" tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd')">
+                <tr tal:repeat="person contributor"
+                    tal:attributes="class python:test(path('repeat/person/even'), 'even', 'odd');
+                                    id string:${meta_id}_${repeat/person/index}">
                     <td>
                         <input type="checkbox" 
-                               class="noborder"
+                               class="noborder counter"
                                name="contributor_index:int:list" 
                                value=""
                                tal:attributes="value repeat/person/index"/>
@@ -692,23 +743,23 @@
             </tbody>
             </table>
 
-            <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.delContributor"
-               value="delete selected"
-               i18n:attributes="value remove-selected"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
+            <input class="context removefield"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delContributor"
+                   value="delete selected"
+                   i18n:attributes="value remove-selected"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
             
-            <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.addContributor"
-               value="add field"
-               i18n:attributes="value add-field"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
+            <input class="context addfield"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addContributor"
+                   value="add field"
+                   i18n:attributes="value add-field"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
              
         </div>
 
@@ -794,16 +845,27 @@
         <div metal:define-macro="subjectClassified"
              class="field"
              tal:define="error errors/subjectClassified|nothing;
+                         meta_id string:subjectClassified;
                          default python: {'classificationIdent': '', 'classificationSystem': '', 'subjectClassified': ''};
                          subjectClassified request/subjectClassified|qdc/subjectClassified|default;
                          classifications here/classifications"
-             tal:attributes="class python:test(error, 'field error', 'field')"
+             tal:attributes="class python:test(error, 'field error', 'field');
+                             id meta_id"
              i18n:domain="qdc">
 
-            <label for="subjectClassified" i18n:translate="label_subjectClassified">subjectClassified</label>
+            <label for="subjectClassified">
+                <span i18n:translate="label_subjectClassified">subjectClassified</span>
+                <a class="permalink" 
+                   href="#"
+                   tal:attributes="href string:${template_id}#${meta_id}"
+                   i18n:attributes="title title_permalink"
+                   title="Permalink für diese Überschrift">¶</a>
+            </label>
 
             <div tal:content="error">Validation error output</div>
+            
             <div class="formHelp" >
+            
             <p i18n:translate="help_subjectClassified">Add classified keywords according to the following schemes:
                 <span i18n:name="classifications">
                     <tal:block tal:repeat="cls python:classifications.keys()">
@@ -817,21 +879,22 @@
             <table class="listing nosort metadata">
             
                 <thead>
-                <tr>
-                    <th></th>
-                    <th i18n:translate="keyword">Schlagwort</th>
-                    <th i18n:translate="identNo">IdentNr.</th>
-                    <th i18n:translate="source">Quelle</th>
-                </tr>
+                    <tr>
+                        <th></th>
+                        <th i18n:translate="keyword">Schlagwort</th>
+                        <th i18n:translate="identNo">IdentNr.</th>
+                        <th i18n:translate="source">Quelle</th>
+                    </tr>
                 </thead>
                 
                 <tbody>
                 <tal:items tal:repeat="keyword subjectClassified">
                 <tr tal:define="oddrow repeat/keyword/odd;"
-                    tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                    tal:attributes="class python:test(oddrow, 'even', 'odd');
+                                    id string:${meta_id}_${repeat/keyword/index}">
                         <td>
                             <input type="checkbox" 
-                                   class="noborder"
+                                   class="noborder counter"
                                    name="keyword_index:int:list" 
                                    value=""
                                    tal:attributes="value repeat/keyword/index"/>
@@ -865,22 +928,23 @@
                 </tbody>
             </table>
             
-            <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.delKeyword"
-               value="remove selected"
-               i18n:attributes="value remove-selected"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
-            <input class="context"
-               tabindex=""
-               type="submit"
-               name="form.button.addKeyword"
-               value="add field"
-               i18n:attributes="value add-field"
-               tal:attributes="tabindex tabindex/next;
-                               disabled python:test(isLocked, 'disabled', None);" />
+            <input class="context removefield"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.delKeyword"
+                   value="remove selected"
+                   i18n:attributes="value remove-selected"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
+            
+            <input class="context addfield"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.addKeyword"
+                   value="add field"
+                   i18n:attributes="value add-field"
+                   tal:attributes="tabindex tabindex/next;
+                                   disabled python:test(isLocked, 'disabled', None);" />
        </div>
 
            

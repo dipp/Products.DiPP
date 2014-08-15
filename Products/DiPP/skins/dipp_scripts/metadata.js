@@ -67,9 +67,14 @@ function remove_field(meta_id) {
 (function($) {
 	$(document).ready(function(){
         var meta_ids = [
-            "#creatorPerson",
+            "#title",
+            "#ddc",
+            "#alternative",
             "#abstract",
-            "#title"
+            "#creatorPerson",
+            "#creatorCorporated",
+            "#contributor",
+            "#subjectClassified"
         ]
         for (var i=0, len=meta_ids.length; i<len; i++){
             add_field(meta_ids[i]);
