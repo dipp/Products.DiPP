@@ -36,6 +36,14 @@ function add_field(meta_id) {
             new_row.addClass('odd');
         };
         new_row.attr('id', next_ids[1])
+        
+        // formsubmithelpers.js add a 'submitting' class to the submit button
+        // to keep track, if the button was already clickt and displays a warning. 
+        // We don't want this warning
+        if (button.hasClass('submitting')) {
+            button.removeClass('submitting');
+        };
+
         return false;
     });
 };
@@ -60,6 +68,12 @@ function remove_field(meta_id) {
             } else {
                 $('input', tr).attr('value','');
             };
+        };
+        // formsubmithelpers.js add a 'submitting' class to the submit button
+        // to keep track, if the button was already clickt and displays a warning. 
+        // We don't want this warning
+        if (button.hasClass('submitting')) {
+            button.removeClass('submitting');
         };
     });
 };
