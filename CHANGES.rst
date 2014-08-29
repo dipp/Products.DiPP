@@ -1,6 +1,16 @@
 Changelog
 =========
 
+DiPP 2.19 (2014-08-29)
+    * javascript support for metadata form. adding new fields does not require
+      reload of entire form
+    * new get_location method, which passes the url of a ploneobject to fedora
+      based on IP and port and bypassing the VHM.
+    * fixed permission problem in issue_portlet
+    * orcid fix for https connections
+    * improved DOI handling
+    * show pdf/a next to pdf
+
 DiPP 2.18 (2014-02-06)
     * requires dipp.dipp3 3.4 and works only with java package dippCore-1.3.02
     * Support for ORCID ID

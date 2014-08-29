@@ -26,6 +26,32 @@ Python Modules
     * dipp.dipp3 >= 3.3.1
     * ZSI
 
+our own Modules
+
+    * dipp.tools
+
+        * argparse
+
+    * dipp.dipp3
+       
+        * argparse
+        * dipp.tools
+        * elementtree
+        * bibliograph.core
+        * ZSI
+
+    * dipp.dipp2
+        
+        * ZSI
+
+    * dipp.fedora2
+
+        * dipp.dipp3
+
+    * ZSI
+
+        * PyXML
+
 Installation
 ------------
 
