@@ -6,7 +6,7 @@
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
-# $Id: BibTool.py 4526 2013-04-29 19:38:02Z reimer $
+# $Id$
 
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
