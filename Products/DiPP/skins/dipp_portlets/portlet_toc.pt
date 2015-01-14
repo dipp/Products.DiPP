@@ -6,7 +6,8 @@
 
 <div metal:define-macro="portlet"  
     tal:omit-tag=""
-    tal:condition="here/get_toc">
+    tal:define="has_toc here/get_toc"
+    tal:condition="has_toc">
 
 	<dl class="portlet" id="portlet-toc">
 
@@ -29,9 +30,9 @@
             
                 
                 <div class="portletContent odd"
-                     tal:define="PID python:here.get_toc()['PID']; 
-                                 DsID python:here.get_toc()['DsID']">
-                    <tal:block tal:replace="structure python:here.fedora.access(PID,DsID,Date=None)['stream']" />		
+                     tal:define="PID python:has_toc['PID']; 
+                                 DsID python:has_toc['DsID']">
+                    <tal:block tal:replace="structure python:here.fedora.accessByFedoraURL(PID,DsID,Date=None)['stream']" />		
                 </div>
         </dd>
 	</dl>
