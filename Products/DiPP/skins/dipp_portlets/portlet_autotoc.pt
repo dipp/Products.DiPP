@@ -1,0 +1,32 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="dipp">
+
+<body>
+
+<div metal:define-macro="portlet"  
+    tal:omit-tag=""
+    tal:define="toc here/toc|nothing">
+
+	<dl class="portlet" id="portlet-autotoc"
+        tal:condition="toc">
+
+
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span i18n:translate="contents" i18n:domain="dipp">Inhalt</span>
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem">
+        AUTO
+                <div class="portletContent odd">
+                    <tal:block tal:replace="structure toc"/>		
+                </div>
+        </dd>
+	</dl>
+
+</div>
+
+</body>
+
+</html>

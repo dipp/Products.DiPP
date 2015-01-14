@@ -39,6 +39,7 @@ from dipp.fedora2 import FedoraManagement
 from dipp.fedora2.config import ADDRESS, PORT
 from dipp.dipp3 import ContentModel, qdc, makeQDC
 from dipp.tools import openurl
+from dipp.tools import toc
 
 from backissues import import_backissues
 from config import view_permission, LANGUAGES, PUBTYPES, DOCTYPES, DEFAULT_METADATA
@@ -280,7 +281,7 @@ class Fedora(UniqueObject, Folder):
         
     def accessByFedoraURL(self, PID, DsID, Date):
         """alternative method to retrieve objects from the Fedora
-        Repository. It uses the FedoraURL directly insteht the Wbservice
+        Repository. It uses the FedoraURL directly instead the Webservice
         via ZSI, which fails with larger Objects
         """
         parts = ['fedora','get']
@@ -557,3 +558,12 @@ class Fedora(UniqueObject, Folder):
         source1 = self.accessByFedoraURL(PID, DsID, version1date)["stream"]
         source2 = self.accessByFedoraURL(PID, DsID, version2date)["stream"]
         return htmldiff(source1,source2)
+
+    def getTOC(self, html, levels = 4):
+        """create a table of contents by parsing the html version
+        of the article for headings and returning an ordered list"""
+
+        ol = toc.TOC(html, levels)
+        #return toc
+        return ol.get_toc_html()
+        

@@ -11,7 +11,7 @@ from Products.CMFCore.utils import getToolByName
 REQUEST = context.REQUEST
 
 translate = context.translate
-articlePID = context.getParentNode().PID
+article = context.getParentNode()
 
 fedora = getToolByName(self, 'fedora')
 dipp_tool = getToolByName(self, 'Utils')
@@ -27,8 +27,16 @@ Location = dipp_tool.get_location(path, REQUEST)
 DsState = "A"
 tempID = ""
 
-fedora.modifyDatastreamByReference(REQUEST,PID,DsID,Label,LogMessage,Location,DsState,MIMEType,tempID)
-fedora.setModified(articlePID)
+fedora.modifyDatastreamByReference(REQUEST, PID, DsID, Label, LogMessage, Location, DsState, MIMEType, tempID)
+fedora.setModified(article.PID)
+
+# extract Table of contents from the article and save it for using in portlet
+html = self.body()
+toc = fedora.getTOC(html)
+if not  article.hasProperty('toc'):
+    article.manage_addProperty(id='toc', value=toc, type='text')
+else:
+    article.manage_changeProperties({'toc':toc})
 
 msg = "Neue Version in Fedora gespeichert! Es ist evtl. ein Reload nötig, um die neue Version in der Übersicht anzuzeigen!"
 # msg = translate('new-datastream-version', domain='dipp')
