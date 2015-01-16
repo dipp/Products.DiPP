@@ -5,12 +5,11 @@
 <body>
 
 <div metal:define-macro="portlet"  
-    tal:omit-tag=""
-    tal:define="toc here/toc|nothing">
+     tal:omit-tag=""
+     tal:define="toc python:here.get_article_toc(here)" >
 
 	<dl class="portlet" id="portlet-autotoc"
         tal:condition="toc">
-
 
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
@@ -18,9 +17,9 @@
             <span class="portletTopRight"></span>
         </dt>
         <dd class="portletItem">
-        AUTO
+
                 <div class="portletContent odd">
-                    <tal:block tal:replace="structure toc"/>		
+                    <tal:block tal:replace="structure toc" />
                 </div>
         </dd>
 	</dl>
