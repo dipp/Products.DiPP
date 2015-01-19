@@ -57,7 +57,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'DiPP Handbuch'
-copyright = u'2012-2013, Peter Reimer'
+copyright = u'2012-2015, Peter Reimer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

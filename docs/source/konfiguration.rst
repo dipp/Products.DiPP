@@ -344,6 +344,8 @@ Default::
    
    <leer>
 
+.. _prop_recent_articles_range:
+
 recent_articles_range
 =====================
 Alter (in Tagen) des ältesten Artikels der durch das recent_article Template
@@ -352,7 +354,24 @@ angezeigt werden soll.
 Default::
 
    30
-   
+
+
+.. _prop_deepest_toc_level:
+
+deepest_toc_level
+=================
+
+Das niedrigste Überschriftenebene, das im Inhaltsverzeichnis (TOC) des Artikels noch 
+angezeigt werden soll. Es ist zu beachten, dass die erste Ebene h2 ist. Um die
+ersten drei Ebenen anzuzegen, muss der Wert auf 4 gesetzt werden. Der globale Wert
+kann auf für einen einelnen Artikel überschrieben werden, wenn im ZMI eine entsprechend
+benannte Property angelegt wird. Das TOC wird aktualisiert, wenn vom Artikel eine neue
+Version angelegt wird.
+
+Default::
+
+    6
+
                      
 dippreview_properties (DiPPReview properties)
 *********************************************
