@@ -15,6 +15,7 @@ article = context.getParentNode()
 
 fedora = getToolByName(self, 'fedora')
 dipp_tool = getToolByName(self, 'Utils')
+dp = self.portal_properties.dipp_properties
 
 PID  = REQUEST.form['PID']
 DsID = REQUEST.form['DsID']
@@ -32,8 +33,14 @@ fedora.setModified(article.PID)
 
 # extract Table of contents from the article and save it for using in portlet
 html = self.body()
-toc = fedora.getTOC(html)
-if not  article.hasProperty('toc'):
+if article.hasProperty('deepest_toc_level'):
+    deepest_toc_level = article.deepest_toc_level
+else:
+    deepest_toc_level = dp.deepest_toc_level
+
+toc = fedora.getTOC(html, levels = deepest_toc_level)
+
+if not article.hasProperty('toc'):
     article.manage_addProperty(id='toc', value=toc, type='text')
 else:
     article.manage_changeProperties({'toc':toc})

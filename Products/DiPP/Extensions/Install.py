@@ -84,10 +84,11 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('issue_sort_on', 'string', 'getObjPositionInParent'),
         ('issue_sort_order', 'string', 'ascending'),
         ('discussion_time', 'int', 0),
-        ('fedora_time_format', 'string','%Y-%m-%dT%H:%M:%SZ'),
-        ('issue_date_format', 'string',''),
-        ('recent_articles_range', 'int',30),
-        ('hide_current_issue','boolean', False)
+        ('fedora_time_format', 'string', '%Y-%m-%dT%H:%M:%SZ'),
+        ('issue_date_format', 'string', ''),
+        ('recent_articles_range', 'int', 30),
+        ('hide_current_issue','boolean', False),
+        ('deepest_toc_level', 'int', 6),
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
