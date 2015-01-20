@@ -288,6 +288,13 @@ div.portletContent {
 #portlet-toc .portletItem dd {
     margin-left:1em;
 }
+#portlet-autotoc ol {
+    margin: 0;
+    list-style: none;
+}
+#portlet-autotoc ol li.toclevel1 { margin-left: 0 }
+#portlet-autotoc ol li.toclevel2 { margin-left: 1em }
+#portlet-autotoc ol li.toclevel3 { margin-left: 2em }
 .portletHeaderIcon {
     float: right;
 }
