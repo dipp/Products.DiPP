@@ -32,7 +32,7 @@
         <tr>
             <th>User</th>
             <td><input name="user" type="text" value="" tal:attributes="value here/user|nothing"/></td>
-            <td>Username.</td>
+            <td>Username. DataCite calls this the 'Symbol'</td>
         </tr>
         <tr>
             <th>Password</th>
@@ -42,7 +42,7 @@
         <tr>
             <th>Prefix</th>
             <td><input name="prefix" type="text"  value="" tal:attributes="value here/prefix|nothing"/></td>
-            <td>Prefix</td>
+            <td>The Prefix has the form 10.xxxx. For testing purposes use 10.5072</td>
         </tr>
         <tr>
             <th>testMode</th>
