@@ -1,6 +1,11 @@
 Changelog
 =========
 
+DiPP 2.20 (2015-??-??)
+    * new portlet with automatic generated table of contents portlet_autotoc
+      (requires dipp.tools version 0.6)
+
+
 DiPP 2.19 (2014-08-29)
     * javascript support for metadata form. adding new fields does not require
       reload of entire form
