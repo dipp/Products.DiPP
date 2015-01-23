@@ -438,6 +438,46 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
             todo.append(translation)
         logger.info(todo)
         #utils.linkTranslations(self,todo)
+        
+    def update_toc(self):
+        """Update or add the table of Contents property"""
+        
+        fedora = getToolByName(self, 'fedora')
+        dp = self.portal_properties.dipp_properties
+        if self.hasProperty('deepest_toc_level'):
+            deepest_toc_level = self.deepest_toc_level
+        else:
+            deepest_toc_level = dp.deepest_toc_level
+        
+        logger.info("###### %s" % self.id)
+        
+        if hasattr(self,'fulltext'):
+            fulltext = getattr(self, 'fulltext')
+            html = fulltext.body()
+            toc = fedora.getTOC(html, levels = deepest_toc_level)
+        else:
+            toc = ""
+        """
+        if hasattr(self,'index_html'):
+            fulltext = getattr(self, 'index_html')
+            #html = fulltext.body()
+            logger.info(fulltext.id)
+        elif hasattr(self,'fulltext'):
+            fulltext = getattr(self, 'fulltext')
+            #html = fulltext.body()
+            logger.info(fulltext.id)
+        else:
+            html = ""
+        html = ""
+        """        
+        #toc = fedora.getTOC(html, levels = deepest_toc_level)
+                
+        if not self.hasProperty('toc'):
+            self.manage_addProperty(id='toc', value=toc, type='text')
+        else:
+            self.manage_changeProperties({'toc':toc})
+
+        
 
         
     
