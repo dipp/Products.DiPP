@@ -8,12 +8,8 @@
 ##title=
 ##
 
-from Products.PythonScripts.standard import html_quote
 from Products.CMFCore.utils import getToolByName
 
-"""
-  code from checkForNewPIDs-Script
-"""
 portal_url = getToolByName(self, 'portal_url')
 portal = portal_url.getPortalObject()
 fedora = getToolByName(self, 'fedora')
@@ -69,6 +65,8 @@ else:
         
     contentObj = article.invokeFactory(objType,id=id,title=title,PID=PID,DsID=DsID,MMType=MMType,File=File)
 
+if id == 'fulltext':
+    article.update_toc()
     
 contentDocument = getattr(article, id)
 
