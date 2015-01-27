@@ -61,7 +61,7 @@ class DataCite(UniqueObject, SimpleItem):
         logger.info("Saved DataCite configuration")
         return self.datacite_config_form(REQUEST, management_view='Configuration', manage_tabs_message=manage_tabs_message)
 
-    security.declareProtected(Permissions.MANAGE_JOURNAL, 'make_datacite_client')
+    security.declareProtected(Permissions.MANAGE_JOURNAL, '_make_datacite_client')
     def _make_datacite_client(self):
         return datacite.Client(self.user, self.password, self.prefix, self.endpoint, self.testMode)
 
