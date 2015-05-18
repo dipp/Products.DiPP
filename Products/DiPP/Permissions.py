@@ -7,14 +7,16 @@ security = ModuleSecurityInfo('DiPP')
 security.declarePublic('MANAGE_JOURNAL')
 MANAGE_JOURNAL = 'DiPP: Manage Journal'
 
+security.declarePublic('VIEW_STATISTICS')
+VIEW_STATISTICS = 'DiPP: View Statistics'
+
 setDefaultRoles(MANAGE_JOURNAL, ())
+setDefaultRoles(VIEW_STATISTICS, ())
 
 # Publishing Permission
 ADD_CONTENTS_PERMISSION  = 'Fedora: Add Content'
 VIEW_CONTENTS_PERMISSION = 'Fedora: View Content'
 EDIT_CONTENTS_PERMISSION = 'Fedora: Edit Content'
-
-# 
 
 # Review Permission
 VIEW_ORIGINAL_MANUSCRIPT_PERMISSION = "DiPPReview: View the original manuscript"
