@@ -101,4 +101,13 @@
     url_expr="python:object.getFulltextPdf().get('url',None)" visible="True">
   <permission value="Fedora: View Content"/>
  </action>
+
+ <action title="View access statistics" action_id="statistics"
+    category="document_actions"
+    condition_expr=""
+    url_expr="string:${object_url}/statistics"
+    visible="True">
+  <permission value="DiPP: View Statistics"/>
+ </action>
+
 </object>

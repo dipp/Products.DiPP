@@ -5,19 +5,18 @@
 # This Program may be used by anyone in accordance with the terms of the
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
-#
-# $Id$
 
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.DiPP.config import PRIVATE_KEY, PUBLIC_KEY, VERIFY_SERVER
+from dipp.awstats.statistics import Statistics
 import urllib2
 import urllib
 import urlparse
 import socket
-
 import logging
+import Permissions
 
 logger = logging.getLogger(__name__)
 
@@ -105,6 +104,12 @@ class Utils(UniqueObject, SimpleItem):
 
         logger.info("reCAPTCHA - IP: %s, response: %s, error code: %s" % (remoteip, recaptcha_response_field, error_code))        
         return is_valid, error_code
+
+    
+    security.declareProtected(Permissions.VIEW_STATISTICS, 'awstat_years')
+    def awstat_years(self, journal):
+        stats = Statistics(journal)
+        return stats.available_years()
 
 
     

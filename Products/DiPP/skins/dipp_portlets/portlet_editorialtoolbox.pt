@@ -84,11 +84,6 @@
                            tal:attributes="href string:$portal_url/awstats/awstats.pl">
                            <span  i18n:translate="webstats">allg. Zugriffsstatistik</span></a>
                    </li>
-                   <li>
-                        <a href=""
-                           tal:attributes="href string:$portal_url/statistics">
-                           <span  i18n:translate="articlestats">artikelbasierte Statistik</span></a>
-                   </li>
                </ul>
                 
                 
