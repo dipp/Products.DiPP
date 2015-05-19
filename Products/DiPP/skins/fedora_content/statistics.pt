@@ -6,19 +6,53 @@
     <body i18n:domain="dipp">
 
 
-        <div metal:fill-slot="main">
+        <div metal:fill-slot="main"
+             tal:define="journal string:afrika;
+                         years python: here.Utils.awstats_years(journal);
+                         DateTime python:modules['DateTime'].DateTime;
+                         currentyear python:int(DateTime().year());
+                         year request/year|currentyear;
+                         months python: here.Utils.awstats_months(journal, year);
+                         stats python:here.Utils.awstats_data(journal, year, ['/archiv/2010/2723/SomaliWritingsPDF','/archiv/2010/2723','/archiv/2010/2723','/archiv/2010/2723/dippArticle.xml'])">
             
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
             </div>
-        
+            
             <h1 class="documentFirstheading" i18n:translate="">Article based statistics</h1>
             
             <div class="documentDescription" i18n:translate="description_statistics">
                 Access statistics for peer reviewed articles based on Awstats.
             </div>
             
-            <tal:block tal:content="python: here.Utils.awstat_years('afrika')" />
+            <tal:block tal:repeat="ayear years">
+            
+                <span tal:condition="python: str(ayear) == str(year)"
+                   tal:content="ayear">1999</span>
+                   
+                <a tal:condition="python: str(ayear) != str(year)"
+                   tal:content="ayear"
+                   href=""
+                   tal:attributes="href string:$here_url/$template_id?year=$ayear">2004</a>
+                   
+            </tal:block>
+            
+            <table class="listing">
+                <tr>
+                    <th>stats</th>
+                    <tal:block tal:repeat="month months">
+                        <th tal:content="month"></th>
+                    </tal:block>
+                </tr>
+	            <tal:block tal:repeat="url stats">
+	               <tr tal:define="stat python:stats[url]">
+	                   <td tal:content="url"></td>
+	                   <tal:block tal:repeat="month months">
+                         <td tal:content="python:stat[month]"></td>
+                        </tal:block>
+	               </tr>
+	            </tal:block>
+            </table>
             
         </div>
     </body>

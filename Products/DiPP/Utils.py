@@ -106,10 +106,21 @@ class Utils(UniqueObject, SimpleItem):
         return is_valid, error_code
 
     
-    security.declareProtected(Permissions.VIEW_STATISTICS, 'awstat_years')
-    def awstat_years(self, journal):
+    security.declareProtected(Permissions.VIEW_STATISTICS, 'awstats_years')
+    def awstats_years(self, journal):
         stats = Statistics(journal)
         return stats.available_years()
 
+    security.declareProtected(Permissions.VIEW_STATISTICS, 'awstats_months')
+    def awstats_months(self, journal, year):
+        stats = Statistics(journal)
+        return stats.months(year)
 
+
+    security.declareProtected(Permissions.VIEW_STATISTICS, 'awstats_data')
+    def awstats_data(self, journal, year, urls):
+        stats = Statistics(journal)
+        return stats.get_data(year, urls)
+
+    
     
