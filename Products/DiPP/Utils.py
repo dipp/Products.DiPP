@@ -120,7 +120,7 @@ class Utils(UniqueObject, SimpleItem):
     security.declareProtected(Permissions.VIEW_STATISTICS, 'awstats_data')
     def awstats_data(self, journal, year, urls):
         stats = Statistics(journal)
+        urls = [urlparse.urlparse(url)[2] for url in urls]
         return stats.get_data(year, urls)
 
-    
     

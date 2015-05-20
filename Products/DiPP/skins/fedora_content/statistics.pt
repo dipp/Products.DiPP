@@ -12,9 +12,13 @@
                          DateTime python:modules['DateTime'].DateTime;
                          currentyear python:int(DateTime().year());
                          year request/year|currentyear;
+                         contents here/getFolderContents;
+                         urls python:[here.absolute_url()] + [x.getURL() for x in contents];
+                         dummy python: urls.sort(reverse=False);
                          months python: here.Utils.awstats_months(journal, year);
-                         stats python:here.Utils.awstats_data(journal, year, ['/archiv/2010/2723/SomaliWritingsPDF','/archiv/2010/2723','/archiv/2010/2723','/archiv/2010/2723/dippArticle.xml'])">
+                         stats python:here.Utils.awstats_data(journal, year, urls)">
             
+            <em tal:content="urls" />
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
             </div>
@@ -37,11 +41,11 @@
                    
             </tal:block>
             
-            <table class="listing">
+            <table class="listing" summary="Access statistics">
                 <tr>
                     <th>stats</th>
                     <tal:block tal:repeat="month months">
-                        <th tal:content="month"></th>
+                        <th tal:content="python: int(month[0:2])"></th>
                     </tal:block>
                 </tr>
 	            <tal:block tal:repeat="url stats">
