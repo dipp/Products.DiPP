@@ -372,6 +372,20 @@ Default::
 
     6
 
+.. _prop_awstats_id:
+
+awstats_id
+==========
+
+Wenn der Name der AWStats Konfgurationsdatei "awstats.ejournal.conf" lautet, ist die
+awstats_id "ejournal" Daraus ergeben sich dann die geparsten Logfiles zu z.B 
+"awstats112011.ejournal.txt" Daraus werden dann die Zugriffstatiskten einzelner Artikel
+bzw. Artikeldateien generiert.
+
+Default::
+   
+   <leer>
+
                      
 dippreview_properties (DiPPReview properties)
 *********************************************

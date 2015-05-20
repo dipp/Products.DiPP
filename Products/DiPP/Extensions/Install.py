@@ -89,6 +89,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('recent_articles_range', 'int', 30),
         ('hide_current_issue','boolean', False),
         ('deepest_toc_level', 'int', 6),
+        ('awstats_id', 'string', '')
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
