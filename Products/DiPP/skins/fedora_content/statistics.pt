@@ -7,18 +7,8 @@
 
 
         <div metal:fill-slot="main"
-             tal:define="journal string:afrika;
-                         years python: here.Utils.awstats_years(journal);
-                         DateTime python:modules['DateTime'].DateTime;
-                         currentyear python:int(DateTime().year());
-                         year request/year|currentyear;
-                         contents here/getFolderContents;
-                         urls python:[here.absolute_url()] + [x.getURL() for x in contents];
-                         dummy python: urls.sort(reverse=False);
-                         months python: here.Utils.awstats_months(journal, year);
-                         stats python:here.Utils.awstats_data(journal, year, urls)">
-            
-            <em tal:content="urls" />
+             tal:define="awstats_id here/portal_properties/dipp_properties/awstats_id|nothing"> 
+
             <div metal:use-macro="here/document_actions/macros/document_actions">
                 Document actions (print, sendto etc)
             </div>
@@ -28,35 +18,53 @@
             <div class="documentDescription" i18n:translate="description_statistics">
                 Access statistics for peer reviewed articles based on Awstats.
             </div>
+
+            <tal:block tal:condition="awstats_id"
+                     tal:define="years python: here.Utils.awstats_years(awstats_id);
+                                 DateTime python:modules['DateTime'].DateTime;
+                                 currentyear python:int(DateTime().year());
+                                 year request/year|currentyear;
+                                 contents here/getFolderContents;
+                                 urls python:[here.absolute_url()] + [x.getURL() for x in contents];
+                                 dummy python: urls.sort(reverse=False);
+                                 months python: here.Utils.awstats_months(awstats_id, year);
+                                 stats python:here.Utils.awstats_data(awstats_id, year, urls)">
+                
+                <tal:block tal:repeat="ayear years">
+                
+                    <span tal:condition="python: str(ayear) == str(year)"
+                       tal:content="ayear">1999</span>
+                       
+                    <a tal:condition="python: str(ayear) != str(year)"
+                       tal:content="ayear"
+                       href=""
+                       tal:attributes="href string:$here_url/$template_id?year=$ayear">2004</a>
+                       
+                </tal:block>
             
-            <tal:block tal:repeat="ayear years">
-            
-                <span tal:condition="python: str(ayear) == str(year)"
-                   tal:content="ayear">1999</span>
-                   
-                <a tal:condition="python: str(ayear) != str(year)"
-                   tal:content="ayear"
-                   href=""
-                   tal:attributes="href string:$here_url/$template_id?year=$ayear">2004</a>
-                   
-            </tal:block>
-            
-            <table class="listing" summary="Access statistics">
-                <tr>
-                    <th>stats</th>
-                    <tal:block tal:repeat="month months">
-                        <th tal:content="python: int(month[0:2])"></th>
+                <table id="sortable" class="listing" summary="Access statistics">
+                    <thead>
+                        <tr class="headings">
+                            <th>stats</th>
+                            <tal:block tal:repeat="month months">
+                                <th tal:content="python: int(month[0:2])"></th>
+                            </tal:block>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tal:block tal:repeat="url stats">
+                       <tr tal:define="stat python:stats[url];
+                                       oddrow repeat/url/odd"
+                           tal:attributes="class python:test(oddrow, 'even', 'odd')" >
+                           <td tal:content="url"></td>
+                           <tal:block tal:repeat="month months">
+                             <td tal:content="python:stat[month]"></td>
+                            </tal:block>
+                       </tr>
                     </tal:block>
-                </tr>
-	            <tal:block tal:repeat="url stats">
-	               <tr tal:define="stat python:stats[url]">
-	                   <td tal:content="url"></td>
-	                   <tal:block tal:repeat="month months">
-                         <td tal:content="python:stat[month]"></td>
-                        </tal:block>
-	               </tr>
-	            </tal:block>
-            </table>
+                    </tbody>
+                </table>
+            </tal:block>
             
         </div>
     </body>
