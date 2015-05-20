@@ -47,7 +47,8 @@ setup(name='Products.DiPP',
         'dipp.dipp3 >= 3.4',
         'bibliograph.core',
         'dipp.fedora2 >= 2.2',
-        'dipp.datacite'
+        'dipp.datacite',
+        'dipp.awstats'
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),

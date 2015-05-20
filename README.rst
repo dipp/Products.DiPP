@@ -52,6 +52,10 @@ our own Modules
 
         * PyXML
 
+    * dipp.datacite
+
+    * dipp.awstats
+
 Installation
 ------------
 
