@@ -1,7 +1,11 @@
 Changelog
 =========
 
-DiPP 2.20 (2015-??-??)
+DiPP 2.20dev (unreleased)
+    * show access statistics from AWStats directly in Plone, proteced by
+      dedicated permission setting
+    * fixed reCAPTCHA. Validation expected two words, which failed for single
+      (house)numbers
     * new portlet with automatic generated table of contents portlet_autotoc
       (requires dipp.tools version 0.6)
 
