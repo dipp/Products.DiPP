@@ -545,7 +545,7 @@
                        public_captcha_key python:here.Utils.get_recaptcha_keys()['public']"
            tal:attributes="class python:test(error, 'field error', 'field')">
           <label for="recaptcha_response_field"
-                 i18n:translate="label_recaptcha">Bitte geben Sie die beiden Worte ein</label>
+                 i18n:translate="label_recaptcha">Bitte geben Sie den abgebildeten Text, bzw. die Ziffern ein.</label>
        
           <span class="fieldRequired" title="Required"
                 i18n:attributes="title title_required;"

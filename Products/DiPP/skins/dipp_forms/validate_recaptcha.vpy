@@ -23,18 +23,9 @@ if not recaptcha_response_field:
 
 ip = utils.get_ip(request)
 
-two_words = False
-if recaptcha_response_field:
-    words = recaptcha_response_field.split()
-    if len(words) != 2:
-        state.setError('recaptcha', 'Bitte geben Sie exakt zwei Worte ein', 'input_required')
-    else:
-        two_words = True
-
-if two_words:
-    is_valid, error_code = utils.validate_recaptcha(recaptcha_challenge_field, recaptcha_response_field, ip)
-    if not is_valid:
-        state.setError('recaptcha', 'Versuchen Sie es noch einmal.', 'input_required')
+is_valid, error_code = utils.validate_recaptcha(recaptcha_challenge_field, recaptcha_response_field, ip)
+if not is_valid:
+    state.setError('recaptcha', 'Versuchen Sie es noch einmal.', 'input_required')
 
 if state.getErrors():
     return state.set(status='failure', 
