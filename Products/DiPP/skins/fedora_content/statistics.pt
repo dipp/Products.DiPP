@@ -3,7 +3,7 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="dipp">
 
-    <body i18n:domain="dipp">
+    <body>
 
 
         <div metal:fill-slot="main"
@@ -13,7 +13,19 @@
                 Document actions (print, sendto etc)
             </div>
             
-            <h1 class="documentFirstheading" i18n:translate="">Article based statistics</h1>
+            <h1 class="documentFirstheading"
+                i18n:translate="title_statistics"
+                i18n:domain="dipp">
+                Zugriffsstatistiken
+            </h1>
+            
+	        <div class="documentByLine">
+	            <a href="#"
+	               i18n:translate="back_to_article"
+	               i18n:domain="dipp"
+	               tal:attributes="href string:${here/absolute_url};">
+	               back to the article</a>
+	        </div>
             
             <div class="documentDescription" i18n:translate="description_statistics">
                 Access statistics for peer reviewed articles based on Awstats.

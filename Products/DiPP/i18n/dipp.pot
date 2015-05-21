@@ -731,3 +731,10 @@ msgstr ""
 
 msgid "title_permalink"
 msgstr ""
+
+msgid "title_statistics"
+msgstr ""
+
+msgid "description_statistics"
+msgstr ""
+
