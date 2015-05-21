@@ -8,7 +8,7 @@
 
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
-from Products.CMFCore.utils import UniqueObject, getToolByName
+from Products.CMFCore.utils import UniqueObject
 from Products.DiPP.config import PRIVATE_KEY, PUBLIC_KEY, VERIFY_SERVER
 from dipp.awstats.statistics import Statistics
 import urllib2
