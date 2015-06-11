@@ -40,6 +40,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.doctest', 
               'sphinx.ext.intersphinx',
               'sphinx.ext.todo', 
+              'sphinx.ext.ifconfig', 
               'sphinx.ext.coverage'
               ]
 
@@ -56,8 +57,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'DiPP Handbuch'
-copyright = u'2012-2015, Peter Reimer'
+project = u'Digital Peer Publishing'
+copyright = u'2012-2015, Dr. Peter Reimer, hbz'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -197,8 +198,8 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'DiPP-Handbuch.tex', u'DiPP Documentation',
-   u'Peter Reimer', 'manual'),
+  ('index', 'DiPP-Handbuch.tex', u'Handbuch',
+   u'Dr. Peter Reimer', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -207,7 +208,7 @@ latex_logo = "dipp-logo.pdf"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = True
 
 # If true, show page references after internal links.
 #latex_show_pagerefs = False
@@ -238,10 +239,10 @@ man_pages = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'DiPP Handbuch'
+epub_title = u'Digital Peer Publishing'
 epub_author = u'Peter Reimer'
-epub_publisher = u'Peter Reimer'
-epub_copyright = u'2012, Peter Reimer'
+epub_publisher = u'Hochschulbibliothekszentrum NRW'
+epub_copyright = u'2015, Peter Reimer'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
