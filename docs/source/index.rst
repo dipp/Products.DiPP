@@ -27,39 +27,40 @@ Leistungsspektrum:
 
 * Hosting und Archivierung: „Ein sicherer Hafen“
 
-    * Nutzung über Browser (ohne eigene Server oder Software)
-    * Individuelle Internetadresse und Layout (eJournal, Institut, Einrichtung)
-    * Leistungsstarke und sichere Hardware
-    * Registrierung der Publikationen (z.B. ISSN, URN, DOI)
-    * offenes Archivierungsformat  (XML, DocBook) zur Langzeitarchiverung
-    * Optionale Anbindung an hbz-Langzeitarchivierungsservices (PDF/A-Generierung, LOCKSS-Netzwerk)
+  * Nutzung über Browser (ohne eigene Server oder Software)
+  * Individuelle Internetadresse und Layout (eJournal, Institut, Einrichtung)
+  * Leistungsstarke und sichere Hardware
+  * Registrierung der Publikationen (z.B. ISSN, URN, DOI)
+  * offenes Archivierungsformat  (XML, DocBook) zur Langzeitarchiverung
+  * Optionale Anbindung an hbz-Langzeitarchivierungsservices (PDF/A-Generierung, LOCKSS-Netzwerk)
 
 * Produktionssystem: „Professionell Publizieren“
 
-    * Einfaches Bearbeiten der Homepage (Web Content Management System)
-    * autom. HTML-/PDF-Erstellung aus Formatvorlagen o Nachrichtenfunktionen (Termine, RSS-Feeds uvm.)
-    * Verknüpfung mit Zusatzprodukten wie Foren und Blogs
+  * Einfaches Bearbeiten der Homepage (Web Content Management System)
+  * autom. HTML-/PDF-Erstellung aus Formatvorlagen
+  * Nachrichtenfunktionen (Termine, RSS-Feeds uvm.)
+  * Verknüpfung mit Zusatzprodukten wie Foren und Blogs
 
 * Lizenz-Management: „Recht einfach“
 
-    * Digital Peer Publishing Lizenz – ‚Baukasten‘ für Open Access
-    * Integration der Lizenzen in Metadaten und Artikel
+  * Digital Peer Publishing Lizenz – ‚Baukasten‘ für Open Access
+  * Integration der Lizenzen in Metadaten und Artikel
 
 * Verbreitung: „Weltweit – schnell und sauber“
 
-    * Nachweis in Suchmaschinen/Datenbanken  (z.B. EZB, DOAJ, Google, Google-Scholar, BASE, hbz-Dienste)
-    * automatisierte Meldung aktueller Publikationsdaten (OAI-PMH / eMail-Alert)
-    * spezifische Eingabemasken für Beschreibungsdaten  (z.B. DDC, PACS, JEL, ORCID erweiterbar)
-    * Werkzeug für detaillierte Nutzungsanalysen
+  * Nachweis in Suchmaschinen/Datenbanken  (z.B. EZB, DOAJ, Google, Google-Scholar, BASE, hbz-Dienste)
+  * automatisierte Meldung aktueller Publikationsdaten (OAI-PMH / eMail-Alert)
+  * spezifische Eingabemasken für Beschreibungsdaten  (z.B. DDC, PACS, JEL, ORCID erweiterbar)
+  * Werkzeug für detaillierte Nutzungsanalysen
 
 * Workflowsysteme: „Übersicht behalten“
 
-    * konfigurierbare Arbeitsgänge (Korrekturen, Kontrollen, Imprimatur, Termine)
-    * Werkzeuge für Begutachtungsverfahren (Blind, Double-Blind, Open etc.)
+  * konfigurierbare Arbeitsgänge (Korrekturen, Kontrollen, Imprimatur, Termine)
+  * Werkzeuge für Begutachtungsverfahren (Blind, Double-Blind, Open etc.)
 
 * Wissenstransfer: „Immer weiter wissen“
 
-    * Hilfestellungen und Erfahrungsaustausch (Workshops, Mailinglisten, FAQ)
+  * Hilfestellungen und Erfahrungsaustausch (Workshops, Mailinglisten, FAQ)
 
 Dokumentation DiPP |version|
 ----------------------------
