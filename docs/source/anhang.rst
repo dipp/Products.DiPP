@@ -5,6 +5,5 @@ Anhang
    :maxdepth: 2
   
    api
-   changelog
    readme
    glossar
