@@ -102,8 +102,11 @@ IssueSchema = BaseSchema + Schema((
         FileField('CompleteIssue',
             required=0,
             widget=FileWidget(
-                label='Complete Isse',
-                description='The complete Issue in a single PDF file'
+                label='Complete Issue',
+                label_msgid='label_completeissue_field',
+                description='The complete Issue in a single PDF file',
+                description_msgid='help_completeissue_field',
+                i18n_domain='dipp',
             ),
             schemata='Advanced'
         ),
