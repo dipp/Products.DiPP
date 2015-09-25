@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dipp-en\n"
 "POT-Creation-Date: 2004-09-06 11:54+0100\n"
-"PO-Revision-Date: 2015-05-21 11:33+0100\n"
+"PO-Revision-Date: 2015-09-25 16:08+0100\n"
 "Last-Translator: Peter Reimer <reimer@hbz-nrw.de>\n"
 "Language-Team: English <reimer@hbz-nrw.de>\n"
 "Language: en\n"
@@ -797,3 +797,21 @@ msgstr "Access statistics"
 
 msgid "description_statistics"
 msgstr "The Logfile analysis is done with AWStats."
+
+msgid "label_completeissue_field"
+msgstr "Complete Issue"
+
+msgid "help_completeissue_field"
+msgstr "All article of this issue in a single PDF."
+
+msgid "label_issuedate_field"
+msgstr "Date"
+
+msgid "help_issuedate_field"
+msgstr "Date of this Issue."
+
+msgid "label_titleimage_field"
+msgstr "Cover image"
+
+msgid "help_titleimage_field"
+msgstr "Cover image"
