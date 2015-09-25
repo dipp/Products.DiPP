@@ -813,21 +813,3 @@ msgstr "Zugriffsstatistiken"
 
 msgid "description_statistics"
 msgstr "Die Auswertung der Logdateien erfolgt mit AWStats."
-
-msgid "label_completeissue_field"
-msgstr ""
-
-msgid "help_completeissue_field"
-msgstr ""
-
-msgid "label_issuedate_field"
-msgstr "Date"
-
-msgid "help_issuedate_field"
-msgstr "The Date on which this issue is published"
-
-msgid "label_titleimage_field"
-msgstr "Cover picture"
-
-msgid "help_titleimage_field"
-msgstr "Select an image for the frontpage of this issue"
