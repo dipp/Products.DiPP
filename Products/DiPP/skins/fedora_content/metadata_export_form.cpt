@@ -56,7 +56,7 @@
                 <input type="hidden" name="metadata" readonly="readonly" tal:attributes="value datacite_xml" />
                 
                 <p>
-                    DataCite Metadata Store: <a href="" tal:attributes="href string:https:$endpoint/login">Login</a>
+                    DataCite Metadata Store: <a href="" tal:attributes="href string:https://$endpoint/login">Login</a>
                 </p>
                 
                 <table class='listing horizontal'>
