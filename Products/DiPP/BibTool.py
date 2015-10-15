@@ -43,7 +43,10 @@ class BibTool(UniqueObject, SimpleItem):
         return qdc.get_creator_defaults()
 
     def get_author_identifier(self):
-        return dict(defaults.AUTHOR_IDENTIFIER)
+        author_identifier = {}
+        for scheme, url, name in defaults.AUTHOR_IDENTIFIER:
+            author_identifier[scheme] = name
+        return author_identifier
     
     def short_citation(self,article):
         """Short version of the bibligraphic citation. Calls only plones own

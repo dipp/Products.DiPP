@@ -26,15 +26,21 @@ if REQUEST.has_key('form.button.register'):
     # registering an article with DataCite is a two-step-process:
     # 1. uploading the metadata and thus minting an doi
     # 2. registering an url with the doi
-    status_code, content = doi_tool.post_metadata(metadata)
+    status_code, content = doi_tool.create_or_modify_doi(doi,url)
+    #status_code, content = doi_tool.post_metadata(metadata)
     if status_code == '201':
-        status_code, content = doi_tool.create_or_modify_doi(doi,url)
+        status_code, content = doi_tool.post_metadata(metadata)
+        #status_code, content = doi_tool.create_or_modify_doi(doi,url)
         if status_code == '201':
             status = 'success'
             msg = "DOI erfolgreich registriert"
         else:
             status = 'failure'
             msg = "DOI konnte nicht registriert werden!"
+    else:
+        status = 'failure'
+        msg = "DOI konnte nicht registriert werden!"
+        
     portal_status_message = "%s (DataCite: %s, %s)" % (msg, status_code, content)
 
 
