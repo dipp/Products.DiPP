@@ -120,10 +120,10 @@ if storageType == "permanent":
     for abstract in abstracts:
         if abstract['lang'] != '' and abstract['lang'] not in languages:
             languages.append(abstract['lang'])
-        if len(languages) < len(abstracts):
-            state.setError('abstract', translate('error_abstract_lang_count', domain='qdc'), new_status='failure')
         if abstract['value'] and not abstract['lang']:
-            state.setError('abstract', translate('error_abstract_lang_required', domain='qdc'), new_status='failure')
+            state.setError('abstract', translate('error_abstract_lang', domain='qdc'), new_status='failure')
+    if len(languages) < len(abstracts):
+        state.setError('abstract', translate('error_abstract_lang', domain='qdc'), new_status='failure')
 
 
 for aTitle in title:
