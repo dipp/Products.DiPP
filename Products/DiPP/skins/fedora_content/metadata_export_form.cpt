@@ -34,15 +34,15 @@
                                dc_tool here/portal_doiregistry;
                                endpoint dc_tool/endpoint;
                                pdf python:here.getFulltextPdf().get('url',None);
-                               datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf);
                                doaj_xml python:here.bibtool.doaj_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf)">
             
-            <h2>DataCite</h2>
+            <h2>DOI Registration at DataCite</h2>
 
             <form name="metadata_export_form"
                   tal:condition="DOI"
                   tal:define="current_url here/absolute_url;
                               datacite python: dc_tool.get_url(DOI);
+                              datacite_xml python:here.bibtool.datacite_xml(articlePID,issn=issn,publisher=publisher,pdf=pdf);
                               datacite_status python:datacite[0];
                               datacite_url python:datacite[1];
                               doi_registered python:test(datacite_status!='404',True,False);
@@ -55,11 +55,12 @@
                 <input type="hidden" name="form.submitted" value="1" />
                 <input type="hidden" name="metadata" readonly="readonly" tal:attributes="value datacite_xml" />
                 
+                <p><abbr title="Digital Objekt Identifier">DOI</abbr>: <span tal:content="DOI">10.5072/dipp-example</span></p>
                 <p>
                     DataCite Metadata Store: <a href="" tal:attributes="href string:https://$endpoint/login">Login</a>
                 </p>
                 
-                <table class='listing horizontal'>
+                <table class='listing'>
                     <tr>
                         <th scope="row">DOI</th>
                         <td tal:content="DOI">10.5072/dipp-example</td>
