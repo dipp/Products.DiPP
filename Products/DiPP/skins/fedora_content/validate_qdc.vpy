@@ -26,6 +26,7 @@ language                = request.get('language', None)
 DDC                     = request.get('DDC', None)
 title                   = request.get('title', None)
 creatorPerson           = request.get('creatorPerson', None)
+abstracts               = request.get('DCTermsAbstract', None)
 subject                 = request.get('subject', None)
 subjectClassified       = request.get('subjectClassifield', None)
 bibliographicCitation   = request.get('bibliographicCitation', None)
@@ -113,6 +114,17 @@ if storageType == "permanent":
     #if rights[0] == '':
     if not rights:
         state.setError('rights', translate('error_licence_required', domain='qdc'), new_status='failure')
+    
+    # abstract
+    languages = []
+    for abstract in abstracts:
+        if abstract['lang'] != '' and abstract['lang'] not in languages:
+            languages.append(abstract['lang'])
+        if len(languages) < len(abstracts):
+            state.setError('abstract', translate('error_abstract_lang_count', domain='qdc'), new_status='failure')
+        if abstract['value'] and not abstract['lang']:
+            state.setError('abstract', translate('error_abstract_lang_required', domain='qdc'), new_status='failure')
+
 
 for aTitle in title:
     if aTitle['value'] == '' or aTitle['lang'] == '':
