@@ -71,8 +71,13 @@ class DataCite(UniqueObject, SimpleItem):
         
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'validate_doi')
     def validate_doi(self, doi):
-        client = self._make_datacite_client()
-        return client.validate_doi(doi)
+        """Validate DOI only if it not an empty string
+        """
+        if doi:
+            client = self._make_datacite_client()
+            return client.validate_doi(doi)
+        else:
+            return True
 
     security.declareProtected(Permissions.MANAGE_JOURNAL, 'get_url')
     def get_url(self, doi):
