@@ -93,22 +93,24 @@ if storageType == "permanent":
 
     # DOI
     if identifierDOI:
-        # check for correct prefix and allowed characters 
-        if not doi_tool.validate_doi(identifierDOI):
-            state.setError('identifierDOI', translate('error_doi_invalid', domain='qdc'), new_status='failure')
+        context.plone_log("validating %s" % identifierDOI)
+        # check for correct prefix and allowed characters
+        valid, message = doi_tool.validate_doi(identifierDOI)
+        if not valid:
+             state.setError('identifierDOI', translate('error_doi_invalid', default='DOI ist ungültig: ${msg}.', mapping={u'msg':message}, domain='qdc'), new_status='failure')
         
         # is the doi already in use
         elif identifierDOI.lower() in [d.lower() for d in catalog.uniqueValuesFor('getDOI') if d]:# lowercase doi, discard '' and None entries
-            
             results = catalog(portal_type='FedoraArticle',getDOI=identifierDOI)
             urls = [article.getURL() for article in results]
             if self.absolute_url() not in urls:
-                state.setError('identifierDOI', translate('error_doi_assigned', domain='qdc'), new_status='failure')
+                state.setError('identifierDOI', translate('error_doi_assigned', default="DOI ist bereits vergeben.", domain='qdc'), new_status='failure')
         else:
             datacite_status = doi_tool.get_url(identifierDOI)[0]
             if not datacite_status=='404':
-                state.setError('identifierDOI', translate('error_doi_registered', domain='qdc'), new_status='failure')
-
+                state.setError('identifierDOI', translate('error_doi_registered', default="DOI ist bereits registriert", domain='qdc'), new_status='failure')
+    else:
+        context.plone_log("skipping validation of DOI")
     
     #if rights[0] == '':
     if not rights:
@@ -123,5 +125,3 @@ if state.getErrors():
     state.set(portal_status_message=translate('error_fix_indicated_errors', domain='qdc'))
      
 return state
-
-
