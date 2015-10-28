@@ -70,7 +70,7 @@
   <permission value="Fedora: Edit Content"/>
  </action>
  
- <action title="Metadata Export"
+ <action title="DataCite/DOAJ"
          action_id="metadata_export_form" 
          category="folder" 
          condition_expr=""
@@ -91,7 +91,7 @@
  </action>
  <action title="Citation and Metadata" action_id="citation"
     category="document_actions" condition_expr=""
-    url_expr="string:${object_url}/metadata" visible="True">
+    url_expr="string:${object_url}/citation" visible="True">
   <permission value="Fedora: View Content"/>
  </action>
  

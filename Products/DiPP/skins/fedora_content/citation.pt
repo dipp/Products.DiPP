@@ -67,11 +67,10 @@
                             @Artikel{
                             }
                             </pre>
-                            <form method="post" action="citation">
-                                <input type="hidden" name="target_format" value="" tal:attributes="value python: format[1]" />
-                                <input type="hidden" name="PID" value="" tal:attributes="value here/PID" />
-                                <input type="submit" value="Download citation" />
-                            </form>
+                            <a href="#"
+                               tal:attributes="href python:'%s/metadata/%s' % (here.absolute_url(), format[1])" >
+                               Download
+                            </a>
                         </div>
                     </div>
                 </div>
