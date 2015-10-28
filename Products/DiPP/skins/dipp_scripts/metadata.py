@@ -21,6 +21,15 @@ translate = context.translate
 
 PID = self.PID
 
+publisher = self.portal_properties.metadata_properties.publisher
+
+try:
+    issn = self.issn
+except:
+    issn = self.portal_properties.metadata_properties.issn
+
+context.plone_log(issn)
+
 supported = dict((type, (name, mime, extension)) for (name, type, mime, extension) in bibtool.formats())
 
 try:
