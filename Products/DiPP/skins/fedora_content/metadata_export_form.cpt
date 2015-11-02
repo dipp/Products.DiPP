@@ -88,7 +88,7 @@
                     <tr>
                         <th scope="row">Metadata</th>
                         <td>
-                            <a tal:attributes="href string:${here/absolute_url}/doi">Download</a>
+                            <a tal:attributes="href string:${here/absolute_url}/metadata/datacite">Download</a>
                         </td>
                         <td>
                             <input type="submit"
@@ -111,7 +111,7 @@
             
             <h2>DOAJ</h2>
             <pre tal:content="doaj_xml"> </pre> 
-            <a tal:attributes="href string:${here/absolute_url}/doaj">Download</a>
+            <a tal:attributes="href string:${here/absolute_url}/metadata/doaj">Download</a>
         </tal:block>
     </tal:main-macro>
 </metal:main>
