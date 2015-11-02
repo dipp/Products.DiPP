@@ -279,8 +279,8 @@ class BibTool(UniqueObject, SimpleItem):
     def convert(self, qdc, PID, target_format):
         """ Convert the QDC Metadata from Fedora to any format supported by
         bibutils. Uses MODS as an intermediate format.
-        
         """
+
         mods = self._make_mods(qdc, PID)
         if target_format == 'xml':
             indent.indent(mods)
@@ -307,12 +307,15 @@ class BibTool(UniqueObject, SimpleItem):
         status = urnvalidator.URN(urn, url)
         return status.parse_dnb_response()
 
-    security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
+    #security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
     def datacite_xml(self, pid, issn, publisher, pdf):
+        """Return metada in DataCite compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_datacite_xml()
     
-    security.declareProtected(Permissions.MANAGE_JOURNAL, 'doaj_xml')
+    #security.declareProtected(Permissions.MANAGE_JOURNAL, 'doaj_xml')
     def doaj_xml(self, pid, issn, publisher, pdf):
+        """Return metada in DOAJ compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
+
