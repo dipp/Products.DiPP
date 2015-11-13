@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>ebookey</title>
+    </head>
+    <body>
+        <h1>ebookey</h1>
+        <dl>
+            <dt>article</dt>
+            <dd>
+                <a class="article" 
+                   tal:define="url string:${here/absolute_url}/fulltext/fedoraxml_body"
+                   tal:attributes="href url"
+                   tal:content="url"></a>
+            </dd>
+            <dt>metadata</dt>
+            <dd>
+                <a class="metadata" 
+                   tal:define="url string:${here/absolute_url}/metadata/xml"
+                   tal:attributes="href url"
+                   tal:content="url"></a>
+            </dd>
+        </dl>
+        <hr />
+        <a class="epub"
+           tal:define="url string:${here/absolute_url}/${template/id};
+                       ebookey string:https://api.ellinet-dev.hbz-nrw.de/tools/ebookey"
+           tal:attributes="href string:$ebookey?api=$url">epub</a>
+    </body>
+</html>

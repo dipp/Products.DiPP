@@ -100,7 +100,7 @@
                    tal:define="ebookey string:https://api.ellinet-dev.hbz-nrw.de/tools/ebookey;
                                url string:${here/absolute_url}/fulltext/fedoraxml_body;
                                meta string:${here/absolute_url}/metadata/xml"
-                   tal:attributes="href string:$ebookey?url=$url&metadataUrl=$meta">EPUB</a>
+/                   tal:attributes="href string:$ebookey?url=$url&metadataUrl=$meta">EPUB</a>
             </p>
         </div>
      </body>
