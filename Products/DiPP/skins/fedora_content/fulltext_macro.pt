@@ -96,11 +96,10 @@
             <!--EPUB-->
             <p>
                 Volltext als
-                <a href=""
-                   tal:define="ebookey string:https://api.ellinet-dev.hbz-nrw.de/tools/ebookey;
-                               url string:${here/absolute_url}/fulltext/fedoraxml_body;
-                               meta string:${here/absolute_url}/metadata/xml"
-/                   tal:attributes="href string:$ebookey?url=$url&metadataUrl=$meta">EPUB</a>
+                <a class="epub"
+                   tal:define="url string:${here/absolute_url}/ebookey;
+                               ebookey string:https://api.ellinet-dev.hbz-nrw.de/tools/ebookey"
+                   tal:attributes="href string:$ebookey?url=$url">EPUB</a>
             </p>
         </div>
      </body>

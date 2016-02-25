@@ -20,11 +20,18 @@
                    tal:attributes="href url"
                    tal:content="url"></a>
             </dd>
+            <dt>cover</dt>
+            <dd>
+                <a class="cover" 
+                   tal:define="url string:${here/portal_url}/cover.png"
+                   tal:attributes="href url"
+                   tal:content="url"></a>
+            </dd>
         </dl>
         <hr />
         <a class="epub"
            tal:define="url string:${here/absolute_url}/${template/id};
                        ebookey string:https://api.ellinet-dev.hbz-nrw.de/tools/ebookey"
-           tal:attributes="href string:$ebookey?api=$url">epub</a>
+           tal:attributes="href string:$ebookey?url=$url">epub</a>
     </body>
 </html>
