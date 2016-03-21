@@ -54,9 +54,11 @@ our own Modules
 Installation
 ------------
 
-The Python modules are installed by running::
+The Python modules are installed by running:
 
-    easy_install -f http://alkyoneus.hbz-nrw.de/dist -U <Python Module Name>
+.. code-block:: bash
+
+    $ easy_install -f http://alkyoneus.hbz-nrw.de/dist -U <Python Module Name>
 
 for each module. dipp.dipp3 and ZSI are automatically pulled in as dependency of dipp.fedora2
     
