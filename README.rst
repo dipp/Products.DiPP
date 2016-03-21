@@ -30,31 +30,26 @@ our own Modules
 
 * dipp.tools
 
-    * argparse
+  * argparse
 
 * dipp.dipp3
    
-    * argparse
-    * dipp.tools
-    * elementtree
-    * bibliograph.core
-    * ZSI
+  * argparse
+  * dipp.tools
+  * elementtree
+  * bibliograph.core
+  * ZSI
 
 * dipp.dipp2
     
-    * ZSI
+  * ZSI
+  * dipp.fedora2
 
-    * dipp.fedora2
+    * dipp.dipp3
+    * PyXML
 
-        * dipp.dipp3
-
-    * ZSI
-
-        * PyXML
-
-    * dipp.datacite
-
-    * dipp.awstats
+  * dipp.datacite
+  * dipp.awstats
 
 Installation
 ------------
