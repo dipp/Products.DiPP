@@ -1,5 +1,5 @@
-README.txt
-==========
+Product.DiPP
+============
 
 Connect Plone to the fedora repository
 Tested with Zope 2.7 and Plone 2.5
@@ -9,40 +9,40 @@ Dependencies
 
 The following Plone products are required:
 
-    * CMFOpenflow
-    * TextIndexNG3
-    * ATVocabularyManager
-    * LinguaPlone
-    * PloneLanguageTool
+* CMFOpenflow
+* TextIndexNG3
+* ATVocabularyManager
+* LinguaPlone
+* PloneLanguageTool
     
 Python Modules
 
-    * setuptools
-    * elementtree
-    * bibliograph.core
-    * dipp.tools >= 0.4
-    * dipp.dipp2
-    * dipp.fedora2 >= 2.2
-    * dipp.dipp3 >= 3.3.1
-    * ZSI
+* setuptools
+* elementtree
+* bibliograph.core
+* dipp.tools >= 0.4
+* dipp.dipp2
+* dipp.fedora2 >= 2.2
+* dipp.dipp3 >= 3.3.1
+* ZSI
 
 our own Modules
 
+* dipp.tools
+
+    * argparse
+
+* dipp.dipp3
+   
+    * argparse
     * dipp.tools
+    * elementtree
+    * bibliograph.core
+    * ZSI
 
-        * argparse
-
-    * dipp.dipp3
-       
-        * argparse
-        * dipp.tools
-        * elementtree
-        * bibliograph.core
-        * ZSI
-
-    * dipp.dipp2
-        
-        * ZSI
+* dipp.dipp2
+    
+    * ZSI
 
     * dipp.fedora2
 
