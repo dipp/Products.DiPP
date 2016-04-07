@@ -71,13 +71,17 @@ Configuration
 The configuration has to be done in both the filesystem and Zope.
 The two configuration files: 
 
-/files/etc/dipp3.cfg::  
-    
+`/files/etc/dipp3.cfg`:  
+
+.. code-block:: ini
+
     [webservice]
     address: http://127.0.0.1:9180/dipp3/services/dipp
     timeout: 120
 
-/files/etc/fedora2.cfg::
+`/files/etc/fedora2.cfg`:
+
+.. code-block:: ini
 
     [webservice]
     address: 193.30.112.98
