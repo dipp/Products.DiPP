@@ -1,5 +1,5 @@
-README.txt
-==========
+Product.DiPP
+============
 
 Connect Plone to the fedora repository
 Tested with Zope 2.7 and Plone 2.5
@@ -9,59 +9,56 @@ Dependencies
 
 The following Plone products are required:
 
-    * CMFOpenflow
-    * TextIndexNG3
-    * ATVocabularyManager
-    * LinguaPlone
-    * PloneLanguageTool
+* CMFOpenflow
+* TextIndexNG3
+* ATVocabularyManager
+* LinguaPlone
+* PloneLanguageTool
     
 Python Modules
 
-    * setuptools
-    * elementtree
-    * bibliograph.core
-    * dipp.tools >= 0.4
-    * dipp.dipp2
-    * dipp.fedora2 >= 2.2
-    * dipp.dipp3 >= 3.3.1
-    * ZSI
+* setuptools
+* elementtree
+* bibliograph.core
+* dipp.tools >= 0.4
+* dipp.dipp2
+* dipp.fedora2 >= 2.2
+* dipp.dipp3 >= 3.3.1
+* ZSI
 
 our own Modules
 
-    * dipp.tools
+* dipp.tools
 
-        * argparse
+  * argparse
+
+* dipp.dipp3
+   
+  * argparse
+  * dipp.tools
+  * elementtree
+  * bibliograph.core
+  * ZSI
+
+* dipp.dipp2
+    
+  * ZSI
+  * dipp.fedora2
 
     * dipp.dipp3
-       
-        * argparse
-        * dipp.tools
-        * elementtree
-        * bibliograph.core
-        * ZSI
+    * PyXML
 
-    * dipp.dipp2
-        
-        * ZSI
-
-    * dipp.fedora2
-
-        * dipp.dipp3
-
-    * ZSI
-
-        * PyXML
-
-    * dipp.datacite
-
-    * dipp.awstats
+  * dipp.datacite
+  * dipp.awstats
 
 Installation
 ------------
 
-The Python modules are installed by running::
+The Python modules are installed by running:
 
-    easy_install -f http://alkyoneus.hbz-nrw.de/dist -U <Python Module Name>
+.. code-block:: bash
+
+    $ easy_install -f http://alkyoneus.hbz-nrw.de/dist -U <Python Module Name>
 
 for each module. dipp.dipp3 and ZSI are automatically pulled in as dependency of dipp.fedora2
     

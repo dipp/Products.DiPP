@@ -94,13 +94,14 @@
             </tal:block>
             
             <!--EPUB-->
-            <p>
+            <p tal:define="url string:${here/absolute_url}/ebookey;
+                           ebookey string:https://frl.publisso.de/tools/ebookey;
+                           epub_url string:$ebookey?url=$url">
                 Volltext als
-                <a href=""
-                   tal:define="ebookey string:https://api.ellinet-dev.hbz-nrw.de/tools/ebookey;
-                               url string:${here/absolute_url}/fulltext/fedoraxml_body;
-                               meta string:${here/absolute_url}/metadata/xml"
-                   tal:attributes="href string:$ebookey?url=$url&metadataUrl=$meta">EPUB</a>
+                <a class="epub"
+                   tal:attributes="href epub_url">EPUB</a>
+                <img src=""
+                     tal:attributes="src string:http://qrickit.com/api/qr?d=$epub_url" />
             </p>
         </div>
      </body>
