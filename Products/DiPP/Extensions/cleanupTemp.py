@@ -25,9 +25,9 @@ import string
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from time import *
-from fedora2.FedoraAccess import *
-from fedora2.FedoraManagement import *
-from dipp2.ContentModel import ContentModel
+from dipp.fedora2.FedoraAccess import *
+from dipp.fedora2.FedoraManagement import *
+from dipp.dipp3.ContentModel import ContentModel
 from DateTime import DateTime
 from StringIO import StringIO
 
@@ -108,9 +108,10 @@ def cleanAll(self, out):
                             containers = getContainers(PID)
                         
                             for container in containers:
-                                purgeObject(container)
-
-                            purgeObject(PID)
+                                # purgeObject(container)
+                                print >>out, "purge container"
+                            #purgeObject(PID)
+                            print >>out, "purge object"
                              
                            
                     except:
