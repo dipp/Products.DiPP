@@ -18,38 +18,27 @@ The following Plone products are required:
 Python Modules
 
 * setuptools
-* elementtree
-* bibliograph.core
-* dipp.tools >= 0.4
-* dipp.dipp2
-* dipp.fedora2 >= 2.2
-* dipp.dipp3 >= 3.3.1
-* ZSI
-
-our own Modules
 
 * dipp.tools
 
   * argparse
-
+  * lxml==2.3.5
+  * BeautifulSoup==3.2.1
+  
 * dipp.dipp3
    
   * argparse
-  * dipp.tools
+  * dipp.tools>=0.5.1
   * elementtree
   * bibliograph.core
-  * ZSI
+  * ZSI>=2.0.1
 
-* dipp.dipp2
-    
-  * ZSI
-  * dipp.fedora2
+* dipp.fedora2
 
-    * dipp.dipp3
-    * PyXML
+  * ZSI>=2.0.1
 
-  * dipp.datacite
-  * dipp.awstats
+* dipp.datacite
+* dipp.awstats
 
 Installation
 ------------
