@@ -31,11 +31,16 @@ Python Modules
   * dipp.tools>=0.5.1
   * elementtree
   * bibliograph.core
+  * dipp.fedora2
   * ZSI>=2.0.1
 
 * dipp.fedora2
 
   * ZSI>=2.0.1
+
+* ZSI>=2.0.1
+
+  * PyXML >= 0.8.3
 
 * dipp.datacite
 * dipp.awstats
@@ -49,7 +54,7 @@ The Python modules are installed by running:
 
     $ easy_install -f http://alkyoneus.hbz-nrw.de/dist -U <Python Module Name>
 
-for each module. dipp.dipp3 and ZSI are automatically pulled in as dependency of dipp.fedora2
+for each module. dipp.fedora2 and ZSI are automatically pulled in as dependency of dipp.dipp3
     
 Configuration
 -------------
