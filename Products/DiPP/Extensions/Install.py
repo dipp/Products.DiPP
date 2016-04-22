@@ -89,7 +89,8 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('recent_articles_range', 'int', 30),
         ('hide_current_issue','boolean', False),
         ('deepest_toc_level', 'int', 6),
-        ('awstats_id', 'string', '')
+        ('awstats_id', 'string', ''),
+        ('enable_ebookey','boolean', False),
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
@@ -98,14 +99,6 @@ def install_properties(self, out, site_id=SITE_NAME):
     
     print >> out, "DiPP-Properties installed"
 
-    """
-    site_properties = (
-    )
-    
-    for prop_id, prop_value, prop_type in site_properties:
-        if not site.hasProperty(prop_id):
-            site.manage_addProperty(id = prop_id, value = prop_value, type = prop_type)
-    """        
     if not hasattr(self.portal_properties, 'dippreview_properties'):
         self.portal_properties.addPropertySheet('dippreview_properties', 'DiPPReview properties')
        

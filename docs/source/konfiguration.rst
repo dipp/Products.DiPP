@@ -386,6 +386,16 @@ Default::
    
    <leer>
 
+.. _enable_ebookey:
+
+enable_ebookey
+==============
+
+Zeige unter Volltext einen Link zur per ebooky erzeugten epub-Version des Artikeln.
+
+Default::
+
+    False
                      
 dippreview_properties (DiPPReview properties)
 *********************************************

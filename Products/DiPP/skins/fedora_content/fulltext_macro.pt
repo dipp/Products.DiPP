@@ -94,14 +94,17 @@
             </tal:block>
             
             <!--EPUB-->
-            <p tal:define="url string:${here/absolute_url}/ebookey;
+            <p tal:define="enable_ebookey here/portal_properties/dipp_properties/enable_ebookey|nothing;
+                           url string:${here/absolute_url}/ebookey;
                            ebookey string:https://frl.publisso.de/tools/ebookey;
-                           epub_url string:$ebookey?url=$url">
+                           epub_url string:$ebookey?url=$url"
+               tal:condition="enable_ebookey">
                 Volltext als
                 <a class="epub"
                    tal:attributes="href epub_url">EPUB</a>
+                <!--
                 <img src=""
-                     tal:attributes="src string:http://qrickit.com/api/qr?d=$epub_url" />
+                     tal:attributes="src string:http://qrickit.com/api/qr?d=$epub_url" />-->
             </p>
         </div>
      </body>
