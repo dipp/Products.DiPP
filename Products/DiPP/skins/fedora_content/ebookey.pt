@@ -23,7 +23,7 @@
             <dt>cover</dt>
             <dd>
                 <a class="cover" 
-                   tal:define="url string:${here/portal_url}/cover.png"
+                   tal:define="url string:${here/portal_url}/ebookey-cover.png"
                    tal:attributes="href url"
                    tal:content="url"></a>
             </dd>
