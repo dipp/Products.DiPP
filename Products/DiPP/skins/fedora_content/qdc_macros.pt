@@ -1168,11 +1168,14 @@
                         meta_id string:doi;   
                         dc_tool here/portal_doiregistry;
                         identifierDOI  python:qdc['identifierDOI'];
-                        datacite_status python:dc_tool.get_url(identifierDOI)[0];
-                        doi_editable python:test(datacite_status=='404' or not identifierDOI,True,False)"
+                        datacite_status python:200;
+                        doi_editable python:True"
             tal:attributes="class python:test(error, 'field error', 'field');
                             id meta_id">
-                            
+                        <!--
+                        datacite_status python:dc_tool.get_url(identifierDOI)[0];
+                        doi_editable python:test(datacite_status=='404' or not identifierDOI,True,False)"
+                        -->
             <label>
                 <span i18n:translate="label_identifierDOI">DOI</span>
                 <a class="permalink" 

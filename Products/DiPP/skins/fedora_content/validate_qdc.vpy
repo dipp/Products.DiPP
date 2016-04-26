@@ -93,6 +93,9 @@ if storageType == "permanent":
             state.setError('bibliographicCitation', translate('error_pagenumber_order', domain='qdc'), new_status='failure')
 
     # DOI
+    # ugly hack to disable DOI validation
+    # remove next line to enable again
+    identifierDOI = None
     if identifierDOI:
         context.plone_log("validating %s" % identifierDOI)
         # check for correct prefix and allowed characters
