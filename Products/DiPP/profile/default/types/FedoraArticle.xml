@@ -106,7 +106,7 @@
     category="document_actions"
     condition_expr=""
     url_expr="string:${object_url}/statistics"
-    visible="True">
+    visible="False">
   <permission value="DiPP: View Statistics"/>
  </action>
 
