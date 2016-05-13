@@ -20,7 +20,7 @@
         <div class="visualClear"></div>
         <div class="stx" tal:define="PID context/PID;
                                      DsID here/DsID;
-                                     content python:here.fedora.access(PID,DsID,Date=None)">
+                                     content python:here.fedora.accessMultiMediaByFedoraURL(PID,DsID,Date=None)">
             <div tal:condition="python:content['MIMEType'] == 'audio/mpeg'">
                 <h2>Listen:</h2>
                 <p>
