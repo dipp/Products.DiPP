@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+    <metal:block metal:fill-slot="head_slot"
+         tal:define="avtm                 python:here.portal_vocabularies;
+                     journalsections      python:avtm.getVocabularyByName('journal-sections');
+                     section_dict         python:journalsections.getVocabularyDict(journalsections);
+                     portal_title portal_properties/title">
+        
+        <link rel="alternate"
+              type="application/rss+xml"
+              tal:attributes="href string:$portal_url/feed/articles;
+                              title string:$portal_title - All recent articles"/>
+        
+        <tal:block tal:repeat="section python: section_dict.keys()">
+            <link tal:condition="python: section  != 'no-section'"
+                  rel="alternate"
+                  type="application/rss+xml"
+                  tal:define="sectionname python:section_dict[section]"
+                  tal:attributes="href string:$portal_url/feed/articles/$section;
+                                  title string:$portal_title - $sectionname" />
+        </tal:block>
+    </metal:block>
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+        
+        <div class="current-issue"
+            tal:define="issues  python:here.portal_catalog(portal_type=('FedoraHierarchie','Issue'), review_state='published', sort_on='Date', sort_order='reverse', sort_limit=1)">
+            <tal:block tal:condition="issues">
+                 <div tal:define="issue python:issues[0].getObject();
+                                  description issue/Description|nothing;
+                                  issue_path python:'/'.join(issue.getPhysicalPath())">
+        
+                    <div metal:use-macro="here/document_actions/macros/document_actions">
+                        Document actions (print, sendto etc)
+                    </div>
+                                 
+                    <h1 class="documentFirstHeading" tal:content="issue/title_or_id">
+                      Title or id
+                    </h1>
+        
+                    <div class="coverpicture"
+                         tal:define="has_cover issue/TitleImage|nothing"
+                         tal:condition="has_cover">
+                             <img class="coverpicture" tal:replace="structure issue/TitleImage_medium" />
+                    </div>
+
+                    <p class="documentDescription"
+                       tal:content="description"
+                       tal:condition="description">
+                        Description
+                    </p>
+
+                    <p tal:define="Body issue/Body|nothing"
+                       tal:condition="Body"
+                       tal:content="structure Body">
+                    </p>
+                    
+                    <p tal:define="CompleteIssue issue/CompleteIssue|nothing"
+                       tal:condition="CompleteIssue/filename">
+                       <span i18n:translate="get_the_complete_issue" i18n:domain="dipp">Get the complete issue</span> 
+                       <a tal:define="size python:here.getObjSize(CompleteIssue);
+                                      icon CompleteIssue/getBestIcon | nothing;
+                                      filename CompleteIssue/filename | nothing"
+                          href=""
+                          tal:attributes="href string:${here/absolute_url}/at_download/CompleteIssue">
+                          <img tal:condition="icon" src=""
+                               tal:attributes="src string:${here/portal_url}/$icon"/>
+                          <span tal:replace="filename">full.pdf</span> (<span tal:replace="size">1GB</span>)</a>
+                    </p>
+                    
+                    <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
+                        TOC of an issue
+                    </div>
+                       
+                </div>
+            </tal:block>
+        </div>
+        
+    
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+
