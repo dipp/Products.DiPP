@@ -78,7 +78,7 @@
 
          <input type="submit" value="Load"><br />
          
-         <textarea rows="15" cols="100" tal:content="python: here.fedora.access(here.PID,DsID,createDate)['stream'].strip()"></textarea>
+         <textarea rows="15" cols="100" tal:content="python: here.fedora.accessByFedoraURL(here.PID,DsID,createDate)['stream'].strip()"></textarea>
     </form>
 </div>
 
