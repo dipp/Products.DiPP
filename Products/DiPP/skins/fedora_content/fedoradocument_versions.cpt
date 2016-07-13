@@ -18,7 +18,7 @@
                          Date request/Date|nothing;
                          Date1 request/Date1|nothing;
                          Date2 request/Date2|nothing;
-                         content python:here.fedora.access(PID,DsID,Date=Date);
+                         content python:here.fedora.accessByFedoraURL(PID,DsID,Date=Date);
                          MIMEType python:content['MIMEType']"
 	         tal:omit-tag="">
 

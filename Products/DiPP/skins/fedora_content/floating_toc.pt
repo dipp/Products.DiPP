@@ -36,7 +36,7 @@
                 </div>
                 
                 <div class="portletContent odd">
-                    <tal:block tal:replace="structure python:here.fedora.access(PID,DsID,Date=None)['stream']" />		
+                    <tal:block tal:replace="structure python:here.fedora.accessByFedoraURL(PID,DsID,Date=None)['stream']" />		
                 </div>
                 <div class="portletContent odd">
                     <a i18n:translate="close_window" i18n:domain="dipp" class="windowClose" href="javascript:window.close()">Fenster schließen [x]</a>

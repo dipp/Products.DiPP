@@ -43,7 +43,7 @@
             pretty formattedheader generated from the qualified dublincore metadata
         </div>
 
-        <div class="stx mixed" tal:define="content python:here.fedora.access(PID,DsID,Date=None);
+        <div class="stx mixed" tal:define="content python:here.fedora.accessByFedoraURL(PID,DsID,Date=None);
                                            MIMEType python:content['MIMEType']"
                          tal:condition="python:DsID.startswith('DS')">
             <div tal:condition="python:content['MIMEType'] != 'text/xml' " 

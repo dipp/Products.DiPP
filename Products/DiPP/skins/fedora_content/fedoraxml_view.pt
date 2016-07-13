@@ -14,7 +14,7 @@
 
         <div class="stx" tal:define="PID context/PID;
                                      DsID here/DsID;
-                                     content python:here.fedora.access(PID,DsID,Date=None);
+                                     content python:here.fedora.accessByFedoraURL(PID,DsID,Date=None);
                                      MIMEType python:content['MIMEType']">
             <pre tal:content="python:content['stream']">
                 Hier kommt der Inhalt hin

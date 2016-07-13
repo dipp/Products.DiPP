@@ -15,7 +15,7 @@
         </div>
         
         <div class="stx" tal:define="PID context/PID; DsID here/DsID">
-            <div tal:replace="structure python:here.fedora.access(PID,DsID,Date=None)['stream']" />
+            <div tal:replace="structure python:here.fedora.accessByFedoraURL(PID,DsID,Date=None)['stream']" />
         </div>
         
         <div metal:use-macro="here/document_byline/macros/byline">
