@@ -1,0 +1,30 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+/* Logo properties */
+
+#portal-logo {
+    border: 0;
+    padding: 0;
+    display: block;
+}
+
+#portal-logo a {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+#authorblurb .tabbernav {
+    display: none;
+}
+/* do not display article info in mixed_view*/
+.mixed .articleinfo {
+    display: none;
+}
+.article p {
+   text-align: justify; 
+}
+/* </dtml-with> */

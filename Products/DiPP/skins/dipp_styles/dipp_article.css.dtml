@@ -21,6 +21,7 @@ div .inlineReference {
 #authorblurb ol.authors {
     list-style: none;
     margin:  1em 0 1em 0;
+    padding-left: 0;
 }
 #authorblurb ol.authors li{
     margin:  0;
@@ -58,6 +59,7 @@ div .inlineReference {
 #authorblurb ul.keywords {
     display: inline;
     margin: 0;
+    padding-left: 0;
 }
 #authorblurb .available-languages li,
 #authorblurb .keywords li {
@@ -73,6 +75,7 @@ div .inlineReference {
 #authorblurb ul.identifier {
     list-style: none;
     margin-left: 0;
+    padding-left: 0;
 }
 #authorblurb ul.identifier .link-external {
    background: none;
@@ -87,6 +90,7 @@ div .inlineReference {
     text-transform: capitalize;
     list-style: none;
     margin: 0 0 .75em 0;
+    padding-left: 0;
 }
 #authorblurb ol.review-history li {
     display: inline;
