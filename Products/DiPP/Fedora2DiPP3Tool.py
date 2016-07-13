@@ -304,6 +304,7 @@ class Fedora(UniqueObject, Folder):
     def access(self, PID, DsID, Date):
         """return the MIMEType and content of a datastream
         """
+        logger.warn("fedora.access should not be used")
 
         response = self.fedoraaccess.getDissemination(PID, DsID, Date)
         
