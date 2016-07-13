@@ -28,20 +28,23 @@
                    i18n:attributes="title title_permalink"
                    title="Permalink für diese Überschrift">¶</a>
             </h2>
+
+            <ul>
             <!--PDF-->            
             <tal:block tal:condition="all_pdfs"
                        tal:repeat="key all_pdfs">
-                <p tal:define="pdfs python:all_pdfs[key];
+                <li tal:define="pdfs python:all_pdfs[key];
                                pdf python:pdfs.get('pdf',None);
                                pdfa python:pdfs.get('pdfa',None)">
-                <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />Volltext als
+                <img src="" tal:attributes="src string:${portal_url}/pdf_icon.gif" alt="" />
+                <!-- Standard PDF-->
                 <tal:block tal:condition="pdf">
 	               <a tal:define ="state python:pdf['state'];
                                    url python:pdf['url'];
                                    state_class python:'state-' + normalizeString(state)"
 	                  tal:attributes="href url;
                                       class state_class"
-                      title="Standard PDF">PDF
+                      title="Standard PDF">Volltext als PDF
 	               </a>
                     <span class="discreet" i18n:domain="plone"
                           tal:define="size python:pdf['size'];">
@@ -61,6 +64,8 @@
                         )
                     </span>
                     </tal:block>
+
+                    <!-- PDF/A -->
                     <tal:block tal:condition="pdfa">
                     /
 	               <a tal:define="state python:pdfa['state'];
@@ -69,7 +74,7 @@
                                    state_class python:'state-' + normalizeString(state)"
 	                  tal:attributes="href url;
                                       class state_class"
-                      title="PDF für die Langzeitarchivierung">PDF/A
+                      title="PDF für die Langzeitarchivierung">Volltext als PDF/A
 	               </a>
                     <span class="discreet" i18n:domain="plone"
                           tal:define="size python:pdfa['size'];">
@@ -90,22 +95,20 @@
                     </span>
                    </tal:block>  
                 
-                </p>
+                </li>
             </tal:block>
             
             <!--EPUB-->
-            <p tal:define="enable_ebookey here/portal_properties/dipp_properties/enable_ebookey|nothing;
-                           url string:${here/absolute_url}/ebookey;
-                           ebookey string:https://frl.publisso.de/tools/ebookey;
-                           epub_url string:$ebookey?url=$url"
+            <li tal:define="enable_ebookey here/portal_properties/dipp_properties/enable_ebookey|nothing;
+                            url string:${here/absolute_url}/ebookey;
+                            ebookey string:https://frl.publisso.de/tools/ebookey;
+                            epub_url string:$ebookey?url=$url"
                tal:condition="enable_ebookey">
-                Volltext als
                 <a class="epub"
-                   tal:attributes="href epub_url">EPUB</a>
-                <!--
-                <img src=""
-                     tal:attributes="src string:http://qrickit.com/api/qr?d=$epub_url" />-->
-            </p>
+                   tal:attributes="href epub_url">Volltext als EPUB</a>
+                <!-- <img src="" tal:attributes="src string:http://qrickit.com/api/qr?d=$epub_url" />-->
+            </li>
+            </ul>
         </div>
      </body>
 </html>
