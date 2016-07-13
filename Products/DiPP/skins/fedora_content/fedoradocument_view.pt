@@ -11,7 +11,7 @@
                      comment_to  parent/comment_to|nothing;
                      PID context/PID;
                      DsID here/DsID;
-                     content python:here.fedora.access(PID,DsID,Date=None);
+                     content python:here.fedora.accessByFedoraURL(PID,DsID,Date=None);
                      MIMEType python:content['MIMEType']">
         
         <div tal:condition="python: content['stream'].strip() == ''" 
