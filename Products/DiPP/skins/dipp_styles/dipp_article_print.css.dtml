@@ -8,6 +8,9 @@
     padding: 0;
     display: block;
 }
+#dipp-logo {
+    float: right;
+}
 
 #portal-logo a {
     display: block;
