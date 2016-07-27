@@ -1,8 +1,17 @@
 Changelog
 =========
 
-DiPP 2.20dev (unreleased)
--------------------------
+DiPP 2.21 (2016-07-27)
+----------------------
+
+* improved print stylesheet
+* ebookey can be enabled in dipp_properties, since it only works for journals
+  with html versions of the articles. Note: cover image required, but without
+  alpha channel
+* persistent urls for metadata
+
+DiPP 2.20 (unreleased)
+----------------------
 
 * show access statistics from AWStats directly in Plone, proteced by
   dedicated permission setting
@@ -10,7 +19,7 @@ DiPP 2.20dev (unreleased)
   (house)numbers
 * new portlet with automatic generated table of contents portlet_autotoc
   (requires dipp.tools version 0.6)
-
+* ebook support
 
 DiPP 2.19 (2014-08-29)
 ----------------------
