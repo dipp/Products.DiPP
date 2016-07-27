@@ -1,6 +1,11 @@
 Changelog
 =========
 
+DiPP 2.22 (2016-07-27)
+----------------------
+
+* fixed problem when installing permissions
+
 DiPP 2.21 (2016-07-27)
 ----------------------
 
