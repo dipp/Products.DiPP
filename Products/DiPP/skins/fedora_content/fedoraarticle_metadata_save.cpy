@@ -29,6 +29,7 @@ self.setEndpage(endpage)
 self.setJournal_section(journal_section)
 context.plone_log(params['creatorPerson'])
 fedora.setQualifiedDCMetadata(params)
+fedora.setModified(self.PID)
 self.syncMetadata()
 
 
