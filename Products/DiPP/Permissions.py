@@ -2,21 +2,24 @@ from Products.CMFCore import permissions as CMFCorePermissions
 from AccessControl.SecurityInfo import ModuleSecurityInfo
 from Products.CMFCore.permissions import setDefaultRoles
 
-security = ModuleSecurityInfo('DiPP')
+security = ModuleSecurityInfo("DiPP")
 
-security.declarePublic('MANAGE_JOURNAL')
-MANAGE_JOURNAL = 'DiPP: Manage Journal'
+security.declarePublic("MANAGE_JOURNAL")
+MANAGE_JOURNAL = "DiPP: Manage Journal"
 
-security.declarePublic('VIEW_STATISTICS')
-VIEW_STATISTICS = 'DiPP: View Statistics'
+security.declarePublic("VIEW_STATISTICS")
+VIEW_STATISTICS = "DiPP: View Statistics"
 
 setDefaultRoles(MANAGE_JOURNAL, ())
 setDefaultRoles(VIEW_STATISTICS, ())
 
 # Publishing Permission
-ADD_CONTENTS_PERMISSION  = 'Fedora: Add Content'
-VIEW_CONTENTS_PERMISSION = 'Fedora: View Content'
-EDIT_CONTENTS_PERMISSION = 'Fedora: Edit Content'
+ADD_CONTENTS_PERMISSION  = "Fedora: Add Content"
+setDefaultRoles(ADD_CONTENTS_PERMISSION, ())
+VIEW_CONTENTS_PERMISSION = "Fedora: View Content"
+setDefaultRoles(VIEW_CONTENTS_PERMISSION, ())
+EDIT_CONTENTS_PERMISSION = "Fedora: Edit Content"
+setDefaultRoles(EDIT_CONTENTS_PERMISSION, ())
 
 # Review Permission
 VIEW_ORIGINAL_MANUSCRIPT_PERMISSION = "DiPPReview: View the original manuscript"
