@@ -81,23 +81,6 @@ def initialize(context):
         fti                = ftis,
         ).initialize(context)
 
-    utils.ContentInit(
-        PROJECTNAME + ' Content',
-        content_types      = content_types,
-        permission         = VIEW_CONTENTS_PERMISSION,
-        extra_constructors = constructors,
-        fti                = ftis,
-        ).initialize(context)
-
-    utils.ContentInit(
-        PROJECTNAME + ' Content',
-        content_types      = content_types,
-        permission         = EDIT_CONTENTS_PERMISSION,
-        extra_constructors = constructors,
-        fti                = ftis,
-        ).initialize(context)
-
-
 dippworkflow_globals = globals()
 
 registerDirectory('skins', globals())
