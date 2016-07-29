@@ -73,6 +73,30 @@ def initialize(context):
         icon = 'dipptool.gif'
         ).initialize(context)
 
+    utils.ContentInit(
+        PROJECTNAME + ' Content',
+        content_types      = content_types,
+        permission         = ADD_CONTENTS_PERMISSION,
+        extra_constructors = constructors,
+        fti                = ftis,
+        ).initialize(context)
+
+    utils.ContentInit(
+        PROJECTNAME + ' Content',
+        content_types      = content_types,
+        permission         = VIEW_CONTENTS_PERMISSION,
+        extra_constructors = constructors,
+        fti                = ftis,
+        ).initialize(context)
+
+    utils.ContentInit(
+        PROJECTNAME + ' Content',
+        content_types      = content_types,
+        permission         = EDIT_CONTENTS_PERMISSION,
+        extra_constructors = constructors,
+        fti                = ftis,
+        ).initialize(context)
+
 
 dippworkflow_globals = globals()
 
