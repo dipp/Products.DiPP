@@ -122,14 +122,18 @@ if storageType == "permanent":
     
     # abstract
     languages = []
+    uniq = []
     for abstract in abstracts:
-        if abstract['lang'] != '' and abstract['lang'] not in languages:
-            languages.append(abstract['lang'])
-        if abstract['value'] and not abstract['lang']:
-            state.setError('abstract', translate('error_abstract_lang', domain='qdc'), new_status='failure')
-    if len(languages) < len(abstracts):
-        state.setError('abstract', translate('error_abstract_lang', domain='qdc'), new_status='failure')
-
+        lang = abstract['lang'] 
+        value = abstract['value'] 
+        if lang:
+            languages.append(lang)
+        if lang and lang not in uniq:
+            uniq.append(lang)
+        if value and not lang:
+            state.setError('abstract', translate('error_abstract_lang_missing', domain='qdc'), new_status='failure')
+    if len(languages) > len(uniq):
+        state.setError('abstract', translate('error_abstract_lang_not_uniq', domain='qdc'), new_status='failure')
 
 for aTitle in title:
     if aTitle['value'] == '' or aTitle['lang'] == '':

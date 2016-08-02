@@ -218,5 +218,10 @@ msgid "error_pagenumber_order"
 msgstr ""
 
 msgid "error_licence_required"
-msgstr
+msgstr ""
 
+msgid "error_abstract_lang_missing"
+msgstr ""
+
+msgid "error_abstract_lang_not_uniq"
+msgstr ""
