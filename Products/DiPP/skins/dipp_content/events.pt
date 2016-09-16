@@ -13,14 +13,15 @@
                                                                      , review_state='published')[:5];
                     ">
     <h1 i18n:translate="box_events">Upcoming Events</h1>
+    
     <div tal:condition="results">
 
         <tal:block tal:repeat="obj results">
 
             <h2 tal:content="python:test(obj.Title, obj.Title, obj.getId)"> Event </h2>
             <span class="subtitle">
-                <tal:date content="python:here.toLocalizedTime(obj.start)">July 7, 08:11</tal:date> -
-                <tal:date content="python:here.toLocalizedTime(obj.end)">July 7, 08:11</tal:date>,
+                <tal:date content="python:toLocalizedTime(obj.start)">July 7, 08:11</tal:date> -
+                <tal:date content="python:toLocalizedTime(obj.end)">July 7, 08:11</tal:date>,
                 <tal:condition condition="obj/location">
                     <tal:location content="obj/location"> Location</tal:location>
                 </tal:condition>
