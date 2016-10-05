@@ -100,7 +100,7 @@
                     <span tal:omit-tag="" tal:content="volume">Volume</span>,
                     <span i18n:domain="qdc" i18n:translate="label_journalIssueNumber">journalIssueNumber</span>
                     <span tal:omit-tag="" tal:content="issue">issue</span>,
-                    (<span tal:omit-tag="" tal:content="python:here.toLocalizedTime(date)">Issue Date</span>)
+                    (<span tal:omit-tag="" tal:content="python:toLocalizedTime(date)">Issue Date</span>)
                 </span>
 
             </dt>
