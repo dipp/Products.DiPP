@@ -52,9 +52,15 @@ The Python modules are installed by running:
 
 .. code-block:: bash
 
-    $ easy_install -f http://alkyoneus.hbz-nrw.de/dist -U <Python Module Name>
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v bibliograph.core
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v PyXML
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v ZSI
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.tools
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.fedora2
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v elementtree
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.dipp3
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.datacite
 
-for each module. dipp.fedora2 and ZSI are automatically pulled in as dependency of dipp.dipp3
     
 Configuration
 -------------

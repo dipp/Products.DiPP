@@ -1,6 +1,11 @@
 Changelog
 =========
 
+DiPP 2.23 (2016-10-07)
+----------------------
+
+* fixed initialisation problem for contenttypes
+
 DiPP 2.22 (2016-07-27)
 ----------------------
 
