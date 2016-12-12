@@ -755,3 +755,9 @@ msgstr "Cover picture"
 
 msgid "help_titleimage_field"
 msgstr "Select an image for the frontpage of this issue"
+
+msgid "articlesearch"
+msgstr "Artikelsuche"
+
+msgid "extended_articlesearch"
+msgstr "Erweiterte Artikelsuche"
