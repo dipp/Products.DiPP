@@ -29,6 +29,7 @@
                         i18n:translate="text_search">Search Site</label>
 
             <div class="LSBox">
+            <input type="hidden" name="portal_type" value="FedoraArticle">
             <input id="searchGadget"
                    tabindex=""
                    name="SearchableText"
