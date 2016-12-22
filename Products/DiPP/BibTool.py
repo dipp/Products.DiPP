@@ -309,13 +309,23 @@ class BibTool(UniqueObject, SimpleItem):
 
     #security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
     def datacite_xml(self, pid, issn, publisher, pdf):
-        """Return metada in DataCite compliant  XML format."""
+        """Return metadata in DataCite compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_datacite_xml()
     
     #security.declareProtected(Permissions.MANAGE_JOURNAL, 'doaj_xml')
     def doaj_xml(self, pid, issn, publisher, pdf):
-        """Return metada in DOAJ compliant  XML format."""
+        """Return metadata in DOAJ compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
+    
+    def make_metatags(self, pid, issn, publisher, pdf, startpage, endpage):
+        """Return meta tags for google scholar, facebook, twitter
+        
+        Tags are returned as HTML, so this method has to be used with 'structure'
+        in pagetemplates.
+        """
+
+        metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf, startpage=startpage, endpage=endpage)
+        return metadata.make_metatags()
 
