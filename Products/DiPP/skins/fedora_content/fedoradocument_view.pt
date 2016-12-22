@@ -3,7 +3,13 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 <body >
-
+<!--
+<metal:slot fill-slot="head_slot">
+    <div metal:use-macro="here/metatags/macros/metatags">
+        opengraph metadata for twitter, facebook, etc..
+    </div>
+</metal:slot>
+-->
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
          tal:define="parent python:here.getParentNode();

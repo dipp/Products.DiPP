@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      i18n:domain="plone">
+
+  <body>
+
+    <div tal:omit-tag="" 
+         metal:define-macro="metatags"
+         tal:define="articlePID here/PID;
+                     issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
+                     publisher here/portal_properties/metadata_properties/publisher|nothing;
+                     pdf python:here.getFulltextPdf().get('url',None);
+                     logoName here/base_properties/logoName;
+                     twitter_username here/portal_properties/dipp_properties/twitter_username|nothing;
+                     sharing_image here/sharing_image|/here/portal_properties/dipp_properties/sharing_image|nothing;
+                     meta_tags python:here.bibtool.make_metatags(articlePID,issn=issn,publisher=publisher,pdf=pdf, startpage=here.startpage, endpage=here.endpage)">
+        
+        <meta name="twitter:site"
+              tal:condition="twitter_username"
+              tal:attributes="content string:@$twitter_username" />
+        <tal:block tal:condition="sharing_image">
+            <meta name="twitter:image" tal:attributes="content string:$portal_url/$sharing_image" />
+            <meta property="og:image"  tal:attributes="content string:$portal_url/$sharing_image" />
+        </tal:block>
+        <meta name="twitter:url" tal:attributes="content here/absolute_url"/>
+        <meta name="og:url" tal:attributes="content here/absolute_url"/>
+        <meta tal:replace="structure meta_tags" /> 
+
+    </div>
+  </body>
+</html>
