@@ -761,3 +761,9 @@ msgstr "Artikelsuche"
 
 msgid "extended_articlesearch"
 msgstr "Erweiterte Artikelsuche"
+
+msgid "box_follow"
+msgstr "Follow us"
+
+msgid "follow_twitter"
+msgstr "Follow us on Twitter."
