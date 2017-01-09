@@ -15,14 +15,15 @@
 
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-            <span i18n:translate="">Follow us</span>
+            <span i18n:translate="box_follow">Follow us</span>
             <span class="portletTopRight"></span>
         </dt>
 
         <dd class="portletItem"
             tal:condition="twitter_username">
-            <a tal:attributes="href string:https://twitter.com/$twitter_username;
-                               title string:Follow $portal_name on "
+            <a tal:attributes="href string:https://twitter.com/$twitter_username"
+               i18n:attributes="title follow_twitter"
+               title="Follow us on twitter "
                class="twitter"> Twitter</a>
 
         </dd>
