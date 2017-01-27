@@ -59,9 +59,9 @@ class Fedora(UniqueObject, Folder):
     fedoraaccess = FedoraAccess.FedoraAccess()
     fedoramanagement = FedoraManagement.FedoraManagement()
     
-    manage_search_form = PageTemplateFile('www/search_form.pt', globals())
-    security.declareProtected(view_permission, 'manage_search_form')
-
+    manage_maintenance_form = PageTemplateFile('www/maintenance_form.pt', globals())
+    security.declareProtected(view_permission, 'manage_maintenance_form')
+    
     manage_deleteObjectForm = PageTemplateFile('www/deleteobject_form.pt', globals())
     security.declareProtected(view_permission, 'manage_deleteObjectForm')
 
@@ -71,17 +71,14 @@ class Fedora(UniqueObject, Folder):
     manage_config_form = PageTemplateFile('www/config_form.pt', globals())
     security.declareProtected(view_permission, 'manage_config_form')
     
-    manage_maintenance_form = PageTemplateFile('www/maintenance_form.pt', globals())
-    security.declareProtected(view_permission, 'manage_maintenance_form')
-    
     manage_fedora_form = PageTemplateFile('www/fedora_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_fedora_form')
     
     manage_metadata_form = PageTemplateFile('www/metadata_form.pt', globals())
     security.declareProtected(view_permission, 'manage_metadata_form')
     
-    manage_options = Folder.manage_options[0:1] + ({'label':'Search',
-                       'action':'manage_search_form',
+    manage_options = Folder.manage_options[0:1] + ({'label':'Maintenance',
+                       'action':'manage_maintenance_form',
                        'help':('PloneFedora2', 'search.stx')},
                       {'label':'Configure',
                        'action':'manage_config_form',
@@ -89,9 +86,6 @@ class Fedora(UniqueObject, Folder):
                       {'label':'Metadata',
                        'action':'manage_metadata_form',
                        'help':('PloneFedora2', 'metadata.stx')},
-                      {'label':'Maintenance',
-                       'action':'manage_maintenance_form',
-                       'help':('PloneFedora2', 'search.stx')},
                       {'label':'Datastreams',
                        'action':'manage_fedora_form',
                        'help':('PloneFedora2', 'search.stx')},
@@ -178,7 +172,7 @@ class Fedora(UniqueObject, Folder):
                 skipped += 1
 
         manage_tabs_message = "%d Objects total, %d deleted, %d skipped" % (len(PIDs), deleted, skipped)
-        return self.manage_search_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
+        return self.manage_maintenance_form(REQUEST, management_view='Configure', manage_tabs_message=manage_tabs_message)
 
     def manage_getContentContainer(self, PID):
         """ return the PIDs of the Fedoraopjects which contain the html, xml,...

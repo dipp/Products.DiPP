@@ -1,19 +1,26 @@
 <p tal:replace="structure here/manage_page_header" omit-tag="">Header</p>
+
 <h2 tal:define="manage_tabs_message options/manage_tabs_message | nothing"
     tal:replace="structure here/manage_tabs">Tabs</h2>
 
-<div tal:condition="not: here/label" class="system-msg">You must configure alabel first
-</div>
+<tal:block tal:define="field request/field|nothing;
+                       comparison request/comparison|nothing;
+                       value request/value|nothing;
+                       fno python:3" >
 
-<h3>Maintenance</h3>
+<h3>Repository maintenance</h3>
+
 <p>
-    Only Object with the Content Model DiPP:Article are shown.
+    This form can be used to find and delete Article, which have been deleted in Plone, but
+    still exist in the Fedora Repository. By using this form not only the object representing the article
+    (dipp:???) but also the objects containing the actual texts, images,... (content:???) are 
+    purged from the repository.
 </p>
+
 <form tal:condition="here/label"
       action="manage_maintenance_form"
       tal:define="fields python:('pid','cDate','mDate','title');
                   comparisions python:(('has','contains'),('eq','equals'),('lt','less'),('le','less or equal'),('gt','greater'),('ge','greater or equal'))">
-
     <input name="field:list"      type="hidden" value="label">
     <input name="comparison:list" type="hidden" value="has">
     <input name="value:list"      type="hidden" value="" tal:attributes="value here/label">
@@ -22,7 +29,7 @@
     <input name="comparison:list" type="hidden" value="has">
     <input name="value:list"      type="hidden" value="DiPP:article">
     
-    <tal:block tal:repeat="opt python:range(3)">
+    <tal:block tal:repeat="option python:range(fno)">
         <select name="field:list">
             <option value="0">Select a field</option>
             <tal:block tal:repeat="field fields">
@@ -34,57 +41,84 @@
                 <option value="" tal:attributes="value python:comparision[0]" tal:content="python:comparision[1]"></option>
             </tal:block>
         </select>
-        <input name="value:list" type="text" value="" /><br />
+        <input name="value:list" 
+               type="text" 
+               value="" />
+        <br />
     </tal:block>
     
     <input type="submit" value="OK">
     <input type="reset" value="Cancel">
 </form>
 
-<div tal:define="field request/field|nothing;
-                 comparison request/comparison|nothing;
-                 value request/value|nothing" >
 
+<div>
     <tal:block tal:condition="python: field!=None and comparison!=None and value!=None">
         <tal:block  tal:define="results python:here.manage_search(field=field,comparison=comparison,value=value);
+                                zformat here/portal_properties/site_properties/localLongTimeFormat;
+                                fformat here/portal_properties/dipp_properties/fedora_time_format;
                                 PIDs python:here.getFedoraArticles()">
-            <form action="manage_fixURLForm" tal:attributes="action python:here.absolute_url()+'/manage_fixURLForm'" method="POST">
+            <form action="manage_deleteObjectForm"
+                  tal:attributes="action python:here.absolute_url()+'/manage_deleteObjectForm'"
+                  method="POST"
+                  tal:define="format here/portal_properties/site_properties/localLongTimeFormat">
                 <table border="0" cellpadding="2" cellspacing="0" width="98%">
                     <tr class="list-header">
-                        <th width="16">&nbsp;</th>
-                        <th>PID</th>
-                        <th>state</th>
-                        <th>Plone</th>
-                        <th>cDate</th>
-                        <th>creator</th>
-                        <th>Title</th>
+                        <th align="left" width="16">&nbsp;</th>
+                        <th align="left">PID</th>
+                        <th align="left">state</th>
+                        <th align="left">publisher</th>
+                        <th align="left">Plone</th>
+                        <th align="left">cDate</th>
+                        <th align="left">cModel</th>
+                        <th align="left">Title</th>
                     </tr>
                     <tal:block tal:repeat="result results">
                         <tr tal:define="PID result/PID;
-                                        cModel result/cModel"
+                                        cModel result/cModel;
+                                        title_words python:result['title'].split(' ');
+                                        max_words python:10;
+                                        checkbox_id python:'box_' + PID.replace(':','_');
+                                        in_plone python:test(PID in PIDs.keys(), True, False)"
                             tal:attributes="class python:test(path('repeat/result/even'), 'row-hilite', 'row-normal')">
                             <td width="16">
-                                <input tal:condition="python: cModel == 'DiPP:article'" type="checkbox" name="PIDs:list" value="" tal:attributes="value result/PID">
+                                <input tal:condition="python: cModel == 'DiPP:article'"
+                                       type="checkbox"
+                                       name="PIDs:list" 
+                                       value="" 
+                                       id=""
+                                       tal:attributes="value result/PID;
+                                                       id checkbox_id;
+                                                       disabled in_plone" />
                             </td>
-                            <td tal:content="PID"></td>
-                            <td tal:content="result/state"></td>
                             <td>
-                                <span tal:condition="python: PID in PIDs">
-                                yes
-                                </span>
-                                <span tal:condition="python: PID not in PIDs">
-                                no
-                                </span>
+                                <label for=""
+                                       tal:content="PID"
+                                       tal:attributes="for checkbox_id">dipp:1234</label>
                             </td>
-                            <td tal:content="result/cDate"></td>
-                            <td tal:content="result/creator"></td>
-                            <td tal:content="result/title"></td>
+                            <td tal:content="result/state">A</td>
+                            <td tal:content="python:result['publisher'][0]">dipp-unpublished</td>
+                            <td>
+                               <span tal:condition="not: in_plone" tal:replace="in_plone">true or false</span> 
+                               <a tal:condition=" in_plone"
+                                  tal:content="in_plone"
+                                  tal:attributes="href python:PIDs[PID] + '/manage_fedora_form'">true or false</a> 
+                            </td>
+                            <td tal:content="python: DateTime(result['cDate']).strftime(zformat)"> 2010-05-04 </td>
+                            <td tal:content="cModel">dipp:something</td>
+                            <td>
+                                <abbr tal:attributes="title python: '%s - %s' % (result['creator'],result['title'])">
+                                      <span tal:replace="python:' '.join(title_words[0:max_words])">der abgekürzte titel</span>
+                                      <span tal:condition="python:len(title_words) > max_words">...</span>
+                                </abbr>
+                            </td>
                         </tr>
                     </tal:block>
                 </table>
-                <input type="submit" value="fix URLs">
+                <input type="submit" value="delete">
             </form>
         </tal:block>
     </tal:block>
 </div>
+</tal:block>
 <p tal:replace="structure here/manage_page_footer" omit-tag="">Footer</p>
