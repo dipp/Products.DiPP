@@ -142,9 +142,11 @@ class Issue(BrowserDefaultMixin, OrderedBaseFolder):
     manage_urn_form = PageTemplateFile('../www/urn_form.pt', globals())
     security.declareProtected(ManagePortal, 'manage_urn_form')
 
-    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'URN Management',
+    manage_options = OrderedBaseFolder.manage_options[0:1] + ({'label':'View',
+                       'action':''},
+                      {'label':'URN Management',
                        'action':'manage_urn_form',
-                       'help':('DiPP', 'urn.stx')},
+                       'help':('DiPP', 'urn.stx')}, 
         ) + OrderedBaseFolder.manage_options[2:]
 
     schema = IssueSchema
