@@ -70,7 +70,7 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
                     <span tal:content="URN"></span>
                 </td>
                 <td>
-                    <a tal:attributes="href URL"
+                    <a tal:attributes="href string:$URL/manage_workspace"
                        tal:content="title">Der Titel des Artikels</a>
                 </td>
                 <td>
