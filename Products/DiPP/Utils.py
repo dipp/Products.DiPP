@@ -10,7 +10,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject
 from Products.DiPP.config import PRIVATE_KEY, PUBLIC_KEY, VERIFY_SERVER
-from dipp.awstats.statistics import Statistics
+# from dipp.awstats.statistics import Statistics
 import urllib2
 import urllib
 import urlparse
@@ -105,7 +105,7 @@ class Utils(UniqueObject, SimpleItem):
         logger.info("reCAPTCHA - IP: %s, response: %s, error code: %s" % (remoteip, recaptcha_response_field, error_code))        
         return is_valid, error_code
 
-    
+    """
     security.declareProtected(Permissions.VIEW_STATISTICS, 'awstats_years')
     def awstats_years(self, journal):
         stats = Statistics(journal)
@@ -122,5 +122,5 @@ class Utils(UniqueObject, SimpleItem):
         stats = Statistics(journal)
         urls = [urlparse.urlparse(url)[2] for url in urls]
         return stats.get_data(year, urls)
-
+    """
     
