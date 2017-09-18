@@ -22,7 +22,7 @@
             <meta property="og:image"  tal:attributes="content string:$portal_url/$sharing_image" />
         </tal:block>
         <meta name="twitter:url" tal:attributes="content here/absolute_url"/>
-        <meta name="og:url" tal:attributes="content here/absolute_url"/>
+        <meta property="og:url" tal:attributes="content here/absolute_url"/>
         <meta tal:replace="structure meta_tags" /> 
 
     </div>
