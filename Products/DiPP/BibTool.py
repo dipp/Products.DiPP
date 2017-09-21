@@ -48,7 +48,7 @@ class BibTool(UniqueObject, SimpleItem):
             author_identifier[scheme] = name
         return author_identifier
     
-    def short_citation(self,article):
+    def short_citation(self, article):
         """Short version of the bibligraphic citation. Calls only plones own
         catalog and does not wake up Fedora. Used in feeds and search results
         
@@ -325,7 +325,18 @@ class BibTool(UniqueObject, SimpleItem):
         Tags are returned as HTML, so this method has to be used with 'structure'
         in pagetemplates.
         """
+        dp = self.portal_properties.dipp_properties
+        mp = self.portal_properties.metadata_properties
 
-        metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf, startpage=startpage, endpage=endpage)
+        metadata = qdc2metadata.MetaData(pid, 
+            issn=issn, 
+            publisher=publisher, 
+            pdf=pdf, 
+            startpage=startpage, 
+            endpage=endpage, 
+            citation_format=dp.short_citation_format,
+            journal_shortname=mp.journalname_abbr
+            )
+
         return metadata.make_metatags()
 
