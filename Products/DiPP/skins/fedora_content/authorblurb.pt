@@ -6,7 +6,7 @@
         <div id="authorblurb" metal:define-macro="authorblurb"
              tal:define="urn python:qdc['identifierURN'];
                          doi python:qdc['identifierDOI'];
-                         accepted python:qdc.get('dateAccepted',None); 
+                         accepted python:qdc.get('dateAccepted',None);
                          copyrighted python:qdc.get('dateCopyrighted',None);
                          submitted python:qdc.get('dateSubmitted',None);
                          published here/getIssueDate|nothing;
@@ -20,7 +20,7 @@
              i18n:domain="dipp">
             <h1 tal:content="python:qdc['title'][0]['value']">The title of the article</h1>
             <h1 tal:content="subtitle" class="subtitle" tal:condition="subtitle">a subtitle, if present</h1>
-            
+
             <ol class="authors">
             <tal:block tal:repeat="author authors" >
                 <li tal:define="academicTitle author/academicTitle;
@@ -41,10 +41,10 @@
             </ol>
             <tal:block tal:condition="python: abstracts[0]['lang']!=''"
                        tal:define="abstracts python:qdc['DCTermsAbstract']">
-                       
+
                 <h2 class="abstracts" tal:condition="python: len(abstracts) < 2" i18n:translate="abstract" i18n:domain="dipp">Abstract</h2>
                 <h2 class="abstracts" tal:condition="python: len(abstracts) > 1" i18n:translate="abstracts" i18n:domain="dipp">Abstracts</h2>
-                
+
                 <div tal:attributes="class python:test(len(abstracts) < 2,'tabber hidenav', 'tabber')">
                     <tal:block tal:repeat="abstract abstracts">
                         <tal:block tal:define="lang python:abstract.get('lang',None);"
@@ -75,14 +75,14 @@
                     <span tal:replace=" python:toLocalizedTime(published)"></span>
                 </li>
             </ol>
-            
+
             <tal:block tal:condition="subjects">
                 <h2 class="keywords-label" i18n:translate="keywords" i18n:domain="dipp">Keywords</h2>
-                
+
                 <ul class="keywords">
                     <tal:items tal:repeat="subject subjects">
                         <li tal:define="islast repeat/subject/end;
-                                        subject python:subject.strip()" 
+                                        subject python:subject.strip()"
                             tal:attributes="class python:test(islast,'last')">
                             <a tal:content="subject"
                                tal:attributes="href string: $portal_url/articlesearch?Subject=$subject&portal_type=FedoraArticle">
@@ -93,12 +93,15 @@
 
             <ul class="identifier"
                 tal:define="subjects python:here.sortedSubjectsClassified(subjectClassified)">
-                <li tal:condition="doi" 
+                <li tal:condition="doi"
                     class="doi">
                     <abbr title="Digital Object Identifier">DOI</abbr>:
-                    <a tal:content="doi" tal:attributes="href string:http://dx.doi.org/$doi">10.120234-ff983</a>
+                    <a tal:define="doiurl string:https://doi.org/$doi"
+                       tal:content="doiurl"
+                       tal:attributes="href doiurl">
+                       10.120234-ff983</a>
                 </li>
-                <li tal:condition="urn" 
+                <li tal:condition="urn"
                     class="urn">
                     <abbr title="Uniform Resource Name">URN</abbr>:
                     <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
@@ -120,7 +123,7 @@
                     </li>
                 </tal:block>
             </ul>
-            
+
             <div tal:define="translations context/getTranslatedLanguages;
                              data context/languageSelectorData;
                              content_lang here/Language"

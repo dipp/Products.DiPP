@@ -10,13 +10,13 @@
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        
+
         <h1 class="documentFirstHeading"
             i18n:translate="citation_and_metadata"
             i18n:domain="dipp">
           Citation and Metadata
         </h1>
-        
+
         <div class="documentByLine">
             <a href="#"
                i18n:translate="back_to_article"
@@ -52,7 +52,7 @@
                     Muster, M. Dev Journal, 2005
                 </p>
             </div>
-        
+
 
             <h2>Download Citation</h2>
             <p>
@@ -61,7 +61,7 @@
                         <div class="tabbertab"
                              tal:attributes="title python:format[0]"
                              tal:repeat="format here/bibtool/formats">
-                             
+
                             <h3 tal:content="python:format[0]">Endnote</h3>
                             <pre tal:content="python: here.bibtool.convert(qdc, here.PID, format[1])">
                             @Artikel{
@@ -76,7 +76,7 @@
                 </div>
             <p>
             <h2>Full Metadata</h2>
-        
+
             <table class="metadata" i18n:domain="qdc">
                 <tr>
                     <th i18n:translate="label_bibliographicCitation">Bibliographisches Zitat</th>
@@ -99,11 +99,11 @@
                     <th i18n:translate="label_creatorPerson">Authors</th>
                     <td>
                     <tal:block tal:repeat="author authors" >
-                        <span tal:condition="not: repeat/author/end" 
+                        <span tal:condition="not: repeat/author/end"
                             tal:define="firstName author/firstName; lastName author/lastName"
                             tal:replace="string: $firstName $lastName,">
                         </span>
-                        <span tal:condition="repeat/author/end" 
+                        <span tal:condition="repeat/author/end"
                             tal:define="firstName author/firstName; lastName author/lastName"
                             tal:replace="string: $firstName $lastName">
                         </span>
@@ -114,10 +114,10 @@
                     <th i18n:translate="label_language">Sprache</th>
                     <td>
                     <tal:block tal:repeat="language languages" >
-                        <span tal:condition="not: repeat/language/end" 
+                        <span tal:condition="not: repeat/language/end"
                             tal:replace="string: $language,">
                         </span>
-                        <span tal:condition="repeat/language/end" 
+                        <span tal:condition="repeat/language/end"
                             tal:replace="string: $language">
                         </span>
                     </tal:block>
@@ -144,7 +144,7 @@
                 </tr>
                 <tr tal:define="subjects python:here.sortedSubjectsClassified(subjectClassified)"
                     tal:condition="python: len(subjects) > 0">
-               
+
                     <th i18n:translate="label_subjectClassified">subjectClassified</th>
                     <td>
                         <dl class="subjectsClassified">
@@ -176,7 +176,7 @@
                     </th>
                     <td>
                         <a href=""
-                           tal:attributes="href string:http://nbn-resolving.de/$urn" 
+                           tal:attributes="href string:http://nbn-resolving.de/$urn"
                            tal:content="urn">urn:nbn:de:0009-1-1234</a>
                     </td>
                 </tr>
@@ -186,11 +186,14 @@
                         <abbr title="Digital Object Identifier">DOI</abbr>
                     </th>
                     <td>
-                            <a tal:content="string:doi:$doi" tal:attributes="href string:http://dx.doi.org/$doi">10.120234-ff983</a>
+                        <a tal:define="doiurl string:https://doi.org/$doi"
+                           tal:content="doiurl"
+                           tal:attributes="href doiurl">
+                           10.120234-ff983</a>
                     </td>
                 </tr>
             </table>
-       
+
         </tal:block>
         <div metal:use-macro="here/document_byline/macros/byline">
           Get the byline - contains details about author and modification date.
