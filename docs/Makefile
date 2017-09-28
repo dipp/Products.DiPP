@@ -12,7 +12,13 @@ PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
+# rsync/ssh variables
+RSYNC          = /usr/bin/rsync
+SSH_USER       = dippadm
+SSH_HOST       = alkyoneus.hbz-nrw.de
+SSH_TARGET_DIR = /files/var/www/handbuch
+
+.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest publish
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -32,6 +38,7 @@ help:
 	@echo "  changes    to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  publish    to publish the documentation"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -128,3 +135,8 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
+
+publish:
+	$(RSYNC) -e "ssh" -pvr --stats --delete $(BUILDDIR)/html/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
+	@echo "Uploading html docs to $(SSH_HOST)" 
+
