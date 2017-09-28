@@ -19,7 +19,8 @@ def read(*rnames):
 
 __version__ = read('..','..','Products','DiPP','version.txt').strip()
 
-ZOPE_INSTANCE_DIR = "/files/var/zope-instances/dev"
+# ZOPE_INSTANCE_DIR = "/files/var/zope-instances/dev"
+ZOPE_INSTANCE_DIR = "/home/reimer/Plone/dipp/instance"
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -28,7 +29,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath(ZOPE_INSTANCE_DIR))
 sys.path.insert(0, os.path.abspath(ZOPE_INSTANCE_DIR + '/Products/TextIndexNG3/src'))
-sys.path.insert(0, os.path.abspath('/files/lib/zope-2.9.10-dev/lib/python'))
+sys.path.insert(0, os.path.abspath(ZOPE_INSTANCE_DIR + '/Products/DiPP'))
+sys.path.insert(0, os.path.abspath('/home/reimer/Plone/dipp/Zope-2.9.12/lib/python'))
+sys.path.insert(0, os.path.abspath('/home/reimer/Plone/dipp/Python-2.4'))
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -58,7 +61,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Digital Peer Publishing'
-copyright = u'2012-2016, Dr. Peter Reimer, hbz'
+copyright = u'2012-2017, Dr. Peter Reimer, hbz'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
