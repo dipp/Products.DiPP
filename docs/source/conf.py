@@ -11,20 +11,23 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys
+import os
 import sphinx_rtd_theme
+
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-__version__ = read('..','..','Products','DiPP','version.txt').strip()
+
+__version__ = read('..', '..', 'Products', 'DiPP', 'version.txt').strip()
 
 # ZOPE_INSTANCE_DIR = "/files/var/zope-instances/dev"
 ZOPE_INSTANCE_DIR = "/home/reimer/Plone/dipp/instance"
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+# sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath('../..'))
 sys.path.insert(0, os.path.abspath(ZOPE_INSTANCE_DIR))
@@ -35,15 +38,15 @@ sys.path.insert(0, os.path.abspath('/home/reimer/Plone/dipp/Python-2.4'))
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-#needs_sphinx = '1.0'
+# needs_sphinx = '1.0'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc',
-              'sphinx.ext.doctest', 
+              'sphinx.ext.doctest',
               'sphinx.ext.intersphinx',
-              'sphinx.ext.todo', 
-              'sphinx.ext.ifconfig', 
+              'sphinx.ext.todo',
+              'sphinx.ext.ifconfig',
               'sphinx.ext.coverage'
               ]
 
@@ -54,7 +57,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The encoding of source files.
-#source_encoding = 'utf-8-sig'
+# source_encoding = 'utf-8-sig'
 
 # The master toctree document.
 master_doc = 'index'
@@ -78,33 +81,33 @@ language = 'de'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
-#today = ''
+# today = ''
 # Else, today_fmt is used as the format for a strftime call.
-#today_fmt = '%B %d, %Y'
+# today_fmt = '%B %d, %Y'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all documents.
-#default_role = None
+# default_role = None
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
-#add_function_parentheses = True
+# add_function_parentheses = True
 
 # If true, the current module name will be prepended to all description
 # unit titles (such as .. function::).
-#add_module_names = True
+# add_module_names = True
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
-#show_authors = False
+# show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
-#modindex_common_prefix = []
+# modindex_common_prefix = []
 
 
 # -- Options for HTML output ---------------------------------------------------
@@ -117,7 +120,7 @@ html_theme = "sphinx_rtd_theme"
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+# html_theme_options = {}
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 
@@ -201,8 +204,7 @@ latex_paper_size = 'a4'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'DiPP-Handbuch.tex', u'Handbuch',
-   u'Dr. Peter Reimer', 'manual'),
+    ('index', 'DiPP-Handbuch.tex', u'Handbuch', u'Dr. Peter Reimer', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -242,10 +244,11 @@ man_pages = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
+epub_basename = u'DiPP-Handbuch'
 epub_title = u'Digital Peer Publishing'
 epub_author = u'Peter Reimer'
 epub_publisher = u'Hochschulbibliothekszentrum NRW'
-epub_copyright = u'2015, Peter Reimer'
+epub_copyright = u'2017, Peter Reimer'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
