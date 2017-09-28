@@ -5,23 +5,23 @@ Die meisten Einstellungen werden in sogenannten Plone Property Sheets
 gespeichert.  Diese findet man unter
 :menuselection:`ZMI --> portal_properties`.  Vier Sheets sind relevant für das
 Publikationssystem:
- 
-dipp_properties (DiPP properties): 
+
+dipp_properties (DiPP properties):
     enthält Konfigurationen, die das Erscheinungsbild von Ausgaben und
     Artikeln beeinflussen.
 
-dippreview_properties (DiPPReview properties): 
+dippreview_properties (DiPPReview properties):
     enthält Konfigurationen für den Peer Review (Fristen, Anzahl Gutachter,
     ...)
 
-member_properties (Extended member properties): 
+member_properties (Extended member properties):
     enthält Konfigurationen für das Anmeldeformular, d.h. welche Daten sind
     erforderlich bzw. sollen überhaupt angezeigt werde.
 
-metadata_properties (QDC Metadata properties): 
+metadata_properties (QDC Metadata properties):
     einige Standardwerte für die Qualifizierten Dublin Core Metadaten.
 
- 
+
 
 
 dipp_properties (DiPP properties)
@@ -116,7 +116,7 @@ Zur Verfügung stehende Platzhalter:
 Name               Bedeutung
 ================== ============================================================
 journal            Name des Journals
-journal_shortname  Abkürzung des Journals
+journal_shortname  Abkürzung des Journals, siehe :ref:`prop_journalname_abbr`
 volume             Jahrgang
 issue              Ausgabe
 startpage          erste Seite (bei PDF)
@@ -144,7 +144,7 @@ Default::
 hide_current_issue
 ==================
 
-Bestimmt, ob die aktuelle Ausgabe im all_issues Template angezeigt werden soll. Bei Verwendung eines currentissue 
+Bestimmt, ob die aktuelle Ausgabe im all_issues Template angezeigt werden soll. Bei Verwendung eines currentissue
 Links kann das evtl. sinnvoll sein.
 
 Default::
@@ -175,7 +175,7 @@ Sollen im Artikelkopf die Daten für Einreichung und Annahme angezeigt werden?
 Default::
 
     False
-    
+
 initials_only
 =============
 Im bibliographischen Zitat: Sollen bei den Autoren nur die Initialen angezeigt
@@ -250,10 +250,10 @@ zum Einreichen eines eigenen Kommentares eingeblendet. Kommentare sind
 ihrerseits wieder begutachtete Artikel.
 
 Default::
-   
+
    False
 
- 
+
 .. _prop_volume_show_covers:
 
 volume_show_covers
@@ -264,7 +264,7 @@ Ausgaben angezeigt, soweit vorhanden.
 Default::
 
    False
-   
+
 issue_show_abstracts
 ====================
 Wenn True, werden auf der Inhaltsseite der Ausgaben die verfügbaren Abstracts
@@ -281,7 +281,7 @@ Länge angezeigt.
 
 Default::
 
-   False 
+   False
 
 issue_show_pdf_link
 ===================
@@ -289,14 +289,14 @@ Wenn True, werden auf der Inhaltsseite der Ausgaben vorhandene PDFs direkt
 verlinkt.
 
 Default::
-   
+
    False
 
 issue_show_short_citation
 =========================
 Wenn True, werden auf der Inhaltsseite der Ausgaben zu den Artikeln das
 bibligraphische Zitat in Kurzform angezeigt, siehe
-:ref:`prop_short_citation_format`  
+:ref:`prop_short_citation_format`
 
 Default::
 
@@ -313,7 +313,7 @@ wird.
 Default::
 
    getObjPositionInParent
-   
+
 issue_sort_order
 ================
 Aufsteigende (ascending) oder absteigende (reverse) Sortierung der Artikel
@@ -341,7 +341,7 @@ Wenn nicht leer, wird das Datum auf der Ausgabenseite mit dem hier angegebenen
 String formatiert. Wenn leer, wird auch kein Datum angezeigt.
 
 Default::
-   
+
    <leer>
 
 .. _prop_recent_articles_range:
@@ -349,7 +349,7 @@ Default::
 recent_articles_range
 =====================
 Alter (in Tagen) des ältesten Artikels der durch das recent_article Template
-angezeigt werden soll. 
+angezeigt werden soll.
 
 Default::
 
@@ -361,7 +361,7 @@ Default::
 deepest_toc_level
 =================
 
-Das niedrigste Überschriftenebene, das im Inhaltsverzeichnis (TOC) des Artikels noch 
+Das niedrigste Überschriftenebene, das im Inhaltsverzeichnis (TOC) des Artikels noch
 angezeigt werden soll. Es ist zu beachten, dass die erste Ebene h2 ist. Um die
 ersten drei Ebenen anzuzegen, muss der Wert auf 4 gesetzt werden. Der globale Wert
 kann auf für einen einelnen Artikel überschrieben werden, wenn im ZMI eine entsprechend
@@ -378,12 +378,12 @@ awstats_id
 ==========
 
 Wenn der Name der AWStats Konfgurationsdatei "awstats.ejournal.conf" lautet, ist die
-awstats_id "ejournal" Daraus ergeben sich dann die geparsten Logfiles zu z.B 
+awstats_id "ejournal" Daraus ergeben sich dann die geparsten Logfiles zu z.B
 "awstats112011.ejournal.txt" Daraus werden dann die Zugriffstatiskten einzelner Artikel
 bzw. Artikeldateien generiert.
 
 Default::
-   
+
    <leer>
 
 .. _enable_ebookey:
@@ -396,12 +396,93 @@ Zeige unter Volltext einen Link zur per ebooky erzeugten epub-Version des Artike
 Default::
 
     False
-                     
+
 dippreview_properties (DiPPReview properties)
 *********************************************
 
 member_properties (Extended member properties)
 **********************************************
 
+
 metadata_properties (QDC Metadata properties)
 *********************************************
+
+.. _prop_journalname:
+
+journalname
+===========
+
+.. _prop_journalname_abbr:
+
+journalname_abbr
+================
+
+Kurzform des Journalnamens. Kann zum Beispiel in der kurzen Version der Zitierweise
+angewendet werden, z.B. JOE statt Journal of Examples.
+
+Default::
+
+    <leer>
+
+.. _prop_publisher:
+
+publisher
+=========
+
+.. _prop_issn:
+
+issn
+====
+
+.. _prop_doi_prefix:
+
+doi_prefix
+==========
+
+Prefix für alle vergebenen DOI. DOIs bestehen aus einem internen Suffix und
+einem von einem Provider wie CrossRef oder der TIB vergebenen Prefix, das
+üblicherweise die Form `10.xxxx` hat. `10.5072` ist ein spezieller Testprefix.
+
+Ohne Angabe des Prefix steht das entsprechende Feld im Metadatenformular nicht
+zur Verfügung.
+
+Default::
+
+    <leer>
+
+
+.. _prop_default_pubType:
+
+default_pubType
+===============
+
+Default::
+
+    article
+
+.. _prop_default_docType:
+
+default_docType
+===============
+
+Default::
+
+    text
+
+.. _prop_default_language:
+
+default_language
+================
+
+.. _prop_available_languages:
+
+available_languages
+===================
+
+Default::
+
+    ger
+    eng
+    fra
+    ita
+    spa
