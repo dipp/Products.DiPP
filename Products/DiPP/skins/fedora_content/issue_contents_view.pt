@@ -4,14 +4,30 @@
       i18n:domain="plone">
 <body>
 
+<metal:slot fill-slot="head_slot">
+    <meta name="twitter:site"
+          tal:define="twitter_username here/portal_properties/dipp_properties/twitter_username|nothing;"
+          tal:condition="twitter_username"
+          tal:attributes="content string:@$twitter_username" />
+    <meta name="twitter:url" tal:attributes="content here/absolute_url"/>
+    <meta name="twitter:title" tal:attributes="content here/title_or_id"/>
+    <meta name="twitter:description" tal:attributes="content here/Description"/>
+    <meta name="twitter:image"
+         tal:define="has_cover here/TitleImage|nothing"
+         tal:condition="has_cover"
+         tal:attributes="content here/TitleImage_medium" />
+    
+    <meta property="og:url" tal:attributes="content here/absolute_url"/>
+</metal:slot>
+
 <metal:main fill-slot="main"
             tal:define="issue_path python:'/'.join(here.getPhysicalPath())">
     <tal:main-macro metal:define-macro="main">
-        
+
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        
+
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
@@ -28,14 +44,14 @@
            i18n:translate="go_to_parent_url">
             Up one level
         </a>
-    
+
 
         <div class="coverpicture"
              tal:define="has_cover here/TitleImage|nothing"
              tal:condition="has_cover">
              <img class="coverpicture" tal:replace="structure here/TitleImage_medium" />
         </div>
-        
+
         <div class="documentDescription"
            tal:content="here/Description"
            tal:condition="here/Description">
@@ -46,10 +62,10 @@
            tal:condition="Body"
            tal:content="structure Body">
         </p>
-        
+
         <p tal:define="CompleteIssue here/CompleteIssue|nothing"
            tal:condition="CompleteIssue/filename">
-           <span i18n:translate="get_the_complete_issue" i18n:domain="dipp">Get the complete issue</span> 
+           <span i18n:translate="get_the_complete_issue" i18n:domain="dipp">Get the complete issue</span>
            <a tal:define="size python:here.getObjSize(CompleteIssue);
                           icon CompleteIssue/getBestIcon | nothing;
                           filename CompleteIssue/filename | nothing"
@@ -59,19 +75,18 @@
                    tal:attributes="src string:${here/portal_url}/$icon"/>
               <span tal:replace="filename">full.pdf</span> (<span tal:replace="size">1GB</span>)</a>
         </p>
-    
+
         <div metal:use-macro="here/issue_content_macro/macros/table_of_contents">
             TOC of an issue
         </div>
-        
-        
+
+
         <div metal:use-macro="here/issue_macros/macros/footer">
             Custom footer to add stuff like logos, etc.
         </div>
-        
+
     </tal:main-macro>
 </metal:main>
 
 </body>
 </html>
-
