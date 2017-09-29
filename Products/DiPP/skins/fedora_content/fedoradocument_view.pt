@@ -3,13 +3,13 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 <body >
-<!--
+
 <metal:slot fill-slot="head_slot">
     <div metal:use-macro="here/metatags/macros/metatags">
         opengraph metadata for twitter, facebook, etc..
     </div>
 </metal:slot>
--->
+
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
          tal:define="parent python:here.getParentNode();
@@ -19,15 +19,15 @@
                      DsID here/DsID;
                      content python:here.fedora.accessByFedoraURL(PID,DsID,Date=None);
                      MIMEType python:content['MIMEType']">
-        
-        <div tal:condition="python: content['stream'].strip() == ''" 
+
+        <div tal:condition="python: content['stream'].strip() == ''"
              class="portalMessage"
-             i18n:translate="content_not_permanently stored"> 
+             i18n:translate="content_not_permanently stored">
             The Content of this page is not yet stored in the repository.
             Go to the 'Versions' tab to make the working copy (available under "Preview")
             permanent.
         </div>
-         
+
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
@@ -48,11 +48,11 @@
         </div>
 
         <div class="stx">
-            <div tal:condition="python:content['MIMEType'] != 'text/xml' " 
+            <div tal:condition="python:content['MIMEType'] != 'text/xml' "
                  tal:replace="structure python:content['stream']">
                 Hier kommt der Inhalt hin
             </div>
-            <pre tal:condition="python:content['MIMEType'] == 'text/xml' " 
+            <pre tal:condition="python:content['MIMEType'] == 'text/xml' "
                  tal:content="python:content['stream']">
                 Hier kommt der Inhalt hin
             </pre>
@@ -66,11 +66,11 @@
                          allow_persistent_discussion here/portal_properties/dipp_properties/allow_persistent_discussion|nothing;
                          qdc python:here.fedora.getQualifiedDCMetadata(articlePID)"
                    i18n:domain="dipp">
-            
+
             <div metal:use-macro="here/rights_macro/macros/rights">
-               some explanation about the rights and link to the licence 
+               some explanation about the rights and link to the licence
             </div>
-            
+
             <div metal:use-macro="here/citation_macro/macros/recommended_citation">
                 Show a custom formatted recommended citation
             </div>
@@ -78,19 +78,19 @@
             <div metal:use-macro="here/fulltext_macro/macros/fulltext">
                 Fulltext in alternative formats (pdf) with Zählpixel, if any.
             </div>
-            
+
             <div metal:use-macro="here/fulltext_macro/macros/metis">
                 naked zählpixel
             </div>
-            
+
             <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
                 A list of supplementary materials.
             </div>
-            
+
             <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
                 Comments which are treated like peer reviewed articles
             </div>
-            
+
         </tal:block>
 
         <div metal:use-macro="here/document_byline/macros/byline">
@@ -100,4 +100,3 @@
 </metal:main>
 </body>
 </html>
-

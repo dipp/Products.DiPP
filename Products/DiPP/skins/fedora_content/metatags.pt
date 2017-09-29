@@ -5,7 +5,8 @@
 
     <div tal:omit-tag=""
          metal:define-macro="metatags"
-         tal:define="articlePID here/PID;
+         tal:define="namespace python: here.PID.split(':')[0];
+                     articlePID python:test(namespace=='dipp',here.PID,here.getParentNode().PID);
                      issn here/issn|here/portal_properties/metadata_properties/issn|nothing;
                      publisher here/portal_properties/metadata_properties/publisher|nothing;
                      pdf python:here.getFulltextPdf().get('url',None);
