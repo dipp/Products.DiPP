@@ -5,19 +5,31 @@
 <body>
 
 <metal:slot fill-slot="head_slot">
+  
+  <tal:block tal:define="twitter_username here/portal_properties/dipp_properties/twitter_username|nothing;
+                         has_cover here/TitleImage|nothing;
+                         url here/absolute_url" >
     <meta name="twitter:site"
-          tal:define="twitter_username here/portal_properties/dipp_properties/twitter_username|nothing;"
           tal:condition="twitter_username"
           tal:attributes="content string:@$twitter_username" />
     <meta name="twitter:url" tal:attributes="content here/absolute_url"/>
     <meta name="twitter:title" tal:attributes="content here/title_or_id"/>
     <meta name="twitter:description" tal:attributes="content here/Description"/>
-    <meta name="twitter:image"
-         tal:define="has_cover here/TitleImage|nothing"
-         tal:condition="has_cover"
-         tal:attributes="content here/TitleImage_medium" />
-    
-    <meta property="og:url" tal:attributes="content here/absolute_url"/>
+    <tal:block tal:condition="has_cover">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image"
+             tal:attributes="content string:$url/TitleImage" />
+    </tal:block>
+    <tal:block tal:condition="not: has_cover">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:image"
+             tal:attributes="content string:'logo'" />
+    </tal:block>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" tal:attributes="content url"/>
+    <meta property="og:title" tal:attributes="content here/title_or_id"/>
+    <meta property="og:description" tal:attributes="content here/Description"/>
+  </tal:block>
 </metal:slot>
 
 <metal:main fill-slot="main"
