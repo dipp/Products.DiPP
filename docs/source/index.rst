@@ -88,4 +88,4 @@ Andere Formate
 
 * :download:`PDF <../build/latex/DiPP-Handbuch.pdf>`
 
-* :download:`EPUB <../build/epub/DiPPHandbuch.epub>`
+* :download:`EPUB <../build/epub/DiPP-Handbuch.epub>`
