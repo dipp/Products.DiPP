@@ -9,11 +9,12 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-__version__ = read('Products','DiPP','version.txt').strip()
+
+__version__ = read('Products', 'DiPP', 'version.txt').strip()
 
 long_description = (
     read('README.rst')
-    )
+)
 
 tests_require = ['zope.testing']
 
@@ -24,10 +25,10 @@ setup(name='Products.DiPP',
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
-        'Framework :: Plone',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License (GPL)',
-        ],
+          'Framework :: Plone',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: GNU General Public License (GPL)',
+      ],
       keywords='',
       author='DiPP, Hochschulbibliothekszentrum NRW',
       author_email='dipp@hbz-nrw.de',
@@ -38,16 +39,16 @@ setup(name='Products.DiPP',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-        'setuptools',
-        'Products.TextIndexNG3 == 3.3.4',
-        'Products.ATVocabularyManager',
-        'Products.LinguaPlone == 3.2',
-        'dipp.tools >= 0.6',
-        'dipp.dipp3 >= 3.8',
-        'bibliograph.core',
-        'dipp.fedora2 >= 2.2',
-        'dipp.datacite',
-        'dipp.awstats'
+          'setuptools',
+          'Products.TextIndexNG3 == 3.3.4',
+          'Products.ATVocabularyManager',
+          'Products.LinguaPlone == 3.2',
+          'dipp.tools >= 0.6',
+          'dipp.dipp3 >= 3.9',
+          'bibliograph.core',
+          'dipp.fedora2 >= 2.2',
+          'dipp.datacite',
+          'dipp.awstats'
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),

@@ -25,7 +25,7 @@ Python Modules
   * lxml==2.3.5
   * BeautifulSoup==3.2.1
 
-* dipp.dipp3
+* dipp.dipp3>=3.9
 
   * argparse
   * dipp.tools>=0.5.1
