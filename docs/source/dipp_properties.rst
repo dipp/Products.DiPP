@@ -376,3 +376,20 @@ Zeige unter Volltext einen Link zur per ebookey erzeugten epub-Version des Artik
 Default::
 
     False
+
+
+.. _orcid_cli:
+
+orcid_cli
+=========
+
+
+.. _twitter_username:
+
+twitter_username
+================
+
+.. _sharing_image:
+
+sharing_image
+=============
