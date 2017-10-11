@@ -8,8 +8,8 @@
 #
 # $Id$
 
-from  elementtree.ElementTree import Element, SubElement
-import elementtree.ElementTree as ET    
+from elementtree.ElementTree import Element, SubElement
+import elementtree.ElementTree as ET
 from bibliograph.core.bibutils import _getCommand
 from bibliograph.core.utils import _encode
 from subprocess import Popen, PIPE
@@ -24,8 +24,8 @@ import Permissions
 
 
 class BibTool(UniqueObject, SimpleItem):
-    """ Wrapper for Bibutils """
-    
+    """Wrapper for Bibutils."""
+
     meta_type = 'BibTool'
     id = 'bibtool'
     title = 'Conversion of  metadata formats'
@@ -33,8 +33,9 @@ class BibTool(UniqueObject, SimpleItem):
     security = ClassSecurityInfo()
 
     def formats(self):
-        """return a list of available Citation formats. Bibutils support more,
-           but not the bibliograph.core Python module. 
+        """Return a list of available Citation formats.
+
+        Bibutils support more, but not the bibliograph.core Python module.
         """
         return defaults.SUPPORTED_BIBUTIL_FORMATS
 
@@ -47,11 +48,12 @@ class BibTool(UniqueObject, SimpleItem):
         for scheme, url, name in defaults.AUTHOR_IDENTIFIER:
             author_identifier[scheme] = name
         return author_identifier
-    
+
     def short_citation(self, article):
-        """Short version of the bibligraphic citation. Calls only plones own
-        catalog and does not wake up Fedora. Used in feeds and search results
-        
+        """Return short version of the bibligraphic citation.
+
+        Calls only plones own catalog and does not wake up Fedora. Used in feeds
+        and search results.
         """
         dp = self.portal_properties.dipp_properties
         mp = self.portal_properties.metadata_properties
@@ -59,24 +61,25 @@ class BibTool(UniqueObject, SimpleItem):
         journal_shortname = mp.journalname_abbr
         issuedate = article.IssueDate
         year = issuedate.strftime('%Y')
-        
+
         cite = citation_format % {
-            'journal':article.JournalTitle,
-            'journal_shortname':journal_shortname,
-            'volume':article.Volume,
-            'issue':article.Issue,
-            'startpage':article.startpage,
-            'endpage':article.endpage,
-            'urn':article.URN,
-            'issuedate':issuedate,
-            'year':year,
-            }
+            'journal': article.JournalTitle,
+            'journal_shortname': journal_shortname,
+            'volume': article.Volume,
+            'issue': article.Issue,
+            'startpage': article.startpage,
+            'endpage': article.endpage,
+            'urn': article.URN,
+            'issuedate': issuedate,
+            'year': year,
+        }
         return cite
-        
+
     def recommended_citation(self, PID, qdc):
-        """ The full bibliographic citation. Used below the article an on the
-        metadata page. Calls Fedora.  
-        
+        """Return the full bibliographic citation.
+
+        Used below the article an on the  metadata page. Calls both
+        Fedora and Plones catalog.
         """
         dp = self.portal_properties.dipp_properties
         citation_format = dp.citation_format
@@ -91,12 +94,12 @@ class BibTool(UniqueObject, SimpleItem):
             startpage = self.startpage
         except:
             startpage = None
-            
+
         try:
             endpage = self.endpage
         except:
             endpage = None
-        
+
         # Qualified Dublin Core Metadata (qdc) stored in Fedora
         authors = qdc['creatorPerson']
         titles = qdc['title']
@@ -112,12 +115,12 @@ class BibTool(UniqueObject, SimpleItem):
         except:
             date = "????-??-??"
             year = "????"
-        urn = qdc['identifierURN'];
+        urn = qdc['identifierURN']
         id = self.PID.split(':')[-1]
         authors_list = ""
         period = ""
         comma = ""
-        
+
         if initials_period:
             period = ". "
 
@@ -151,50 +154,48 @@ class BibTool(UniqueObject, SimpleItem):
                 authors_list += "%s %s%s %s%s" % (prefix, lastname, comma, firstname, suffix)
 
         cite = citation_format % {
-        'authors':authors_list, 
-        'title':title,
-        'journal':journal,
-        'volume':volume,
-        'issue':issue,
-        'startpage':startpage,
-        'endpage':endpage,
-        'year':year,
-        'date':date,
-        'id':id,
-        'urn': '<a href="http://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn':urn}
+            'authors': authors_list,
+            'title': title,
+            'journal': journal,
+            'volume': volume,
+            'issue': issue,
+            'startpage': startpage,
+            'endpage': endpage,
+            'year': year,
+            'date': date,
+            'id': id,
+            'urn': '<a href="http://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn': urn}
         }
-        
         return cite
-    
-    def _make_mods(self,qdc,PID):
-        """Create a mods xml string for use with bibutils"""
-        
+
+    def _make_mods(self, qdc, PID):
+        """Create a mods xml string for use with bibutils."""
         mods = Element("mods")
 
         # Metadata from the Journal
         try:
-            ISSN = getattr(self,'ISSN')
+            ISSN = getattr(self, 'ISSN')
         except:
             ISSN = self.portal_properties.dipp_properties.ISSN.strip()
             if ISSN == "":
                 fedora = getToolByName(self, "fedora")
                 jqdc = fedora.getQualifiedDCMetadata(fedora.PID)
                 ISSN = jqdc['identifierISSN']
-            
+
         # Metadata stored only in Plone
         try:
             startpage = self.startpage
         except:
             startpage = None
-            
+
         try:
             endpage = self.endpage
         except:
             endpage = None
-        
+
         # Qualified Dublin Core Metadata (qdc) stored in Fedora
         # title
-        qTitles = qdc['title'] 
+        qTitles = qdc['title']
         titleInfo = SubElement(mods, "titleInfo")
         title = SubElement(titleInfo, "title")
         title.text = qTitles[0]['value']
@@ -206,38 +207,38 @@ class BibTool(UniqueObject, SimpleItem):
             namePart.text = author['lastName']
             namePart = SubElement(name, "namePart", type="given")
             namePart.text = author['firstName']
-        
+
         # abstract
-        qAbstracts = qdc['DCTermsAbstract'] 
+        qAbstracts = qdc['DCTermsAbstract']
         abstract = SubElement(mods, "abstract")
         abstract.text = qAbstracts[0]['value']
-        
+
         # subjects
         subject = SubElement(mods, "subject")
         for qSubject in qdc['subject']:
             topic = SubElement(subject, "topic")
-            topic.text = qSubject 
-            
+            topic.text = qSubject
+
         # ddc
         for qDDC in qdc['DDC']:
             ddc = SubElement(mods, "classification", authority="ddc")
             ddc.text = qDDC
-        
+
         # genre
         relatedItem = SubElement(mods, "relatedItem", type="host")
         genre = SubElement(relatedItem, "genre", authority="marcgt")
         genre.text = "periodical"
         genre = SubElement(relatedItem, "genre")
         genre.text = "academic journal"
-        
+
         # Bibliographic Data
         bc = qdc['bibliographicCitation'][0]
-        
-        # Journaltitle 
+
+        # Journaltitle
         titleInfo = SubElement(relatedItem, "titleInfo")
         title = SubElement(titleInfo, "title")
         title.text = bc['journalTitle']
-        
+
         # Volume/Issue/Pagenumbers
         part = SubElement(relatedItem, "part")
         volume = SubElement(part, "detail", type="volume")
@@ -259,7 +260,7 @@ class BibTool(UniqueObject, SimpleItem):
             end = SubElement(extent, "end")
             end.text = str(endpage)
 
-        
+
         # identifier
         id = qdc['creatorPerson'][0]["lastName"].lower() + str(year)
         if ISSN:
@@ -275,7 +276,7 @@ class BibTool(UniqueObject, SimpleItem):
         citekey = SubElement(mods, "identifier", type="citekey")
         citekey.text = id
         return mods
-    
+
     def convert(self, qdc, PID, target_format):
         """ Convert the QDC Metadata from Fedora to any format supported by
         bibutils. Uses MODS as an intermediate format.
@@ -301,42 +302,41 @@ class BibTool(UniqueObject, SimpleItem):
             fe.close()
 
         return result
-    
+
     def urnstatus(self, urn, url):
         """ check status of an urn with the dnb resolver"""
         status = urnvalidator.URN(urn, url)
         return status.parse_dnb_response()
 
-    #security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
+    # security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
     def datacite_xml(self, pid, issn, publisher, pdf):
         """Return metadata in DataCite compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_datacite_xml()
-    
-    #security.declareProtected(Permissions.MANAGE_JOURNAL, 'doaj_xml')
+
+    #  security.declareProtected(Permissions.MANAGE_JOURNAL, 'doaj_xml')
     def doaj_xml(self, pid, issn, publisher, pdf):
         """Return metadata in DOAJ compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
-    
+
     def make_metatags(self, pid, issn, publisher, pdf, startpage, endpage):
         """Return meta tags for google scholar, facebook, twitter
-        
+
         Tags are returned as HTML, so this method has to be used with 'structure'
         in pagetemplates.
         """
         dp = self.portal_properties.dipp_properties
         mp = self.portal_properties.metadata_properties
 
-        metadata = qdc2metadata.MetaData(pid, 
-            issn=issn, 
-            publisher=publisher, 
-            pdf=pdf, 
-            startpage=startpage, 
-            endpage=endpage, 
+        metadata = qdc2metadata.MetaData(pid,
+            issn=issn,
+            publisher=publisher,
+            pdf=pdf,
+            startpage=startpage,
+            endpage=endpage,
             citation_format=dp.short_citation_format,
             journal_shortname=mp.journalname_abbr
-            )
+        )
 
         return metadata.make_metatags()
-
