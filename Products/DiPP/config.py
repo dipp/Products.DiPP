@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-$Id$
-"""
+
 from Products.Archetypes.public import DisplayList
 from Products.CMFCore import permissions
 
@@ -20,40 +18,40 @@ DEPENDENCIES = [
     'LinguaPlone',
     'PloneLanguageTool',
     'TextIndexNG3'
-    ]
+]
 
 VOCABULARIES = (
-    ( 'SimpleVocabulary','journal-sections','The sections of the journal, used to organize an issue. Do not delete the "no section" entry.', 'Journal Sections'),
-    ( 'SimpleVocabulary','areas-of-expertise','Areas, in which the potentiel reviewer feels competend.', 'Areas of expertise'),
-    ( 'SimpleVocabulary','subject-areas','Areas, in which the potentiel reviewer feels competend.', 'Subject areas'),
+    ('SimpleVocabulary', 'journal-sections', 'The sections of the journal, used to organize an issue. Do not delete the "no section" entry.', 'Journal Sections'),
+    ('SimpleVocabulary', 'areas-of-expertise', 'Areas, in which the potentiel reviewer feels competend.', 'Areas of expertise'),
+    ('SimpleVocabulary', 'subject-areas', 'Areas, in which the potentiel reviewer feels competend.', 'Subject areas'),
 )
 
 LANGUAGES = {
-    'ger':'Deutsch',
-    'eng':'English',
-    'fra':'Français',
-    'spa':'Español',
-    'ita':'Italiano',
-    'rus':'Русский',
-    'chi':'中文',
-    'cze':'Čeština',
-    'hun':'Magyar',
-    'fin':'Finnish'
+    'ger': 'Deutsch',
+    'eng': 'English',
+    'fra': 'Français',
+    'spa': 'Español',
+    'ita': 'Italiano',
+    'rus': 'Русский',
+    'chi': '中文',
+    'cze': 'Čeština',
+    'hun': 'Magyar',
+    'fin': 'Finnish'
 }
 
 PUBTYPES = {
-    'article':'Zeitschriftenartikel',
-    'report':'Bericht',
-    'paper':'Paper',
-    'conf-proceeding':'Tagungs- und Konferenzbeitrag',
-    'lecture':'Vorlesung'
+    'article': 'Zeitschriftenartikel',
+    'report': 'Bericht',
+    'paper': 'Paper',
+    'conf-proceeding': 'Tagungs- und Konferenzbeitrag',
+    'lecture': 'Vorlesung'
 }
 
 DOCTYPES = {
-    'text':'Text',
-    'image':'Bilder',
-    'multimedia':'Multimediadateien',
-    'data':'Daten'
+    'text': 'Text',
+    'image': 'Bilder',
+    'multimedia': 'Multimediadateien',
+    'data': 'Daten'
 }
 
 # format: medatata, visible, required, default
@@ -63,8 +61,8 @@ DEFAULT_METADATA = (
     ('pubType', True, True, 'article'),
     ('alternative', True, False, ''),
     ('DCTermsAbstract', True, False, ''),
-    ('creatorCorporated',True, False, ''),
-    ('contributor', True, False, '') 
+    ('creatorCorporated', True, False, ''),
+    ('contributor', True, False, '')
 )
 
 SUBMISSION_FILENAME_FORMAT = "rev"
@@ -78,11 +76,10 @@ TOOLS = ((
     'BibTool',
     'Utils',
     'Deadlines',
-    'DiPP Sections Tool', 
+    'DiPP Sections Tool',
     'DiPP Peerreview Tool',
     'DataCite'
-    )
-)
+))
 
 INDEXES = (
     ('Contributors', 'KeywordIndex'),
@@ -102,13 +99,13 @@ GLOBALS = globals()
 
 
 # reCAPTCHA
-PRIVATE_KEY   = "6Lf2WOISAAAAAE1enAqHSxX4Y6LIgD6LaRpiCCyZ"
-PUBLIC_KEY    = "6Lf2WOISAAAAABFXeiCcDPfiznOzCgymL5KC54cY"
+PRIVATE_KEY = "6Lf2WOISAAAAAE1enAqHSxX4Y6LIgD6LaRpiCCyZ"
+PUBLIC_KEY = "6Lf2WOISAAAAABFXeiCcDPfiznOzCgymL5KC54cY"
 VERIFY_SERVER = "www.google.com"
 
 # Configuration for the testrunner
 
 PID = 'dipp:1898'
-label = '81' 
+label = '81'
 address = '193.30.112.98'
 port = '9280'
