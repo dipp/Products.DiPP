@@ -20,7 +20,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.DiPP.config import PROJECTNAME
 from Products.DiPP.interfaces import IFedoraDocument
 from Products.DiPP import Permissions
-        
+
 FedoraDocumentSchema = BaseSchema + Schema((
         TextField('body',
                 searchable=1,
@@ -64,19 +64,19 @@ FedoraDocumentSchema = BaseSchema + Schema((
 
 
 class FedoraDocument(BaseContent):
-    """store text files in the repository"""
+    """Store text files in the repository."""
 
     security = ClassSecurityInfo()
     implements(IFedoraDocument)
-    
+
     schema = FedoraDocumentSchema
-    
+
     _at_rename_after_creation = True
-    
+
     security.declareProtected(Permissions.EDIT_CONTENTS_PERMISSION, 'make_working_copy')
+
     def make_working_copy(self, Date):
-        """ take the datastream version of the given date and make it the working copy
-        """
+        """Take the datastream version of the given date and make it the working copy."""
         fedora = getToolByName(self, 'fedora')
         content = fedora.access(self.PID, self.DsID, Date=Date)['stream']
         if content:
@@ -85,4 +85,5 @@ class FedoraDocument(BaseContent):
         else:
             return False
 
-registerType(FedoraDocument,PROJECTNAME)
+
+registerType(FedoraDocument, PROJECTNAME)
