@@ -126,7 +126,7 @@ ul.authors li a.last:after {
     font-weight: bold;
 }
 .authors .affiliation {
-    font-style: italic; 
+    font-style: italic;
 }
 
 
@@ -141,7 +141,7 @@ ul.authors li a.last:after {
     font-size: 120%;
 }
 .dippAuthor {
-    font-style: italic; 
+    font-style: italic;
     font-size: 120%;
 }
 
@@ -194,18 +194,30 @@ a.permalink:hover {
 }
 
 .mediaobject .caption {
-    font-style: italic; 
+    font-style: italic;
 }
 
 /* Audio */
 a span.audiolink {
     padding-left: 18px;
-	background-image: url(&dtml-portal_url;/play_icon.png); 
-    background-repeat: no-repeat; 
+	background-image: url(&dtml-portal_url;/play_icon.png);
+    background-repeat: no-repeat;
     background-position: 0% 0%;
 }
 a span.audiolink:hover {
-	background-image: url(&dtml-portal_url;/play_icon_hover.png); 
+	background-image: url(&dtml-portal_url;/play_icon_hover.png);
+}
+
+/* Absatznummern */
+.AbsatzNummer {
+    font-style: italic;
+    color: #4c4c4c;
+}
+.AbsatzNummer span:after {
+    content: ">";
+}
+.AbsatzNummer span:before {
+    content: "<";
 }
 
 /* </dtml-with> */
