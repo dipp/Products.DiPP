@@ -5,7 +5,7 @@ enthält Konfigurationen, die das Erscheinungsbild von Ausgaben und
 Artikeln beeinflussen.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
 
 .. _prop_issn:
@@ -388,6 +388,14 @@ orcid_cli
 
 twitter_username
 ================
+
+Benutzername bei twitter, ohne führendes @:
+
+Default::
+
+    <leer>
+
+
 
 .. _sharing_image:
 
