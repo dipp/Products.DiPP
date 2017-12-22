@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en" lang="en"
+      i18n:domain="plone">
+
+  <head><title></title></head>
+  <body>
+
+    <div tal:omit-tag="" id="portal-webstats" metal:define-macro="webstats" i18n:domain="plone">
+
+      <metal:slot define-slot="webstats" />
+
+
+      <div tal:define="webstats_js here/portal_properties/site_properties/webstats_js|nothing"
+           tal:condition="webstats_js"
+           tal:replace="structure webstats_js">
+      
+      </div>
+
+    </div>
+
+  </body>
+</html>
