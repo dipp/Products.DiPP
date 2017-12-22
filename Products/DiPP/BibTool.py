@@ -116,7 +116,7 @@ class BibTool(UniqueObject, SimpleItem):
             date = "????-??-??"
             year = "????"
         urn = qdc['identifierURN']
-        id = self.PID.split(':')[-1]
+        id = PID.split(':')[-1]
         authors_list = ""
         period = ""
         comma = ""
@@ -148,7 +148,7 @@ class BibTool(UniqueObject, SimpleItem):
                 prefix = ""
                 suffix = ", "
 
-            if firstnamefirst == True:
+            if firstnamefirst:
                 authors_list += "%s %s %s%s" % (prefix, firstname, lastname, suffix)
             else:
                 authors_list += "%s %s%s %s%s" % (prefix, lastname, comma, firstname, suffix)
@@ -254,12 +254,11 @@ class BibTool(UniqueObject, SimpleItem):
             year = "????"
         date.text = year
         if startpage:
-            extent = SubElement(part,"extent", unit="page")
+            extent = SubElement(part, "extent", unit="page")
             start = SubElement(extent, "start")
             start.text = str(startpage)
             end = SubElement(extent, "end")
             end.text = str(endpage)
-
 
         # identifier
         id = qdc['creatorPerson'][0]["lastName"].lower() + str(year)
@@ -278,22 +277,22 @@ class BibTool(UniqueObject, SimpleItem):
         return mods
 
     def convert(self, qdc, PID, target_format):
-        """ Convert the QDC Metadata from Fedora to any format supported by
-        bibutils. Uses MODS as an intermediate format.
-        """
+        """Convert the QDC Metadata from Fedora to any format supported by bibutils.
 
+        Uses MODS as an intermediate format.
+        """
         mods = self._make_mods(qdc, PID)
         if target_format == 'xml':
             indent.indent(mods)
-            xml = ET.tostring(mods,encoding='utf-8')
+            xml = ET.tostring(mods, encoding='utf-8')
             result = xml
         else:
-            xml = ET.tostring(mods,encoding='utf-8')
+            xml = ET.tostring(mods, encoding='utf-8')
             command = _getCommand('xml', target_format)
             p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=PIPE,
                       close_fds=False)
             (fi, fo, fe) = (p.stdin, p.stdout, p.stderr)
-            #fi.write(_encode(xml))
+            # fi.write(_encode(xml))
             fi.write(xml)
             fi.close()
             result = fo.read()
@@ -304,7 +303,7 @@ class BibTool(UniqueObject, SimpleItem):
         return result
 
     def urnstatus(self, urn, url):
-        """ check status of an urn with the dnb resolver"""
+        """Check status of an urn with the dnb resolver"""
         status = urnvalidator.URN(urn, url)
         return status.parse_dnb_response()
 
@@ -320,6 +319,7 @@ class BibTool(UniqueObject, SimpleItem):
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
 
+
     def make_metatags(self, pid, issn, publisher, pdf, startpage, endpage):
         """Return meta tags for google scholar, facebook, twitter
 
@@ -329,7 +329,8 @@ class BibTool(UniqueObject, SimpleItem):
         dp = self.portal_properties.dipp_properties
         mp = self.portal_properties.metadata_properties
 
-        metadata = qdc2metadata.MetaData(pid,
+        metadata = qdc2metadata.MetaData(
+            pid,
             issn=issn,
             publisher=publisher,
             pdf=pdf,
