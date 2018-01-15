@@ -18,7 +18,9 @@
     <tal:block tal:condition="has_cover">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image"
-             tal:attributes="content string:$url/TitleImage" />
+              tal:attributes="content string:$url/TitleImage" />
+        <meta property="og:image"
+              tal:attributes="content string:$url/TitleImage" />
     </tal:block>
     <tal:block tal:condition="not: has_cover">
         <meta name="twitter:card" content="summary">
