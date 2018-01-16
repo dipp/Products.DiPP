@@ -767,3 +767,9 @@ msgstr "Follow us"
 
 msgid "follow_twitter"
 msgstr "Follow us on Twitter."
+
+msgid "title_privacy"
+msgstr ""
+
+msgid "description_privacy"
+msgstr ""
