@@ -19,13 +19,13 @@
 
         <h1 class="documentFirstHeading"
             i18n:domain="dipp"
-            i18n:translate="privacy_title">
+            i18n:translate="title_privacy">
             Privacy Policy
         </h1>
 
         <p class="documentDescription"
            i18n:domain="dipp"
-           i18n:translate="privacy_description">
+           i18n:translate="description_privacy">
         	piwik et al
         </p>
         <tal:block tal:define="analytics_server here/portal_properties/site_properties/analytics_server|nothing;
