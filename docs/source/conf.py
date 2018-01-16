@@ -64,7 +64,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Digital Peer Publishing'
-copyright = u'2012-2017, Dr. Peter Reimer, hbz'
+copyright = u'2012-2018, Dr. Peter Reimer, hbz'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -248,7 +248,7 @@ epub_basename = u'DiPP-Handbuch'
 epub_title = u'Digital Peer Publishing'
 epub_author = u'Peter Reimer'
 epub_publisher = u'Hochschulbibliothekszentrum NRW'
-epub_copyright = u'2017, Peter Reimer'
+epub_copyright = u'2018, Peter Reimer'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
