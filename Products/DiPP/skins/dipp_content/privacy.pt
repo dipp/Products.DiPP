@@ -12,27 +12,37 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
-    
+
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        
-        <h1 class="documentFirstHeading">
-            Privacy
+
+        <h1 class="documentFirstHeading"
+            i18n:domain="dipp"
+            i18n:translate="privacy_title">
+            Privacy Policy
         </h1>
-        
+
         <p class="documentDescription"
            i18n:domain="dipp"
            i18n:translate="privacy_description">
         	piwik et al
         </p>
-        <iframe style="border: 0; height: 200px; width: 100%;"
-                src="https://alkyoneus.hbz-nrw.de/piwik/index.php?module=CoreAdminHome&action=optOut&language=de">
-        </iframe>
+        <tal:block tal:define="analytics_server here/portal_properties/site_properties/analytics_server|nothing;
+                               analytics_id here/portal_properties/site_properties/analytics_id|nothing;
+                               boundLanguages here/portal_languages/getLanguageBindings;
+                               prefLang python:boundLanguages[0]"
+                   tal:condition="analytics_server">
+            <h2>Tracking</h2>
+
+            <iframe style="border: 0; height: 200px; width: 100%;"
+                    tal:attributes="src python:'%s/index.php?module=CoreAdminHome&action=optOut&language=%s' % (analytics_server, prefLang)"
+                    src="#">
+            </iframe>
+        </tal:block>
 
     </tal:main-macro>
 </metal:main>
 
 </body>
 </html>
-
