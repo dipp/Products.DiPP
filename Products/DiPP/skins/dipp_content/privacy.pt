@@ -36,7 +36,7 @@
             <h2>Tracking</h2>
 
             <iframe style="border: 0; height: 200px; width: 100%;"
-                    tal:attributes="src python:'%s/index.php?module=CoreAdminHome&action=optOut&language=%s' % (analytics_server, prefLang)"
+                    tal:attributes="src python:'https://%s/index.php?module=CoreAdminHome&action=optOut&language=%s' % (analytics_server, prefLang)"
                     src="#">
             </iframe>
         </tal:block>

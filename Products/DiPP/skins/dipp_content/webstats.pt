@@ -5,16 +5,21 @@
   <head><title></title></head>
   <body>
 
-    <div tal:omit-tag="" id="portal-webstats" metal:define-macro="webstats" i18n:domain="plone">
+    <div tal:omit-tag="" id="portal-webstats" metal:define-macro="webstats" i18n:domain="plone"
+        tal:define="analytics_server here/portal_properties/site_properties/analytics_server|nothing;
+                    analytics_id here/portal_properties/site_properties/analytics_id|nothing;
+                    analytics_javascript here/portal_properties/site_properties/analytics_javascript|nothing;">
 
       <metal:slot define-slot="webstats" />
 
+      <script type="text/javascript"
+              tal:condition="analytics_id"
+              tal:content="python:analytics_javascript % (analytics_server, analytics_id)">
+      </script>
+      <noscript tal:condition="analytics_id">
+            <img tal:attributes="src python:'https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=%s&rec=1' % analytics_id" style="border:0" alt="" />
+      </noscript>
 
-      <div tal:define="webstats_js here/portal_properties/site_properties/webstats_js|nothing"
-           tal:condition="webstats_js"
-           tal:replace="structure webstats_js">
-      
-      </div>
 
     </div>
 
