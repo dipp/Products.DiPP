@@ -19,5 +19,21 @@
             visible="True">
     </action>
 
+    <action title="Datenschutz"
+            action_id="datenschutz"
+            category="site_actions"
+            condition_expr='python:request.LANGUAGE=="de"'
+            url_expr="string:${portal_url}/privacy"
+            visible="True">
+    </action>
+
+    <action title="Privacy"
+            action_id="privacy"
+            category="site_actions"
+            condition_expr='python:request.LANGUAGE!="de"'
+            url_expr="string:${portal_url}/privacy"
+            visible="True">
+    </action>
+
 </action-provider>
 </object>
