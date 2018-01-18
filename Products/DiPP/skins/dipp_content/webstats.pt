@@ -8,18 +8,28 @@
     <div tal:omit-tag="" id="portal-webstats" metal:define-macro="webstats" i18n:domain="plone"
         tal:define="analytics_server here/portal_properties/site_properties/analytics_server|nothing;
                     analytics_id here/portal_properties/site_properties/analytics_id|nothing;
-                    analytics_javascript here/portal_properties/site_properties/analytics_javascript|nothing;">
+                    analytics_javascript here/portal_properties/site_properties/analytics_javascript|nothing;
+                    analytics_javascript_notfound here/portal_properties/site_properties/analytics_javascript_notfound|nothing;
+                    err_type options/error_type|nothing;"
+        tal:condition="analytics_id">
 
       <metal:slot define-slot="webstats" />
+      <tal:block>
+          <script type="text/javascript"
+                  tal:condition="python:err_type is not 'NotFound'"
+                  tal:content="python:analytics_javascript % (analytics_server, analytics_id)">
+          </script>
 
-      <script type="text/javascript"
-              tal:condition="analytics_id"
-              tal:content="python:analytics_javascript % (analytics_server, analytics_id)">
-      </script>
-      <noscript tal:condition="analytics_id">
-            <img tal:attributes="src python:'https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=%s&rec=1' % analytics_id" style="border:0" alt="" />
-      </noscript>
+          <script type="text/javascript"
+                  tal:condition="python:err_type is 'NotFound'"
+                  tal:content="python:analytics_javascript_notfound % (analytics_server, analytics_id)">
+          </script>
 
+          <noscript>
+                <img tal:attributes="src python:'https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=%s&rec=1' % analytics_id" style="border:0" alt="" />
+          </noscript>
+      </tal:block>
+      <pre tal:content="err_type" />
 
     </div>
 
