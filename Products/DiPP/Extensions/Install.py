@@ -166,6 +166,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('analytics_id', 'int', None),
         ('analytics_server', 'string', ''),
         ('analytics_javascript', 'text', ANALYTICS_JAVASCRIPT),
+        ('analytics_javascript_notfound', 'text', ANALYTICS_JAVASCRIPT_NOTFOUND)
     )
     for prop_id, prop_type, prop_value in site_properties:
         if not hasattr(props, prop_id):
