@@ -163,7 +163,7 @@ def install_properties(self, out, site_id=SITE_NAME):
     props = self.portal_properties.site_properties
 
     site_properties = (
-        ('analytics_id', 'int', None),
+        ('analytics_id', 'string', ''),
         ('analytics_server', 'string', ''),
         ('analytics_javascript', 'text', ANALYTICS_JAVASCRIPT),
         ('analytics_javascript_notfound', 'text', ANALYTICS_JAVASCRIPT_NOTFOUND)
