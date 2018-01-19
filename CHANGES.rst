@@ -1,6 +1,24 @@
 Changelog
 =========
 
+DiPP 2.25 (19-01-2018)
+----------------------
+
+* Piwik/Matomo
+
+  * Special Piwik/Matomo code also for `404 Pages`_ including referrer
+  * multipingual Privacypage with Piwik opt-out
+  * Tracking JS Code included via macro and propertysheet, no nedd to
+    customize the mailtemplate any more
+
+* Bugfixes, code cleanup, `PEP 8`_
+* ZMI improvements on manage pages of Fedoraobjects, i.e. view tab
+  for folderish types.
+* Paragraph numbers added to Wordtemplate and CSS
+
+.. _404 Pages: https://matomo.org/faq/how-to/faq_60/
+.. _PEP 8: https://www.python.org/dev/peps/pep-0008/
+
 DiPP 2.24 (unreleased)
 ----------------------
 
@@ -8,12 +26,11 @@ DiPP 2.24 (unreleased)
   `DataCite`_ and `Crossref`_
 * DataCite Metadata Schema 4.0
 * Support for TwitterCard and Opengraph Metatags.
-* ZMI improvements on manage pages of Fedoraobjects, i.e. view tab
-  for folderish types.
 * Updated Documentation
 
 .. _DataCite: https://support.datacite.org/v1.0/docs/datacite-doi-display-guidelines
 .. _Crossref: https://www.crossref.org/display-guidelines/
+
 
 DiPP 2.23 (2016-10-07)
 ----------------------
