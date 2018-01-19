@@ -29,8 +29,7 @@
                 <img tal:attributes="src python:'https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=%s&rec=1' % analytics_id" style="border:0" alt="" />
           </noscript>
       </tal:block>
-      <pre tal:content="err_type" />
-
+      
     </div>
 
   </body>
