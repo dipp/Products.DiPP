@@ -16,7 +16,7 @@ article = context.getParentNode()
 fedora = getToolByName(self, 'fedora')
 dipp_tool = getToolByName(self, 'Utils')
 
-PID  = REQUEST.form['PID']
+PID = REQUEST.form['PID']
 DsID = REQUEST.form['DsID']
 MIMEType = REQUEST.form['MIMEType']
 LogMessage = REQUEST.form['LogMessage']
