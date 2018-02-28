@@ -6,45 +6,42 @@
 
 
 <div metal:define-macro="portlet">
-                 
 
-    <dl class="portlet" 
+    <dl class="portlet"
         id="portlet-dippnav"
         tal:condition="python: user.has_permission('Use OpenFlow', here)">
-        
+
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
             <span i18n:translate="dippnav">DiPP</span>
             <span class="portletTopRight"></span>
         </dt>
+
         <dd class="portletItem" i18n:domain="dipp">
 
-
             <div >
-               <ul>
-               <li tal:condition="python: user.has_role('Manager')">
-                     <a href=""
-                        tal:attributes="href string:$portal_url/folder_contents"
-                        i18n:attributes="title description_website_manager"
-                        i18n:translate="">
-                           Website Manager</a>
-                </li>
-                <li>
-                     <a href="" 
-                        tal:attributes="href string:$portal_url/editorial_toolbox" 
-                        i18n:attributes="title description_editorial_toolbox"
-                        i18n:translate="">
-                            Editorial Toolbox</a>
-                </li>
-                <li tal:condition="python: user.has_role('Manager')">
-                     <a href="" 
-                        tal:attributes="href string:$portal_url/plone_control_panel" 
-                        i18n:attributes="title description_plone_setup"
-                        i18n:translate="">
-                            Plone Setup</a>
-                 </li>
-                </ul>
+               <ul class="configlets">
+                   <li tal:condition="python: user.has_role('Manager')">
+                         <a href=""
+                            tal:attributes="href string:$portal_url/folder_contents"
+                            i18n:attributes="title description_website_manager"
+                            i18n:translate="">Website Manager</a>
+                    </li>
+                    <li>
+                         <a href=""
+                            tal:attributes="href string:$portal_url/editorial_toolbox"
+                            i18n:attributes="title description_editorial_toolbox"
+                            i18n:translate="">Editorial Toolbox</a>
+                    </li>
+                    <li tal:condition="python: user.has_role('Manager')">
+                         <a href=""
+                            tal:attributes="href string:$portal_url/plone_control_panel"
+                            i18n:attributes="title description_plone_setup"
+                            i18n:translate="">Plone Setup</a>
+                     </li>
+                 </ul>
              </div>
+             
         </dd>
     </dl>
 
