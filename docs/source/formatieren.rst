@@ -4,7 +4,8 @@ Artikel formatieren
 ###################
 
 Grundlage für eine erfolgreiche Artikelkonvertierung ist die korrekte Verwendung
-der Formatvorlage. Wichtig sind vor allem die Formate für den  Kopf des Artikels,
+der :download:`Formatvorlage <../../rtf/dipp-beispiel-artikel.rtf>`.
+Wichtig sind vor allem die Formate für den  Kopf des Artikels,
 der die Metadaten enthält. Anhand der Namen der Absatzformate identifiziert die
 Konvertierungsoftware  den Titel, die Autoren, den Abstract, etc. Danach wird eine
 Überschrift erster Ordung benötigt, um den eigentliche  Artikeltext von den Metadaten
@@ -18,19 +19,19 @@ zu trennen.
 .. figure:: images/artikel-in-word.png
     :alt: Artikel in Word 2007
 
-    Ein Artikel mit angewandter Formatvorlage. Entwurfsansicht mit 
+    Ein Artikel mit angewandter Formatvorlage. Entwurfsansicht mit
     eingeblendeten Absatzformaten
 
 Die Standardformatvorlage enthält eine Reihe von Absatzformaten, die im Artikelkopf
-angewendet werden können, bzw. müssen. Die bezeichnung und die Reihenfolge ist 
-wichtig, kann jedoch an die jeweiligen Bedürfnisse angepasst werden. Dafür ist 
+angewendet werden können, bzw. müssen. Die bezeichnung und die Reihenfolge ist
+wichtig, kann jedoch an die jeweiligen Bedürfnisse angepasst werden. Dafür ist
 jedoch auch eine Anpassungen der journalspezifischen XSL und XSLT Datei für die
-Konvertierungssoftware notwendig.  
+Konvertierungssoftware notwendig.
 
 ================== ========================================================
 Name der Vorlage   Bedeutung
 ================== ========================================================
-dippTitle          Titel der Artikels, erforderlich. 
+dippTitle          Titel der Artikels, erforderlich.
 dippSubtitle       evtl. Untertitel
 dippAuthor         ein oder mehrere Autoren
 Copyright          enthält nach der Konvertierun die URN
@@ -50,9 +51,9 @@ In der Regel sollten die Funktionen der Textverarbeitung genutzt werden:
 * Normale Absätze werden mit der Formatvorlage "Standard" formatiert.
 
 * Für Überschriften werden die üblichen "Überschrift 1, Überschrift 2, ..."
-  verwendet. Aus den Überschriften wird dann das Inhaltsverzeichnis generiert, 
+  verwendet. Aus den Überschriften wird dann das Inhaltsverzeichnis generiert,
   das als toc_html parallel zum Hauptext (fulltext) abeglegt wird. Über ein
-  entsprechendes Portlet es in einer Randspalte angezeigt werden, siehe :ref:`portlet_toc`. 
+  entsprechendes Portlet es in einer Randspalte angezeigt werden, siehe :ref:`portlet_toc`.
 
 * Fußnoten sollten mit der Fußnotenfunktionen von Word gemacht werden. Zwischen
   Fuß- und Endnoten kann wegen fehlender Pagnierung in HTML nicht unterschieden
@@ -77,27 +78,23 @@ unterstützt.
 
 Bilder sind in der Auflösung einzubinden, in der sie später im Internet
 erscheinen sollen. Abhängig vom Layout der Webseite sollte die Breite 580px
-nicht überschreiten. Die Bilder können mit Verweisen (hyperlinks) zu 
-höherauflösenden Versionen versehen werden, die im Publikationssystem 
-nachträglich hochgeladen werden können, siehe :ref:`zusatzmaterial`. 
+nicht überschreiten. Die Bilder können mit Verweisen (hyperlinks) zu
+höherauflösenden Versionen versehen werden, die im Publikationssystem
+nachträglich hochgeladen werden können, siehe :ref:`zusatzmaterial`.
 
 Tabellen
 ********
 
-Tabellen sollten nicht zu komplex gestaltet werden, d. h. sie sollten nicht 
+Tabellen sollten nicht zu komplex gestaltet werden, d. h. sie sollten nicht
 verschachtelt werden und die Größe einzelner Zellen sollten nicht durch Ziehen
 der Begrenzungslinie verändert werden. Das Verschmelzen von zwei benachbarten
 Zellen ist jedoch möglich. Auch sollte Für die erste Tabellenzeile als Kopfzeile
-gesetzt werden. Dazu wird die Zeile in Word markiert und dann über das 
+gesetzt werden. Dazu wird die Zeile in Word markiert und dann über das
 Kontektmenü "Tabelleneigenschaft", Reiter "Zeile" die Option "Gleiche Kopfzeile
 auf jeder Seite wiederholen" aktiviert. Dadurch wird die Zeile im HTML als header
 ausgezeichnet und läßt sich entsprechend über CSS formatieren.
 
 .. figure:: images/tabellen-kopf.png
-    :alt: Tabelleneigenschaften in Word 2007 
+    :alt: Tabelleneigenschaften in Word 2007
 
     Setzen der Eigenschaften für die Kopfzeile der Tabelle
- 
- 
-  
-    
