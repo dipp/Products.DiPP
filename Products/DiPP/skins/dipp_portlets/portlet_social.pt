@@ -24,7 +24,9 @@
                i18n:attributes="title follow_twitter"
                title="Follow us on twitter "
                class="twitter">Twitter</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <tal:comment tal:replace="nothing">
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </tal:comment>
         </dd>
     </dl>
 
