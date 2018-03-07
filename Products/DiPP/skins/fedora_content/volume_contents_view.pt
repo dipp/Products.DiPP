@@ -8,12 +8,12 @@
     <tal:main-macro metal:define-macro="main"
              tal:define="path           python:'/'.join(here.getPhysicalPath());
                          show_covers    here/volume_show_covers|here/portal_properties/dipp_properties/volume_show_covers|nothing;
-                         issues python: here.portal_catalog(path = {'query':path, 'depth':1}, portal_type=('FedoraHierarchie', 'Issue', 'Volume'), sort_on='getObjPositionInParent')">
-        
+                         issues python: here.portal_catalog(path = {'query':path, 'depth':1}, portal_type=('FedoraHierarchie', 'Issue', 'Volume'), sort_on='getObjPositionInParent');">
+
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        
+
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
           Title or id
         </h1>
@@ -21,7 +21,7 @@
         <div metal:use-macro="here/document_byline/macros/byline">
           Get the byline - contains details about author and modification date.
         </div>
-    
+
         <a href=""
            class="link-parent"
            tal:define="parent_url python:here.navigationParent(here, template_id)"
@@ -44,15 +44,20 @@
            i18n:domain="dipp">
              This Volume does not contain any issues.
         </p>
-        
+
         <p tal:condition="here/Body"
            tal:content="structure here/Body">
              Here goes everything from the advanced --> body field.
         </p>
-        
-        <div tal:condition="issues">
+
+        <div tal:condition="issues"
+             tal:define="Batch          python:modules['Products.CMFPlone'].Batch;
+                         b_size         python:10;b_start python:0;b_start request/b_start | b_start;
+                         batch python:Batch(issues, b_size, int(b_start), orphan=1);">
+
+
             <ol class="volume_content">
-                <tal:items tal:repeat="item issues">
+                <tal:items tal:repeat="item batch">
                    <li tal:define="obj                  python: item.getObject();
                                    item_url             item/getURL|item/absolute_url;
                                    item_id              item/getId;
@@ -63,16 +68,16 @@
                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                    item_description     item/Description;
                                    item_has_cover       obj/TitleImage|nothing">
-                       
+
                        <div class=""
-                            tal:attributes="class python:test(show_covers,'issueinfo showcover','issueinfo')"> 
+                            tal:attributes="class python:test(show_covers,'issueinfo showcover','issueinfo')">
                            <div class="issuecontent">
-                               <h2>    
+                               <h2>
                                     <a href="#"
-                                       tal:attributes="href item_url; 
+                                       tal:attributes="href item_url;
                                                    class string:$item_wf_state_class"
                                                    tal:content="item_title_or_id">
-                                     Issue title</a>   
+                                     Issue title</a>
 
                                 </h2>
                                 <p tal:content="item_description">
@@ -92,11 +97,11 @@
                     </li>
                  </tal:items>
             </ol>
+            <div metal:use-macro="here/batch_macros/macros/navigation" />
         </div>
-    
+
     </tal:main-macro>
 </metal:main>
 
 </body>
 </html>
-
