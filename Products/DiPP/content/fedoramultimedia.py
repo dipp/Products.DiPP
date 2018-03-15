@@ -158,10 +158,11 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     security.declareProtected(View, 'getTypeOfList')
     def getTypeOfList(self):
         vocabulary = (
-            ('','Do not list.'),
-            ('alternative_format','Alternative format of the main text.'),
-            ('supplementary_material','Supplementary Material')
+            ('', 'Do not list.'),
+            ('alternative_format', 'Alternative format of the main text.'),
+            ('supplementary_material', 'Supplementary Material')
         )
         return vocabulary
 
-registerType(FedoraMultimedia,PROJECTNAME)
+
+registerType(FedoraMultimedia, PROJECTNAME)
