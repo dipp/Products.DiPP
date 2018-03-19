@@ -81,7 +81,7 @@
                 <tr>
                     <th i18n:translate="label_bibliographicCitation">Bibliographisches Zitat</th>
                     <td>
-                         <span tal:content="structure python: container.bibtool.short_citation(here)"></span>
+                         <span tal:content="structure python: container.bibtool.short_citation(volume=here.Volume, issue=here.Issue, issuedate=here.effective(), startpage=here.startpage, endpage=here.endpage, urn=here.URN)"></span>
                     </td>
                 </tr>
                 <tr>

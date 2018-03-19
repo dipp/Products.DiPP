@@ -24,31 +24,31 @@
 
     <tal:main-macro metal:define-macro="main"
                     tal:define="portal_types portal/portal_types">
-		
+
     <div id="content"
          class="documentEditable">
-	
+
 	        <div class="documentContent" id="region-content">
-	
+
 	            <a name="documentContent"></a>
-	                    
+
 	            <div metal:use-macro="here/global_statusmessage/macros/portal_message">
 	                Portal status message
 	            </div>
-	
+
 	            <!-- Author information -->
-	            
+
 			    <div metal:use-macro="here/document_actions/macros/document_actions">
 			        Document actions (print, sendto etc)
 			    </div>
-	
+
 	            <h1 class="documentFirstHeading" tal:content="contributor">
 	                Author ID
 	            </h1>
 
-	        
-	
-	    
+
+
+
 		    <div tal:define="publications python:here.portal_catalog.searchResults(portal_type='FedoraArticle',getAuthors={'query':contributor}, sort_on='getIssueDate', sort_order='reverse')">
 			    <ol tal:condition="publications">
 			        <tal:block tal:repeat="publication publications">
@@ -59,7 +59,11 @@
 			                            published            publication/getIssueDate;
 			                            journal              publication/getJournalTitle | nothing;
 			                            volume               publication/getVolume | nothing;
-			                            issue                publication/getIssue | nothing">
+			                            issue                publication/getIssue | nothing;
+                                        issuedate            publication/effective;
+                                        startpage            publication/startpage | nothing;
+                                        endpage              publication/endpage | nothing;
+                                        urn                  publication/getURN">
 			                <span class="discreet"  tal:content="python:toLocalizedTime(published, long_format=0)">2.3.1971</span>
 			                <h2 class="tileHeadline">
                                 <a href=""
@@ -69,20 +73,20 @@
                                    The title of the article</a>
                             </h2>
                             <div i18n:translate="details_published_in"
-                                 tal:content="structure python: here.bibtool.short_citation(publication.getObject())">
+                                 tal:content="structure python:here.bibtool.short_citation(volume=volume, issue=issue, issuedate=issuedate, startpage=startpage, endpage=endpage, urn=urn)">
                                 Muster, M. Dev Journal, 2005
                             </div>
 			            </li>
 			        </tal:block>
 			    </ol>
-			    
+
 			    <p tal:condition="not: publications">
 			    	The has not yet published any article in this journal.
 			    </p>
 		    </div>
 	    </div>
 	</div> <!-- end simulated tabs -->
-        
+
 
     </tal:main-macro>
 
@@ -90,4 +94,3 @@
 
 </body>
 </html>
-

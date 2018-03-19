@@ -12,7 +12,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import toUnicode
 
-request  = container.REQUEST
+request = container.REQUEST
 RESPONSE = request.RESPONSE
 
 portal_url = getToolByName(self, 'portal_url')
@@ -28,7 +28,7 @@ limit = stool.getMaxItems()
 
 journalsections = avtm.getVocabularyByName('journal-sections')
 section_dict = journalsections.getVocabularyDict(journalsections)
-types = ('articles','events')
+types = ('articles', 'events')
 
 charset = ptool.getProperty('default_charset', None)
 
@@ -42,7 +42,7 @@ try:
 except IndexError:
     section = ""
 
-section_name = section_dict.get(section,"All articles")
+section_name = section_dict.get(section, "All articles")
 
 if len(request.traverse_subpath) == 0 or type not in types:
     context.plone_utils.addPortalMessage(translate('no_valid_feed', domain='dipp'))
@@ -50,34 +50,39 @@ if len(request.traverse_subpath) == 0 or type not in types:
 
 elif type == "articles":
 
-    articles  = catalog(
-                    portal_type='FedoraArticle',
-                    review_state=['published'],
-                    getJournal_section=section,
-                    sort_on='Date',
-                    sort_order='reverse',
-                    sort_limit=limit
-                )[:limit]
+    articles = catalog(
+        portal_type='FedoraArticle',
+        review_state=['published'],
+        getJournal_section=section,
+        sort_on='Date',
+        sort_order='reverse',
+        sort_limit=limit
+    )[:limit]
 
     email = portal.email_from_address
     name = portal.email_from_name
-    editor = "%s (%s)" % (email, name) 
-    title = "%s - %s" % (portal.Title(),section_name)
+    editor = "%s (%s)" % (email, name)
+    title = "%s - %s" % (portal.Title(), section_name)
     description = portal.Description(),
     options = {}
-    
-    options['image_info'] = {'title':title,
-                             'link':portal.absolute_url(),
-                             'url':portal.absolute_url() + '/logo.gif'}
-    
-    options['channel_info'] = { 'base': '2004-12-13T12:00:00Z',
-                            'description':description,
-                            'frequency': stool.getUpdateFrequency(),
-                            'period': stool.getUpdatePeriod(),
-                            'title': title,
-                            'url': context.absolute_url(),
-                            'managingEditor':editor}
+
+    options['image_info'] = {
+        'title': title,
+        'link': portal.absolute_url(),
+        'url': portal.absolute_url() + '/logo.gif'
+    }
+
+    options['channel_info'] = {
+        'base': '2004-12-13T12:00:00Z',
+        'description': description,
+        'frequency': stool.getUpdateFrequency(),
+        'period': stool.getUpdatePeriod(),
+        'title': title,
+        'url': context.absolute_url(),
+        'managingEditor': editor
+    }
     items = []
+
     for article in articles:
         item = article.getObject()
 
@@ -86,19 +91,27 @@ elif type == "articles":
             category = section_dict.get(section, None)
         else:
             category = None
-        citation = bibtool.short_citation(item)
+        citation = bibtool.short_citation(
+            volume=item.Volume,
+            issue=item.Issue,
+            issuedate=item.effective(),
+            startpage=item.startpage,
+            endpage=item.endpage,
+            urn=item.URN
+        )
         abstract = item.getAbstract().decode('utf-8')
         description = "%s: %s" % (citation, abstract)
-        items.append( { 'date':item.effective().HTML4(),
-                        'listCreators': item.Contributors(),
-                        'publisher': item.Publisher(),
-                        'rights': item.Rights(),
-                        'title': item.Title(),
-                        'description': description,
-                        'category':category,
-                        'url': item.absolute_url() } )
+        items.append({
+            'date': item.effective().HTML4(),
+            'listCreators': item.Contributors(),
+            'publisher': item.Publisher(),
+            'rights': item.Rights(),
+            'title': item.Title(),
+            'description': description,
+            'category': category,
+            'url': item.absolute_url()
+        })
 
     options['listItemInfos'] = tuple(items)
     options = toUnicode(options, charset)
     return context.feed_template(**options)
-

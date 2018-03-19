@@ -49,7 +49,7 @@ class BibTool(UniqueObject, SimpleItem):
             author_identifier[scheme] = name
         return author_identifier
 
-    def short_citation(self, article):
+    def short_citation(self, **kwargs):
         """Return short version of the bibligraphic citation.
 
         Calls only plones own catalog and does not wake up Fedora. Used in feeds
@@ -58,18 +58,24 @@ class BibTool(UniqueObject, SimpleItem):
         dp = self.portal_properties.dipp_properties
         mp = self.portal_properties.metadata_properties
         citation_format = dp.short_citation_format
+        journalname = mp.journalname
         journal_shortname = mp.journalname_abbr
-        issuedate = article.IssueDate
+        issuedate = kwargs.get('issuedate', None)
         year = issuedate.strftime('%Y')
+        volume = kwargs.get('volume', None)
+        issue = kwargs.get('issue', None)
+        startpage = kwargs.get('startpage', None)
+        endpage = kwargs.get('endpage', None)
+        urn = kwargs.get('urn', None)
 
         cite = citation_format % {
-            'journal': article.JournalTitle,
+            'journal': journalname,
             'journal_shortname': journal_shortname,
-            'volume': article.Volume,
-            'issue': article.Issue,
-            'startpage': article.startpage,
-            'endpage': article.endpage,
-            'urn': article.URN,
+            'volume': volume,
+            'issue': issue,
+            'startpage': startpage,
+            'endpage': endpage,
+            'urn': urn,
             'issuedate': issuedate,
             'year': year,
         }
@@ -318,7 +324,6 @@ class BibTool(UniqueObject, SimpleItem):
         """Return metadata in DOAJ compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
-
 
     def make_metatags(self, pid, issn, publisher, pdf, startpage, endpage):
         """Return meta tags for google scholar, facebook, twitter
