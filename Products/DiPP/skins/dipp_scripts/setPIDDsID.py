@@ -10,7 +10,7 @@
 
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-request  = container.REQUEST
+request = container.REQUEST
 RESPONSE = request.RESPONSE
 
 # code inspired by:
@@ -26,7 +26,7 @@ if len(sub_path) == 1:
     context.setPID(PID)
     context.reindexObject()
     msg += "PID on '%s' successfully set to %s." % (context.title_or_id(), PID)
-        
+
 
 elif len(sub_path) == 2:
     PID = traverse_subpath[0]
@@ -45,6 +45,3 @@ else:
 
 context.plone_utils.addPortalMessage(msg)
 RESPONSE.redirect('%s/base_view' % context.absolute_url())
-
-
-
