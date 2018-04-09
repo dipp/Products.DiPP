@@ -32,7 +32,7 @@ def install_properties(self, out, site_id=SITE_NAME):
     site.portal_memberdata.manage_changeProperties({'wysiwyg_editor': WYSIWYG_EDITOR})
 
     dipp_properties = (
-        ('deadline_max', 'int', DEADLINE_MAX) ,
+        ('deadline_max', 'int', DEADLINE_MAX),
         ('deadline_default', 'int', DEADLINE_DEFAULT),
         ('deadline_red', 'int', DEADLINE_RED),
         ('deadline_yellow', 'int', DEADLINE_YELLOW),
@@ -102,19 +102,19 @@ def install_properties(self, out, site_id=SITE_NAME):
     props = self.portal_properties.dippreview_properties
 
     dippreview_properties = (
-        ('submission_counter',                    'int',    0),
-        ('submission_prefix',                     'string', 'dipp'),
-        ('max_review_time',                       'float',  70),
-        ('review_time',                           'float',  42),
-        ('min_reviewers',                         'int',    2),
-        ('friendly_reminder_times',               'lines',  (3, 7, 14)),
-        ('deadline_reminder_times',               'lines',  (7, 2)),
-        ('due_reminder_times',                    'lines',  (1, 4, 10)),
-        ('abstract_length',                       'int',    2000),
-        ('manuscript_mimetypes',                  'lines',  ('application/rtf', 'application/pdf')),
-        ('additional_manuscript_files',           'boolean', True),
-        ('supplementary_mimetypes',               'lines',  ('application/rtf', 'application/pdf')),
-        ('votes',                                 'lines',  ('accept', 'accept with remarks', 'reject')),
+        ('submission_counter', 'int', 0),
+        ('submission_prefix', 'string', 'dipp'),
+        ('max_review_time', 'float', 70),
+        ('review_time', 'float', 42),
+        ('min_reviewers', 'int', 2),
+        ('friendly_reminder_times', 'lines', (3, 7, 14)),
+        ('deadline_reminder_times', 'lines', (7, 2)),
+        ('due_reminder_times', 'lines', (1, 4, 10)),
+        ('abstract_length', 'int', 2000),
+        ('manuscript_mimetypes', 'lines', ('application/rtf', 'application/pdf')),
+        ('additional_manuscript_files', 'boolean', True),
+        ('supplementary_mimetypes', 'lines', ('application/rtf', 'application/pdf')),
+        ('votes', 'lines', ('accept', 'accept with remarks', 'reject')),
         ('email_header', 'text', EMAIL_HEADER),
         ('email_footer', 'text', EMAIL_FOOTER),
         ('submit_pr_sectioneditor_subject', 'string', SUBMIT_PR_SECTIONEDITOR_SUBJECT),
@@ -168,6 +168,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('analytics_javascript', 'text', ANALYTICS_JAVASCRIPT),
         ('analytics_javascript_notfound', 'text', ANALYTICS_JAVASCRIPT_NOTFOUND)
     )
+
     for prop_id, prop_type, prop_value in site_properties:
         if not hasattr(props, prop_id):
             props._setProperty(prop_id, prop_value, prop_type)
@@ -200,111 +201,111 @@ def configure_workflow(self, out, site_id=SITE_NAME):
                   finish_mode=1)
     reftool.addApplication('pub_initialize_form', '../pub_initialize_form')
 
-    p.addActivity(id = 'bearbeiten',
-                  split_mode = 'and',
-                  join_mode = 'xor',
-                  description = 'Artikeldateien bearbeiten',
-                  application = 'pub_edit_form',
-                  finish_mode = 1)
+    p.addActivity(id='bearbeiten',
+                  split_mode='and',
+                  join_mode='xor',
+                  description='Artikeldateien bearbeiten',
+                  application='pub_edit_form',
+                  finish_mode=1)
     reftool.addApplication('pub_edit_form', '../pub_edit_form')
 
-    p.addActivity(id = 'begutachten',
-                  split_mode = 'xor',
-                  join_mode = 'xor',
-                  description = 'Artikeldateien begutachten',
-                  application = 'pub_check_form',
-                  finish_mode = 1)
+    p.addActivity(id='begutachten',
+                  split_mode='xor',
+                  join_mode='xor',
+                  description='Artikeldateien begutachten',
+                  application='pub_check_form',
+                  finish_mode=1)
     reftool.addApplication('pub_check_form', '../pub_check_form')
 
-    p.addActivity(id = 'freischalten',
-                  split_mode = 'and',
-                  join_mode = 'and',
-                  description = 'Artikel freigeben',
-                  application = 'pub_publish_form',
-                  finish_mode = 1)
+    p.addActivity(id='freischalten',
+                  split_mode='and',
+                  join_mode='and',
+                  description='Artikel freigeben',
+                  application='pub_publish_form',
+                  finish_mode=1)
     reftool.addApplication('pub_publish_form', '../pub_publish_form')
 
-    p.addActivity(id = 'imprimatur',
-                  split_mode = 'and',
-                  join_mode = 'and',
-                  description = 'Imprimatur des Autors',
-                  application = 'pub_imprimatur_form',
-                  auto_push_mode = 1,
-                  push_application = 'route_to_author',
-                  finish_mode = 1)
+    p.addActivity(id='imprimatur',
+                  split_mode='and',
+                  join_mode='and',
+                  description='Imprimatur des Autors',
+                  application='pub_imprimatur_form',
+                  auto_push_mode=1,
+                  push_application='route_to_author',
+                  finish_mode=1)
     reftool.addApplication('pub_imprimatur_form', '../pub_imprimatur_form')
     reftool.addApplication('route_to_author', 'route_to_author')
 
-    p.addActivity(id = 'anschreiben',
-                  split_mode = 'and',
-                  join_mode = 'and',
-                  description = 'Autor Anschreiben',
-                  application = 'pub_notice_form',
-                  finish_mode = 1)
+    p.addActivity(id='anschreiben',
+                  split_mode='and',
+                  join_mode='and',
+                  description='Autor Anschreiben',
+                  application='pub_notice_form',
+                  finish_mode=1)
     reftool.addApplication('pub_notice_form', '../pub_notice_form')
 
-    p.addActivity(id = 'absegnen',
-                  split_mode = 'and',
-                  join_mode = 'and',
-                  description = 'Segen des Gastherausgebers',
-                  application = 'pub_approve_form',
-                  finish_mode = 1)
+    p.addActivity(id='absegnen',
+                  split_mode='and',
+                  join_mode='and',
+                  description='Segen des Gastherausgebers',
+                  application='pub_approve_form',
+                  finish_mode=1)
     reftool.addApplication('pub_approve_form', '../pub_approve_form')
 
     # Edit the Begin and End activities
-    begin = getattr(p,'Begin')
-    begin.edit(split_mode = 'and', join_mode = 'and', kind = 'dummy')
-    end = getattr(p,'End')
-    end.edit(split_mode = 'and', join_mode = 'and', kind = 'dummy')
+    begin = getattr(p, 'Begin')
+    begin.edit(split_mode='and', join_mode='and', kind='dummy')
+    end = getattr(p, 'End')
+    end.edit(split_mode='and', join_mode='and', kind='dummy')
 
     # Creates Transitions
-    p.addTransition(id = 'Begin_initialize',
-                    From = 'Begin',
-                    To = 'initialize')
+    p.addTransition(id='Begin_initialize',
+                    From='Begin',
+                    To='initialize')
 
-    p.addTransition(id = 'initialize_bearbeiten',
-                    From = 'initialize',
-                    To = 'bearbeiten')
+    p.addTransition(id='initialize_bearbeiten',
+                    From='initialize',
+                    To='bearbeiten')
 
-    p.addTransition(id = 'bearbeiten_begutachten',
-                    From = 'bearbeiten',
-                    To = 'begutachten')
+    p.addTransition(id='bearbeiten_begutachten',
+                    From='bearbeiten',
+                    To='begutachten')
 
-    p.addTransition(id = 'begutachten_bearbeiten',
-                    From = 'begutachten',
-                    To = 'bearbeiten',
-                    condition = 'python:not here.formalOK')
+    p.addTransition(id='begutachten_bearbeiten',
+                    From='begutachten',
+                    To='bearbeiten',
+                    condition='python:not here.formalOK')
 
-    p.addTransition(id = 'imprimatur_begutachten',
-                    From = 'imprimatur',
-                    To = 'begutachten')
+    p.addTransition(id='imprimatur_begutachten',
+                    From='imprimatur',
+                    To='begutachten')
 
-    p.addTransition(id = 'begutachten_freischalten',
-                    From = 'begutachten',
-                    To = 'freischalten',
-                    condition = 'python:here.formalOK and here.autorOK and here.gastHrsgOK')
+    p.addTransition(id='begutachten_freischalten',
+                    From='begutachten',
+                    To='freischalten',
+                    condition='python:here.formalOK and here.autorOK and here.gastHrsgOK')
 
-    p.addTransition(id = 'freischalten_end',
-                    From = 'freischalten',
-                    To = 'End')
+    p.addTransition(id='freischalten_end',
+                    From='freischalten',
+                    To='End')
 
-    p.addTransition(id = 'begutachten_anschreiben',
-                    From = 'begutachten',
-                    To = 'anschreiben',
-                    condition = 'python:here.formalOK and not here.autorOK')
+    p.addTransition(id='begutachten_anschreiben',
+                    From='begutachten',
+                    To='anschreiben',
+                    condition='python:here.formalOK and not here.autorOK')
 
-    p.addTransition(id = 'anschreiben_imprimatur',
-                    From = 'anschreiben',
-                    To = 'imprimatur')
+    p.addTransition(id='anschreiben_imprimatur',
+                    From='anschreiben',
+                    To='imprimatur')
 
-    p.addTransition(id = 'begutachten_absegnen',
-                    From = 'begutachten',
-                    To = 'absegnen',
-                    condition = 'python:here.formalOK and here.autorOK and not here.gastHrsgOK')
+    p.addTransition(id='begutachten_absegnen',
+                    From='begutachten',
+                    To='absegnen',
+                    condition='python:here.formalOK and here.autorOK and not here.gastHrsgOK')
 
-    p.addTransition(id = 'absegnen_begutschten',
-                    From = 'absegnen',
-                    To = 'begutachten')
+    p.addTransition(id='absegnen_begutschten',
+                    From='absegnen',
+                    To='begutachten')
 
     print >> out, "Added Transitions\n"
 
@@ -321,37 +322,37 @@ def configure_workflow(self, out, site_id=SITE_NAME):
 
     print >> out, 'Set Pull or Push permissions\n'
 
-    print >> out,'DiPP Workflow Setup Done\n Finished\n'
-
+    print >> out, 'DiPP Workflow Setup Done\n Finished\n'
 
     portal_actions = getToolByName(site, 'portal_actions')
 
     portal_actions.addAction(
-                id = 'Submit',
-                name = 'Submit',
-                action = 'string: ${portal_url}/submitemail_form',
-                condition = '',
-                permission = '',
-                category = 'portal_tabs',
-                visible = 1)
+        id='Submit',
+        name='Submit',
+        action='string: ${portal_url}/submitemail_form',
+        condition='',
+        permission='',
+        category='portal_tabs',
+        visible=1)
 
     portal_actions.addAction(
-                id = 'authors',
-                name = 'Authors',
-                action = 'string: ${portal_url}/authors',
-                condition = '',
-                permission = '',
-                category = 'portal_tabs',
-                visible = 1)
+        id='authors',
+        name='Authors',
+        action='string: ${portal_url}/authors',
+        condition='',
+        permission='',
+        category='portal_tabs',
+        visible=1)
 
     portal_actions.addAction(
-                id = 'currentissue',
-                name = 'Current issue',
-                action = 'string: ${portal_url}/currentissue',
-                condition = '',
-                permission = '',
-                category = 'portal_tabs',
-                visible = 1)
+        id='currentissue',
+        name='Current issue',
+        action='string: ${portal_url}/currentissue',
+        condition='',
+        permission='',
+        category='portal_tabs',
+        visible=1)
+
 
 def install_groups_and_roles(self, out, site_id=SITE_NAME):
 
@@ -360,20 +361,19 @@ def install_groups_and_roles(self, out, site_id=SITE_NAME):
     groups = ('Herausgeber', 'Redakteure', 'Gastherausgeber', 'Autoren', 'Manager', 'peerreviewer', 'sectioneditors')
 
     for group in groups:
-        site.portal_groups.addGroup(group,(),())
+        site.portal_groups.addGroup(group, (), ())
 
     site.portal_groups.editGroup('Autoren', ['Peer'])
 
-    roles =('pr_Author', 'pr_EditorInChief', 'pr_GuestEditor', 'pr_Reviewer', 'pr_ReviewerInvited', 'pr_SectionEditor')
+    roles = ('pr_Author', 'pr_EditorInChief', 'pr_GuestEditor', 'pr_Reviewer', 'pr_ReviewerInvited', 'pr_SectionEditor')
 
     for role in roles:
         site._addRole(role)
 
     # permissions in OpenFlow
     reftool = getToolByName(site, 'portal_openflow')
-    for role in ['Redakteur','Herausgeber', 'Autor', 'Gastherausgeber', 'Peer']:
+    for role in ['Redakteur', 'Herausgeber', 'Autor', 'Gastherausgeber', 'Peer']:
         reftool.manage_role(role, ('Manage properties',))
-
 
     print >> out, "Set roles to groups"
 
@@ -408,7 +408,7 @@ def install_metadataproperties(self, out):
             props.manage_addProperty(id=prop_id, value=prop_value, type=prop_type)
 
 
-def install_dependencies(self,out,site_id=SITE_NAME):
+def install_dependencies(self, out, site_id=SITE_NAME):
     """Try to install dependencies to other products"""
 
     print >> out, "Dependency %s:" % str(len(DEPENDENCIES))
