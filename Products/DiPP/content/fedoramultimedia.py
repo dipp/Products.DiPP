@@ -28,44 +28,48 @@ from Products.DiPP import Permissions
 logger = logging.getLogger(__name__)
 
 FedoraMultimediaSchema = BaseSchema + Schema((
-        FileField('File',
-                required=0,
-                primary=1,
-                widget=FileWidget(
-                    label='File',
-                    description='Multimedia file'
-                ),
+    FileField(
+        'File',
+        required=0,
+        primary=1,
+        widget=FileWidget(
+            label='File',
+            description='Multimedia file'
         ),
-        StringField('PID',
-                required=0,
-                widget=StringWidget(
-                    label='Persistent Identifier (PID)',
-                    description='The PID of this digital object as given by the repository software. DO NOT EDIT.',
-                    size='15',
-                    visible={'edit':'invisible','view':'visible'}
-                ),
+    ),
+    StringField(
+        'PID',
+        required=0,
+        widget=StringWidget(
+            label='Persistent Identifier (PID)',
+            description='The PID of this digital object as given by the repository software. DO NOT EDIT.',
+            size='15',
+            visible={'edit': 'invisible', 'view': 'visible'}
         ),
-        StringField('DsID',
-                required=0,
-                widget=StringWidget(
-                    label='Datastream Identifier (DsID)',
-                    description='The Datastream Identifier. DO NOT EDIT.',
-                    size='15',
-                    visible={'edit':'invisible','view':'visible'}
-                )
-        ),
-        StringField('MMType',
-                required=0,
-                widget=SelectionWidget(
-                    label='Multimedia type',
-                    description='You can select, wether this file should be listed separatly in one of the categories below.'
-                ),
-                multiValued=0,
-                default = "",
-                vocabulary = "getTypeOfList"
+    ),
+    StringField(
+        'DsID',
+        required=0,
+        widget=StringWidget(
+            label='Datastream Identifier (DsID)',
+            description='The Datastream Identifier. DO NOT EDIT.',
+            size='15',
+            visible={'edit': 'invisible', 'view': 'visible'}
         )
     ),
-    marshall=PrimaryFieldMarshaller()
+    StringField(
+        'MMType',
+        required=0,
+        widget=SelectionWidget(
+            label='Multimedia type',
+            description='You can select, wether this file should be listed separatly in one of the categories below.'
+        ),
+        multiValued=0,
+        default="",
+        vocabulary="getTypeOfList"
+    )
+),
+marshall=PrimaryFieldMarshaller()
 )
 
 
@@ -87,8 +91,8 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
     security = ClassSecurityInfo()
 
     def reindex_article(self):
-        """ if this object is a pdf version of the article the article has to be
-            reindexed upon changes/creation.
+        """If this object is a pdf version of the article the article has to be
+        reindexed upon changes/creation.
         """
         if self.MMType == "alternative_format":
             article = self.getParentNode()
@@ -96,12 +100,12 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
             logger.info("reindexed %s" % article.PID)
 
     def at_post_create_script(self):
-        """ reindex article folder when pdf flltext is added
+        """Reindex article folder when pdf fulltext is added.
         """
         self.reindex_article()
 
     def at_post_edit_script(self):
-        """ reindex article folder when pdf flltext is modified
+        """Reindex article folder when pdf fulltext is modified.
         """
         self.reindex_article()
 
@@ -128,6 +132,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         return None
 
     security.declareProtected(View, 'index_html')
+
     def index_html(self, REQUEST=None, RESPONSE=None):
         """ fetch a file from the repository
         """
@@ -142,6 +147,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         return stream
 
     security.declareProtected(View, 'preview')
+
     def preview(self, REQUEST=None, RESPONSE=None):
         """Download the file
         """
@@ -156,6 +162,7 @@ class FedoraMultimedia(BrowserDefaultMixin, BaseContent):
         return field.download(self)
 
     security.declareProtected(View, 'getTypeOfList')
+
     def getTypeOfList(self):
         vocabulary = (
             ('', 'Do not list.'),
