@@ -16,10 +16,10 @@
   <h1 i18n:translate="heading_registration_form">Registration Form</h1>
 
   <p i18n:translate="" i18n:domain="dipp">
-    During the registration  process, you will ask to enter information in a number of fields, 
-    including your name, e-mail address, and other information. Any information that you enter 
-    into these fields will be sent to editor board  and stored in a database. The editor board 
-    does not share or sell your information with any third parties. 
+    During the registration  process, you will ask to enter information in a number of fields,
+    including your name, e-mail address, and other information. Any information that you enter
+    into these fields will be sent to editor board  and stored in a database. The editor board
+    does not share or sell your information with any third parties.
   </p>
   <p>
     Required fields are marked with a red dot.
@@ -84,7 +84,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/givenname| nothing;
                        givenname request/givenname | nothing;
@@ -95,7 +95,7 @@
 
         <label for="givenname"
                i18n:translate="label_givenname">Given Name</label>
-               
+
         <span class="fieldRequired" title="Required"
               tal:condition="required"
               i18n:attributes="title title_required;"
@@ -118,7 +118,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/surname| nothing;
                        surname request/surname | nothing;
@@ -152,7 +152,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/email | nothing;
                        email request/email | nothing;"
@@ -166,7 +166,7 @@
               i18n:translate="label_required">(required)</span>
 
               <div class="formHelp" i18n:translate="help_email_creation">
-                Enter an email address. 
+                Enter an email address.
               </div>
 
               <div tal:content="error">Validation error output</div>
@@ -180,7 +180,7 @@
                                      tabindex tabindex/next;"
                      />
       </div>
-      
+
       <div class="field"
            tal:define="error errors/phone | nothing;
                        phone request/phone | nothing;
@@ -212,7 +212,7 @@
                                      tabindex tabindex/next;"
                      />
       </div>
-      
+
       <div class="field"
            tal:define="error errors/organization| nothing;
                        organization request/organization | nothing;
@@ -246,7 +246,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/postaladdress| nothing;
                        postaladdress request/postaladdress | nothing;
@@ -280,7 +280,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/postalcode| nothing;
                        postalcode request/postalcode | nothing;
@@ -314,7 +314,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/location| nothing;
                        location request/location | nothing;
@@ -347,7 +347,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/country| nothing;
                        country request/country | nothing;
@@ -368,7 +368,7 @@
         </div>
 
         <div tal:content="error">Validation error output</div>
-        
+
         <select
                name="country"
                id="country"
@@ -386,7 +386,7 @@
         </select>
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/homepage| nothing;
                        homepage request/homepage | nothing;
@@ -419,7 +419,7 @@
                />
 
       </div>
-      
+
       <div class="field"
            tal:define="error errors/username| nothing;
                        username request/username | nothing;"
@@ -539,25 +539,25 @@
           e-mailed to you to complete the registration process.
         </div>
       </div>
-
+      <tal:comment tal:replace="nothing">
       <div class="field"
            tal:define="error errors/recaptcha|nothing;
                        public_captcha_key python:here.Utils.get_recaptcha_keys()['public']"
            tal:attributes="class python:test(error, 'field error', 'field')">
           <label for="recaptcha_response_field"
                  i18n:translate="label_recaptcha">Bitte geben Sie den abgebildeten Text, bzw. die Ziffern ein.</label>
-       
+
           <span class="fieldRequired" title="Required"
                 i18n:attributes="title title_required;"
                 i18n:translate="label_required">(required)</span>
-          
+
           <div tal:content="error">Validation error output</div>
-          
+
           <div i18n:translate="help_recaptcha"
                class="formHelp">
                Diese Sicherheitsabfrage soll Spammer daran hindern, dieses Formular zu verwenden.
           </div>
-         
+
           <script type="text/javascript"
                   src=""
                   tal:attributes="src string:https://www.google.com/recaptcha/api/challenge?k=$public_captcha_key">
@@ -571,6 +571,35 @@
              <input type="hidden" name="recaptcha_response_field"
                  value="manual_challenge">
           </noscript>
+      </div>
+      </tal:comment>
+
+      <div class="field"
+           tal:define="error errors/privacy|nothing"
+           tal:attributes="class python:test(error, 'field error', 'field')">
+
+          <tal:comment tal:replace="nothing">
+              <div class="formHelp" i18n:translate="help_privacy">
+                  Hilfetext
+              </div>
+          </tal:comment>
+
+          <div tal:condition="error"
+               tal:content="error">Validation error output</div>
+
+          <input type="checkbox"
+                 name="privacy"
+                 id="privacy" />
+
+          <label for="privacy" class="inline">
+                  Ich stimme hiermit zu, dass meine im Formular eingegebenen Daten für die Beantwortung meiner Anfrage
+                  vom hbz gemäß der
+                  <a href="" tal:attributes="href string:$portal_url/datenschutz">Datenschutzvereinbarung</a>
+                  verarbeitet werden.
+                  <span class="fieldRequired" title="Required"
+                  i18n:attributes="title title_required;"
+                  i18n:translate="label_required">(Required)</span>
+          </label>
       </div>
 
       <div class="formControls">
@@ -592,4 +621,3 @@
 
 </body>
 </html>
-
