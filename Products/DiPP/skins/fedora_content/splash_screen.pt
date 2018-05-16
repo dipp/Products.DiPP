@@ -24,11 +24,11 @@
                      avtm python:here.portal_vocabularies;
                      journalsections python:avtm.getVocabularyByName('journal-sections');
                      section_dict python:journalsections.getVocabularyDict(journalsections);">
-                               
+
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
-        
+
         <h1 class="documentFirstHeading splash_screen"
             tal:content="python: section_dict[here.journal_section]">
             Article
@@ -41,15 +41,19 @@
         <div metal:use-macro="here/fulltext_macro/macros/fulltext">
             Fulltext in alternative formats (pdf) with Zählpixel, if any.
         </div>
+
+        <div metal:use-macro="here/fulltext_macro/macros/metis">
+            Zählpixel
+        </div>
         
         <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
             A list of supplementary materials.
         </div>
-        
+
         <div metal:use-macro="here/rights_macro/macros/rights">
-           some explanation about the rights and link to the licence 
+           some explanation about the rights and link to the licence
         </div>
-            
+
         <div metal:use-macro="here/citation_macro/macros/recommended_citation">
             Show a custom formatted recommended citation
         </div>
@@ -57,11 +61,11 @@
         <div metal:use-macro="here/citation_macro/macros/google_scholar">
             Show this paper and its citations with google scholar
         </div>
-        
+
         <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
             Comments which are treated like peer reviewed articles
         </div>
-            
+
 
         </tal:block>
     </tal:main-macro>

@@ -21,7 +21,7 @@
                      avtm python:here.portal_vocabularies;
                      journalsections python:avtm.getVocabularyByName('journal-sections');
                      section_dict python:journalsections.getVocabularyDict(journalsections);">
-        
+
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
@@ -30,7 +30,7 @@
             tal:content="python: section_dict[here.journal_section]">
             Article
         </h1>
-         
+
         <div tal:condition="comment_to"
              tal:define="results python:here.portal_catalog.searchResults(getPID=comment_to)">
              <p tal:repeat="result results">
@@ -44,7 +44,7 @@
                 </tal:block>
              </p>
         </div>
-        
+
         <div metal:use-macro="here/authorblurb/macros/authorblurb">
             pretty formattedheader generated from the qualified dublincore metadata
         </div>
@@ -52,11 +52,11 @@
         <div class="stx mixed" tal:define="content python:here.fedora.accessByFedoraURL(PID,DsID,Date=None);
                                            MIMEType python:content['MIMEType']"
                          tal:condition="python:DsID.startswith('DS')">
-            <div tal:condition="python:content['MIMEType'] != 'text/xml' " 
+            <div tal:condition="python:content['MIMEType'] != 'text/xml' "
                  tal:replace="structure python:content['stream']">
                 Hier kommt der Inhalt hin
             </div>
-            <pre tal:condition="python:content['MIMEType'] == 'text/xml' " 
+            <pre tal:condition="python:content['MIMEType'] == 'text/xml' "
                  tal:content="python:content['stream']">
                 Hier kommt der Inhalt hin
             </pre>
@@ -66,7 +66,11 @@
         <div metal:use-macro="here/fulltext_macro/macros/fulltext">
             Fulltext in alternative formats (pdf) with Zählpixel, if any.
         </div>
-        
+
+        <div metal:use-macro="here/fulltext_macro/macros/metis">
+            Zählpixel
+        </div>
+
         <div metal:use-macro="here/supplementary_material_macro/macros/supplementary_material">
             A list of supplementary materials.
         </div>
@@ -79,17 +83,17 @@
                    i18n:domain="dipp">
 
             <div metal:use-macro="here/rights_macro/macros/rights">
-               some explanation about the rights and link to the licence 
+               some explanation about the rights and link to the licence
             </div>
 
             <div metal:use-macro="here/citation_macro/macros/recommended_citation">
                 Show a custom formatted recommended citation
             </div>
-           
+
             <div metal:use-macro="here/persistent_comments_macro/macros/persistent_comments">
                 Comments which are treated like peer reviewed articles
             </div>
-            
+
         </tal:block>
 
         <div metal:use-macro="here/document_byline/macros/byline">
@@ -99,4 +103,3 @@
 </metal:main>
 </body>
 </html>
-

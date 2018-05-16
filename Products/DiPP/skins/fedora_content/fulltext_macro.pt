@@ -2,35 +2,35 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     i18n:domain="Plone">
     <body>
-    
+
         <div metal:define-macro="metis"
              i18n:domain="dipp"
-             tal:condition="python: pixel_domain and pixel_id"
-             tal:define="pixel_domain here/pixel_domain|nothing;
+             tal:condition="python:pixel_id"
+             tal:define="pixel_domain string:ssl-vg03;
                          pixel_id here/pixel_id|nothing;">
-             
-                   <img tal:define="vgwort_url string:http://$pixel_domain.met.vgwort.de/na/$pixel_id"
+
+                   <img tal:define="vgwort_url string:https://$pixel_domain.met.vgwort.de/na/$pixel_id"
                         tal:attributes="src vgwort_url"
                         width="1" height="1" alt="" />
         </div>
 
-        
+
         <div metal:define-macro="fulltext"
              i18n:domain="dipp"
              tal:define="articleFolder python:test(here.id == 'fulltext',here.getParentNode(),here);
-                         path python:'/'.join(articleFolder.getPhysicalPath()); 
+                         path python:'/'.join(articleFolder.getPhysicalPath());
                          all_pdfs here/getFulltextPdfs">
 
             <h2>
                 <span i18n:translate="heading_fulltext" i18n:domain="dipp" id="fulltext" name="fulltext">Fulltext</span>
-                <a class="permalink" 
-                   href="#fulltext" 
+                <a class="permalink"
+                   href="#fulltext"
                    i18n:attributes="title title_permalink"
                    title="Permalink für diese Überschrift">¶</a>
             </h2>
 
             <ul>
-            <!--PDF-->            
+            <!--PDF-->
             <tal:block tal:condition="all_pdfs"
                        tal:repeat="key all_pdfs">
                 <li tal:define="pdfs python:all_pdfs[key];
@@ -93,11 +93,11 @@
                         </span>
                         )
                     </span>
-                   </tal:block>  
-                
+                   </tal:block>
+
                 </li>
             </tal:block>
-            
+
             <!--EPUB-->
             <li tal:define="enable_ebookey here/portal_properties/dipp_properties/enable_ebookey|nothing;
                             url string:${here/absolute_url}/ebookey;
