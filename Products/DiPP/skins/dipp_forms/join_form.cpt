@@ -592,8 +592,7 @@
                  id="privacy" />
 
           <label for="privacy" class="inline">
-                  Ich stimme hiermit zu, dass meine im Formular eingegebenen Daten für die Beantwortung meiner Anfrage
-                  vom hbz gemäß der
+                  Ich stimme hiermit zu, dass meine im Formular eingegebenen Daten gemäß der
                   <a href="" tal:attributes="href string:$portal_url/datenschutz">Datenschutzvereinbarung</a>
                   verarbeitet werden.
                   <span class="fieldRequired" title="Required"
