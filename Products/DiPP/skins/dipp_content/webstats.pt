@@ -26,10 +26,10 @@
           </script>
 
           <noscript>
-                <img tal:attributes="src python:'https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=%s&rec=1' % analytics_id" style="border:0" alt="" />
+                <img tal:attributes="src python:'https://%s/piwik.php?idsite=%s&rec=1' % (analytics_server, analytics_id)" style="border:0" alt="" />
           </noscript>
       </tal:block>
-      
+
     </div>
 
   </body>
