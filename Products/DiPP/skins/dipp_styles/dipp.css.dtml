@@ -1,15 +1,15 @@
 /*
- *  This is the file where you put your CSS changes. 
- *  You should preferrably use this and override the 
- *  relevant properties you want to change here instead 
+ *  This is the file where you put your CSS changes.
+ *  You should preferrably use this and override the
+ *  relevant properties you want to change here instead
  *  of customizing plone.css to survive upgrades. Writing
- *  your own plone.css only makes sense for very heavy 
- *  customizations. Useful variables from Plone are 
+ *  your own plone.css only makes sense for very heavy
+ *  customizations. Useful variables from Plone are
  *  documented at the bottom of this file.
  *
  *  -- Alexander Limi, http://www.plonesolutions.com
  */
- 
+
 /* <dtml-with base_properties> (do not remove this :) */
 /* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
 
@@ -71,7 +71,7 @@ ol.volume_content {
 ol.volume_content div.issuepicture {
     float: left;
     width: 120px;
-} 
+}
 ol.volume_content div.issuepicture {
 }
 ol.volume_content div.issueinfo {
@@ -92,7 +92,7 @@ ol.volume_content div.showcover div.issuecontent {
 }
 h2.special-issue-heading {
     clear: both;
-} 
+}
 
 #special-issue-toc  {
     list-style: none;
@@ -179,12 +179,12 @@ input.journalIssueDate { width: 10em; }
 input[type=submit][disabled=disabled] {
     background-color:#eeeeee;
     color: #555;
-    cursor: default; 
+    cursor: default;
 }
 input[readonly] {
 	padding-left: 20px;
-	background-image: url(&dtml-portal_url;/lock_icon.gif); 
-    background-repeat: no-repeat; 
+	background-image: url(&dtml-portal_url;/lock_icon.gif);
+    background-repeat: no-repeat;
     background-position: 2px 2px;
     background-color:#eeeeee;
     color: #555;
@@ -307,7 +307,7 @@ div.portletContent {
     list-style: none;
     margin-left: 0;
 
-} 
+}
 
 /* worklist */
 .worklist th {
@@ -345,8 +345,8 @@ ul.list-of-feeds {
 }
 ul.list-of-feeds li a{
 	padding-left: 20px;
-	background-image: url(&dtml-portal_url;/rss.gif); 
-    background-repeat: no-repeat; 
+	background-image: url(&dtml-portal_url;/rss.gif);
+    background-repeat: no-repeat;
     background-position: 0% 0%;
 }
 
@@ -397,82 +397,81 @@ tr.highlighted {
     margin-bottom: 0.5em;
     padding: 0.5em;
 }
+iframe.optout {
+   width: 100%;
+   height: 200px;
+}
 
 /* </dtml-with> */
 
 /* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
 
- /* You can insert colors and other variables from Plone's 
+ /* You can insert colors and other variables from Plone's
     base_properties by doing:
-    
+
     & dtml-variableName ; (without the spaces, excluded here to not make it render)
-    
+
     Example:
-    
+
     myLink {
         color: & dtml-fontColor ;   (again, without the spaces)
     }
- 
+
    This means you can generate your own elements that use Plone's defaults,
    and respect any customizations people have done. See base_properties for
    the default values.
- 
+
    These are the available properties:
-   
-   logoName - the file name of the portal logo. 
-   
+
+   logoName - the file name of the portal logo.
+
    fontFamily - the font family used for all test that is not headers
-   
+
    fontBaseSize - the base font size that everything is calculated from
-   
+
    fontColor - the main font color
-   
-   backgroundColor - the background color 
-   
+
+   backgroundColor - the background color
+
    linkColor - the color used on normal links
 
    linkActiveColor - color used on active links
 
    linkVisitedColor - color used on visited links
-   
+
    borderWidth - the width of most borders in Plone
-   
+
    borderStyle - the style of the border lines, normally solid
-   
+
    borderStyleAnnotations - style of border lines on comments etc
-   
+
    globalBorderColor - the border color used on the main tabs, the portlets etc
-   
+
    globalBackgroundColor - background color for the selected tabs, portlet headings etc
-   
+
    globalFontColor - the color of the font in the tabs and in portlet headings
-   
+
    headingFontFamily - font family for h1/h2/h3/h4/h5/h6 headlines.
-   
+
    headingFontBaseSize - the base size used when calculating the different headline sizes
-   
+
    contentViewBorderColor - the content view tabs border color
-   
+
    contentViewBackgroundColor - the content view tabs background color
-   
+
    contentViewFontColor - the font color used in the content view tabs
-   
+
    textTransform - whether to lowercase text in portlets, tabs etc.
-   
+
    evenRowBackgroundColor - the background color of even rows in listings
-   
+
    oddRowBackgroundColor - the background color of even rows in listings
-   
+
    notifyBorderColor - border color of notification elements like the status message, the calendar focus
-   
+
    notifyBackgroundColor - background color of notification elements like the status message, the calendar focus
-   
+
    discreetColor:string=#999999
    helpBackgroundColor:string=#ffffe1
- 
+
  */
-
-
-
-
-
