@@ -10,6 +10,7 @@
                     analytics_id here/portal_properties/site_properties/analytics_id|nothing;
                     analytics_javascript here/portal_properties/site_properties/analytics_javascript|nothing;
                     analytics_javascript_notfound here/portal_properties/site_properties/analytics_javascript_notfound|nothing;
+                    cookieconsens_javascript here/portal_properties/site_properties/cookieconsens_javascript|nothing;
                     err_type options/error_type|nothing;"
         tal:condition="analytics_id">
 
@@ -28,6 +29,11 @@
           <noscript>
                 <img tal:attributes="src python:'https://%s/piwik.php?idsite=%s&rec=1' % (analytics_server, analytics_id)" style="border:0" alt="" />
           </noscript>
+
+          <script type="text/javascript"
+                  tal:condition="cookieconsens_javascript"
+                  tal:content="cookieconsens_javascript">
+          </script>
       </tal:block>
 
     </div>
