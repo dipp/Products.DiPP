@@ -126,21 +126,23 @@
                 </tr>
                 <tr>
                     <th i18n:translate="label_rights">Rechte</th>
-                        <td tal:content="rights">123</td>
+                    <td tal:content="rights">123</td>
                 </tr>
                 <tr>
                     <th i18n:translate="label_URN">URN</th>
-                        <td>
-                            <a href=""
-                               tal:attributes="href string:http://nbn-resolving.org/urn/resolver.pl?urn=$urn" 
-                               tal:content="urn">urn:nbn:de:0009-1-1234</a></td>
+                    <td>
+                        <a href=""
+                           tal:attributes="href string:https://nbn-resolving.org/$urn" 
+                           tal:content="urn">urn:nbn:de:0009-1-1234</a>
+                    </td>
                 </tr>
                 <tr>
                     <th i18n:translate="label_DOI">DOI</th>
-                        <td>
-                            <a href=""
-                               tal:attributes="href string:http://nbn-resolving.org/urn/resolver.pl?urn=$urn" 
-                               tal:content="doi">urn:nbn:de:0009-1-1234</a></td>
+                    <td>
+                        <a href=""
+                           tal:attributes="href string:https://doi.org/$doi" 
+                           tal:content="doi">urn:nbn:de:0009-1-1234</a>
+                    </td>
                 </tr>
             </table>
         <!--

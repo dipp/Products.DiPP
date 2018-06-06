@@ -104,7 +104,7 @@
                 <li tal:condition="urn"
                     class="urn">
                     <abbr title="Uniform Resource Name">URN</abbr>:
-                    <a tal:content="urn" tal:attributes="href string:http://nbn-resolving.de/$urn">urn:nbn:de:0009-81-19666</a>
+                    <a tal:content="urn" tal:attributes="href string:https://nbn-resolving.org/$urn">urn:nbn:de:0009-81-19666</a>
                 </li>
                 <tal:block tal:repeat="subject subjects"
                            tal:condition="python:subjects and show_classified_subjects"
