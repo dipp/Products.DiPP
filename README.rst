@@ -45,8 +45,32 @@ Python Modules
 * dipp.datacite
 * dipp.awstats
 
+
 Installation
 ------------
+Install Python 2.4
+
+.. code-block:: bash
+
+    $ wget https://www.python.org/ftp/python/2.4.6/Python-2.4.6.tar.bz2
+
+Edit Modules/Setup.dist at about line 206 to enable `SSL Support`_:
+
+.. code-block:: bash
+
+    # Socket module helper for socket(2)
+    _socket socketmodule.c
+
+    # Socket module helper for SSL support; you must comment out the other
+    # socket line above, and possibly edit the SSL variable:
+    #SSL=/usr/local/ssl
+    SSL=/usr
+    _ssl _ssl.c \
+    -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+    -L$(SSL)/lib -lssl -lcrypto
+
+
+
 
 The Python modules are installed by running:
 
@@ -61,6 +85,19 @@ The Python modules are installed by running:
     $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.dipp3
     $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.datacite
 
+Installation of `Setupools`_ by dowloading the sourcecode. The old method via ez_setup
+seems not work anymore:
+
+.. code-block:: bash
+
+    $ wget https://github.com/pypa/setuptools/archive/0.6.tar.gz
+
+Installation of `Virtualenv`_ Version 1.7.2. That is the latest version that still works
+with  Python 2.4
+
+.. code-block:: bash
+
+        $ wget https://files.pythonhosted.org/packages/16/86/7b88d35d0a353ec70e42aa37fd8b0bd1c643419c80f022ffaafa4d6449f0/virtualenv-1.7.2.tar.gz
 
 Configuration
 -------------
@@ -87,3 +124,8 @@ The two configuration files:
     password: topsecret
 
 Set Serveraddress and port on the fedora Tool in the ZMI
+
+
+.. _SSL Support: https://techglimpse.com/install-python-openssl-support-tutorial/
+.. _Setuptools: https://github.com/pypa/setuptools
+.. _Virtualenv: https://virtualenv.pypa.io/en/stable/
