@@ -311,7 +311,7 @@ class BibTool(UniqueObject, SimpleItem):
     def urnstatus(self, urn, url):
         """Check status of an urn with the dnb resolver"""
         status = urnvalidator.URN(urn, url)
-        return status.parse_dnb_response()
+        return status.validity, status.details
 
     # security.declareProtected(Permissions.MANAGE_JOURNAL, 'datacite_xml')
     def datacite_xml(self, pid, issn, publisher, pdf):

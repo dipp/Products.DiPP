@@ -30,13 +30,13 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
     </li>
 </ul>
 <p>
-    Der Resolver der DNB löst immer nach der zuerst gelisteten URL auf. Wenn diese nicht identisch ist 
+    Der Resolver der DNB löst immer nach der zuerst gelisteten URL auf. Wenn diese nicht identisch ist
     mit der aktuellen URL in Plone (mit <span style="color: red">*</span> markiert) funktionert das Resolving nicht.
 </p>
 <h4>Neues Frontend der DNB (beta)</h4>
 <p>
     <a href="https://nbn-resolving.org/admin/index.htm" target="_blank">https://nbn-resolving.org/admin/index.htm</a>
-</p> 
+</p>
 
 <table border="0" cellpadding="2" cellspacing="0" width="98%"
        tal:define="bibtool context/bibtool;
@@ -60,10 +60,9 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
             <tr tal:define="PID article/getPID;
                             URL article/getURL;
                             URN article/getURN|nothing;
-                            urn_info python:bibtool.urnstatus(URN,URL);
-                            header python:urn_info['header'];
-                            valid python:urn_info['valid'];
-                            data python:urn_info['data'];
+                            status python:bibtool.urnstatus(URN,URL);
+                            valid python:status[0];
+                            data python:status[1];
                             title article/Title"
                  tal:attributes="class python:test(path('repeat/article/even'), 'row-hilite', 'row-normal')">
                 <td>
@@ -73,8 +72,9 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
                     <a tal:attributes="href string:$URL/manage_workspace"
                        tal:content="title">Der Titel des Artikels</a>
                 </td>
+
                 <td>
-                    <ol tal:condition="python:len(data) > 0">
+                    <ol tal:condition="data">
                     <tal:block tal:repeat="url_info data">
                         <li tal:define="created python:DateTime(url_info['created']);
                                         last_modified python:DateTime(url_info['last_modified'])">
@@ -85,7 +85,7 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
                         </li>
                     </tal:block>
                     </ol>
-                    <em tal:condition="python:len(data) == 0">no registered URLs found</em>
+                    <em tal:condition="not: data">no registered URLs found</em>
                 </td>
                 <td tal:attributes="class string:status$valid">
                     <img tal:attributes="src string:status$valid.png;
