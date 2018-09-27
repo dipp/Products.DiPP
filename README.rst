@@ -28,7 +28,7 @@ Python Modules
 * dipp.dipp3>=3.9
 
   * argparse
-  * dipp.tools>=0.5.1
+  * dipp.tools>=0.7.1
   * elementtree
   * bibliograph.core
   * dipp.fedora2

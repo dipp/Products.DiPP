@@ -1,3 +1,5 @@
+.. _volumes_issues:
+
 Jahrgänge und Ausgaben
 ######################
 
