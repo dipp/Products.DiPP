@@ -48,7 +48,11 @@ Python Modules
 
 Installation
 ------------
-Install Python 2.4
+
+Plone 2.5.5 still requires Python 2.4, which is usually not available in the
+repositories anymore and thus has to be compiled. Since each Zopeinstance should
+have its own Python interpreter, we install a master python in /opt and use
+virtuelenv for each Zopeinstance. Get Python:
 
 .. code-block:: bash
 
@@ -69,21 +73,14 @@ Edit Modules/Setup.dist at about line 206 to enable `SSL Support`_:
     -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
     -L$(SSL)/lib -lssl -lcrypto
 
-
-
-
-The Python modules are installed by running:
+Configure and compile:
 
 .. code-block:: bash
 
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v bibliograph.core
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v PyXML
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v ZSI
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.tools
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.fedora2
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v elementtree
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.dipp3
-    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.datacite
+    $ ./configure --prefix=/opt/python24
+    $ make
+    $ make install
+
 
 Installation of `Setupools`_ by dowloading the sourcecode. The old method via ez_setup
 seems not work anymore:
@@ -97,7 +94,18 @@ with  Python 2.4
 
 .. code-block:: bash
 
-        $ wget https://files.pythonhosted.org/packages/16/86/7b88d35d0a353ec70e42aa37fd8b0bd1c643419c80f022ffaafa4d6449f0/virtualenv-1.7.2.tar.gz
+    $ wget https://files.pythonhosted.org/packages/16/86/7b88d35d0a353ec70e42aa37fd8b0bd1c643419c80f022ffaafa4d6449f0/virtualenv-1.7.2.tar.gz
+    $ tar -xzvf virtualenv-1.7.2.tar.gz
+    $ cd virtualenv-1.7.2
+    $ /opt/python24/bin/python setup.py install
+
+Creating and activating a virtual envirement in /srv/zope/dipp:
+
+.. code-block:: bash
+
+    $ /opt/python24/bin/virtualenv /srv/zope/dipp/Python-2.4
+    $ . /srv/zope/dipp/Python-2.4/bin/activate
+
 
 Configuration
 -------------
@@ -124,6 +132,20 @@ The two configuration files:
     password: topsecret
 
 Set Serveraddress and port on the fedora Tool in the ZMI
+
+The Python modules are installed by running:
+
+.. code-block:: bash
+
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v bibliograph.core
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v PyXML
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v ZSI
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.tools
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.fedora2
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v elementtree
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.dipp3
+    $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.datacite
+
 
 
 .. _SSL Support: https://techglimpse.com/install-python-openssl-support-tutorial/
