@@ -13,8 +13,8 @@ DiPP 2.25 (2018-01-19)
 
   * Special Piwik/Matomo code also for `404 Pages`_ including referrer
   * multipingual Privacypage with Piwik opt-out
-  * Tracking JS Code included via macro and propertysheet, no nedd to
-    customize the mailtemplate any more
+  * Tracking JS Code included via macro and propertysheet, no need to
+    customize the maintemplate any more
 
 * Bugfixes, code cleanup, `PEP 8`_
 * ZMI improvements on manage pages of Fedoraobjects, i.e. view tab
