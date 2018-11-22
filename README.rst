@@ -106,6 +106,24 @@ Creating and activating a virtual envirement in /srv/zope/dipp:
     $ /opt/python24/bin/virtualenv /srv/zope/dipp/Python-2.4
     $ . /srv/zope/dipp/Python-2.4/bin/activate
 
+Setting the correct encoding in site.py (~row 525):
+
+.. code-block:: python
+
+    # encoding = "ascii" # Default value set by _PyUnicode_Init()
+    encoding = "utf-8" # 2018-10-09 Rm
+
+Install Zope.
+
+.. code-block:: bash
+
+    $ ./configure --with-python=/srv/zope/dipp/Python-2.4/bin/python --prefix=/srv/zope/dipp/Zope-2.9
+
+Dedicated User 
+
+.. code-block:: bash
+
+    $ useradd -M -U -s /sbin/nologin -u 60000 -d /srv/zope -c "Zope damon" zope
 
 Configuration
 -------------
