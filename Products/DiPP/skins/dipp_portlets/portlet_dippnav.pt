@@ -13,7 +13,9 @@
 
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-            <span i18n:translate="dippnav">DiPP</span>
+            <a class="tile"
+               tal:attributes="href string:$portal_url/editorial_toolbox"
+               i18n:translate="dippnav">DiPP</a>
             <span class="portletTopRight"></span>
         </dt>
 

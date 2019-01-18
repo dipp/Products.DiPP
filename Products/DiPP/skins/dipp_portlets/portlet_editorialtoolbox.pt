@@ -14,7 +14,11 @@
 
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-            <span i18n:translate="editorialmanager">Editorial Toolbox</span>
+            <a class="tile"
+               i18n:translate="editorialmanager"
+               tal:attributes="href string:$portal_url/editorial_toolbox">
+               Editorial Toolbox
+            </a>
             <span class="portletTopRight"></span>
         </dt>
 

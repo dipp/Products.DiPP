@@ -12,8 +12,11 @@
 
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>
-            <span i18n:translate="articlesearch"
-                  i18n:domain="dipp">Artikelsuche</span>
+            <a i18n:translate="articlesearch"
+               class="tile"
+               i18n:domain="dipp"
+               tal:attributes="href string:$portal_url/articlesearch_form">
+                  Artikelsuche</a>
             <span class="portletTopRight"></span>
         </dt>
 
