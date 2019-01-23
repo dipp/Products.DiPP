@@ -17,23 +17,13 @@ mhost = context.MailHost
 translate = context.translate
 
 
-alertMessage = """
+mail_skeleton = """
 Content-Type: text/plain; charset="UTF-8"
-From: %s <%s>
-To: %s
-Subject: %s: Neue Veroeffentlichung
+From: %(from_name)s <%(from_address)s>
+To: %(recipient)s
+Subject: %(journal)s: %(subject)s
 
-%s
-
-"""
-
-anschreiben = """
-Content-Type: text/plain; charset="UTF-8"
-From: %s <%s>
-To: %s
-Subject: Request Imprimatur
-
-%s
+%(body)s
 
 """
 
@@ -203,26 +193,29 @@ elif activity_id == 'anschreiben':
 
     member = mtool.getMemberById(autor)
     fullname = member.getProperty('fullname', '')
-    to_address = member.getProperty('email', '')
-    #member = context.ext.getMember(autor)
-    #to_address  = member['mail']
+    subject = "Imprimatur erforderlich"
+    journal = self.portal_properties.title()
+    recipient = member.getProperty('email', '')
+    # member = context.ext.getMember(autor)
+    # to_address  = member['mail']
     from_address = self.portal_properties.email_from_address
     from_name = self.portal_properties.email_from_name
 
-    msg = anschreiben % (
-        from_name,
-        from_address,
-        to_address,
-        message
-    )
-
-    mhost.send(msg)
+    text = mail_skeleton % {
+        'from_name': from_name,
+        'from_address': from_address,
+        'recipient' : recipient,
+        'journal': journal,
+        'subject' : subject,
+        'body': message
+    }
+    mhost.send(text.encode("utf-8"))
 
     instance.manage_changeProperties({'nachrichten': nachrichten,
                                       'deadline_next': deadline_next})
 
     msg = "Der Autor wurde benachrichtigt!"
-    finish()
+    #finish()
 
 #IMPREMATUR
 elif activity_id == 'imprimatur':
@@ -239,30 +232,31 @@ elif activity_id == 'absegnen':
     msg = "Zurück zum Herausgeber zur erneuten Begutachtung"
     finish()
 
-#FREISCHALTEN
+# FREISCHALTEN
 elif activity_id == 'freischalten':
     instance.manage_changeProperties({'nachrichten': nachrichten})
     if type != 'DiPP:container':
         fedora.setPublishingState(PID, 1, 1)
     msg = "Der Artikel wurde veröffentlicht!"
-
+    subject = "Neue Veröffentlichung"
     from_address = self.portal_properties.email_from_address
     from_name = self.portal_properties.email_from_name
-    addresses = self.portal_properties.dipp_properties.alertEmailAddresses
+    recipients = self.portal_properties.dipp_properties.alertEmailAddresses
     text = self.portal_properties.dipp_properties.alertEmailText
     journal = self.portal_properties.title()
     citation = getCitation(PID)
     # citation = "ohne spitze klammers"
     body = text % {'url': url, 'journal': journal, 'citation': citation}
 
-    for to_address in addresses:
-        text = alertMessage % (
-            from_name,
-            from_address,
-            to_address,
-            journal,
-            body
-        )
+    for recipient in recipients:
+        text = mail_skeleton % {
+            'from_name': from_name,
+            'from_address': from_address,
+            'recipient' : recipient,
+            'journal': journal,
+            'subject' : subject,
+            'body': body
+        }
         context.plone_log(text)
         mhost.send(text.encode("utf-8"))
     finish()
