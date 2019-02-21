@@ -30,6 +30,33 @@ elif rights == 'fDPPL':
                'url' : {'de':'http://www.dipp.nrw.de/lizenzen/dppl/fdppl/f-DPPL_v1_de_11-2004.html',
                         'en':'http://www.dipp.nrw.de/lizenzen/dppl/fdppl/f-DPPL_v1_de_11-2004.html'}
               }
+
+elif rights == 'cc-by':
+    details = {'de'  : 'Creative Commons Namensnennung 4.0 International (CC BY 4.0)',
+               'en'  : 'Creative Commons Attribution 4.0 International (CC BY 4.0)',
+               'url' : {'de':'https://creativecommons.org/licenses/by/4.0/deed.de',
+                        'en':'https://creativecommons.org/licenses/by/4.0/'}
+              }
+elif rights == 'cc-by-sa':
+    details = {'de'  : 'Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International (CC BY-SA 4.0)',
+               'en'  : 'Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)',
+               'url' : {'de':'https://creativecommons.org/licenses/by-sa/4.0/deed.de',
+                        'en':'https://creativecommons.org/licenses/by-sa/4.0/'}
+              }
+
+elif rights == 'cc-by-nc':
+    details = {'de'  : 'Creative Commons Namensnennung-Nicht kommerziell 4.0 International (CC BY-NC 4.0) ',
+               'en'  : 'Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)',
+               'url' : {'de':'https://creativecommons.org/licenses/by-nc/4.0/deed.de',
+                        'en':'https://creativecommons.org/licenses/by-nc/4.0/'}
+              }
+
+elif rights == 'cc-by-nd':
+    details = {'de'  : 'Creative Commons Namensnennung - Keine Bearbeitungen 4.0 International (CC BY-ND 4.0)',
+               'en'  : 'Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)',
+               'url' : {'de':'https://creativecommons.org/licenses/by-nd/4.0/deed.de',
+                        'en':'https://creativecommons.org/licenses/by-nd/4.0/'}
+              }
 else:
     details = {'en': rights,
                'de': rights,
