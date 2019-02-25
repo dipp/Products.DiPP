@@ -14,13 +14,15 @@ CITATION_FORMAT = "%(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume
 ISSUE_DATE_FORMAT = "%b %Y"
 SHORT_CITATION_FORMAT = "%(journal)s, Vol. %(volume)s, Iss. %(issue)s"
 
-ALERT_EMAIL_ADDRESSES = ('dipp-tech@hbz-nrw.de',)
+ALERT_EMAIL_ADDRESSES = ('dipp@hbz-nrw.de',)
 ALERT_EMAIL_TEXT = """
-Dear Ladies and Gentlemen,
+Das Journal "%(journal)s" hat einen neuen Artikel veröffentlicht:
+%(citation)s
 
-The eJournal %(journal)s is pleased to inform you, that we have just published a new article.
-The full text can be found here: %(url)s
+URL: %(url)s
+DataCite XML: %(url)s/metadata/datacite
 """
+
 AUTHOR_NOTICE_DE = """
 Sehr geehrte(r) %(fullname)s,
 

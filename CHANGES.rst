@@ -1,6 +1,13 @@
 Changelog
 =========
 
+DiPP 2.26 (2019-??-??)
+----------------------
+
+* Support for CC Licences added
+* improved email alert with bibl. citation and direct
+  link to datacit xml
+
 DiPP 2.25.1 (2018-01-19)
 ------------------------
 

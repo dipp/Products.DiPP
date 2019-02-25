@@ -33,20 +33,22 @@ alertEmailText
 ==============
 Text dieser Email::
 
-    Dear Ladies and Gentlemen,
+    Das Journal "%(journal)s" hat einen neuen Artikel veröffentlicht:
+    %(citation)s
 
-    The eJournal %(journal)s is pleased to inform you, that we have just
-    published a new article.
-    The full text can be found here: %(url)s
+    URL: %(url)s
+    DataCite XML: %(url)s/metadata/datacite
+
 
 Zur Verfügung stehende Platzhalter:
 
-======== =================
-Name     Bedeutung
-======== =================
-journal  Name des journals
-url      URL des Artikels
-======== =================
+========= =======================================
+Name      Bedeutung
+========= =======================================
+journal   Name des journals
+url       URL des Artikels
+citation  Bibliographischen Zitat des Artikels
+========= =======================================
 
 
 citation_format
