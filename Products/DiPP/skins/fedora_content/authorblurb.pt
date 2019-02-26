@@ -96,15 +96,16 @@
                 <li tal:condition="doi"
                     class="doi">
                     <abbr title="Digital Object Identifier">DOI</abbr>:
-                    <a tal:define="doiurl string:https://doi.org/$doi"
-                       tal:content="doiurl"
-                       tal:attributes="href doiurl">
+                    <a tal:content="doi"
+                       tal:attributes="href  string:https://doi.org/$doi">
                        10.120234-ff983</a>
                 </li>
                 <li tal:condition="urn"
                     class="urn">
                     <abbr title="Uniform Resource Name">URN</abbr>:
-                    <a tal:content="urn" tal:attributes="href string:https://nbn-resolving.org/$urn">urn:nbn:de:0009-81-19666</a>
+                    <a tal:content="urn"
+                       tal:attributes="href string:https://nbn-resolving.org/$urn">
+                       urn:nbn:de:0009-81-19666</a>
                 </li>
                 <tal:block tal:repeat="subject subjects"
                            tal:condition="python:subjects and show_classified_subjects"
