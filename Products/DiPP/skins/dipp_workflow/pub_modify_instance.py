@@ -204,9 +204,9 @@ elif activity_id == 'anschreiben':
     text = mail_skeleton % {
         'from_name': from_name,
         'from_address': from_address,
-        'recipient' : recipient,
+        'recipient': recipient,
         'journal': journal,
-        'subject' : subject,
+        'subject': subject,
         'body': message
     }
     mhost.send(text.encode("utf-8"))
@@ -252,9 +252,9 @@ elif activity_id == 'freischalten':
         text = mail_skeleton % {
             'from_name': from_name,
             'from_address': from_address,
-            'recipient' : recipient,
+            'recipient': recipient,
             'journal': journal,
-            'subject' : subject,
+            'subject': subject,
             'body': body
         }
         context.plone_log(text)
