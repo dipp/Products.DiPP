@@ -121,7 +121,14 @@ class BibTool(UniqueObject, SimpleItem):
         except:
             date = "????-??-??"
             year = "????"
-        urn = qdc['identifierURN']
+        # urn
+        urn = qdc.get('identifierURN', None)
+        if urn:
+            urn_url ='<a href="https://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn': urn}
+        # doi
+        doi = qdc.get('identifierDOI', None)
+        if doi:
+            doi_url = '<a href="https://doi.org/%(doi)s">%(doi)s</a>' % {'doi': doi}
         id = PID.split(':')[-1]
         authors_list = ""
         period = ""
@@ -170,7 +177,8 @@ class BibTool(UniqueObject, SimpleItem):
             'year': year,
             'date': date,
             'id': id,
-            'urn': '<a href="http://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn': urn}
+            'doi': doi_url,
+            'urn': urn_url
         }
         return cite
 
