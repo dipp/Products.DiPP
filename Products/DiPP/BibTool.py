@@ -123,10 +123,12 @@ class BibTool(UniqueObject, SimpleItem):
             year = "????"
         # urn
         urn = qdc.get('identifierURN', None)
+        urn_url = None
         if urn:
-            urn_url ='<a href="https://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn': urn}
+            urn_url = '<a href="https://nbn-resolving.de/%(urn)s">%(urn)s</a>' % {'urn': urn}
         # doi
         doi = qdc.get('identifierDOI', None)
+        doi_url = None
         if doi:
             doi_url = '<a href="https://doi.org/%(doi)s">%(doi)s</a>' % {'doi': doi}
         id = PID.split(':')[-1]
