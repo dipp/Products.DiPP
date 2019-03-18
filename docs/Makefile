@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = /home/reimer/Plone/dipp/Python-2.4/bin/sphinx-build
 PAPER         =
-BUILDDIR      = build
+BUILDDIR      = /home/reimer/public_html/handbuch
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -38,7 +38,7 @@ help:
 	@echo "  changes    to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
-	@echo "  publish    to publish the documentation"
+	@echo "  publish    to publish the documentation on $(SSH_HOST)"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
