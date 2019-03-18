@@ -5,32 +5,29 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
 
 <h3>URN Management</h3>
 <p>
-    Diese Seite muss über die korrekte Domain aufgerufen werden, also in der Regel über die den
+    Diese Seite muss über die korrekte Domain aufgerufen werden, also in der Regel über den
     vorgeschaltete Apache. Bei Aufruf direkt über den Zope-Port würden ungültige URLs verglichen
     werden und er Status wäre immer "2", bzw. "1". Mögliche Stati:
 </p>
 <ul>
     <li>
-        <img tal:attributes="src string:status0.png;
-                             alt string:Status 0;
-                             title string:Status 0" />
+        <img tal:attributes="src string:status0.png"
+             alt="Status 0" />
          0: nicht registriert
     </li>
     <li>
-        <img tal:attributes="src string:status1.png;
-                             alt string:Status 1;
-                             title string:Status 1" />
+        <img tal:attributes="src string:status1.png"
+             alt="Status 1" />
         1: registriert und gültige URL
     </li>
     <li>
-        <img tal:attributes="src string:status2.png;
-                             alt string:Status 2;
-                             title string:Status 2" />
+        <img tal:attributes="src string:status2.png"
+             alt="string:Status 2" />
         2: registriert, aber ungültige URL
     </li>
 </ul>
 <p>
-    Der Resolver der DNB löst immer nach der zuerst gelisteten URL auf. Wenn diese nicht identisch ist
+    Der Resolver der <abbr title="Deutsche Nationalbibliothek">DNB</abbr> löst immer nach der zuerst gelisteten URL auf. Wenn diese nicht identisch ist
     mit der aktuellen URL in Plone (mit <span style="color: red">*</span> markiert) funktionert das Resolving nicht.
 </p>
 <h4>Neues Frontend der DNB (beta)</h4>
@@ -41,7 +38,7 @@ tal:replace="structure here/manage_tabs">Tabs</h2>
 <table border="0" cellpadding="2" cellspacing="0" width="98%"
        tal:define="bibtool context/bibtool;
                    folderpath python:'/'.join(here.getPhysicalPath());
-                   articles  python:here.portal_catalog(portal_type='FedoraArticle', path=folderpath, sort_on='getObjPositionInParent')">
+                   articles  python:here.portal_catalog(portal_type='FedoraArticle', path=folderpath, Language='all', sort_on='getObjPositionInParent')">
     <thead>
     <tr class="list-header">
         <th>URN</th>
