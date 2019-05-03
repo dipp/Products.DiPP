@@ -82,7 +82,7 @@ Configure and compile:
     $ make install
 
 
-Installation of `Setupools`_ by dowloading the sourcecode. The old method via ez_setup
+Installation of `Setuptools`_ by dowloading the sourcecode. The old method via ez_setup
 seems not work anymore:
 
 .. code-block:: bash
@@ -119,7 +119,7 @@ Install Zope.
 
     $ ./configure --with-python=/srv/zope/dipp/Python-2.4/bin/python --prefix=/srv/zope/dipp/Zope-2.9
 
-Dedicated User 
+Dedicated User
 
 .. code-block:: bash
 
