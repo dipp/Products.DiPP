@@ -8,7 +8,7 @@
 #
 # German Free Software License (D-FSL)
 #
-# This Program may be used by anyone in accordance with the terms of the 
+# This Program may be used by anyone in accordance with the terms of the
 # German Free Software License
 # The License may be obtained under <http://www.d-fsl.org>.
 #
@@ -20,7 +20,7 @@ from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.Five.fiveconfigure import logger
+#from Products.Five.fiveconfigure import logger
 try:
     from Products.CMFCore.permissions import ManagePortal
     from Products.CMFCore.permissions import View
@@ -40,9 +40,9 @@ class PeerReviewTool(UniqueObject, SimpleItem):
     id = "dipp_peerreview"
     title = 'Manages the peerreview'
     meta_type = 'DiPP Peerreview Tool'
-    
+
     security = ClassSecurityInfo()
-        
+
     global_allow = 0
     #content_icon = 'peerreview.gif'
     immediate_view = 'base_view'
@@ -94,7 +94,7 @@ class PeerReviewTool(UniqueObject, SimpleItem):
     # tool should not appear in portal_catalog
     def at_post_edit_script(self):
         self.unindexObject()
-        
+
         ##code-section post-edit-method-footer #fill in your manual code here
         ##/code-section post-edit-method-footer
 
@@ -156,8 +156,3 @@ class PeerReviewTool(UniqueObject, SimpleItem):
                     fullname = user.getProperty('fullname')
                     editors.append({'id':id,'email':email,'fullname':fullname,'user':user})
         return editors
-
-
-
-
-
