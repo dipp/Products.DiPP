@@ -215,7 +215,7 @@ elif activity_id == 'anschreiben':
                                       'deadline_next': deadline_next})
 
     msg = "Der Autor wurde benachrichtigt!"
-    #finish()
+    finish()
 
 #IMPREMATUR
 elif activity_id == 'imprimatur':
