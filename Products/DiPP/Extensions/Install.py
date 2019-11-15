@@ -88,7 +88,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('deepest_toc_level', 'int', 6),
         ('awstats_id', 'string', ''),
         ('enable_ebookey', 'boolean', False),
-        ('thumby_url ', 'string', 'https://api.edoweb-test.hbz-nrw.de/tools/thumby'),
+        ('thumby_url', 'string', 'https://api.edoweb-test.hbz-nrw.de/tools/thumby'),
         ('thumby_size', 'int', 531),
     )
 
