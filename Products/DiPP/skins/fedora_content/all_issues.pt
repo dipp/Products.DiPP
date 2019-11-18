@@ -67,7 +67,7 @@
 
                                <em>
                                     <span tal:condition="python: issue_date_format and item_date" 
-                                          tal:content="python: short_citation_format % {'issue':item_issue,'volume':item_volume,'journal':journal}">Dez 2004</span>
+                                          tal:content="structure python:here.bibtool.short_citation(issue=item_issue, issuedate=item_date)"> Dez 2004</span>
                                     
                                     <span tal:condition="python: issue_date_format and item_date" 
                                           tal:define="date python: item_date.strftime(issue_date_format)"
