@@ -8,5 +8,6 @@
   <element value="folder_tabular_view"/>
   <element value="atct_album_view"/>
   <element value="recent_articles_by_section"/>
+  <element value="all_issues"/>
  </property>
 </object>
