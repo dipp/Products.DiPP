@@ -89,7 +89,7 @@ def install_properties(self, out, site_id=SITE_NAME):
         ('awstats_id', 'string', ''),
         ('enable_ebookey', 'boolean', False),
         ('thumby_url', 'string', 'https://api.edoweb-test.hbz-nrw.de/tools/thumby'),
-        ('thumby_size', 'int', 531),
+        ('thumby_size', 'int', 500),
     )
 
     for prop_id, prop_type, prop_value in dipp_properties:
