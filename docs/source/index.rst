@@ -6,11 +6,11 @@
 .. ifconfig:: release.endswith('dev')
 
     .. warning::
-        
-        Dies ist die Dokumentation der Entwicklerversion der DiPP 
-        Publikationsplatform. Suchen Sie die `Dokumention der produktiven Version`_? 
 
-.. _Dokumention der produktiven Version: https://porphyrion.hbz-nrw.de/handbuch
+        Dies ist die Dokumentation der Entwicklerversion der DiPP
+        Publikationsplatform. Suchen Sie die `Dokumentation der produktiven Version`_?
+
+.. _Dokumentation der produktiven Version: https://porphyrion.hbz-nrw.de/handbuch
 
 Digital Peer Publishing (DiPP) - Wissenschaftliche Publikationsplattform
 ========================================================================
@@ -75,7 +75,7 @@ Dokumentation DiPP |version|
    konfiguration
    changelog
    anhang
-   
+
 Index
 -----
 

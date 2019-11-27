@@ -359,21 +359,22 @@ Default::
 awstats_id
 ==========
 
-Wenn der Name der AWStats Konfgurationsdatei "awstats.ejournal.conf" lautet, ist die
+Wenn der Name der AWStats Konfigurationsdatei "awstats.ejournal.conf" lautet, ist die
 awstats_id "ejournal" Daraus ergeben sich dann die geparsten Logfiles zu z.B
-"awstats112011.ejournal.txt" Daraus werden dann die Zugriffstatiskten einzelner Artikel
+"awstats112011.ejournal.txt" Daraus werden dann die Zugriffstatistiken einzelner Artikel
 bzw. Artikeldateien generiert.
 
 Default::
 
    <leer>
 
+
 .. _enable_ebookey:
 
 enable_ebookey
 ==============
 
-Zeige unter Volltext einen Link zur per ebookey erzeugten epub-Version des Artikeln.
+Zeige unter Volltext einen Link zur per `ebookey <https://github.com/Raul-Vasi/ebookey>`_ erzeugten epub-Version des Artikeln.
 
 Default::
 
@@ -403,3 +404,35 @@ Default::
 
 sharing_image
 =============
+
+Name des Bildes, das für Twittercards bzw. OpenGraph verwendet werden soll. das
+Bild muss separat z.B. im custom-Ordner abgelegt werden. Wenn nichts angegeben
+wird, wird das Logo der Website verwendet (logoName).
+
+Default::
+
+    <leer>
+
+
+.. _thumby_url:
+
+thumby_url
+==========
+
+URL des Thumbnailer Webservices `Thumby <https://github.com/hbz/thumby>`_
+
+Default::
+
+    https://api.edoweb-test.hbz-nrw.de/tools/thumby
+
+
+.. _thumby_size:
+
+thumby_size
+===========
+
+Größe des Thumbnails in px.
+
+Default::
+
+    https://api.edoweb-test.hbz-nrw.de/tools/thumby
