@@ -5,8 +5,14 @@
 <h2>Fedora</h2>
 
 <p>
-<strong><abbr title="Persistent Identifier">PID</abbr>:</strong> <tal:block tal:replace="python: here.PID"/>
+<strong><abbr title="Persistent Identifier">PID</abbr>:</strong> <tal:block tal:replace="python: here.PID"/><br />
+<strong><abbr title="Open Archives Initiative Protocol for Metadata Harvesting">OAI-PMH</abbr>:</strong>
+<a href="#"
+   tal:define="oai_url python:'http://www.dipp.nrw.de/repository/oai?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:dipp.nrw.de:' + here.PID"
+   tal:attributes="href oai_url"
+   tal:content="oai_url">url of oai-pmh </a>
 </p>
+<p><em>Note: OAI-Url only valid and working in production environment!</em></p>
 
 <h3>Datastreams</h3>
 
