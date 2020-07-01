@@ -27,12 +27,20 @@ div .inlineReference {
     margin:  0;
 }
 
+#authorblurb .orcidid {
+    margin: 0 4px;
+    border: none;
+}
 #authorblurb .authorname {
     font-weight: bold;
 }
 #authorblurb .organization {
     font-weight: normal;
     font-style: italic;
+}
+#authorblurb .link-https {
+    background: none;
+    padding: 0;
 }
 
 #authorblurb h1 {

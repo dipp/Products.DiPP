@@ -35,6 +35,11 @@
                              class="academicTitle"
                              tal:condition="academicTitle">prof. Dr. Dr.</span>
                        <span tal:replace="string: $firstName $lastName">John Doe</span></a>
+                       <a tal:condition="author/ident_orcid"
+                          class="orcidid"
+                          alt="ORCID iD"
+                          tal:attributes="href string:https://orcid.org/${author/ident_orcid}">
+                          <img tal:attributes="src string:$portal_url/ORCID-iD_icon-16x16.png"></a>
                     <span class="organization" tal:content="organization">MIT</span>
                 </li>
             </tal:block>
