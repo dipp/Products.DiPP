@@ -26,6 +26,7 @@
                 <li tal:define="academicTitle author/academicTitle;
                                 firstName author/firstName;
                                 lastName author/lastName;
+                                orcidid author/ident_orcid|nothing;
                                 organization author/organization;
                                 islast repeat/author/end"
                     tal:attributes="class python:test(islast,'last')">
@@ -34,12 +35,16 @@
                        <span tal:content="academicTitle"
                              class="academicTitle"
                              tal:condition="academicTitle">prof. Dr. Dr.</span>
-                       <span tal:replace="string: $firstName $lastName">John Doe</span></a>
-                       <a tal:condition="author/ident_orcid"
-                          class="orcidid"
-                          alt="ORCID iD"
-                          tal:attributes="href string:https://orcid.org/${author/ident_orcid}">
-                          <img tal:attributes="src string:$portal_url/ORCID-iD_icon-16x16.png"></a>
+                       <span tal:replace="string: $firstName $lastName">John Doe</span>
+                    </a>
+                    <a tal:condition="orcidid"
+                       class="orcidid"
+                       tal:attributes="href string:https://orcid.org/$orcidid">
+                        <img alt="ORCID iD"
+                             width="16"
+                             height="16"
+                             tal:attributes="src string:$portal_url/ORCID-iD_icon-16x16.png">
+                    </a>
                     <span class="organization" tal:content="organization">MIT</span>
                 </li>
             </tal:block>
