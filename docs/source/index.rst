@@ -72,6 +72,7 @@ Dokumentation DiPP |version|
    publizieren
    ausgaben
    portlets
+   persistent
    konfiguration
    changelog
    anhang

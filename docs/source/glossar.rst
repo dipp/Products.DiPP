@@ -10,6 +10,9 @@ Glossar
     PID
         Persistent Identifier
 
+    DOI
+        Digital Object Identifier
+
     DsID
         Datastream Identifier
 
