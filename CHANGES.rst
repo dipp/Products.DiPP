@@ -1,12 +1,14 @@
 Changelog
 =========
 
-DiPP 2.26 (2019-??-??)
+DiPP 2.26 (2020-??-??)
 ----------------------
 
 * Support for CC Licences added
 * improved email alert with bibl. citation and direct
-  link to datacit xml
+  link to datacite xml
+* ORCID iD icon in authorblurb
+* xepicur metadata
 
 DiPP 2.25.1 (2018-01-19)
 ------------------------

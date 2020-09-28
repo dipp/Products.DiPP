@@ -14,3 +14,4 @@ für das Publikationssystem:
    member_properties
    dippreview_properties
    site_properties
+   portal_doiregistry
