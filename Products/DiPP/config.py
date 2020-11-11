@@ -97,12 +97,6 @@ INDEXES = (
 )
 GLOBALS = globals()
 
-
-# reCAPTCHA
-PRIVATE_KEY = "6Lf2WOISAAAAAE1enAqHSxX4Y6LIgD6LaRpiCCyZ"
-PUBLIC_KEY = "6Lf2WOISAAAAABFXeiCcDPfiznOzCgymL5KC54cY"
-VERIFY_SERVER = "www.google.com"
-
 # Configuration for the testrunner
 
 PID = 'dipp:1898'

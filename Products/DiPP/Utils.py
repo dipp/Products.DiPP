@@ -9,7 +9,6 @@
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import UniqueObject
-from Products.DiPP.config import PRIVATE_KEY, PUBLIC_KEY, VERIFY_SERVER
 # from dipp.awstats.statistics import Statistics
 import urllib2
 import urllib
@@ -66,50 +65,7 @@ class Utils(UniqueObject, SimpleItem):
         if isinstance(s, unicode):
             return s.encode('utf-8')
         return s
-
-    def get_recaptcha_keys(self):
-        """Return the reCAPTCHA keys from the config file for use in pagetemplates."""
-        return {'private': PRIVATE_KEY, 'public': PUBLIC_KEY}
-
-    def validate_recaptcha(self, recaptcha_challenge_field, recaptcha_response_field, remoteip):
-        """Validate recaptcha.
-
-        Code from
-        http://recaptcha.googlecode.com/svn/trunk/recaptcha-plugins/python/recaptcha/client/captcha.py
-        """
-        params = urllib.urlencode({
-            'privatekey': self.encode_if_necessary(PRIVATE_KEY),
-            'remoteip': self.encode_if_necessary(remoteip),
-            'challenge': self.encode_if_necessary(recaptcha_challenge_field),
-            'response': self.encode_if_necessary(recaptcha_response_field),
-        })
-
-        request = urllib2.Request(
-            url="https://%s/recaptcha/api/verify" % VERIFY_SERVER,
-            data=params,
-            headers={
-                "Content-type": "application/x-www-form-urlencoded",
-                "User-agent": "reCAPTCHA Python"
-            }
-        )
-
-        httpresp = urllib2.urlopen(request)
-
-        return_values = httpresp.read().splitlines()
-        httpresp.close()
-
-        return_code = return_values[0]
-
-        if return_code == "true":
-            is_valid = True
-            error_code = None
-        else:
-            is_valid = False
-            error_code = return_values[1]
-
-        logger.info("reCAPTCHA - IP: %s, response: %s, error code: %s" % (remoteip, recaptcha_response_field, error_code))
-        return is_valid, error_code
-
+    
     """
     security.declareProtected(Permissions.VIEW_STATISTICS, 'awstats_years')
     def awstats_years(self, journal):
