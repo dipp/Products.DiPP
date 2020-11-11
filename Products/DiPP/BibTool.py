@@ -334,6 +334,13 @@ class BibTool(UniqueObject, SimpleItem):
         """Return metadata in DOAJ compliant  XML format."""
         metadata = qdc2metadata.MetaData(pid, issn=issn, publisher=publisher, pdf=pdf)
         return metadata.make_doaj_xml()
+    
+    #  security.declareProtected(Permissions.MANAGE_JOURNAL, 'epicur_xml')
+    def xepicur_xml(self, pid, url, issn, publisher, pdf):
+        """Return metadata in Xepicur compliant  XML format."""
+        metadata = qdc2metadata.MetaData(pid, url=url, issn=issn, publisher=publisher, pdf=pdf)
+        return metadata.make_xepicur_xml()
+
 
     def make_metatags(self, pid, issn, publisher, pdf, startpage, endpage):
         """Return meta tags for google scholar, facebook, twitter

@@ -6,7 +6,8 @@ SPHINXOPTS    =
 #SPHINXBUILD   = /home/reimer/Plone/dipp/Python-2.4/bin/sphinx-build
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = /home/reimer/public_html/handbuch
+#BUILDDIR      = /home/reimer/public_html/handbuch
+BUILDDIR      = build
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -18,6 +19,8 @@ RSYNC          = /usr/bin/rsync
 SSH_USER       = dippadm
 SSH_HOST       = alky
 SSH_TARGET_DIR = /files/var/www/handbuch
+#SSH_HOST       = porphyrion.hbz-nrw.de
+#SSH_TARGET_DIR = /dipp/var/www/dipp/handbuch
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest publish
 
