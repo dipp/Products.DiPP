@@ -3,7 +3,8 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = /home/reimer/Plone/dipp/Python-2.4/bin/sphinx-build
+#SPHINXBUILD   = /home/reimer/Plone/dipp/Python-2.4/bin/sphinx-build
+SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = /home/reimer/public_html/handbuch
 
@@ -15,7 +16,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 # rsync/ssh variables
 RSYNC          = /usr/bin/rsync
 SSH_USER       = dippadm
-SSH_HOST       = alkyoneus.hbz-nrw.de
+SSH_HOST       = alky
 SSH_TARGET_DIR = /files/var/www/handbuch
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest publish
