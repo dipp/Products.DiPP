@@ -1,0 +1,95 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+
+<div metal:define-macro="portlet"
+     tal:condition="can_view_issue"
+     tal:define="can_view_issue python: checkPermission('View', here.getParentNode())">
+
+    <dl class="portlet"
+        i18n:domain="dipp"
+        tal:define="infos here/articlepath;
+                    article python:infos['article'];
+                    issue python:infos['issue'];
+                    issueNumber issue/getIssue|nothing;
+                    volumeNumber here/getVolume|nothing"
+        tal:condition="python: issue is not None"
+        id="portlet-issuedetails">
+
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span i18n:translate="volume">Volume</span> <span tal:content="issueNumber">issue</span>,
+            <span i18n:translate="issue">Issue</span> <span tal:content="volumeNumber">volume</span>
+            <span class="portletTopRight"></span>
+        </dt>
+
+        <dd class="portletItem"
+            tal:define="TitleImage issue/TitleImage|nothing">
+            <a tal:attributes="href issue/absolute_url"
+               title="zum Inhalt der Ausgabe">
+                <img tal:condition="TitleImage"
+                     class="coverpicture" tal:replace="structure issue/TitleImage_medium" />
+                <span tal:condition="not:TitleImage">zum Inhalt der Ausgabe</span>
+            </a>
+        </dd>
+
+        <dd class="portletItem">
+            <ul>
+                <tal:block tal:condition="python: article is not None">
+                    
+                    <li tal:define="contributors article/Contributors">
+                        <a tal:condition="python: len(contributors) > 0"
+                           tal:attributes="href python: portal_url + '/author?contributor=' + contributors[0]">
+                           zum Autor
+                        </a>
+                    </li>
+                    
+                    <li class="pdf_link"
+                        tal:condition="pdf"
+                        tal:define="pdf python: article.getFulltextPdf()">
+                        <a href=""
+                           tal:attributes="href python:pdf['url']" >
+                            <img src="" alt="" tal:attributes="src string:$portal_url/pdf.png" /> 
+                            <span i18n:domain="dipp" i18n:translate="label_get_fulltext_as_pdf">
+                            Volltext als <span i18n:name="pdf"><abbr i18n:domain="dipp" title="Portable Document Format">PDF</abbr></span>.
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a tal:attributes="href string:${here/absolute_url}/metadata">
+                            <img tal:attributes="src string:$portal_url/citation_icon.gif" alt="" />
+                            <span i18n:translate="citation_and_metadata"
+                                  i18n:domain="dipp" >Zitierweise</span>
+                        </a>
+                    </li>
+
+                </tal:block>
+                <tal:block tal:condition="python: issue is not None">
+                    
+                    <li class="issue_pdf_link"
+                        tal:condition="issue/CompleteIssue/filename">
+                        <a tal:define="size python:issue.getObjSize(issue.CompleteIssue);
+                                       filename issue/CompleteIssue/filename|nothing"
+                           tal:attributes="href string:${issue/absolute_url}/at_download/CompleteIssue;
+                                           title string:${filename} (${size})">
+                            <img tal:define=" icon issue/CompleteIssue/getBestIcon|nothing"
+                                 tal:condition="icon" alt=""
+                                 tal:attributes="src string:${issue/portal_url}/$icon" />
+                            <span i18n:translate="get_the_complete_issue">Get the complete issue as PDF</span>
+                        </a>
+                    </li>
+                </tal:block>
+            </ul>
+
+        </dd>
+
+    </dl>
+
+</div>
+
+</body>
+
+</html>
