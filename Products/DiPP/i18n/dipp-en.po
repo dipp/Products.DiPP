@@ -838,4 +838,4 @@ msgid "more_exportformats"
 msgstr "More export formats"
 
 msgid "cite"
-msgstr "cite"
+msgstr "Cite"
