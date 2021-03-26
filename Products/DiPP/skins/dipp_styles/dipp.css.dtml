@@ -308,13 +308,28 @@ div.portletContent {
     margin-left: 0;
 
 }
+#portlet-citation ul.cite {
+    margin-left: 0;
+}
+#portlet-citation ul.cite li {
+    display: inline;
+    margin-right: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em; 
+    background-color: &dtml-linkColor;;
+    color: &dtml-backgroundColor;;
+    text-transform: uppercase;
+}
+#portlet-citation ul.cite li a {
+    color: &dtml-backgroundColor;;
+}
 
 /* worklist */
 .worklist th {
     white-space: nowrap;
 }
 .worklist tbody tr:hover {
-    background-color: &dtml-evenRowBackgroundColor;
+    background-color: &dtml-evenRowBackgroundColor;;
 }
 
 .worklist td {
