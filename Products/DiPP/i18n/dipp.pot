@@ -773,3 +773,9 @@ msgstr ""
 
 msgid "description_privacy"
 msgstr ""
+
+msgid "more_exportformats"
+msgstr ""
+
+msgid "cite"
+msgstr ""

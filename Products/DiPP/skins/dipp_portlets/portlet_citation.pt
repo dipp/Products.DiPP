@@ -1,0 +1,53 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+
+<div metal:define-macro="portlet"
+     tal:define="infos here/articlepath;
+                 article python:infos['article']"
+     tal:condition="python: article is not None">
+
+    <dl class="portlet"
+        i18n:domain="dipp"
+        id="portlet-citation">
+
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            <span i18n:translate="cite">Zitieren</span>
+            <span class="portletTopRight"></span>
+        </dt>
+
+        <dd class="portletItem"
+            tal:define="articlePID here/PID;
+                        qdc python:here.fedora.getQualifiedDCMetadata(articlePID);">
+            <span tal:content="structure python: here.bibtool.recommended_citation(articlePID, qdc)"></span>
+        </dd>
+        <dd class="portletItem">
+            <ul class="cite">
+                <li>
+                    <a tal:attributes="href string:${here/absolute_url}/metadata/bib">Bibtex</a>
+                </li>
+                <li>
+                    <a tal:attributes="href string:${here/absolute_url}/metadata/end">Endote</a>
+                </li>
+                <li>
+                    <a tal:attributes="href string:${here/absolute_url}/metadata/ris">Ris</a>
+                </li>
+            </ul>
+
+        </dd>
+        <dd class="portletFooter">
+            <a tal:attributes="href string:${here/absolute_url}/metadata"
+               i18n:translate="more_exportformats"> mehr Exportformate </a>
+        </dd>
+
+    </dl>
+
+</div>
+
+</body>
+
+</html>
