@@ -1,0 +1,166 @@
+\babel@toc {ngerman}{}
+\contentsline {part}{I\hspace {1em}Leistungsspektrum:}{3}{part.1}
+\contentsline {part}{II\hspace {1em}Dokumentation DiPP 2.25.3a}{7}{part.2}
+\contentsline {chapter}{\numberline {1}Einleitung}{9}{chapter.1}
+\contentsline {chapter}{\numberline {2}Publikation wissenschaftlicher Artikel}{11}{chapter.2}
+\contentsline {section}{\numberline {2.1}Editorial Toolbox}{11}{section.2.1}
+\contentsline {section}{\numberline {2.2}Artikel formatieren}{11}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Abbildungen}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Tabellen}{13}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Zusatzmaterial}{13}{section.2.3}
+\contentsline {section}{\numberline {2.4}Kommentare}{15}{section.2.4}
+\contentsline {section}{\numberline {2.5}Z\IeC {\"a}hlmarken}{16}{section.2.5}
+\contentsline {section}{\numberline {2.6}DOAJ}{16}{section.2.6}
+\contentsline {section}{\numberline {2.7}Publikationsworkflow}{16}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Upload}{16}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Worklist}{16}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.7.3}1. Schritt: Artikel initialisieren}{18}{subsection.2.7.3}
+\contentsline {subsection}{\numberline {2.7.4}Artikel bearbeiten}{18}{subsection.2.7.4}
+\contentsline {subsection}{\numberline {2.7.5}Artikel begutachten}{18}{subsection.2.7.5}
+\contentsline {subsection}{\numberline {2.7.6}Artikel freischalten}{18}{subsection.2.7.6}
+\contentsline {chapter}{\numberline {3}Jahrg\IeC {\"a}nge und Ausgaben}{23}{chapter.3}
+\contentsline {section}{\numberline {3.1}Jahrg\IeC {\"a}nge, Ausgaben und FedoraHierarchien}{23}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Volume content}{24}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Issue content}{24}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Sonderausgaben}{24}{section.3.2}
+\contentsline {section}{\numberline {3.3}Sektionen}{24}{section.3.3}
+\contentsline {chapter}{\numberline {4}Portlets}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Suche \texttt {portlet\_articlesearch}}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Automatisches Inhaltsverzeichnis \texttt {portlet\_autotoc}}{25}{section.4.2}
+\contentsline {section}{\numberline {4.3}Aktuelle Ausgabe \texttt {portlet\_currentissue}}{25}{section.4.3}
+\contentsline {section}{\numberline {4.4}DiPP Navigation \texttt {portlet\_dippnav}}{25}{section.4.4}
+\contentsline {section}{\numberline {4.5}Editorial Toolbox \texttt {portlet\_editorialtoolbox}}{25}{section.4.5}
+\contentsline {section}{\numberline {4.6}Feeds \texttt {portlet\_feeds}}{25}{section.4.6}
+\contentsline {section}{\numberline {4.7}ISSN \texttt {portlet\_issn}}{26}{section.4.7}
+\contentsline {section}{\numberline {4.8}Newsletter \texttt {portlet\_newsletter}}{26}{section.4.8}
+\contentsline {section}{\numberline {4.9}Aktuelle Artikel \texttt {portlet\_recentarticles}}{26}{section.4.9}
+\contentsline {section}{\numberline {4.10}Suche \texttt {portlet\_search}}{26}{section.4.10}
+\contentsline {section}{\numberline {4.11}Inhaltsverzeichnis \texttt {portlet\_toc}}{26}{section.4.11}
+\contentsline {chapter}{\numberline {5}Konfiguration}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}dipp\_properties (DiPP properties)}{27}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}ISSN}{27}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}alertEmailAddresses}{27}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}alertEmailText}{27}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}citation\_format}{28}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}short\_citation\_format}{28}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}issue\_date\_format}{28}{subsection.5.1.6}
+\contentsline {subsection}{\numberline {5.1.7}hide\_current\_issue}{29}{subsection.5.1.7}
+\contentsline {subsection}{\numberline {5.1.8}show\_recommended\_citation}{29}{subsection.5.1.8}
+\contentsline {subsection}{\numberline {5.1.9}show\_classified\_subjects}{29}{subsection.5.1.9}
+\contentsline {subsection}{\numberline {5.1.10}show\_review\_history}{29}{subsection.5.1.10}
+\contentsline {subsection}{\numberline {5.1.11}initials\_only}{29}{subsection.5.1.11}
+\contentsline {subsection}{\numberline {5.1.12}firstnamefirst}{29}{subsection.5.1.12}
+\contentsline {subsection}{\numberline {5.1.13}initials\_period}{29}{subsection.5.1.13}
+\contentsline {subsection}{\numberline {5.1.14}comma\_separated}{30}{subsection.5.1.14}
+\contentsline {subsection}{\numberline {5.1.15}last\_author\_suffix}{30}{subsection.5.1.15}
+\contentsline {subsection}{\numberline {5.1.16}articles\_in\_portlet}{30}{subsection.5.1.16}
+\contentsline {subsection}{\numberline {5.1.17}authors\_in\_portlet}{30}{subsection.5.1.17}
+\contentsline {subsection}{\numberline {5.1.18}allow\_persistent\_discussion}{30}{subsection.5.1.18}
+\contentsline {subsection}{\numberline {5.1.19}volume\_show\_covers}{30}{subsection.5.1.19}
+\contentsline {subsection}{\numberline {5.1.20}issue\_show\_abstracts}{30}{subsection.5.1.20}
+\contentsline {subsection}{\numberline {5.1.21}issue\_show\_full\_abstracts}{31}{subsection.5.1.21}
+\contentsline {subsection}{\numberline {5.1.22}issue\_show\_pdf\_link}{31}{subsection.5.1.22}
+\contentsline {subsection}{\numberline {5.1.23}issue\_show\_short\_citation}{31}{subsection.5.1.23}
+\contentsline {subsection}{\numberline {5.1.24}issue\_sort\_on}{31}{subsection.5.1.24}
+\contentsline {subsection}{\numberline {5.1.25}issue\_sort\_order}{31}{subsection.5.1.25}
+\contentsline {subsection}{\numberline {5.1.26}discussion\_time}{31}{subsection.5.1.26}
+\contentsline {subsection}{\numberline {5.1.27}fedora\_time\_format}{31}{subsection.5.1.27}
+\contentsline {subsection}{\numberline {5.1.28}issue\_date\_format}{32}{subsection.5.1.28}
+\contentsline {subsection}{\numberline {5.1.29}recent\_articles\_range}{32}{subsection.5.1.29}
+\contentsline {subsection}{\numberline {5.1.30}deepest\_toc\_level}{32}{subsection.5.1.30}
+\contentsline {subsection}{\numberline {5.1.31}awstats\_id}{32}{subsection.5.1.31}
+\contentsline {subsection}{\numberline {5.1.32}enable\_ebookey}{32}{subsection.5.1.32}
+\contentsline {subsection}{\numberline {5.1.33}orcid\_cli}{32}{subsection.5.1.33}
+\contentsline {subsection}{\numberline {5.1.34}twitter\_username}{32}{subsection.5.1.34}
+\contentsline {subsection}{\numberline {5.1.35}sharing\_image}{33}{subsection.5.1.35}
+\contentsline {section}{\numberline {5.2}metadata\_properties (QDC Metadata properties)}{33}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}journalname}{33}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}journalname\_abbr}{33}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}publisher}{33}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}issn}{33}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}doi\_prefix}{33}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}default\_pubType}{33}{subsection.5.2.6}
+\contentsline {subsection}{\numberline {5.2.7}default\_docType}{33}{subsection.5.2.7}
+\contentsline {subsection}{\numberline {5.2.8}default\_language}{33}{subsection.5.2.8}
+\contentsline {subsection}{\numberline {5.2.9}available\_languages}{33}{subsection.5.2.9}
+\contentsline {section}{\numberline {5.3}member\_properties (Extended member properties)}{34}{section.5.3}
+\contentsline {section}{\numberline {5.4}dippreview\_properties (DiPPReview properties)}{34}{section.5.4}
+\contentsline {section}{\numberline {5.5}site\_properties}{34}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}analytics\_id}{35}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}analytics\_server}{35}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}analytics\_javascript}{35}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}analytics\_javascript\_notfound}{35}{subsection.5.5.4}
+\contentsline {chapter}{\numberline {6}Changelog}{37}{chapter.6}
+\contentsline {section}{\numberline {6.1}DiPP 2.26 (2019-??-??)}{37}{section.6.1}
+\contentsline {section}{\numberline {6.2}DiPP 2.25.1 (2018-01-19)}{37}{section.6.2}
+\contentsline {section}{\numberline {6.3}DiPP 2.25 (2018-01-19)}{37}{section.6.3}
+\contentsline {section}{\numberline {6.4}DiPP 2.24 (unreleased)}{37}{section.6.4}
+\contentsline {section}{\numberline {6.5}DiPP 2.23 (2016-10-07)}{38}{section.6.5}
+\contentsline {section}{\numberline {6.6}DiPP 2.22 (2016-07-27)}{38}{section.6.6}
+\contentsline {section}{\numberline {6.7}DiPP 2.21 (2016-07-27)}{38}{section.6.7}
+\contentsline {section}{\numberline {6.8}DiPP 2.20 (unreleased)}{38}{section.6.8}
+\contentsline {section}{\numberline {6.9}DiPP 2.19 (2014-08-29)}{38}{section.6.9}
+\contentsline {section}{\numberline {6.10}DiPP 2.18 (2014-02-06)}{38}{section.6.10}
+\contentsline {section}{\numberline {6.11}DiPP 2.17 (2014-01-23)}{39}{section.6.11}
+\contentsline {section}{\numberline {6.12}DiPP 2.16 (2014-01-13)}{39}{section.6.12}
+\contentsline {section}{\numberline {6.13}DiPP 2.15 (2013-12-27)}{39}{section.6.13}
+\contentsline {section}{\numberline {6.14}DiPP 2.14 (2013-11-26)}{39}{section.6.14}
+\contentsline {section}{\numberline {6.15}DiPP 2.13 (2013-09-18)}{39}{section.6.15}
+\contentsline {section}{\numberline {6.16}DiPP 2.12 (2013-06-05)}{39}{section.6.16}
+\contentsline {section}{\numberline {6.17}DiPP 2.11 (2013-02-22)}{40}{section.6.17}
+\contentsline {section}{\numberline {6.18}DiPP 2.10 (2012-10-12)}{40}{section.6.18}
+\contentsline {section}{\numberline {6.19}DiPP 2.9.9 (2012-04-19)}{40}{section.6.19}
+\contentsline {section}{\numberline {6.20}DiPP 2.9.8 (2012-04-04)}{40}{section.6.20}
+\contentsline {section}{\numberline {6.21}DiPP 2.9.7 (2012-04-02)}{40}{section.6.21}
+\contentsline {section}{\numberline {6.22}DiPP 2.9.7 (2012-04-02)}{40}{section.6.22}
+\contentsline {section}{\numberline {6.23}DiPP 2.9.5 (2012-03-12)}{40}{section.6.23}
+\contentsline {section}{\numberline {6.24}DiPP 2.9.5 (2012-03-13)}{41}{section.6.24}
+\contentsline {section}{\numberline {6.25}DiPP 2.9.4 (2012-01-19)}{41}{section.6.25}
+\contentsline {section}{\numberline {6.26}DiPP 2.9.3 (2011-10-20)}{41}{section.6.26}
+\contentsline {section}{\numberline {6.27}DiPP 2.9.2 (2011-10-11)}{41}{section.6.27}
+\contentsline {section}{\numberline {6.28}DiPP 2.9.1 (2011-10-10)}{41}{section.6.28}
+\contentsline {section}{\numberline {6.29}DiPP 2.9 (2011-09-28)}{41}{section.6.29}
+\contentsline {section}{\numberline {6.30}DiPP 2.8.1 (2011-07-20)}{41}{section.6.30}
+\contentsline {section}{\numberline {6.31}DiPP 2.8 (2011-07-18)}{42}{section.6.31}
+\contentsline {section}{\numberline {6.32}DiPP 2.7.2 (2011-06-29)}{42}{section.6.32}
+\contentsline {section}{\numberline {6.33}DiPP 2.7.1 (2011-04-21)}{42}{section.6.33}
+\contentsline {section}{\numberline {6.34}DiPP 2.7 (2011-04-18)}{42}{section.6.34}
+\contentsline {section}{\numberline {6.35}DiPP 2.6.4 (2011-03-23)}{42}{section.6.35}
+\contentsline {section}{\numberline {6.36}DiPP 2.6.3 (2011-03-22)}{43}{section.6.36}
+\contentsline {section}{\numberline {6.37}DiPP 2.6.2 (2011-03-10)}{43}{section.6.37}
+\contentsline {section}{\numberline {6.38}DiPP 2.6.1 (2011-02-24)}{43}{section.6.38}
+\contentsline {section}{\numberline {6.39}DiPP 2.6 (2011-02-24)}{43}{section.6.39}
+\contentsline {section}{\numberline {6.40}DiPP 2.5.5 (2011-02-14)}{43}{section.6.40}
+\contentsline {section}{\numberline {6.41}DiPP 2.5.4 (2010-11-29)}{43}{section.6.41}
+\contentsline {section}{\numberline {6.42}DiPP 2.5.3 (2010-11-18)}{44}{section.6.42}
+\contentsline {section}{\numberline {6.43}DiPP 2.5.2 (2010-10-22)}{44}{section.6.43}
+\contentsline {section}{\numberline {6.44}DiPP 2.5.1 (2010-10-08)}{44}{section.6.44}
+\contentsline {section}{\numberline {6.45}DiPP 2.5 (2010-09-30)}{44}{section.6.45}
+\contentsline {section}{\numberline {6.46}DiPP 2.4.10 (2010-09-08)}{44}{section.6.46}
+\contentsline {section}{\numberline {6.47}DiPP 2.4.9 (2010-09-02)}{44}{section.6.47}
+\contentsline {section}{\numberline {6.48}DiPP 2.4.8 (2010-08-25)}{45}{section.6.48}
+\contentsline {section}{\numberline {6.49}DiPP 2.4.7 (2010-08-24)}{45}{section.6.49}
+\contentsline {section}{\numberline {6.50}DiPP 2.4.6 (2010-07-28)}{45}{section.6.50}
+\contentsline {section}{\numberline {6.51}DiPP 2.4.5 (2010-07-28)}{45}{section.6.51}
+\contentsline {section}{\numberline {6.52}DiPP 2.4.4 (2010-07-23)}{45}{section.6.52}
+\contentsline {section}{\numberline {6.53}DiPP 2.4.3 (2010-07-12)}{45}{section.6.53}
+\contentsline {section}{\numberline {6.54}DiPP 2.4.2 (2010-06-30)}{45}{section.6.54}
+\contentsline {section}{\numberline {6.55}DiPP 2.4.1 (2010-06-29)}{45}{section.6.55}
+\contentsline {section}{\numberline {6.56}DiPP 2.4 (2010-06-22)}{46}{section.6.56}
+\contentsline {section}{\numberline {6.57}DiPP 2.3.6 (2010-05-27)}{46}{section.6.57}
+\contentsline {chapter}{\numberline {7}Anhang}{47}{chapter.7}
+\contentsline {section}{\numberline {7.1}API/Interfaces}{47}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Content Types}{47}{subsection.7.1.1}
+\contentsline {subsubsection}{Artikel}{47}{subsubsection*.3}
+\contentsline {subsubsection}{Hierarchische Objekte}{48}{subsubsection*.20}
+\contentsline {subsection}{\numberline {7.1.2}Tools}{48}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Modules}{51}{subsection.7.1.3}
+\contentsline {section}{\numberline {7.2}Product.DiPP}{51}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Dependencies}{51}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Installation}{52}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Configuration}{53}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}Glossar}{53}{section.7.3}
+\contentsline {part}{III\hspace {1em}Index}{55}{part.3}
+\contentsline {part}{IV\hspace {1em}Andere Formate}{59}{part.4}
+\contentsline {chapter}{Python-Modulindex}{63}{section*.95}
+\contentsline {chapter}{Stichwortverzeichnis}{65}{section*.96}

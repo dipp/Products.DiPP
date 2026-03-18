@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Artikel formatieren</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="py-modindex.html" title="Python-Modulindex"
+             >Module</a></li>
+        <li class="right" >
+          <a href="zusatzmaterial.html" title="Zusatzmaterial"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="editorial_toolbox.html" title="Editorial Toolbox"
+             accesskey="P">zurück</a> |</li>
+        <li><a href="index.html">Digital Peer Publishing 2.25.3a Dokumentation</a> &raquo;</li>
+          <li><a href="publizieren.html" accesskey="U">Publikation wissenschaftlicher Artikel</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="artikel-formatieren">
+<span id="id1"></span><h1>Artikel formatieren</h1>
+<p>Grundlage für eine erfolgreiche Artikelkonvertierung ist die korrekte Verwendung
+der <a class="reference download internal" href="_downloads/dipp-beispiel-artikel.rtf"><tt class="xref download docutils literal"><span class="pre">Formatvorlage</span></tt></a>.
+Wichtig sind vor allem die Formate für den  Kopf des Artikels,
+der die Metadaten enthält. Anhand der Namen der Absatzformate identifiziert die
+Konvertierungsoftware  den Titel, die Autoren, den Abstract, etc. Danach wird eine
+Überschrift erster Ordung benötigt, um den eigentliche  Artikeltext von den Metadaten
+zu trennen.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Achtung</p>
+<p class="last">Ein Absatz mit dem Absatzformat &#8220;Überschrift 1&#8221; ist zwingend vorgeschrieben.
+Er kann leer sein, muss aber existieren, da der Konverter ansonsten nicht
+erkennt, wo der eigentliche Artikel beginnt.</p>
+</div>
+<div class="figure">
+<img alt="Artikel in Word 2007" src="_images/artikel-in-word.png" />
+<p class="caption">Ein Artikel mit angewandter Formatvorlage. Entwurfsansicht mit
+eingeblendeten Absatzformaten</p>
+</div>
+<p>Die Standardformatvorlage enthält eine Reihe von Absatzformaten, die im Artikelkopf
+angewendet werden können, bzw. müssen. Die bezeichnung und die Reihenfolge ist
+wichtig, kann jedoch an die jeweiligen Bedürfnisse angepasst werden. Dafür ist
+jedoch auch eine Anpassungen der journalspezifischen XSL und XSLT Datei für die
+Konvertierungssoftware notwendig.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name der Vorlage</th>
+<th class="head">Bedeutung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>dippTitle</td>
+<td>Titel der Artikels, erforderlich.</td>
+</tr>
+<tr class="row-odd"><td>dippSubtitle</td>
+<td>evtl. Untertitel</td>
+</tr>
+<tr class="row-even"><td>dippAuthor</td>
+<td>ein oder mehrere Autoren</td>
+</tr>
+<tr class="row-odd"><td>Copyright</td>
+<td>enthält nach der Konvertierun die URN</td>
+</tr>
+<tr class="row-even"><td>dippAbstractTitle</td>
+<td>Überschrift für den Abstract, kann nur einmal vorkommen</td>
+</tr>
+<tr class="row-odd"><td>dippAbstract</td>
+<td>der Abstract selber</td>
+</tr>
+</tbody>
+</table>
+<p>Im Fließtext des Artikel sind die Einschränkungen nicht so restriktiv, es
+können auch eigene Formate ergänzt werden, allerdings werden die in Word
+gemachten Formatierung wie z.B. Einrückungen, Schriftgrad oder Farbe nicht
+automatisch in die HTML Ausgabe übernommen. Diese müssen manuell in den CSS
+Dateien nachgezogen werden. Da der Name des Absatzformates zum Klassennamen in
+der CSS Datei wird, darf er keine Sonderzeichen oder Leerzeichen enthalten.</p>
+<p>In der Regel sollten die Funktionen der Textverarbeitung genutzt werden:</p>
+<ul class="simple">
+<li>Normale Absätze werden mit der Formatvorlage &#8220;Standard&#8221; formatiert.</li>
+<li>Für Überschriften werden die üblichen &#8220;Überschrift 1, Überschrift 2, ...&#8221;
+verwendet. Aus den Überschriften wird dann das Inhaltsverzeichnis generiert,
+das als toc_html parallel zum Hauptext (fulltext) abeglegt wird. Über ein
+entsprechendes Portlet es in einer Randspalte angezeigt werden, siehe <a class="reference internal" href="portlets.html#portlet-toc"><em>Inhaltsverzeichnis portlet_toc</em></a>.</li>
+<li>Fußnoten sollten mit der Fußnotenfunktionen von Word gemacht werden. Zwischen
+Fuß- und Endnoten kann wegen fehlender Pagnierung in HTML nicht unterschieden
+werden.</li>
+<li>Hyperlinks sollten bereits in Word als solche angelegt werden.</li>
+<li>Aufzählungen und Nummerierungen sollten mit der entsprechenden Funktion in
+Word angelegt werden.</li>
+<li>Beschriftungen von Tabellen und Abbildungen sind ebenfalls mit der
+entsprechenden Funktion von Word zu erstellen.</li>
+</ul>
+<div class="section" id="abbildungen">
+<h2>Abbildungen</h2>
+<p>Es sind nur pixelbasierte Dateiformat (jpeg, gif, png) möglich, vektorbasierte
+Formate wie z.B. wmf oder mit Wordart erstellte Graphiken werden nicht
+unterstützt.</p>
+<p>Bilder sind in der Auflösung einzubinden, in der sie später im Internet
+erscheinen sollen. Abhängig vom Layout der Webseite sollte die Breite 580px
+nicht überschreiten. Die Bilder können mit Verweisen (hyperlinks) zu
+höherauflösenden Versionen versehen werden, die im Publikationssystem
+nachträglich hochgeladen werden können, siehe <a class="reference internal" href="zusatzmaterial.html#zusatzmaterial"><em>Zusatzmaterial</em></a>.</p>
+</div>
+<div class="section" id="tabellen">
+<h2>Tabellen</h2>
+<p>Tabellen sollten nicht zu komplex gestaltet werden, d. h. sie sollten nicht
+verschachtelt werden und die Größe einzelner Zellen sollten nicht durch Ziehen
+der Begrenzungslinie verändert werden. Das Verschmelzen von zwei benachbarten
+Zellen ist jedoch möglich. Auch sollte Für die erste Tabellenzeile als Kopfzeile
+gesetzt werden. Dazu wird die Zeile in Word markiert und dann über das
+Kontektmenü &#8220;Tabelleneigenschaft&#8221;, Reiter &#8220;Zeile&#8221; die Option &#8220;Gleiche Kopfzeile
+auf jeder Seite wiederholen&#8221; aktiviert. Dadurch wird die Zeile im HTML als header
+ausgezeichnet und läßt sich entsprechend über CSS formatieren.</p>
+<div class="figure">
+<img alt="Tabelleneigenschaften in Word 2007" src="_images/tabellen-kopf.png" />
+<p class="caption">Setzen der Eigenschaften für die Kopfzeile der Tabelle</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012-2018, Dr. Peter Reimer, hbz.
+      Mit <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 erstellt.
+    </div>
+  </body>
+</html>

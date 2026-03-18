@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Content Types</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="py-modindex.html" title="Python-Modulindex"
+             >Module</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tools"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API/Interfaces"
+             accesskey="P">zurück</a> |</li>
+        <li><a href="index.html">Digital Peer Publishing 2.25.3a Dokumentation</a> &raquo;</li>
+          <li><a href="anhang.html" >Anhang</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">API/Interfaces</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="content-types">
+<h1>Content Types</h1>
+<p>Alle Inhaltstypen basieren auf dem Archetype Framework.</p>
+<div class="section" id="artikel">
+<h2>Artikel</h2>
+<p>Ein Artikel ist ein Ordner vom Typ FedoraArtikel, der die einzelnen Bestandteile
+wie Texte, Bilder und Zusatzmaterialien aufnimmt.</p>
+<dl class="class">
+<dt id="Products.DiPP.content.fedoraarticle.FedoraArticle">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.fedoraarticle.</tt><tt class="descname">FedoraArticle</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Folderish Content Object containing all parts of an scholarly article.</p>
+<p>An article, which has gone through a peer review. Has to be added through the
+<a class="reference internal" href="editorial_toolbox.html#editorial-toolbox"><em>editorial toolbox</em></a></p>
+<dl class="method">
+<dt id="Products.DiPP.content.fedoraarticle.FedoraArticle.indexableContent">
+<tt class="descname">indexableContent</tt><big>(</big><em>fields</em><big>)</big></dt>
+<dd><p>Get the binary datastream from fedora and return in to TextIndexNG.</p>
+<p>Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
+to keep the burdon of fedora when reindexing the portal_catalog.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoraarticle.FedoraArticle.syncMetadata">
+<tt class="descname">syncMetadata</tt><big>(</big><big>)</big></dt>
+<dd><p>Sync the Metadata stored in Plone and Fedora.</p>
+<p>Most Metadata are kept only in Fedora but some are also stored in Plones
+catalog in order to have tkhem available in searches. This method should
+be called each time the metadata are modified</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoraarticle.FedoraArticle.getPublishedArticles">
+<tt class="descname">getPublishedArticles</tt><big>(</big><big>)</big></dt>
+<dd><p>Return a tuple of published articles</p>
+<p>The catalog is searched for all FedoraArticles except the temporary ones.
+A List of PID, title tupels is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoraarticle.FedoraArticle.getFulltextPdf">
+<tt class="descname">getFulltextPdf</tt><big>(</big><big>)</big></dt>
+<dd><p>return the URL of the fulltext pdf or empty dictionary</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoraarticle.FedoraArticle.linkTranslations">
+<tt class="descname">linkTranslations</tt><big>(</big><em>PID</em><big>)</big></dt>
+<dd><p>not sure, if this is still in use</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DiPP.content.fedoradocument.FedoraDocument">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.fedoradocument.</tt><tt class="descname">FedoraDocument</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Store text files in the repository.</p>
+<dl class="method">
+<dt id="Products.DiPP.content.fedoradocument.FedoraDocument.make_working_copy">
+<tt class="descname">make_working_copy</tt><big>(</big><em>Date</em><big>)</big></dt>
+<dd><p>Take the datastream version of the given date and make it the working copy.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.fedoramultimedia.</tt><tt class="descname">FedoraMultimedia</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Multimedia files (Images, PDF, Movies) for storing in Fedora</p>
+<dl class="method">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia.reindex_article">
+<tt class="descname">reindex_article</tt><big>(</big><big>)</big></dt>
+<dd><p>If this object is a pdf version of the article the article has to be
+reindexed upon changes/creation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia.at_post_create_script">
+<tt class="descname">at_post_create_script</tt><big>(</big><big>)</big></dt>
+<dd><p>Reindex article folder when pdf fulltext is added.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia.at_post_edit_script">
+<tt class="descname">at_post_edit_script</tt><big>(</big><big>)</big></dt>
+<dd><p>Reindex article folder when pdf fulltext is modified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia.indexableContent">
+<tt class="descname">indexableContent</tt><big>(</big><em>fields</em><big>)</big></dt>
+<dd><p>get the binary datastream from fedora and return in to TextIndexNG
+Only pdf Files should be indexed (via pdftotext) mimetype is checked in plone
+to keep the burdon of fedora when reindexing the portal_catalog</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia.index_html">
+<tt class="descname">index_html</tt><big>(</big><em>REQUEST=None</em>, <em>RESPONSE=None</em><big>)</big></dt>
+<dd><p>fetch a file from the repository</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedoramultimedia.FedoraMultimedia.preview">
+<tt class="descname">preview</tt><big>(</big><em>REQUEST=None</em>, <em>RESPONSE=None</em><big>)</big></dt>
+<dd><p>Download the file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DiPP.content.fedoraxml.FedoraXML">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.fedoraxml.</tt><tt class="descname">FedoraXML</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>stores the DocBOOK XML Files</p>
+</dd></dl>
+
+</div>
+<div class="section" id="hierarchische-objekte">
+<h2>Hierarchische Objekte</h2>
+<dl class="class">
+<dt id="Products.DiPP.content.fedorahierarchie.FedoraHierarchie">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.fedorahierarchie.</tt><tt class="descname">FedoraHierarchie</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Hierarchical Object representing an issue or volume.</p>
+<dl class="method">
+<dt id="Products.DiPP.content.fedorahierarchie.FedoraHierarchie.at_post_create_script">
+<tt class="descname">at_post_create_script</tt><big>(</big><big>)</big></dt>
+<dd><p>add a hierarchical object to fedora and write the PID back to the Plone object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.content.fedorahierarchie.FedoraHierarchie.migrate">
+<tt class="descname">migrate</tt><big>(</big><em>target</em><big>)</big></dt>
+<dd><p>Migrate from FedoraHierarchie to Volume or Issue only for Plone 2.5.5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DiPP.content.volume.Volume">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.volume.</tt><tt class="descname">Volume</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Hierarchical Object representing a Volume.</p>
+<dl class="method">
+<dt id="Products.DiPP.content.volume.Volume.at_post_create_script">
+<tt class="descname">at_post_create_script</tt><big>(</big><big>)</big></dt>
+<dd><p>add a hierarchical object to fedora and write the PID back to the Plone object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DiPP.content.issue.Issue">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.issue.</tt><tt class="descname">Issue</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Hierarchical Object representing an issue.</p>
+<dl class="method">
+<dt id="Products.DiPP.content.issue.Issue.at_post_create_script">
+<tt class="descname">at_post_create_script</tt><big>(</big><big>)</big></dt>
+<dd><p>add a hierarchical object to fedora and write the PID back to the Plone object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Products.DiPP.content.specialissue.SpecialIssue">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.content.specialissue.</tt><tt class="descname">SpecialIssue</tt><big>(</big><em>oid</em>, <em>**kwargs</em><big>)</big></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012-2018, Dr. Peter Reimer, hbz.
+      Mit <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 erstellt.
+    </div>
+  </body>
+</html>

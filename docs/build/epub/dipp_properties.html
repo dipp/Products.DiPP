@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dipp_properties (DiPP properties)</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="py-modindex.html" title="Python-Modulindex"
+             >Module</a></li>
+        <li class="right" >
+          <a href="metadata_properties.html" title="metadata_properties (QDC Metadata properties)"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="konfiguration.html" title="Konfiguration"
+             accesskey="P">zurück</a> |</li>
+        <li><a href="index.html">Digital Peer Publishing 2.25.3a Dokumentation</a> &raquo;</li>
+          <li><a href="konfiguration.html" accesskey="U">Konfiguration</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="dipp-properties-dipp-properties">
+<h1>dipp_properties (DiPP properties)</h1>
+<p>enthält Konfigurationen, die das Erscheinungsbild von Ausgaben und
+Artikeln beeinflussen.</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="issn">
+<span id="prop-issn"></span><h2>ISSN</h2>
+<p>Die <em>International Standard Serial Number</em>. Kann mit erscheinen der ersten Artikel
+bei der Deutschen Nationalbibliothek beantragt werden.</p>
+</div>
+<div class="section" id="alertemailaddresses">
+<span id="prop-alertemailaddresses"></span><h2>alertEmailAddresses</h2>
+<p>Eine Liste mit E-Mail Adressen, die bei Veröffentlichung eines Artikel
+benachrichtigt werden.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>dipp@hbz-nrw.de</pre>
+</div>
+</div>
+<div class="section" id="alertemailtext">
+<span id="prop-alertemailtext"></span><h2>alertEmailText</h2>
+<p>Text dieser Email:</p>
+<div class="highlight-python"><pre>Das Journal "%(journal)s" hat einen neuen Artikel veröffentlicht:
+%(citation)s
+
+URL: %(url)s
+DataCite XML: %(url)s/metadata/datacite</pre>
+</div>
+<p>Zur Verfügung stehende Platzhalter:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Bedeutung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>journal</td>
+<td>Name des journals</td>
+</tr>
+<tr class="row-odd"><td>url</td>
+<td>URL des Artikels</td>
+</tr>
+<tr class="row-even"><td>citation</td>
+<td>Bibliographischen Zitat des Artikels</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="citation-format">
+<h2>citation_format</h2>
+<p>String, der zum Formatieren der empfolenen Zitierweise verwendet wird, wie sie
+unter dem Artikel bzw. auf der Seite mit den Metadaten zu dinen ist.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>%(authors)s (%(year)s). %(title)s. %(journal)s, Vol. %(volume)s. (%(urn)s)</pre>
+</div>
+<p>Zur Verfügung stehende Platzhalter:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Bedeutung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>authors</td>
+<td>Liste der Autoren, kann durch weitere Parameter detailierter
+formatiert werden</td>
+</tr>
+<tr class="row-odd"><td>title</td>
+<td>Titel des Artikels</td>
+</tr>
+<tr class="row-even"><td>journal</td>
+<td>Name des Journals</td>
+</tr>
+<tr class="row-odd"><td>volume</td>
+<td>Jahrgang</td>
+</tr>
+<tr class="row-even"><td>issue</td>
+<td>Ausgabe</td>
+</tr>
+<tr class="row-odd"><td>startpage</td>
+<td>erste Seite (bei PDF)</td>
+</tr>
+<tr class="row-even"><td>endpage</td>
+<td>letzte Seite (bei PDF)</td>
+</tr>
+<tr class="row-odd"><td>year</td>
+<td>Jahreszahl, wird aus den Datum der Veröffentlich extrahiert</td>
+</tr>
+<tr class="row-even"><td>date</td>
+<td>Datum der Veröffentlichung</td>
+</tr>
+<tr class="row-odd"><td>id</td>
+<td>die PID ohne des Prefix &#8216;dipp:&#8217;</td>
+</tr>
+<tr class="row-even"><td>urn</td>
+<td>Der URN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="short-citation-format">
+<span id="prop-short-citation-format"></span><h2>short_citation_format</h2>
+<p>String, der zum Formatieren der verkürzten Zitierweise verwendet wird. Wird aus
+den Metadaten erzeugt, die auch im Plone Katalog indexiert sind und keinen
+Aufruf von Fedora erfordern. Kann z.B. auf den Inhaltsverzeichnissen oder den
+Feeds verwendet werden.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>%(journal)s, Vol. %(volume)s, Iss. %(issue)s</pre>
+</div>
+<p>Zur Verfügung stehende Platzhalter:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Bedeutung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>journal</td>
+<td>Name des Journals</td>
+</tr>
+<tr class="row-odd"><td>journal_shortname</td>
+<td>Abkürzung des Journals, siehe <a class="reference internal" href="metadata_properties.html#prop-journalname-abbr"><em>journalname_abbr</em></a></td>
+</tr>
+<tr class="row-even"><td>volume</td>
+<td>Jahrgang</td>
+</tr>
+<tr class="row-odd"><td>issue</td>
+<td>Ausgabe</td>
+</tr>
+<tr class="row-even"><td>startpage</td>
+<td>erste Seite (bei PDF)</td>
+</tr>
+<tr class="row-odd"><td>endpage</td>
+<td>letzte Seite (bei PDF)</td>
+</tr>
+<tr class="row-even"><td>year</td>
+<td>Jahreszahl, wird aus den Datum der Veröffentlich extrahiert</td>
+</tr>
+<tr class="row-odd"><td>issuedate</td>
+<td>Datum der Veröffentlichung</td>
+</tr>
+<tr class="row-even"><td>urn</td>
+<td>Der URN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="issue-date-format">
+<span id="prop-issue-date-format"></span><h2>issue_date_format</h2>
+<p>Formatierung des Ausgabendatums in Listen aller Ausgaben. <a class="reference external" href="http://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior">http://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior</a></p>
+<p>Default:</p>
+<div class="highlight-python"><pre>%b %Y</pre>
+</div>
+</div>
+<div class="section" id="hide-current-issue">
+<span id="id1"></span><h2>hide_current_issue</h2>
+<p>Bestimmt, ob die aktuelle Ausgabe im all_issues Template angezeigt werden soll. Bei Verwendung eines currentissue
+Links kann das evtl. sinnvoll sein.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-recommended-citation">
+<h2>show_recommended_citation</h2>
+<p>Soll unterhalb des Artikels das bibliographische Zitat angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-classified-subjects">
+<h2>show_classified_subjects</h2>
+<p>Sollen im Artikelkopf die normierten Schlagworte angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-review-history">
+<h2>show_review_history</h2>
+<p>Sollen im Artikelkopf die Daten für Einreichung und Annahme angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initials-only">
+<h2>initials_only</h2>
+<p>Im bibliographischen Zitat: Sollen bei den Autoren nur die Initialen angezeigt
+werden statt des ausgeschriebenen Vornamens:</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="firstnamefirst">
+<h2>firstnamefirst</h2>
+<p>Im bibliographischen Zitat: Sollen erst die Vornamen angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initials-period">
+<h2>initials_period</h2>
+<p>Im bibl. Zitat: Sollen ein Punkt hinter die Initialen?</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comma-separated">
+<h2>comma_separated</h2>
+<p>Im bibl. Zitat: wenn der Vorname nach dem Nachnamen kommt (firstnamefirst =
+false), sollen sie durch ein Komma getrennt werden:</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="last-author-suffix">
+<h2>last_author_suffix</h2>
+<p>Im  bibl. Zitat: wenn der letzte Autor z.B. durch ein &#8216;und&#8217; abgetrennt werden
+soll.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>&lt;leer&gt;</pre>
+</div>
+</div>
+<div class="section" id="articles-in-portlet">
+<span id="prop-articles-in-portlet"></span><h2>articles_in_portlet</h2>
+<p>Im Portlet &#8220;Current Issue&#8221;: Sollen die Artikel aufgelistet werden? Sonst
+escheint nur ein Link auf die Ausgabe, evtl. mit Bild.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authors-in-portlet">
+<span id="prop-authors-in-portlet"></span><h2>authors_in_portlet</h2>
+<p>Im Portlet &#8220;Current Issue&#8221;: Sollen auch die Autoren gelistet werden?</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="allow-persistent-discussion">
+<span id="id2"></span><h2>allow_persistent_discussion</h2>
+<p>Wenn True, wird unterhalb eines Artikels eine Liste mit Kommentaren und ein Link
+zum Einreichen eines eigenen Kommentares eingeblendet. Kommentare sind
+ihrerseits wieder begutachtete Artikel.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="volume-show-covers">
+<span id="prop-volume-show-covers"></span><h2>volume_show_covers</h2>
+<p>Wenn True, werden auf der Inhaltsseite der Jahrgänge die Titelseiten der
+Ausgaben angezeigt, soweit vorhanden.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-abstracts">
+<h2>issue_show_abstracts</h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben die verfügbaren Abstracts
+der Artikel verlinkt.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-full-abstracts">
+<h2>issue_show_full_abstracts</h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben die Abstracts in voller
+Länge angezeigt.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-pdf-link">
+<h2>issue_show_pdf_link</h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben vorhandene PDFs direkt
+verlinkt.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-short-citation">
+<h2>issue_show_short_citation</h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben zu den Artikeln das
+bibligraphische Zitat in Kurzform angezeigt, siehe
+<a class="reference internal" href="#prop-short-citation-format"><em>short_citation_format</em></a></p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-sort-on">
+<h2>issue_sort_on</h2>
+<p>Bestimmt auf der Inhaltsseite der Ausgaben, wonach die Artikelliste sortiert
+werden soll. Möglich sind alle sortierbaren Attribute der Artikel, z.B.
+getIssue, getIssueDate, getVolume, getObjPositionInParent. Letzteres ermöglicht
+eine manuelle Sortierung, die Reihenfolge im Elternorder (Ausgabe) übernommen
+wird.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">getObjPositionInParent</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-sort-order">
+<h2>issue_sort_order</h2>
+<p>Aufsteigende (ascending) oder absteigende (reverse) Sortierung der Artikel</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ascending</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="discussion-time">
+<h2>discussion_time</h2>
+<p>(wird nicht verwendet)</p>
+</div>
+<div class="section" id="fedora-time-format">
+<h2>fedora_time_format</h2>
+<p>String um die Fedorazeitstempel im ZMI lesbarer anzuzeigen. Sollte eigentlich
+niemals geändert werden müssen.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>%Y-%m-%dT%H:%M:%SZ</pre>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>issue_date_format</h2>
+<p>Wenn nicht leer, wird das Datum auf der Ausgabenseite mit dem hier angegebenen
+String formatiert. Wenn leer, wird auch kein Datum angezeigt.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>&lt;leer&gt;</pre>
+</div>
+</div>
+<div class="section" id="recent-articles-range">
+<span id="prop-recent-articles-range"></span><h2>recent_articles_range</h2>
+<p>Alter (in Tagen) des ältesten Artikels der durch das recent_article Template
+angezeigt werden soll.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deepest-toc-level">
+<span id="prop-deepest-toc-level"></span><h2>deepest_toc_level</h2>
+<p>Die niedrigste Überschriftenebene, die im  <a class="reference internal" href="portlets.html#portlet-autotoc"><em>Automatisches Inhaltsverzeichnis portlet_autotoc</em></a> Inhaltsverzeichnis (TOC) des Artikels noch
+angezeigt werden soll. Es ist zu beachten, dass die erste Ebene h2 ist. Um die
+ersten drei Ebenen anzuzegen, muss der Wert auf 4 gesetzt werden. Der globale Wert
+kann auf für einen einelnen Artikel überschrieben werden, wenn im ZMI eine entsprechend
+benannte Property angelegt wird. Das TOC wird aktualisiert, wenn vom Artikel eine neue
+Version angelegt wird.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="awstats-id">
+<span id="prop-awstats-id"></span><h2>awstats_id</h2>
+<p>Wenn der Name der AWStats Konfgurationsdatei &#8220;awstats.ejournal.conf&#8221; lautet, ist die
+awstats_id &#8220;ejournal&#8221; Daraus ergeben sich dann die geparsten Logfiles zu z.B
+&#8220;awstats112011.ejournal.txt&#8221; Daraus werden dann die Zugriffstatiskten einzelner Artikel
+bzw. Artikeldateien generiert.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>&lt;leer&gt;</pre>
+</div>
+</div>
+<div class="section" id="enable-ebookey">
+<span id="id4"></span><h2>enable_ebookey</h2>
+<p>Zeige unter Volltext einen Link zur per ebookey erzeugten epub-Version des Artikeln.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="orcid-cli">
+<span id="id5"></span><h2>orcid_cli</h2>
+</div>
+<div class="section" id="twitter-username">
+<span id="id6"></span><h2>twitter_username</h2>
+<p>Benutzername bei twitter, ohne führendes &#64;:</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>&lt;leer&gt;</pre>
+</div>
+</div>
+<div class="section" id="sharing-image">
+<span id="id7"></span><h2>sharing_image</h2>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012-2018, Dr. Peter Reimer, hbz.
+      Mit <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 erstellt.
+    </div>
+  </body>
+</html>

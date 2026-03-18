@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Changelog</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="py-modindex.html" title="Python-Modulindex"
+             >Module</a></li>
+        <li class="right" >
+          <a href="anhang.html" title="Anhang"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="site_properties.html" title="site_properties"
+             accesskey="P">zurück</a> |</li>
+        <li><a href="index.html">Digital Peer Publishing 2.25.3a Dokumentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="changelog">
+<h1>Changelog</h1>
+<div class="section" id="dipp-2-26-2019">
+<h2>DiPP 2.26 (2019-??-??)</h2>
+<ul class="simple">
+<li>Support for CC Licences added</li>
+<li>improved email alert with bibl. citation and direct
+link to datacit xml</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-25-1-2018-01-19">
+<h2>DiPP 2.25.1 (2018-01-19)</h2>
+<ul class="simple">
+<li>minor bugfix</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-25-2018-01-19">
+<h2>DiPP 2.25 (2018-01-19)</h2>
+<ul class="simple">
+<li>Piwik/Matomo<ul>
+<li>Special Piwik/Matomo code also for <a class="reference external" href="https://matomo.org/faq/how-to/faq_60/">404 Pages</a><span class="link-target"> [https://matomo.org/faq/how-to/faq_60/]</span> including referrer</li>
+<li>multipingual Privacypage with Piwik opt-out</li>
+<li>Tracking JS Code included via macro and propertysheet, no need to
+customize the maintemplate any more</li>
+</ul>
+</li>
+<li>Bugfixes, code cleanup, <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a><span class="link-target"> [https://www.python.org/dev/peps/pep-0008/]</span></li>
+<li>ZMI improvements on manage pages of Fedoraobjects, i.e. view tab
+for folderish types.</li>
+<li>Paragraph numbers added to Wordtemplate and CSS</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-24-unreleased">
+<h2>DiPP 2.24 (unreleased)</h2>
+<ul class="simple">
+<li>use https for DOI resolving according to display guidelines of
+<a class="reference external" href="https://support.datacite.org/v1.0/docs/datacite-doi-display-guidelines">DataCite</a><span class="link-target"> [https://support.datacite.org/v1.0/docs/datacite-doi-display-guidelines]</span> and <a class="reference external" href="https://www.crossref.org/display-guidelines/">Crossref</a><span class="link-target"> [https://www.crossref.org/display-guidelines/]</span></li>
+<li>DataCite Metadata Schema 4.0</li>
+<li>Support for TwitterCard and Opengraph Metatags.</li>
+<li>Updated Documentation</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-23-2016-10-07">
+<h2>DiPP 2.23 (2016-10-07)</h2>
+<ul class="simple">
+<li>fixed initialisation problem for contenttypes</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-22-2016-07-27">
+<h2>DiPP 2.22 (2016-07-27)</h2>
+<ul class="simple">
+<li>fixed problem when installing permissions</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-21-2016-07-27">
+<h2>DiPP 2.21 (2016-07-27)</h2>
+<ul class="simple">
+<li>improved print stylesheet</li>
+<li>ebookey can be enabled in dipp_properties, since it only works for journals
+with html versions of the articles. Note: cover image required, but without
+alpha channel</li>
+<li>persistent urls for metadata</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-20-unreleased">
+<h2>DiPP 2.20 (unreleased)</h2>
+<ul class="simple">
+<li>show access statistics from AWStats directly in Plone, proteced by
+dedicated permission setting</li>
+<li>fixed reCAPTCHA. Validation expected two words, which failed for single
+(house)numbers</li>
+<li>new portlet with automatic generated table of contents portlet_autotoc
+(requires dipp.tools version 0.6)</li>
+<li>ebook support</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-19-2014-08-29">
+<h2>DiPP 2.19 (2014-08-29)</h2>
+<ul class="simple">
+<li>javascript support for metadata form. adding new fields does not require
+reload of entire form</li>
+<li>new get_location method, which passes the url of a ploneobject to fedora
+based on IP and port and bypassing the VHM.</li>
+<li>fixed permission problem in issue_portlet</li>
+<li>orcid fix for https connections</li>
+<li>improved DOI handling</li>
+<li>show pdf/a next to pdf</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-18-2014-02-06">
+<h2>DiPP 2.18 (2014-02-06)</h2>
+<ul class="simple">
+<li>requires dipp.dipp3 3.4 and works only with java package dippCore-1.3.02</li>
+<li>Support for ORCID ID</li>
+<li>DataCite and DOAJ xml export on one page</li>
+<li>removed authordetails on authorpage. just article listing for the time being</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-17-2014-01-23">
+<h2>DiPP 2.17 (2014-01-23)</h2>
+<ul class="simple">
+<li>Datacite DOI control panel added (just skeleton)</li>
+<li>script to fix wrong formatted journalIssueDate in qdc metadata</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-16-2014-01-13">
+<h2>DiPP 2.16 (2014-01-13)</h2>
+<ul class="simple">
+<li>added DOI to portal_catalog. run synchronize script after installation</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-15-2013-12-27">
+<h2>DiPP 2.15 (2013-12-27)</h2>
+<ul class="simple">
+<li>DataCite XML for DOI registration</li>
+<li>improved metadata handling (mainly internal code cleanup)</li>
+<li>portlet with article and issue details (archimaera and zeitenblicke style)</li>
+<li>hidden/hover permalinks on splash pages</li>
+<li>moved son code to dipp.dipp3 module, depends now on version 3.3</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-14-2013-11-26">
+<h2>DiPP 2.14 (2013-11-26)</h2>
+<ul class="simple">
+<li>general code cleanup, removing deprecated files</li>
+<li>pubtype and doctype code in metadataform improved, configurable defaults</li>
+<li>getting rid of ugly test.py script. No special treatment of
+&#8220;title&#8221; and &#8220;lang&#8221; metadata</li>
+<li>added and fixed some translations</li>
+<li>more verbose help in metadataform</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-13-2013-09-18">
+<h2>DiPP 2.13 (2013-09-18)</h2>
+<ul class="simple">
+<li>improved documentation</li>
+<li>fix error when calling authorpage with of existing author</li>
+<li>allArticles script improved: include URNs, download as csv</li>
+<li>verbose list for selection of commented article</li>
+<li>a few translations</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-12-2013-06-05">
+<h2>DiPP 2.12 (2013-06-05)</h2>
+<ul class="simple">
+<li>Using <a class="reference external" href="http://www.google.com/recaptcha">reCAPTCHA</a><span class="link-target"> [http://www.google.com/recaptcha]</span>  for join_form to prevent Spam.
+Remove qPloneCaptcha if installed</li>
+<li>fix_member script to delete spam accounts</li>
+<li>allArticles script created dowloadable alle-artikel.txt CSV file
+with PIDs, URL, Title</li>
+<li>URN Management in ZMI for Issues, Volumes and FedorHierarchien</li>
+<li>depends on dipp.tools &gt;= 0.3 and dipp.fedora2 &gt;= 2.2</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-11-2013-02-22">
+<h2>DiPP 2.11 (2013-02-22)</h2>
+<ul class="simple">
+<li>moved all DiPP relavant properties from the ZMI root to
+dipp_properties. Running moveProps.py script is required</li>
+<li>deadline code moved to a tool, ext-Folder with external methods
+is now obsolete and can be deleted</li>
+<li>some permission fixed for CMFOpenflow</li>
+<li>easier to go back to a previous version of a datastream</li>
+<li>fixed abstract encoding in rss feed</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-10-2012-10-12">
+<h2>DiPP 2.10 (2012-10-12)</h2>
+<ul class="simple">
+<li>added Sphinx based documentation</li>
+<li>proper use of interfaces</li>
+<li>ContentTypes moved to content folder</li>
+<li>generic profiles  for most installations</li>
+<li>event subscriber</li>
+<li>use of Products.DiPP nested namespace for propper &#8220;eggification&#8221;</li>
+<li>Fedora server configuration taken from dipp.fedora2 module, no
+extra configuration in Plone</li>
+<li>lots of code cleanup and docstrings</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-9-2012-04-19">
+<h2>DiPP 2.9.9 (2012-04-19)</h2>
+<ul class="simple">
+<li>added PID resolver</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-8-2012-04-04">
+<h2>DiPP 2.9.8 (2012-04-04)</h2>
+<ul class="simple">
+<li>fixed problems with link_translations_form</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-7-2012-04-02">
+<h2>DiPP 2.9.7 (2012-04-02)</h2>
+<ul class="simple">
+<li>Fixed some problem with versioning of XML streams</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>DiPP 2.9.7 (2012-04-02)</h2>
+<ul class="simple">
+<li>unreleased</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-5-2012-03-12">
+<h2>DiPP 2.9.5 (2012-03-12)</h2>
+<ul class="simple">
+<li>Publishing (openflow) workflow: fixed permission problems and error
+in imprimatur mail</li>
+<li>recommendet citation: order first and lastname</li>
+<li>roles and persmissions as generic setup</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-5-2012-03-13">
+<h2>DiPP 2.9.5 (2012-03-13)</h2>
+<ul class="simple">
+<li>unreleased</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-4-2012-01-19">
+<h2>DiPP 2.9.4 (2012-01-19)</h2>
+<ul class="simple">
+<li>fileupload not limited to pdf or jpg, not so strict check of MIME Type</li>
+<li>ISSN search via aquisition, thus more flexible with multiple ISSNs</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-3-2011-10-20">
+<h2>DiPP 2.9.3 (2011-10-20)</h2>
+<ul class="simple">
+<li>fixed type error when adding files to submission</li>
+<li>default title in metadata</li>
+<li>new login_succes page with rolebased links</li>
+<li>pdf automatically declared as fulltext when pdf only publishing</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-2-2011-10-11">
+<h2>DiPP 2.9.2 (2011-10-11)</h2>
+<ul class="simple">
+<li>more flexible bibliographic citation (APA style possible)</li>
+<li>short bibl. citation on issue index page</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-1-2011-10-10">
+<h2>DiPP 2.9.1 (2011-10-10)</h2>
+<ul class="simple">
+<li>SpecialIssue from DiPPContent included, Dependency from DiPPContent
+removed. Should be deinstalled before reinstalling DIPP</li>
+<li>pdf link on issue index page</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-2011-09-28">
+<h2>DiPP 2.9 (2011-09-28)</h2>
+<ul class="simple">
+<li>Merged with DiPPReview</li>
+<li>more than one ISSN possible</li>
+<li>Better support for classified subjects, JEL added</li>
+<li>Zählpixel in HTML and in PDF-Icon (document_actions)</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-8-1-2011-07-20">
+<h2>DiPP 2.8.1 (2011-07-20)</h2>
+<ul class="simple">
+<li>neutral language first in first workflow step, help texts</li>
+<li>fixed: paper does not appear in worklist, when authorname has strange
+characters</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-8-2011-07-18">
+<h2>DiPP 2.8 (2011-07-18)</h2>
+<ul class="simple">
+<li>IssueDate as DateIndex. Remove getIssueDate before Installation  to force
+recreation of index. reindex</li>
+<li>jquery UI, used for DiPPReviews overlay effects</li>
+<li>dipp_sections tool, will soon replace vocabularybased section, since
+it integrates in LinguaPlone</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-7-2-2011-06-29">
+<h2>DiPP 2.7.2 (2011-06-29)</h2>
+<ul class="simple">
+<li>Fedora2DiPP3 tool folderish. Articles for storing in the repository
+are temporarily kept here insteat in fedora_tmp folder</li>
+<li>Enhanced translation of articles: i.e. english and german version can
+be in the same folder, not necessarily the translated parent folder</li>
+<li>advanced search even more enhanced</li>
+<li>GND Connection included, but not activated</li>
+<li>created, modified and valid dates replaced with published, submitted
+(needs still some fix for reading back)</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-7-1-2011-04-21">
+<h2>DiPP 2.7.1 (2011-04-21)</h2>
+<ul class="simple">
+<li>articlesearch shows short bibligraphic citation</li>
+<li>Licence defaults to englisch, when other language than en or de is
+selected</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-7-2011-04-18">
+<h2>DiPP 2.7 (2011-04-18)</h2>
+<ul class="simple">
+<li>new dependency: python egg dipp.tools</li>
+<li>After Install: call synchronize Skript to put the URN into plones catalog</li>
+<li>fedoratool shows status of URN</li>
+<li>fixed some problems when indexing pdfs</li>
+<li>new main_template for workflow related pages. only left column is
+visible and not modified by left_slot</li>
+<li>new articlesearch_form, not active yet</li>
+<li>feeds und search in robots.txt disabled for performance reasons</li>
+<li>new template for recent article with section drilldown (logistics)</li>
+<li>normalized rtf filenames, upload of files with strange filenames now
+possible</li>
+<li>zlog replaced with logger</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-4-2011-03-23">
+<h2>DiPP 2.6.4 (2011-03-23)</h2>
+<ul class="simple">
+<li>fixed broken pdf link in html version of article</li>
+<li>adding new keywords when uploading articles fixed</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-3-2011-03-22">
+<h2>DiPP 2.6.3 (2011-03-22)</h2>
+<ul class="simple">
+<li>&#8220;titel&#8221; attribute (ZMI) of workflow instance removes to prevent trouble
+with special characters</li>
+<li>add basis for a &#8220;DiPPManagementTool&#8221; which allows checking and
+installing of products in all journals of a zopeinstance</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-2-2011-03-10">
+<h2>DiPP 2.6.2 (2011-03-10)</h2>
+<ul class="simple">
+<li>portlet for ISSN</li>
+<li>recent_articles shows only articles of the last 30 days (configurable)</li>
+<li>Metadata: keywords as checkboxes to allow easier selection</li>
+<li>minor i18n and css corrections</li>
+<li>bypass webservice when uploading rtf. This might solve the timeout
+problems</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-1-2011-02-24">
+<h2>DiPP 2.6.1 (2011-02-24)</h2>
+<ul class="simple">
+<li>edit journal sections in the Metadataform</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-2011-02-24">
+<h2>DiPP 2.6 (2011-02-24)</h2>
+<ul class="simple">
+<li>adding pagenumbers also in the metadata form possible</li>
+<li>Metadata form: finally a cancel button plus a few refined translations</li>
+<li>Colored Differences between version of an article</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-5-2011-02-14">
+<h2>DiPP 2.5.5 (2011-02-14)</h2>
+<ul class="simple">
+<li>After Install: call synchronize Skript to put the JournalIssueDate and
+Authors into plones catalog</li>
+<li>recent articles: batched list with section support</li>
+<li>workflow: templates as controller page templates with cancel button,
+Title and PID on every page</li>
+<li>my_worklist and all_worklist unified</li>
+<li>licence is now a macro and used in mixed_view and fedoradocument_view</li>
+<li>pdf indexed together with article folder: found pdf in search result
+now has url of articlefolder/splashpage</li>
+<li>jQuery used to display references as tooltips</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-4-2010-11-29">
+<h2>DiPP 2.5.4 (2010-11-29)</h2>
+<ul class="simple">
+<li>Fulltext with size</li>
+<li>issue sorting (by date, by position) configurable via ZMI</li>
+<li>DOI/URN linked with resolver</li>
+<li>date in issue configurable</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-3-2010-11-18">
+<h2>DiPP 2.5.3 (2010-11-18)</h2>
+<ul class="simple">
+<li>default view of articles configurable (fulltext for converted articles,
+mixed_view for pdf only publications)</li>
+<li>better linguaplone support for FedoraArticles. Tranlations can easily
+be linked after the conversion via the editorial toolbox</li>
+<li>more dummy metadata for temp. conversions. Citation and metadata views
+can be rendered now</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-2-2010-10-22">
+<h2>DiPP 2.5.2 (2010-10-22)</h2>
+<ul class="simple">
+<li>Feeds as alternate content in header of some templates (icon in
+firefox address bar)</li>
+<li>Feeds optional contain a short bibliographic citation</li>
+<li>portlet and dedicated template for recent articles</li>
+<li>journalIssueDate in sync with Plones effective date</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-1-2010-10-08">
+<h2>DiPP 2.5.1 (2010-10-08)</h2>
+<ul class="simple">
+<li>authors/contributors indexed and searchable</li>
+<li>feeds: dedicated page and portlet</li>
+<li>article template to replace the authorblurb from the docbook</li>
+<li>minor bugfixes</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-2010-09-30">
+<h2>DiPP 2.5 (2010-09-30)</h2>
+<ul class="simple">
+<li>New Contenttype Issue and Volume, which are identical with
+FedoraHierachie, just another name. Existing Issues/volumes, made with
+FedoraHierachies can be migrated, but don&#8217;t need to.</li>
+<li>feeds include now the abstract, which requires running of the synchronize
+script, since the abstract stored in fedora has to be made available in the
+FedoraArticle contenttype</li>
+<li>Hierarchien, Issues, Volumes linguaplone aware.</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-10-2010-09-08">
+<h2>DiPP 2.4.10 (2010-09-08)</h2>
+<ul class="simple">
+<li>ZMI: fedora manage tab for articles. Currently  allows direct read
+access to datastreams and versions of the xml datastreams (DC,
+RELS-EXT,...) of the DiPP:article object</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-9-2010-09-02">
+<h2>DiPP 2.4.9 (2010-09-02)</h2>
+<ul class="simple">
+<li>beginning support for default metadata and configurable meadata form
+(not complete yet, required removing fedora tool before updating. remember
+to add label and pid again)</li>
+<li>Use of PyRRS2Gen for feeds started</li>
+<li>issues and volume show only content of current navigation level</li>
+<li>fixed minor design flaws</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-8-2010-08-25">
+<h2>DiPP 2.4.8 (2010-08-25)</h2>
+<ul class="simple">
+<li>show metadata/citation as tabs to make the page more compact</li>
+<li>citation downloadable for better integration with Endnote, Zotero,...</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-7-2010-08-24">
+<h2>DiPP 2.4.7 (2010-08-24)</h2>
+<ul class="simple">
+<li>citation formats with bibutils: Endnote, Bibtex,...</li>
+<li>bibutils needs to be installed and in the path</li>
+<li>bibliograph python modules are required</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-6-2010-07-28">
+<h2>DiPP 2.4.6 (2010-07-28)</h2>
+<ul class="simple">
+<li>direct access to fedora bypassing the webservice also for indexing pdf</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-5-2010-07-28">
+<h2>DiPP 2.4.5 (2010-07-28)</h2>
+<ul class="simple">
+<li>worklist makes ist easer to spot workitems which can be deleted because the
+items articleobject has been deleted. Needs the PID to be catalogued. Using
+with plone 2.0 requires manuell adding of PID index</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-4-2010-07-23">
+<h2>DiPP 2.4.4 (2010-07-23)</h2>
+<ul class="simple">
+<li>icons for metadata/citation and fulltext pdf as document_action implemented</li>
+<li>author page: in a case a contributor also has an account, the profile is shown</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-3-2010-07-12">
+<h2>DiPP 2.4.3 (2010-07-12)</h2>
+<ul class="simple">
+<li>new alphabetic list of authors, grouped by initial</li>
+<li>cleanup and minor bugfixes</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-2-2010-06-30">
+<h2>DiPP 2.4.2 (2010-06-30)</h2>
+<ul class="simple">
+<li>Bugfixes: corrected use of volume/issue in COinS</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-1-2010-06-29">
+<h2>DiPP 2.4.1 (2010-06-29)</h2>
+<ul class="simple">
+<li>COinS/Zotero support added, requires python module openurl</li>
+<li>worklist: show PID of the article, user &#8216;dippadm&#8217; can now
+easily delete workitems from the list.</li>
+<li>nicer abstract_view</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-2010-06-22">
+<h2>DiPP 2.4 (2010-06-22)</h2>
+<ul class="simple">
+<li>include the tools PloneFedora2DiPP2 and PloneFedora2DiPP3 replacing
+two seperate products. PloneFedora2DiPP3 is automatically installed</li>
+<li>finally removing root properties GAP_CONTAINER and label. These are
+replaces by PID and label configurable directly in the fedora tool.  For new
+Installations t has to be done manually, for upgrades from Version &lt;2.4 a
+script mig23to24 is provided</li>
+<li>Editing of FedoraDocuments simplified, less templates needed FedoraMultimedia</li>
+<li>fetches content/datastream directly from fedora, not
+via webservice, to improve performance</li>
+</ul>
+</div>
+<div class="section" id="dipp-2-3-6-2010-05-27">
+<h2>DiPP 2.3.6 (2010-05-27)</h2>
+<ul class="simple">
+<li>TextIndexNG3 used to index PDFs (requires reindexing of portal_catalog
+and converting existing indexes, see Products Readme)</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012-2018, Dr. Peter Reimer, hbz.
+      Mit <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 erstellt.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dipp_properties (DiPP properties) &mdash; Digital Peer Publishing 2.25.3a Dokumentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="metadata_properties (QDC Metadata properties)" href="metadata_properties.html" />
+    <link rel="prev" title="Konfiguration" href="konfiguration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Digital Peer Publishing
+          
+
+          
+            
+            <img src="_static/dipp-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.25.3a
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="einleitung.html">Einleitung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publizieren.html">Publikation wissenschaftlicher Artikel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ausgaben.html">Jahrgänge und Ausgaben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portlets.html">Portlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="persistent.html">Persistente Identifikatoren</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="konfiguration.html">Konfiguration</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dipp_properties (DiPP properties)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#issn">ISSN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alertemailaddresses">alertEmailAddresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alertemailtext">alertEmailText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#citation-format">citation_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#short-citation-format">short_citation_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-date-format">issue_date_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hide-current-issue">hide_current_issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-recommended-citation">show_recommended_citation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-classified-subjects">show_classified_subjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-review-history">show_review_history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initials-only">initials_only</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firstnamefirst">firstnamefirst</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initials-period">initials_period</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comma-separated">comma_separated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#last-author-suffix">last_author_suffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles-in-portlet">articles_in_portlet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authors-in-portlet">authors_in_portlet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allow-persistent-discussion">allow_persistent_discussion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#volume-show-covers">volume_show_covers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-show-abstracts">issue_show_abstracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-show-full-abstracts">issue_show_full_abstracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-show-pdf-link">issue_show_pdf_link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-show-short-citation">issue_show_short_citation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-sort-on">issue_sort_on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issue-sort-order">issue_sort_order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discussion-time">discussion_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fedora-time-format">fedora_time_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">issue_date_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recent-articles-range">recent_articles_range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deepest-toc-level">deepest_toc_level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#awstats-id">awstats_id</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-ebookey">enable_ebookey</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orcid-cli">orcid_cli</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#twitter-username">twitter_username</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sharing-image">sharing_image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thumby-url">thumby_url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thumby-size">thumby_size</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="metadata_properties.html">metadata_properties (QDC Metadata properties)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="member_properties.html">member_properties (Extended member properties)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dippreview_properties.html">dippreview_properties (DiPPReview properties)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_properties.html">site_properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portal_doiregistry.html">portal_doiregistry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anhang.html">Anhang</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital Peer Publishing</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="konfiguration.html">Konfiguration</a> &raquo;</li>
+        
+      <li>dipp_properties (DiPP properties)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dipp_properties.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dipp-properties-dipp-properties">
+<h1>dipp_properties (DiPP properties)<a class="headerlink" href="#dipp-properties-dipp-properties" title="Link zu dieser Überschrift">¶</a></h1>
+<p>enthält Konfigurationen, die das Erscheinungsbild von Ausgaben und
+Artikeln beeinflussen.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="issn">
+<span id="prop-issn"></span><h2>ISSN<a class="headerlink" href="#issn" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die <em>International Standard Serial Number</em>. Kann mit erscheinen der ersten Artikel
+bei der Deutschen Nationalbibliothek beantragt werden.</p>
+</div>
+<div class="section" id="alertemailaddresses">
+<span id="prop-alertemailaddresses"></span><h2>alertEmailAddresses<a class="headerlink" href="#alertemailaddresses" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Eine Liste mit E-Mail Adressen, die bei Veröffentlichung eines Artikel
+benachrichtigt werden.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dipp</span><span class="nd">@hbz</span><span class="o">-</span><span class="n">nrw</span><span class="o">.</span><span class="n">de</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alertemailtext">
+<span id="prop-alertemailtext"></span><h2>alertEmailText<a class="headerlink" href="#alertemailtext" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Text dieser Email:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Das</span> <span class="n">Journal</span> <span class="s2">&quot;</span><span class="si">%(journal)s</span><span class="s2">&quot;</span> <span class="n">hat</span> <span class="n">einen</span> <span class="n">neuen</span> <span class="n">Artikel</span> <span class="n">veröffentlicht</span><span class="p">:</span>
+<span class="o">%</span><span class="p">(</span><span class="n">citation</span><span class="p">)</span><span class="n">s</span>
+
+<span class="n">URL</span><span class="p">:</span> <span class="o">%</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="n">s</span>
+<span class="n">DataCite</span> <span class="n">XML</span><span class="p">:</span> <span class="o">%</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="n">s</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="n">datacite</span>
+</pre></div>
+</div>
+<p>Zur Verfügung stehende Platzhalter:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Bedeutung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>journal</p></td>
+<td><p>Name des journals</p></td>
+</tr>
+<tr class="row-odd"><td><p>url</p></td>
+<td><p>URL des Artikels</p></td>
+</tr>
+<tr class="row-even"><td><p>citation</p></td>
+<td><p>Bibliographischen Zitat des Artikels</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="citation-format">
+<h2>citation_format<a class="headerlink" href="#citation-format" title="Link zu dieser Überschrift">¶</a></h2>
+<p>String, der zum Formatieren der empfolenen Zitierweise verwendet wird, wie sie
+unter dem Artikel bzw. auf der Seite mit den Metadaten zu dinen ist.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="p">(</span><span class="n">authors</span><span class="p">)</span><span class="n">s</span> <span class="p">(</span><span class="o">%</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="n">s</span><span class="p">)</span><span class="o">.</span> <span class="o">%</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="n">s</span><span class="o">.</span> <span class="o">%</span><span class="p">(</span><span class="n">journal</span><span class="p">)</span><span class="n">s</span><span class="p">,</span> <span class="n">Vol</span><span class="o">.</span> <span class="o">%</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span><span class="n">s</span><span class="o">.</span> <span class="p">(</span><span class="o">%</span><span class="p">(</span><span class="n">urn</span><span class="p">)</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Zur Verfügung stehende Platzhalter:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Bedeutung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>authors</p></td>
+<td><p>Liste der Autoren, kann durch weitere Parameter detailierter
+formatiert werden</p></td>
+</tr>
+<tr class="row-odd"><td><p>title</p></td>
+<td><p>Titel des Artikels</p></td>
+</tr>
+<tr class="row-even"><td><p>journal</p></td>
+<td><p>Name des Journals</p></td>
+</tr>
+<tr class="row-odd"><td><p>volume</p></td>
+<td><p>Jahrgang</p></td>
+</tr>
+<tr class="row-even"><td><p>issue</p></td>
+<td><p>Ausgabe</p></td>
+</tr>
+<tr class="row-odd"><td><p>startpage</p></td>
+<td><p>erste Seite (bei PDF)</p></td>
+</tr>
+<tr class="row-even"><td><p>endpage</p></td>
+<td><p>letzte Seite (bei PDF)</p></td>
+</tr>
+<tr class="row-odd"><td><p>year</p></td>
+<td><p>Jahreszahl, wird aus den Datum der Veröffentlich extrahiert</p></td>
+</tr>
+<tr class="row-even"><td><p>date</p></td>
+<td><p>Datum der Veröffentlichung</p></td>
+</tr>
+<tr class="row-odd"><td><p>id</p></td>
+<td><p>die PID ohne des Prefix ‚dipp:‘</p></td>
+</tr>
+<tr class="row-even"><td><p>urn</p></td>
+<td><p>Der URN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="short-citation-format">
+<span id="prop-short-citation-format"></span><h2>short_citation_format<a class="headerlink" href="#short-citation-format" title="Link zu dieser Überschrift">¶</a></h2>
+<p>String, der zum Formatieren der verkürzten Zitierweise verwendet wird. Wird aus
+den Metadaten erzeugt, die auch im Plone Katalog indexiert sind und keinen
+Aufruf von Fedora erfordern. Kann z.B. auf den Inhaltsverzeichnissen oder den
+Feeds verwendet werden.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="p">(</span><span class="n">journal</span><span class="p">)</span><span class="n">s</span><span class="p">,</span> <span class="n">Vol</span><span class="o">.</span> <span class="o">%</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span><span class="n">s</span><span class="p">,</span> <span class="n">Iss</span><span class="o">.</span> <span class="o">%</span><span class="p">(</span><span class="n">issue</span><span class="p">)</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>Zur Verfügung stehende Platzhalter:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Bedeutung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>journal</p></td>
+<td><p>Name des Journals</p></td>
+</tr>
+<tr class="row-odd"><td><p>journal_shortname</p></td>
+<td><p>Abkürzung des Journals, siehe <a class="reference internal" href="metadata_properties.html#prop-journalname-abbr"><span class="std std-ref">journalname_abbr</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>volume</p></td>
+<td><p>Jahrgang</p></td>
+</tr>
+<tr class="row-odd"><td><p>issue</p></td>
+<td><p>Ausgabe</p></td>
+</tr>
+<tr class="row-even"><td><p>startpage</p></td>
+<td><p>erste Seite (bei PDF)</p></td>
+</tr>
+<tr class="row-odd"><td><p>endpage</p></td>
+<td><p>letzte Seite (bei PDF)</p></td>
+</tr>
+<tr class="row-even"><td><p>year</p></td>
+<td><p>Jahreszahl, wird aus den Datum der Veröffentlich extrahiert</p></td>
+</tr>
+<tr class="row-odd"><td><p>issuedate</p></td>
+<td><p>Datum der Veröffentlichung</p></td>
+</tr>
+<tr class="row-even"><td><p>urn</p></td>
+<td><p>Der URN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="issue-date-format">
+<span id="prop-issue-date-format"></span><h2>issue_date_format<a class="headerlink" href="#issue-date-format" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Formatierung des Ausgabendatums in Listen aller Ausgaben. <a class="reference external" href="http://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior">http://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior</a></p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">b</span> <span class="o">%</span><span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hide-current-issue">
+<span id="id1"></span><h2>hide_current_issue<a class="headerlink" href="#hide-current-issue" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Bestimmt, ob die aktuelle Ausgabe im all_issues Template angezeigt werden soll. Bei Verwendung eines currentissue
+Links kann das evtl. sinnvoll sein.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-recommended-citation">
+<h2>show_recommended_citation<a class="headerlink" href="#show-recommended-citation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Soll unterhalb des Artikels das bibliographische Zitat angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-classified-subjects">
+<h2>show_classified_subjects<a class="headerlink" href="#show-classified-subjects" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Sollen im Artikelkopf die normierten Schlagworte angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-review-history">
+<h2>show_review_history<a class="headerlink" href="#show-review-history" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Sollen im Artikelkopf die Daten für Einreichung und Annahme angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initials-only">
+<h2>initials_only<a class="headerlink" href="#initials-only" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im bibliographischen Zitat: Sollen bei den Autoren nur die Initialen angezeigt
+werden statt des ausgeschriebenen Vornamens:</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="firstnamefirst">
+<h2>firstnamefirst<a class="headerlink" href="#firstnamefirst" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im bibliographischen Zitat: Sollen erst die Vornamen angezeigt werden?</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initials-period">
+<h2>initials_period<a class="headerlink" href="#initials-period" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im bibl. Zitat: Sollen ein Punkt hinter die Initialen?</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comma-separated">
+<h2>comma_separated<a class="headerlink" href="#comma-separated" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im bibl. Zitat: wenn der Vorname nach dem Nachnamen kommt (firstnamefirst =
+false), sollen sie durch ein Komma getrennt werden:</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="last-author-suffix">
+<h2>last_author_suffix<a class="headerlink" href="#last-author-suffix" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im  bibl. Zitat: wenn der letzte Autor z.B. durch ein ‚und‘ abgetrennt werden
+soll.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="articles-in-portlet">
+<span id="prop-articles-in-portlet"></span><h2>articles_in_portlet<a class="headerlink" href="#articles-in-portlet" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im Portlet „Current Issue“: Sollen die Artikel aufgelistet werden? Sonst
+escheint nur ein Link auf die Ausgabe, evtl. mit Bild.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authors-in-portlet">
+<span id="prop-authors-in-portlet"></span><h2>authors_in_portlet<a class="headerlink" href="#authors-in-portlet" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im Portlet „Current Issue“: Sollen auch die Autoren gelistet werden?</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="allow-persistent-discussion">
+<span id="id2"></span><h2>allow_persistent_discussion<a class="headerlink" href="#allow-persistent-discussion" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn True, wird unterhalb eines Artikels eine Liste mit Kommentaren und ein Link
+zum Einreichen eines eigenen Kommentares eingeblendet. Kommentare sind
+ihrerseits wieder begutachtete Artikel.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="volume-show-covers">
+<span id="prop-volume-show-covers"></span><h2>volume_show_covers<a class="headerlink" href="#volume-show-covers" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn True, werden auf der Inhaltsseite der Jahrgänge die Titelseiten der
+Ausgaben angezeigt, soweit vorhanden.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-abstracts">
+<h2>issue_show_abstracts<a class="headerlink" href="#issue-show-abstracts" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben die verfügbaren Abstracts
+der Artikel verlinkt.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-full-abstracts">
+<h2>issue_show_full_abstracts<a class="headerlink" href="#issue-show-full-abstracts" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben die Abstracts in voller
+Länge angezeigt.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-pdf-link">
+<h2>issue_show_pdf_link<a class="headerlink" href="#issue-show-pdf-link" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben vorhandene PDFs direkt
+verlinkt.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-show-short-citation">
+<h2>issue_show_short_citation<a class="headerlink" href="#issue-show-short-citation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn True, werden auf der Inhaltsseite der Ausgaben zu den Artikeln das
+bibligraphische Zitat in Kurzform angezeigt, siehe
+<a class="reference internal" href="#prop-short-citation-format"><span class="std std-ref">short_citation_format</span></a></p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-sort-on">
+<h2>issue_sort_on<a class="headerlink" href="#issue-sort-on" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Bestimmt auf der Inhaltsseite der Ausgaben, wonach die Artikelliste sortiert
+werden soll. Möglich sind alle sortierbaren Attribute der Artikel, z.B.
+getIssue, getIssueDate, getVolume, getObjPositionInParent. Letzteres ermöglicht
+eine manuelle Sortierung, die Reihenfolge im Elternorder (Ausgabe) übernommen
+wird.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getObjPositionInParent</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issue-sort-order">
+<h2>issue_sort_order<a class="headerlink" href="#issue-sort-order" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Aufsteigende (ascending) oder absteigende (reverse) Sortierung der Artikel</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ascending</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="discussion-time">
+<h2>discussion_time<a class="headerlink" href="#discussion-time" title="Link zu dieser Überschrift">¶</a></h2>
+<p>(wird nicht verwendet)</p>
+</div>
+<div class="section" id="fedora-time-format">
+<h2>fedora_time_format<a class="headerlink" href="#fedora-time-format" title="Link zu dieser Überschrift">¶</a></h2>
+<p>String um die Fedorazeitstempel im ZMI lesbarer anzuzeigen. Sollte eigentlich
+niemals geändert werden müssen.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">Y</span><span class="o">-%</span><span class="n">m</span><span class="o">-%</span><span class="n">dT</span><span class="o">%</span><span class="n">H</span><span class="p">:</span><span class="o">%</span><span class="n">M</span><span class="p">:</span><span class="o">%</span><span class="n">SZ</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>issue_date_format<a class="headerlink" href="#id3" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn nicht leer, wird das Datum auf der Ausgabenseite mit dem hier angegebenen
+String formatiert. Wenn leer, wird auch kein Datum angezeigt.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recent-articles-range">
+<span id="prop-recent-articles-range"></span><h2>recent_articles_range<a class="headerlink" href="#recent-articles-range" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alter (in Tagen) des ältesten Artikels der durch das recent_article Template
+angezeigt werden soll.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deepest-toc-level">
+<span id="prop-deepest-toc-level"></span><h2>deepest_toc_level<a class="headerlink" href="#deepest-toc-level" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die niedrigste Überschriftenebene, die im  <a class="reference internal" href="portlets.html#portlet-autotoc"><span class="std std-ref">Automatisches Inhaltsverzeichnis portlet_autotoc</span></a> Inhaltsverzeichnis (TOC) des Artikels noch
+angezeigt werden soll. Es ist zu beachten, dass die erste Ebene h2 ist. Um die
+ersten drei Ebenen anzuzegen, muss der Wert auf 4 gesetzt werden. Der globale Wert
+kann auf für einen einelnen Artikel überschrieben werden, wenn im ZMI eine entsprechend
+benannte Property angelegt wird. Das TOC wird aktualisiert, wenn vom Artikel eine neue
+Version angelegt wird.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="awstats-id">
+<span id="prop-awstats-id"></span><h2>awstats_id<a class="headerlink" href="#awstats-id" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wenn der Name der AWStats Konfigurationsdatei „awstats.ejournal.conf“ lautet, ist die
+awstats_id „ejournal“ Daraus ergeben sich dann die geparsten Logfiles zu z.B
+„awstats112011.ejournal.txt“ Daraus werden dann die Zugriffstatistiken einzelner Artikel
+bzw. Artikeldateien generiert.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enable-ebookey">
+<span id="id4"></span><h2>enable_ebookey<a class="headerlink" href="#enable-ebookey" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Zeige unter Volltext einen Link zur per <a class="reference external" href="https://github.com/Raul-Vasi/ebookey">ebookey</a> erzeugten epub-Version des Artikeln.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="orcid-cli">
+<span id="id5"></span><h2>orcid_cli<a class="headerlink" href="#orcid-cli" title="Link zu dieser Überschrift">¶</a></h2>
+</div>
+<div class="section" id="twitter-username">
+<span id="id6"></span><h2>twitter_username<a class="headerlink" href="#twitter-username" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Benutzername bei twitter, ohne führendes &#64;:</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sharing-image">
+<span id="id7"></span><h2>sharing_image<a class="headerlink" href="#sharing-image" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Name des Bildes, das für Twittercards bzw. OpenGraph verwendet werden soll. das
+Bild muss separat z.B. im custom-Ordner abgelegt werden. Wenn nichts angegeben
+wird, wird das Logo der Website verwendet (logoName).</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thumby-url">
+<span id="id8"></span><h2>thumby_url<a class="headerlink" href="#thumby-url" title="Link zu dieser Überschrift">¶</a></h2>
+<p>URL des Thumbnailer Webservices <a class="reference external" href="https://github.com/hbz/thumby">Thumby</a></p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">edoweb</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">hbz</span><span class="o">-</span><span class="n">nrw</span><span class="o">.</span><span class="n">de</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">thumby</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thumby-size">
+<span id="id9"></span><h2>thumby_size<a class="headerlink" href="#thumby-size" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Größe des Thumbnails in px.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">edoweb</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">hbz</span><span class="o">-</span><span class="n">nrw</span><span class="o">.</span><span class="n">de</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">thumby</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="metadata_properties.html" class="btn btn-neutral float-right" title="metadata_properties (QDC Metadata properties)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="konfiguration.html" class="btn btn-neutral" title="Konfiguration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2020, Dr. Peter Reimer, hbz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//alkyoneus.hbz-nrw.de/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+<img src="https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=1&rec=1" style="border:0" alt="" />
+</noscript>
+<!-- End Matomo Code -->
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

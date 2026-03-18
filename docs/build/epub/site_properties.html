@@ -1,0 +1,111 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>site_properties</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="py-modindex.html" title="Python-Modulindex"
+             >Module</a></li>
+        <li class="right" >
+          <a href="changelog.html" title="Changelog"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="dippreview_properties.html" title="dippreview_properties (DiPPReview properties)"
+             accesskey="P">zurück</a> |</li>
+        <li><a href="index.html">Digital Peer Publishing 2.25.3a Dokumentation</a> &raquo;</li>
+          <li><a href="konfiguration.html" accesskey="U">Konfiguration</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="site-properties">
+<h1>site_properties</h1>
+<p>Hierbeit handelt es sich um Plones Standard Propertysheet, in dem auch die allgemeiner Konfiguration
+gespeichert wird. Da die Konfiguration des Trackings nicht Dipp spezifisch ist, wurde sie ebenfalls
+hier hinterlegt.</p>
+<div class="section" id="analytics-id">
+<span id="id1"></span><h2>analytics_id</h2>
+<p>Matomo ID der Website. Kann dem Tracking-Code in den Matomoeinstellungen entnommen werden.
+Obwohl die ID immer ein ganzzahliger Wert ist, wird er hier als String hinterlegt</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>&lt;leer&gt;</pre>
+</div>
+</div>
+<div class="section" id="analytics-server">
+<span id="id2"></span><h2>analytics_server</h2>
+<p>URL des Servers, auf dem die Matomoinstallation läuft. Im DiPP Zusammenhang wird das
+aktuell alkyoneus.hbz-nrw.de/piwik oder porphyrion.hbz-nrw.de/piwik sein</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>&lt;leer&gt;</pre>
+</div>
+</div>
+<div class="section" id="analytics-javascript">
+<span id="id3"></span><h2>analytics_javascript</h2>
+<p>JavaScript-Tracking-Code für Matomo wird in jeder Seite über das webstats Makro eingebunden.
+Das gleichnamige Pagetemplate enthält auch die javascriptfreie Trackingvariante über ein Bild.
+Die Variablen %s werden durch <a class="reference internal" href="#analytics-id"><em>analytics_id</em></a> bzw <a class="reference internal" href="#analytics-server"><em>analytics_server</em></a> ersetzt.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>var _paq = _paq || [];
+/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+(function() {
+    var u="//%s/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '%s']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+})();</pre>
+</div>
+</div>
+<div class="section" id="analytics-javascript-notfound">
+<span id="id4"></span><h2>analytics_javascript_notfound</h2>
+<p>JavaScript-Tracking-Code für Matomo wird in jeder Seite über das webstats Makro eingebunden.
+Die Variablen %s werden durch <a class="reference internal" href="#analytics-id"><em>analytics_id</em></a> bzw <a class="reference internal" href="#analytics-server"><em>analytics_server</em></a> ersetzt.
+Dies ist ein <a class="reference external" href="https://matomo.org/faq/how-to/faq_60/">spezieller Trackingcode</a><span class="link-target"> [https://matomo.org/faq/how-to/faq_60/]</span>, der nur für 404 Seiten verwendet wird.</p>
+<p>Default:</p>
+<div class="highlight-python"><pre>var _paq = _paq || [];
+/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+_paq.push(['setDocumentTitle',  '404/URL = ' +  encodeURIComponent(document.location.pathname+document.location.search) + '/From = ' + encodeURIComponent(document.referrer)]);
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+(function() {
+    var u="//%s/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '%s']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+})();</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012-2018, Dr. Peter Reimer, hbz.
+      Mit <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 erstellt.
+    </div>
+  </body>
+</html>

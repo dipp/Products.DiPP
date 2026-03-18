@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Product.DiPP &mdash; Digital Peer Publishing 2.25.3a Dokumentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Glossar" href="glossar.html" />
+    <link rel="prev" title="Modules" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Digital Peer Publishing
+          
+
+          
+            
+            <img src="_static/dipp-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.25.3a
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="einleitung.html">Einleitung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publizieren.html">Publikation wissenschaftlicher Artikel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ausgaben.html">Jahrgänge und Ausgaben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portlets.html">Portlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="persistent.html">Persistente Identifikatoren</a></li>
+<li class="toctree-l1"><a class="reference internal" href="konfiguration.html">Konfiguration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="anhang.html">Anhang</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">API/Interfaces</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Product.DiPP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glossar.html">Glossar</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital Peer Publishing</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="anhang.html">Anhang</a> &raquo;</li>
+        
+      <li>Product.DiPP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="product-dipp">
+<h1>Product.DiPP<a class="headerlink" href="#product-dipp" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Connect Plone to the fedora repository
+Tested with Zope 2.7 and Plone 2.5</p>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link zu dieser Überschrift">¶</a></h2>
+<p>The following Plone products are required:</p>
+<ul class="simple">
+<li><p>CMFOpenflow</p></li>
+<li><p>TextIndexNG3</p></li>
+<li><p>ATVocabularyManager</p></li>
+<li><p>LinguaPlone</p></li>
+<li><p>PloneLanguageTool</p></li>
+</ul>
+<p>Python Modules</p>
+<ul class="simple">
+<li><p>setuptools</p></li>
+<li><p>dipp.tools</p>
+<ul>
+<li><p>argparse</p></li>
+<li><p>lxml==2.3.5</p></li>
+<li><p>BeautifulSoup==3.2.1</p></li>
+</ul>
+</li>
+<li><p>dipp.dipp3&gt;=3.9</p>
+<ul>
+<li><p>argparse</p></li>
+<li><p>dipp.tools&gt;=0.7.1</p></li>
+<li><p>elementtree</p></li>
+<li><p>bibliograph.core</p></li>
+<li><p>dipp.fedora2</p></li>
+<li><p>ZSI&gt;=2.0.1</p></li>
+</ul>
+</li>
+<li><p>dipp.fedora2</p>
+<ul>
+<li><p>ZSI&gt;=2.0.1</p></li>
+</ul>
+</li>
+<li><p>ZSI&gt;=2.0.1</p>
+<ul>
+<li><p>PyXML &gt;= 0.8.3</p></li>
+</ul>
+</li>
+<li><p>dipp.datacite</p></li>
+<li><p>dipp.awstats</p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Plone 2.5.5 still requires Python 2.4, which is usually not available in the
+repositories anymore and thus has to be compiled. Since each Zopeinstance should
+have its own Python interpreter, we install a master python in /opt and use
+virtuelenv for each Zopeinstance. Get Python:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget https://www.python.org/ftp/python/2.4.6/Python-2.4.6.tar.bz2
+</pre></div>
+</div>
+<p>Edit Modules/Setup.dist at about line 206 to enable <a class="reference external" href="https://techglimpse.com/install-python-openssl-support-tutorial/">SSL Support</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Socket module helper for socket(2)</span>
+_socket socketmodule.c
+
+<span class="c1"># Socket module helper for SSL support; you must comment out the other</span>
+<span class="c1"># socket line above, and possibly edit the SSL variable:</span>
+<span class="c1">#SSL=/usr/local/ssl</span>
+<span class="nv">SSL</span><span class="o">=</span>/usr
+_ssl _ssl.c <span class="se">\</span>
+-DUSE_SSL -I<span class="k">$(</span>SSL<span class="k">)</span>/include -I<span class="k">$(</span>SSL<span class="k">)</span>/include/openssl <span class="se">\</span>
+-L<span class="k">$(</span>SSL<span class="k">)</span>/lib -lssl -lcrypto
+</pre></div>
+</div>
+<p>Configure and compile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./configure --prefix<span class="o">=</span>/opt/python24
+$ make
+$ make install
+</pre></div>
+</div>
+<p>Installation of <a class="reference external" href="https://github.com/pypa/setuptools">Setuptools</a> by dowloading the sourcecode. The old method via ez_setup
+seems not work anymore:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/pypa/setuptools/archive/0.6.tar.gz
+</pre></div>
+</div>
+<p>Installation of <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">Virtualenv</a> Version 1.7.2. That is the latest version that still works
+with  Python 2.4</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget https://files.pythonhosted.org/packages/16/86/7b88d35d0a353ec70e42aa37fd8b0bd1c643419c80f022ffaafa4d6449f0/virtualenv-1.7.2.tar.gz
+$ tar -xzvf virtualenv-1.7.2.tar.gz
+$ <span class="nb">cd</span> virtualenv-1.7.2
+$ /opt/python24/bin/python setup.py install
+</pre></div>
+</div>
+<p>Creating and activating a virtual envirement in /srv/zope/dipp:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ /opt/python24/bin/virtualenv /srv/zope/dipp/Python-2.4
+$ . /srv/zope/dipp/Python-2.4/bin/activate
+</pre></div>
+</div>
+<p>Setting the correct encoding in site.py (~row 525):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># encoding = &quot;ascii&quot; # Default value set by _PyUnicode_Init()</span>
+<span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span> <span class="c1"># 2018-10-09 Rm</span>
+</pre></div>
+</div>
+<p>Install Zope.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./configure --with-python<span class="o">=</span>/srv/zope/dipp/Python-2.4/bin/python --prefix<span class="o">=</span>/srv/zope/dipp/Zope-2.9
+</pre></div>
+</div>
+<p>Dedicated User</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ useradd -M -U -s /sbin/nologin -u <span class="m">60000</span> -d /srv/zope -c <span class="s2">&quot;Zope damon&quot;</span> zope
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link zu dieser Überschrift">¶</a></h2>
+<p>The configuration has to be done in both the filesystem and Zope.
+The two configuration files:</p>
+<p><cite>/files/etc/dipp3.cfg</cite>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[webservice]</span>
+<span class="na">address: http://alkyoneus.hbz-nrw.de:9180/dipp3/services/dipp</span>
+<span class="na">timeout: 120</span>
+</pre></div>
+</div>
+<p><cite>/files/etc/fedora2.cfg</cite>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[webservice]</span>
+<span class="na">address: pythia.hbz-nrw.de</span>
+<span class="na">port: 9280</span>
+<span class="na">login: fedoraAdmin</span>
+<span class="na">password: topsecret</span>
+</pre></div>
+</div>
+<p>Set Serveraddress and port on the fedora Tool in the ZMI</p>
+<p>The Python modules are installed by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v bibliograph.core
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v PyXML
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v ZSI
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.tools
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.fedora2
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v elementtree
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.dipp3
+$ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.datacite
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glossar.html" class="btn btn-neutral float-right" title="Glossar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2020, Dr. Peter Reimer, hbz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//alkyoneus.hbz-nrw.de/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+<img src="https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=1&rec=1" style="border:0" alt="" />
+</noscript>
+<!-- End Matomo Code -->
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

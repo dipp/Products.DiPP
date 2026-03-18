@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Portlets &mdash; Digital Peer Publishing 2.25.3a Dokumentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Persistente Identifikatoren" href="persistent.html" />
+    <link rel="prev" title="Jahrgänge und Ausgaben" href="ausgaben.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Digital Peer Publishing
+          
+
+          
+            
+            <img src="_static/dipp-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.25.3a
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="einleitung.html">Einleitung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publizieren.html">Publikation wissenschaftlicher Artikel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ausgaben.html">Jahrgänge und Ausgaben</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Portlets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#suche-portlet-articlesearch">Suche <code class="docutils literal notranslate"><span class="pre">portlet_articlesearch</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automatisches-inhaltsverzeichnis-portlet-autotoc">Automatisches Inhaltsverzeichnis <code class="docutils literal notranslate"><span class="pre">portlet_autotoc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aktuelle-ausgabe-portlet-currentissue">Aktuelle Ausgabe <code class="docutils literal notranslate"><span class="pre">portlet_currentissue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-navigation-portlet-dippnav">DiPP Navigation <code class="docutils literal notranslate"><span class="pre">portlet_dippnav</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#editorial-toolbox-portlet-editorialtoolbox">Editorial Toolbox <code class="docutils literal notranslate"><span class="pre">portlet_editorialtoolbox</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feeds-portlet-feeds">Feeds <code class="docutils literal notranslate"><span class="pre">portlet_feeds</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issn-portlet-issn">ISSN <code class="docutils literal notranslate"><span class="pre">portlet_issn</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newsletter-portlet-newsletter">Newsletter <code class="docutils literal notranslate"><span class="pre">portlet_newsletter</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aktuelle-artikel-portlet-recentarticles">Aktuelle Artikel <code class="docutils literal notranslate"><span class="pre">portlet_recentarticles</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#suche-portlet-search">Suche <code class="docutils literal notranslate"><span class="pre">portlet_search</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inhaltsverzeichnis-portlet-toc">Inhaltsverzeichnis <code class="docutils literal notranslate"><span class="pre">portlet_toc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="persistent.html">Persistente Identifikatoren</a></li>
+<li class="toctree-l1"><a class="reference internal" href="konfiguration.html">Konfiguration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anhang.html">Anhang</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital Peer Publishing</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Portlets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/portlets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="portlets">
+<h1>Portlets<a class="headerlink" href="#portlets" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="suche-portlet-articlesearch">
+<span id="portlet-articlesearch"></span><h2>Suche <code class="docutils literal notranslate"><span class="pre">portlet_articlesearch</span></code><a class="headerlink" href="#suche-portlet-articlesearch" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Stellt einen Suchschlitz zur Verfügung, der als Ergebnis nur Artikel zurückgibt (FedoraArticle),
+keine normalen Webseiten.</p>
+</div>
+<div class="section" id="automatisches-inhaltsverzeichnis-portlet-autotoc">
+<span id="portlet-autotoc"></span><h2>Automatisches Inhaltsverzeichnis <code class="docutils literal notranslate"><span class="pre">portlet_autotoc</span></code><a class="headerlink" href="#automatisches-inhaltsverzeichnis-portlet-autotoc" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Bindet das mit jeder Versionierung des Artikels aktualisierte Inhaltsverzeichnis
+ein. Zur Konfiguration siehe <a class="reference internal" href="dipp_properties.html#prop-deepest-toc-level"><span class="std std-ref">deepest_toc_level</span></a></p>
+</div>
+<div class="section" id="aktuelle-ausgabe-portlet-currentissue">
+<span id="portlet-currentissue"></span><h2>Aktuelle Ausgabe <code class="docutils literal notranslate"><span class="pre">portlet_currentissue</span></code><a class="headerlink" href="#aktuelle-ausgabe-portlet-currentissue" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Eine Auflistung der Artikel der aktuellen Ausgabe. Wenn der Ausgabe ein Titelbild
+beigefügt wurde, wird dieses verkleinert dargestellt. Auch eine Sortierung nach
+Sektionen wird vorgenommen. Weitere Konfiguration ist durch folgende Properties
+möglich: <a class="reference internal" href="dipp_properties.html#prop-articles-in-portlet"><span class="std std-ref">articles_in_portlet</span></a>, <a class="reference internal" href="dipp_properties.html#prop-authors-in-portlet"><span class="std std-ref">authors_in_portlet</span></a>.</p>
+</div>
+<div class="section" id="dipp-navigation-portlet-dippnav">
+<span id="portlet-dippnav"></span><h2>DiPP Navigation <code class="docutils literal notranslate"><span class="pre">portlet_dippnav</span></code><a class="headerlink" href="#dipp-navigation-portlet-dippnav" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Kleine Navigation mit Links zur „Editoral Toolbox“, dem Plone Setup und dem
+sog. „Website Manager“, der nicht anderes ist als die Inhaltsansicht der
+obersten Verzeichnisebene.</p>
+</div>
+<div class="section" id="editorial-toolbox-portlet-editorialtoolbox">
+<span id="portlet-editorialtoolbox"></span><h2>Editorial Toolbox <code class="docutils literal notranslate"><span class="pre">portlet_editorialtoolbox</span></code><a class="headerlink" href="#editorial-toolbox-portlet-editorialtoolbox" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Siehe eigene Seite: <a class="reference internal" href="editorial_toolbox.html#editorial-toolbox"><span class="std std-ref">Editorial Toolbox</span></a>.</p>
+</div>
+<div class="section" id="feeds-portlet-feeds">
+<span id="portlet-feeds"></span><h2>Feeds <code class="docutils literal notranslate"><span class="pre">portlet_feeds</span></code><a class="headerlink" href="#feeds-portlet-feeds" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Dieses Portlet enthält eine Liste der verfügbaren <a class="reference internal" href="glossar.html#term-RSS"><span class="xref std std-term">RSS</span></a>-Feeds. Ein Feed
+mit allen veröffentlichen Artikeln steht immer zur Verfügung, wenn die Artikel
+noch in einzelne Sektionen eingeordnet werden, stehen auch seperate Feeds hierfür
+zum abonnieren bereit.</p>
+</div>
+<div class="section" id="issn-portlet-issn">
+<span id="portlet-issn"></span><h2>ISSN <code class="docutils literal notranslate"><span class="pre">portlet_issn</span></code><a class="headerlink" href="#issn-portlet-issn" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ein Portlet, das einfach  nur die ISSN-Nummer wiedergibt. Sie muss in
+den dipp_properties angegeben werden, siehe <a class="reference internal" href="metadata_properties.html#prop-issn"><span class="std std-ref">issn</span></a>.</p>
+</div>
+<div class="section" id="newsletter-portlet-newsletter">
+<span id="portlet-newsletter"></span><h2>Newsletter <code class="docutils literal notranslate"><span class="pre">portlet_newsletter</span></code><a class="headerlink" href="#newsletter-portlet-newsletter" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ein Portlet, das eine Anmeldemaske für einen Newsletter anbietet. Erfordert die
+Installation und Konfiguration des PloneGazette Produktes.</p>
+</div>
+<div class="section" id="aktuelle-artikel-portlet-recentarticles">
+<span id="portlet-recentarticles"></span><h2>Aktuelle Artikel <code class="docutils literal notranslate"><span class="pre">portlet_recentarticles</span></code><a class="headerlink" href="#aktuelle-artikel-portlet-recentarticles" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Chronologische Aufzählung der letzten fünf Artikel, Sektionen und
+<a class="reference internal" href="dipp_properties.html#prop-authors-in-portlet"><span class="std std-ref">authors_in_portlet</span></a> werden ausgewertet.</p>
+</div>
+<div class="section" id="suche-portlet-search">
+<span id="portlet-search"></span><h2>Suche <code class="docutils literal notranslate"><span class="pre">portlet_search</span></code><a class="headerlink" href="#suche-portlet-search" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alternative Positionierung der Suchmaske.</p>
+</div>
+<div class="section" id="inhaltsverzeichnis-portlet-toc">
+<span id="portlet-toc"></span><h2>Inhaltsverzeichnis <code class="docutils literal notranslate"><span class="pre">portlet_toc</span></code><a class="headerlink" href="#inhaltsverzeichnis-portlet-toc" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Stellt das das generierte Inhaltsverzeichnis <em>toc_html</em> dar.
+Das Inhaltsverzeichnis wird bei der Konvertierung einmalig automatisch generiert
+und nicht aktualisiert, wenn z.B. ein Tippfehler im HTML korrigiert wird.
+Wird nur bei Artikeln eingeblendet. Die Alternative <a class="reference internal" href="#portlet-autotoc"><span class="std std-ref">Automatisches Inhaltsverzeichnis portlet_autotoc</span></a> hingegen wird bei
+jeder Versionierung des Artikeltextes ebenfall aktualisiert.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="persistent.html" class="btn btn-neutral float-right" title="Persistente Identifikatoren" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ausgaben.html" class="btn btn-neutral" title="Jahrgänge und Ausgaben" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2020, Dr. Peter Reimer, hbz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//alkyoneus.hbz-nrw.de/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+<img src="https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=1&rec=1" style="border:0" alt="" />
+</noscript>
+<!-- End Matomo Code -->
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

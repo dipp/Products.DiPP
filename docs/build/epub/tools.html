@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tools</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="py-modindex.html" title="Python-Modulindex"
+             >Module</a></li>
+        <li class="right" >
+          <a href="modules.html" title="Modules"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="contenttypen.html" title="Content Types"
+             accesskey="P">zurück</a> |</li>
+        <li><a href="index.html">Digital Peer Publishing 2.25.3a Dokumentation</a> &raquo;</li>
+          <li><a href="anhang.html" >Anhang</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">API/Interfaces</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="module-Products.DiPP.Fedora2DiPP3Tool">
+<span id="tools"></span><h1>Tools</h1>
+<dl class="class">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.Fedora2DiPP3Tool.</tt><tt class="descname">Fedora</tt></dt>
+<dd><p>Tool to add and modify Data in the Fedora Repository</p>
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.access">
+<tt class="descname">access</tt><big>(</big><em>PID</em>, <em>DsID</em>, <em>Date</em><big>)</big></dt>
+<dd><p>return the MIMEType and content of a datastream</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.accessByFedoraURL">
+<tt class="descname">accessByFedoraURL</tt><big>(</big><em>PID</em>, <em>DsID</em>, <em>Date</em><big>)</big></dt>
+<dd><p>Alternative method to retrieve objects from the Fedora
+Repository. It uses the FedoraURL directly instead the Webservice
+via ZSI, which fails with larger Objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.accessMultiMedia">
+<tt class="descname">accessMultiMedia</tt><big>(</big><em>PID</em>, <em>DsID</em>, <em>Date</em><big>)</big></dt>
+<dd><p>return the MIMEType and content of a datastream</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.accessMultiMediaByFedoraURL">
+<tt class="descname">accessMultiMediaByFedoraURL</tt><big>(</big><em>PID</em>, <em>DsID</em>, <em>Date</em><big>)</big></dt>
+<dd><p>Alternative method to retrieve objects from the Fedora
+Repository. It uses the FedoraURL directly insteht the Webservice
+via ZSI, which fails with larger Objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.createNewArticle">
+<tt class="descname">createNewArticle</tt><big>(</big><em>ContainerPID</em>, <em>JournalPID</em>, <em>params</em>, <em>Location</em><big>)</big></dt>
+<dd><p>creates a new article object for DiPP</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.createNewEntry">
+<tt class="descname">createNewEntry</tt><big>(</big><em>ContainerPID</em>, <em>JournalPID</em>, <em>params</em>, <em>Location</em><big>)</big></dt>
+<dd><p>creates a new entry object for DiPA</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.diffDatastreamVersions">
+<tt class="descname">diffDatastreamVersions</tt><big>(</big><em>PID</em>, <em>DsID</em>, <em>version1date</em>, <em>version2date</em><big>)</big></dt>
+<dd><p>return the difference between two versions of a datastream</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getContentModel">
+<tt class="descname">getContentModel</tt><big>(</big><em>PID</em>, <em>Type</em><big>)</big></dt>
+<dd><p>return the PID of a content object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getDoctypes">
+<tt class="descname">getDoctypes</tt><big>(</big><big>)</big></dt>
+<dd><p>return a dictionary with possible doctypes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getFedoraArticles">
+<tt class="descname">getFedoraArticles</tt><big>(</big><big>)</big></dt>
+<dd><p>Find all FedoraArticles in Plone and return a list of PIDs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getLanguages">
+<tt class="descname">getLanguages</tt><big>(</big><big>)</big></dt>
+<dd><p>return a dictionary with languages codes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getPubtypes">
+<tt class="descname">getPubtypes</tt><big>(</big><big>)</big></dt>
+<dd><p>return a dictionary with possible pubtypes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getServerConfiguration">
+<tt class="descname">getServerConfiguration</tt><big>(</big><big>)</big></dt>
+<dd><p>Return server IP and port of the configured fedora repository.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getTOC">
+<tt class="descname">getTOC</tt><big>(</big><em>html</em>, <em>levels=4</em><big>)</big></dt>
+<dd><p>Create a table of contents by parsing the html version
+of the article for headings and returning an ordered list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getTempID">
+<tt class="descname">getTempID</tt><big>(</big><em>REQUEST</em><big>)</big></dt>
+<dd><p>temporary ID for intermediate saving of new datastreams</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.getopenurl">
+<tt class="descname">getopenurl</tt><big>(</big><em>qdc</em>, <em>journalname_abbr</em>, <em>issn</em><big>)</big></dt>
+<dd><p>return the metadata as openurl to use for COinS</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.manage_batchingest">
+<tt class="descname">manage_batchingest</tt><big>(</big><em>file</em>, <em>target</em>, <em>dryrun=False</em>, <em>REQUEST=None</em><big>)</big></dt>
+<dd><p>batchingest of old issues</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.manage_deleteObjects">
+<tt class="descname">manage_deleteObjects</tt><big>(</big><em>REQUEST</em>, <em>LogMessage</em>, <em>PIDs=</em><span class="optional">[</span><span class="optional">]</span><big>)</big></dt>
+<dd><p>Delete Objects in Fedora.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.manage_getContentContainer">
+<tt class="descname">manage_getContentContainer</tt><big>(</big><em>PID</em><big>)</big></dt>
+<dd><p>Return the PIDs of the Fedoraobjects which contain the html, xml,etc.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.manage_save_metadata">
+<tt class="descname">manage_save_metadata</tt><big>(</big><em>REQUEST</em><big>)</big></dt>
+<dd><p>Save default metadata as attributes of the fedora tool.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.manage_search">
+<tt class="descname">manage_search</tt><big>(</big><em>field</em>, <em>comparison</em>, <em>value</em>, <em>REQUEST=None</em><big>)</big></dt>
+<dd><p>Search the repository.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.manage_setFedoraSettings">
+<tt class="descname">manage_setFedoraSettings</tt><big>(</big><em>PID</em>, <em>label</em>, <em>REQUEST</em><big>)</big></dt>
+<dd><p>ZMI method to store the configuration of the fedora tool.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.modifyObject">
+<tt class="descname">modifyObject</tt><big>(</big><em>PID</em>, <em>State</em>, <em>Label</em>, <em>LogMessage</em><big>)</big></dt>
+<dd><p>Change the state of an object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.moveObjects">
+<tt class="descname">moveObjects</tt><big>(</big><em>clipboard</em>, <em>dest</em><big>)</big></dt>
+<dd><p>when moving objects in the folder_contents view of plone
+keep it in sync with fedora</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.purgeObject">
+<tt class="descname">purgeObject</tt><big>(</big><em>PID</em>, <em>LogMessage</em><big>)</big></dt>
+<dd><p>Purge object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.search">
+<tt class="descname">search</tt><big>(</big><em>query</em><big>)</big></dt>
+<dd><p>return a list with metadata of an object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.setPublishingState">
+<tt class="descname">setPublishingState</tt><big>(</big><em>PID</em>, <em>State</em>, <em>Published</em><big>)</big></dt>
+<dd><p>change the state of a digital object in fedora</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Fedora2DiPP3Tool.Fedora.setQualifiedDCMetadata">
+<tt class="descname">setQualifiedDCMetadata</tt><big>(</big><em>params</em><big>)</big></dt>
+<dd><p>set the qualified Dublin Core Metadata of an object</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Products.DiPP.Utils"></span><dl class="class">
+<dt id="Products.DiPP.Utils.Utils">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.Utils.</tt><tt class="descname">Utils</tt></dt>
+<dd><p>Utilities for e.g. reCAPTCHA.</p>
+<dl class="method">
+<dt id="Products.DiPP.Utils.Utils.get_ip">
+<tt class="descname">get_ip</tt><big>(</big><em>request</em><big>)</big></dt>
+<dd><p>Extract the client IP address from the HTTP request in proxy compatible way.</p>
+<p>found at <a class="reference external" href="http://plone.org/documentation/manual/plone-community-developer-documentation/serving/http-request-and-response">http://plone.org/documentation/manual/plone-community-developer-documentation/serving/http-request-and-response</a>
+&#64;return: IP address as a string or None if not available</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Utils.Utils.get_location">
+<tt class="descname">get_location</tt><big>(</big><em>path</em>, <em>request</em><big>)</big></dt>
+<dd><p>Return the URL of an uploaded file based on ip and port.</p>
+<p>not rewritten by VHM/Apache and without https. Requires a
+FQDN of the server running zope</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Utils.Utils.get_recaptcha_keys">
+<tt class="descname">get_recaptcha_keys</tt><big>(</big><big>)</big></dt>
+<dd><p>Return the reCAPTCHA keys from the config file for use in pagetemplates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.Utils.Utils.validate_recaptcha">
+<tt class="descname">validate_recaptcha</tt><big>(</big><em>recaptcha_challenge_field</em>, <em>recaptcha_response_field</em>, <em>remoteip</em><big>)</big></dt>
+<dd><p>Validate recaptcha.</p>
+<p>Code from
+<a class="reference external" href="http://recaptcha.googlecode.com/svn/trunk/recaptcha-plugins/python/recaptcha/client/captcha.py">http://recaptcha.googlecode.com/svn/trunk/recaptcha-plugins/python/recaptcha/client/captcha.py</a></p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Products.DiPP.BibTool"></span><dl class="class">
+<dt id="Products.DiPP.BibTool.BibTool">
+<em class="property">class </em><tt class="descclassname">Products.DiPP.BibTool.</tt><tt class="descname">BibTool</tt></dt>
+<dd><p>Wrapper for Bibutils.</p>
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.convert">
+<tt class="descname">convert</tt><big>(</big><em>qdc</em>, <em>PID</em>, <em>target_format</em><big>)</big></dt>
+<dd><p>Convert the QDC Metadata from Fedora to any format supported by bibutils.</p>
+<p>Uses MODS as an intermediate format.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.datacite_xml">
+<tt class="descname">datacite_xml</tt><big>(</big><em>pid</em>, <em>issn</em>, <em>publisher</em>, <em>pdf</em><big>)</big></dt>
+<dd><p>Return metadata in DataCite compliant  XML format.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.doaj_xml">
+<tt class="descname">doaj_xml</tt><big>(</big><em>pid</em>, <em>issn</em>, <em>publisher</em>, <em>pdf</em><big>)</big></dt>
+<dd><p>Return metadata in DOAJ compliant  XML format.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.formats">
+<tt class="descname">formats</tt><big>(</big><big>)</big></dt>
+<dd><p>Return a list of available Citation formats.</p>
+<p>Bibutils support more, but not the bibliograph.core Python module.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.get_creator_defaults">
+<tt class="descname">get_creator_defaults</tt><big>(</big><big>)</big></dt>
+<dd><p>an empty dictionary of the default creator metadata</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.make_metatags">
+<tt class="descname">make_metatags</tt><big>(</big><em>pid</em>, <em>issn</em>, <em>publisher</em>, <em>pdf</em>, <em>startpage</em>, <em>endpage</em><big>)</big></dt>
+<dd><p>Return meta tags for google scholar, facebook, twitter</p>
+<p>Tags are returned as HTML, so this method has to be used with &#8216;structure&#8217;
+in pagetemplates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.recommended_citation">
+<tt class="descname">recommended_citation</tt><big>(</big><em>PID</em>, <em>qdc</em><big>)</big></dt>
+<dd><p>Return the full bibliographic citation.</p>
+<p>Used below the article an on the  metadata page. Calls both
+Fedora and Plones catalog.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.short_citation">
+<tt class="descname">short_citation</tt><big>(</big><em>**kwargs</em><big>)</big></dt>
+<dd><p>Return short version of the bibligraphic citation.</p>
+<p>Calls only plones own catalog and does not wake up Fedora. Used in feeds
+and search results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Products.DiPP.BibTool.BibTool.urnstatus">
+<tt class="descname">urnstatus</tt><big>(</big><em>urn</em>, <em>url</em><big>)</big></dt>
+<dd><p>Check status of an urn with the dnb resolver</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Products.DiPP.event_utils"></span><dl class="function">
+<dt id="Products.DiPP.event_utils.createFedoraContainer">
+<tt class="descclassname">Products.DiPP.event_utils.</tt><tt class="descname">createFedoraContainer</tt><big>(</big><em>obj</em>, <em>event</em><big>)</big></dt>
+<dd><p>Add a hierarchical object to fedora and write the PID back to the Plone
+object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Products.DiPP.event_utils.createFedoraDatastream">
+<tt class="descclassname">Products.DiPP.event_utils.</tt><tt class="descname">createFedoraDatastream</tt><big>(</big><em>obj</em>, <em>event</em><big>)</big></dt>
+<dd><p>When a document is not converted but added manually via the &#8220;add article&#8221;
+menu, it does not have PID and DsID. This method takes care of creating a
+a digital object for the page.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012-2018, Dr. Peter Reimer, hbz.
+      Mit <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 erstellt.
+    </div>
+  </body>
+</html>

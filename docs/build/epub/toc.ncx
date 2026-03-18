@@ -1,0 +1,1046 @@
+<?xml version="1.0"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="unknown"/>
+    <meta name="dtb:depth" content="3"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>Digital Peer Publishing</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>Digital Peer Publishing (DiPP) - Wissenschaftliche Publikationsplattform</text>
+      </navLabel>
+      <content src="index.html" />
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>Einleitung</text>
+      </navLabel>
+      <content src="einleitung.html" />
+    </navPoint>
+    <navPoint id="navPoint3" playOrder="3">
+      <navLabel>
+        <text>Publikation wissenschaftlicher Artikel</text>
+      </navLabel>
+      <content src="publizieren.html" />
+      <navPoint id="navPoint3" playOrder="3">
+        <navLabel>
+          <text>Publikation wissenschaftlicher Artikel</text>
+        </navLabel>
+        <content src="publizieren.html" />
+      </navPoint>
+      <navPoint id="navPoint4" playOrder="4">
+        <navLabel>
+          <text>Editorial Toolbox</text>
+        </navLabel>
+        <content src="editorial_toolbox.html" />
+      </navPoint>
+      <navPoint id="navPoint5" playOrder="5">
+        <navLabel>
+          <text>Artikel formatieren</text>
+        </navLabel>
+        <content src="formatieren.html" />
+        <navPoint id="navPoint5" playOrder="5">
+          <navLabel>
+            <text>Artikel formatieren</text>
+          </navLabel>
+          <content src="formatieren.html" />
+        </navPoint>
+        <navPoint id="navPoint6" playOrder="6">
+          <navLabel>
+            <text>Abbildungen</text>
+          </navLabel>
+          <content src="formatieren.html#abbildungen" />
+        </navPoint>
+        <navPoint id="navPoint7" playOrder="7">
+          <navLabel>
+            <text>Tabellen</text>
+          </navLabel>
+          <content src="formatieren.html#tabellen" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint8" playOrder="8">
+        <navLabel>
+          <text>Zusatzmaterial</text>
+        </navLabel>
+        <content src="zusatzmaterial.html" />
+      </navPoint>
+      <navPoint id="navPoint9" playOrder="9">
+        <navLabel>
+          <text>Kommentare</text>
+        </navLabel>
+        <content src="kommentare.html" />
+      </navPoint>
+      <navPoint id="navPoint10" playOrder="10">
+        <navLabel>
+          <text>Zählmarken</text>
+        </navLabel>
+        <content src="metis.html" />
+      </navPoint>
+      <navPoint id="navPoint11" playOrder="11">
+        <navLabel>
+          <text>DOAJ</text>
+        </navLabel>
+        <content src="doaj.html" />
+      </navPoint>
+      <navPoint id="navPoint12" playOrder="12">
+        <navLabel>
+          <text>Publikationsworkflow</text>
+        </navLabel>
+        <content src="workflow.html" />
+        <navPoint id="navPoint12" playOrder="12">
+          <navLabel>
+            <text>Publikationsworkflow</text>
+          </navLabel>
+          <content src="workflow.html" />
+        </navPoint>
+        <navPoint id="navPoint13" playOrder="13">
+          <navLabel>
+            <text>Upload</text>
+          </navLabel>
+          <content src="workflow.html#upload" />
+        </navPoint>
+        <navPoint id="navPoint14" playOrder="14">
+          <navLabel>
+            <text>Worklist</text>
+          </navLabel>
+          <content src="workflow.html#worklist" />
+        </navPoint>
+        <navPoint id="navPoint15" playOrder="15">
+          <navLabel>
+            <text>1. Schritt: Artikel initialisieren</text>
+          </navLabel>
+          <content src="workflow.html#schritt-artikel-initialisieren" />
+        </navPoint>
+        <navPoint id="navPoint16" playOrder="16">
+          <navLabel>
+            <text>Artikel bearbeiten</text>
+          </navLabel>
+          <content src="workflow.html#artikel-bearbeiten" />
+        </navPoint>
+        <navPoint id="navPoint17" playOrder="17">
+          <navLabel>
+            <text>Artikel begutachten</text>
+          </navLabel>
+          <content src="workflow.html#artikel-begutachten" />
+        </navPoint>
+        <navPoint id="navPoint18" playOrder="18">
+          <navLabel>
+            <text>Artikel freischalten</text>
+          </navLabel>
+          <content src="workflow.html#artikel-freischalten" />
+        </navPoint>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint19" playOrder="19">
+      <navLabel>
+        <text>Jahrgänge und Ausgaben</text>
+      </navLabel>
+      <content src="ausgaben.html" />
+      <navPoint id="navPoint19" playOrder="19">
+        <navLabel>
+          <text>Jahrgänge und Ausgaben</text>
+        </navLabel>
+        <content src="ausgaben.html" />
+      </navPoint>
+      <navPoint id="navPoint20" playOrder="20">
+        <navLabel>
+          <text>Jahrgänge, Ausgaben und FedoraHierarchien</text>
+        </navLabel>
+        <content src="ausgaben.html#jahrgange-ausgaben-und-fedorahierarchien" />
+        <navPoint id="navPoint20" playOrder="20">
+          <navLabel>
+            <text>Jahrgänge, Ausgaben und FedoraHierarchien</text>
+          </navLabel>
+          <content src="ausgaben.html#jahrgange-ausgaben-und-fedorahierarchien" />
+        </navPoint>
+        <navPoint id="navPoint21" playOrder="21">
+          <navLabel>
+            <text>Volume content</text>
+          </navLabel>
+          <content src="ausgaben.html#volume-content" />
+        </navPoint>
+        <navPoint id="navPoint22" playOrder="22">
+          <navLabel>
+            <text>Issue content</text>
+          </navLabel>
+          <content src="ausgaben.html#issue-content" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint23" playOrder="23">
+        <navLabel>
+          <text>Sonderausgaben</text>
+        </navLabel>
+        <content src="ausgaben.html#sonderausgaben" />
+      </navPoint>
+      <navPoint id="navPoint24" playOrder="24">
+        <navLabel>
+          <text>Sektionen</text>
+        </navLabel>
+        <content src="ausgaben.html#sektionen" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint25" playOrder="25">
+      <navLabel>
+        <text>Portlets</text>
+      </navLabel>
+      <content src="portlets.html" />
+      <navPoint id="navPoint25" playOrder="25">
+        <navLabel>
+          <text>Portlets</text>
+        </navLabel>
+        <content src="portlets.html" />
+      </navPoint>
+      <navPoint id="navPoint26" playOrder="26">
+        <navLabel>
+          <text>Suche portlet_articlesearch</text>
+        </navLabel>
+        <content src="portlets.html#suche-portlet-articlesearch" />
+      </navPoint>
+      <navPoint id="navPoint27" playOrder="27">
+        <navLabel>
+          <text>Automatisches Inhaltsverzeichnis portlet_autotoc</text>
+        </navLabel>
+        <content src="portlets.html#automatisches-inhaltsverzeichnis-portlet-autotoc" />
+      </navPoint>
+      <navPoint id="navPoint28" playOrder="28">
+        <navLabel>
+          <text>Aktuelle Ausgabe portlet_currentissue</text>
+        </navLabel>
+        <content src="portlets.html#aktuelle-ausgabe-portlet-currentissue" />
+      </navPoint>
+      <navPoint id="navPoint29" playOrder="29">
+        <navLabel>
+          <text>DiPP Navigation portlet_dippnav</text>
+        </navLabel>
+        <content src="portlets.html#dipp-navigation-portlet-dippnav" />
+      </navPoint>
+      <navPoint id="navPoint30" playOrder="30">
+        <navLabel>
+          <text>Editorial Toolbox portlet_editorialtoolbox</text>
+        </navLabel>
+        <content src="portlets.html#editorial-toolbox-portlet-editorialtoolbox" />
+      </navPoint>
+      <navPoint id="navPoint31" playOrder="31">
+        <navLabel>
+          <text>Feeds portlet_feeds</text>
+        </navLabel>
+        <content src="portlets.html#feeds-portlet-feeds" />
+      </navPoint>
+      <navPoint id="navPoint32" playOrder="32">
+        <navLabel>
+          <text>ISSN portlet_issn</text>
+        </navLabel>
+        <content src="portlets.html#issn-portlet-issn" />
+      </navPoint>
+      <navPoint id="navPoint33" playOrder="33">
+        <navLabel>
+          <text>Newsletter portlet_newsletter</text>
+        </navLabel>
+        <content src="portlets.html#newsletter-portlet-newsletter" />
+      </navPoint>
+      <navPoint id="navPoint34" playOrder="34">
+        <navLabel>
+          <text>Aktuelle Artikel portlet_recentarticles</text>
+        </navLabel>
+        <content src="portlets.html#aktuelle-artikel-portlet-recentarticles" />
+      </navPoint>
+      <navPoint id="navPoint35" playOrder="35">
+        <navLabel>
+          <text>Suche portlet_search</text>
+        </navLabel>
+        <content src="portlets.html#suche-portlet-search" />
+      </navPoint>
+      <navPoint id="navPoint36" playOrder="36">
+        <navLabel>
+          <text>Inhaltsverzeichnis portlet_toc</text>
+        </navLabel>
+        <content src="portlets.html#inhaltsverzeichnis-portlet-toc" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint37" playOrder="37">
+      <navLabel>
+        <text>Konfiguration</text>
+      </navLabel>
+      <content src="konfiguration.html" />
+      <navPoint id="navPoint37" playOrder="37">
+        <navLabel>
+          <text>Konfiguration</text>
+        </navLabel>
+        <content src="konfiguration.html" />
+      </navPoint>
+      <navPoint id="navPoint38" playOrder="38">
+        <navLabel>
+          <text>dipp_properties (DiPP properties)</text>
+        </navLabel>
+        <content src="dipp_properties.html" />
+        <navPoint id="navPoint38" playOrder="38">
+          <navLabel>
+            <text>dipp_properties (DiPP properties)</text>
+          </navLabel>
+          <content src="dipp_properties.html" />
+        </navPoint>
+        <navPoint id="navPoint39" playOrder="39">
+          <navLabel>
+            <text>ISSN</text>
+          </navLabel>
+          <content src="dipp_properties.html#issn" />
+        </navPoint>
+        <navPoint id="navPoint40" playOrder="40">
+          <navLabel>
+            <text>alertEmailAddresses</text>
+          </navLabel>
+          <content src="dipp_properties.html#alertemailaddresses" />
+        </navPoint>
+        <navPoint id="navPoint41" playOrder="41">
+          <navLabel>
+            <text>alertEmailText</text>
+          </navLabel>
+          <content src="dipp_properties.html#alertemailtext" />
+        </navPoint>
+        <navPoint id="navPoint42" playOrder="42">
+          <navLabel>
+            <text>citation_format</text>
+          </navLabel>
+          <content src="dipp_properties.html#citation-format" />
+        </navPoint>
+        <navPoint id="navPoint43" playOrder="43">
+          <navLabel>
+            <text>short_citation_format</text>
+          </navLabel>
+          <content src="dipp_properties.html#short-citation-format" />
+        </navPoint>
+        <navPoint id="navPoint44" playOrder="44">
+          <navLabel>
+            <text>issue_date_format</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-date-format" />
+        </navPoint>
+        <navPoint id="navPoint45" playOrder="45">
+          <navLabel>
+            <text>hide_current_issue</text>
+          </navLabel>
+          <content src="dipp_properties.html#hide-current-issue" />
+        </navPoint>
+        <navPoint id="navPoint46" playOrder="46">
+          <navLabel>
+            <text>show_recommended_citation</text>
+          </navLabel>
+          <content src="dipp_properties.html#show-recommended-citation" />
+        </navPoint>
+        <navPoint id="navPoint47" playOrder="47">
+          <navLabel>
+            <text>show_classified_subjects</text>
+          </navLabel>
+          <content src="dipp_properties.html#show-classified-subjects" />
+        </navPoint>
+        <navPoint id="navPoint48" playOrder="48">
+          <navLabel>
+            <text>show_review_history</text>
+          </navLabel>
+          <content src="dipp_properties.html#show-review-history" />
+        </navPoint>
+        <navPoint id="navPoint49" playOrder="49">
+          <navLabel>
+            <text>initials_only</text>
+          </navLabel>
+          <content src="dipp_properties.html#initials-only" />
+        </navPoint>
+        <navPoint id="navPoint50" playOrder="50">
+          <navLabel>
+            <text>firstnamefirst</text>
+          </navLabel>
+          <content src="dipp_properties.html#firstnamefirst" />
+        </navPoint>
+        <navPoint id="navPoint51" playOrder="51">
+          <navLabel>
+            <text>initials_period</text>
+          </navLabel>
+          <content src="dipp_properties.html#initials-period" />
+        </navPoint>
+        <navPoint id="navPoint52" playOrder="52">
+          <navLabel>
+            <text>comma_separated</text>
+          </navLabel>
+          <content src="dipp_properties.html#comma-separated" />
+        </navPoint>
+        <navPoint id="navPoint53" playOrder="53">
+          <navLabel>
+            <text>last_author_suffix</text>
+          </navLabel>
+          <content src="dipp_properties.html#last-author-suffix" />
+        </navPoint>
+        <navPoint id="navPoint54" playOrder="54">
+          <navLabel>
+            <text>articles_in_portlet</text>
+          </navLabel>
+          <content src="dipp_properties.html#articles-in-portlet" />
+        </navPoint>
+        <navPoint id="navPoint55" playOrder="55">
+          <navLabel>
+            <text>authors_in_portlet</text>
+          </navLabel>
+          <content src="dipp_properties.html#authors-in-portlet" />
+        </navPoint>
+        <navPoint id="navPoint56" playOrder="56">
+          <navLabel>
+            <text>allow_persistent_discussion</text>
+          </navLabel>
+          <content src="dipp_properties.html#allow-persistent-discussion" />
+        </navPoint>
+        <navPoint id="navPoint57" playOrder="57">
+          <navLabel>
+            <text>volume_show_covers</text>
+          </navLabel>
+          <content src="dipp_properties.html#volume-show-covers" />
+        </navPoint>
+        <navPoint id="navPoint58" playOrder="58">
+          <navLabel>
+            <text>issue_show_abstracts</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-show-abstracts" />
+        </navPoint>
+        <navPoint id="navPoint59" playOrder="59">
+          <navLabel>
+            <text>issue_show_full_abstracts</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-show-full-abstracts" />
+        </navPoint>
+        <navPoint id="navPoint60" playOrder="60">
+          <navLabel>
+            <text>issue_show_pdf_link</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-show-pdf-link" />
+        </navPoint>
+        <navPoint id="navPoint61" playOrder="61">
+          <navLabel>
+            <text>issue_show_short_citation</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-show-short-citation" />
+        </navPoint>
+        <navPoint id="navPoint62" playOrder="62">
+          <navLabel>
+            <text>issue_sort_on</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-sort-on" />
+        </navPoint>
+        <navPoint id="navPoint63" playOrder="63">
+          <navLabel>
+            <text>issue_sort_order</text>
+          </navLabel>
+          <content src="dipp_properties.html#issue-sort-order" />
+        </navPoint>
+        <navPoint id="navPoint64" playOrder="64">
+          <navLabel>
+            <text>discussion_time</text>
+          </navLabel>
+          <content src="dipp_properties.html#discussion-time" />
+        </navPoint>
+        <navPoint id="navPoint65" playOrder="65">
+          <navLabel>
+            <text>fedora_time_format</text>
+          </navLabel>
+          <content src="dipp_properties.html#fedora-time-format" />
+        </navPoint>
+        <navPoint id="navPoint66" playOrder="66">
+          <navLabel>
+            <text>issue_date_format</text>
+          </navLabel>
+          <content src="dipp_properties.html#id3" />
+        </navPoint>
+        <navPoint id="navPoint67" playOrder="67">
+          <navLabel>
+            <text>recent_articles_range</text>
+          </navLabel>
+          <content src="dipp_properties.html#recent-articles-range" />
+        </navPoint>
+        <navPoint id="navPoint68" playOrder="68">
+          <navLabel>
+            <text>deepest_toc_level</text>
+          </navLabel>
+          <content src="dipp_properties.html#deepest-toc-level" />
+        </navPoint>
+        <navPoint id="navPoint69" playOrder="69">
+          <navLabel>
+            <text>awstats_id</text>
+          </navLabel>
+          <content src="dipp_properties.html#awstats-id" />
+        </navPoint>
+        <navPoint id="navPoint70" playOrder="70">
+          <navLabel>
+            <text>enable_ebookey</text>
+          </navLabel>
+          <content src="dipp_properties.html#enable-ebookey" />
+        </navPoint>
+        <navPoint id="navPoint71" playOrder="71">
+          <navLabel>
+            <text>orcid_cli</text>
+          </navLabel>
+          <content src="dipp_properties.html#orcid-cli" />
+        </navPoint>
+        <navPoint id="navPoint72" playOrder="72">
+          <navLabel>
+            <text>twitter_username</text>
+          </navLabel>
+          <content src="dipp_properties.html#twitter-username" />
+        </navPoint>
+        <navPoint id="navPoint73" playOrder="73">
+          <navLabel>
+            <text>sharing_image</text>
+          </navLabel>
+          <content src="dipp_properties.html#sharing-image" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint74" playOrder="74">
+        <navLabel>
+          <text>metadata_properties (QDC Metadata properties)</text>
+        </navLabel>
+        <content src="metadata_properties.html" />
+        <navPoint id="navPoint74" playOrder="74">
+          <navLabel>
+            <text>metadata_properties (QDC Metadata properties)</text>
+          </navLabel>
+          <content src="metadata_properties.html" />
+        </navPoint>
+        <navPoint id="navPoint75" playOrder="75">
+          <navLabel>
+            <text>journalname</text>
+          </navLabel>
+          <content src="metadata_properties.html#journalname" />
+        </navPoint>
+        <navPoint id="navPoint76" playOrder="76">
+          <navLabel>
+            <text>journalname_abbr</text>
+          </navLabel>
+          <content src="metadata_properties.html#journalname-abbr" />
+        </navPoint>
+        <navPoint id="navPoint77" playOrder="77">
+          <navLabel>
+            <text>publisher</text>
+          </navLabel>
+          <content src="metadata_properties.html#publisher" />
+        </navPoint>
+        <navPoint id="navPoint78" playOrder="78">
+          <navLabel>
+            <text>issn</text>
+          </navLabel>
+          <content src="metadata_properties.html#issn" />
+        </navPoint>
+        <navPoint id="navPoint79" playOrder="79">
+          <navLabel>
+            <text>doi_prefix</text>
+          </navLabel>
+          <content src="metadata_properties.html#doi-prefix" />
+        </navPoint>
+        <navPoint id="navPoint80" playOrder="80">
+          <navLabel>
+            <text>default_pubType</text>
+          </navLabel>
+          <content src="metadata_properties.html#default-pubtype" />
+        </navPoint>
+        <navPoint id="navPoint81" playOrder="81">
+          <navLabel>
+            <text>default_docType</text>
+          </navLabel>
+          <content src="metadata_properties.html#default-doctype" />
+        </navPoint>
+        <navPoint id="navPoint82" playOrder="82">
+          <navLabel>
+            <text>default_language</text>
+          </navLabel>
+          <content src="metadata_properties.html#default-language" />
+        </navPoint>
+        <navPoint id="navPoint83" playOrder="83">
+          <navLabel>
+            <text>available_languages</text>
+          </navLabel>
+          <content src="metadata_properties.html#available-languages" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint84" playOrder="84">
+        <navLabel>
+          <text>member_properties (Extended member properties)</text>
+        </navLabel>
+        <content src="member_properties.html" />
+      </navPoint>
+      <navPoint id="navPoint85" playOrder="85">
+        <navLabel>
+          <text>dippreview_properties (DiPPReview properties)</text>
+        </navLabel>
+        <content src="dippreview_properties.html" />
+      </navPoint>
+      <navPoint id="navPoint86" playOrder="86">
+        <navLabel>
+          <text>site_properties</text>
+        </navLabel>
+        <content src="site_properties.html" />
+        <navPoint id="navPoint86" playOrder="86">
+          <navLabel>
+            <text>site_properties</text>
+          </navLabel>
+          <content src="site_properties.html" />
+        </navPoint>
+        <navPoint id="navPoint87" playOrder="87">
+          <navLabel>
+            <text>analytics_id</text>
+          </navLabel>
+          <content src="site_properties.html#analytics-id" />
+        </navPoint>
+        <navPoint id="navPoint88" playOrder="88">
+          <navLabel>
+            <text>analytics_server</text>
+          </navLabel>
+          <content src="site_properties.html#analytics-server" />
+        </navPoint>
+        <navPoint id="navPoint89" playOrder="89">
+          <navLabel>
+            <text>analytics_javascript</text>
+          </navLabel>
+          <content src="site_properties.html#analytics-javascript" />
+        </navPoint>
+        <navPoint id="navPoint90" playOrder="90">
+          <navLabel>
+            <text>analytics_javascript_notfound</text>
+          </navLabel>
+          <content src="site_properties.html#analytics-javascript-notfound" />
+        </navPoint>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint91" playOrder="91">
+      <navLabel>
+        <text>Changelog</text>
+      </navLabel>
+      <content src="changelog.html" />
+      <navPoint id="navPoint91" playOrder="91">
+        <navLabel>
+          <text>Changelog</text>
+        </navLabel>
+        <content src="changelog.html" />
+      </navPoint>
+      <navPoint id="navPoint92" playOrder="92">
+        <navLabel>
+          <text>DiPP 2.26 (2019-??-??)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-26-2019" />
+      </navPoint>
+      <navPoint id="navPoint93" playOrder="93">
+        <navLabel>
+          <text>DiPP 2.25.1 (2018-01-19)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-25-1-2018-01-19" />
+      </navPoint>
+      <navPoint id="navPoint94" playOrder="94">
+        <navLabel>
+          <text>DiPP 2.25 (2018-01-19)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-25-2018-01-19" />
+      </navPoint>
+      <navPoint id="navPoint95" playOrder="95">
+        <navLabel>
+          <text>DiPP 2.24 (unreleased)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-24-unreleased" />
+      </navPoint>
+      <navPoint id="navPoint96" playOrder="96">
+        <navLabel>
+          <text>DiPP 2.23 (2016-10-07)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-23-2016-10-07" />
+      </navPoint>
+      <navPoint id="navPoint97" playOrder="97">
+        <navLabel>
+          <text>DiPP 2.22 (2016-07-27)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-22-2016-07-27" />
+      </navPoint>
+      <navPoint id="navPoint98" playOrder="98">
+        <navLabel>
+          <text>DiPP 2.21 (2016-07-27)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-21-2016-07-27" />
+      </navPoint>
+      <navPoint id="navPoint99" playOrder="99">
+        <navLabel>
+          <text>DiPP 2.20 (unreleased)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-20-unreleased" />
+      </navPoint>
+      <navPoint id="navPoint100" playOrder="100">
+        <navLabel>
+          <text>DiPP 2.19 (2014-08-29)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-19-2014-08-29" />
+      </navPoint>
+      <navPoint id="navPoint101" playOrder="101">
+        <navLabel>
+          <text>DiPP 2.18 (2014-02-06)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-18-2014-02-06" />
+      </navPoint>
+      <navPoint id="navPoint102" playOrder="102">
+        <navLabel>
+          <text>DiPP 2.17 (2014-01-23)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-17-2014-01-23" />
+      </navPoint>
+      <navPoint id="navPoint103" playOrder="103">
+        <navLabel>
+          <text>DiPP 2.16 (2014-01-13)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-16-2014-01-13" />
+      </navPoint>
+      <navPoint id="navPoint104" playOrder="104">
+        <navLabel>
+          <text>DiPP 2.15 (2013-12-27)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-15-2013-12-27" />
+      </navPoint>
+      <navPoint id="navPoint105" playOrder="105">
+        <navLabel>
+          <text>DiPP 2.14 (2013-11-26)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-14-2013-11-26" />
+      </navPoint>
+      <navPoint id="navPoint106" playOrder="106">
+        <navLabel>
+          <text>DiPP 2.13 (2013-09-18)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-13-2013-09-18" />
+      </navPoint>
+      <navPoint id="navPoint107" playOrder="107">
+        <navLabel>
+          <text>DiPP 2.12 (2013-06-05)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-12-2013-06-05" />
+      </navPoint>
+      <navPoint id="navPoint108" playOrder="108">
+        <navLabel>
+          <text>DiPP 2.11 (2013-02-22)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-11-2013-02-22" />
+      </navPoint>
+      <navPoint id="navPoint109" playOrder="109">
+        <navLabel>
+          <text>DiPP 2.10 (2012-10-12)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-10-2012-10-12" />
+      </navPoint>
+      <navPoint id="navPoint110" playOrder="110">
+        <navLabel>
+          <text>DiPP 2.9.9 (2012-04-19)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-9-2012-04-19" />
+      </navPoint>
+      <navPoint id="navPoint111" playOrder="111">
+        <navLabel>
+          <text>DiPP 2.9.8 (2012-04-04)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-8-2012-04-04" />
+      </navPoint>
+      <navPoint id="navPoint112" playOrder="112">
+        <navLabel>
+          <text>DiPP 2.9.7 (2012-04-02)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-7-2012-04-02" />
+      </navPoint>
+      <navPoint id="navPoint113" playOrder="113">
+        <navLabel>
+          <text>DiPP 2.9.7 (2012-04-02)</text>
+        </navLabel>
+        <content src="changelog.html#id1" />
+      </navPoint>
+      <navPoint id="navPoint114" playOrder="114">
+        <navLabel>
+          <text>DiPP 2.9.5 (2012-03-12)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-5-2012-03-12" />
+      </navPoint>
+      <navPoint id="navPoint115" playOrder="115">
+        <navLabel>
+          <text>DiPP 2.9.5 (2012-03-13)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-5-2012-03-13" />
+      </navPoint>
+      <navPoint id="navPoint116" playOrder="116">
+        <navLabel>
+          <text>DiPP 2.9.4 (2012-01-19)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-4-2012-01-19" />
+      </navPoint>
+      <navPoint id="navPoint117" playOrder="117">
+        <navLabel>
+          <text>DiPP 2.9.3 (2011-10-20)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-3-2011-10-20" />
+      </navPoint>
+      <navPoint id="navPoint118" playOrder="118">
+        <navLabel>
+          <text>DiPP 2.9.2 (2011-10-11)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-2-2011-10-11" />
+      </navPoint>
+      <navPoint id="navPoint119" playOrder="119">
+        <navLabel>
+          <text>DiPP 2.9.1 (2011-10-10)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-1-2011-10-10" />
+      </navPoint>
+      <navPoint id="navPoint120" playOrder="120">
+        <navLabel>
+          <text>DiPP 2.9 (2011-09-28)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-9-2011-09-28" />
+      </navPoint>
+      <navPoint id="navPoint121" playOrder="121">
+        <navLabel>
+          <text>DiPP 2.8.1 (2011-07-20)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-8-1-2011-07-20" />
+      </navPoint>
+      <navPoint id="navPoint122" playOrder="122">
+        <navLabel>
+          <text>DiPP 2.8 (2011-07-18)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-8-2011-07-18" />
+      </navPoint>
+      <navPoint id="navPoint123" playOrder="123">
+        <navLabel>
+          <text>DiPP 2.7.2 (2011-06-29)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-7-2-2011-06-29" />
+      </navPoint>
+      <navPoint id="navPoint124" playOrder="124">
+        <navLabel>
+          <text>DiPP 2.7.1 (2011-04-21)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-7-1-2011-04-21" />
+      </navPoint>
+      <navPoint id="navPoint125" playOrder="125">
+        <navLabel>
+          <text>DiPP 2.7 (2011-04-18)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-7-2011-04-18" />
+      </navPoint>
+      <navPoint id="navPoint126" playOrder="126">
+        <navLabel>
+          <text>DiPP 2.6.4 (2011-03-23)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-6-4-2011-03-23" />
+      </navPoint>
+      <navPoint id="navPoint127" playOrder="127">
+        <navLabel>
+          <text>DiPP 2.6.3 (2011-03-22)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-6-3-2011-03-22" />
+      </navPoint>
+      <navPoint id="navPoint128" playOrder="128">
+        <navLabel>
+          <text>DiPP 2.6.2 (2011-03-10)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-6-2-2011-03-10" />
+      </navPoint>
+      <navPoint id="navPoint129" playOrder="129">
+        <navLabel>
+          <text>DiPP 2.6.1 (2011-02-24)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-6-1-2011-02-24" />
+      </navPoint>
+      <navPoint id="navPoint130" playOrder="130">
+        <navLabel>
+          <text>DiPP 2.6 (2011-02-24)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-6-2011-02-24" />
+      </navPoint>
+      <navPoint id="navPoint131" playOrder="131">
+        <navLabel>
+          <text>DiPP 2.5.5 (2011-02-14)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-5-5-2011-02-14" />
+      </navPoint>
+      <navPoint id="navPoint132" playOrder="132">
+        <navLabel>
+          <text>DiPP 2.5.4 (2010-11-29)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-5-4-2010-11-29" />
+      </navPoint>
+      <navPoint id="navPoint133" playOrder="133">
+        <navLabel>
+          <text>DiPP 2.5.3 (2010-11-18)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-5-3-2010-11-18" />
+      </navPoint>
+      <navPoint id="navPoint134" playOrder="134">
+        <navLabel>
+          <text>DiPP 2.5.2 (2010-10-22)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-5-2-2010-10-22" />
+      </navPoint>
+      <navPoint id="navPoint135" playOrder="135">
+        <navLabel>
+          <text>DiPP 2.5.1 (2010-10-08)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-5-1-2010-10-08" />
+      </navPoint>
+      <navPoint id="navPoint136" playOrder="136">
+        <navLabel>
+          <text>DiPP 2.5 (2010-09-30)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-5-2010-09-30" />
+      </navPoint>
+      <navPoint id="navPoint137" playOrder="137">
+        <navLabel>
+          <text>DiPP 2.4.10 (2010-09-08)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-10-2010-09-08" />
+      </navPoint>
+      <navPoint id="navPoint138" playOrder="138">
+        <navLabel>
+          <text>DiPP 2.4.9 (2010-09-02)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-9-2010-09-02" />
+      </navPoint>
+      <navPoint id="navPoint139" playOrder="139">
+        <navLabel>
+          <text>DiPP 2.4.8 (2010-08-25)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-8-2010-08-25" />
+      </navPoint>
+      <navPoint id="navPoint140" playOrder="140">
+        <navLabel>
+          <text>DiPP 2.4.7 (2010-08-24)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-7-2010-08-24" />
+      </navPoint>
+      <navPoint id="navPoint141" playOrder="141">
+        <navLabel>
+          <text>DiPP 2.4.6 (2010-07-28)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-6-2010-07-28" />
+      </navPoint>
+      <navPoint id="navPoint142" playOrder="142">
+        <navLabel>
+          <text>DiPP 2.4.5 (2010-07-28)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-5-2010-07-28" />
+      </navPoint>
+      <navPoint id="navPoint143" playOrder="143">
+        <navLabel>
+          <text>DiPP 2.4.4 (2010-07-23)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-4-2010-07-23" />
+      </navPoint>
+      <navPoint id="navPoint144" playOrder="144">
+        <navLabel>
+          <text>DiPP 2.4.3 (2010-07-12)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-3-2010-07-12" />
+      </navPoint>
+      <navPoint id="navPoint145" playOrder="145">
+        <navLabel>
+          <text>DiPP 2.4.2 (2010-06-30)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-2-2010-06-30" />
+      </navPoint>
+      <navPoint id="navPoint146" playOrder="146">
+        <navLabel>
+          <text>DiPP 2.4.1 (2010-06-29)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-1-2010-06-29" />
+      </navPoint>
+      <navPoint id="navPoint147" playOrder="147">
+        <navLabel>
+          <text>DiPP 2.4 (2010-06-22)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-4-2010-06-22" />
+      </navPoint>
+      <navPoint id="navPoint148" playOrder="148">
+        <navLabel>
+          <text>DiPP 2.3.6 (2010-05-27)</text>
+        </navLabel>
+        <content src="changelog.html#dipp-2-3-6-2010-05-27" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint149" playOrder="149">
+      <navLabel>
+        <text>Anhang</text>
+      </navLabel>
+      <content src="anhang.html" />
+      <navPoint id="navPoint149" playOrder="149">
+        <navLabel>
+          <text>Anhang</text>
+        </navLabel>
+        <content src="anhang.html" />
+      </navPoint>
+      <navPoint id="navPoint150" playOrder="150">
+        <navLabel>
+          <text>API/Interfaces</text>
+        </navLabel>
+        <content src="api.html" />
+        <navPoint id="navPoint150" playOrder="150">
+          <navLabel>
+            <text>API/Interfaces</text>
+          </navLabel>
+          <content src="api.html" />
+        </navPoint>
+        <navPoint id="navPoint151" playOrder="151">
+          <navLabel>
+            <text>Content Types</text>
+          </navLabel>
+          <content src="contenttypen.html" />
+        </navPoint>
+        <navPoint id="navPoint152" playOrder="152">
+          <navLabel>
+            <text>Tools</text>
+          </navLabel>
+          <content src="tools.html" />
+        </navPoint>
+        <navPoint id="navPoint153" playOrder="153">
+          <navLabel>
+            <text>Modules</text>
+          </navLabel>
+          <content src="modules.html" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint154" playOrder="154">
+        <navLabel>
+          <text>Product.DiPP</text>
+        </navLabel>
+        <content src="readme.html" />
+        <navPoint id="navPoint154" playOrder="154">
+          <navLabel>
+            <text>Product.DiPP</text>
+          </navLabel>
+          <content src="readme.html" />
+        </navPoint>
+        <navPoint id="navPoint155" playOrder="155">
+          <navLabel>
+            <text>Dependencies</text>
+          </navLabel>
+          <content src="readme.html#dependencies" />
+        </navPoint>
+        <navPoint id="navPoint156" playOrder="156">
+          <navLabel>
+            <text>Installation</text>
+          </navLabel>
+          <content src="readme.html#installation" />
+        </navPoint>
+        <navPoint id="navPoint157" playOrder="157">
+          <navLabel>
+            <text>Configuration</text>
+          </navLabel>
+          <content src="readme.html#configuration" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint158" playOrder="158">
+        <navLabel>
+          <text>Glossar</text>
+        </navLabel>
+        <content src="glossar.html" />
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

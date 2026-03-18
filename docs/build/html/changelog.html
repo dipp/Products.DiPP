@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Changelog &mdash; Digital Peer Publishing 2.25.3a Dokumentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Anhang" href="anhang.html" />
+    <link rel="prev" title="portal_doiregistry" href="portal_doiregistry.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Digital Peer Publishing
+          
+
+          
+            
+            <img src="_static/dipp-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.25.3a
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="einleitung.html">Einleitung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publizieren.html">Publikation wissenschaftlicher Artikel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ausgaben.html">Jahrgänge und Ausgaben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portlets.html">Portlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="persistent.html">Persistente Identifikatoren</a></li>
+<li class="toctree-l1"><a class="reference internal" href="konfiguration.html">Konfiguration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-26-2021">DiPP 2.26 (2021-??-??)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-25-1-2018-01-19">DiPP 2.25.1 (2018-01-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-25-2018-01-19">DiPP 2.25 (2018-01-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-24-unreleased">DiPP 2.24 (unreleased)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-23-2016-10-07">DiPP 2.23 (2016-10-07)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-22-2016-07-27">DiPP 2.22 (2016-07-27)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-21-2016-07-27">DiPP 2.21 (2016-07-27)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-20-unreleased">DiPP 2.20 (unreleased)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-19-2014-08-29">DiPP 2.19 (2014-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-18-2014-02-06">DiPP 2.18 (2014-02-06)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-17-2014-01-23">DiPP 2.17 (2014-01-23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-16-2014-01-13">DiPP 2.16 (2014-01-13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-15-2013-12-27">DiPP 2.15 (2013-12-27)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-14-2013-11-26">DiPP 2.14 (2013-11-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-13-2013-09-18">DiPP 2.13 (2013-09-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-12-2013-06-05">DiPP 2.12 (2013-06-05)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-11-2013-02-22">DiPP 2.11 (2013-02-22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-10-2012-10-12">DiPP 2.10 (2012-10-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-9-2012-04-19">DiPP 2.9.9 (2012-04-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-8-2012-04-04">DiPP 2.9.8 (2012-04-04)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-7-2012-04-02">DiPP 2.9.7 (2012-04-02)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">DiPP 2.9.7 (2012-04-02)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-5-2012-03-12">DiPP 2.9.5 (2012-03-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-5-2012-03-13">DiPP 2.9.5 (2012-03-13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-4-2012-01-19">DiPP 2.9.4 (2012-01-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-3-2011-10-20">DiPP 2.9.3 (2011-10-20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-2-2011-10-11">DiPP 2.9.2 (2011-10-11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-1-2011-10-10">DiPP 2.9.1 (2011-10-10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-9-2011-09-28">DiPP 2.9 (2011-09-28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-8-1-2011-07-20">DiPP 2.8.1 (2011-07-20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-8-2011-07-18">DiPP 2.8 (2011-07-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-7-2-2011-06-29">DiPP 2.7.2 (2011-06-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-7-1-2011-04-21">DiPP 2.7.1 (2011-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-7-2011-04-18">DiPP 2.7 (2011-04-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-6-4-2011-03-23">DiPP 2.6.4 (2011-03-23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-6-3-2011-03-22">DiPP 2.6.3 (2011-03-22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-6-2-2011-03-10">DiPP 2.6.2 (2011-03-10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-6-1-2011-02-24">DiPP 2.6.1 (2011-02-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-6-2011-02-24">DiPP 2.6 (2011-02-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-5-5-2011-02-14">DiPP 2.5.5 (2011-02-14)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-5-4-2010-11-29">DiPP 2.5.4 (2010-11-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-5-3-2010-11-18">DiPP 2.5.3 (2010-11-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-5-2-2010-10-22">DiPP 2.5.2 (2010-10-22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-5-1-2010-10-08">DiPP 2.5.1 (2010-10-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-5-2010-09-30">DiPP 2.5 (2010-09-30)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-10-2010-09-08">DiPP 2.4.10 (2010-09-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-9-2010-09-02">DiPP 2.4.9 (2010-09-02)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-8-2010-08-25">DiPP 2.4.8 (2010-08-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-7-2010-08-24">DiPP 2.4.7 (2010-08-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-6-2010-07-28">DiPP 2.4.6 (2010-07-28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-5-2010-07-28">DiPP 2.4.5 (2010-07-28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-4-2010-07-23">DiPP 2.4.4 (2010-07-23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-3-2010-07-12">DiPP 2.4.3 (2010-07-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-2-2010-06-30">DiPP 2.4.2 (2010-06-30)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-1-2010-06-29">DiPP 2.4.1 (2010-06-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-4-2010-06-22">DiPP 2.4 (2010-06-22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dipp-2-3-6-2010-05-27">DiPP 2.3.6 (2010-05-27)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="anhang.html">Anhang</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital Peer Publishing</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Changelog</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/changelog.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="dipp-2-26-2021">
+<h2>DiPP 2.26 (2021-??-??)<a class="headerlink" href="#dipp-2-26-2021" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Support for CC Licences added</p></li>
+<li><p>improved email alert with bibl. citation and direct
+link to datacite xml</p></li>
+<li><p>ORCID iD icon in authorblurb</p></li>
+<li><p>xepicur metadata</p></li>
+<li><p>new portlet with recommended citation and direct links to bibtex, ris, etc.</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-25-1-2018-01-19">
+<h2>DiPP 2.25.1 (2018-01-19)<a class="headerlink" href="#dipp-2-25-1-2018-01-19" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>minor bugfix</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-25-2018-01-19">
+<h2>DiPP 2.25 (2018-01-19)<a class="headerlink" href="#dipp-2-25-2018-01-19" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Piwik/Matomo</p>
+<ul>
+<li><p>Special Piwik/Matomo code also for <a class="reference external" href="https://matomo.org/faq/how-to/faq_60/">404 Pages</a> including referrer</p></li>
+<li><p>multipingual Privacypage with Piwik opt-out</p></li>
+<li><p>Tracking JS Code included via macro and propertysheet, no need to
+customize the maintemplate any more</p></li>
+</ul>
+</li>
+<li><p>Bugfixes, code cleanup, <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a></p></li>
+<li><p>ZMI improvements on manage pages of Fedoraobjects, i.e. view tab
+for folderish types.</p></li>
+<li><p>Paragraph numbers added to Wordtemplate and CSS</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-24-unreleased">
+<h2>DiPP 2.24 (unreleased)<a class="headerlink" href="#dipp-2-24-unreleased" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>use https for DOI resolving according to display guidelines of
+<a class="reference external" href="https://support.datacite.org/v1.0/docs/datacite-doi-display-guidelines">DataCite</a> and <a class="reference external" href="https://www.crossref.org/display-guidelines/">Crossref</a></p></li>
+<li><p>DataCite Metadata Schema 4.0</p></li>
+<li><p>Support for TwitterCard and Opengraph Metatags.</p></li>
+<li><p>Updated Documentation</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-23-2016-10-07">
+<h2>DiPP 2.23 (2016-10-07)<a class="headerlink" href="#dipp-2-23-2016-10-07" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>fixed initialisation problem for contenttypes</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-22-2016-07-27">
+<h2>DiPP 2.22 (2016-07-27)<a class="headerlink" href="#dipp-2-22-2016-07-27" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>fixed problem when installing permissions</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-21-2016-07-27">
+<h2>DiPP 2.21 (2016-07-27)<a class="headerlink" href="#dipp-2-21-2016-07-27" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>improved print stylesheet</p></li>
+<li><p>ebookey can be enabled in dipp_properties, since it only works for journals
+with html versions of the articles. Note: cover image required, but without
+alpha channel</p></li>
+<li><p>persistent urls for metadata</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-20-unreleased">
+<h2>DiPP 2.20 (unreleased)<a class="headerlink" href="#dipp-2-20-unreleased" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>show access statistics from AWStats directly in Plone, proteced by
+dedicated permission setting</p></li>
+<li><p>fixed reCAPTCHA. Validation expected two words, which failed for single
+(house)numbers</p></li>
+<li><p>new portlet with automatic generated table of contents portlet_autotoc
+(requires dipp.tools version 0.6)</p></li>
+<li><p>ebook support</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-19-2014-08-29">
+<h2>DiPP 2.19 (2014-08-29)<a class="headerlink" href="#dipp-2-19-2014-08-29" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>javascript support for metadata form. adding new fields does not require
+reload of entire form</p></li>
+<li><p>new get_location method, which passes the url of a ploneobject to fedora
+based on IP and port and bypassing the VHM.</p></li>
+<li><p>fixed permission problem in issue_portlet</p></li>
+<li><p>orcid fix for https connections</p></li>
+<li><p>improved DOI handling</p></li>
+<li><p>show pdf/a next to pdf</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-18-2014-02-06">
+<h2>DiPP 2.18 (2014-02-06)<a class="headerlink" href="#dipp-2-18-2014-02-06" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>requires dipp.dipp3 3.4 and works only with java package dippCore-1.3.02</p></li>
+<li><p>Support for ORCID ID</p></li>
+<li><p>DataCite and DOAJ xml export on one page</p></li>
+<li><p>removed authordetails on authorpage. just article listing for the time being</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-17-2014-01-23">
+<h2>DiPP 2.17 (2014-01-23)<a class="headerlink" href="#dipp-2-17-2014-01-23" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Datacite DOI control panel added (just skeleton)</p></li>
+<li><p>script to fix wrong formatted journalIssueDate in qdc metadata</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-16-2014-01-13">
+<h2>DiPP 2.16 (2014-01-13)<a class="headerlink" href="#dipp-2-16-2014-01-13" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>added DOI to portal_catalog. run synchronize script after installation</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-15-2013-12-27">
+<h2>DiPP 2.15 (2013-12-27)<a class="headerlink" href="#dipp-2-15-2013-12-27" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>DataCite XML for DOI registration</p></li>
+<li><p>improved metadata handling (mainly internal code cleanup)</p></li>
+<li><p>portlet with article and issue details (archimaera and zeitenblicke style)</p></li>
+<li><p>hidden/hover permalinks on splash pages</p></li>
+<li><p>moved son code to dipp.dipp3 module, depends now on version 3.3</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-14-2013-11-26">
+<h2>DiPP 2.14 (2013-11-26)<a class="headerlink" href="#dipp-2-14-2013-11-26" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>general code cleanup, removing deprecated files</p></li>
+<li><p>pubtype and doctype code in metadataform improved, configurable defaults</p></li>
+<li><p>getting rid of ugly test.py script. No special treatment of
+„title“ and „lang“ metadata</p></li>
+<li><p>added and fixed some translations</p></li>
+<li><p>more verbose help in metadataform</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-13-2013-09-18">
+<h2>DiPP 2.13 (2013-09-18)<a class="headerlink" href="#dipp-2-13-2013-09-18" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>improved documentation</p></li>
+<li><p>fix error when calling authorpage with of existing author</p></li>
+<li><p>allArticles script improved: include URNs, download as csv</p></li>
+<li><p>verbose list for selection of commented article</p></li>
+<li><p>a few translations</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-12-2013-06-05">
+<h2>DiPP 2.12 (2013-06-05)<a class="headerlink" href="#dipp-2-12-2013-06-05" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Using <a class="reference external" href="http://www.google.com/recaptcha">reCAPTCHA</a>  for join_form to prevent Spam.
+Remove qPloneCaptcha if installed</p></li>
+<li><p>fix_member script to delete spam accounts</p></li>
+<li><p>allArticles script created dowloadable alle-artikel.txt CSV file
+with PIDs, URL, Title</p></li>
+<li><p>URN Management in ZMI for Issues, Volumes and FedorHierarchien</p></li>
+<li><p>depends on dipp.tools &gt;= 0.3 and dipp.fedora2 &gt;= 2.2</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-11-2013-02-22">
+<h2>DiPP 2.11 (2013-02-22)<a class="headerlink" href="#dipp-2-11-2013-02-22" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>moved all DiPP relavant properties from the ZMI root to
+dipp_properties. Running moveProps.py script is required</p></li>
+<li><p>deadline code moved to a tool, ext-Folder with external methods
+is now obsolete and can be deleted</p></li>
+<li><p>some permission fixed for CMFOpenflow</p></li>
+<li><p>easier to go back to a previous version of a datastream</p></li>
+<li><p>fixed abstract encoding in rss feed</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-10-2012-10-12">
+<h2>DiPP 2.10 (2012-10-12)<a class="headerlink" href="#dipp-2-10-2012-10-12" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>added Sphinx based documentation</p></li>
+<li><p>proper use of interfaces</p></li>
+<li><p>ContentTypes moved to content folder</p></li>
+<li><p>generic profiles  for most installations</p></li>
+<li><p>event subscriber</p></li>
+<li><p>use of Products.DiPP nested namespace for propper „eggification“</p></li>
+<li><p>Fedora server configuration taken from dipp.fedora2 module, no
+extra configuration in Plone</p></li>
+<li><p>lots of code cleanup and docstrings</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-9-2012-04-19">
+<h2>DiPP 2.9.9 (2012-04-19)<a class="headerlink" href="#dipp-2-9-9-2012-04-19" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>added PID resolver</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-8-2012-04-04">
+<h2>DiPP 2.9.8 (2012-04-04)<a class="headerlink" href="#dipp-2-9-8-2012-04-04" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>fixed problems with link_translations_form</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-7-2012-04-02">
+<h2>DiPP 2.9.7 (2012-04-02)<a class="headerlink" href="#dipp-2-9-7-2012-04-02" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed some problem with versioning of XML streams</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>DiPP 2.9.7 (2012-04-02)<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>unreleased</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-5-2012-03-12">
+<h2>DiPP 2.9.5 (2012-03-12)<a class="headerlink" href="#dipp-2-9-5-2012-03-12" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Publishing (openflow) workflow: fixed permission problems and error
+in imprimatur mail</p></li>
+<li><p>recommendet citation: order first and lastname</p></li>
+<li><p>roles and persmissions as generic setup</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-5-2012-03-13">
+<h2>DiPP 2.9.5 (2012-03-13)<a class="headerlink" href="#dipp-2-9-5-2012-03-13" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>unreleased</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-4-2012-01-19">
+<h2>DiPP 2.9.4 (2012-01-19)<a class="headerlink" href="#dipp-2-9-4-2012-01-19" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>fileupload not limited to pdf or jpg, not so strict check of MIME Type</p></li>
+<li><p>ISSN search via aquisition, thus more flexible with multiple ISSNs</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-3-2011-10-20">
+<h2>DiPP 2.9.3 (2011-10-20)<a class="headerlink" href="#dipp-2-9-3-2011-10-20" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>fixed type error when adding files to submission</p></li>
+<li><p>default title in metadata</p></li>
+<li><p>new login_succes page with rolebased links</p></li>
+<li><p>pdf automatically declared as fulltext when pdf only publishing</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-2-2011-10-11">
+<h2>DiPP 2.9.2 (2011-10-11)<a class="headerlink" href="#dipp-2-9-2-2011-10-11" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>more flexible bibliographic citation (APA style possible)</p></li>
+<li><p>short bibl. citation on issue index page</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-1-2011-10-10">
+<h2>DiPP 2.9.1 (2011-10-10)<a class="headerlink" href="#dipp-2-9-1-2011-10-10" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>SpecialIssue from DiPPContent included, Dependency from DiPPContent
+removed. Should be deinstalled before reinstalling DIPP</p></li>
+<li><p>pdf link on issue index page</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-9-2011-09-28">
+<h2>DiPP 2.9 (2011-09-28)<a class="headerlink" href="#dipp-2-9-2011-09-28" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Merged with DiPPReview</p></li>
+<li><p>more than one ISSN possible</p></li>
+<li><p>Better support for classified subjects, JEL added</p></li>
+<li><p>Zählpixel in HTML and in PDF-Icon (document_actions)</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-8-1-2011-07-20">
+<h2>DiPP 2.8.1 (2011-07-20)<a class="headerlink" href="#dipp-2-8-1-2011-07-20" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>neutral language first in first workflow step, help texts</p></li>
+<li><p>fixed: paper does not appear in worklist, when authorname has strange
+characters</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-8-2011-07-18">
+<h2>DiPP 2.8 (2011-07-18)<a class="headerlink" href="#dipp-2-8-2011-07-18" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>IssueDate as DateIndex. Remove getIssueDate before Installation  to force
+recreation of index. reindex</p></li>
+<li><p>jquery UI, used for DiPPReviews overlay effects</p></li>
+<li><p>dipp_sections tool, will soon replace vocabularybased section, since
+it integrates in LinguaPlone</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-7-2-2011-06-29">
+<h2>DiPP 2.7.2 (2011-06-29)<a class="headerlink" href="#dipp-2-7-2-2011-06-29" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Fedora2DiPP3 tool folderish. Articles for storing in the repository
+are temporarily kept here insteat in fedora_tmp folder</p></li>
+<li><p>Enhanced translation of articles: i.e. english and german version can
+be in the same folder, not necessarily the translated parent folder</p></li>
+<li><p>advanced search even more enhanced</p></li>
+<li><p>GND Connection included, but not activated</p></li>
+<li><p>created, modified and valid dates replaced with published, submitted
+(needs still some fix for reading back)</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-7-1-2011-04-21">
+<h2>DiPP 2.7.1 (2011-04-21)<a class="headerlink" href="#dipp-2-7-1-2011-04-21" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>articlesearch shows short bibligraphic citation</p></li>
+<li><p>Licence defaults to englisch, when other language than en or de is
+selected</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-7-2011-04-18">
+<h2>DiPP 2.7 (2011-04-18)<a class="headerlink" href="#dipp-2-7-2011-04-18" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>new dependency: python egg dipp.tools</p></li>
+<li><p>After Install: call synchronize Skript to put the URN into plones catalog</p></li>
+<li><p>fedoratool shows status of URN</p></li>
+<li><p>fixed some problems when indexing pdfs</p></li>
+<li><p>new main_template for workflow related pages. only left column is
+visible and not modified by left_slot</p></li>
+<li><p>new articlesearch_form, not active yet</p></li>
+<li><p>feeds und search in robots.txt disabled for performance reasons</p></li>
+<li><p>new template for recent article with section drilldown (logistics)</p></li>
+<li><p>normalized rtf filenames, upload of files with strange filenames now
+possible</p></li>
+<li><p>zlog replaced with logger</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-4-2011-03-23">
+<h2>DiPP 2.6.4 (2011-03-23)<a class="headerlink" href="#dipp-2-6-4-2011-03-23" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>fixed broken pdf link in html version of article</p></li>
+<li><p>adding new keywords when uploading articles fixed</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-3-2011-03-22">
+<h2>DiPP 2.6.3 (2011-03-22)<a class="headerlink" href="#dipp-2-6-3-2011-03-22" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>„titel“ attribute (ZMI) of workflow instance removes to prevent trouble
+with special characters</p></li>
+<li><p>add basis for a „DiPPManagementTool“ which allows checking and
+installing of products in all journals of a zopeinstance</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-2-2011-03-10">
+<h2>DiPP 2.6.2 (2011-03-10)<a class="headerlink" href="#dipp-2-6-2-2011-03-10" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>portlet for ISSN</p></li>
+<li><p>recent_articles shows only articles of the last 30 days (configurable)</p></li>
+<li><p>Metadata: keywords as checkboxes to allow easier selection</p></li>
+<li><p>minor i18n and css corrections</p></li>
+<li><p>bypass webservice when uploading rtf. This might solve the timeout
+problems</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-1-2011-02-24">
+<h2>DiPP 2.6.1 (2011-02-24)<a class="headerlink" href="#dipp-2-6-1-2011-02-24" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>edit journal sections in the Metadataform</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-6-2011-02-24">
+<h2>DiPP 2.6 (2011-02-24)<a class="headerlink" href="#dipp-2-6-2011-02-24" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>adding pagenumbers also in the metadata form possible</p></li>
+<li><p>Metadata form: finally a cancel button plus a few refined translations</p></li>
+<li><p>Colored Differences between version of an article</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-5-2011-02-14">
+<h2>DiPP 2.5.5 (2011-02-14)<a class="headerlink" href="#dipp-2-5-5-2011-02-14" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>After Install: call synchronize Skript to put the JournalIssueDate and
+Authors into plones catalog</p></li>
+<li><p>recent articles: batched list with section support</p></li>
+<li><p>workflow: templates as controller page templates with cancel button,
+Title and PID on every page</p></li>
+<li><p>my_worklist and all_worklist unified</p></li>
+<li><p>licence is now a macro and used in mixed_view and fedoradocument_view</p></li>
+<li><p>pdf indexed together with article folder: found pdf in search result
+now has url of articlefolder/splashpage</p></li>
+<li><p>jQuery used to display references as tooltips</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-4-2010-11-29">
+<h2>DiPP 2.5.4 (2010-11-29)<a class="headerlink" href="#dipp-2-5-4-2010-11-29" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Fulltext with size</p></li>
+<li><p>issue sorting (by date, by position) configurable via ZMI</p></li>
+<li><p>DOI/URN linked with resolver</p></li>
+<li><p>date in issue configurable</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-3-2010-11-18">
+<h2>DiPP 2.5.3 (2010-11-18)<a class="headerlink" href="#dipp-2-5-3-2010-11-18" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>default view of articles configurable (fulltext for converted articles,
+mixed_view for pdf only publications)</p></li>
+<li><p>better linguaplone support for FedoraArticles. Tranlations can easily
+be linked after the conversion via the editorial toolbox</p></li>
+<li><p>more dummy metadata for temp. conversions. Citation and metadata views
+can be rendered now</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-2-2010-10-22">
+<h2>DiPP 2.5.2 (2010-10-22)<a class="headerlink" href="#dipp-2-5-2-2010-10-22" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Feeds as alternate content in header of some templates (icon in
+firefox address bar)</p></li>
+<li><p>Feeds optional contain a short bibliographic citation</p></li>
+<li><p>portlet and dedicated template for recent articles</p></li>
+<li><p>journalIssueDate in sync with Plones effective date</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-1-2010-10-08">
+<h2>DiPP 2.5.1 (2010-10-08)<a class="headerlink" href="#dipp-2-5-1-2010-10-08" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>authors/contributors indexed and searchable</p></li>
+<li><p>feeds: dedicated page and portlet</p></li>
+<li><p>article template to replace the authorblurb from the docbook</p></li>
+<li><p>minor bugfixes</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-5-2010-09-30">
+<h2>DiPP 2.5 (2010-09-30)<a class="headerlink" href="#dipp-2-5-2010-09-30" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>New Contenttype Issue and Volume, which are identical with
+FedoraHierachie, just another name. Existing Issues/volumes, made with
+FedoraHierachies can be migrated, but don’t need to.</p></li>
+<li><p>feeds include now the abstract, which requires running of the synchronize
+script, since the abstract stored in fedora has to be made available in the
+FedoraArticle contenttype</p></li>
+<li><p>Hierarchien, Issues, Volumes linguaplone aware.</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-10-2010-09-08">
+<h2>DiPP 2.4.10 (2010-09-08)<a class="headerlink" href="#dipp-2-4-10-2010-09-08" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>ZMI: fedora manage tab for articles. Currently  allows direct read
+access to datastreams and versions of the xml datastreams (DC,
+RELS-EXT,…) of the DiPP:article object</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-9-2010-09-02">
+<h2>DiPP 2.4.9 (2010-09-02)<a class="headerlink" href="#dipp-2-4-9-2010-09-02" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>beginning support for default metadata and configurable meadata form
+(not complete yet, required removing fedora tool before updating. remember
+to add label and pid again)</p></li>
+<li><p>Use of PyRRS2Gen for feeds started</p></li>
+<li><p>issues and volume show only content of current navigation level</p></li>
+<li><p>fixed minor design flaws</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-8-2010-08-25">
+<h2>DiPP 2.4.8 (2010-08-25)<a class="headerlink" href="#dipp-2-4-8-2010-08-25" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>show metadata/citation as tabs to make the page more compact</p></li>
+<li><p>citation downloadable for better integration with Endnote, Zotero,…</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-7-2010-08-24">
+<h2>DiPP 2.4.7 (2010-08-24)<a class="headerlink" href="#dipp-2-4-7-2010-08-24" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>citation formats with bibutils: Endnote, Bibtex,…</p></li>
+<li><p>bibutils needs to be installed and in the path</p></li>
+<li><p>bibliograph python modules are required</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-6-2010-07-28">
+<h2>DiPP 2.4.6 (2010-07-28)<a class="headerlink" href="#dipp-2-4-6-2010-07-28" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>direct access to fedora bypassing the webservice also for indexing pdf</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-5-2010-07-28">
+<h2>DiPP 2.4.5 (2010-07-28)<a class="headerlink" href="#dipp-2-4-5-2010-07-28" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>worklist makes ist easer to spot workitems which can be deleted because the
+items articleobject has been deleted. Needs the PID to be catalogued. Using
+with plone 2.0 requires manuell adding of PID index</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-4-2010-07-23">
+<h2>DiPP 2.4.4 (2010-07-23)<a class="headerlink" href="#dipp-2-4-4-2010-07-23" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>icons for metadata/citation and fulltext pdf as document_action implemented</p></li>
+<li><p>author page: in a case a contributor also has an account, the profile is shown</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-3-2010-07-12">
+<h2>DiPP 2.4.3 (2010-07-12)<a class="headerlink" href="#dipp-2-4-3-2010-07-12" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>new alphabetic list of authors, grouped by initial</p></li>
+<li><p>cleanup and minor bugfixes</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-2-2010-06-30">
+<h2>DiPP 2.4.2 (2010-06-30)<a class="headerlink" href="#dipp-2-4-2-2010-06-30" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>Bugfixes: corrected use of volume/issue in COinS</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-1-2010-06-29">
+<h2>DiPP 2.4.1 (2010-06-29)<a class="headerlink" href="#dipp-2-4-1-2010-06-29" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>COinS/Zotero support added, requires python module openurl</p></li>
+<li><p>worklist: show PID of the article, user ‚dippadm‘ can now
+easily delete workitems from the list.</p></li>
+<li><p>nicer abstract_view</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-4-2010-06-22">
+<h2>DiPP 2.4 (2010-06-22)<a class="headerlink" href="#dipp-2-4-2010-06-22" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>include the tools PloneFedora2DiPP2 and PloneFedora2DiPP3 replacing
+two seperate products. PloneFedora2DiPP3 is automatically installed</p></li>
+<li><p>finally removing root properties GAP_CONTAINER and label. These are
+replaces by PID and label configurable directly in the fedora tool.  For new
+Installations t has to be done manually, for upgrades from Version &lt;2.4 a
+script mig23to24 is provided</p></li>
+<li><p>Editing of FedoraDocuments simplified, less templates needed FedoraMultimedia</p></li>
+<li><p>fetches content/datastream directly from fedora, not
+via webservice, to improve performance</p></li>
+</ul>
+</div>
+<div class="section" id="dipp-2-3-6-2010-05-27">
+<h2>DiPP 2.3.6 (2010-05-27)<a class="headerlink" href="#dipp-2-3-6-2010-05-27" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>TextIndexNG3 used to index PDFs (requires reindexing of portal_catalog
+and converting existing indexes, see Products Readme)</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="anhang.html" class="btn btn-neutral float-right" title="Anhang" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="portal_doiregistry.html" class="btn btn-neutral" title="portal_doiregistry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2020, Dr. Peter Reimer, hbz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//alkyoneus.hbz-nrw.de/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+<img src="https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=1&rec=1" style="border:0" alt="" />
+</noscript>
+<!-- End Matomo Code -->
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

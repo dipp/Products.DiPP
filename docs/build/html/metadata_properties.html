@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>metadata_properties (QDC Metadata properties) &mdash; Digital Peer Publishing 2.25.3a Dokumentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/dippdoc.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="member_properties (Extended member properties)" href="member_properties.html" />
+    <link rel="prev" title="dipp_properties (DiPP properties)" href="dipp_properties.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Digital Peer Publishing
+          
+
+          
+            
+            <img src="_static/dipp-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.25.3a
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="einleitung.html">Einleitung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publizieren.html">Publikation wissenschaftlicher Artikel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ausgaben.html">Jahrgänge und Ausgaben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="portlets.html">Portlets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="persistent.html">Persistente Identifikatoren</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="konfiguration.html">Konfiguration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dipp_properties.html">dipp_properties (DiPP properties)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">metadata_properties (QDC Metadata properties)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#journalname">journalname</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#journalname-abbr">journalname_abbr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publisher">publisher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issn">issn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#doi-prefix">doi_prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-pubtype">default_pubType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-doctype">default_docType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-language">default_language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-languages">available_languages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="member_properties.html">member_properties (Extended member properties)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dippreview_properties.html">dippreview_properties (DiPPReview properties)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_properties.html">site_properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="portal_doiregistry.html">portal_doiregistry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anhang.html">Anhang</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Digital Peer Publishing</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="konfiguration.html">Konfiguration</a> &raquo;</li>
+        
+      <li>metadata_properties (QDC Metadata properties)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/metadata_properties.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="metadata-properties-qdc-metadata-properties">
+<h1>metadata_properties (QDC Metadata properties)<a class="headerlink" href="#metadata-properties-qdc-metadata-properties" title="Link zu dieser Überschrift">¶</a></h1>
+<p>einige Standardwerte für die Qualifizierten Dublin Core Metadaten.</p>
+<div class="section" id="journalname">
+<span id="prop-journalname"></span><h2>journalname<a class="headerlink" href="#journalname" title="Link zu dieser Überschrift">¶</a></h2>
+</div>
+<div class="section" id="journalname-abbr">
+<span id="prop-journalname-abbr"></span><h2>journalname_abbr<a class="headerlink" href="#journalname-abbr" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Kurzform des Journalnamens. Kann zum Beispiel in der kurzen Version der Zitierweise
+angewendet werden, z.B. JOE statt Journal of Examples.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="publisher">
+<span id="prop-publisher"></span><h2>publisher<a class="headerlink" href="#publisher" title="Link zu dieser Überschrift">¶</a></h2>
+</div>
+<div class="section" id="issn">
+<span id="prop-issn"></span><h2>issn<a class="headerlink" href="#issn" title="Link zu dieser Überschrift">¶</a></h2>
+</div>
+<div class="section" id="doi-prefix">
+<span id="prop-doi-prefix"></span><h2>doi_prefix<a class="headerlink" href="#doi-prefix" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Prefix für alle vergebenen DOI. DOIs bestehen aus einem internen Suffix und
+einem von einem Provider wie CrossRef oder der TIB vergebenen Prefix, das
+üblicherweise die Form <cite>10.xxxx</cite> hat. <cite>10.5072</cite> ist ein spezieller Testprefix.</p>
+<p>Ohne Angabe des Prefix steht das entsprechende Feld im Metadatenformular nicht
+zur Verfügung.</p>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">leer</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-pubtype">
+<span id="prop-default-pubtype"></span><h2>default_pubType<a class="headerlink" href="#default-pubtype" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">article</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-doctype">
+<span id="prop-default-doctype"></span><h2>default_docType<a class="headerlink" href="#default-doctype" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-language">
+<span id="prop-default-language"></span><h2>default_language<a class="headerlink" href="#default-language" title="Link zu dieser Überschrift">¶</a></h2>
+</div>
+<div class="section" id="available-languages">
+<span id="prop-available-languages"></span><h2>available_languages<a class="headerlink" href="#available-languages" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ger</span>
+<span class="n">eng</span>
+<span class="n">fra</span>
+<span class="n">ita</span>
+<span class="n">spa</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member_properties.html" class="btn btn-neutral float-right" title="member_properties (Extended member properties)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dipp_properties.html" class="btn btn-neutral" title="dipp_properties (DiPP properties)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2012-2020, Dr. Peter Reimer, hbz.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//alkyoneus.hbz-nrw.de/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+<img src="https://alkyoneus.hbz-nrw.de/piwik/piwik.php?idsite=1&rec=1" style="border:0" alt="" />
+</noscript>
+<!-- End Matomo Code -->
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
