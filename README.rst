@@ -165,6 +165,43 @@ The Python modules are installed by running:
     $ easy_install -f https://alkyoneus.hbz-nrw.de/dist -v dipp.datacite
 
 
+`/etc/logrotate.d/zope`:
+
+.. code-block:: ini
+
+    monthly
+    rotate 6
+    dateext
+    compress
+    delaycompress
+    sharedscripts
+
+    # zss
+    /srv/zope/dipp/zeo/zss/log/zeo.log  {
+        su zope dipp
+        postrotate
+            /srv/zope/dipp/zeo/zss/bin/zeoctl restart
+        endscript
+    }
+
+    # client 1
+    /srv/zope/dipp/zeo/client1/log/Z2.log
+    /srv/zope/dipp/zeo/client1/log/event.log {
+        su zope dipp
+        postrotate
+            /bin/kill -USR2 `cat /srv/zope/dipp/zeo/client1/var/Z2.pid`
+        endscript
+    }
+
+    # client 2
+    /srv/zope/dipp/zeo/client2/log/Z2.log
+    /srv/zope/dipp/zeo/client2/log/event.log {
+        su zope dipp
+        postrotate
+            /bin/kill -USR2 `cat /srv/zope/dipp/zeo/client2/var/Z2.pid`
+        endscript
+    }
+
 
 .. _SSL Support: https://techglimpse.com/install-python-openssl-support-tutorial/
 .. _Setuptools: https://github.com/pypa/setuptools

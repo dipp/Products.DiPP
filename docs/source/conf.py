@@ -22,8 +22,8 @@ def read(*rnames):
 
 __version__ = read('..', '..', 'Products', 'DiPP', 'version.txt').strip()
 
-ZOPE_INSTANCE_DIR = "/files/var/zope-instances/dev"
-#ZOPE_INSTANCE_DIR = "/home/reimer/Plone/dipp/instance"
+#ZOPE_INSTANCE_DIR = "/files/var/zope-instances/dev"
+ZOPE_INSTANCE_DIR = "/home/reimer/Zope/dev"
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.

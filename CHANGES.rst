@@ -1,7 +1,7 @@
 Changelog
 =========
 
-DiPP 2.26 (2020-??-??)
+DiPP 2.26 (2021-??-??)
 ----------------------
 
 * Support for CC Licences added
@@ -9,6 +9,7 @@ DiPP 2.26 (2020-??-??)
   link to datacite xml
 * ORCID iD icon in authorblurb
 * xepicur metadata
+* new portlet with recommended citation and direct links to bibtex, ris, etc.
 
 DiPP 2.25.1 (2018-01-19)
 ------------------------

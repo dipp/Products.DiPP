@@ -432,6 +432,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
                         fulltext = id
 
                 size = self.getObjSize(obj)
+                size2 = item.getObjSize
                 directURL = obj.absolute_url()
                 state = item.review_state
                 if pixel_domain and pixel_id:
@@ -441,7 +442,7 @@ class FedoraArticle(BrowserDefaultMixin, OrderedBaseFolder):
 
                 if not pdfs.has_key(base_id):
                     pdfs[base_id] = {'pdf': None, 'pdfa': None}
-                pdfs[base_id][type] = {'url': url, 'size': size, 'state': state}
+                pdfs[base_id][type] = {'url': url, 'size': size,  'size2': size2,'state': state}
         if fulltext:
             pdfs['fulltext'] = pdfs.pop(fulltext)
         return pdfs
